@@ -1,0 +1,66 @@
+/*
+core
+
+core module of #{$unit-prefix}-button
+
+Weight: -100
+
+Style guide: #{$unit-prefix}-button.core
+*/
+
+/*
+default style
+
+default style of #{$unit-prefix}-button
+
+Weight: -100
+
+Markup: <!-- link element -->
+<a class="#{$unit-prefix}-button" href="javascript:;">
+  <span class="#{$unit-prefix}-button__label  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</span>
+</a>
+<!-- button element -->
+<button class="#{$unit-prefix}-button">
+  <span class="#{$unit-prefix}-button__label  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</span>
+</button>
+
+#{$unit-prefix}-button - default style
+
+Style guide: #{$unit-prefix}-button.core.base
+*/
+.#{$unit-prefix}-button {
+  @include use-box-base(
+    $overflow: "hidden",
+    $box-sizing: "border-box"
+  );
+  @include use-text-base(
+    $letter-spacing: 0,
+    $line-height: 1,
+    $text-align: "center",
+    $font-size: 0
+  );
+  @include use-font-base(
+    $feature-settings: true
+  );
+  @include use-font-size(
+    $value: "medium"
+  );
+
+  width: 100%; // for button element, because it always inline-block
+  color: inherit;
+  background-color: transparent;
+
+  @at-root {
+    button#{&} {
+      appearance: none; // stylelint-disable-line plugin/no-unsupported-browser-features
+      cursor: pointer;
+    }
+  }
+
+  &__label {
+    line-height: normal;
+    text-align: center;
+    color: inherit;
+    background-color: transparent;
+  }
+}

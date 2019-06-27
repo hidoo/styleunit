@@ -1,0 +1,61 @@
+/*
+border
+
+utilities that tweek of border
+
+Weight: -94
+
+Style guide: #{$unit-util-prefix}.border
+*/
+
+/*
+utilities: border
+
+builtin modifiers of border
+
+Weight: -100
+
+Markup: <div style="position:relative; padding:50px;">
+  <div class="{{modifier_class}}" style="position:relative; width:50px; height:50px; background:#999;"></div>
+</div>
+
+#{$unit-util-prefix}--border-top-light - top light border
+#{$unit-util-prefix}--border-top-dark - top dark border
+#{$unit-util-prefix}--border-right-light - right light border
+#{$unit-util-prefix}--border-right-dark - right dark border
+#{$unit-util-prefix}--border-bottom-light - bottom light border
+#{$unit-util-prefix}--border-bottom-dark - bottom dark border
+#{$unit-util-prefix}--border-left-light - left light border
+#{$unit-util-prefix}--border-left-dark - left dark border
+#{$unit-util-prefix}--border-vertical-light - vertical light border
+#{$unit-util-prefix}--border-vertical-dark - vertical dark border
+#{$unit-util-prefix}--border-horizontal-light - horizontal light border
+#{$unit-util-prefix}--border-horizontal-dark - horizontal dark border
+#{$unit-util-prefix}--border-all-light - all light border
+#{$unit-util-prefix}--border-all-dark - all dark border
+
+Style guide: #{$unit-util-prefix}.border.builtin
+*/
+.#{$unit-util-prefix}--border {
+  $values: ();
+
+  @if global-variable-exists("unit-builtin-themes") {
+    @each $name, $theme in $unit-builtin-themes {
+      $values: append(
+        $values,
+        (
+          "name": $name,
+          "size": 1px,
+          "style": solid,
+          "color": map-get($theme, "border")
+        )
+      );
+    }
+  }
+
+  // each by directions
+  @include define-sizes-in-directions($type: "border", $values: $values);
+
+  // each by direction groups
+  @include define-sizes-in-direction-groups($type: "border", $values: $values);
+}

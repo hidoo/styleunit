@@ -1,0 +1,54 @@
+/*
+copy-protect
+
+copy-protect modifiers of #{$unit-prefix}-pict
+
+Weight: -97
+
+Style guide: #{$unit-prefix}-pict.copy-protect
+*/
+
+/*
+modifiers: copy-protect
+
+builtin modifiers of copy-protect for #{$unit-prefix}-pict
+
+Weight: -100
+
+Markup: <!-- image element -->
+<figure class="#{$unit-prefix}-pict  {{modifier_class}}">
+  <img class="#{$unit-prefix}-pict__src" src="https://placehold.it/400x300.png" alt="" width="400" height="300" />
+</figure>
+<!-- image element (breaking) -->
+<figure class="#{$unit-prefix}-pict  {{modifier_class}}">
+  <img class="#{$unit-prefix}-pict__src" src="#" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." width="400" height="300" />
+</figure>
+<!-- iframe player -->
+<figure class="#{$unit-prefix}-pict  {{modifier_class}}">
+  <iframe class="#{$unit-prefix}-pict__src" title="vimeo-player" src="https://player.vimeo.com/video/76979871" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+</figure>
+
+#{$unit-prefix}-pict--copy-protect-false - disable copy protection (**default**)
+#{$unit-prefix}-pict--copy-protect-true - enable copy protection
+
+Style guide: #{$unit-prefix}-pict.copy-protect.builtin
+*/
+.#{$unit-prefix}-pict--copy-protect {
+  &-false {
+    // has no settings
+  }
+
+  &-true {
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.005); // for ie 10
+    }
+  }
+}

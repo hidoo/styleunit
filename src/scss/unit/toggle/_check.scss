@@ -1,0 +1,169 @@
+/*
+check
+
+check modifiers of #{$unit-prefix}-toggle
+
+Weight: -98
+
+Style guide: #{$unit-prefix}-toggle.check
+*/
+
+/*
+modifiers: check
+
+builtin modifiers of check for #{$unit-prefix}-toggle
+
+Weight: -100
+
+Markup: <!-- single -->
+<span class="#{$unit-prefix}-toggle  {{modifier_class}}">
+  <input class="#{$unit-prefix}-toggle__field" type="checkbox" name="{{modifier_class}}" value="1" />
+  <span class="#{$unit-prefix}-toggle__alt"></span>
+</span>
+<!-- single:disabled -->
+<span class="#{$unit-prefix}-toggle  {{modifier_class}}">
+  <input class="#{$unit-prefix}-toggle__field" type="checkbox" name="{{modifier_class}}" value="2" checked="checked" disabled="disabled" />
+  <span class="#{$unit-prefix}-toggle__alt"></span>
+</span>
+<!-- with label -->
+<label>
+  <span class="#{$unit-prefix}-toggle  {{modifier_class}}">
+    <input class="#{$unit-prefix}-toggle__field" type="checkbox" name="{{modifier_class}}" value="3" />
+    <span class="#{$unit-prefix}-toggle__alt"></span>
+  </span>
+  <span class="#{$unit-prefix}-text  #{$unit-prefix}-text--inline-true">Lorem ipsum dolor sit amet.</span>
+</label>
+
+#{$unit-prefix}-toggle--check-light - light check
+#{$unit-prefix}-toggle--check-dark - dark check
+
+Style guide: #{$unit-prefix}-toggle.check.builtin
+*/
+.#{$unit-prefix}-toggle--check {
+  $selector: unique-id();
+  $selector-field: unique-id();
+  $selector-alt: unique-id();
+  $selector-alt-checked: unique-id();
+  $selectors-selected: merge-state-selectors("selected");
+  $selectors-focus: merge-state-selectors("focus");
+  $selectors-disabled: merge-state-selectors("disabled");
+
+  // define placeholder class
+  @include define-inline-placeholder($name: $selector) {
+    vertical-align: middle;
+  }
+
+  // define placeholder class of field
+  @include define-inline-placeholder($name: $selector-field) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+
+  // define placeholder class of alt
+  @include define-inline-placeholder($name: $selector-alt) {
+    display: block;
+    z-index: 0;
+    width: 20px;
+    height: 20px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 3px;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-out;
+    transition-property: border-color;
+
+    &::before,
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      transform-origin: 0 100%;
+      transform: translate(8px, -3px) rotate(-45deg) scale(0);
+      transition-duration: 0.2s;
+      transition-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      transition-property: transform;
+    }
+
+    &::before {
+      width: 14px;
+      height: 3px;
+    }
+
+    &::after {
+      width: 3px;
+      height: 8px;
+    }
+  }
+
+  // define placeholder class of alt when checked
+  @include define-inline-placeholder($name: $selector-alt-checked) {
+    &::before,
+    &::after {
+      transform: translate(8px, -3px) rotate(-45deg) scale(1);
+    }
+  }
+
+  @if global-variable-exists("unit-builtin-themes") {
+    @each $name, $theme in $unit-builtin-themes {
+      $color: map-get($theme, "color");
+      $color-focus: map-get($theme, "color-focus");
+
+      &-#{$name} {
+        @extend %#{$selector};
+        $selector-alt-focus: unique-id();
+        $selector-alt-disabled: unique-id();
+
+        > .#{$unit-prefix}-toggle__field {
+          @extend %#{$selector-field};
+        }
+
+        > .#{$unit-prefix}-toggle__field + .#{$unit-prefix}-toggle__alt {
+          @extend %#{$selector-alt};
+
+          border-color: $color;
+
+          &::before,
+          &::after {
+            background-color: $color;
+          }
+        }
+
+        // when checked
+        @each $state in $selectors-selected {
+          > .#{$unit-prefix}-toggle__field#{$state} + .#{$unit-prefix}-toggle__alt {
+            @extend %#{$selector-alt-checked};
+          }
+        }
+
+        // define placeholder class of alt when focus
+        @include define-inline-placeholder($name: $selector-alt-focus) {
+          border-color: $color-focus;
+        }
+
+        @each $state in $selectors-focus {
+          > .#{$unit-prefix}-toggle__field#{$state} + .#{$unit-prefix}-toggle__alt {
+            @extend %#{$selector-alt-focus};
+          }
+        }
+
+        // define placeholder class of alt when disabled
+        @include define-inline-placeholder($name: $selector-alt-disabled) {
+          border-color: $color;
+        }
+
+        @each $state in $selectors-disabled {
+          > .#{$unit-prefix}-toggle__field#{$state} + .#{$unit-prefix}-toggle__alt {
+            @extend %#{$selector-alt-disabled};
+          }
+        }
+      }
+    }
+  }
+}

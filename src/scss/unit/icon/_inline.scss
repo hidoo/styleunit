@@ -1,0 +1,35 @@
+/*
+inline
+
+inline modifiers of #{$unit-prefix}-icon
+
+Weight: -98
+
+Style guide: #{$unit-prefix}-icon.inline
+*/
+
+/*
+modifiers: inline
+
+builtin modifiers of inline for #{$unit-prefix}-icon
+
+Weight: -100
+
+Markup: <span class="#{$unit-prefix}-icon  #{$unit-prefix}-icon--type-arrow-light  {{modifier_class}}"></span>
+<span class="#{$unit-prefix}-icon  #{$unit-prefix}-icon--type-arrow-dark  {{modifier_class}}"></span>
+
+#{$unit-prefix}-icon--inline-false - disable inline (**default**)
+#{$unit-prefix}-icon--inline-true - enable inline
+
+Style guide: #{$unit-prefix}-icon.inline.builtin
+*/
+.#{$unit-prefix}-icon--inline {
+  &-false {
+    // has no settings
+  }
+
+  &-true {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}

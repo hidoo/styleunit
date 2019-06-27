@@ -1,0 +1,25 @@
+/// wrappper of :hover and :focus
+/// @param {List} $additional-selectors list of additional selectors [()]
+/// @param {List} $capturing-selectors capturing parent selectors
+///
+/// @example
+///   .selector {
+///     @include on-focus() {
+///       font-size: 16px;
+///     }
+///   }
+///   // -> .selector:hover, .selector:focus, .selector.is-focus { font-size: 16px; }
+@mixin on-focus(
+  $additional-selectors: (),
+  $capturing-selectors: ()
+) {
+  @if not function-exists("merge-state-selectors") {
+    @error "@mixin on-disabled: @function merge-state-selectors is required.";
+  }
+
+  $selectors: merge-state-selectors("focus", $additional-selectors);
+
+  @include on($selectors: $selectors, $capturing-selectors: $capturing-selectors) {
+    @content;
+  }
+}

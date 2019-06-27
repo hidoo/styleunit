@@ -1,0 +1,65 @@
+/*
+theme
+
+theme modifiers of #{$unit-prefix}-button
+
+Weight: -99
+
+Style guide: #{$unit-prefix}-button.theme
+*/
+
+/*
+modifiers: theme
+
+builtin modifiers of theme for #{$unit-prefix}-button
+
+Weight: -100
+
+Markup: <!-- link element -->
+<a class="#{$unit-prefix}-button  {{modifier_class}}" href="javascript:;">
+  <span class="#{$unit-prefix}-button__label  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</span>
+</a>
+<!-- button element -->
+<button class="#{$unit-prefix}-button  {{modifier_class}}">
+  <span class="#{$unit-prefix}-button__label  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</span>
+</button>
+
+#{$unit-prefix}-button--theme-light - light theme
+#{$unit-prefix}-button--theme-dark - dark theme
+
+Style guide: #{$unit-prefix}-button.theme.builtin
+*/
+.#{$unit-prefix}-button--theme {
+  $selector: unique-id();
+
+  @include define-inline-placeholder($name: $selector) {
+    padding: 10px;
+    border-radius: 3px;
+    transition-duration: 0.1s;
+    transition-property: background-color;
+    transition-timing-function: ease-out;
+  }
+
+  @if global-variable-exists("unit-builtin-themes") {
+    @each $name, $theme in $unit-builtin-themes {
+      $color: map-get($theme, "color");
+      $background: map-get($theme, "background");
+      $background-focus: map-get($theme, "background-focus");
+      $border: map-get($theme, "border");
+      $border-focus: map-get($theme, "border-focus");
+
+      &-#{$name} {
+        @extend %#{$selector};
+
+        color: $color;
+        background-color: $background;
+        border: 1px solid $border;
+
+        @include on-focus($capturing-selectors: ("a", "button")) {
+          background-color: $background-focus;
+          border-color: $border-focus;
+        }
+      }
+    }
+  }
+}

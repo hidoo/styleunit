@@ -1,0 +1,55 @@
+/*
+item-marker
+
+item-marker modifiers of #{$unit-prefix}-list
+
+Weight: -98
+
+Style guide: #{$unit-prefix}-list.item-marker
+*/
+
+/*
+modifiers: item-marker
+
+builtin modifiers of item-marker for #{$unit-prefix}-list
+
+Weight: -100
+
+Markup: <!-- un ordered list -->
+<ul class="#{$unit-prefix}-list  #{$unit-prefix}-list--marker-circle-filled">
+  <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</li>
+  <li class="#{$unit-prefix}-list__item  {{modifier_class}}  #{$unit-prefix}-text" data-#{$unit-prefix}-list-item-marker="▸">Lorem ipsum dolor sit amet.</li>
+  <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</li>
+</ul>
+<!-- ordered list -->
+<ol class="#{$unit-prefix}-list  #{$unit-prefix}-list--marker-numeric">
+  <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</li>
+  <li class="#{$unit-prefix}-list__item  {{modifier_class}}  #{$unit-prefix}-text" data-#{$unit-prefix}-list-item-marker="Ⅱ">Lorem ipsum dolor sit amet.</li>
+  <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</li>
+</ol>
+
+#{$unit-prefix}-list__item--marker-none - no item-marker
+#{$unit-prefix}-list__item--marker-no-increment - no-increment item-marker
+#{$unit-prefix}-list__item--marker-custom - custom item-marker
+
+Style guide: #{$unit-prefix}-list.item-marker.builtin
+*/
+.#{$unit-prefix}-list__item--marker {
+  &-none {
+    &::before {
+      content: none !important;
+    }
+  }
+
+  &-no-increment {
+    counter-increment: none !important;
+  }
+
+  &-custom {
+    $attribute-name: "data-#{$unit-prefix}-list-item-marker";
+
+    &::before {
+      content: attr(#{$attribute-name}) !important;
+    }
+  }
+}

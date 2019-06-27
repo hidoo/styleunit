@@ -1,0 +1,24 @@
+/// use settings of initialized table
+/// @param {Number|String} $width setting for width ["auto"]
+/// @param {Number|List} $margin setting for margin [0]
+/// @param {Number|List} $padding setting for padding [0]
+/// @param {String} $border-style setting for border-style ["solid"]
+/// @param {Number} $border-width setting for border-width [1px]
+///
+/// @example
+///   @include use-table-base();
+@mixin use-table-base(
+  $width: "auto",
+  $margin: 0,
+  $padding: 0,
+  $border-style: "solid",
+  $border-width: 1px
+) {
+  display: table;
+  width: #{$width};
+  margin: #{$margin};
+  padding: #{$padding};
+  border-collapse: collapse;
+  border-style: #{$border-style};
+  border-width: #{$border-width};
+}

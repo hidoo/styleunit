@@ -1,0 +1,29 @@
+// define @font-face if $unit-font-family includes target font
+@if $unit-font-enable-override and index($unit-font-family, "Yu Gothic") != null {
+  @font-face {
+    font-family: "Yu Gothic";
+    src: local("Yu Gothic Medium");
+    font-weight: normal;
+  }
+
+  @font-face {
+    font-family: "Yu Gothic";
+    src: local("Yu Gothic Bold");
+    font-weight: bold;
+  }
+}
+
+// setting base font-size for rem
+@if $unit-font-enable-relative-size {
+  html {
+    font-size: $unit-font-base-size;
+  }
+}
+
+body {
+  @include use-font-family($value: "default");
+
+  // for mobile browser
+  // + https://caniuse.com/#search=text-size-adjust
+  text-size-adjust: 100%;
+}

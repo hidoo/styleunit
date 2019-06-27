@@ -1,0 +1,62 @@
+/*
+height
+
+utilities that tweek of height
+
+Weight: -97
+
+Style guide: #{$unit-util-prefix}.height
+*/
+
+/*
+utilities: height
+
+builtin modifiers of height.
+(0 to 150px in 25px steps, 200px to 450px in 50px steps, 500px to 1000px in 100px steps)
+
+Weight: -100
+
+Markup: <div style="position:relative; padding:50px;">
+  <div class="{{modifier_class}}" style="position:relative; width:50px; height:50px; background:#999;"></div>
+</div>
+
+#{$unit-util-prefix}--height-0 - 0px height
+#{$unit-util-prefix}--height-min-0 - 0px min height
+#{$unit-util-prefix}--height-max-0 - 0px min height
+#{$unit-util-prefix}--height-1000 - 1000px height
+#{$unit-util-prefix}--height-min-1000 - 1000px min height
+#{$unit-util-prefix}--height-max-1000 - 1000px min height
+#{$unit-util-prefix}--height-fit - 100% height
+#{$unit-util-prefix}--height-min-fit - 100% min height
+#{$unit-util-prefix}--height-max-fit - 100% min height
+#{$unit-util-prefix}--height-auto - auto height
+
+Style guide: #{$unit-util-prefix}.height.builtin
+*/
+.#{$unit-util-prefix}--height {
+  $values: (
+    0,
+    25px, 50px, 75px, 100px, 125px, 150px,
+    200px, 250px, 300px, 350px, 400px, 450px,
+    500px, 600px, 700px, 800px, 900px, 1000px
+  );
+
+  // each by sizes
+  @include define-sizes($type: "height", $values: $values);
+
+  &-fit {
+    height: 100% !important;
+  }
+
+  &-min-fit {
+    min-height: 100% !important;
+  }
+
+  &-max-fit {
+    max-height: 100% !important;
+  }
+
+  &-auto {
+    height: auto !important;
+  }
+}

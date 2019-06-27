@@ -1,0 +1,44 @@
+/// wrappper of pseudo class like :hover
+/// @param {List} $selectors list of selectors [()]
+/// @param {List} $capturing-selectors capturing parent selectors
+///
+/// @example
+///   .selector {
+///     @include on((":hover", ":focus")) {
+///       font-size: 16px;
+///     }
+///   }
+///   // -> .selector:hover, .selector:focus { font-size: 16px; }
+@mixin on(
+  $selectors: (),
+  $capturing-selectors: ()
+) {
+  @if not mixin-exists("define-inline-placeholder") {
+    @error "@mixin on: @mixin define-inline-placeholder is required.";
+  }
+
+  @if length($selectors) >= 1 {
+    $unique-id: unique-id();
+
+    @include define-inline-placeholder($name: $unique-id) {
+      @content;
+    }
+
+    @each $selector in $selectors {
+      &#{$selector} {
+        @extend %#{$unique-id};
+      }
+    }
+
+    @each $capturing-selector in $capturing-selectors {
+      @each $selector in $selectors {
+        #{$capturing-selector}#{$selector} & {
+          @extend %#{$unique-id};
+        }
+      }
+    }
+  }
+  @else {
+    @warn "@mixin on: @content is not yield, because argument $selectors is empty.";
+  }
+}

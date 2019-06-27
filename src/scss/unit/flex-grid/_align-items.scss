@@ -1,0 +1,76 @@
+/*
+align-items
+
+align-items modifiers of #{$unit-prefix}-flex-grid
+
+Weight: -97
+
+Style guide: #{$unit-prefix}-flex-grid.align-items
+*/
+
+/*
+modifiers: align-items
+
+builtin modifiers of align-items for #{$unit-prefix}-flex-grid
+
+Weight: -100
+
+Markup: <div class="#{$unit-prefix}-flex-grid  {{modifier_class}}">
+  <div class="#{$unit-prefix}-flex-grid__column  #{$unit-util-prefix}--width-max-200">
+    <!-- some unit -->
+    <figure class="#{$unit-prefix}-pict  #{$unit-prefix}-pict--fit-max-width  #{$unit-util-prefix}--float-left">
+      <img class="#{$unit-prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
+    </figure>
+    <p class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <!-- some unit -->
+  </div>
+  <div class="#{$unit-prefix}-flex-grid__column  #{$unit-util-prefix}--width-max-200">
+    <!-- some unit -->
+    <figure class="#{$unit-prefix}-pict  #{$unit-prefix}-pict--fit-max-width  #{$unit-util-prefix}--float-left">
+      <img class="#{$unit-prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
+    </figure>
+    <p class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <!-- some unit -->
+  </div>
+  <div class="#{$unit-prefix}-flex-grid__column  #{$unit-util-prefix}--width-max-200">
+    <!-- some unit -->
+    <figure class="#{$unit-prefix}-pict  #{$unit-prefix}-pict--fit-max-width  #{$unit-util-prefix}--float-left">
+      <img class="#{$unit-prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
+    </figure>
+    <p class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <!-- some unit -->
+  </div>
+  <div class="#{$unit-prefix}-flex-grid__column  #{$unit-util-prefix}--width-max-200">
+    <!-- some unit -->
+    <figure class="#{$unit-prefix}-pict  #{$unit-prefix}-pict--fit-max-width  #{$unit-util-prefix}--float-left">
+      <img class="#{$unit-prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
+    </figure>
+    <p class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet.</p>
+    <!-- some unit -->
+  </div>
+</div>
+
+#{$unit-prefix}-flex-grid--align-items-stretch - align-items stretch (**default**)
+#{$unit-prefix}-flex-grid--align-items-start - align-items start of flow
+#{$unit-prefix}-flex-grid--align-items-center - align-items center of flow
+#{$unit-prefix}-flex-grid--align-items-end - align-items end of flow
+
+Style guide: #{$unit-prefix}-flex-grid.align-items.builtin
+*/
+.#{$unit-prefix}-flex-grid--align-items {
+  &-stretch {
+    align-items: stretch;
+  }
+
+  &-start {
+    align-items: flex-start;
+  }
+
+  &-center {
+    align-items: center;
+  }
+
+  &-end {
+    align-items: flex-end;
+  }
+}

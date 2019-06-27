@@ -1,0 +1,17 @@
+/// return number without unit
+/// @param {Number} $number number with unit
+/// @return {number} number without unit
+///
+/// @example
+///   $pure-number: ununit(14px); // -> 14
+@function ununit($number) {
+  @if type-of($number) != "number" {
+    @error "@function ununit: Argument $number is not number. (specified: #{inspect($number)})";
+  }
+
+  @if unitless($number) {
+    @return $number;
+  }
+
+  @return $number / ($number * 0 + 1);
+}

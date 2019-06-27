@@ -1,0 +1,83 @@
+/// define sizes in directions
+/// @param {String} $type type of options [margin|padding|position|border]
+/// @param {List} $values list of value
+///
+/// @example
+///   .margin {
+///     @include define-sizes-in-directions($type: "margin", $values: (5px, -5px))
+///   }
+///   // -> .margin-top-5 { margin-top: 5px !important; }
+///   // -> .margin-top-5- { margin-top: -5px !important; }
+///   // -> .margin-right-5 { margin-right: 5px !important; }
+///   // -> .margin-right-5- { margin-right: -5px !important; }
+///   // -> .margin-bottom-5 { margin-bottom: 5px !important; }
+///   // -> .margin-bottom-5- { margin-bottom: -5px !important; }
+///   // -> .margin-left-5 { margin-left: 5px !important; }
+///   // -> .margin-left-5- { margin-left: -5px !important; }
+@mixin define-sizes-in-directions($type: "margin", $values: ()) {
+  @if not function-exists("ununit") {
+    @error "@function ununit is not imported.";
+  }
+
+  @if type-of($type) != "string" or index(("margin", "padding", "position", "border"), $type) == null {
+    @error "@mixin define-sizes-in-directions: Argument $type is not one of margin, padding, position and border. (specified: #{inspect($type)})";
+  }
+
+  @if type-of($values) != "list" {
+    @error "@mixin define-sizes-in-directions: Argument $values is not list. (specified: #{inspect($values)})";
+  }
+
+  $directions: (top, right, bottom, left);
+  $property: if($type == "position", "", "#{$type}-");
+
+  @each $direction in $directions {
+    @each $value in $values {
+      @if $type == "border" {
+        @if type-of($value) != "map" or not map-has-key($value, "name") {
+          @error "@mixin define-sizes-in-directions: Argument $values is not valid map. (specified: #{inspect($values)})";
+        }
+
+        $selector: selector-append(&, "-#{$direction}-#{map-get($value, "name")}");
+
+        @if not map-has-key($value, "size") {
+          $value: map-merge($value, ("size": 1px));
+
+          @warn "'size' of #{$selector} is not specified. Using default size.";
+        }
+
+        @if not map-has-key($value, "style") {
+          $value: map-merge($value, ("style": solid));
+
+          @warn "'style' of #{$selector} is not specified. Using default style.";
+        }
+
+        @if not map-has-key($value, "color") {
+          $value: map-merge($value, ("color": #000));
+
+          @warn "'color' of #{$selector} is not specified. Using default color.";
+        }
+
+        $size: map-get($value, "size");
+        $style: map-get($value, "style");
+        $color: map-get($value, "color");
+        $pure-value: ununit($size);
+        $one-with-unit: ($size * 0 + 1);
+
+        @at-root {
+          #{$selector} {
+            #{$property}#{$direction}: $pure-value * $one-with-unit $style $color !important;
+          }
+        }
+      }
+      @else {
+        $pure-value: ununit($value);
+        $sign: if($value < 0, "-", "");
+        $one-with-unit: ($value * 0 + 1);
+
+        &-#{$direction}-#{abs($pure-value)}#{$sign} {
+          #{$property}#{$direction}: $pure-value * $one-with-unit !important;
+        }
+      }
+    }
+  }
+}

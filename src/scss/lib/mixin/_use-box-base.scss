@@ -1,0 +1,44 @@
+/// use settings of initialized box
+/// @param {String} $display setting for display ["block"]
+/// @param {String} $overflow setting for overflow [null]
+/// @param {String} $box-sizing setting for box-sizing ["content-box"]
+/// @param {String} $position setting for position ["relative"]
+/// @param {String} $list-style setting for list-style [0]
+/// @param {Number|List} $margin setting for margin [0]
+/// @param {Number|List} $padding setting for padding [0]
+/// @param {Number|List} $border setting for border [0]
+///
+/// @example
+///   @include use-box-base();
+@mixin use-box-base(
+  $display: "block",
+  $overflow: null,
+  $box-sizing: "content-box",
+  $position: "relative",
+  $list-style: "none",
+  $margin: 0,
+  $padding: 0,
+  $border: 0
+) {
+  // set display property only if $display is valid string
+  @if type-of($display) == "string" and $display != "" {
+    display: #{$display};
+  }
+
+  // set overflow property only if $overflow is valid string
+  @if type-of($overflow) == "string" and $overflow != "" {
+    overflow: #{$overflow};
+  }
+
+  box-sizing: #{$box-sizing};
+  position: #{$position};
+
+  // set list-style property only if $list-style is valid string
+  @if type-of($list-style) == "string" and $list-style != "" {
+    list-style: #{$list-style};
+  }
+
+  margin: #{$margin};
+  padding: #{$padding};
+  border: #{$border};
+}

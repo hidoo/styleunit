@@ -1,0 +1,63 @@
+/*
+container-width
+
+container-width modifiers of #{$unit-prefix}-box
+
+Weight: -97
+
+Style guide: #{$unit-prefix}-box.container-width
+*/
+
+/*
+modifiers: container-width
+
+builtin modifiers of container-width for #{$unit-prefix}-box
+
+Weight: -100
+
+Markup: <div class="#{$unit-prefix}-box">
+  <div class="#{$unit-prefix}-box__container  {{modifier_class}}">
+    <!-- some unit -->
+    <p class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <figure class="#{$unit-prefix}-pict  #{$unit-prefix}-pict--fit-max-width  #{$unit-util-prefix}--float-left">
+      <img class="#{$unit-prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
+    </figure>
+    <p class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <!-- some unit -->
+  </div>
+</div>
+
+#{$unit-prefix}-box__container--width-auto - default container-width
+#{$unit-prefix}-box__container--width-fit - fit parent width
+#{$unit-prefix}-box__container--width-fit-safe-area - fit parent width that computed safe-are
+
+Style guide: #{$unit-prefix}-box.container-width.builtin
+*/
+.#{$unit-prefix}-box__container--width {
+  &-auto {
+    // has no settings
+  }
+
+  &-fit {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  &-fit-safe-area {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0 auto;
+
+    /* stylelint-disable declaration-block-no-duplicate-properties */
+
+    // experimental: for iPhone X (iOS 11.1+)
+    border-left: constant(safe-area-inset-left) solid transparent;
+    border-right: constant(safe-area-inset-right) solid transparent;
+
+    // experimental: for iPhone X (iOS 11.2+)
+    border-left: unquote("env(safe-area-inset-left)") solid transparent;
+    border-right: unquote("env(safe-area-inset-right)") solid transparent;
+
+    /* stylelint-enable declaration-block-no-duplicate-properties */
+  }
+}

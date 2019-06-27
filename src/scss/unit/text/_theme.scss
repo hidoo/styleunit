@@ -1,0 +1,36 @@
+/*
+theme
+
+theme modifiers of #{$unit-prefix}-text
+
+Weight: -99
+
+Style guide: #{$unit-prefix}-text.theme
+*/
+
+/*
+modifiers: theme
+
+builtin modifiers of theme for #{$unit-prefix}-text
+
+Weight: -100
+
+Markup: <h1 class="#{$unit-prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet.</h1>
+<p class="#{$unit-prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+#{$unit-prefix}-text--theme-light - light theme
+#{$unit-prefix}-text--theme-dark - dark theme
+
+Style guide: #{$unit-prefix}-text.theme.builtin
+*/
+.#{$unit-prefix}-text--theme {
+  @if global-variable-exists("unit-builtin-themes") {
+    @each $name, $theme in $unit-builtin-themes {
+      $color: map-get($theme, "color");
+
+      &-#{$name} {
+        color: $color;
+      }
+    }
+  }
+}

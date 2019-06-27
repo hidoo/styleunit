@@ -1,0 +1,66 @@
+/*
+core
+
+core module of #{$unit-prefix}-text
+
+Weight: -100
+
+Style guide: #{$unit-prefix}-text.core
+*/
+
+/*
+default style
+
+default style of #{$unit-prefix}-text
+
+Weight: -100
+
+Markup: <h1 class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet.</h1>
+<p class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+#{$unit-prefix}-text - default style
+
+Style guide: #{$unit-prefix}-text.core.base
+*/
+.#{$unit-prefix}-text {
+  @include use-box-base();
+  @include use-text-base();
+  @include use-font-base(
+    $feature-settings: true
+  );
+  @include use-font-size(
+    $value: "medium"
+  );
+
+  color: inherit;
+  background-color: transparent;
+}
+
+/*
+link style
+
+default style of link in #{$unit-prefix}-text
+
+Weight: -99
+
+Markup: <h1 class="#{$unit-prefix}-text">Lorem ipsum dolor <a class="#{$unit-prefix}-text__link" href="javascript:;">sit amet</a>.</h1>
+<p class="#{$unit-prefix}-text">Lorem ipsum dolor <a class="#{$unit-prefix}-text__link" href="javascript:;">sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</a>.</p>
+
+#{$unit-prefix}-text__link - default style
+
+Style guide: #{$unit-prefix}-text.core.link
+*/
+.#{$unit-prefix}-text__link {
+  display: inline;
+  background-color: transparent;
+
+  @include on-link() {
+    text-decoration: underline;
+    color: map-get($unit-link-color, "link");
+  }
+
+  @include on-focus() {
+    text-decoration: none;
+    color: map-get($unit-link-color, "focus");
+  }
+}

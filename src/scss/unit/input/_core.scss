@@ -1,0 +1,74 @@
+/*
+core
+
+core module of #{$unit-prefix}-input
+
+Weight: -100
+
+Style guide: #{$unit-prefix}-input.core
+*/
+
+/*
+default style
+
+default style of #{$unit-prefix}-input
+
+Weight: -100
+
+Markup: <!-- input -->
+<input class="#{$unit-prefix}-input" type="text" name="{{modifier_class}}" value="" placeholder="Lorem ipsum dolor sit amet." />
+<!-- input:disabled -->
+<input class="#{$unit-prefix}-input" type="text" name="{{modifier_class}}" value="" placeholder="Lorem ipsum dolor sit amet." disabled="disabled" />
+<!-- textarea -->
+<textarea class="#{$unit-prefix}-input" name="{{modifier_class}}" rows="5" cols="10" placeholder="Lorem ipsum dolor sit amet."></textarea>
+
+#{$unit-prefix}-input - default style
+
+Style guide: #{$unit-prefix}-input.core.base
+*/
+.#{$unit-prefix}-input {
+  @include use-box-base(
+    $box-sizing: "border-box"
+  );
+  @include use-text-base(
+    $line-height: "normal",
+    $white-space: null,
+    $word-wrap: null
+  );
+  @include use-font-base(
+    $feature-settings: true
+  );
+  @include use-font-size(
+    $value: "medium"
+  );
+  @include use-font-family(
+    $value: "default"
+  );
+
+  width: 100%;
+  color: inherit;
+  background-color: transparent;
+  border-radius: 0;
+
+  // stylelint-disable-next-line plugin/no-unsupported-browser-features
+  outline: 0;
+
+  // stylelint-disable-next-line plugin/no-unsupported-browser-features
+  appearance: none;
+
+  @at-root {
+    textarea#{&} {
+      line-height: if(global-variable-exists("unit-line-height"), $unit-line-height, 1.5);
+      -webkit-overflow-scrolling: touch; // for smooth scrolling
+
+      // restrict to only vertical resizing
+      // + ie, edge, ios and android are not supported
+      // stylelint-disable-next-line plugin/no-unsupported-browser-features
+      resize: vertical;
+    }
+  }
+
+  @include on-disabled() {
+    opacity: 0.5;
+  }
+}

@@ -1,0 +1,19 @@
+/*
+#{$unit-prefix}-text
+
+component for device text.
+
+Weight: -1090
+
+Style guide: #{$unit-prefix}-text
+*/
+@import "text/core";
+@import "text/theme";
+@import "text/link-theme";
+@import "text/inline";
+@import "text/align";
+@import "text/truncate";
+@import "text/weight";
+@import "text/decoration";
+@import "text/line-height";
+@import "text/letter-spacing";

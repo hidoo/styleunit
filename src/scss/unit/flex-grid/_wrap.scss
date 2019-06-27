@@ -1,0 +1,66 @@
+/*
+wrap
+
+wrap modifiers of #{$unit-prefix}-flex-grid
+
+Weight: -96
+
+Style guide: #{$unit-prefix}-flex-grid.wrap
+*/
+
+/*
+modifiers: wrap
+
+builtin modifiers of wrap for #{$unit-prefix}-flex-grid
+
+Weight: -100
+
+Markup: <div class="#{$unit-prefix}-flex-grid  {{modifier_class}}">
+  <div class="#{$unit-prefix}-flex-grid__column  #{$unit-util-prefix}--width-max-200">
+    <!-- some unit -->
+    <figure class="#{$unit-prefix}-pict  #{$unit-prefix}-pict--fit-max-width  #{$unit-util-prefix}--float-left">
+      <img class="#{$unit-prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
+    </figure>
+    <p class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <!-- some unit -->
+  </div>
+  <div class="#{$unit-prefix}-flex-grid__column  #{$unit-util-prefix}--width-max-200">
+    <!-- some unit -->
+    <figure class="#{$unit-prefix}-pict  #{$unit-prefix}-pict--fit-max-width  #{$unit-util-prefix}--float-left">
+      <img class="#{$unit-prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
+    </figure>
+    <p class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <!-- some unit -->
+  </div>
+  <div class="#{$unit-prefix}-flex-grid__column  #{$unit-util-prefix}--width-max-200">
+    <!-- some unit -->
+    <figure class="#{$unit-prefix}-pict  #{$unit-prefix}-pict--fit-max-width  #{$unit-util-prefix}--float-left">
+      <img class="#{$unit-prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
+    </figure>
+    <p class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <!-- some unit -->
+  </div>
+  <div class="#{$unit-prefix}-flex-grid__column  #{$unit-util-prefix}--width-max-200">
+    <!-- some unit -->
+    <figure class="#{$unit-prefix}-pict  #{$unit-prefix}-pict--fit-max-width  #{$unit-util-prefix}--float-left">
+      <img class="#{$unit-prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
+    </figure>
+    <p class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet.</p>
+    <!-- some unit -->
+  </div>
+</div>
+
+#{$unit-prefix}-flex-grid--wrap-false - disable wrap columns (**default**)
+#{$unit-prefix}-flex-grid--wrap-true - enable wrap columns
+
+Style guide: #{$unit-prefix}-flex-grid.wrap.builtin
+*/
+.#{$unit-prefix}-flex-grid--wrap {
+  &-false {
+    flex-wrap: nowrap;
+  }
+
+  &-true {
+    flex-wrap: wrap;
+  }
+}

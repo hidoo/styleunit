@@ -1,0 +1,52 @@
+/*
+core
+
+core module of #{$unit-prefix}-box
+
+Weight: -100
+
+Style guide: #{$unit-prefix}-box.core
+*/
+
+/*
+default style
+
+default style of #{$unit-prefix}-box
+
+Weight: -100
+
+Markup: <div class="#{$unit-prefix}-box">
+  <div class="#{$unit-prefix}-box__container">
+    <!-- some unit -->
+    <p class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <figure class="#{$unit-prefix}-pict  #{$unit-prefix}-pict--fit-max-width  #{$unit-util-prefix}--float-left">
+      <img class="#{$unit-prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
+    </figure>
+    <p class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <!-- some unit -->
+  </div>
+</div>
+
+#{$unit-prefix}-box - default style
+
+Style guide: #{$unit-prefix}-box.core.base
+*/
+.#{$unit-prefix}-box {
+  @include use-clearfix();
+  @include use-box-base();
+
+  width: auto;
+  text-align: left;
+  color: inherit;
+  background-color: transparent;
+
+  &__container {
+    @include use-clearfix();
+    @include use-box-base();
+
+    width: auto;
+    text-align: left;
+    color: inherit;
+    background-color: transparent;
+  }
+}

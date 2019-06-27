@@ -1,0 +1,38 @@
+{
+  "name": "@hidoo/unit",
+  "version": "0.0.0",
+  "description": "Sass based css framework.",
+  "main": "src/scss/main.scss",
+  "scripts": {
+    "start": "gulp",
+    "build": "gulp build",
+    "test": "cross-env NODE_ENV=test mocha"
+  },
+  "keywords": [
+    "css",
+    "sass",
+    "scss",
+    "framework"
+  ],
+  "author": "hidoo",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/register": "^7.4.4",
+    "@hidoo/gulp-task-build-css-sass": "^0.10.0",
+    "@hidoo/gulp-task-build-sprite-svg": "^0.10.0",
+    "@hidoo/gulp-task-build-styleguide-kss": "^0.10.0",
+    "@hidoo/gulp-task-copy": "^0.10.0",
+    "@hidoo/util-fancy-print": "^0.10.0",
+    "babel-preset-power-assert": "^3.0.0",
+    "browser-sync": "^2.26.7",
+    "commander": "^2.20.0",
+    "cross-env": "^5.2.0",
+    "gulp": "^4.0.2",
+    "mocha": "^6.1.4",
+    "node-sass": "^4.12.0",
+    "power-assert": "^1.6.1",
+    "rimraf": "^2.6.3"
+  }
+}

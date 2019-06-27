@@ -1,0 +1,44 @@
+/*
+line-height
+
+line-height modifiers of #{$unit-prefix}-text
+
+Weight: -92
+
+Style guide: #{$unit-prefix}-text.line-height
+*/
+
+/*
+modifiers: decoration
+
+builtin modifiers of line-height for #{$unit-prefix}-text
+
+Weight: -100
+
+Markup: <h1 class="#{$unit-prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet.</h1>
+<p class="#{$unit-prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+#{$unit-prefix}-text--line-height-default - set default (**default**)
+#{$unit-prefix}-text--line-height-normal - set normal
+#{$unit-prefix}-text--line-height-narrow - set narrow
+#{$unit-prefix}-text--line-height-wide - set wide
+
+Style guide: #{$unit-prefix}-text.line-height.builtin
+*/
+.#{$unit-prefix}-text--line-height {
+  &-default {
+    line-height: $unit-line-height;
+  }
+
+  &-normal {
+    line-height: normal;
+  }
+
+  &-narrow {
+    line-height: $unit-line-height * 0.8;
+  }
+
+  &-wide {
+    line-height: $unit-line-height * 1.2;
+  }
+}

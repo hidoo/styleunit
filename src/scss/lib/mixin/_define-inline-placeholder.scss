@@ -1,0 +1,31 @@
+/// define inline placeholder class
+/// @param {String} $name name of placeholder class
+///
+/// @example
+///   .selector {
+///     $name: unique-id();
+///
+///     @include define-inline-placeholder($name: $name) {
+///       font-size: 16px;
+///     }
+///
+///     &__child-1 {
+///       @extend %#{$name};
+///     }
+///
+///     &__child-2 {
+///       @extend %#{$name};
+///     }
+///   }
+///   // -> .selector__child-1, .selector__child-2 { font-size: 16px; }
+@mixin define-inline-placeholder($name) {
+  @if type-of($name) != "string" {
+    @error "@mixin define-inline-placeholder: Argument $name is not string.";
+  }
+
+  @at-root {
+    %#{$name} {
+      @content;
+    }
+  }
+}

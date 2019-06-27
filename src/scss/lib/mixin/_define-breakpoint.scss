@@ -1,0 +1,87 @@
+/// define breakepoint
+/// @param {Number|String|Null} $from starting point of breakpoint
+/// @param {Number|String|Null} $until ending point of breakpoint
+/// @param {Map} $options options
+///
+/// @example
+///   p {
+///     @include define-breakpoint($from: 667px, $until: 1024px) {
+///       font-size: 16px;
+///     }
+///   }
+///   // -> @media only screen and (min-width: 667px) and (max-width: 1024px) {
+///   //      p {
+///   //        font-size: 16px;
+///   //      }
+///   //    }
+@mixin define-breakpoint($from: null, $until: null, $options: ()) {
+  $normalized: ("from": null, "until": null);
+  $media: screen;
+
+  // check $unit-breakpoints is defined or not
+  @if not global-variable-exists("unit-breakpoints") {
+    @error "@mixin define-breakpoint: Global variable $unit-breakpoints is not defined.";
+  }
+
+  // normalize arguments
+  @each $key, $value in ("from": $from, "until": $until) {
+    @if type-of($value) == "number" or type-of($value) == "null" {
+      $normalized: map-merge($normalized, (#{$key}: $value));
+    }
+    @else if type-of($value) == "string" and map-has-key($unit-breakpoints, $value) {
+      $normalized: map-merge($normalized, (#{$key}: map-get($unit-breakpoints, $value)));
+    }
+    @else {
+      @if type-of($value) == "string" {
+        @error "@mixin define-breakpoint: Argument $#{$key} is not registerd in $unit-breakpoints. (specified: #{inspect($value)})";
+      }
+      @else {
+        @error "@mixin define-breakpoint: Argument $#{$key} must be one of type number, string or null. (specified: #{inspect($value)})";
+      }
+    }
+  }
+
+  // sub 1 from $until if $until is number for support following case
+  //
+  // @media only screen and (max-width: 666px) { ... } // $until: 667px;
+  // @media only screen and (min-width: 667px) { ... } // $from: 667px;
+  @if type-of(map-get($normalized, "until")) == "number" {
+    $normalized: map-merge($normalized, ("until": map-get($normalized, "until") - 1));
+  }
+
+  // normalize options
+  @if type-of($options) == "map" {
+    @if map-has-key($options, "media") {
+      $media: map-get($options, "media");
+    }
+  }
+
+  $new-from: map-get($normalized, "from");
+  $new-until: map-get($normalized, "until");
+
+  @if $new-from and $new-until {
+    @if not comparable($new-from, $new-until) {
+      @error "@mixin define-breakpoint: Arguments $from and $until must be same unit. (specified: $from -> #{inspect($from)}, $until -> #{inspect($until)})";
+    }
+    @else if $new-from >= $new-until {
+      @error "@mixin define-breakpoint: Argument $from must be smaller than $until. (specified: $from: -> #{inspect($from)}, $until -> #{inspect($until)})";
+    }
+
+    @media only #{$media} and (min-width: $new-from) and (max-width: $new-until) {
+      @content;
+    }
+  }
+  @else if $new-from == null and $new-until != null {
+    @media only #{$media} and (max-width: $new-until) {
+      @content;
+    }
+  }
+  @else if $new-from != null and $new-until == null {
+    @media only #{$media} and (min-width: $new-from) {
+      @content;
+    }
+  }
+  @else {
+    @warn "@mixin define-breakpoint: @content is not yield, because argument $from and $until are null.";
+  }
+}

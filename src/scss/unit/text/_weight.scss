@@ -1,0 +1,34 @@
+/*
+weight
+
+weight modifiers of #{$unit-prefix}-text
+
+Weight: -94
+
+Style guide: #{$unit-prefix}-text.weight
+*/
+
+/*
+modifiers: weight
+
+builtin modifiers of weight for #{$unit-prefix}-text
+
+Weight: -100
+
+Markup: <h1 class="#{$unit-prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet.</h1>
+<p class="#{$unit-prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+#{$unit-prefix}-text--weight-normal - normal (**default**)
+#{$unit-prefix}-text--weight-bold - bold
+
+Style guide: #{$unit-prefix}-text.weight.builtin
+*/
+.#{$unit-prefix}-text--weight {
+  &-normal {
+    font-weight: normal;
+  }
+
+  &-bold {
+    font-weight: bold;
+  }
+}

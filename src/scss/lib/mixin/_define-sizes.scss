@@ -1,0 +1,47 @@
+/// define sizes
+/// @param {String} $type type of options [width|height|z-index]
+/// @param {List} $values list of value
+///
+/// @example
+///   .width {
+///     @include define-sizes($type: "width", $values: (10px))
+///   }
+///   // -> .width-10 { width: 10px !important; }
+///   // -> .width-min-10 { min-width: 10px !important; }
+///   // -> .width-max-10 { max-width: 10px !important; }
+@mixin define-sizes($type: "width", $values: ()) {
+  @if not function-exists("ununit") {
+    @error "@function ununit is not imported.";
+  }
+
+  @if type-of($type) != "string" or index(("width", "height", "z-index"), $type) == null {
+    @error "@mixin define-sizes: Argument $type is not one of width, height and z-index. (specified: #{inspect($type)})";
+  }
+
+  @if type-of($values) != "list" {
+    @error "@mixin define-sizes: Argument $values is not list. (specified: #{inspect($values)})";
+  }
+
+  @each $value in $values {
+    @if $value < 0 {
+      @error "@mixin define-sizes: Argument $values includes negative numbers.";
+    }
+    $pure-value: ununit($value);
+    $abs-value: abs($pure-value);
+    $one-with-unit: ($value * 0 + 1);
+
+    &-#{$abs-value} {
+      #{$type}: $pure-value * $one-with-unit !important;
+    }
+
+    @if $type != "z-index" {
+      &-min-#{$abs-value} {
+        min-#{$type}: $pure-value * $one-with-unit !important;
+      }
+
+      &-max-#{$abs-value} {
+        max-#{$type}: $pure-value * $one-with-unit !important;
+      }
+    }
+  }
+}

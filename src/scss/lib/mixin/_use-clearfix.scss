@@ -1,0 +1,15 @@
+/// use clearfix
+///
+/// @example
+///   @include use-clearfix();
+@mixin use-clearfix() {
+  &::before,
+  &::after {
+    content: "";
+    display: table;
+  }
+
+  &::after {
+    clear: both;
+  }
+}

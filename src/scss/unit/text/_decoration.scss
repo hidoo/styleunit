@@ -1,0 +1,44 @@
+/*
+decoration
+
+decoration modifiers of #{$unit-prefix}-text
+
+Weight: -91
+
+Style guide: #{$unit-prefix}-text.decoration
+*/
+
+/*
+modifiers: decoration
+
+builtin modifiers of decoration for #{$unit-prefix}-text
+
+Weight: -100
+
+Markup: <h1 class="#{$unit-prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet.</h1>
+<p class="#{$unit-prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+#{$unit-prefix}-text--decoration-default - disable decoration (**default**)
+#{$unit-prefix}-text--decoration-overline - enable overline
+#{$unit-prefix}-text--decoration-strikelike - enable strikelike
+#{$unit-prefix}-text--decoration-underline - enable underline
+
+Style guide: #{$unit-prefix}-text.decoration.builtin
+*/
+.#{$unit-prefix}-text--decoration {
+  &-false {
+    // has no settings
+  }
+
+  &-overline {
+    text-decoration: overline;
+  }
+
+  &-strikelike {
+    text-decoration: line-through;
+  }
+
+  &-underline {
+    text-decoration: underline;
+  }
+}

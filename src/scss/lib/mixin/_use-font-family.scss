@@ -1,0 +1,32 @@
+/// use settings of font-family
+/// @param {List|String} $value setting for font-family [null] ("default"|"monospace"|())
+/// @param {Boolean} $important set !important or not
+///
+/// @example
+///   @include use-font-family($value: "default", $important: true);
+@mixin use-font-family($value, $important: false) {
+  @if (
+    global-variable-exists("unit-font-enable-override") and
+    $unit-font-enable-override
+  ) {
+    @if type-of($value) == "list" and length($value) >= 1 {
+      font-family: $value if($important, !important, null);
+    }
+    @else if $value == "default" {
+      @if (global-variable-exists("unit-font-family")) {
+        font-family: $unit-font-family if($important, !important, null);
+      }
+      @else {
+        @error "@mixin use-font-family: Global variable $unit-font-family is undefined.";
+      }
+    }
+    @else if $value == "monospace" {
+      @if (global-variable-exists("unit-font-family-monospace")) {
+        font-family: $unit-font-family-monospace if($important, !important, null);
+      }
+      @else {
+        @error "@mixin use-font-family: Global variable $unit-font-family-monospace is undefined.";
+      }
+    }
+  }
+}

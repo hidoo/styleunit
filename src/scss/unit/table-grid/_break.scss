@@ -1,0 +1,65 @@
+/*
+break
+
+break modifiers of #{$unit-prefix}-table-grid
+
+Weight: -99
+
+Style guide: #{$unit-prefix}-table-grid.break
+*/
+
+/*
+modifiers: break
+
+builtin modifiers of break for #{$unit-prefix}-table-grid
+
+Weight: -100
+
+Markup: <div class="#{$unit-prefix}-table-grid  {{modifier_class}}">
+  <div class="#{$unit-prefix}-table-grid__column">
+    <!-- some unit -->
+    <p class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <figure class="#{$unit-prefix}-pict  #{$unit-prefix}-pict--fit-max-width  #{$unit-util-prefix}--float-left">
+      <img class="#{$unit-prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
+    </figure>
+    <p class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <!-- some unit -->
+  </div>
+  <div class="#{$unit-prefix}-table-grid__column">
+    <!-- some unit -->
+    <figure class="#{$unit-prefix}-pict  #{$unit-prefix}-pict--fit-max-width  #{$unit-util-prefix}--float-left">
+      <img class="#{$unit-prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
+    </figure>
+    <p class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <!-- some unit -->
+  </div>
+</div>
+
+#{$unit-prefix}-table-grid--break-if-mobile - break column if mobile viewport
+#{$unit-prefix}-table-grid--break-if-not-mobile - break column if not mobile viewport
+
+Style guide: #{$unit-prefix}-table-grid.break.builtin
+*/
+.#{$unit-prefix}-table-grid--break {
+  &-if-mobile {
+    @include define-breakpoint($until: "mobile") {
+      display: block;
+      height: auto;
+
+      > .#{$unit-prefix}-table-grid__column {
+        display: block;
+      }
+    }
+  }
+
+  &-if-not-mobile {
+    @include define-breakpoint($from: "mobile") {
+      display: block;
+      height: auto;
+
+      > .#{$unit-prefix}-table-grid__column {
+        display: block;
+      }
+    }
+  }
+}

@@ -1,0 +1,56 @@
+/// use settings of font-size
+/// @param {String|Number} $value value of font-size
+///   ("xsmall"|"small"|"medium"|"large"|"xlarge"|"2xlarge"|"3xlarge"|"4xlarge"|number)
+/// @param {Boolean} $monospace font-family is monospace or not [false]
+/// @param {Boolean} $important set !important or not [false]
+///
+/// @example
+///   @include use-font-size($value: "medium", $important: true);
+@mixin use-font-size(
+  $value,
+  $monospace: false,
+  $important: false
+) {
+  $presets: (
+    "xsmall": 0.75,
+    "small": 0.875,
+    "medium": 1,
+    "large": 1.15,
+    "xlarge": 1.3,
+    "2xlarge": 1.45,
+    "3xlarge": 1.6,
+    "4xlarge": 1.75
+  );
+
+  @if type-of($value) == "string" and map-has-key($presets, $value) {
+    @if not global-variable-exists("unit-font-size") {
+      @error "@mixin use-font-size: Global variable $unit-font-size is undefined.";
+    }
+
+    $value: floor($unit-font-size * map-get($presets, $value));
+  }
+
+  @if type-of($value) != "number" {
+    @error "@mixin use-font-size: Argument $value must be number or one of #{inspect(map-keys($presets))}.";
+  }
+
+  // adjust smaller than default
+  @if ($monospace) {
+    $value: floor($value * 0.9);
+  }
+
+  font-size: $value if($important, !important, null);
+
+  // override font-size to rem value
+  @if (
+    $value > 0 and
+    global-variable-exists("unit-font-enable-relative-size") and
+    $unit-font-enable-relative-size
+  ) {
+    @if not function-exists("px-to-rem") {
+      @error "@mixin use-font: @function px-to-rem is required.";
+    }
+
+    font-size: px-to-rem($value) if($important, !important, null);
+  }
+}

@@ -1,0 +1,70 @@
+/*
+core
+
+core module of #{$unit-prefix}-pict
+
+Weight: -100
+
+Style guide: #{$unit-prefix}-pict.core
+*/
+
+/*
+default style
+
+default style of #{$unit-prefix}-pict
+
+Weight: -100
+
+Markup: <!-- image element -->
+<figure class="#{$unit-prefix}-pict">
+  <img class="#{$unit-prefix}-pict__src" src="//placehold.it/400x300.png" alt="" width="400" height="300" />
+</figure>
+<!-- image element (breaking) -->
+<figure class="#{$unit-prefix}-pict">
+  <img class="#{$unit-prefix}-pict__src" src="#" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." width="400" height="300" />
+</figure>
+<!-- iframe player -->
+<figure class="#{$unit-prefix}-pict">
+  <iframe class="#{$unit-prefix}-pict__src" title="vimeo-player" src="https://player.vimeo.com/video/76979871" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+</figure>
+
+#{$unit-prefix}-pict - default style
+
+Style guide: #{$unit-prefix}-pict.core.base
+*/
+.#{$unit-prefix}-pict {
+  @include use-box-base();
+  @include use-text-base(
+    $letter-spacing: 0,
+    $line-height: 0,
+    $font-size: 0
+  );
+  @include use-font-base(
+    $feature-settings: true
+  );
+  @include use-font-size(
+    $value: "medium"
+  );
+
+  width: auto;
+  height: auto;
+  color: inherit;
+  background-color: transparent;
+
+  &__src {
+    @include use-box-base(
+      $display: "inline-block",
+      $overflow: "hidden"
+    );
+    @include use-text-base();
+    @include use-font-base(
+      $feature-settings: true
+    );
+    @include use-font-size(
+      $value: "medium"
+    );
+
+    color: inherit;
+    background-color: transparent;
+  }
+}

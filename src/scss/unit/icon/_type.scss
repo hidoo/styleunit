@@ -1,0 +1,78 @@
+/*
+type
+
+type modifiers of #{$unit-prefix}-icon
+
+Weight: -99
+
+Style guide: #{$unit-prefix}-icon.type
+*/
+
+/*
+modifiers: type
+
+builtin modifiers of type for #{$unit-prefix}-icon
+
+Weight: -100
+
+Markup: <span class="#{$unit-prefix}-icon  {{modifier_class}}"></span>
+
+#{$unit-prefix}-icon--type-arrow-light - light arrow
+#{$unit-prefix}-icon--type-arrow-dark - dark arrow
+
+Style guide: #{$unit-prefix}-icon.type.builtin
+*/
+.#{$unit-prefix}-icon--type {
+  &-arrow {
+    $selector: unique-id();
+
+    @include define-inline-placeholder($name: $selector) {
+      width: 12.72px;
+      height: 10px;
+
+      &::before,
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform-origin: 0 0;
+        transform: translate(6.36px, 0) rotate(45deg);
+      }
+
+      &::before {
+        width: 9px;
+        height: 2px;
+      }
+
+      &::after {
+        width: 2px;
+        height: 9px;
+      }
+    }
+
+    @if global-variable-exists("unit-builtin-themes") {
+      @each $name, $theme in $unit-builtin-themes {
+        $color: map-get($theme, "color");
+        $color-focus: map-get($theme, "color-focus");
+
+        &-#{$name} {
+          @extend %#{$selector};
+
+          &::before,
+          &::after {
+            background-color: $color;
+          }
+
+          @include on-focus($capturing-selectors: ("a", "button")) {
+            &::before,
+            &::after {
+              background-color: $color-focus;
+            }
+          }
+        }
+      }
+    }
+  }
+}

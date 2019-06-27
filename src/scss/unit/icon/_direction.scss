@@ -1,0 +1,48 @@
+/*
+direction
+
+direction modifiers of #{$unit-prefix}-icon
+
+Weight: -97
+
+Style guide: #{$unit-prefix}-icon.direction
+*/
+
+/*
+modifiers: direction
+
+builtin modifiers of direction for #{$unit-prefix}-icon
+
+Weight: -100
+
+Markup: <span class="#{$unit-prefix}-icon  #{$unit-prefix}-icon--type-arrow-light  {{modifier_class}}"></span>
+<span class="#{$unit-prefix}-icon  #{$unit-prefix}-icon--type-arrow-dark  {{modifier_class}}"></span>
+
+#{$unit-prefix}-icon--direction-top - top
+#{$unit-prefix}-icon--direction-right - right
+#{$unit-prefix}-icon--direction-bottom - bottom
+#{$unit-prefix}-icon--direction-left - left
+
+Style guide: #{$unit-prefix}-icon.direction.builtin
+*/
+.#{$unit-prefix}-icon--direction {
+  &-top {
+    transform-origin: 50% 50%;
+    transform: rotate(0);
+  }
+
+  &-right {
+    transform-origin: 50% 50%;
+    transform: rotate(90deg);
+  }
+
+  &-bottom {
+    transform-origin: 50% 50%;
+    transform: rotate(180deg);
+  }
+
+  &-left {
+    transform-origin: 50% 50%;
+    transform: rotate(-90deg);
+  }
+}

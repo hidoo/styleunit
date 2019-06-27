@@ -1,0 +1,33 @@
+/// use settings of initialized font
+/// @param {Boolean} $feature-settings enable font-eature-settings or not [false]
+/// @param {String} $style setting for font-style ["normal"]
+/// @param {String|Number} $weight setting for font-weight ["normal"]
+///
+/// @example
+///   @include use-font-base();
+@mixin use-font-base(
+  $feature-settings: false,
+  $style: "normal",
+  $weight: "normal"
+) {
+  // use font-feature-settings: "palt"
+  // but disable when browser is ie 10-11
+  @if (
+    global-variable-exists("unit-font-enable-override") and
+    global-variable-exists("unit-font-enable-feature-settings") and
+    $unit-font-enable-override and
+    $unit-font-enable-feature-settings and
+    $feature-settings
+  ) {
+    font-feature-settings: "palt";
+    -ms-font-feature-settings: normal;
+  }
+
+  @if type-of($style) == "string" and $style != "" {
+    font-style: #{$style};
+  }
+
+  @if (type-of($weight) == "string" and $weight != "") or type-of($weight) == "number" {
+    font-weight: #{$weight};
+  }
+}

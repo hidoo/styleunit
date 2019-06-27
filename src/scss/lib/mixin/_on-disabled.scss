@@ -1,0 +1,23 @@
+/// wrappper of :disabled
+/// @param {List} $additional-selectors list of additional selectors [()]
+///
+/// @example
+///   .selector {
+///     @include on-disabled() {
+///       font-size: 16px;
+///     }
+///   }
+///   // -> .selector:disabled, .selector.is-disabled { font-size: 16px; }
+@mixin on-disabled(
+  $additional-selectors: (),
+) {
+  @if not function-exists("merge-state-selectors") {
+    @error "@mixin on-disabled: @function merge-state-selectors is required.";
+  }
+
+  $selectors: merge-state-selectors("disabled", $additional-selectors);
+
+  @include on($selectors: $selectors) {
+    @content;
+  }
+}

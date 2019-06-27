@@ -1,0 +1,12 @@
+/*
+#{$unit-prefix}-input
+
+component for input field.
+
+Weight: -1030
+
+Style guide: #{$unit-prefix}-input
+*/
+@import "input/core";
+@import "input/theme";
+@import "input/inline";

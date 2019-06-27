@@ -1,0 +1,129 @@
+/// prefix of class name of components
+/// @type String
+$unit-prefix: "unit" !default;
+
+/// prefix of class name of util
+/// @type String
+$unit-util-prefix: "util" !default;
+
+/// settings of breakpoints
+/// @type Map
+$unit-breakpoints: (
+  "desktop": 1024px,
+  "mobile": 667px
+) !default;
+
+/// settings of selector
+/// for expressing of state like ":hover" or ":focus"
+/// @type List
+$unit-state-selectors-focus: (
+  ".is-focus"
+) !default;
+
+/// settings of selector
+/// for expressing of state like ":checked"
+/// @type List
+$unit-state-selectors-selected: (
+  ".is-selected"
+) !default;
+
+/// settings of selector
+/// for expressing of state like ":disabled"
+/// @type List
+$unit-state-selectors-disabled: (
+  ".is-disabled"
+) !default;
+
+/// settings of selector
+/// for expressing of state like "current"
+/// @type List
+$unit-state-selectors-current: (
+  ".is-current"
+) !default;
+
+/// default link color
+/// @type Map
+$unit-link-color: (
+  "link": #37a5e4,
+  "focus": lighten(#37a5e4, 15%)
+) !default;
+
+/// enable override font settings or not
+/// @type Boolean
+$unit-font-enable-override: true !default;
+
+/// default font family
+/// + this use if $unit-font-enable-override is enabled
+/// @type List
+$unit-font-family: (
+  -apple-system,
+  BlinkMacSystemFont,
+  Helvetica,
+  Arial,
+  "Hiragino Kaku Gothic ProN",
+  "Yu Gothic",
+  YuGothic,
+  "メイリオ",
+  Meiryo,
+  sans-serif
+) !default;
+
+/// default monospace font family
+/// + this use if $unit-font-enable-override is enabled
+/// @type List
+$unit-font-family-monospace: (
+  Consolas,
+  Monaco,
+  Menlo,
+  Courier,
+  monospace
+) !default;
+
+/// use font-feature-settings: "palt"
+/// but disable when browser is ie 10-11
+/// + this use if $unit-font-enable-override is enabled
+/// @type Boolean
+$unit-font-enable-feature-settings: true !default;
+
+/// enable relative font-size specify
+/// + override base size settings of font
+/// @type Boolean
+$unit-font-enable-relative-size: true !default;
+
+/// default base font size
+/// + this use if $unit-font-enable-relative-size is enabled
+/// @type Number
+$unit-font-base-size: 16px !default;
+
+/// default font size
+/// @type Number
+$unit-font-size: 14px !default;
+
+/// default letter-spacing
+/// @type Number
+$unit-letter-spacing: 0.04em !default;
+
+/// default line-height
+/// @type Number
+$unit-line-height: 1.5 !default;
+
+/// default builtin theme
+/// @type Map
+$unit-builtin-themes: (
+  "light": (
+    "color": #3f3f3f,
+    "color-focus": #6b6b6d,
+    "background": #f9f9fa,
+    "background-focus": #ededf0,
+    "border": #c3c3c5,
+    "border-focus": #9f9fa1
+  ),
+  "dark": (
+    "color": #d5d7d9,
+    "color-focus": #ebeced,
+    "background": #14171a,
+    "background-focus": #262c33,
+    "border": #262c33,
+    "border-focus": #777c82
+  )
+) !default;

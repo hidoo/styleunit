@@ -1,0 +1,42 @@
+/*
+vertical-align
+
+utilities that tweek of vertical-align
+
+Weight: -89
+
+Style guide: #{$unit-util-prefix}.vertical-align
+*/
+
+/*
+utilities: vertical-align
+
+builtin modifiers of vertical-align
+
+Weight: -100
+
+Markup: <div style="display:table;">
+  <div class="{{modifier_class}}" style="display:table-cell; height:100px; font-size:0;">
+    <div style="display:inline-block; position:relative; width:50px; height:50px; background:#999;"></div>
+  </div>
+</div>
+
+#{$unit-util-prefix}--vertical-align-top - set top
+#{$unit-util-prefix}--vertical-align-middle - set middle
+#{$unit-util-prefix}--vertical-align-bottom - set bottom
+
+Style guide: #{$unit-util-prefix}.vertical-align.builtin
+*/
+.#{$unit-util-prefix}--vertical-align {
+  &-top {
+    vertical-align: top !important;
+  }
+
+  &-middle {
+    vertical-align: middle !important;
+  }
+
+  &-bottom {
+    vertical-align: bottom !important;
+  }
+}

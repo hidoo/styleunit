@@ -1,0 +1,26 @@
+/// wrappper of :link and :visited
+///
+/// @example
+///   .selector {
+///     @include on-placeholder() {
+///       font-size: 16px;
+///     }
+///   }
+///   // -> .selector::-webkit-input-placeholder { font-size: 16px; }
+///   // -> .selector::-moz-placeholder { font-size: 16px; }
+///   // -> .selector:-ms-input-placeholder { font-size: 16px; }
+///   // -> .selector:placeholder-shown { font-size: 16px; }
+@mixin on-placeholder() {
+  $selectors: (
+    "::-webkit-input-placeholder",
+    "::-moz-placeholder",
+    ":-ms-input-placeholder",
+    ":placeholder-shown"
+  );
+
+  @each $selector in $selectors {
+    &#{$selector} {
+      @content;
+    }
+  }
+}

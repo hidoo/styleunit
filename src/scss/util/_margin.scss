@@ -1,0 +1,65 @@
+/*
+margin
+
+utilities that tweek of margin
+
+Weight: -96
+
+Style guide: #{$unit-util-prefix}.margin
+*/
+
+/*
+utilities: margin
+
+builtin modifiers of margin. (-60px to 60px in 5px steps)
+
+Weight: -100
+
+Markup: <div style="position:relative; padding:50px;">
+  <div class="{{modifier_class}}" style="position:relative; width:50px; height:50px; background:#999;"></div>
+</div>
+
+#{$unit-util-prefix}--margin-top-0 - top 0px margin
+#{$unit-util-prefix}--margin-top-60- - top -60px margin
+#{$unit-util-prefix}--margin-top-60 - top 60px margin
+#{$unit-util-prefix}--margin-right-0 - right 0px margin
+#{$unit-util-prefix}--margin-right-60- - right -60px margin
+#{$unit-util-prefix}--margin-right-60 - right 60px margin
+#{$unit-util-prefix}--margin-bottom-0 - bottom 0px margin
+#{$unit-util-prefix}--margin-bottom-60- - bottom -60px margin
+#{$unit-util-prefix}--margin-bottom-60 - bottom 60px margin
+#{$unit-util-prefix}--margin-left-0 - left 0px margin
+#{$unit-util-prefix}--margin-left-60- - left -60px margin
+#{$unit-util-prefix}--margin-left-60 - left 60px margin
+#{$unit-util-prefix}--margin-all-0 - all 0px margin
+#{$unit-util-prefix}--margin-all-60- - all -60px margin
+#{$unit-util-prefix}--margin-all-60 - all 60px margin
+#{$unit-util-prefix}--margin-vertical-0 - vertical 0 margin
+#{$unit-util-prefix}--margin-vertical-60- - vertical -60px margin
+#{$unit-util-prefix}--margin-vertical-60 - vertical 60px margin
+#{$unit-util-prefix}--margin-horizontal-0 - horizontal 0 margin
+#{$unit-util-prefix}--margin-horizontal-60- - horizontal -60px margin
+#{$unit-util-prefix}--margin-horizontal-60 - horizontal 60px margin
+#{$unit-util-prefix}--margin-center - horizontal centering by margin
+
+Style guide: #{$unit-util-prefix}.margin.builtin
+*/
+.#{$unit-util-prefix}--margin {
+  $values: (
+    0,
+    5px, 10px, 15px, 20px, 25px, 30px, 35px, 40px, 45px, 50px, 55px, 60px,
+    -5px, -10px, -15px, -20px, -25px, -30px, -35px, -40px, -45px, -50px, -55px, -60px
+  );
+
+  // each by directions
+  @include define-sizes-in-directions($type: "margin", $values: $values);
+
+  // each by direction groups
+  @include define-sizes-in-direction-groups($type: "margin", $values: $values);
+
+  // horizontal centering
+  &-center {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}

@@ -1,0 +1,73 @@
+/*
+theme
+
+theme modifiers of #{$unit-prefix}-input
+
+Weight: -99
+
+Style guide: #{$unit-prefix}-input.theme
+*/
+
+/*
+modifiers: theme
+
+builtin modifiers of theme for #{$unit-prefix}-input
+
+Weight: -100
+
+Markup: <!-- input -->
+<input class="#{$unit-prefix}-input  {{modifier_class}}" type="text" name="{{modifier_class}}" value="" placeholder="Lorem ipsum dolor sit amet." />
+<!-- input:disabled -->
+<input class="#{$unit-prefix}-input  {{modifier_class}}" type="text" name="{{modifier_class}}" value="" placeholder="Lorem ipsum dolor sit amet." disabled="disabled" />
+<!-- textarea -->
+<textarea class="#{$unit-prefix}-input  {{modifier_class}}" name="{{modifier_class}}" rows="5" cols="10" placeholder="Lorem ipsum dolor sit amet."></textarea>
+
+#{$unit-prefix}-input--theme-light - light theme
+#{$unit-prefix}-input--theme-dark - dark theme
+
+Style guide: #{$unit-prefix}-input.theme.builtin
+*/
+.#{$unit-prefix}-input--theme {
+  $selector: unique-id();
+
+  @include define-inline-placeholder($name: $selector) {
+    padding: 10px;
+    border-radius: 3px;
+    transition-duration: 0.1s;
+    transition-property: border-color;
+    transition-timing-function: ease-out;
+  }
+
+  @if global-variable-exists("unit-builtin-themes") {
+    @each $name, $theme in $unit-builtin-themes {
+      $color: map-get($theme, "color");
+      $color-focus: map-get($theme, "color-focus");
+      $background: map-get($theme, "background");
+      $background-focus: map-get($theme, "background-focus");
+      $border: map-get($theme, "border");
+      $border-focus: map-get($theme, "border-focus");
+      $shadow-alpha: if($name == "light", 0.1, 1);
+
+      &-#{$name} {
+        @extend %#{$selector};
+
+        color: $color;
+        background-color: $background;
+        border: 1px solid $border;
+        box-shadow: inset rgba(0, 0, 0, $shadow-alpha) 0 2px 2px;
+
+        @include on-placeholder() {
+          color: $color-focus;
+        }
+
+        @include on-focus() {
+          border-color: $border-focus;
+        }
+
+        @include on-disabled() {
+          border: 1px solid $border;
+        }
+      }
+    }
+  }
+}

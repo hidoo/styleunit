@@ -1,0 +1,43 @@
+/*
+clear
+
+utilities that tweek of clear
+
+Weight: -90
+
+Style guide: #{$unit-util-prefix}.clear
+*/
+
+/*
+utilities: clear
+
+builtin modifiers of clear
+
+Weight: -100
+
+Markup: <div style="position:relative; padding:50px;">
+  <div class="#{$unit-util-prefix}--float-left" style="position:relative; width:50px; height:50px; background:#ccc;"></div>
+  <div class="{{modifier_class}}" style="position:relative; width:50px; height:50px; background:#999;"></div>
+  <div class="#{$unit-util-prefix}--float-right" style="position:relative; width:50px; height:50px; background:#ccc;"></div>
+  <div class="{{modifier_class}}" style="position:relative; width:50px; height:50px; background:#999;"></div>
+</div>
+
+#{$unit-util-prefix}--clear-left - clear left side floating
+#{$unit-util-prefix}--clear-right - clear right side floating
+#{$unit-util-prefix}--clear-both - clear both floating
+
+Style guide: #{$unit-util-prefix}.clear.builtin
+*/
+.#{$unit-util-prefix}--clear {
+  &-left {
+    clear: left !important;
+  }
+
+  &-right {
+    clear: right !important;
+  }
+
+  &-both {
+    clear: both !important;
+  }
+}

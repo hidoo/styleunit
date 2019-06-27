@@ -1,0 +1,39 @@
+/*
+inline
+
+inline modifiers of #{$unit-prefix}-text
+
+Weight: -97
+
+Style guide: #{$unit-prefix}-text.inline
+*/
+
+/*
+modifiers: inline
+
+builtin modifiers of inline for #{$unit-prefix}-text
+
+Weight: -100
+
+Markup: <h1 class="#{$unit-prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet.</h1>
+<p class="#{$unit-prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+#{$unit-prefix}-text--inline-false - disable inline (**default**)
+#{$unit-prefix}-text--inline-true - enable inline
+#{$unit-prefix}-text--inline-block - enable inline-block
+
+Style guide: #{$unit-prefix}-text.inline.builtin
+*/
+.#{$unit-prefix}-text--inline {
+  &-false {
+    // has no settings
+  }
+
+  &-true {
+    display: inline;
+  }
+
+  &-block {
+    display: inline-block;
+  }
+}

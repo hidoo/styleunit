@@ -1,0 +1,63 @@
+/*
+core
+
+core module of #{$unit-prefix}-list
+
+Weight: -100
+
+Style guide: #{$unit-prefix}-list.core
+*/
+
+/*
+default style
+
+default style of #{$unit-prefix}-list
+
+Weight: -100
+
+Markup: <!-- un ordered list -->
+<ul class="#{$unit-prefix}-list">
+  <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</li>
+  <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.
+    <ul class="#{$unit-prefix}-list">
+      <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</li>
+      <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+    </ul>
+  </li>
+</ul>
+<!-- ordered list -->
+<ol class="#{$unit-prefix}-list">
+  <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</li>
+  <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.
+    <ol class="#{$unit-prefix}-list">
+      <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</li>
+      <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+    </ol>
+  </li>
+</ol>
+
+#{$unit-prefix}-list - default style
+
+Style guide: #{$unit-prefix}-list.core.base
+*/
+.#{$unit-prefix}-list {
+  @include use-box-base();
+
+  color: inherit;
+  background-color: transparent;
+
+  &__item {
+    // padding-left: 1.6em;
+
+    &::before {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin: auto;
+      text-align: center;
+      white-space: nowrap;
+      word-wrap: normal;
+    }
+  }
+}

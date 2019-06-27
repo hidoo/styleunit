@@ -1,0 +1,45 @@
+/*
+link-theme
+
+link-theme modifiers of #{$unit-prefix}-text
+
+Weight: -98
+
+Style guide: #{$unit-prefix}-text.link-theme
+*/
+
+/*
+modifiers: link-theme
+
+builtin modifiers of theme for #{$unit-prefix}-text__link
+
+Weight: -100
+
+Markup: <h1 class="#{$unit-prefix}-text">Lorem ipsum dolor <a class="#{$unit-prefix}-text__link  {{modifier_class}}" href="javascript:;">sit amet</a>.</h1>
+<p class="#{$unit-prefix}-text">Lorem ipsum dolor <a class="#{$unit-prefix}-text__link  {{modifier_class}}" href="javascript:;">sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</a>.</p>
+
+#{$unit-prefix}-text__link--theme-light - light theme
+#{$unit-prefix}-text__link--theme-dark - dark theme
+
+Style guide: #{$unit-prefix}-text.link-theme.builtin
+*/
+.#{$unit-prefix}-text__link--theme {
+  @if global-variable-exists("unit-builtin-themes") {
+    @each $name, $theme in $unit-builtin-themes {
+      $color: map-get($theme, "color");
+      $color-focus: map-get($theme, "color-focus");
+
+      &-#{$name} {
+        @include on-link() {
+          text-decoration: underline;
+          color: $color;
+        }
+
+        @include on-focus() {
+          text-decoration: none;
+          color: $color-focus;
+        }
+      }
+    }
+  }
+}

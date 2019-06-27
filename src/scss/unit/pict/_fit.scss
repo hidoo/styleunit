@@ -1,0 +1,63 @@
+/*
+fit
+
+fit modifiers of #{$unit-prefix}-pict
+
+Weight: -96
+
+Style guide: #{$unit-prefix}-pict.fit
+*/
+
+/*
+modifiers: fit
+
+builtin modifiers of fit for #{$unit-prefix}-pict
+
+Weight: -100
+
+Markup: <!-- image element -->
+<figure class="#{$unit-prefix}-pict  {{modifier_class}}">
+  <img class="#{$unit-prefix}-pict__src" src="https://placehold.it/400x300.png" alt="" width="400" height="300" />
+</figure>
+<!-- image element (breaking) -->
+<figure class="#{$unit-prefix}-pict  {{modifier_class}}">
+  <img class="#{$unit-prefix}-pict__src" src="#" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." width="400" height="300" />
+</figure>
+<!-- iframe player -->
+<figure class="#{$unit-prefix}-pict  {{modifier_class}}">
+  <iframe class="#{$unit-prefix}-pict__src" title="vimeo-player" src="https://player.vimeo.com/video/76979871" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+</figure>
+
+#{$unit-prefix}-pict--fit-false - disable fit (**default**)
+#{$unit-prefix}-pict--fit-width - enable fit to width
+#{$unit-prefix}-pict--fit-max-width - enable fit to max-width
+#{$unit-prefix}-pict--fit-height - enable fit to height
+#{$unit-prefix}-pict--fit-max-height - enable fit to max-height
+
+Style guide: #{$unit-prefix}-pict.fit.builtin
+*/
+.#{$unit-prefix}-pict--fit {
+  &-none {
+    // has no settings
+  }
+
+  &-width > .#{$unit-prefix}-pict__src {
+    width: 100%;
+    height: auto;
+  }
+
+  &-max-width > .#{$unit-prefix}-pict__src {
+    max-width: 100%;
+    height: auto;
+  }
+
+  &-height > .#{$unit-prefix}-pict__src {
+    width: auto;
+    height: 100%;
+  }
+
+  &-max-height > .#{$unit-prefix}-pict__src {
+    width: auto;
+    max-height: 100%;
+  }
+}

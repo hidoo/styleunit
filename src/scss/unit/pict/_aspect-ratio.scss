@@ -1,0 +1,63 @@
+/*
+aspect-ratio
+
+aspect-ratio modifiers of #{$unit-prefix}-pict
+
+Weight: -98
+
+Style guide: #{$unit-prefix}-pict.aspect-ratio
+*/
+
+/*
+modifiers: aspect-ratio
+
+builtin modifiers of aspect-ratio for #{$unit-prefix}-pict
+
+Weight: -100
+
+Markup: <!-- image element -->
+<figure class="#{$unit-prefix}-pict  {{modifier_class}}">
+  <img class="#{$unit-prefix}-pict__src" src="https://placehold.it/400x300.png" alt="" width="400" height="300" />
+</figure>
+<!-- image element (breaking) -->
+<figure class="#{$unit-prefix}-pict  {{modifier_class}}">
+  <img class="#{$unit-prefix}-pict__src" src="#" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." width="400" height="300" />
+</figure>
+<!-- iframe player -->
+<figure class="#{$unit-prefix}-pict  {{modifier_class}}">
+  <iframe class="#{$unit-prefix}-pict__src" title="vimeo-player" src="https://player.vimeo.com/video/76979871" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+</figure>
+
+#{$unit-prefix}-pict--aspect-ratio-none - not set (**default**)
+#{$unit-prefix}-pict--aspect-ratio-4-3 - enable 4:3
+#{$unit-prefix}-pict--aspect-ratio-16-9 - enable 16:9
+
+Style guide: #{$unit-prefix}-pict.aspect-ratio.builtin
+*/
+.#{$unit-prefix}-pict--aspect-ratio {
+  &-none {
+    // has no settings
+  }
+
+  &-4-3,
+  &-16-9 {
+    max-width: 100%;
+
+    > .#{$unit-prefix}-pict__src {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &-4-3 {
+    @include use-box-aspect-ratio($width: 4, $height: 3);
+  }
+
+  &-16-9 {
+    @include use-box-aspect-ratio($width: 16, $height: 9);
+  }
+}

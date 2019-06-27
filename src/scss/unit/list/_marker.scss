@@ -1,0 +1,127 @@
+/*
+marker
+
+marker modifiers of #{$unit-prefix}-list
+
+Weight: -99
+
+Style guide: #{$unit-prefix}-list.marker
+*/
+
+/*
+modifiers: marker
+
+builtin modifiers of marker for #{$unit-prefix}-list
+
+Weight: -100
+
+Markup: <!-- un ordered list -->
+<ul class="#{$unit-prefix}-list  {{modifier_class}}">
+  <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</li>
+  <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.
+    <ul class="#{$unit-prefix}-list  {{modifier_class}}">
+      <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</li>
+      <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+    </ul>
+  </li>
+</ul>
+<!-- ordered list -->
+<ol class="#{$unit-prefix}-list  {{modifier_class}}">
+  <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</li>
+  <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.
+    <ol class="#{$unit-prefix}-list  {{modifier_class}}">
+      <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</li>
+      <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+    </ol>
+  </li>
+</ol>
+
+#{$unit-prefix}-list--marker-none - no marker (**default**)
+#{$unit-prefix}-list--marker-circle - circle marker
+#{$unit-prefix}-list--marker-circle-filled - circle marker (filled)
+#{$unit-prefix}-list--marker-square - square marker
+#{$unit-prefix}-list--marker-square-filled - square marker (filled)
+#{$unit-prefix}-list--marker-numeric - numeric marker
+
+Style guide: #{$unit-prefix}-list.marker.builtin
+*/
+.#{$unit-prefix}-list--marker {
+  &-none {
+    // has no settings
+  }
+
+  &-circle {
+    $selector: unique-id();
+
+    @include define-inline-placeholder($name: $selector) {
+      padding-left: 1.3em;
+
+      &::before {
+        display: block;
+        width: 1.2em;
+      }
+    }
+
+    & > .#{$unit-prefix}-list__item {
+      @extend %#{$selector};
+
+      &::before {
+        content: "\0025E6";
+      }
+    }
+
+    &-filled > .#{$unit-prefix}-list__item {
+      @extend %#{$selector};
+
+      &::before {
+        content: "\002022";
+      }
+    }
+  }
+
+  &-square {
+    $selector: unique-id();
+
+    @include define-inline-placeholder($name: $selector) {
+      padding-left: 1.3em;
+
+      &::before {
+        display: block;
+        width: 1.2em;
+      }
+    }
+
+    & > .#{$unit-prefix}-list__item {
+      @extend %#{$selector};
+
+      &::before {
+        content: "\0025FB";
+      }
+    }
+
+    &-filled > .#{$unit-prefix}-list__item {
+      @extend %#{$selector};
+
+      &::before {
+        content: "\0025FC";
+      }
+    }
+  }
+
+  &-numeric {
+    $counter-name: "numeric-marker";
+
+    counter-reset: #{$counter-name};
+
+    > .#{$unit-prefix}-list__item {
+      padding-left: 1.6em;
+      counter-increment: #{$counter-name};
+
+      &::before {
+        content: counter(#{$counter-name}, decimal) ".";
+        display: block;
+        width: 1.5em;
+      }
+    }
+  }
+}

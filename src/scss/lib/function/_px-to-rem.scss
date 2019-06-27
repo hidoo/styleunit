@@ -1,0 +1,28 @@
+/// convert px to rem
+/// @param {Number} $size font size
+/// @param {Number} $base-size base font size [$unit-font-base-size]
+/// @return {Number} rem
+///
+/// @example
+///   p {
+///     font-size: px-to-rem(14px, 16px); // -> 0.875rem
+///   }
+@function px-to-rem($size, $base-size: $unit-font-base-size) {
+  @if $size == 0 {
+    @return 0;
+  }
+
+  @if type-of($size) != "number" or unit($size) != "px" {
+    @error "@function px-to-rem: Argument $size is not valid number. (specified: #{inspect($size)})";
+  }
+
+  @if type-of($base-size) != "number" or unit($base-size) != "px" {
+    @error "@function px-to-rem: Argument $base-size is not valid number. (specified: #{inspect($base-size)})";
+  }
+
+  @if 0 < $size and $size < 10 {
+    @warn "@function px-to-rem: This specification is may not render as intented, because argument $size is less than 10.";
+  }
+
+  @return ($size / $base-size) * 1rem;
+}

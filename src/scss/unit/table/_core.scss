@@ -1,0 +1,87 @@
+/*
+core
+
+core module of #{$unit-prefix}-table
+
+Weight: -100
+
+Style guide: #{$unit-prefix}-table.core
+*/
+
+/*
+builtin style
+
+builtin style of #{$unit-prefix}-table
+
+Weight: -100
+
+Markup: <table class="{{modifier_class}}">
+  <tr>
+    <th class="{{modifier_class}}__column  {{modifier_class}}__column--head" scope="row">Lorem ipsum dolor sit amet.</th>
+    <td class="{{modifier_class}}__column">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+  </tr>
+  <tr>
+    <th class="{{modifier_class}}__column  {{modifier_class}}__column--head" scope="row">Lorem ipsum dolor sit amet.</th>
+    <td class="{{modifier_class}}__column">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
+  </tr>
+</table>
+
+#{$unit-prefix}-table-light - builtin light style
+#{$unit-prefix}-table-dark - builtin dark style
+
+Style guide: #{$unit-prefix}-table.core.builtin
+*/
+.#{$unit-prefix}-table {
+  $selector: unique-id();
+  $selector-column: unique-id();
+
+  // define placeholder class
+  @include define-inline-placeholder($name: $selector) {
+    @include use-table-base();
+
+    color: inherit;
+    background-color: transparent;
+  }
+
+  // define placeholder class of column
+  @include define-inline-placeholder($name: $selector-column) {
+    @include use-table-column-base(
+      $padding: 5px 10px (5px * 1.5)
+    );
+    @include use-text-base();
+    @include use-font-base(
+      $feature-settings: true
+    );
+    @include use-font-size(
+      $value: "medium"
+    );
+  }
+
+  @if global-variable-exists("unit-builtin-themes") {
+    @each $name, $theme in $unit-builtin-themes {
+      $color: map-get($theme, "color");
+      $background: map-get($theme, "background");
+      $background-focus: map-get($theme, "background-focus");
+      $border: map-get($theme, "border");
+      $border-focus: map-get($theme, "border-focus");
+
+      &-#{$name} {
+        @extend %#{$selector};
+
+        border-color: if($name == "light", $border, $border-focus);
+
+        &__column {
+          @extend %#{$selector-column};
+
+          color: $color;
+          background-color: $background;
+          border-color: if($name == "light", $border, $border-focus);
+
+          &--head {
+            background-color: $background-focus;
+          }
+        }
+      }
+    }
+  }
+}

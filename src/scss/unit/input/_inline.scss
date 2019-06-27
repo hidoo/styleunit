@@ -1,0 +1,40 @@
+/*
+inline
+
+inline modifiers of #{$unit-prefix}-input
+
+Weight: -98
+
+Style guide: #{$unit-prefix}-input.inline
+*/
+
+/*
+modifiers: inline
+
+builtin modifiers of inline for #{$unit-prefix}-input
+
+Weight: -100
+
+Markup: <!-- input -->
+<input class="#{$unit-prefix}-input  #{$unit-prefix}-input--theme-light  {{modifier_class}}" type="text" name="{{modifier_class}}" value="" placeholder="Lorem ipsum dolor sit amet." />
+<input class="#{$unit-prefix}-input  #{$unit-prefix}-input--theme-dark  {{modifier_class}}" type="text" name="{{modifier_class}}" value="" placeholder="Lorem ipsum dolor sit amet." />
+<!-- textarea -->
+<textarea class="#{$unit-prefix}-input  #{$unit-prefix}-input--theme-light  {{modifier_class}}" name="{{modifier_class}}" rows="5" cols="10" placeholder="Lorem ipsum dolor sit amet."></textarea>
+<textarea class="#{$unit-prefix}-input  #{$unit-prefix}-input--theme-dark  {{modifier_class}}" name="{{modifier_class}}" rows="5" cols="10" placeholder="Lorem ipsum dolor sit amet."></textarea>
+
+#{$unit-prefix}-input--inline-false - disable inline (**default**)
+#{$unit-prefix}-input--inline-true - enable inline
+
+Style guide: #{$unit-prefix}-input.inline.builtin
+*/
+.#{$unit-prefix}-input--inline {
+  &-false {
+    // has no settings
+  }
+
+  &-true {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+  }
+}

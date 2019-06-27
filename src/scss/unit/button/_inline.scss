@@ -1,0 +1,42 @@
+/*
+inline
+
+inline modifiers of #{$unit-prefix}-button
+
+Weight: -98
+
+Style guide: #{$unit-prefix}-button.inline
+*/
+
+/*
+modifiers: inline
+
+builtin modifiers of inline for #{$unit-prefix}-button
+
+Weight: -100
+
+Markup: <!-- link element -->
+<a class="#{$unit-prefix}-button  #{$unit-prefix}-button--theme-light  {{modifier_class}}" href="javascript:;">
+  <span class="#{$unit-prefix}-button__label  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</span>
+</a>
+<!-- button element -->
+<button class="#{$unit-prefix}-button  #{$unit-prefix}-button--theme-dark  {{modifier_class}}">
+  <span class="#{$unit-prefix}-button__label  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</span>
+</button>
+
+#{$unit-prefix}-button--inline-false - disable inline (**default**)
+#{$unit-prefix}-button--inline-true - enable inline
+
+Style guide: #{$unit-prefix}-button.inline.builtin
+*/
+.#{$unit-prefix}-button--inline {
+  &-false {
+    // has no settings
+  }
+
+  &-true {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+  }
+}

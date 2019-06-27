@@ -1,0 +1,34 @@
+/*
+font-family
+
+utilities that tweek of font-family
+
+Weight: -88
+
+Style guide: #{$unit-util-prefix}.font-family
+*/
+
+/*
+utilities: font-family
+
+builtin modifiers of font-family
+
+Weight: -100
+
+Markup: <p class="#{$unit-prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+#{$unit-util-prefix}--font-family-default - default font family (**default**)
+#{$unit-util-prefix}--font-family-monospace - monospace font family
+
+Style guide: #{$unit-util-prefix}.font-family.builtin
+*/
+.#{$unit-util-prefix}--font-family {
+  &-default {
+    @include use-font-family($value: "default", $important: true);
+  }
+
+  &-monospace {
+    @include use-font-family($value: "monospace", $important: true);
+    @include use-font-size($value: "medium", $monospace: true); // not specify !important, because override as possible
+  }
+}

@@ -1,0 +1,39 @@
+/*
+truncate
+
+truncate modifiers of #{$unit-prefix}-text
+
+Weight: -95
+
+Style guide: #{$unit-prefix}-text.truncate
+*/
+
+/*
+modifiers: truncate
+
+builtin modifiers of truncate for #{$unit-prefix}-text
+
+Weight: -100
+
+Markup: <h1 class="#{$unit-prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet.</h1>
+<p class="#{$unit-prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+#{$unit-prefix}-text--truncate-false - disable truncate (**default**)
+#{$unit-prefix}-text--truncate-true - enable truncate
+
+Style guide: #{$unit-prefix}-text.truncate.builtin
+*/
+.#{$unit-prefix}-text--truncate {
+  &-false {
+    // has no settings
+  }
+
+  &-true {
+    overflow: hidden;
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    // word-break: normal;
+    word-wrap: normal;
+  }
+}

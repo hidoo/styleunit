@@ -1,0 +1,88 @@
+/*
+core
+
+core module of #{$unit-prefix}-toggle
+
+Weight: -100
+
+Style guide: #{$unit-prefix}-toggle.core
+*/
+
+/*
+default style
+
+default style of #{$unit-prefix}-toggle
+
+Weight: -100
+
+Markup: <!-- single -->
+<span class="#{$unit-prefix}-toggle">
+  <input class="#{$unit-prefix}-toggle__field" type="radio" name="{{modifier_class}}" value="1" />
+  <span class="#{$unit-prefix}-toggle__alt"></span>
+</span>
+<!-- single:disabled -->
+<span class="#{$unit-prefix}-toggle">
+  <input class="#{$unit-prefix}-toggle__field" type="radio" name="{{modifier_class}}" value="2" checked="checked" disabled="disabled" />
+  <span class="#{$unit-prefix}-toggle__alt"></span>
+</span>
+<!-- with label -->
+<label>
+  <span class="#{$unit-prefix}-toggle">
+    <input class="#{$unit-prefix}-toggle__field" type="radio" name="{{modifier_class}}" value="3" />
+    <span class="#{$unit-prefix}-toggle__alt"></span>
+  </span>
+  <span class="#{$unit-prefix}-text  #{$unit-prefix}-text--inline-true">Lorem ipsum dolor sit amet.</span>
+</label>
+
+#{$unit-prefix}-toggle - default style
+
+Style guide: #{$unit-prefix}-toggle.core.base
+*/
+.#{$unit-prefix}-toggle {
+  @include use-box-base(
+    $display: "inline-block"
+  );
+
+  vertical-align: baseline;
+  color: inherit;
+  background-color: transparent;
+
+  &__field {
+    @include use-box-base();
+
+    vertical-align: baseline;
+    cursor: pointer;
+
+    // stylelint-disable-next-line plugin/no-unsupported-browser-features
+    outline: none;
+
+    @include on-disabled() {
+      opacity: 0.8;
+      cursor: default;
+    }
+  }
+
+  &__alt {
+    @include use-box-base(
+      $display: "none",
+      $overflow: "hidden"
+    );
+    @include use-text-base(
+      $text-indent: -100%
+    );
+    @include use-font-base(
+      $feature-settings: true
+    );
+    @include use-font-size(
+      $value: "medium"
+    );
+
+    color: inherit;
+    background-color: transparent;
+  }
+
+  &__field:disabled + &__alt {
+    opacity: 0.5;
+    cursor: default;
+  }
+}

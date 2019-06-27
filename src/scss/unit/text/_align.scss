@@ -1,0 +1,39 @@
+/*
+align
+
+align modifiers of #{$unit-prefix}-text
+
+Weight: -96
+
+Style guide: #{$unit-prefix}-text.align
+*/
+
+/*
+modifiers: align
+
+builtin modifiers of alignment for #{$unit-prefix}-text
+
+Weight: -100
+
+Markup: <h1 class="#{$unit-prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet.</h1>
+<p class="#{$unit-prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+#{$unit-prefix}-text--align-left - left aligned (**default**)
+#{$unit-prefix}-text--align-center - center aligned
+#{$unit-prefix}-text--align-right - right aligned
+
+Style guide: #{$unit-prefix}-text.align.builtin
+*/
+.#{$unit-prefix}-text--align {
+  &-left {
+    text-align: left;
+  }
+
+  &-center {
+    text-align: center;
+  }
+
+  &-right {
+    text-align: right;
+  }
+}
