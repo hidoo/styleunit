@@ -1,3 +1,8 @@
+/// defineded inline placeholders
+/// @access private
+/// @type List
+$_defineded-inline-placeholders: ();
+
 /// define inline placeholder class
 /// @param {String} $name name of placeholder class
 ///
@@ -23,9 +28,15 @@
     @error "@mixin define-inline-placeholder: Argument $name is not string.";
   }
 
-  @at-root {
-    %#{$name} {
-      @content;
+  // define placeholder if not already defined
+  @if index($_defineded-inline-placeholders, $name) == null {
+    @at-root {
+      %#{$name} {
+        @content;
+      }
     }
+
+    // cache defined placeholder
+    $_defineded-inline-placeholders: append($_defineded-inline-placeholders, $name) !global;
   }
 }

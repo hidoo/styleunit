@@ -21,6 +21,11 @@ describe('@mixin define-inline-placeholder($name)', () => {
     font-size: 16px;
   }
 
+  // ignore multiple define
+  @include define-inline-placeholder($name: $name) {
+    font-size: 16px;
+  }
+
   &__child-1 {
     @extend %#{$name};
   }
