@@ -1,7 +1,7 @@
 /* eslint max-len: 0, no-magic-numbers: 0 */
 
 import assert from 'assert';
-import eachTestCases from '../fixture/eachTestCases';
+import {eachTestCases} from '@hidoo/unit-test-util';
 
 describe('@mixin use-table-column-base(...)', () => {
 
