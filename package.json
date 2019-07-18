@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "Sass based css framework.",
   "main": "src/index.scss",
+  "files": [
+    "src/"
+  ],
   "scripts": {
     "start": "gulp",
     "build": "gulp build",
@@ -14,6 +17,9 @@
     "scss",
     "framework"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "hidoo",
   "license": "MIT",
   "devDependencies": {
