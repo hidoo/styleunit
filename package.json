@@ -21,7 +21,6 @@
     "@babel/preset-env": "^7.4.5",
     "@babel/register": "^7.4.4",
     "@hidoo/gulp-task-build-css-sass": "^0.10.0",
-    "@hidoo/gulp-task-build-sprite-svg": "^0.10.0",
     "@hidoo/gulp-task-build-styleguide-kss": "^0.10.0",
     "@hidoo/gulp-task-copy": "^0.10.0",
     "@hidoo/unit-test-util": "^0.0.0",
