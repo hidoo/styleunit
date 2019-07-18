@@ -2,7 +2,7 @@
   "name": "@hidoo/unit",
   "version": "0.0.0",
   "description": "Sass based css framework.",
-  "main": "src/scss/main.scss",
+  "main": "src/index.scss",
   "scripts": {
     "start": "gulp",
     "build": "gulp build",

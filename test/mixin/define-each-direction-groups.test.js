@@ -18,8 +18,8 @@ describe('@mixin define-sizes-in-direction-groups($type, $values)', () => {
     ];
 
     return `
-@import "src/scss/lib/function";
-@import "src/scss/lib/mixin/define-sizes-in-direction-groups";
+@import "src/lib/function";
+@import "src/lib/mixin/define-sizes-in-direction-groups";
 
 .selector {
   @include define-sizes-in-direction-groups(${args.filter((arg) => arg !== false).join(',')});

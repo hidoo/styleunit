@@ -19,7 +19,7 @@ describe('@mixin use-box-aspect-ratio(...)', () => {
     ];
 
     return `
-@import "src/scss/lib/mixin/use-box-aspect-ratio";
+@import "src/lib/mixin/use-box-aspect-ratio";
 
 .selector {
   @include use-box-aspect-ratio(${args.filter((arg) => arg !== false).join(', ')});

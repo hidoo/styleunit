@@ -16,7 +16,7 @@ describe('@function ununit($number)', () => {
     ];
 
     return `
-@import "src/scss/lib/function/ununit";
+@import "src/lib/function/ununit";
 
 p {
   content: ununit(${args.filter((arg) => arg !== false).join(',')});

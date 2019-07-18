@@ -19,10 +19,10 @@ describe('@mixin on-link(...)', () => {
     ];
 
     return `
-@import "src/scss/lib/function/merge-state-selectors";
-@import "src/scss/lib/mixin/define-inline-placeholder";
-@import "src/scss/lib/mixin/on";
-@import "src/scss/lib/mixin/on-link";
+@import "src/lib/function/merge-state-selectors";
+@import "src/lib/mixin/define-inline-placeholder";
+@import "src/lib/mixin/on";
+@import "src/lib/mixin/on-link";
 
 .selector {
   @include on-link(${args.filter((arg) => arg !== false).join(', ')}) {

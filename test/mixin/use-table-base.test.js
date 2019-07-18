@@ -25,7 +25,7 @@ describe('@mixin use-table-base(...)', () => {
     ];
 
     return `
-@import "src/scss/lib/mixin/use-table-base";
+@import "src/lib/mixin/use-table-base";
 
 .selector {
   @include use-table-base(${args.filter((arg) => arg !== false).join(', ')});

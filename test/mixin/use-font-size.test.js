@@ -24,8 +24,8 @@ describe('@mixin use-font-size(...)', () => {
 
     return `
 ${normalizeGlobalSettings(globalSettings)}
-@import "src/scss/lib/function/px-to-rem";
-@import "src/scss/lib/mixin/use-font-size";
+@import "src/lib/function/px-to-rem";
+@import "src/lib/mixin/use-font-size";
 
 .selector {
   @include use-font-size(${args.filter((arg) => arg !== false).join(', ')});

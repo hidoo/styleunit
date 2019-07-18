@@ -32,7 +32,7 @@ describe('@mixin use-text-base(...)', () => {
 
     return `
 ${normalizeGlobalSettings(globalSettings)}
-@import "src/scss/lib/mixin/use-text-base";
+@import "src/lib/mixin/use-text-base";
 
 .selector {
   @include use-text-base(${args.filter((arg) => arg !== false).join(', ')});

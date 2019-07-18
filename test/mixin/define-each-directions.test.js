@@ -18,8 +18,8 @@ describe('@mixin define-sizes-in-directions($type, $values)', () => {
     ];
 
     return `
-@import "src/scss/lib/function";
-@import "src/scss/lib/mixin/define-sizes-in-directions";
+@import "src/lib/function";
+@import "src/lib/mixin/define-sizes-in-directions";
 
 .selector {
   @include define-sizes-in-directions(${args.filter((arg) => arg !== false).join(',')});

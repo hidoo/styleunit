@@ -22,6 +22,7 @@ export const main = buildCss({
 export const watch = () => {
   gulp.watch(
     [
+      `./src/**/*.scss`,
       `${config.path.srcCss}/**/*.scss`
     ],
     main

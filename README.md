@@ -11,7 +11,13 @@ $ npm install @hidoo/unit
 ## Usage
 
 ```scss
-@import "node_modules/@hidoo/unit/src/scss/main.scss";
+@import "node_modules/@hidoo/unit/src/index.scss";
+```
+
+### Usage with [node-sass-magic-importer](https://github.com/maoberlehner/node-sass-magic-importer)
+
+```scss
+@import "~@hidoo/unit";
 ```
 
 ## Test

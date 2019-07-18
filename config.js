@@ -57,8 +57,8 @@ export {default as pkg} from './package.json';
 export const path = {
 
   // base
-  src: './src',
-  dest: './dist',
+  src: './example/src',
+  dest: './example/build',
 
   // source details
   get srcCss() { return `${this.src}/scss`; },

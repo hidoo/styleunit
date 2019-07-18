@@ -19,8 +19,8 @@ describe('@mixin on(...)', () => {
     ];
 
     return `
-@import "src/scss/lib/mixin/define-inline-placeholder";
-@import "src/scss/lib/mixin/on";
+@import "src/lib/mixin/define-inline-placeholder";
+@import "src/lib/mixin/on";
 
 .selector {
   @include on(${args.filter((arg) => arg !== false).join(', ')}) {

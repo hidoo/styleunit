@@ -21,7 +21,7 @@ describe('@function merge-state-selectors($type, $additional-selectors)', () => 
 
     return `
 ${normalizeGlobalSettings(globalSettings)}
-@import "src/scss/lib/function/merge-state-selectors";
+@import "src/lib/function/merge-state-selectors";
 
 p {
   content: #{merge-state-selectors(${args.filter((arg) => arg !== false).join(', ')})};

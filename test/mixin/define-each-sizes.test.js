@@ -18,8 +18,8 @@ describe('@mixin define-sizes($type, $values)', () => {
     ];
 
     return `
-@import "src/scss/lib/function";
-@import "src/scss/lib/mixin/define-sizes";
+@import "src/lib/function";
+@import "src/lib/mixin/define-sizes";
 
 .selector {
   @include define-sizes(${args.filter((arg) => arg !== false).join(',')});

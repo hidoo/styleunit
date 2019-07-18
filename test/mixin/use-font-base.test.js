@@ -24,7 +24,7 @@ describe('@mixin use-font-base(...)', () => {
 
     return `
 ${normalizeGlobalSettings(globalSettings)}
-@import "src/scss/lib/mixin/use-font-base";
+@import "src/lib/mixin/use-font-base";
 
 .selector {
   @include use-font-base(${args.filter((arg) => arg !== false).join(', ')});

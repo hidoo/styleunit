@@ -20,10 +20,10 @@ describe('@mixin on-disabled(...)', () => {
 
     return `
 ${normalizeGlobalSettings(globalSettings)}
-@import "src/scss/lib/function/merge-state-selectors";
-@import "src/scss/lib/mixin/define-inline-placeholder";
-@import "src/scss/lib/mixin/on";
-@import "src/scss/lib/mixin/on-disabled";
+@import "src/lib/function/merge-state-selectors";
+@import "src/lib/mixin/define-inline-placeholder";
+@import "src/lib/mixin/on";
+@import "src/lib/mixin/on-disabled";
 
 .selector {
   @include on-disabled(${args.filter((arg) => arg !== false).join(', ')}) {

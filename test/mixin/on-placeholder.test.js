@@ -13,9 +13,9 @@ describe('@mixin on-placeholder(...)', () => {
     const args = [];
 
     return `
-@import "src/scss/lib/mixin/define-inline-placeholder";
-@import "src/scss/lib/mixin/on";
-@import "src/scss/lib/mixin/on-placeholder";
+@import "src/lib/mixin/define-inline-placeholder";
+@import "src/lib/mixin/on";
+@import "src/lib/mixin/on-placeholder";
 
 .selector {
   @include on-placeholder(${args.filter((arg) => arg !== false).join(', ')}) {

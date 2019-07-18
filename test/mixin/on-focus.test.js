@@ -22,10 +22,10 @@ describe('@mixin on-focus(...)', () => {
 
     return `
 ${normalizeGlobalSettings(globalSettings)}
-@import "src/scss/lib/function/merge-state-selectors";
-@import "src/scss/lib/mixin/define-inline-placeholder";
-@import "src/scss/lib/mixin/on";
-@import "src/scss/lib/mixin/on-focus";
+@import "src/lib/function/merge-state-selectors";
+@import "src/lib/mixin/define-inline-placeholder";
+@import "src/lib/mixin/on";
+@import "src/lib/mixin/on-focus";
 
 .selector {
   @include on-focus(${args.filter((arg) => arg !== false).join(', ')}) {

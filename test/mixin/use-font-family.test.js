@@ -22,7 +22,7 @@ describe('@mixin use-font-family(...)', () => {
 
     return `
 ${normalizeGlobalSettings(globalSettings)}
-@import "src/scss/lib/mixin/use-font-family";
+@import "src/lib/mixin/use-font-family";
 
 .selector {
   @include use-font-family(${args.filter((arg) => arg !== false).join(', ')});

@@ -19,7 +19,7 @@ describe('@function px-to-rem($size, $base-size)', () => {
 
     return `
 $unit-font-base-size: 16px;
-@import "src/scss/lib/function/px-to-rem";
+@import "src/lib/function/px-to-rem";
 
 p {
   content: px-to-rem(${args.filter((arg) => arg !== false).join(',')});

@@ -23,7 +23,7 @@ describe('@mixin use-table-column-base(...)', () => {
     ];
 
     return `
-@import "src/scss/lib/mixin/use-table-column-base";
+@import "src/lib/mixin/use-table-column-base";
 
 .selector {
   @include use-table-column-base(${args.filter((arg) => arg !== false).join(', ')});

@@ -31,7 +31,7 @@ describe('@mixin use-box-base(...)', () => {
     ];
 
     return `
-@import "src/scss/lib/mixin/use-box-base";
+@import "src/lib/mixin/use-box-base";
 
 .selector {
   @include use-box-base(${args.filter((arg) => arg !== false).join(', ')});

@@ -23,7 +23,7 @@ describe('@mixin define-breakpoint($from, $until)', () => {
 
     return `
 ${normalizeGlobalSettings({breakpoints: undefBreakpoints ? null : '("desktop": 1024px, "mobile": 667px)'})}
-@import "src/scss/lib/mixin/define-breakpoint";
+@import "src/lib/mixin/define-breakpoint";
 
 .selector {
   @include define-breakpoint(${args.filter((arg) => arg !== false).join(', ')}) {

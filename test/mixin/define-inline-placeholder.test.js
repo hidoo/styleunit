@@ -12,7 +12,7 @@ describe('@mixin define-inline-placeholder($name)', () => {
    */
   function wrapper(name) {
     return `
-@import "src/scss/lib/mixin/define-inline-placeholder";
+@import "src/lib/mixin/define-inline-placeholder";
 
 .selector {
   $name: ${name};
