@@ -26,7 +26,7 @@ Style guide: #{$unit-prefix}-icon.type.builtin
   &-arrow {
     $selector: unique-id();
 
-    @include define-inline-placeholder($name: $selector) {
+    @include define-placeholder($name: $selector) {
       width: 12.72px;
       height: 10px;
 

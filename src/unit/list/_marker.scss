@@ -53,7 +53,7 @@ Style guide: #{$unit-prefix}-list.marker.builtin
   &-circle {
     $selector: unique-id();
 
-    @include define-inline-placeholder($name: $selector) {
+    @include define-placeholder($name: $selector) {
       padding-left: 1.3em;
 
       &::before {
@@ -82,7 +82,7 @@ Style guide: #{$unit-prefix}-list.marker.builtin
   &-square {
     $selector: unique-id();
 
-    @include define-inline-placeholder($name: $selector) {
+    @include define-placeholder($name: $selector) {
       padding-left: 1.3em;
 
       &::before {

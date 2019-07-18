@@ -3,7 +3,7 @@
 import assert from 'assert';
 import eachTestCases from '../fixture/eachTestCases';
 
-describe('@mixin define-inline-placeholder($name)', () => {
+describe('@mixin define-placeholder($name)', () => {
 
   /**
    * wrapper
@@ -12,17 +12,17 @@ describe('@mixin define-inline-placeholder($name)', () => {
    */
   function wrapper(name) {
     return `
-@import "src/lib/mixin/define-inline-placeholder";
+@import "src/lib/mixin/define-placeholder";
 
 .selector {
   $name: ${name};
 
-  @include define-inline-placeholder($name: $name) {
+  @include define-placeholder($name: $name) {
     font-size: 16px;
   }
 
   // ignore multiple define
-  @include define-inline-placeholder($name: $name) {
+  @include define-placeholder($name: $name) {
     font-size: 16px;
   }
 

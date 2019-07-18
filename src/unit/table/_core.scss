@@ -46,7 +46,7 @@ Style guide: #{$unit-prefix}-table.core.builtin
   $selector-column: unique-id();
 
   // define placeholder class
-  @include define-inline-placeholder($name: $selector) {
+  @include define-placeholder($name: $selector) {
     @include use-table-base();
 
     color: inherit;
@@ -54,7 +54,7 @@ Style guide: #{$unit-prefix}-table.core.builtin
   }
 
   // define placeholder class of column
-  @include define-inline-placeholder($name: $selector-column) {
+  @include define-placeholder($name: $selector-column) {
     @include use-table-column-base(
       $padding: 5px 10px (5px * 1.5)
     );

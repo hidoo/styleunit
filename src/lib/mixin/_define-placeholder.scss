@@ -1,7 +1,7 @@
-/// defineded inline placeholders
+/// defineded placeholders
 /// @access private
 /// @type List
-$_defineded-inline-placeholders: ();
+$_defineded-placeholders: ();
 
 /// define inline placeholder class
 /// @param {String} $name name of placeholder class
@@ -10,7 +10,7 @@ $_defineded-inline-placeholders: ();
 ///   .selector {
 ///     $name: unique-id();
 ///
-///     @include define-inline-placeholder($name: $name) {
+///     @include define-placeholder($name: $name) {
 ///       font-size: 16px;
 ///     }
 ///
@@ -23,13 +23,13 @@ $_defineded-inline-placeholders: ();
 ///     }
 ///   }
 ///   // -> .selector__child-1, .selector__child-2 { font-size: 16px; }
-@mixin define-inline-placeholder($name) {
+@mixin define-placeholder($name) {
   @if type-of($name) != "string" {
-    @error "@mixin define-inline-placeholder: Argument $name is not string.";
+    @error "@mixin define-placeholder: Argument $name is not string.";
   }
 
   // define placeholder if not already defined
-  @if index($_defineded-inline-placeholders, $name) == null {
+  @if index($_defineded-placeholders, $name) == null {
     @at-root {
       %#{$name} {
         @content;
@@ -37,6 +37,6 @@ $_defineded-inline-placeholders: ();
     }
 
     // cache defined placeholder
-    $_defineded-inline-placeholders: append($_defineded-inline-placeholders, $name) !global;
+    $_defineded-placeholders: append($_defineded-placeholders, $name) !global;
   }
 }

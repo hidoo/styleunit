@@ -23,7 +23,7 @@ describe('@mixin on-current(...)', () => {
     return `
 ${normalizeGlobalSettings(globalSettings)}
 @import "src/lib/function/merge-state-selectors";
-@import "src/lib/mixin/define-inline-placeholder";
+@import "src/lib/mixin/define-placeholder";
 @import "src/lib/mixin/on";
 @import "src/lib/mixin/on-current";
 

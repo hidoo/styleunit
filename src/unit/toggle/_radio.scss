@@ -49,12 +49,12 @@ Style guide: #{$unit-prefix}-toggle.radio.builtin
   $selectors-disabled: merge-state-selectors("disabled");
 
   // define placeholder class
-  @include define-inline-placeholder($name: $selector) {
+  @include define-placeholder($name: $selector) {
     vertical-align: middle;
   }
 
   // define placeholder class of field
-  @include define-inline-placeholder($name: $selector-field) {
+  @include define-placeholder($name: $selector-field) {
     position: absolute;
     top: 0;
     left: 0;
@@ -65,7 +65,7 @@ Style guide: #{$unit-prefix}-toggle.radio.builtin
   }
 
   // define placeholder class of alt
-  @include define-inline-placeholder($name: $selector-alt) {
+  @include define-placeholder($name: $selector-alt) {
     display: block;
     z-index: 0;
     width: 20px;
@@ -97,7 +97,7 @@ Style guide: #{$unit-prefix}-toggle.radio.builtin
   }
 
   // define placeholder class of alt when checked
-  @include define-inline-placeholder($name: $selector-alt-checked) {
+  @include define-placeholder($name: $selector-alt-checked) {
     &::before {
       transform: scale(1);
     }
@@ -135,7 +135,7 @@ Style guide: #{$unit-prefix}-toggle.radio.builtin
         }
 
         // define placeholder class of alt when focus
-        @include define-inline-placeholder($name: $selector-alt-focus) {
+        @include define-placeholder($name: $selector-alt-focus) {
           border-color: $color-focus;
         }
 
@@ -146,7 +146,7 @@ Style guide: #{$unit-prefix}-toggle.radio.builtin
         }
 
         // define placeholder class of alt when disabled
-        @include define-inline-placeholder($name: $selector-alt-disabled) {
+        @include define-placeholder($name: $selector-alt-disabled) {
           border-color: $color;
         }
 

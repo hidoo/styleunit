@@ -13,14 +13,14 @@
   $selectors: (),
   $capturing-selectors: ()
 ) {
-  @if not mixin-exists("define-inline-placeholder") {
-    @error "@mixin on: @mixin define-inline-placeholder is required.";
+  @if not mixin-exists("define-placeholder") {
+    @error "@mixin on: @mixin define-placeholder is required.";
   }
 
   @if length($selectors) >= 1 {
     $unique-id: unique-id();
 
-    @include define-inline-placeholder($name: $unique-id) {
+    @include define-placeholder($name: $unique-id) {
       @content;
     }
 

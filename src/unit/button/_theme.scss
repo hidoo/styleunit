@@ -32,7 +32,7 @@ Style guide: #{$unit-prefix}-button.theme.builtin
 .#{$unit-prefix}-button--theme {
   $selector: unique-id();
 
-  @include define-inline-placeholder($name: $selector) {
+  @include define-placeholder($name: $selector) {
     padding: 10px;
     border-radius: 3px;
     transition-duration: 0.1s;
