@@ -9,12 +9,14 @@ describe('@mixin on-disabled(...)', () => {
    * wrapper
    * @param {Object} options options
    *   @param {String|Null} options.additionalSelectors setting for additional-selectors
+   *   @param {String|Null} options.capturingSelectors capturing parent selectors
    * @param {Object} globalSettings global settings
    * @return {String}
    */
   function wrapper(options = {}, globalSettings = {}) {
     const args = [
-      options.additionalSelectors || options.additionalSelectors === '' ? `$additional-selectors: ${options.additionalSelectors}` : false
+      options.additionalSelectors || options.additionalSelectors === '' ? `$additional-selectors: ${options.additionalSelectors}` : false,
+      options.capturingSelectors || options.capturingSelectors === '' ? `$capturing-selectors: ${options.capturingSelectors}` : false
     ];
 
     return `
@@ -77,6 +79,26 @@ ${normalizeGlobalSettings(globalSettings)}
       {
         params: [{additionalSelectors: '(".is-not-use")'}],
         expected: '.selector:disabled, .selector.is-disabled, .selector.is-not-use { font-size: 16px; }'
+      }
+    ];
+
+    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
+      if (error) {
+        return reject(error);
+      }
+
+      const actual = result.css.toString().trim();
+
+      assert(actual === expected);
+      return resolve();
+    });
+  });
+
+  it('should out capturing settings with specified selectors if argument $capturing-selectors is set.', async () => {
+    const cases = [
+      {
+        params: [{capturingSelectors: '("button")'}],
+        expected: '.selector:disabled, .selector.is-disabled, button:disabled .selector, button.is-disabled .selector { font-size: 16px; }'
       }
     ];
 

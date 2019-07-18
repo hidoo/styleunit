@@ -1,5 +1,6 @@
 /// wrappper of :disabled
 /// @param {List} $additional-selectors list of additional selectors [()]
+/// @param {List} $capturing-selectors capturing parent selectors
 ///
 /// @example
 ///   .selector {
@@ -10,6 +11,7 @@
 ///   // -> .selector:disabled, .selector.is-disabled { font-size: 16px; }
 @mixin on-disabled(
   $additional-selectors: (),
+  $capturing-selectors: ()
 ) {
   @if not function-exists("merge-state-selectors") {
     @error "@mixin on-disabled: @function merge-state-selectors is required.";
@@ -17,7 +19,7 @@
 
   $selectors: merge-state-selectors("disabled", $additional-selectors);
 
-  @include on($selectors: $selectors) {
+  @include on($selectors: $selectors, $capturing-selectors: $capturing-selectors) {
     @content;
   }
 }
