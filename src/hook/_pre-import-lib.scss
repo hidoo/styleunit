@@ -1,0 +1,3 @@
+@if mixin-exists("hook-pre-import-lib") {
+  @include hook-pre-import-lib();
+}

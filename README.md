@@ -45,6 +45,18 @@ $ npm install @hidoo/unit
 @import "node_modules/@hidoo/unit/src/unit/button/inline";
 ```
 
+### Hook mixins
+
+You can use some hook mixins that called if defined.      
+See [example](./example/src/scss/main.scss).
+
+| Name                              | Called timing                 |
+| :-------------------------------- | :---------------------------- |
+| `@mixin hook-pre-import-lib`      | Before `@import "lib";`.      |
+| `@mixin hook-pre-import-unit`     | Before `@import "unit";`.     |
+| `@mixin hook-pre-import-util`     | Before `@import "util";`.     |
+| `@mixin hook-pre-import-override` | Before `@import "override";`. |
+
 ## Test
 
 ```sh
