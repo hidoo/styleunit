@@ -20,7 +20,7 @@ $ npm install @hidoo/unit
 @import "~@hidoo/unit";
 ```
 
-### Usage with settings override
+### Usage with custom settings
 
 ```scss
 // import variables in advance
