@@ -1,18 +1,3 @@
-// define @font-face if $unit-font-family includes target font
-@if $unit-font-enable-override and index($unit-font-family, "Yu Gothic") != null {
-  @font-face {
-    font-family: "Yu Gothic";
-    src: local("Yu Gothic Medium");
-    font-weight: normal;
-  }
-
-  @font-face {
-    font-family: "Yu Gothic";
-    src: local("Yu Gothic Bold");
-    font-weight: bold;
-  }
-}
-
 // setting base font-size for rem
 @if $unit-font-enable-relative-size {
   html {

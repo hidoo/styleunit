@@ -55,22 +55,39 @@ $unit-font-enable-override: true !default;
 /// default font family
 /// + this use if $unit-font-enable-override is enabled
 /// @type List
+///
+/// + -apple-system ... use "San Francisco" as primary font in mac
+/// + BlinkMacSystemFont ... use "San Francisco" as primary in chrome on mac
+/// + Helvetica ... secondary font in mac
+/// + Arial ... secondary font in windows
+/// + Hiragino Kaku Gothic ProN ... primary japanese font in mac
+/// + Yu Gothic Medium ... primary japanese font in windows
+/// + 游ゴシック Medium ... primary japanese font in ie on windows
+/// + YuGothic ... secondary japanese font in mac
+/// + Meiryo ... secondary japanese font in windows
+/// + メイリオ ... secondary japanese font in ie on windows
 $unit-font-family: (
   -apple-system,
   BlinkMacSystemFont,
   Helvetica,
   Arial,
   "Hiragino Kaku Gothic ProN",
-  "Yu Gothic",
+  "Yu Gothic Medium",
+  "游ゴシック Medium",
   YuGothic,
-  "メイリオ",
   Meiryo,
+  "メイリオ",
   sans-serif
 ) !default;
 
 /// default monospace font family
 /// + this use if $unit-font-enable-override is enabled
 /// @type List
+///
+/// + Consolas ... primary font in windows (use it as primary if installed in mac)
+/// + Monaco ... primary font in mac
+/// + Menlo ... secondary font in mac
+/// + Courier ... secondary font in windows
 $unit-font-family-monospace: (
   Consolas,
   Monaco,
