@@ -483,12 +483,12 @@ Style guide: #{$unit-prefix}-document.core.base
   }
 
   a {
-    @include on-link {
+    @include on-link() {
       text-decoration: underline;
       color: map-get($unit-link-color, "link");
     }
 
-    @include on-focus {
+    @include on-focus() {
       text-decoration: none;
       color: map-get($unit-link-color, "focus");
     }

@@ -297,11 +297,11 @@ Style guide: #{$unit-prefix}-document.theme.builtin
         }
 
         a {
-          @include on-link {
+          @include on-link() {
             color: $color;
           }
 
-          @include on-focus {
+          @include on-focus() {
             color: $color-focus;
           }
         }
