@@ -96,11 +96,13 @@ $unit-font-family-monospace: (
   monospace
 ) !default;
 
-/// use font-feature-settings: "palt"
-/// but disable when browser is ie 10-11
+/// enable advanced font settings
 /// + this use if $unit-font-enable-override is enabled
 /// @type Boolean
-$unit-font-enable-feature-settings: true !default;
+///
+/// ## features
+/// + font-feature-settings: "palt" (disable when browser is ie 10-11)
+$unit-font-enable-advanced-settings: true !default;
 
 /// enable relative font-size specify
 /// + override base size settings of font

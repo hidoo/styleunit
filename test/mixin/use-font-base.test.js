@@ -54,7 +54,7 @@ ${normalizeGlobalSettings(globalSettings)}
 /* eslint-disable indent */
       },
       {
-        params: [{}, {fontEnableFeatureSettings: null}],
+        params: [{}, {fontEnableAdvancedSettings: null}],
         expected:
 /* eslint-disable indent */
 `.selector {
@@ -64,7 +64,7 @@ ${normalizeGlobalSettings(globalSettings)}
 /* eslint-disable indent */
       },
       {
-        params: [{}, {fontEnableFeatureSettings: 'false'}],
+        params: [{}, {fontEnableAdvancedSettings: 'false'}],
         expected:
 /* eslint-disable indent */
 `.selector {

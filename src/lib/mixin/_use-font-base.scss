@@ -14,9 +14,9 @@
   // but disable when browser is ie 10-11
   @if (
     global-variable-exists("unit-font-enable-override") and
-    global-variable-exists("unit-font-enable-feature-settings") and
+    global-variable-exists("unit-font-enable-advanced-settings") and
     $unit-font-enable-override and
-    $unit-font-enable-feature-settings and
+    $unit-font-enable-advanced-settings and
     $feature-settings
   ) {
     font-feature-settings: "palt";
