@@ -6,7 +6,6 @@
 /// @param {Number} $text-indent setting for text-indent [0]
 /// @param {String} $white-space setting for white-space ["normal"]
 /// @param {String} $word-wrap setting for word-wrap ["break-word"]
-/// @param {Number} $font-size setting for font-size [$unit-font-size]
 ///
 /// @example
 ///   @include use-text-base();
@@ -17,8 +16,7 @@
   $text-decoration: "none",
   $text-indent: 0,
   $white-space: "normal",
-  $word-wrap: "break-word",
-  $font-size: null
+  $word-wrap: "break-word"
 ) {
   // normalize $letter-spacing
   @if not $letter-spacing {

@@ -56,9 +56,9 @@ Style guide: #{$unit-prefix}-toggle.check.builtin
   // define placeholder class of field
   @include define-placeholder($name: $selector-field) {
     position: absolute;
+    z-index: 1;
     top: 0;
     left: 0;
-    z-index: 1;
     width: 100%;
     height: 100%;
     opacity: 0;
@@ -70,12 +70,9 @@ Style guide: #{$unit-prefix}-toggle.check.builtin
     z-index: 0;
     width: 20px;
     height: 20px;
-    border-width: 1px;
     border-style: solid;
     border-radius: 3px;
-    transition-duration: 0.1s;
-    transition-timing-function: ease-out;
-    transition-property: border-color;
+    border-width: 1px;
 
     &::before,
     &::after {
@@ -87,8 +84,8 @@ Style guide: #{$unit-prefix}-toggle.check.builtin
       transform-origin: 0 100%;
       transform: translate(8px, -3px) rotate(-45deg) scale(0);
       transition-duration: 0.2s;
-      transition-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
       transition-property: transform;
+      transition-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
     }
 
     &::before {
@@ -117,28 +114,31 @@ Style guide: #{$unit-prefix}-toggle.check.builtin
 
       &-#{$name} {
         @extend %#{$selector};
+
         $selector-alt-focus: unique-id();
         $selector-alt-disabled: unique-id();
 
         > .#{$unit-prefix}-toggle__field {
           @extend %#{$selector-field};
-        }
 
-        > .#{$unit-prefix}-toggle__field + .#{$unit-prefix}-toggle__alt {
-          @extend %#{$selector-alt};
+          + .#{$unit-prefix}-toggle__alt {
+            @extend %#{$selector-alt};
 
-          border-color: $color;
+            border-color: $color;
 
-          &::before,
-          &::after {
-            background-color: $color;
+            &::before,
+            &::after {
+              background-color: $color;
+            }
           }
         }
 
         // when checked
         @each $state in $selectors-selected {
-          > .#{$unit-prefix}-toggle__field#{$state} + .#{$unit-prefix}-toggle__alt {
-            @extend %#{$selector-alt-checked};
+          > .#{$unit-prefix}-toggle__field#{$state} {
+            + .#{$unit-prefix}-toggle__alt {
+              @extend %#{$selector-alt-checked};
+            }
           }
         }
 
@@ -148,8 +148,10 @@ Style guide: #{$unit-prefix}-toggle.check.builtin
         }
 
         @each $state in $selectors-focus {
-          > .#{$unit-prefix}-toggle__field#{$state} + .#{$unit-prefix}-toggle__alt {
-            @extend %#{$selector-alt-focus};
+          > .#{$unit-prefix}-toggle__field#{$state} {
+            + .#{$unit-prefix}-toggle__alt {
+              @extend %#{$selector-alt-focus};
+            }
           }
         }
 
@@ -159,8 +161,10 @@ Style guide: #{$unit-prefix}-toggle.check.builtin
         }
 
         @each $state in $selectors-disabled {
-          > .#{$unit-prefix}-toggle__field#{$state} + .#{$unit-prefix}-toggle__alt {
-            @extend %#{$selector-alt-disabled};
+          > .#{$unit-prefix}-toggle__field#{$state} {
+            + .#{$unit-prefix}-toggle__alt {
+              @extend %#{$selector-alt-disabled};
+            }
           }
         }
       }

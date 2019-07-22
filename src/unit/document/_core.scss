@@ -301,7 +301,7 @@ Style guide: #{$unit-prefix}-document.core.base
   color: inherit;
   background-color: transparent;
 
-  /* stylelint-disable no-duplicate-selectors, selector-list-comma-newline-after */
+  /* stylelint-disable no-duplicate-selectors, selector-list-comma-newline-after, plugin/selector-tag-no-without-class */
 
   // ++++++++++++++++++++++++++++
   // reset default settings
@@ -397,12 +397,18 @@ Style guide: #{$unit-prefix}-document.core.base
   // ++++++++++++++++++++++++++++
 
   $font-sizes: (
-    "h1": 1.714em, // 4xlarge
-    "h2": 1.572em, // 3xlarge
-    "h3": 1.429em, // 2xlarge
-    "h4": 1.286em, // xlarge
-    "h5": 1.143em, // large
-    "h6": 1em // medium
+    // 4xlarge
+    "h1": 1.714em,
+    // 3xlarge
+    "h2": 1.572em,
+    // 2xlarge
+    "h3": 1.429em,
+    // xlarge
+    "h4": 1.286em,
+    // large
+    "h5": 1.143em,
+    // medium
+    "h6": 1em
   );
 
   @each $key, $value in $font-sizes {
@@ -414,11 +420,14 @@ Style guide: #{$unit-prefix}-document.core.base
   pre, code {
     @include use-font-family($value: "monospace");
 
-    font-size: 0.857em; // small
+    // small
+    font-size: 0.857em;
   }
 
-  pre code {
-    font-size: 1em;
+  pre {
+    code {
+      font-size: 1em;
+    }
   }
 
   // ++++++++++++++++++++++++++++
@@ -477,9 +486,9 @@ Style guide: #{$unit-prefix}-document.core.base
 
   code {
     padding: 0 2px;
-    border-width: 1px;
     border-style: solid;
     border-radius: 3px;
+    border-width: 1px;
   }
 
   a {
@@ -496,16 +505,18 @@ Style guide: #{$unit-prefix}-document.core.base
 
   blockquote {
     padding-left: 15px;
-    border-left-width: 3px;
     border-left-style: solid;
+    border-left-width: 3px;
   }
 
   pre {
     max-width: 100%;
-    border-width: 1px;
     border-style: solid;
     border-radius: 3px;
-    -webkit-overflow-scrolling: touch; // for smooth scrolling
+    border-width: 1px;
+
+    // for smooth scrolling
+    -webkit-overflow-scrolling: touch;
   }
 
   table {
@@ -521,8 +532,8 @@ Style guide: #{$unit-prefix}-document.core.base
     height: 0;
     background: transparent;
     border: 0;
-    border-bottom-width: 1px;
     border-bottom-style: solid;
+    border-bottom-width: 1px;
   }
 
   // ++++++++++++++++++++++++++++
@@ -563,7 +574,9 @@ Style guide: #{$unit-prefix}-document.core.base
           left: 0;
           width: 100%;
           height: 100%;
-          background-color: rgba(0, 0, 0, 0.005); // for ie 10
+
+          // for ie 10
+          background-color: rgba(0, 0, 0, 0.005);
         }
       }
     }
@@ -601,7 +614,9 @@ Style guide: #{$unit-prefix}-document.core.base
     white-space: nowrap;
     color: inherit;
     background-color: transparent;
-    -webkit-overflow-scrolling: touch; // for smooth scrolling
+
+    // for smooth scrolling
+    -webkit-overflow-scrolling: touch;
 
     > table {
       th, td {
@@ -609,5 +624,5 @@ Style guide: #{$unit-prefix}-document.core.base
       }
     }
   }
-  /* stylelint-enable no-duplicate-selectors, selector-list-comma-newline-after */
+  /* stylelint-enable no-duplicate-selectors, selector-list-comma-newline-after, plugin/selector-tag-no-without-class */
 }

@@ -62,7 +62,7 @@ Style guide: #{$unit-prefix}-list.marker.builtin
       }
     }
 
-    & > .#{$unit-prefix}-list__item {
+    > .#{$unit-prefix}-list__item {
       @extend %#{$selector};
 
       &::before {
@@ -70,11 +70,13 @@ Style guide: #{$unit-prefix}-list.marker.builtin
       }
     }
 
-    &-filled > .#{$unit-prefix}-list__item {
-      @extend %#{$selector};
+    &-filled {
+      > .#{$unit-prefix}-list__item {
+        @extend %#{$selector};
 
-      &::before {
-        content: "\002022";
+        &::before {
+          content: "\002022";
+        }
       }
     }
   }
@@ -91,7 +93,7 @@ Style guide: #{$unit-prefix}-list.marker.builtin
       }
     }
 
-    & > .#{$unit-prefix}-list__item {
+    > .#{$unit-prefix}-list__item {
       @extend %#{$selector};
 
       &::before {
@@ -99,11 +101,13 @@ Style guide: #{$unit-prefix}-list.marker.builtin
       }
     }
 
-    &-filled > .#{$unit-prefix}-list__item {
-      @extend %#{$selector};
+    &-filled {
+      > .#{$unit-prefix}-list__item {
+        @extend %#{$selector};
 
-      &::before {
-        content: "\0025FC";
+        &::before {
+          content: "\0025FC";
+        }
       }
     }
   }

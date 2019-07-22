@@ -57,10 +57,8 @@ Style guide: #{$unit-prefix}-list.core.base
   background-color: transparent;
 
   &__item {
-    // padding-left: 1.6em;
-
     &::before {
-      display: none;
+      display: none; // stylelint-disable-line a11y/no-display-none
       position: absolute;
       top: 0;
       left: 0;

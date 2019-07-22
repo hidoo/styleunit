@@ -59,7 +59,7 @@ Style guide: #{$unit-util-prefix}.margin.builtin
 
   // horizontal centering
   &-center {
-    margin-left: auto !important;
     margin-right: auto !important;
+    margin-left: auto !important;
   }
 }

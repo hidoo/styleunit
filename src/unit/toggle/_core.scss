@@ -67,8 +67,8 @@ Style guide: #{$unit-prefix}-toggle.core.base
     outline: none;
 
     @include on-disabled() {
-      opacity: 0.8;
       cursor: default;
+      opacity: 0.8;
     }
   }
 
@@ -92,7 +92,7 @@ Style guide: #{$unit-prefix}-toggle.core.base
   }
 
   &__field:disabled + &__alt {
-    opacity: 0.5;
     cursor: default;
+    opacity: 0.5;
   }
 }

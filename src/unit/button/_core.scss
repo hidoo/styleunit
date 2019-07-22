@@ -46,8 +46,7 @@ Style guide: #{$unit-prefix}-button.core.base
   @include use-text-base(
     $letter-spacing: 0,
     $line-height: 1,
-    $text-align: "center",
-    $font-size: 0
+    $text-align: "center"
   );
   @include use-font-base(
     $feature-settings: true
@@ -56,7 +55,10 @@ Style guide: #{$unit-prefix}-button.core.base
     $value: "medium"
   );
 
-  width: 100%; // for button element, because it always inline-block
+  // for button element, because it always inline-block
+  width: 100%;
+
+  // other settings
   color: inherit;
   background-color: transparent;
 

@@ -32,6 +32,8 @@ Style guide: #{$unit-util-prefix}.font-family.builtin
 
   &-monospace {
     @include use-font-family($value: "monospace", $important: true);
-    @include use-font-size($value: "medium", $monospace: true); // not specify !important, because override as possible
+
+    // not specify !important, because override as possible
+    @include use-font-size($value: "medium", $monospace: true);
   }
 }

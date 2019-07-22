@@ -33,7 +33,6 @@ Style guide: #{$unit-prefix}-text.truncate.builtin
     width: 100%;
     text-overflow: ellipsis;
     white-space: nowrap;
-    // word-break: normal;
     word-wrap: normal;
   }
 }

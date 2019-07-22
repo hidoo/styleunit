@@ -69,7 +69,9 @@ Style guide: #{$unit-prefix}-input.core.base
   @at-root {
     textarea#{&} {
       line-height: if(global-variable-exists("unit-line-height"), $unit-line-height, 1.5);
-      -webkit-overflow-scrolling: touch; // for smooth scrolling
+
+      // for smooth scrolling
+      -webkit-overflow-scrolling: touch;
 
       // restrict to only vertical resizing
       // + ie, edge, ios and android are not supported

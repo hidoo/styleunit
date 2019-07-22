@@ -1,7 +1,7 @@
 /// defineded placeholders
 /// @access private
 /// @type List
-$_defineded-placeholders: ();
+$_unit-defineded-placeholders: (); // stylelint-disable-line scss/dollar-variable-default
 
 /// define inline placeholder class
 /// @param {String} $name name of placeholder class
@@ -29,7 +29,7 @@ $_defineded-placeholders: ();
   }
 
   // define placeholder if not already defined
-  @if index($_defineded-placeholders, $name) == null {
+  @if index($_unit-defineded-placeholders, $name) == null {
     @at-root {
       %#{$name} {
         @content;
@@ -37,6 +37,6 @@ $_defineded-placeholders: ();
     }
 
     // cache defined placeholder
-    $_defineded-placeholders: append($_defineded-placeholders, $name) !global;
+    $_unit-defineded-placeholders: append($_unit-defineded-placeholders, $name) !global;
   }
 }

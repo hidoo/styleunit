@@ -26,6 +26,7 @@
     @if $value < 0 {
       @error "@mixin define-sizes: Argument $values includes negative numbers.";
     }
+
     $pure-value: ununit($value);
     $abs-value: abs($pure-value);
     $one-with-unit: ($value * 0 + 1);

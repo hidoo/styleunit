@@ -41,23 +41,31 @@ Style guide: #{$unit-prefix}-pict.fit.builtin
     // has no settings
   }
 
-  &-width > .#{$unit-prefix}-pict__src {
-    width: 100%;
-    height: auto;
+  &-width {
+    > .#{$unit-prefix}-pict__src {
+      width: 100%;
+      height: auto;
+    }
   }
 
-  &-max-width > .#{$unit-prefix}-pict__src {
-    max-width: 100%;
-    height: auto;
+  &-max-width {
+    > .#{$unit-prefix}-pict__src {
+      max-width: 100%;
+      height: auto;
+    }
   }
 
-  &-height > .#{$unit-prefix}-pict__src {
-    width: auto;
-    height: 100%;
+  &-height {
+    > .#{$unit-prefix}-pict__src {
+      width: auto;
+      height: 100%;
+    }
   }
 
-  &-max-height > .#{$unit-prefix}-pict__src {
-    width: auto;
-    max-height: 100%;
+  &-max-height {
+    > .#{$unit-prefix}-pict__src {
+      width: auto;
+      max-height: 100%;
+    }
   }
 }
