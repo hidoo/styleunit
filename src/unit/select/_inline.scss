@@ -1,0 +1,49 @@
+/*
+inline
+
+inline modifiers of #{$unit-prefix}-select
+
+Weight: -98
+
+Style guide: #{$unit-prefix}-select.inline
+*/
+
+/*
+modifiers: inline
+
+builtin modifiers of inline for #{$unit-prefix}-select
+
+Weight: -100
+
+Markup: <span class="#{$unit-prefix}-select  #{$unit-prefix}-select--theme-light  {{modifier_class}}">
+  <select class="#{$unit-prefix}-select__field" name="{{modifier_class}}">
+    <option value="">select...</option>
+    <option value="option-1">Lorem ipsum dolor sit amet</option>
+    <option value="option-2">Consectetur adipiscing elit</option>
+  </select>
+</span>
+<!-- disabled -->
+<span class="#{$unit-prefix}-select  #{$unit-prefix}-select--theme-dark  {{modifier_class}}">
+  <select class="#{$unit-prefix}-select__field" name="{{modifier_class}}" disabled="disabled">
+    <option value="">select...</option>
+    <option value="option-1">Lorem ipsum dolor sit amet</option>
+    <option value="option-2">Consectetur adipiscing elit</option>
+  </select>
+</span>
+
+#{$unit-prefix}-select--inline-false - disable inline (**default**)
+#{$unit-prefix}-select--inline-true - enable inline
+
+Style guide: #{$unit-prefix}-select.inline.builtin
+*/
+.#{$unit-prefix}-select--inline {
+  &-false {
+    // has no settings
+  }
+
+  &-true {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+  }
+}

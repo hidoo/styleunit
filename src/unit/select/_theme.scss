@@ -1,0 +1,107 @@
+/*
+theme
+
+theme modifiers of #{$unit-prefix}-select
+
+Weight: -99
+
+Style guide: #{$unit-prefix}-select.theme
+*/
+
+/*
+modifiers: theme
+
+builtin modifiers of theme for #{$unit-prefix}-select
+
+Weight: -100
+
+Markup: <span class="#{$unit-prefix}-select  {{modifier_class}}">
+  <select class="#{$unit-prefix}-select__field" name="{{modifier_class}}">
+    <option value="">select...</option>
+    <option value="option-1">Lorem ipsum dolor sit amet</option>
+    <option value="option-2">Consectetur adipiscing elit</option>
+  </select>
+</span>
+<!-- disabled -->
+<span class="#{$unit-prefix}-select  {{modifier_class}}">
+  <select class="#{$unit-prefix}-select__field" name="{{modifier_class}}" disabled="disabled">
+    <option value="">select...</option>
+    <option value="option-1">Lorem ipsum dolor sit amet</option>
+    <option value="option-2">Consectetur adipiscing elit</option>
+  </select>
+</span>
+
+#{$unit-prefix}-select--theme-light - light theme
+#{$unit-prefix}-select--theme-dark - dark theme
+
+Style guide: #{$unit-prefix}-select.theme.builtin
+*/
+.#{$unit-prefix}-select--theme {
+  $selector: unique-id();
+  $selector-field: unique-id();
+
+  @include define-placeholder($name: $selector) {
+    &::after {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      right: 12px;
+      bottom: 0;
+      width: 0;
+      height: 0;
+      margin: auto 0;
+      border-top-style: solid;
+      border-top-width: 8px;
+      border-right: 6px solid transparent;
+      border-bottom: 0 solid transparent;
+      border-left: 6px solid transparent;
+      opacity: 0.8;
+    }
+  }
+
+  @include define-placeholder($name: $selector-field) {
+    padding: 10px 30px 10px 10px;
+    border-radius: 3px;
+    transition-duration: 0.1s;
+    transition-property: border-color;
+    transition-timing-function: ease-out;
+  }
+
+  @if global-variable-exists("unit-builtin-themes") {
+    @each $name, $theme in $unit-builtin-themes {
+      $color: map-get($theme, "color");
+      $color-focus: map-get($theme, "color-focus");
+      $background: map-get($theme, "background");
+      $background-focus: map-get($theme, "background-focus");
+      $border: map-get($theme, "border");
+      $border-focus: map-get($theme, "border-focus");
+
+      &-#{$name} {
+        @extend %#{$selector};
+
+        color: $color;
+
+        &::after {
+          border-top-color: $color-focus;
+        }
+
+        > .#{$unit-prefix}-select__field {
+          @extend %#{$selector-field};
+
+          background-color: $background;
+          border: 1px solid $border;
+
+          @include on-focus() {
+            color: $color-focus;
+            border-color: $border-focus;
+          }
+
+          @include on-disabled() {
+            border: 1px solid $border;
+          }
+        }
+      }
+    }
+  }
+}
