@@ -1,12 +1,18 @@
-/// defineded placeholders
+////
+/// (c) hidoo | MIT Lisence
+/// @group features
+////
+
+/// defineded placeholders.
 /// @access private
 /// @type List
+///
 $_unit-defineded-placeholders: (); // stylelint-disable-line scss/dollar-variable-default
 
-/// define inline placeholder class
-/// @param {String} $name name of placeholder class
+/// define placeholder class.
+/// @param {String} $name - name of placeholder class
 ///
-/// @example
+/// @example scss - scss inputs
 ///   .selector {
 ///     $name: unique-id();
 ///
@@ -22,7 +28,12 @@ $_unit-defineded-placeholders: (); // stylelint-disable-line scss/dollar-variabl
 ///       @extend %#{$name};
 ///     }
 ///   }
-///   // -> .selector__child-1, .selector__child-2 { font-size: 16px; }
+///
+/// @example css - css outputs
+///   .selector__child-1, .selector__child-2 {
+///      font-size: 16px;
+///   }
+///
 @mixin define-placeholder($name) {
   @if type-of($name) != "string" {
     @error "@mixin define-placeholder: Argument $name is not string.";

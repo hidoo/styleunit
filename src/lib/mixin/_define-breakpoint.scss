@@ -1,19 +1,30 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group features
+////
+
 /// define breakepoint
-/// @param {Number|String|Null} $from starting point of breakpoint
-/// @param {Number|String|Null} $until ending point of breakpoint
-/// @param {Map} $options options
+/// @param {Number|String|Null} $from [null] - starting point of breakpoint
+/// @param {Number|String|Null} $until [null] - ending point of breakpoint
+/// @param {Map} $options [()] - options
+/// @param {String} $options.media - custom media name
 ///
-/// @example
-///   p {
-///     @include define-breakpoint($from: 667px, $until: 1024px) {
+/// @require {variable} $unit-breakpoints
+///
+/// @example scss - scss inputs
+///   .selector {
+///     @include define-breakpoint($from: "mobile", $until: "desktop") {
 ///       font-size: 16px;
 ///     }
 ///   }
-///   // -> @media only screen and (min-width: 667px) and (max-width: 1024px) {
-///   //      p {
-///   //        font-size: 16px;
-///   //      }
-///   //    }
+///
+/// @example css - css outputs
+///   @media only screen and (min-width: 667px) and (max-width: 1023px) {
+///     .selector {
+///       font-size: 16px;
+///     }
+///   }
+///
 @mixin define-breakpoint($from: null, $until: null, $options: ()) {
   $normalized: ("from": null, "until": null);
   $media: screen;
@@ -43,8 +54,8 @@
 
   // sub 1 from $until if $until is number for support following case
   //
-  // @media only screen and (max-width: 666px) { ... } // $until: 667px;
-  // @media only screen and (min-width: 667px) { ... } // $from: 667px;
+  // @media only screen and (max-width: 666px) { ... } -> $until: 667px;
+  // @media only screen and (min-width: 667px) { ... } -> $from: 667px;
   @if type-of(map-get($normalized, "until")) == "number" {
     $normalized: map-merge($normalized, ("until": map-get($normalized, "until") - 1));
   }

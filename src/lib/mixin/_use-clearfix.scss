@@ -1,7 +1,24 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group features
+////
+
 /// use clearfix
 ///
-/// @example
-///   @include use-clearfix();
+/// @example scss - scss inputs
+///   .selector {
+///     @include use-clearfix();
+///   }
+///
+/// @example css - css outputs
+///   .selector::before, .selector::after {
+///     content: "";
+///     display: table;
+///   }
+///   .selector::after {
+///     clear: both;
+///   }
+///
 @mixin use-clearfix() {
   &::before,
   &::after {

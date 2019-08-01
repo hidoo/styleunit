@@ -1,26 +1,52 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group features
+////
+
 /// define sizes in directions
-/// @param {String} $type type of options [margin|padding|position|border]
-/// @param {List} $values list of value
+/// @param {String} $type ["margin"] - type of options (one of `"margin"`, `"padding"`, `"position"` or `"border"`)
+/// @param {List} $values [()] - list of value
 ///
-/// @example
-///   .margin {
+/// @require {function} ununit
+///
+/// @example scss - scss inputs
+///   .selector {
 ///     @include define-sizes-in-directions($type: "margin", $values: (5px, -5px))
 ///   }
-///   // -> .margin-top-5 { margin-top: 5px !important; }
-///   // -> .margin-top-5- { margin-top: -5px !important; }
-///   // -> .margin-right-5 { margin-right: 5px !important; }
-///   // -> .margin-right-5- { margin-right: -5px !important; }
-///   // -> .margin-bottom-5 { margin-bottom: 5px !important; }
-///   // -> .margin-bottom-5- { margin-bottom: -5px !important; }
-///   // -> .margin-left-5 { margin-left: 5px !important; }
-///   // -> .margin-left-5- { margin-left: -5px !important; }
+///
+/// @example css - css outputs
+///   .selector-top-5 {
+///     margin-top: 5px !important;
+///   }
+///   .selector-top-5- {
+///     margin-top: -5px !important;
+///   }
+///   .selector-right-5 {
+///     margin-right: 5px !important;
+///   }
+///   .selector-right-5- {
+///     margin-right: -5px !important;
+///   }
+///   .selector-bottom-5 {
+///     margin-bottom: 5px !important;
+///   }
+///   .selector-bottom-5- {
+///     margin-bottom: -5px !important;
+///   }
+///   .selector-left-5 {
+///     margin-left: 5px !important;
+///   }
+///   .selector-left-5- {
+///     margin-left: -5px !important;
+///   }
+///
 @mixin define-sizes-in-directions($type: "margin", $values: ()) {
   @if not function-exists("ununit") {
     @error "@function ununit is not imported.";
   }
 
   @if type-of($type) != "string" or index(("margin", "padding", "position", "border"), $type) == null {
-    @error "@mixin define-sizes-in-directions: Argument $type is not one of margin, padding, position and border. (specified: #{inspect($type)})";
+    @error "@mixin define-sizes-in-directions: Argument $type is not one of margin, padding, position or border. (specified: #{inspect($type)})";
   }
 
   @if type-of($values) != "list" {

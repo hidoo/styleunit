@@ -1,10 +1,26 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group features
+////
+
 /// use settings of initialized font
-/// @param {Boolean} $feature-settings enable font-eature-settings or not [false]
-/// @param {String} $style setting for font-style ["normal"]
-/// @param {String|Number} $weight setting for font-weight ["normal"]
+/// @param {Boolean} $feature-settings [false] - enable `font-eature-settings` or not
+/// @param {String} $style ["normal"] - setting for `font-style`
+/// @param {String|Number} $weight ["normal"] - setting for `font-weight`
 ///
-/// @example
-///   @include use-font-base();
+/// @example scss - scss inputs
+///   .selector {
+///     @include use-font-base();
+///   }
+///
+/// @example css - css outputs
+///   .selector {
+///     font-feature-settings: "palt";
+///     -ms-font-feature-settings: normal;
+///     font-style: normal;
+///     font-weight: normal;
+///   }
+///
 @mixin use-font-base(
   $feature-settings: false,
   $style: "normal",

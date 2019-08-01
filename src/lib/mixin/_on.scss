@@ -1,14 +1,27 @@
-/// wrappper of pseudo class like :hover
-/// @param {List} $selectors list of selectors [()]
-/// @param {List} $capturing-selectors capturing parent selectors
+////
+/// (c) hidoo | MIT Lisence
+/// @group features
+////
+
+/// wrappper of pseudo class like `:hover`
+/// @param {List} $selectors [()] - list of selectors
+/// @param {List} $capturing-selectors [()] - capturing parent selectors
 ///
-/// @example
+/// @require {mixin} define-placeholder
+///
+/// @example scss - scss inputs
 ///   .selector {
 ///     @include on((":hover", ":focus")) {
 ///       font-size: 16px;
 ///     }
 ///   }
-///   // -> .selector:hover, .selector:focus { font-size: 16px; }
+///
+/// @example scss - css outputs
+///   .selector:hover,
+///   .selector:focus {
+///     font-size: 16px;
+///   }
+///
 @mixin on(
   $selectors: (),
   $capturing-selectors: ()

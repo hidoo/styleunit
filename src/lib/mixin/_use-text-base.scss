@@ -1,14 +1,36 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group features
+////
+
 /// use settings of initialized text
-/// @param {Number} $letter-spacing setting for letter-spacing [$unit-letter-spacing]
-/// @param {Number|String} $line-height setting for line-height [$unit-line-height]
-/// @param {String} $text-align setting for text-align ["left"] ("left"|"center"|"right")
-/// @param {String} $text-decoration setting for text-decoration ["none"]
-/// @param {Number} $text-indent setting for text-indent [0]
-/// @param {String} $white-space setting for white-space ["normal"]
-/// @param {String} $word-wrap setting for word-wrap ["break-word"]
+/// @param {Number} $letter-spacing [$unit-letter-spacing] - setting for `letter-spacing`
+/// @param {Number|String} $line-height [$unit-line-height] - setting for `line-height`
+/// @param {String} $text-align ["left"] - setting for `text-align`
+/// @param {String} $text-decoration ["none"] - setting for `text-decoration`
+/// @param {Number} $text-indent [0] - setting for `text-indent`
+/// @param {String} $white-space ["normal"] - setting for `white-space`
+/// @param {String} $word-wrap ["break-word"] - setting for `word-wrap`
 ///
-/// @example
-///   @include use-text-base();
+/// @require {variable} unit-letter-spacing
+/// @require {variable} unit-line-height
+///
+/// @example scss - scss inputs
+///   .selector {
+///     @include use-text-base();
+///   }
+///
+/// @example css - css outputs
+///   .selector {
+///     letter-spacing: 0.04em;
+///     line-height: 1.5;
+///     text-align: left;
+///     text-decoration: none;
+///     text-indent: 0;
+///     white-space: normal;
+///     word-wrap: break-word;
+///   }
+///
 @mixin use-text-base(
   $letter-spacing: null,
   $line-height: null,

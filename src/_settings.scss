@@ -1,71 +1,115 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group default settings
+////
+
 /// prefix of class name of components
+/// (default: `"unit"`)
 /// @type String
+///
+/// @example scss - scss inputs
+///   $unit-prefix: "u";
+///
+/// @example css - css outputs
+///   .u-icon {
+///     /* settings */
+///   }
+///
 $unit-prefix: "unit" !default;
 
 /// prefix of class name of util
+/// (default: `"util"`)
 /// @type String
+///
+/// @example scss - scss inputs
+///   $unit-util-prefix: "h";
+///
+/// @example css - css outputs
+///   .h--width-0 {
+///     /* settings */
+///   }
+///
 $unit-util-prefix: "util" !default;
 
 /// settings of breakpoints
 /// @type Map
+/// @prop {Number} desktop [1024px] - breakpoint for desktop
+/// @prop {Number} mobile [667px] - breakpoint for desktop
+///
 $unit-breakpoints: (
   "desktop": 1024px,
   "mobile": 667px
 ) !default;
 
-/// settings of selector
-/// for expressing of state like ":hover" or ":focus"
+/// settings of selector.
+/// for expressing of state like `:hover` or `:focus`.
+/// (default: `(".is-focus")`)
 /// @type List
+///
 $unit-state-selectors-focus: (
   ".is-focus"
 ) !default;
 
 /// settings of selector
-/// for expressing of state like ":checked"
+/// for expressing of state like `:checked`.
+/// (default: `(".is-selected")`)
 /// @type List
+///
 $unit-state-selectors-selected: (
   ".is-selected"
 ) !default;
 
-/// settings of selector
-/// for expressing of state like ":disabled"
+/// settings of selector.
+/// for expressing of state like `:disabled`.
+/// (default: `(".is-disabled")`)
 /// @type List
+///
 $unit-state-selectors-disabled: (
   ".is-disabled"
 ) !default;
 
-/// settings of selector
-/// for expressing of state like "current"
+/// settings of selector.
+/// for expressing of state like `".is-current"`
+/// (default: `(".is-current")`)
 /// @type List
+///
 $unit-state-selectors-current: (
   ".is-current"
 ) !default;
 
 /// default link color
 /// @type Map
+/// @prop {Color} link [#37a5e4] - color of `:link`
+/// @prop {Color} focus [lighten(#37a5e4, 15%)] - color of `:focus`
+///
 $unit-link-color: (
   "link": #37a5e4,
   "focus": lighten(#37a5e4, 15%)
 ) !default;
 
-/// enable override font settings or not
+/// enable override font settings or not.
+/// (default: `true`)
 /// @type Boolean
+///
 $unit-font-enable-override: true !default;
 
-/// default font family
-/// + this use if $unit-font-enable-override is enabled
+/// default font family.
+///
+/// **default**
+/// + `-apple-system` ... use "San Francisco" as primary font in mac
+/// + `BlinkMacSystemFont` ... use "San Francisco" as primary in chrome on mac
+/// + `Helvetica` ... secondary font in mac
+/// + `Arial` ... secondary font in windows
+/// + `Hiragino Kaku Gothic ProN` ... primary japanese font in mac
+/// + `Yu Gothic Medium` ... primary japanese font in windows
+/// + `游ゴシック Medium` ... primary japanese font in ie on windows
+/// + `YuGothic` ... secondary japanese font in mac
+/// + `Meiryo` ... secondary japanese font in windows
+/// + `メイリオ` ... secondary japanese font in ie on windows
+///
+/// this use if `$unit-font-enable-override` is `true`
 /// @type List
 ///
-/// + -apple-system ... use "San Francisco" as primary font in mac
-/// + BlinkMacSystemFont ... use "San Francisco" as primary in chrome on mac
-/// + Helvetica ... secondary font in mac
-/// + Arial ... secondary font in windows
-/// + Hiragino Kaku Gothic ProN ... primary japanese font in mac
-/// + Yu Gothic Medium ... primary japanese font in windows
-/// + 游ゴシック Medium ... primary japanese font in ie on windows
-/// + YuGothic ... secondary japanese font in mac
-/// + Meiryo ... secondary japanese font in windows
-/// + メイリオ ... secondary japanese font in ie on windows
 $unit-font-family: (
   -apple-system,
   BlinkMacSystemFont,
@@ -80,14 +124,17 @@ $unit-font-family: (
   sans-serif
 ) !default;
 
-/// default monospace font family
-/// + this use if $unit-font-enable-override is enabled
+/// default monospace font family.
+///
+/// **default**
+/// + `Consolas` ... primary font in windows (use it as primary if installed in mac)
+/// + `Monaco` ... primary font in mac
+/// + `Menlo` ... secondary font in mac
+/// + `Courier` ... secondary font in windows
+///
+/// this use if `$unit-font-enable-override` is `true`
 /// @type List
 ///
-/// + Consolas ... primary font in windows (use it as primary if installed in mac)
-/// + Monaco ... primary font in mac
-/// + Menlo ... secondary font in mac
-/// + Courier ... secondary font in windows
 $unit-font-family-monospace: (
   Consolas,
   Monaco,
@@ -96,38 +143,54 @@ $unit-font-family-monospace: (
   monospace
 ) !default;
 
-/// enable advanced font settings
-/// + this use if $unit-font-enable-override is enabled
+/// enable advanced font settings.
+/// (default: `true`)
+///
+/// **features**
+/// + `font-feature-settings: "palt";` ... disable when browser is ie 10-11
+///
+/// this use if `$unit-font-enable-override` is `true`
 /// @type Boolean
 ///
-/// ## features
-/// + font-feature-settings: "palt" (disable when browser is ie 10-11)
 $unit-font-enable-advanced-settings: true !default;
 
-/// enable relative font-size specify
-/// + override base size settings of font
+/// enable relative font-size specify.
+/// override base size settings of font
+/// (default: `true`)
 /// @type Boolean
+///
 $unit-font-enable-relative-size: true !default;
 
-/// default base font size
-/// + this use if $unit-font-enable-relative-size is enabled
+/// default base font size.
+/// (default: `16px`)
+/// this use if `$unit-font-enable-relative-size` is `true`
 /// @type Number
+///
 $unit-font-base-size: 16px !default;
 
 /// default font size
+/// (default: `14px`)
 /// @type Number
+///
 $unit-font-size: 14px !default;
 
 /// default letter-spacing
+/// (default: `0.04em`)
 /// @type Number
+///
 $unit-letter-spacing: 0.04em !default;
 
 /// default line-height
+/// (default: `1.5`)
 /// @type Number
+///
 $unit-line-height: 1.5 !default;
 
 /// default builtin theme
 /// @type Map
+/// @prop {Map} light [(...)] - values of light theme
+/// @prop {Map} dark [(...)] - values of dark theme
+///
 $unit-builtin-themes: (
   "light": (
     "color": #3f3f3f,

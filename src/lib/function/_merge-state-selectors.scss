@@ -1,13 +1,19 @@
-/// merge state selectors
-/// @param {String} $type type of state ["link"] ("link"|focus"|"selected"|"disabled"|"current")
-/// @param {List} $additional-selectors additional selectors [()]
+////
+/// (c) hidoo | MIT Lisence
+/// @group features
+////
+
+/// return merged state selectors
+/// @param {String} $type ["link"] - type of state (one of `"link"`, `"focus"`, `"selected"`, `"disabled"` or `"current"`)
+/// @param {List} $additional-selectors [()] - additional selectors
 /// @return {List}
 ///
-/// @example
-///   $merged-focus-selectors: merge-state-selectors($type: "focus");
+/// @example scss - scss inputs
+///   $merged-focus-selectors: merge-state-selectors("link"); // -> (":link", ":visited")
+///
 @function merge-state-selectors($type: "focus", $additional-selectors: ()) {
   @if index(("link", "focus", "selected", "disabled", "current"), $type) == null {
-    @error "@function merge-state-selectors: Argument $type must be one of type 'link', focus', 'selected', disabled' or 'current'. (specified: #{inspect($type)})";
+    @error "@function merge-state-selectors: Argument $type must be one of 'link', focus', 'selected', disabled' or 'current'. (specified: #{inspect($type)})";
   }
 
   $selectors: ();

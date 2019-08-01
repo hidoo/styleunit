@@ -1,11 +1,28 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group features
+////
+
 /// use settings of font-size
-/// @param {String|Number} $value value of font-size
-///   ("xsmall"|"small"|"medium"|"large"|"xlarge"|"2xlarge"|"3xlarge"|"4xlarge"|number)
-/// @param {Boolean} $monospace font-family is monospace or not [false]
-/// @param {Boolean} $important set !important or not [false]
+/// @param {String|Number} $value value of font-size (one of `"xsmall"`, `"small"`, `"medium"`, `"large"`, `"xlarge"`, `"2xlarge"`, `"3xlarge"`, `"4xlarge"` or number)
+/// @param {Boolean} $monospace [false] -font-family is monospace or not
+/// @param {Boolean} $important [false] -set !important or not
 ///
-/// @example
-///   @include use-font-size($value: "medium", $important: true);
+/// @require {variable} unit-font-size
+/// @require {variable} unit-font-enable-relative-size
+/// @require {function} px-to-rem
+///
+/// @example scss - scss inputs
+///   .selector {
+///     @include use-font-size($value: "medium", $important: true);
+///   }
+///
+/// @example css - css outputs
+///   .selector {
+///     font-size: 14px !important;
+///     font-size: 0.875rem !important;
+///   }
+///
 @mixin use-font-size(
   $value,
   $monospace: false,

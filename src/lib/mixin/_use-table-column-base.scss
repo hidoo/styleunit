@@ -1,11 +1,29 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group features
+////
+
 /// use settings of initialized table column
-/// @param {Number|List} $margin setting for margin [0]
-/// @param {Number|List} $padding setting for padding [0]
-/// @param {String} $border-style setting for border-style ["solid"]
-/// @param {Number} $border-width setting for border-width [1px]
+/// @param {Number|List} $margin [0] - setting for `margin`
+/// @param {Number|List} $padding [0] - setting for `padding`
+/// @param {String} $border-style ["solid"] - setting for `border-style`
+/// @param {Number} $border-width [1px] - setting for `border-width`
 ///
-/// @example
-///   @include use-table-column-base();
+/// @example scss - scss inputs
+///   .selector {
+///     @include use-table-column-base();
+///   }
+///
+/// @example css - css outputs
+///   .selector {
+///     display: table-cell;
+///     margin: 0;
+///     padding: 0;
+///     vertical-align: middle;
+///     border-style: solid;
+///     border-width: 1px;
+///   }
+///
 @mixin use-table-column-base(
   $margin: 0,
   $padding: 0,

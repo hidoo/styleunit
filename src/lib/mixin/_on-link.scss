@@ -1,14 +1,27 @@
-/// wrappper of :link and :visited
-/// @param {List} $additional-selectors list of additional selectors [()]
-/// @param {List} $capturing-selectors capturing parent selectors
+////
+/// (c) hidoo | MIT Lisence
+/// @group features
+////
+
+/// wrappper of `:link` and `:visited`
+/// @param {List} $additional-selectors [()] - list of additional selectors
+/// @param {List} $capturing-selectors [()] - capturing parent selectors
 ///
-/// @example
+/// @require {function} merge-state-selectors
+/// @require {mixin} on
+///
+/// @example scss - scss inputs
 ///   .selector {
 ///     @include on-link() {
 ///       font-size: 16px;
 ///     }
 ///   }
-///   // -> .selector:link, .selector:visited { font-size: 16px; }
+///
+/// @example css - css outputs
+///   .selector:link, .selector:visited {
+///     font-size: 16px;
+///   }
+///
 @mixin on-link(
   $additional-selectors: (),
   $capturing-selectors: ()

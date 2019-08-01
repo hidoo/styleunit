@@ -1,15 +1,31 @@
-/// wrappper of :link and :visited
+////
+/// (c) hidoo | MIT Lisence
+/// @group features
+////
+
+/// wrappper of `:placeholder-shown`
 ///
-/// @example
+/// @example scss - scss inputs
 ///   .selector {
 ///     @include on-placeholder() {
 ///       font-size: 16px;
 ///     }
 ///   }
-///   // -> .selector::-webkit-input-placeholder { font-size: 16px; }
-///   // -> .selector::-moz-placeholder { font-size: 16px; }
-///   // -> .selector:-ms-input-placeholder { font-size: 16px; }
-///   // -> .selector:placeholder-shown { font-size: 16px; }
+///
+/// @example css - css outputs
+///   .selector::-webkit-input-placeholder {
+///     font-size: 16px;
+///   }
+///   .selector::-moz-placeholder {
+///     font-size: 16px;
+///   }
+///   .selector:-ms-input-placeholder {
+///     font-size: 16px;
+///   }
+///   .selector:placeholder-shown {
+///     font-size: 16px;
+///   }
+///
 @mixin on-placeholder() {
   $selectors: (
     "::-webkit-input-placeholder",

@@ -1,9 +1,15 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group features
+////
+
 /// return number without unit
 /// @param {Number} $number number with unit
 /// @return {number} number without unit
 ///
-/// @example
+/// @example scss - scss inputs
 ///   $pure-number: ununit(14px); // -> 14
+///
 @function ununit($number) {
   @if type-of($number) != "number" {
     @error "@function ununit: Argument $number is not number. (specified: #{inspect($number)})";

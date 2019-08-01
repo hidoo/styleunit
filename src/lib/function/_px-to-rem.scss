@@ -1,12 +1,25 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group features
+////
+
 /// convert px to rem
-/// @param {Number} $size font size
-/// @param {Number} $base-size base font size [$unit-font-base-size]
-/// @return {Number} rem
+/// @param {Number} $size - font size
+/// @param {Number} $base-size [$unit-font-base-size] - base font size
+/// @return {Number} rem value
 ///
-/// @example
-///   p {
-///     font-size: px-to-rem(14px, 16px); // -> 0.875rem
+/// @require {variable} unit-font-base-size
+///
+/// @example scss - scss inputs
+///   .selector {
+///     font-size: px-to-rem(14px, 16px);
 ///   }
+///
+/// @example css - css outputs
+///   .selector {
+///     font-size: 0.875rem;
+///   }
+///
 @function px-to-rem($size, $base-size: $unit-font-base-size) {
   @if $size == 0 {
     @return 0;

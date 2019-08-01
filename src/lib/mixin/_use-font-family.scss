@@ -1,9 +1,26 @@
-/// use settings of font-family
-/// @param {List|String} $value setting for font-family [null] ("default"|"monospace"|())
-/// @param {Boolean} $important set !important or not
+////
+/// (c) hidoo | MIT Lisence
+/// @group features
+////
+
+/// use settings of `font-family`
+/// @param {List|String} $value [null] - setting for `font-family` (one of `"default"`, `"monospace"` or `(...)`)
+/// @param {Boolean} $important [false] - set `!important` or not
 ///
-/// @example
-///   @include use-font-family($value: "default", $important: true);
+/// @require {variable} unit-font-enable-override
+/// @require {variable} unit-font-family
+/// @require {variable} unit-font-family-monospace
+///
+/// @example scss - scss inputs
+///   .selector {
+///     @include use-font-family($value: "default", $important: true);
+///   }
+///
+/// @example css - css outputs
+///   .selector {
+///     font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", "游ゴシック Medium", YuGothic, Meiryo, "メイリオ", sans-serif !important;
+///   }
+///
 @mixin use-font-family($value, $important: false) {
   @if (
     global-variable-exists("unit-font-enable-override") and
