@@ -113,7 +113,7 @@ Style guide: #{$unit-prefix}-list.marker.builtin
   }
 
   &-numeric {
-    $counter-name: "numeric-marker";
+    $counter-name: "#{$unit-prefix}-list--marker-numeric";
 
     counter-reset: #{$counter-name};
 
