@@ -1,7 +1,7 @@
 /* eslint max-len: 0, no-magic-numbers: 0 */
 
 import assert from 'assert';
-import {eachTestCases} from '@hidoo/unit-test-util';
+import {eachTestCases} from 'test-util';
 
 describe('@function px-to-rem($size, $base-size)', () => {
 

@@ -1,7 +1,7 @@
 /* eslint max-len: 0, no-magic-numbers: 0 */
 
 import assert from 'assert';
-import {eachTestCases, normalizeGlobalSettings} from '@hidoo/unit-test-util';
+import {eachTestCases, normalizeGlobalSettings} from 'test-util';
 
 describe('@mixin use-font-family(...)', () => {
 
