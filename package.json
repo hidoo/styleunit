@@ -32,7 +32,7 @@
     "@hidoo/gulp-task-build-styleguide-kss": "0.12.0",
     "@hidoo/gulp-task-copy": "0.11.0",
     "@hidoo/sassdoc-to-markdown": "^0.1.0",
-    "@hidoo/util-fancy-print": "0.11.0",
+    "@hidoo/util-fancy-print": "0.12.0",
     "babel-preset-power-assert": "3.0.0",
     "browser-sync": "2.26.7",
     "commander": "2.20.0",
