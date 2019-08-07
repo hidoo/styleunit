@@ -1182,6 +1182,40 @@ css outputs
 }
 ```
 
+<a id="features-mixin-use-font-advanced-settings"></a>
+
+### @mixin use-font-advanced-settings
+
+use advanced settings of font
+
++ **Group:** Features
++ **Access:** public
+
+#### Parameters
+
+| Name                | Type                                                             | Description                         | Default  |
+| :------------------ | :--------------------------------------------------------------- | :---------------------------------- | :------- |
+| `$feature-settings` | **[String](https://sass-lang.com/documentation/values/strings)** | setting for `font-feature-settings` | `"palt"` |
+
+#### Examples
+
+scss inputs
+
+```scss
+.selector {
+  @include use-font-advanced-settings();
+}
+```
+
+css outputs
+
+```css
+.selector {
+  font-feature-settings: "palt";
+  -ms-font-feature-settings: normal;
+}
+```
+
 <a id="features-mixin-use-font-base"></a>
 
 ### @mixin use-font-base

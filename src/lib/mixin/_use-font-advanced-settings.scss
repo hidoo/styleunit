@@ -1,0 +1,27 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group features
+////
+
+/// use advanced settings of font
+/// @param {String} $feature-settings ["palt"] - setting for `font-feature-settings`
+///
+/// @example scss - scss inputs
+///   .selector {
+///     @include use-font-advanced-settings();
+///   }
+///
+/// @example css - css outputs
+///   .selector {
+///     font-feature-settings: "palt";
+///     -ms-font-feature-settings: normal;
+///   }
+///
+@mixin use-font-advanced-settings($feature-settings: "palt") {
+  @if type-of($feature-settings) == "string" and $feature-settings != "" {
+    font-feature-settings: $feature-settings;
+
+    // disable when browser is ie 10-11
+    -ms-font-feature-settings: normal; // stylelint-disable-line order/properties-order
+  }
+}
