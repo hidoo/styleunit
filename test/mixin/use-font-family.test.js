@@ -51,26 +51,6 @@ ${normalizeGlobalSettings(globalSettings)}
     });
   });
 
-  it('should not out if global variable $unit-font-enable-override is not true.', async () => {
-    const cases = [
-      {
-        params: [{value: '(serif,)'}, {fontEnableOverride: null}],
-        expected: ''
-      }
-    ];
-
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
-      }
-
-      const actual = result.css.toString().trim();
-
-      assert(actual === expected);
-      return resolve();
-    });
-  });
-
   it('should out font-family.', async () => {
     const cases = [
       {

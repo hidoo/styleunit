@@ -93,6 +93,24 @@ $unit-link-color: (
 ///
 $unit-font-enable-override: true !default;
 
+/// target units that override font settings.
+/// (default: `"icon", "text", "pict", "button", "table", "document", "input", "toggle", "select")`)
+///
+/// this use if `$unit-font-enable-override` is `true`
+/// @type List
+///
+$unit-font-override-targets: (
+  "icon",
+  "text",
+  "pict",
+  "button",
+  "table",
+  "document",
+  "input",
+  "toggle",
+  "select",
+) !default;
+
 /// default font family.
 ///
 /// **default**

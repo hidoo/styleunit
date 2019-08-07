@@ -241,6 +241,22 @@ enable override font settings or not.
 
 + **@mixin use-font-family** use settings of `font-family`
 
+<a id="default-settings-variable-unit-font-override-targets"></a>
+
+### $unit-font-override-targets
+
+target units that override font settings.
+(default: `"icon", "text", "pict", "button", "table", "document", "input", "toggle", "select")`)
+
+this use if `$unit-font-enable-override` is `true`
+
++ **Group:** Default settings
++ **Access:** public
+
+#### Type
+
+**[List](https://sass-lang.com/documentation/values/lists)**
+
 <a id="default-settings-variable-unit-font-family"></a>
 
 ### $unit-font-family

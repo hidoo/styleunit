@@ -22,28 +22,26 @@
 ///   }
 ///
 @mixin use-font-family($value, $important: false) {
-  @if (
-    global-variable-exists("unit-font-enable-override") and
-    $unit-font-enable-override
-  ) {
-    @if type-of($value) == "list" and length($value) >= 1 {
-      font-family: $value if($important, !important, null);
+  @if type-of($value) == "list" and length($value) >= 1 {
+    font-family: $value if($important, !important, null);
+  }
+  @else if $value == "default" {
+    @if (global-variable-exists("unit-font-family")) {
+      font-family: $unit-font-family if($important, !important, null);
     }
-    @else if $value == "default" {
-      @if (global-variable-exists("unit-font-family")) {
-        font-family: $unit-font-family if($important, !important, null);
-      }
-      @else {
-        @error "@mixin use-font-family: Global variable $unit-font-family is undefined.";
-      }
+    @else {
+      @error "@mixin use-font-family: Global variable $unit-font-family is undefined.";
     }
-    @else if $value == "monospace" {
-      @if (global-variable-exists("unit-font-family-monospace")) {
-        font-family: $unit-font-family-monospace if($important, !important, null);
-      }
-      @else {
-        @error "@mixin use-font-family: Global variable $unit-font-family-monospace is undefined.";
-      }
+  }
+  @else if $value == "monospace" {
+    @if (global-variable-exists("unit-font-family-monospace")) {
+      font-family: $unit-font-family-monospace if($important, !important, null);
     }
+    @else {
+      @error "@mixin use-font-family: Global variable $unit-font-family-monospace is undefined.";
+    }
+  }
+  @else {
+    @warn "@mixin use-font-family: font-family is not set, bacause argument $value is not valid.";
   }
 }

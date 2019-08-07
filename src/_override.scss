@@ -1,14 +1,32 @@
-// setting base font-size for rem
+// override root font-size
 @if $unit-font-enable-relative-size {
   html {
     font-size: $unit-font-base-size;
   }
 }
 
-body {
-  @include use-font-family($value: "default");
+// override font-family and advanced settings
+@if $unit-font-enable-override {
+  $selector: unique-id();
 
-  // for mobile browser
-  // + https://caniuse.com/#search=text-size-adjust
-  text-size-adjust: 100%;
+  // define placeholder for override targets
+  @include define-placeholder($name: $selector) {
+    @include use-font-family($value: "default");
+
+    @if ($unit-font-enable-advanced-settings) {
+      @include use-font-advanced-settings();
+    }
+
+    // for mobile browser
+    // + https://caniuse.com/#search=text-size-adjust
+    text-size-adjust: 100%;
+  }
+
+  // override all targets
+  @each $target in $unit-font-override-targets {
+    [class^="#{$unit-prefix}-#{$target}"],
+    [class*=" #{$unit-prefix}-#{$target}"] {
+      @extend %#{$selector};
+    }
+  }
 }

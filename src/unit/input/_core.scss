@@ -49,9 +49,6 @@ Style guide: #{$unit-prefix}-input.core.base
   @include use-font-size(
     $value: "medium"
   );
-  @include use-font-family(
-    $value: "default"
-  );
 
   width: 100%;
   color: inherit;
