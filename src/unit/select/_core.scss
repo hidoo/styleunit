@@ -66,9 +66,7 @@ Style guide: #{$unit-prefix}-select.core.base
       $white-space: null,
       $word-wrap: null
     );
-    @include use-font-base(
-      $feature-settings: true
-    );
+    @include use-font-base();
     @include use-font-size(
       $value: "medium"
     );

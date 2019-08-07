@@ -59,9 +59,7 @@ Style guide: #{$unit-prefix}-table.core.builtin
       $padding: 5px 10px (5px * 1.5)
     );
     @include use-text-base();
-    @include use-font-base(
-      $feature-settings: true
-    );
+    @include use-font-base();
     @include use-font-size(
       $value: "medium"
     );

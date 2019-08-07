@@ -1227,11 +1227,10 @@ use settings of initialized font
 
 #### Parameters
 
-| Name                | Type                                                                                                                               | Description                          | Default    |
-| :------------------ | :--------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------- | :--------- |
-| `$feature-settings` | **[Boolean](https://sass-lang.com/documentation/values/booleans)**                                                                 | enable `font-eature-settings` or not | `false`    |
-| `$style`            | **[String](https://sass-lang.com/documentation/values/strings)**                                                                   | setting for `font-style`             | `"normal"` |
-| `$weight`           | **[String](https://sass-lang.com/documentation/values/strings)**, **[Number](https://sass-lang.com/documentation/values/numbers)** | setting for `font-weight`            | `"normal"` |
+| Name      | Type                                                                                                                               | Description               | Default    |
+| :-------- | :--------------------------------------------------------------------------------------------------------------------------------- | :------------------------ | :--------- |
+| `$style`  | **[String](https://sass-lang.com/documentation/values/strings)**                                                                   | setting for `font-style`  | `"normal"` |
+| `$weight` | **[String](https://sass-lang.com/documentation/values/strings)**, **[Number](https://sass-lang.com/documentation/values/numbers)** | setting for `font-weight` | `"normal"` |
 
 #### Examples
 
@@ -1247,8 +1246,6 @@ css outputs
 
 ```css
 .selector {
-  font-feature-settings: "palt";
-  -ms-font-feature-settings: normal;
   font-style: normal;
   font-weight: normal;
 }

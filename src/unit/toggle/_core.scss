@@ -80,9 +80,7 @@ Style guide: #{$unit-prefix}-toggle.core.base
     @include use-text-base(
       $text-indent: -100%
     );
-    @include use-font-base(
-      $feature-settings: true
-    );
+    @include use-font-base();
     @include use-font-size(
       $value: "medium"
     );

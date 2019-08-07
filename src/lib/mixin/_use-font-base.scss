@@ -4,7 +4,6 @@
 ////
 
 /// use settings of initialized font
-/// @param {Boolean} $feature-settings [false] - enable `font-eature-settings` or not
 /// @param {String} $style ["normal"] - setting for `font-style`
 /// @param {String|Number} $weight ["normal"] - setting for `font-weight`
 ///
@@ -15,30 +14,14 @@
 ///
 /// @example css - css outputs
 ///   .selector {
-///     font-feature-settings: "palt";
-///     -ms-font-feature-settings: normal;
 ///     font-style: normal;
 ///     font-weight: normal;
 ///   }
 ///
 @mixin use-font-base(
-  $feature-settings: false,
   $style: "normal",
   $weight: "normal"
 ) {
-  @if (
-    global-variable-exists("unit-font-enable-override") and
-    global-variable-exists("unit-font-enable-advanced-settings") and
-    $unit-font-enable-override and
-    $unit-font-enable-advanced-settings and
-    $feature-settings
-  ) {
-    font-feature-settings: "palt";
-
-    // disable when browser is ie 10-11
-    -ms-font-feature-settings: normal; // stylelint-disable-line order/properties-order
-  }
-
   @if type-of($style) == "string" and $style != "" {
     font-style: #{$style};
   }

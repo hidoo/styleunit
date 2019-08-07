@@ -291,9 +291,7 @@ Style guide: #{$unit-prefix}-document.core.base
   @include use-clearfix();
   @include use-box-base();
   @include use-text-base();
-  @include use-font-base(
-    $feature-settings: true
-  );
+  @include use-font-base();
   @include use-font-size(
     $value: "medium"
   );

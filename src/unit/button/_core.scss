@@ -48,9 +48,7 @@ Style guide: #{$unit-prefix}-button.core.base
     $line-height: 1,
     $text-align: "center"
   );
-  @include use-font-base(
-    $feature-settings: true
-  );
+  @include use-font-base();
   @include use-font-size(
     $value: "medium"
   );

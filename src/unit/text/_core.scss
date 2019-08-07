@@ -35,9 +35,7 @@ Style guide: #{$unit-prefix}-text.core.base
 .#{$unit-prefix}-text {
   @include use-box-base();
   @include use-text-base();
-  @include use-font-base(
-    $feature-settings: true
-  );
+  @include use-font-base();
   @include use-font-size(
     $value: "medium"
   );
