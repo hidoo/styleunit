@@ -1452,6 +1452,7 @@ use settings of initialized text
 | `$text-decoration` | **[String](https://sass-lang.com/documentation/values/strings)**                                                                   | setting for `text-decoration` | `"none"`               |
 | `$text-indent`     | **[Number](https://sass-lang.com/documentation/values/numbers)**                                                                   | setting for `text-indent`     | `0`                    |
 | `$white-space`     | **[String](https://sass-lang.com/documentation/values/strings)**                                                                   | setting for `white-space`     | `"normal"`             |
+| `$word-break`      | **[String](https://sass-lang.com/documentation/values/strings)**                                                                   | setting for `word-break`      | `"break-all"`          |
 | `$word-wrap`       | **[String](https://sass-lang.com/documentation/values/strings)**                                                                   | setting for `word-wrap`       | `"break-word"`         |
 
 #### Examples
@@ -1474,6 +1475,7 @@ css outputs
   text-decoration: none;
   text-indent: 0;
   white-space: normal;
+  word-break: break-all;
   word-wrap: break-word;
 }
 ```

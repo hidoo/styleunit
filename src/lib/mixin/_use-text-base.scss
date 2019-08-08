@@ -10,6 +10,7 @@
 /// @param {String} $text-decoration ["none"] - setting for `text-decoration`
 /// @param {Number} $text-indent [0] - setting for `text-indent`
 /// @param {String} $white-space ["normal"] - setting for `white-space`
+/// @param {String} $word-break ["break-all"] - setting for `word-break`
 /// @param {String} $word-wrap ["break-word"] - setting for `word-wrap`
 ///
 /// @require {variable} unit-letter-spacing
@@ -28,6 +29,7 @@
 ///     text-decoration: none;
 ///     text-indent: 0;
 ///     white-space: normal;
+///     word-break: break-all;
 ///     word-wrap: break-word;
 ///   }
 ///
@@ -38,7 +40,8 @@
   $text-decoration: "none",
   $text-indent: 0,
   $white-space: "normal",
-  $word-wrap: "break-word"
+  $word-break: "break-all",
+  $word-wrap: "break-word",
 ) {
   // normalize $letter-spacing
   @if not $letter-spacing {
@@ -73,6 +76,11 @@
   // set white-space property only if $white-space is valid string
   @if type-of($white-space) == "string" and $white-space != "" {
     white-space: #{$white-space};
+  }
+
+  // set word-break property only if $word-break is valid string
+  @if type-of($word-break) == "string" and $word-break != "" {
+    word-break: #{$word-break}; // stylelint-disable-line plugin/no-unsupported-browser-features
   }
 
   // set word-wrap property only if $word-wrap is valid string

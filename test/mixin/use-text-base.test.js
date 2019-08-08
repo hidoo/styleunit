@@ -14,6 +14,7 @@ describe('@mixin use-text-base(...)', () => {
    *   @param {String|Null} options.textDecoration setting for text-decoration
    *   @param {String|Null} options.textIndent setting for text-indent
    *   @param {String|Null} options.whiteSpace setting for white-space
+   *   @param {String|Null} options.wordBreak setting for word-break
    *   @param {String|Null} options.wordWrap setting for word-wrap
    * @param {Object} globalSettings global settings
    * @return {String}
@@ -26,6 +27,7 @@ describe('@mixin use-text-base(...)', () => {
       options.textDecoration || options.textDecoration === '' ? `$text-decoration: ${options.textDecoration}` : false,
       options.textIndent || options.textIndent === '' ? `$text-indent: ${options.textIndent}` : false,
       options.whiteSpace || options.whiteSpace === '' ? `$white-space: ${options.whiteSpace}` : false,
+      options.wordBreak || options.wordBreak === '' ? `$word-break: ${options.wordBreak}` : false,
       options.wordWrap || options.wordWrap === '' ? `$word-wrap: ${options.wordWrap}` : false
     ];
 
@@ -52,6 +54,7 @@ ${normalizeGlobalSettings(globalSettings)}
   text-decoration: none;
   text-indent: 0;
   white-space: normal;
+  word-break: break-all;
   word-wrap: break-word;
 }`
 /* eslint-disable indent */
@@ -67,6 +70,7 @@ ${normalizeGlobalSettings(globalSettings)}
   text-decoration: none;
   text-indent: 0;
   white-space: normal;
+  word-break: break-all;
   word-wrap: break-word;
 }`
 /* eslint-disable indent */
@@ -98,6 +102,7 @@ ${normalizeGlobalSettings(globalSettings)}
   text-decoration: none;
   text-indent: 0;
   white-space: normal;
+  word-break: break-all;
   word-wrap: break-word;
 }`
 /* eslint-disable indent */
@@ -128,6 +133,38 @@ ${normalizeGlobalSettings(globalSettings)}
   text-align: left;
   text-decoration: none;
   text-indent: 0;
+  word-break: break-all;
+  word-wrap: break-word;
+}`
+/* eslint-disable indent */
+      }
+    ];
+
+    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
+      if (error) {
+        return reject(error);
+      }
+
+      const actual = result.css.toString().trim();
+
+      assert(actual === expected);
+      return resolve();
+    }, {outputStyle: 'expanded'});
+  });
+
+  it('should out properties without word-break if arguments $word-break is valid string.', async () => {
+    const cases = [
+      {
+        params: [{wordBreak: 'null'}],
+        expected:
+/* eslint-disable indent */
+`.selector {
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  text-align: left;
+  text-decoration: none;
+  text-indent: 0;
+  white-space: normal;
   word-wrap: break-word;
 }`
 /* eslint-disable indent */
@@ -159,6 +196,7 @@ ${normalizeGlobalSettings(globalSettings)}
   text-decoration: none;
   text-indent: 0;
   white-space: normal;
+  word-break: break-all;
 }`
 /* eslint-disable indent */
       }
@@ -186,6 +224,7 @@ ${normalizeGlobalSettings(globalSettings)}
           textDecoration: 'underline',
           textIndent: '-100%',
           whiteSpace: 'pre',
+          wordBreak: 'normal',
           wordWrap: 'normal'
         }],
         expected:
@@ -197,6 +236,7 @@ ${normalizeGlobalSettings(globalSettings)}
   text-decoration: underline;
   text-indent: -100%;
   white-space: pre;
+  word-break: normal;
   word-wrap: normal;
 }`
 /* eslint-disable indent */
