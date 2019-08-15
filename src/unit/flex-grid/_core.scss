@@ -54,7 +54,6 @@ Style guide: #{$unit-prefix}-flex-grid.core.base
     $display: "flex",
     $box-sizing: "border-box"
   );
-  @include use-text-base();
 
   // flex box settings
   flex-direction: row;

@@ -54,7 +54,6 @@ Style guide: #{$unit-prefix}-table-grid.core.base
     $display: "table",
     $box-sizing: "border-box"
   );
-  @include use-text-base();
 
   width: 100%;
   height: 100%;
