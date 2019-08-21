@@ -48,7 +48,7 @@ Style guide: #{$unit-prefix}-box.container-width.builtin
     width: 100%;
     margin: 0 auto;
 
-    /* stylelint-disable declaration-block-no-duplicate-properties */
+    // stylelint-disable declaration-block-no-duplicate-properties
 
     // experimental: for iPhone X (iOS 11.1+)
     border-left: constant(safe-area-inset-left) solid transparent;
@@ -58,6 +58,6 @@ Style guide: #{$unit-prefix}-box.container-width.builtin
     border-left: unquote("env(safe-area-inset-left)") solid transparent;
     border-right: unquote("env(safe-area-inset-right)") solid transparent;
 
-    /* stylelint-enable declaration-block-no-duplicate-properties */
+    // stylelint-enable declaration-block-no-duplicate-properties
   }
 }
