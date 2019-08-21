@@ -1,7 +1,7 @@
 /**
  * import modules
  */
-import {relative} from 'path';
+import {relative, resolve} from 'path';
 import gulp from 'gulp';
 import buildStyleguide from '@hidoo/gulp-task-build-styleguide-kss';
 import copy from '@hidoo/gulp-task-copy';
@@ -22,7 +22,8 @@ export const build = buildStyleguide({
   name: 'styleguide:build',
   src: `${config.path.srcStyleguide}`,
   dest: `${config.path.destStyleguide}`,
-  css: [`${pathToCss}/main.css`]
+  css: [`${pathToCss}/main.css`],
+  builder: resolve(__dirname, '../../kss-builder')
 });
 
 // define prebuild task
