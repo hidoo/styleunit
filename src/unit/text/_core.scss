@@ -28,8 +28,6 @@ Weight: -100
 Markup: <h1 class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet.</h1>
 <p class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 
-#{$unit-prefix}-text - default style
-
 Style guide: #{$unit-prefix}-text.core.base
 */
 .#{$unit-prefix}-text {
@@ -53,8 +51,6 @@ Weight: -99
 
 Markup: <h1 class="#{$unit-prefix}-text">Lorem ipsum dolor <a class="#{$unit-prefix}-text__link" href="javascript:;">sit amet</a>.</h1>
 <p class="#{$unit-prefix}-text">Lorem ipsum dolor <a class="#{$unit-prefix}-text__link" href="javascript:;">sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</a>.</p>
-
-#{$unit-prefix}-text__link - default style
 
 Style guide: #{$unit-prefix}-text.core.link
 */

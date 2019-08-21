@@ -32,8 +32,6 @@ Markup: <!-- input -->
 <!-- textarea -->
 <textarea class="#{$unit-prefix}-input" name="{{modifier_class}}" rows="5" cols="10" placeholder="Lorem ipsum dolor sit amet."></textarea>
 
-#{$unit-prefix}-input - default style
-
 Style guide: #{$unit-prefix}-input.core.base
 */
 .#{$unit-prefix}-input {
