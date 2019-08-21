@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/hidoo/unit-sass/compare/v0.2.0...v0.3.0) (2019-08-21)
+
+
+### Bug Fixes
+
+* **unit:** fix typo ([50494d9](https://github.com/hidoo/unit-sass/commit/50494d9))
+* **unit:** remove text base settings from structure role units ([a5aec88](https://github.com/hidoo/unit-sass/commit/a5aec88))
+
+
+### BREAKING CHANGES
+
+* **unit:** rename unit-text--decoration-default to unit-text-text--decoration-false and unit-text--decoration-strikelike to unit-text---text--decoration-strikeline
+* **unit:** text styles no longer apply to internal text nodes
+
+
+
+
+
 # [0.2.0](https://github.com/hidoo/unit-sass/compare/v0.1.0...v0.2.0) (2019-08-14)
 
 
