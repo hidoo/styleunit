@@ -18,9 +18,9 @@ Weight: -100
 Markup: <h1 class="#{$unit-prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet.</h1>
 <p class="#{$unit-prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 
-#{$unit-prefix}-text--decoration-default - disable decoration (**default**)
+#{$unit-prefix}-text--decoration-false - disable decoration
 #{$unit-prefix}-text--decoration-overline - enable overline
-#{$unit-prefix}-text--decoration-strikelike - enable strikelike
+#{$unit-prefix}-text--decoration-strikeline - enable strikeline
 #{$unit-prefix}-text--decoration-underline - enable underline
 
 Style guide: #{$unit-prefix}-text.decoration.builtin
@@ -34,7 +34,7 @@ Style guide: #{$unit-prefix}-text.decoration.builtin
     text-decoration: overline;
   }
 
-  &-strikelike {
+  &-strikeline {
     text-decoration: line-through;
   }
 
