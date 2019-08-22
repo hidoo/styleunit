@@ -3,6 +3,7 @@
 /**
  * import modules
  */
+import {resolve} from 'path';
 import {Command} from 'commander';
 
 /**
@@ -59,6 +60,7 @@ export const path = {
   // base
   src: './example/src',
   dest: './example/build',
+  destWebsite: resolve(__dirname, '../../docs/unit'),
 
   // source details
   get srcCss() { return `${this.src}/scss`; },

@@ -42,6 +42,7 @@ fancyPrint(`${config.pkg.name} - ${config.pkg.version}`, [
  * @return {void}
  */
 export const clean = (done) => rimraf(`${config.path.dest}/*`, done);
+export const cleanWebsite = (done) => rimraf(`${config.path.destWebsite}/*`, done);
 
 /**
  * server task
@@ -56,6 +57,16 @@ export {default as server} from './task/server';
 export const build = gulp.series(
   css.main,
   styleguide.main
+);
+
+/**
+ * build website task
+ * @return {Function}
+ */
+export const website = gulp.series(
+  cleanWebsite,
+  css.website,
+  styleguide.website
 );
 
 /**

@@ -16,6 +16,7 @@ import * as config from '../config';
  * @type {String}
  */
 const pathToCss = relative(config.path.destStyleguide, config.path.destCss);
+const pathToCssWebsite = relative(config.path.destWebsite, `${config.path.destWebsite}/css`); // eslint-disable-line max-len
 
 // define build task
 export const build = buildStyleguide({
@@ -25,6 +26,13 @@ export const build = buildStyleguide({
   css: [`${pathToCss}/main.css`],
   builder: resolve(__dirname, '../../kss-builder')
 });
+export const buildWebsite = buildStyleguide({
+  name: 'styleguide:build:website',
+  src: `${config.path.destWebsite}/css`,
+  dest: `${config.path.destWebsite}`,
+  css: [`${pathToCssWebsite}/main.css`],
+  builder: resolve(__dirname, '../../kss-builder')
+});
 
 // define prebuild task
 export const prebuild = copy({
@@ -32,11 +40,22 @@ export const prebuild = copy({
   src: `./*.md`,
   dest: config.path.srcStyleguide
 });
+export const prebuildWebsite = copy({
+  name: 'styleguide:prebuild:website',
+  src: `./*.md`,
+  dest: `${config.path.destWebsite}/css`
+});
 
 // define main task
 export const main = gulp.series(
   prebuild,
   build
+);
+
+// define website task
+export const website = gulp.series(
+  prebuildWebsite,
+  buildWebsite
 );
 
 // define watch task

@@ -8,9 +8,10 @@
   ],
   "scripts": {
     "start": "gulp",
-    "build": "npm-run-all -p build:*",
+    "build": "npm-run-all -s build:document -p build:example build:website",
     "build:example": "gulp build",
     "build:document": "sassdoc2md ./src ./README.md -m ./README.md -s API --autofill ''",
+    "build:website": "gulp website",
     "test": "cross-env NODE_ENV=test mocha"
   },
   "keywords": [

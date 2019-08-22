@@ -18,6 +18,15 @@ export const main = buildCss({
   compress: config.compress
 });
 
+// define website task
+export const website = buildCss({
+  name: 'css:main:website',
+  src: `${config.path.srcCss}/main.scss`,
+  dest: `${config.path.destWebsite}/css`,
+  filename: 'main.css',
+  compress: config.compress
+});
+
 // define watch task
 export const watch = () => {
   gulp.watch(
