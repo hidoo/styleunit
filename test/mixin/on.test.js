@@ -7,9 +7,10 @@ describe('@mixin on(...)', () => {
 
   /**
    * wrapper
+   *
    * @param {Object} options options
-   *   @param {String|Null} options.selectors setting for selectors
-   *   @param {String|Null} options.capturingSelectors capturing parent selectors
+   *   @param {String|null} options.selectors setting for selectors
+   *   @param {String|null} options.capturingSelectors capturing parent selectors
    * @return {String}
    */
   function wrapper(options = {}) {

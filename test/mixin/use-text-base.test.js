@@ -7,15 +7,16 @@ describe('@mixin use-text-base(...)', () => {
 
   /**
    * wrapper
+   *
    * @param {Object} options options
-   *   @param {String|Null} options.letterSpacing setting for letter-spacing
-   *   @param {String|Null} options.lineHeight setting for line-height
-   *   @param {String|Null} options.textAlign setting for text-align
-   *   @param {String|Null} options.textDecoration setting for text-decoration
-   *   @param {String|Null} options.textIndent setting for text-indent
-   *   @param {String|Null} options.whiteSpace setting for white-space
-   *   @param {String|Null} options.wordBreak setting for word-break
-   *   @param {String|Null} options.wordWrap setting for word-wrap
+   *   @param {String|null} options.letterSpacing setting for letter-spacing
+   *   @param {String|null} options.lineHeight setting for line-height
+   *   @param {String|null} options.textAlign setting for text-align
+   *   @param {String|null} options.textDecoration setting for text-decoration
+   *   @param {String|null} options.textIndent setting for text-indent
+   *   @param {String|null} options.whiteSpace setting for white-space
+   *   @param {String|null} options.wordBreak setting for word-break
+   *   @param {String|null} options.wordWrap setting for word-wrap
    * @param {Object} globalSettings global settings
    * @return {String}
    */
@@ -46,7 +47,6 @@ ${normalizeGlobalSettings(globalSettings)}
       {
         params: [{}, {letterSpacing: null}],
         expected:
-/* eslint-disable indent */
 `.selector {
   letter-spacing: 0.04em;
   line-height: 1.5;
@@ -57,12 +57,10 @@ ${normalizeGlobalSettings(globalSettings)}
   word-break: break-all;
   word-wrap: break-word;
 }`
-/* eslint-disable indent */
       },
       {
         params: [{}, {lineHeight: null}],
         expected:
-/* eslint-disable indent */
 `.selector {
   letter-spacing: 0.04em;
   line-height: 1.5;
@@ -73,20 +71,24 @@ ${normalizeGlobalSettings(globalSettings)}
   word-break: break-all;
   word-wrap: break-word;
 }`
-/* eslint-disable indent */
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
-      }
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({error, result, expected}, {resolve, reject}) => {
+        if (error) {
+          return reject(error);
+        }
 
-      const actual = result.css.toString().trim();
+        const actual = result.css.toString().trim();
 
-      assert(actual === expected);
-      return resolve();
-    }, {outputStyle: 'expanded'});
+        assert(actual === expected);
+        return resolve();
+      },
+      {outputStyle: 'expanded'}
+    );
   });
 
   it('should out default properties if arguments not set.', async () => {
@@ -94,7 +96,6 @@ ${normalizeGlobalSettings(globalSettings)}
       {
         params: [{}],
         expected:
-/* eslint-disable indent */
 `.selector {
   letter-spacing: 0.04em;
   line-height: 1.5;
@@ -105,20 +106,24 @@ ${normalizeGlobalSettings(globalSettings)}
   word-break: break-all;
   word-wrap: break-word;
 }`
-/* eslint-disable indent */
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
-      }
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({error, result, expected}, {resolve, reject}) => {
+        if (error) {
+          return reject(error);
+        }
 
-      const actual = result.css.toString().trim();
+        const actual = result.css.toString().trim();
 
-      assert(actual === expected);
-      return resolve();
-    }, {outputStyle: 'expanded'});
+        assert(actual === expected);
+        return resolve();
+      },
+      {outputStyle: 'expanded'}
+    );
   });
 
   it('should out properties without white-space if arguments $white-space is valid string.', async () => {
@@ -126,7 +131,6 @@ ${normalizeGlobalSettings(globalSettings)}
       {
         params: [{whiteSpace: 'null'}],
         expected:
-/* eslint-disable indent */
 `.selector {
   letter-spacing: 0.04em;
   line-height: 1.5;
@@ -136,20 +140,24 @@ ${normalizeGlobalSettings(globalSettings)}
   word-break: break-all;
   word-wrap: break-word;
 }`
-/* eslint-disable indent */
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
-      }
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({error, result, expected}, {resolve, reject}) => {
+        if (error) {
+          return reject(error);
+        }
 
-      const actual = result.css.toString().trim();
+        const actual = result.css.toString().trim();
 
-      assert(actual === expected);
-      return resolve();
-    }, {outputStyle: 'expanded'});
+        assert(actual === expected);
+        return resolve();
+      },
+      {outputStyle: 'expanded'}
+    );
   });
 
   it('should out properties without word-break if arguments $word-break is valid string.', async () => {
@@ -157,7 +165,6 @@ ${normalizeGlobalSettings(globalSettings)}
       {
         params: [{wordBreak: 'null'}],
         expected:
-/* eslint-disable indent */
 `.selector {
   letter-spacing: 0.04em;
   line-height: 1.5;
@@ -167,20 +174,24 @@ ${normalizeGlobalSettings(globalSettings)}
   white-space: normal;
   word-wrap: break-word;
 }`
-/* eslint-disable indent */
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
-      }
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({error, result, expected}, {resolve, reject}) => {
+        if (error) {
+          return reject(error);
+        }
 
-      const actual = result.css.toString().trim();
+        const actual = result.css.toString().trim();
 
-      assert(actual === expected);
-      return resolve();
-    }, {outputStyle: 'expanded'});
+        assert(actual === expected);
+        return resolve();
+      },
+      {outputStyle: 'expanded'}
+    );
   });
 
   it('should out properties without word-wrap if arguments $word-wrap is valid string.', async () => {
@@ -188,7 +199,6 @@ ${normalizeGlobalSettings(globalSettings)}
       {
         params: [{wordWrap: 'null'}],
         expected:
-/* eslint-disable indent */
 `.selector {
   letter-spacing: 0.04em;
   line-height: 1.5;
@@ -198,20 +208,24 @@ ${normalizeGlobalSettings(globalSettings)}
   white-space: normal;
   word-break: break-all;
 }`
-/* eslint-disable indent */
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
-      }
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({error, result, expected}, {resolve, reject}) => {
+        if (error) {
+          return reject(error);
+        }
 
-      const actual = result.css.toString().trim();
+        const actual = result.css.toString().trim();
 
-      assert(actual === expected);
-      return resolve();
-    }, {outputStyle: 'expanded'});
+        assert(actual === expected);
+        return resolve();
+      },
+      {outputStyle: 'expanded'}
+    );
   });
 
   it('should out properties with specified value if arguments is set.', async () => {
@@ -228,7 +242,6 @@ ${normalizeGlobalSettings(globalSettings)}
           wordWrap: 'normal'
         }],
         expected:
-/* eslint-disable indent */
 `.selector {
   letter-spacing: 0.1em;
   line-height: 15px;
@@ -239,20 +252,24 @@ ${normalizeGlobalSettings(globalSettings)}
   word-break: normal;
   word-wrap: normal;
 }`
-/* eslint-disable indent */
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
-      }
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({error, result, expected}, {resolve, reject}) => {
+        if (error) {
+          return reject(error);
+        }
 
-      const actual = result.css.toString().trim();
+        const actual = result.css.toString().trim();
 
-      assert(actual === expected);
-      return resolve();
-    }, {outputStyle: 'expanded'});
+        assert(actual === expected);
+        return resolve();
+      },
+      {outputStyle: 'expanded'}
+    );
   });
 
 });

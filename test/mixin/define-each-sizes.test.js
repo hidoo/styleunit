@@ -7,6 +7,7 @@ describe('@mixin define-sizes($type, $values)', () => {
 
   /**
    * wrapper
+   *
    * @param {String} type type of property
    * @param {String} values list of value (conma separated value)
    * @return {String}

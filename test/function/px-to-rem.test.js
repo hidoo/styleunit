@@ -7,6 +7,7 @@ describe('@function px-to-rem($size, $base-size)', () => {
 
   /**
    * wrapper
+   *
    * @param {Number} size font size
    * @param {Number} baseSize base font size
    * @return {Number}

@@ -7,15 +7,16 @@ describe('@mixin use-box-base(...)', () => {
 
   /**
    * wrapper
+   *
    * @param {Object} options options
-   *   @param {String|Null} options.display setting for display
-   *   @param {String|Null} options.overflow setting for overflow
-   *   @param {String|Null} options.boxSizing setting for box-sizing
-   *   @param {String|Null} options.position setting for position
-   *   @param {String|Null} options.listStyle setting for list-style
-   *   @param {String|Null} options.margin setting for margin
-   *   @param {String|Null} options.padding setting for padding
-   *   @param {String|Null} options.border setting for border
+   *   @param {String|null} options.display setting for display
+   *   @param {String|null} options.overflow setting for overflow
+   *   @param {String|null} options.boxSizing setting for box-sizing
+   *   @param {String|null} options.position setting for position
+   *   @param {String|null} options.listStyle setting for list-style
+   *   @param {String|null} options.margin setting for margin
+   *   @param {String|null} options.padding setting for padding
+   *   @param {String|null} options.border setting for border
    * @return {String}
    */
   function wrapper(options = {}) {
@@ -44,7 +45,6 @@ describe('@mixin use-box-base(...)', () => {
       {
         params: [{}],
         expected:
-/* eslint-disable indent */
 `.selector {
   display: block;
   box-sizing: content-box;
@@ -54,20 +54,24 @@ describe('@mixin use-box-base(...)', () => {
   padding: 0;
   border: 0;
 }`
-/* eslint-disable indent */
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
-      }
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({error, result, expected}, {resolve, reject}) => {
+        if (error) {
+          return reject(error);
+        }
 
-      const actual = result.css.toString().trim();
+        const actual = result.css.toString().trim();
 
-      assert(actual === expected);
-      return resolve();
-    }, {outputStyle: 'expanded'});
+        assert(actual === expected);
+        return resolve();
+      },
+      {outputStyle: 'expanded'}
+    );
   });
 
   it('should out properties without display if arguments $display is null.', async () => {
@@ -75,7 +79,6 @@ describe('@mixin use-box-base(...)', () => {
       {
         params: [{display: 'null'}],
         expected:
-/* eslint-disable indent */
 `.selector {
   box-sizing: content-box;
   position: relative;
@@ -84,20 +87,24 @@ describe('@mixin use-box-base(...)', () => {
   padding: 0;
   border: 0;
 }`
-/* eslint-disable indent */
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
-      }
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({error, result, expected}, {resolve, reject}) => {
+        if (error) {
+          return reject(error);
+        }
 
-      const actual = result.css.toString().trim();
+        const actual = result.css.toString().trim();
 
-      assert(actual === expected);
-      return resolve();
-    }, {outputStyle: 'expanded'});
+        assert(actual === expected);
+        return resolve();
+      },
+      {outputStyle: 'expanded'}
+    );
   });
 
   it('should out properties with overflow if arguments $overflow is valid string.', async () => {
@@ -105,7 +112,6 @@ describe('@mixin use-box-base(...)', () => {
       {
         params: [{overflow: 'scroll'}],
         expected:
-/* eslint-disable indent */
 `.selector {
   display: block;
   overflow: scroll;
@@ -116,20 +122,24 @@ describe('@mixin use-box-base(...)', () => {
   padding: 0;
   border: 0;
 }`
-/* eslint-disable indent */
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
-      }
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({error, result, expected}, {resolve, reject}) => {
+        if (error) {
+          return reject(error);
+        }
 
-      const actual = result.css.toString().trim();
+        const actual = result.css.toString().trim();
 
-      assert(actual === expected);
-      return resolve();
-    }, {outputStyle: 'expanded'});
+        assert(actual === expected);
+        return resolve();
+      },
+      {outputStyle: 'expanded'}
+    );
   });
 
   it('should out properties without list-style if arguments $list-style is null.', async () => {
@@ -137,7 +147,6 @@ describe('@mixin use-box-base(...)', () => {
       {
         params: [{listStyle: 'null'}],
         expected:
-/* eslint-disable indent */
 `.selector {
   display: block;
   box-sizing: content-box;
@@ -146,20 +155,24 @@ describe('@mixin use-box-base(...)', () => {
   padding: 0;
   border: 0;
 }`
-/* eslint-disable indent */
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
-      }
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({error, result, expected}, {resolve, reject}) => {
+        if (error) {
+          return reject(error);
+        }
 
-      const actual = result.css.toString().trim();
+        const actual = result.css.toString().trim();
 
-      assert(actual === expected);
-      return resolve();
-    }, {outputStyle: 'expanded'});
+        assert(actual === expected);
+        return resolve();
+      },
+      {outputStyle: 'expanded'}
+    );
   });
 
   it('should out properties with specified value if arguments is set.', async () => {
@@ -175,7 +188,6 @@ describe('@mixin use-box-base(...)', () => {
           border: '1px solid #000'
         }],
         expected:
-/* eslint-disable indent */
 `.selector {
   display: inline-block;
   box-sizing: border-box;
@@ -185,20 +197,24 @@ describe('@mixin use-box-base(...)', () => {
   padding: 15px;
   border: 1px solid #000;
 }`
-/* eslint-disable indent */
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
-      }
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({error, result, expected}, {resolve, reject}) => {
+        if (error) {
+          return reject(error);
+        }
 
-      const actual = result.css.toString().trim();
+        const actual = result.css.toString().trim();
 
-      assert(actual === expected);
-      return resolve();
-    }, {outputStyle: 'expanded'});
+        assert(actual === expected);
+        return resolve();
+      },
+      {outputStyle: 'expanded'}
+    );
   });
 
 });

@@ -13,10 +13,11 @@ import * as config from '../config';
 
 /**
  * relative path from styleguide to css
+ *
  * @type {String}
  */
 const pathToCss = relative(config.path.destStyleguide, config.path.destCss);
-const pathToCssWebsite = relative(config.path.destWebsite, `${config.path.destWebsite}/css`); // eslint-disable-line max-len
+const pathToCssWebsite = relative(config.path.destWebsite, `${config.path.destWebsite}/css`);
 
 // define build task
 export const build = buildStyleguide({

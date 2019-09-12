@@ -7,7 +7,8 @@ describe('@mixin define-placeholder($name)', () => {
 
   /**
    * wrapper
-   * @param {String|Null} name name of placeholder class
+   *
+   * @param {String|null} name name of placeholder class
    * @return {String}
    */
   function wrapper(name) {

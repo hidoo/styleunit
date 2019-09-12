@@ -7,9 +7,10 @@ describe('@mixin define-breakpoint($from, $until)', () => {
 
   /**
    * wrapper
-   * @param {String|Number|Null} from starting point of breakpoint
-   * @param {String|Number|Null} until ending point of breakpoint
-   * @param {String|Number|Null} options ending point of breakpoint
+   *
+   * @param {String|Number|null} from starting point of breakpoint
+   * @param {String|Number|null} until ending point of breakpoint
+   * @param {String|Number|null} options ending point of breakpoint
    * @param {Boolean} undefBreakpoints undefined $unit-breakpoints or not
    * @return {String}
    */

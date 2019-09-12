@@ -7,8 +7,9 @@ describe('@mixin use-font-advanced-settings(...)', () => {
 
   /**
    * wrapper
+   *
    * @param {Object} options options
-   *   @param {String|Null} options.featureSettings setting for font-feature-settings
+   *   @param {String|null} options.featureSettings setting for font-feature-settings
    * @param {Object} globalSettings global settings
    * @return {String}
    */
@@ -32,25 +33,28 @@ ${normalizeGlobalSettings(globalSettings)}
       {
         params: [{}],
         expected:
-/* eslint-disable indent */
 `.selector {
   font-feature-settings: "palt";
   -ms-font-feature-settings: normal;
 }`
-/* eslint-disable indent */
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
-      }
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({error, result, expected}, {resolve, reject}) => {
+        if (error) {
+          return reject(error);
+        }
 
-      const actual = result.css.toString().trim();
+        const actual = result.css.toString().trim();
 
-      assert(actual === expected);
-      return resolve();
-    }, {outputStyle: 'expanded'});
+        assert(actual === expected);
+        return resolve();
+      },
+      {outputStyle: 'expanded'}
+    );
   });
 
   it('should out properties with specified value if arguments is set.', async () => {
@@ -60,25 +64,28 @@ ${normalizeGlobalSettings(globalSettings)}
           featureSettings: '"pkna"'
         }],
         expected:
-/* eslint-disable indent */
 `.selector {
   font-feature-settings: "pkna";
   -ms-font-feature-settings: normal;
 }`
-/* eslint-disable indent */
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
-      }
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({error, result, expected}, {resolve, reject}) => {
+        if (error) {
+          return reject(error);
+        }
 
-      const actual = result.css.toString().trim();
+        const actual = result.css.toString().trim();
 
-      assert(actual === expected);
-      return resolve();
-    }, {outputStyle: 'expanded'});
+        assert(actual === expected);
+        return resolve();
+      },
+      {outputStyle: 'expanded'}
+    );
   });
 
 });

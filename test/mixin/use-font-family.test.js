@@ -7,9 +7,10 @@ describe('@mixin use-font-family(...)', () => {
 
   /**
    * wrapper
+   *
    * @param {Object} options options
-   *   @param {String|Null} options.value value of font-size
-   *   @param {String|Null} options.important set !important or not
+   *   @param {String|null} options.value value of font-size
+   *   @param {String|null} options.important set !important or not
    * @param {Object} globalSettings global settings
    * @return {String}
    */

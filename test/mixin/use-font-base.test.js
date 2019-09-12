@@ -7,9 +7,10 @@ describe('@mixin use-font-base(...)', () => {
 
   /**
    * wrapper
+   *
    * @param {Object} options options
-   *   @param {String|Null} options.style setting for font-style
-   *   @param {String|Null} options.weight setting for font-weight
+   *   @param {String|null} options.style setting for font-style
+   *   @param {String|null} options.weight setting for font-weight
    * @param {Object} globalSettings global settings
    * @return {String}
    */
@@ -34,25 +35,28 @@ ${normalizeGlobalSettings(globalSettings)}
       {
         params: [{}],
         expected:
-/* eslint-disable indent */
 `.selector {
   font-style: normal;
   font-weight: normal;
 }`
-/* eslint-disable indent */
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
-      }
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({error, result, expected}, {resolve, reject}) => {
+        if (error) {
+          return reject(error);
+        }
 
-      const actual = result.css.toString().trim();
+        const actual = result.css.toString().trim();
 
-      assert(actual === expected);
-      return resolve();
-    }, {outputStyle: 'expanded'});
+        assert(actual === expected);
+        return resolve();
+      },
+      {outputStyle: 'expanded'}
+    );
   });
 
   it('should out properties with specified value if arguments is set.', async () => {
@@ -63,25 +67,28 @@ ${normalizeGlobalSettings(globalSettings)}
           weight: '600'
         }],
         expected:
-/* eslint-disable indent */
 `.selector {
   font-style: italic;
   font-weight: 600;
 }`
-/* eslint-disable indent */
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
-      }
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({error, result, expected}, {resolve, reject}) => {
+        if (error) {
+          return reject(error);
+        }
 
-      const actual = result.css.toString().trim();
+        const actual = result.css.toString().trim();
 
-      assert(actual === expected);
-      return resolve();
-    }, {outputStyle: 'expanded'});
+        assert(actual === expected);
+        return resolve();
+      },
+      {outputStyle: 'expanded'}
+    );
   });
 
 });

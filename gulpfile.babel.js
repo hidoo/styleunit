@@ -38,6 +38,7 @@ fancyPrint(`${config.pkg.name} - ${config.pkg.version}`, [
 
 /**
  * clean dest task
+ *
  * @param {Function} done callback
  * @return {void}
  */
@@ -46,12 +47,14 @@ export const cleanWebsite = (done) => rimraf(`${config.path.destWebsite}/*`, don
 
 /**
  * server task
+ *
  * @type {Function}
  */
 export {default as server} from './task/server';
 
 /**
  * build task
+ *
  * @return {Function}
  */
 export const build = gulp.series(
@@ -61,6 +64,7 @@ export const build = gulp.series(
 
 /**
  * build website task
+ *
  * @return {Function}
  */
 export const website = gulp.series(
@@ -71,6 +75,7 @@ export const website = gulp.series(
 
 /**
  * file observe task
+ *
  * @return {Function}
  */
 export const watch = gulp.parallel(
@@ -80,6 +85,7 @@ export const watch = gulp.parallel(
 
 /**
  * default task
+ *
  * @return {Function}
  */
 export default gulp.series(

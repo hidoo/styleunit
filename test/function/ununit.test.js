@@ -7,6 +7,7 @@ describe('@function ununit($number)', () => {
 
   /**
    * wrapper
+   *
    * @param {Number} number font size
    * @return {String}
    */

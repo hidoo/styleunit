@@ -7,6 +7,7 @@ describe('@function merge-state-selectors($type, $additional-selectors)', () => 
 
   /**
    * wrapper
+   *
    * @param {String|null} type font size
    * @param {String|null} additionalSelectors font size
    * @param {Object} globalSettings global settings

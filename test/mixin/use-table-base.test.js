@@ -7,12 +7,13 @@ describe('@mixin use-table-base(...)', () => {
 
   /**
    * wrapper
+   *
    * @param {Object} options options
-   *   @param {String|Null} options.width setting for width
-   *   @param {String|Null} options.margin setting for margin
-   *   @param {String|Null} options.padding setting for padding
-   *   @param {String|Null} options.borderStyle setting for border-style
-   *   @param {String|Null} options.borderWidth setting for border-width
+   *   @param {String|null} options.width setting for width
+   *   @param {String|null} options.margin setting for margin
+   *   @param {String|null} options.padding setting for padding
+   *   @param {String|null} options.borderStyle setting for border-style
+   *   @param {String|null} options.borderWidth setting for border-width
    * @return {String}
    */
   function wrapper(options = {}) {
@@ -38,7 +39,6 @@ describe('@mixin use-table-base(...)', () => {
       {
         params: [{}],
         expected:
-/* eslint-disable indent */
 `.selector {
   display: table;
   width: auto;
@@ -48,20 +48,24 @@ describe('@mixin use-table-base(...)', () => {
   border-style: solid;
   border-width: 1px;
 }`
-/* eslint-disable indent */
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
-      }
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({error, result, expected}, {resolve, reject}) => {
+        if (error) {
+          return reject(error);
+        }
 
-      const actual = result.css.toString().trim();
+        const actual = result.css.toString().trim();
 
-      assert(actual === expected);
-      return resolve();
-    }, {outputStyle: 'expanded'});
+        assert(actual === expected);
+        return resolve();
+      },
+      {outputStyle: 'expanded'}
+    );
   });
 
   it('should out properties with specified value if arguments is set.', async () => {
@@ -75,7 +79,6 @@ describe('@mixin use-table-base(...)', () => {
           borderWidth: '2px'
         }],
         expected:
-/* eslint-disable indent */
 `.selector {
   display: table;
   width: 100%;
@@ -85,20 +88,24 @@ describe('@mixin use-table-base(...)', () => {
   border-style: dotted;
   border-width: 2px;
 }`
-/* eslint-disable indent */
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
-      }
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({error, result, expected}, {resolve, reject}) => {
+        if (error) {
+          return reject(error);
+        }
 
-      const actual = result.css.toString().trim();
+        const actual = result.css.toString().trim();
 
-      assert(actual === expected);
-      return resolve();
-    }, {outputStyle: 'expanded'});
+        assert(actual === expected);
+        return resolve();
+      },
+      {outputStyle: 'expanded'}
+    );
   });
 
 });

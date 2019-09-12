@@ -7,9 +7,10 @@ describe('@mixin on-focus(...)', () => {
 
   /**
    * wrapper
+   *
    * @param {Object} options options
-   *   @param {String|Null} options.additionalSelectors setting for additional-selectors
-   *   @param {String|Null} options.capturingSelectors capturing parent selectors
+   *   @param {String|null} options.additionalSelectors setting for additional-selectors
+   *   @param {String|null} options.capturingSelectors capturing parent selectors
    * @param {Object} globalSettings global settings
    * @return {String}
    */

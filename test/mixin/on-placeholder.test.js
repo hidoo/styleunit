@@ -7,6 +7,7 @@ describe('@mixin on-placeholder(...)', () => {
 
   /**
    * wrapper
+   *
    * @return {String}
    */
   function wrapper() {

@@ -7,9 +7,10 @@ describe('@mixin use-box-aspect-ratio(...)', () => {
 
   /**
    * wrapper
+   *
    * @param {Object} options options
-   *   @param {String|Null} options.width setting for width
-   *   @param {String|Null} options.height setting for height
+   *   @param {String|null} options.width setting for width
+   *   @param {String|null} options.height setting for height
    * @return {String}
    */
   function wrapper(options = {}) {
@@ -32,7 +33,6 @@ describe('@mixin use-box-aspect-ratio(...)', () => {
       {
         params: [{}],
         expected:
-/* eslint-disable indent */
 `.selector::before {
   content: "";
   display: block;
@@ -40,20 +40,24 @@ describe('@mixin use-box-aspect-ratio(...)', () => {
   height: 0;
   padding-top: 56.25%;
 }`
-/* eslint-disable indent */
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
-      }
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({error, result, expected}, {resolve, reject}) => {
+        if (error) {
+          return reject(error);
+        }
 
-      const actual = result.css.toString().trim();
+        const actual = result.css.toString().trim();
 
-      assert(actual === expected);
-      return resolve();
-    }, {outputStyle: 'expanded'});
+        assert(actual === expected);
+        return resolve();
+      },
+      {outputStyle: 'expanded'}
+    );
   });
 
   it('should out properties with specified value if arguments is set.', async () => {
@@ -64,7 +68,6 @@ describe('@mixin use-box-aspect-ratio(...)', () => {
           height: '3'
         }],
         expected:
-/* eslint-disable indent */
 `.selector::before {
   content: "";
   display: block;
@@ -72,7 +75,6 @@ describe('@mixin use-box-aspect-ratio(...)', () => {
   height: 0;
   padding-top: 75%;
 }`
-/* eslint-disable indent */
       },
       {
         params: [{
@@ -80,7 +82,6 @@ describe('@mixin use-box-aspect-ratio(...)', () => {
           height: '1'
         }],
         expected:
-/* eslint-disable indent */
 `.selector::before {
   content: "";
   display: block;
@@ -88,20 +89,24 @@ describe('@mixin use-box-aspect-ratio(...)', () => {
   height: 0;
   padding-top: 100%;
 }`
-/* eslint-disable indent */
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
-      }
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({error, result, expected}, {resolve, reject}) => {
+        if (error) {
+          return reject(error);
+        }
 
-      const actual = result.css.toString().trim();
+        const actual = result.css.toString().trim();
 
-      assert(actual === expected);
-      return resolve();
-    }, {outputStyle: 'expanded'});
+        assert(actual === expected);
+        return resolve();
+      },
+      {outputStyle: 'expanded'}
+    );
   });
 
 });

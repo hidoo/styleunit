@@ -1,4 +1,4 @@
-/* eslint-disable max-len, no-magic-numbers, no-process-env */
+/* eslint no-magic-numbers: off, no-process-env: off */
 
 /**
  * import modules
@@ -17,7 +17,8 @@ if (typeof process.env.NODE_ENV !== 'string' || process.env.NODE_ENV === '') {
 
 /**
  * parse cli options
- * @type {commander.Command}
+ *
+ * @type {Command}
  */
 const cli = new Command()
   .option('--host <ip>', 'set ip.')
@@ -29,6 +30,7 @@ const cli = new Command()
 
 /**
  * dev server options
+ *
  * @type {Object}
  */
 export const serverOptions = {
@@ -41,18 +43,21 @@ export const serverOptions = {
 /**
  * compress flag
  * + It is true, when process.env.NODE_ENV is not 'development'.
+ *
  * @type {Boolean}
  */
 export const compress = cli.compress || process.env.NODE_ENV !== 'development' || false;
 
 /**
  * package.json
+ *
  * @type {Object}
  */
 export {default as pkg} from './package.json';
 
 /**
  * path settings
+ *
  * @type {Object}
  */
 export const path = {
