@@ -49,7 +49,7 @@
     @error "@function ununit is not imported.";
   }
 
-  @if type-of($type) != "string" or index(("margin", "padding", "position", "border"), $type) == null {
+  @if type-of($type) != "string" or not index(("margin", "padding", "position", "border"), $type) {
     @error "@mixin define-sizes-in-direction-groups: Argument $type is not one of margin, padding, position or border. (specified: #{inspect($type)})";
   }
 

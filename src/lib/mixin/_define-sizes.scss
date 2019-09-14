@@ -30,7 +30,7 @@
     @error "@function ununit is not imported.";
   }
 
-  @if type-of($type) != "string" or index(("width", "height", "z-index"), $type) == null {
+  @if type-of($type) != "string" or not index(("width", "height", "z-index"), $type) {
     @error "@mixin define-sizes: Argument $type is not one of width, height or z-index. (specified: #{inspect($type)})";
   }
 

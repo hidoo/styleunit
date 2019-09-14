@@ -40,7 +40,7 @@ $_unit-defineded-placeholders: (); // stylelint-disable-line scss/dollar-variabl
   }
 
   // define placeholder if not already defined
-  @if index($_unit-defineded-placeholders, $name) == null {
+  @if not index($_unit-defineded-placeholders, $name) {
     @at-root {
       %#{$name} {
         @content;

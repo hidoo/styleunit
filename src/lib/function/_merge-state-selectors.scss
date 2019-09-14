@@ -12,7 +12,7 @@
 ///   $merged-focus-selectors: merge-state-selectors("link"); // -> (":link", ":visited")
 ///
 @function merge-state-selectors($type: "focus", $additional-selectors: ()) {
-  @if index(("link", "focus", "selected", "disabled", "current"), $type) == null {
+  @if not index(("link", "focus", "selected", "disabled", "current"), $type) {
     @error "@function merge-state-selectors: Argument $type must be one of 'link', focus', 'selected', disabled' or 'current'. (specified: #{inspect($type)})";
   }
 
