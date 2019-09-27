@@ -36,7 +36,7 @@
     "@hidoo/util-fancy-print": "0.13.0",
     "babel-preset-power-assert": "3.0.0",
     "browser-sync": "2.26.7",
-    "commander": "3.0.1",
+    "commander": "3.0.2",
     "cross-env": "6.0.0",
     "gulp": "4.0.2",
     "mocha": "6.2.0",
