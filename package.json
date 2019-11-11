@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "start": "gulp",
-    "build": "npm-run-all -s build:document -p build:example build:website",
+    "build": "npm-run-all -s build:document -p build:example",
     "build:example": "gulp build",
     "build:document": "sassdoc2md ./src ./README.md -m ./README.md -s API --autofill ''",
     "build:website": "gulp website",
