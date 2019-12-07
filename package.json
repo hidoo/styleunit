@@ -27,7 +27,7 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "7.7.5",
-    "@babel/preset-env": "7.7.5",
+    "@babel/preset-env": "7.7.6",
     "@babel/register": "7.7.4",
     "@hidoo/gulp-task-build-css-sass": "0.14.1",
     "@hidoo/gulp-task-build-styleguide-kss": "0.14.1",
