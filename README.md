@@ -51,7 +51,7 @@ $ npm install @hidoo/unit
 
 ### Hook mixins
 
-You can use some hook mixins that called if defined.  
+You can use some hook mixins that called if defined.\
 See [example](./example/src/scss/main.scss).
 
 | Name                              | Called timing                 |
@@ -138,10 +138,10 @@ settings of breakpoints
 
 #### Properties
 
-| Name      | Type                                                             | Description            | Default  |
-| :-------- | :--------------------------------------------------------------- | :--------------------- | :------- |
-| `desktop` | **[Number](https://sass-lang.com/documentation/values/numbers)** | breakpoint for desktop | `1024px` |
-| `mobile`  | **[Number](https://sass-lang.com/documentation/values/numbers)** | breakpoint for desktop | `667px`  |
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`desktop`|**[Number](https://sass-lang.com/documentation/values/numbers)**|breakpoint for desktop|`1024px`|
+|`mobile`|**[Number](https://sass-lang.com/documentation/values/numbers)**|breakpoint for desktop|`667px`|
 
 #### Dependents
 
@@ -222,10 +222,10 @@ default link color
 
 #### Properties
 
-| Name    | Type                                                           | Description       | Default                 |
-| :------ | :------------------------------------------------------------- | :---------------- | :---------------------- |
-| `link`  | **[Color](https://sass-lang.com/documentation/values/colors)** | color of `:link`  | `#37a5e4`               |
-| `focus` | **[Color](https://sass-lang.com/documentation/values/colors)** | color of `:focus` | `lighten(#37a5e4, 15%)` |
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`link`|**[Color](https://sass-lang.com/documentation/values/colors)**|color of `:link`|`#37a5e4`|
+|`focus`|**[Color](https://sass-lang.com/documentation/values/colors)**|color of `:focus`|`lighten(#37a5e4, 15%)`|
 
 <a id="default-settings-variable-unit-font-enable-override"></a>
 
@@ -446,10 +446,10 @@ default builtin theme
 
 #### Properties
 
-| Name    | Type                                                       | Description           | Default |
-| :------ | :--------------------------------------------------------- | :-------------------- | :------ |
-| `light` | **[Map](https://sass-lang.com/documentation/values/maps)** | values of light theme | `(...)` |
-| `dark`  | **[Map](https://sass-lang.com/documentation/values/maps)** | values of dark theme  | `(...)` |
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`light`|**[Map](https://sass-lang.com/documentation/values/maps)**|values of light theme|`(...)`|
+|`dark`|**[Map](https://sass-lang.com/documentation/values/maps)**|values of dark theme|`(...)`|
 
 <a id="features-variable-_unit-defineded-placeholders"></a>
 
@@ -475,10 +475,10 @@ return merged state selectors
 
 #### Parameters
 
-| Name                    | Type                                                             | Description                                                                           | Default  |
-| :---------------------- | :--------------------------------------------------------------- | :------------------------------------------------------------------------------------ | :------- |
-| `$type`                 | **[String](https://sass-lang.com/documentation/values/strings)** | type of state (one of `"link"`, `"focus"`, `"selected"`, `"disabled"` or `"current"`) | `"link"` |
-| `$additional-selectors` | **[List](https://sass-lang.com/documentation/values/lists)**     | additional selectors                                                                  | `()`     |
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`$type`|**[String](https://sass-lang.com/documentation/values/strings)**|type of state (one of `"link"`, `"focus"`, `"selected"`, `"disabled"` or `"current"`)|`"link"`|
+|`$additional-selectors`|**[List](https://sass-lang.com/documentation/values/lists)**|additional selectors|`()`|
 
 #### Returns
 
@@ -510,10 +510,10 @@ convert px to rem
 
 #### Parameters
 
-| Name         | Type                                                             | Description    | Default                |
-| :----------- | :--------------------------------------------------------------- | :------------- | :--------------------- |
-| `$size`      | **[Number](https://sass-lang.com/documentation/values/numbers)** | font size      | -                      |
-| `$base-size` | **[Number](https://sass-lang.com/documentation/values/numbers)** | base font size | `$unit-font-base-size` |
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`$size`|**[Number](https://sass-lang.com/documentation/values/numbers)**|font size|-|
+|`$base-size`|**[Number](https://sass-lang.com/documentation/values/numbers)**|base font size|`$unit-font-base-size`|
 
 #### Returns
 
@@ -556,9 +556,9 @@ return number without unit
 
 #### Parameters
 
-| Name      | Type                                                             | Description      | Default |
-| :-------- | :--------------------------------------------------------------- | :--------------- | :------ |
-| `$number` | **[Number](https://sass-lang.com/documentation/values/numbers)** | number with unit | -       |
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`$number`|**[Number](https://sass-lang.com/documentation/values/numbers)**|number with unit|-|
 
 #### Returns
 
@@ -589,12 +589,12 @@ define breakepoint
 
 #### Parameters
 
-| Name             | Type                                                                                                                                                                                            | Description                  | Default |
-| :--------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------- | :------ |
-| `$from`          | **[Number](https://sass-lang.com/documentation/values/numbers)**, **[String](https://sass-lang.com/documentation/values/strings)**, **[Null](https://sass-lang.com/documentation/values/null)** | starting point of breakpoint | `null`  |
-| `$until`         | **[Number](https://sass-lang.com/documentation/values/numbers)**, **[String](https://sass-lang.com/documentation/values/strings)**, **[Null](https://sass-lang.com/documentation/values/null)** | ending point of breakpoint   | `null`  |
-| `$options`       | **[Map](https://sass-lang.com/documentation/values/maps)**                                                                                                                                      | options                      | `()`    |
-| `$options.media` | **[String](https://sass-lang.com/documentation/values/strings)**                                                                                                                                | custom media name            | -       |
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`$from`|**[Number](https://sass-lang.com/documentation/values/numbers)**, **[String](https://sass-lang.com/documentation/values/strings)**, **[Null](https://sass-lang.com/documentation/values/null)**|starting point of breakpoint|`null`|
+|`$until`|**[Number](https://sass-lang.com/documentation/values/numbers)**, **[String](https://sass-lang.com/documentation/values/strings)**, **[Null](https://sass-lang.com/documentation/values/null)**|ending point of breakpoint|`null`|
+|`$options`|**[Map](https://sass-lang.com/documentation/values/maps)**|options|`()`|
+|`$options.media`|**[String](https://sass-lang.com/documentation/values/strings)**|custom media name|-|
 
 #### Examples
 
@@ -633,9 +633,9 @@ define placeholder class.
 
 #### Parameters
 
-| Name    | Type                                                             | Description               | Default |
-| :------ | :--------------------------------------------------------------- | :------------------------ | :------ |
-| `$name` | **[String](https://sass-lang.com/documentation/values/strings)** | name of placeholder class | -       |
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`$name`|**[String](https://sass-lang.com/documentation/values/strings)**|name of placeholder class|-|
 
 #### Examples
 
@@ -682,10 +682,10 @@ define sizes in direction groups
 
 #### Parameters
 
-| Name      | Type                                                             | Description                                                                  | Default    |
-| :-------- | :--------------------------------------------------------------- | :--------------------------------------------------------------------------- | :--------- |
-| `$type`   | **[String](https://sass-lang.com/documentation/values/strings)** | type of options (one of `"margin"`, `"padding"`, `"position"` or `"border"`) | `"margin"` |
-| `$values` | **[List](https://sass-lang.com/documentation/values/lists)**     | list of value                                                                | `()`       |
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`$type`|**[String](https://sass-lang.com/documentation/values/strings)**|type of options (one of `"margin"`, `"padding"`, `"position"` or `"border"`)|`"margin"`|
+|`$values`|**[List](https://sass-lang.com/documentation/values/lists)**|list of value|`()`|
 
 #### Examples
 
@@ -745,10 +745,10 @@ define sizes in directions
 
 #### Parameters
 
-| Name      | Type                                                             | Description                                                                  | Default    |
-| :-------- | :--------------------------------------------------------------- | :--------------------------------------------------------------------------- | :--------- |
-| `$type`   | **[String](https://sass-lang.com/documentation/values/strings)** | type of options (one of `"margin"`, `"padding"`, `"position"` or `"border"`) | `"margin"` |
-| `$values` | **[List](https://sass-lang.com/documentation/values/lists)**     | list of value                                                                | `()`       |
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`$type`|**[String](https://sass-lang.com/documentation/values/strings)**|type of options (one of `"margin"`, `"padding"`, `"position"` or `"border"`)|`"margin"`|
+|`$values`|**[List](https://sass-lang.com/documentation/values/lists)**|list of value|`()`|
 
 #### Examples
 
@@ -804,10 +804,10 @@ define sizes
 
 #### Parameters
 
-| Name      | Type                                                             | Description                                                   | Default   |
-| :-------- | :--------------------------------------------------------------- | :------------------------------------------------------------ | :-------- |
-| `$type`   | **[String](https://sass-lang.com/documentation/values/strings)** | type of options (one of `"width"`, `"height"` or `"z-index"`) | `"width"` |
-| `$values` | **[List](https://sass-lang.com/documentation/values/lists)**     | list of value                                                 | `()`      |
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`$type`|**[String](https://sass-lang.com/documentation/values/strings)**|type of options (one of `"width"`, `"height"` or `"z-index"`)|`"width"`|
+|`$values`|**[List](https://sass-lang.com/documentation/values/lists)**|list of value|`()`|
 
 #### Examples
 
@@ -848,10 +848,10 @@ wrappper of `.is-current`
 
 #### Parameters
 
-| Name                    | Type                                                         | Description                  | Default |
-| :---------------------- | :----------------------------------------------------------- | :--------------------------- | :------ |
-| `$additional-selectors` | **[List](https://sass-lang.com/documentation/values/lists)** | list of additional selectors | `()`    |
-| `$capturing-selectors`  | **[List](https://sass-lang.com/documentation/values/lists)** | capturing parent selectors   | `()`    |
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`$additional-selectors`|**[List](https://sass-lang.com/documentation/values/lists)**|list of additional selectors|`()`|
+|`$capturing-selectors`|**[List](https://sass-lang.com/documentation/values/lists)**|capturing parent selectors|`()`|
 
 #### Examples
 
@@ -889,10 +889,10 @@ wrappper of `:disabled`
 
 #### Parameters
 
-| Name                    | Type                                                         | Description                  | Default |
-| :---------------------- | :----------------------------------------------------------- | :--------------------------- | :------ |
-| `$additional-selectors` | **[List](https://sass-lang.com/documentation/values/lists)** | list of additional selectors | `()`    |
-| `$capturing-selectors`  | **[List](https://sass-lang.com/documentation/values/lists)** | capturing parent selectors   | `()`    |
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`$additional-selectors`|**[List](https://sass-lang.com/documentation/values/lists)**|list of additional selectors|`()`|
+|`$capturing-selectors`|**[List](https://sass-lang.com/documentation/values/lists)**|capturing parent selectors|`()`|
 
 #### Examples
 
@@ -930,10 +930,10 @@ wrappper of `:hover` and `:focus`
 
 #### Parameters
 
-| Name                    | Type                                                         | Description                  | Default |
-| :---------------------- | :----------------------------------------------------------- | :--------------------------- | :------ |
-| `$additional-selectors` | **[List](https://sass-lang.com/documentation/values/lists)** | list of additional selectors | `()`    |
-| `$capturing-selectors`  | **[List](https://sass-lang.com/documentation/values/lists)** | capturing parent selectors   | `()`    |
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`$additional-selectors`|**[List](https://sass-lang.com/documentation/values/lists)**|list of additional selectors|`()`|
+|`$capturing-selectors`|**[List](https://sass-lang.com/documentation/values/lists)**|capturing parent selectors|`()`|
 
 #### Examples
 
@@ -971,10 +971,10 @@ wrappper of `:link` and `:visited`
 
 #### Parameters
 
-| Name                    | Type                                                         | Description                  | Default |
-| :---------------------- | :----------------------------------------------------------- | :--------------------------- | :------ |
-| `$additional-selectors` | **[List](https://sass-lang.com/documentation/values/lists)** | list of additional selectors | `()`    |
-| `$capturing-selectors`  | **[List](https://sass-lang.com/documentation/values/lists)** | capturing parent selectors   | `()`    |
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`$additional-selectors`|**[List](https://sass-lang.com/documentation/values/lists)**|list of additional selectors|`()`|
+|`$capturing-selectors`|**[List](https://sass-lang.com/documentation/values/lists)**|capturing parent selectors|`()`|
 
 #### Examples
 
@@ -1050,10 +1050,10 @@ wrappper of pseudo class like `:hover`
 
 #### Parameters
 
-| Name                   | Type                                                         | Description                | Default |
-| :--------------------- | :----------------------------------------------------------- | :------------------------- | :------ |
-| `$selectors`           | **[List](https://sass-lang.com/documentation/values/lists)** | list of selectors          | `()`    |
-| `$capturing-selectors` | **[List](https://sass-lang.com/documentation/values/lists)** | capturing parent selectors | `()`    |
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`$selectors`|**[List](https://sass-lang.com/documentation/values/lists)**|list of selectors|`()`|
+|`$capturing-selectors`|**[List](https://sass-lang.com/documentation/values/lists)**|capturing parent selectors|`()`|
 
 #### Examples
 
@@ -1098,10 +1098,10 @@ use settings of aspect ratio box
 
 #### Parameters
 
-| Name      | Type                                                             | Description | Default |
-| :-------- | :--------------------------------------------------------------- | :---------- | :------ |
-| `$width`  | **[Number](https://sass-lang.com/documentation/values/numbers)** | width       | `16`    |
-| `$height` | **[Number](https://sass-lang.com/documentation/values/numbers)** | height      | `9`     |
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`$width`|**[Number](https://sass-lang.com/documentation/values/numbers)**|width|`16`|
+|`$height`|**[Number](https://sass-lang.com/documentation/values/numbers)**|height|`9`|
 
 #### Examples
 
@@ -1136,16 +1136,16 @@ use settings of initialized box
 
 #### Parameters
 
-| Name          | Type                                                                                                                           | Description              | Default         |
-| :------------ | :----------------------------------------------------------------------------------------------------------------------------- | :----------------------- | :-------------- |
-| `$display`    | **[String](https://sass-lang.com/documentation/values/strings)**                                                               | setting for `display`    | `"block"`       |
-| `$overflow`   | **[String](https://sass-lang.com/documentation/values/strings)**                                                               | setting for `overflow`   | `null`          |
-| `$box-sizing` | **[String](https://sass-lang.com/documentation/values/strings)**                                                               | setting for `box-sizing` | `"content-box"` |
-| `$position`   | **[String](https://sass-lang.com/documentation/values/strings)**                                                               | setting for `position`   | `"relative"`    |
-| `$list-style` | **[String](https://sass-lang.com/documentation/values/strings)**                                                               | setting for `list-style` | `0`             |
-| `$margin`     | **[Number](https://sass-lang.com/documentation/values/numbers)**, **[List](https://sass-lang.com/documentation/values/lists)** | setting for `margin`     | `0`             |
-| `$padding`    | **[Number](https://sass-lang.com/documentation/values/numbers)**, **[List](https://sass-lang.com/documentation/values/lists)** | setting for `padding`    | `0`             |
-| `$border`     | **[Number](https://sass-lang.com/documentation/values/numbers)**, **[List](https://sass-lang.com/documentation/values/lists)** | setting for `border`     | `0`             |
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`$display`|**[String](https://sass-lang.com/documentation/values/strings)**|setting for `display`|`"block"`|
+|`$overflow`|**[String](https://sass-lang.com/documentation/values/strings)**|setting for `overflow`|`null`|
+|`$box-sizing`|**[String](https://sass-lang.com/documentation/values/strings)**|setting for `box-sizing`|`"content-box"`|
+|`$position`|**[String](https://sass-lang.com/documentation/values/strings)**|setting for `position`|`"relative"`|
+|`$list-style`|**[String](https://sass-lang.com/documentation/values/strings)**|setting for `list-style`|`0`|
+|`$margin`|**[Number](https://sass-lang.com/documentation/values/numbers)**, **[List](https://sass-lang.com/documentation/values/lists)**|setting for `margin`|`0`|
+|`$padding`|**[Number](https://sass-lang.com/documentation/values/numbers)**, **[List](https://sass-lang.com/documentation/values/lists)**|setting for `padding`|`0`|
+|`$border`|**[Number](https://sass-lang.com/documentation/values/numbers)**, **[List](https://sass-lang.com/documentation/values/lists)**|setting for `border`|`0`|
 
 #### Examples
 
@@ -1213,9 +1213,9 @@ use advanced settings of font
 
 #### Parameters
 
-| Name                | Type                                                             | Description                         | Default  |
-| :------------------ | :--------------------------------------------------------------- | :---------------------------------- | :------- |
-| `$feature-settings` | **[String](https://sass-lang.com/documentation/values/strings)** | setting for `font-feature-settings` | `"palt"` |
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`$feature-settings`|**[String](https://sass-lang.com/documentation/values/strings)**|setting for `font-feature-settings`|`"palt"`|
 
 #### Examples
 
@@ -1247,10 +1247,10 @@ use settings of initialized font
 
 #### Parameters
 
-| Name      | Type                                                                                                                               | Description               | Default    |
-| :-------- | :--------------------------------------------------------------------------------------------------------------------------------- | :------------------------ | :--------- |
-| `$style`  | **[String](https://sass-lang.com/documentation/values/strings)**                                                                   | setting for `font-style`  | `"normal"` |
-| `$weight` | **[String](https://sass-lang.com/documentation/values/strings)**, **[Number](https://sass-lang.com/documentation/values/numbers)** | setting for `font-weight` | `"normal"` |
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`$style`|**[String](https://sass-lang.com/documentation/values/strings)**|setting for `font-style`|`"normal"`|
+|`$weight`|**[String](https://sass-lang.com/documentation/values/strings)**, **[Number](https://sass-lang.com/documentation/values/numbers)**|setting for `font-weight`|`"normal"`|
 
 #### Examples
 
@@ -1282,10 +1282,10 @@ use settings of `font-family`
 
 #### Parameters
 
-| Name         | Type                                                                                                                           | Description                                                              | Default |
-| :----------- | :----------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------- | :------ |
-| `$value`     | **[List](https://sass-lang.com/documentation/values/lists)**, **[String](https://sass-lang.com/documentation/values/strings)** | setting for `font-family` (one of `"default"`, `"monospace"` or `(...)`) | `null`  |
-| `$important` | **[Boolean](https://sass-lang.com/documentation/values/booleans)**                                                             | set `!important` or not                                                  | `false` |
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`$value`|**[List](https://sass-lang.com/documentation/values/lists)**, **[String](https://sass-lang.com/documentation/values/strings)**|setting for `font-family` (one of `"default"`, `"monospace"` or `(...)`)|`null`|
+|`$important`|**[Boolean](https://sass-lang.com/documentation/values/booleans)**|set `!important` or not|`false`|
 
 #### Examples
 
@@ -1322,11 +1322,11 @@ use settings of font-size
 
 #### Parameters
 
-| Name         | Type                                                                                                                               | Description                                                                                                                           | Default |
-| :----------- | :--------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------ | :------ |
-| `$value`     | **[String](https://sass-lang.com/documentation/values/strings)**, **[Number](https://sass-lang.com/documentation/values/numbers)** | value of font-size (one of `"xsmall"`, `"small"`, `"medium"`, `"large"`, `"xlarge"`, `"2xlarge"`, `"3xlarge"`, `"4xlarge"` or number) | -       |
-| `$monospace` | **[Boolean](https://sass-lang.com/documentation/values/booleans)**                                                                 | font-family is monospace or not                                                                                                       | `false` |
-| `$important` | **[Boolean](https://sass-lang.com/documentation/values/booleans)**                                                                 | set !important or not                                                                                                                 | `false` |
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`$value`|**[String](https://sass-lang.com/documentation/values/strings)**, **[Number](https://sass-lang.com/documentation/values/numbers)**|value of font-size (one of `"xsmall"`, `"small"`, `"medium"`, `"large"`, `"xlarge"`, `"2xlarge"`, `"3xlarge"`, `"4xlarge"` or number)|-|
+|`$monospace`|**[Boolean](https://sass-lang.com/documentation/values/booleans)**|font-family is monospace or not|`false`|
+|`$important`|**[Boolean](https://sass-lang.com/documentation/values/booleans)**|set !important or not|`false`|
 
 #### Examples
 
@@ -1364,13 +1364,13 @@ use settings of initialized table
 
 #### Parameters
 
-| Name            | Type                                                                                                                               | Description                | Default   |
-| :-------------- | :--------------------------------------------------------------------------------------------------------------------------------- | :------------------------- | :-------- |
-| `$width`        | **[Number](https://sass-lang.com/documentation/values/numbers)**, **[String](https://sass-lang.com/documentation/values/strings)** | setting for `width`        | `"auto"`  |
-| `$margin`       | **[Number](https://sass-lang.com/documentation/values/numbers)**, **[List](https://sass-lang.com/documentation/values/lists)**     | setting for `margin`       | `0`       |
-| `$padding`      | **[Number](https://sass-lang.com/documentation/values/numbers)**, **[List](https://sass-lang.com/documentation/values/lists)**     | setting for `padding`      | `0`       |
-| `$border-style` | **[String](https://sass-lang.com/documentation/values/strings)**                                                                   | setting for `border-style` | `"solid"` |
-| `$border-width` | **[Number](https://sass-lang.com/documentation/values/numbers)**                                                                   | setting for `border-width` | `1px`     |
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`$width`|**[Number](https://sass-lang.com/documentation/values/numbers)**, **[String](https://sass-lang.com/documentation/values/strings)**|setting for `width`|`"auto"`|
+|`$margin`|**[Number](https://sass-lang.com/documentation/values/numbers)**, **[List](https://sass-lang.com/documentation/values/lists)**|setting for `margin`|`0`|
+|`$padding`|**[Number](https://sass-lang.com/documentation/values/numbers)**, **[List](https://sass-lang.com/documentation/values/lists)**|setting for `padding`|`0`|
+|`$border-style`|**[String](https://sass-lang.com/documentation/values/strings)**|setting for `border-style`|`"solid"`|
+|`$border-width`|**[Number](https://sass-lang.com/documentation/values/numbers)**|setting for `border-width`|`1px`|
 
 #### Examples
 
@@ -1407,12 +1407,12 @@ use settings of initialized table column
 
 #### Parameters
 
-| Name            | Type                                                                                                                           | Description                | Default   |
-| :-------------- | :----------------------------------------------------------------------------------------------------------------------------- | :------------------------- | :-------- |
-| `$margin`       | **[Number](https://sass-lang.com/documentation/values/numbers)**, **[List](https://sass-lang.com/documentation/values/lists)** | setting for `margin`       | `0`       |
-| `$padding`      | **[Number](https://sass-lang.com/documentation/values/numbers)**, **[List](https://sass-lang.com/documentation/values/lists)** | setting for `padding`      | `0`       |
-| `$border-style` | **[String](https://sass-lang.com/documentation/values/strings)**                                                               | setting for `border-style` | `"solid"` |
-| `$border-width` | **[Number](https://sass-lang.com/documentation/values/numbers)**                                                               | setting for `border-width` | `1px`     |
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`$margin`|**[Number](https://sass-lang.com/documentation/values/numbers)**, **[List](https://sass-lang.com/documentation/values/lists)**|setting for `margin`|`0`|
+|`$padding`|**[Number](https://sass-lang.com/documentation/values/numbers)**, **[List](https://sass-lang.com/documentation/values/lists)**|setting for `padding`|`0`|
+|`$border-style`|**[String](https://sass-lang.com/documentation/values/strings)**|setting for `border-style`|`"solid"`|
+|`$border-width`|**[Number](https://sass-lang.com/documentation/values/numbers)**|setting for `border-width`|`1px`|
 
 #### Examples
 
@@ -1448,16 +1448,16 @@ use settings of initialized text
 
 #### Parameters
 
-| Name               | Type                                                                                                                               | Description                   | Default                |
-| :----------------- | :--------------------------------------------------------------------------------------------------------------------------------- | :---------------------------- | :--------------------- |
-| `$letter-spacing`  | **[Number](https://sass-lang.com/documentation/values/numbers)**                                                                   | setting for `letter-spacing`  | `$unit-letter-spacing` |
-| `$line-height`     | **[Number](https://sass-lang.com/documentation/values/numbers)**, **[String](https://sass-lang.com/documentation/values/strings)** | setting for `line-height`     | `$unit-line-height`    |
-| `$text-align`      | **[String](https://sass-lang.com/documentation/values/strings)**                                                                   | setting for `text-align`      | `"left"`               |
-| `$text-decoration` | **[String](https://sass-lang.com/documentation/values/strings)**                                                                   | setting for `text-decoration` | `"none"`               |
-| `$text-indent`     | **[Number](https://sass-lang.com/documentation/values/numbers)**                                                                   | setting for `text-indent`     | `0`                    |
-| `$white-space`     | **[String](https://sass-lang.com/documentation/values/strings)**                                                                   | setting for `white-space`     | `"normal"`             |
-| `$word-break`      | **[String](https://sass-lang.com/documentation/values/strings)**                                                                   | setting for `word-break`      | `"break-all"`          |
-| `$word-wrap`       | **[String](https://sass-lang.com/documentation/values/strings)**                                                                   | setting for `word-wrap`       | `"break-word"`         |
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`$letter-spacing`|**[Number](https://sass-lang.com/documentation/values/numbers)**|setting for `letter-spacing`|`$unit-letter-spacing`|
+|`$line-height`|**[Number](https://sass-lang.com/documentation/values/numbers)**, **[String](https://sass-lang.com/documentation/values/strings)**|setting for `line-height`|`$unit-line-height`|
+|`$text-align`|**[String](https://sass-lang.com/documentation/values/strings)**|setting for `text-align`|`"left"`|
+|`$text-decoration`|**[String](https://sass-lang.com/documentation/values/strings)**|setting for `text-decoration`|`"none"`|
+|`$text-indent`|**[Number](https://sass-lang.com/documentation/values/numbers)**|setting for `text-indent`|`0`|
+|`$white-space`|**[String](https://sass-lang.com/documentation/values/strings)**|setting for `white-space`|`"normal"`|
+|`$word-break`|**[String](https://sass-lang.com/documentation/values/strings)**|setting for `word-break`|`"break-all"`|
+|`$word-wrap`|**[String](https://sass-lang.com/documentation/values/strings)**|setting for `word-wrap`|`"break-word"`|
 
 #### Examples
 
