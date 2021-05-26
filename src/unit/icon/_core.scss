@@ -1,43 +1,46 @@
+@use "../../lib/mixin";
+@use "../../settings";
+
 /*
-#{$unit-prefix}-icon
+#{settings.$prefix}-icon
 
 component for icon.
 
 Weight: -1100
 
-Style guide: #{$unit-prefix}-icon
+Style guide: #{settings.$prefix}-icon
 */
 
 /*
 core
 
-core module of #{$unit-prefix}-icon
+core module of #{settings.$prefix}-icon
 
 Weight: -100
 
-Style guide: #{$unit-prefix}-icon.core
+Style guide: #{settings.$prefix}-icon.core
 */
 
 /*
 default style
 
-default style of #{$unit-prefix}-icon
+default style of #{settings.$prefix}-icon
 
 Weight: -100
 
-Markup: <span class="#{$unit-prefix}-icon"></span>
+Markup: <span class="#{settings.$prefix}-icon"></span>
 
-Style guide: #{$unit-prefix}-icon.core.base
+Style guide: #{settings.$prefix}-icon.core.base
 */
-.#{$unit-prefix}-icon {
-  @include use-box-base(
+.#{settings.$prefix}-icon { // stylelint-disable-line scss/selector-nest-combinators
+  @include mixin.use-box-base(
     $overflow: "hidden"
   );
-  @include use-text-base(
+  @include mixin.use-text-base(
     $text-indent: -100%
   );
-  @include use-font-base();
-  @include use-font-size(
+  @include mixin.use-font-base();
+  @include mixin.use-font-size(
     $value: "medium"
   );
 

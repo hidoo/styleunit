@@ -1,31 +1,33 @@
+@use "../../settings";
+
 /*
 direction
 
-direction modifiers of #{$unit-prefix}-icon
+direction modifiers of #{settings.$prefix}-icon
 
 Weight: -97
 
-Style guide: #{$unit-prefix}-icon.direction
+Style guide: #{settings.$prefix}-icon.direction
 */
 
 /*
 modifiers: direction
 
-builtin modifiers of direction for #{$unit-prefix}-icon
+builtin modifiers of direction for #{settings.$prefix}-icon
 
 Weight: -100
 
-Markup: <span class="#{$unit-prefix}-icon  #{$unit-prefix}-icon--type-arrow-light  {{modifier_class}}"></span>
-<span class="#{$unit-prefix}-icon  #{$unit-prefix}-icon--type-arrow-dark  {{modifier_class}}"></span>
+Markup: <span class="#{settings.$prefix}-icon  #{settings.$prefix}-icon--type-arrow-light  {{modifier_class}}"></span>
+<span class="#{settings.$prefix}-icon  #{settings.$prefix}-icon--type-arrow-dark  {{modifier_class}}"></span>
 
-#{$unit-prefix}-icon--direction-top - top
-#{$unit-prefix}-icon--direction-right - right
-#{$unit-prefix}-icon--direction-bottom - bottom
-#{$unit-prefix}-icon--direction-left - left
+#{settings.$prefix}-icon--direction-top - top
+#{settings.$prefix}-icon--direction-right - right
+#{settings.$prefix}-icon--direction-bottom - bottom
+#{settings.$prefix}-icon--direction-left - left
 
-Style guide: #{$unit-prefix}-icon.direction.builtin
+Style guide: #{settings.$prefix}-icon.direction.builtin
 */
-.#{$unit-prefix}-icon--direction {
+.#{settings.$prefix}-icon--direction { // stylelint-disable-line scss/selector-nest-combinators
   &-top {
     transform-origin: 50% 50%;
     transform: rotate(0);

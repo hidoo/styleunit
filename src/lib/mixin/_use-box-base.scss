@@ -3,6 +3,8 @@
 /// @group features
 ////
 
+@use "sass:meta";
+
 /// use settings of initialized box
 /// @param {String} $display ["block"] - setting for `display`
 /// @param {String} $overflow [null] - setting for `overflow`
@@ -40,12 +42,12 @@
   $border: 0
 ) {
   // set display property only if $display is valid string
-  @if type-of($display) == "string" and $display != "" {
+  @if meta.type-of($display) == "string" and $display != "" {
     display: #{$display};
   }
 
   // set overflow property only if $overflow is valid string
-  @if type-of($overflow) == "string" and $overflow != "" {
+  @if meta.type-of($overflow) == "string" and $overflow != "" {
     overflow: #{$overflow};
   }
 
@@ -53,7 +55,7 @@
   position: #{$position};
 
   // set list-style property only if $list-style is valid string
-  @if type-of($list-style) == "string" and $list-style != "" {
+  @if meta.type-of($list-style) == "string" and $list-style != "" {
     list-style: #{$list-style};
   }
 

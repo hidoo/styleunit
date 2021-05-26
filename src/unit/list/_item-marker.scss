@@ -1,40 +1,42 @@
+@use "../../settings";
+
 /*
 item-marker
 
-item-marker modifiers of #{$unit-prefix}-list
+item-marker modifiers of #{settings.$prefix}-list
 
 Weight: -98
 
-Style guide: #{$unit-prefix}-list.item-marker
+Style guide: #{settings.$prefix}-list.item-marker
 */
 
 /*
 modifiers: item-marker
 
-builtin modifiers of item-marker for #{$unit-prefix}-list
+builtin modifiers of item-marker for #{settings.$prefix}-list
 
 Weight: -100
 
 Markup: <!-- un ordered list -->
-<ul class="#{$unit-prefix}-list  #{$unit-prefix}-list--marker-circle-filled">
-  <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</li>
-  <li class="#{$unit-prefix}-list__item  {{modifier_class}}  #{$unit-prefix}-text" data-#{$unit-prefix}-list-item-marker="▸">Lorem ipsum dolor sit amet.</li>
-  <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</li>
+<ul class="#{settings.$prefix}-list  #{settings.$prefix}-list--marker-circle-filled">
+  <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.</li>
+  <li class="#{settings.$prefix}-list__item  {{modifier_class}}  #{settings.$prefix}-text" data-#{settings.$prefix}-list-item-marker="▸">Lorem ipsum dolor sit amet.</li>
+  <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.</li>
 </ul>
 <!-- ordered list -->
-<ol class="#{$unit-prefix}-list  #{$unit-prefix}-list--marker-numeric">
-  <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</li>
-  <li class="#{$unit-prefix}-list__item  {{modifier_class}}  #{$unit-prefix}-text" data-#{$unit-prefix}-list-item-marker="Ⅱ">Lorem ipsum dolor sit amet.</li>
-  <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</li>
+<ol class="#{settings.$prefix}-list  #{settings.$prefix}-list--marker-numeric">
+  <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.</li>
+  <li class="#{settings.$prefix}-list__item  {{modifier_class}}  #{settings.$prefix}-text" data-#{settings.$prefix}-list-item-marker="Ⅱ">Lorem ipsum dolor sit amet.</li>
+  <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.</li>
 </ol>
 
-#{$unit-prefix}-list__item--marker-none - no item-marker
-#{$unit-prefix}-list__item--marker-no-increment - no-increment item-marker
-#{$unit-prefix}-list__item--marker-custom - custom item-marker
+#{settings.$prefix}-list__item--marker-none - no item-marker
+#{settings.$prefix}-list__item--marker-no-increment - no-increment item-marker
+#{settings.$prefix}-list__item--marker-custom - custom item-marker
 
-Style guide: #{$unit-prefix}-list.item-marker.builtin
+Style guide: #{settings.$prefix}-list.item-marker.builtin
 */
-.#{$unit-prefix}-list__item--marker {
+.#{settings.$prefix}-list__item--marker { // stylelint-disable-line scss/selector-nest-combinators
   &-none {
     &::before {
       content: none !important;
@@ -46,7 +48,7 @@ Style guide: #{$unit-prefix}-list.item-marker.builtin
   }
 
   &-custom {
-    $attribute-name: "data-#{$unit-prefix}-list-item-marker";
+    $attribute-name: "data-#{settings.$prefix}-list-item-marker";
 
     &::before {
       content: attr(#{$attribute-name}) !important;

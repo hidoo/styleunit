@@ -1,0 +1,75 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group features
+////
+
+@use "sass:meta";
+@use "sass:string";
+@use "./define-placeholder" as *;
+@use "./use-font-family" as *;
+@use "./use-font-advanced-settings" as *;
+@use "../../settings";
+
+/// default list of units that applying font
+/// @access private
+/// @type List
+///
+$_default-font-applying-units: (
+  "icon",
+  "text",
+  "pict",
+  "button",
+  "table",
+  "document",
+  "input",
+  "toggle",
+  "select",
+) !default;
+
+/// bootstrap
+/// @param {Boolean} $enable-font-applying [true] enable font applying or not
+/// @param {Boolean} $enable-font-advanced-settings [true] enable font advanced settings or not
+/// @param {List} $font-applying-units [true] list of units that applying font
+///
+/// @example scss - scss inputs
+///   @include bootstrap();
+///
+@mixin bootstrap(
+  $enable-font-applying: true,
+  $enable-font-advanced-settings: true,
+  $font-applying-units: $_default-font-applying-units
+) {
+  // set base font size
+  @if settings.$font-enable-relative-size and meta.type-of(settings.$font-base-size) == "number" {
+    html {
+      font-size: settings.$font-base-size;
+    }
+  }
+
+  // apply font settings
+  @if $enable-font-applying {
+    $selector: string.unique-id();
+
+    @include define-placeholder($name: $selector) {
+      @include use-font-family($value: "default");
+
+      @if $enable-font-advanced-settings {
+        @include use-font-advanced-settings();
+      }
+
+      // for mobile browser
+      // + https://caniuse.com/#search=text-size-adjust
+      text-size-adjust: 100%;
+    }
+
+    // apply settings all units
+    @if meta.type-of($font-applying-units) == "list" {
+      @each $unit in $font-applying-units {
+        [class^="#{settings.$prefix}-#{$unit}"],
+        [class*=" #{settings.$prefix}-#{$unit}"] {
+          @extend %#{$selector};
+        }
+      }
+    }
+  }
+}

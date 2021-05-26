@@ -1,43 +1,33 @@
 /* eslint max-len: 0, no-magic-numbers: 0 */
 
 import assert from 'assert';
-import {eachTestCases} from 'test-util';
+import {eachTestCases, useSettingsWith} from '../util';
 
-describe('@mixin on-link(...)', () => {
-
-  /**
-   * wrapper
-   *
-   * @param {Object} options options
-   *   @param {String|null} options.additionalSelectors setting for additional-selectors
-   *   @param {String|null} options.capturingSelectors capturing parent selectors
-   * @return {String}
-   */
-  function wrapper(options = {}) {
-    const args = [
-      options.additionalSelectors || options.additionalSelectors === '' ? `$additional-selectors: ${options.additionalSelectors}` : false,
-      options.capturingSelectors || options.capturingSelectors === '' ? `$capturing-selectors: ${options.capturingSelectors}` : false
-    ];
-
-    return `
-@import "src/lib/function/merge-state-selectors";
-@import "src/lib/mixin/define-placeholder";
-@import "src/lib/mixin/on";
-@import "src/lib/mixin/on-link";
+/**
+ * wrapper
+ *
+ * @param {Array} args arguments
+ * @param {Array} settings settings of defaults
+ * @return {String}
+ */
+const wrapper = (args = [], settings = []) => `
+${useSettingsWith(settings)}
+@use "src/lib/mixin";
 
 .selector {
-  @include on-link(${args.filter((arg) => arg !== false).join(', ')}) {
+  @include mixin.on-link(${args.filter((arg) => arg !== false).join(', ')}) {
     font-size: 16px;
   };
 }
-    `;
-  }
+`;
+
+describe('@mixin on-link(...)', () => {
 
   it('should out with default selectors if argument is not set.', async () => {
     const cases = [
       {
-        params: [{}],
-        expected: '.selector:link, .selector:visited { font-size: 16px; }'
+        params: [[]],
+        expected: '.selector:visited,.selector:link{font-size:16px}'
       }
     ];
 
@@ -56,8 +46,10 @@ describe('@mixin on-link(...)', () => {
   it('should out with specified selectors if argument $additional-selectors is set.', async () => {
     const cases = [
       {
-        params: [{additionalSelectors: '(".is-link")'}],
-        expected: '.selector:link, .selector:visited, .selector.is-link { font-size: 16px; }'
+        params: [
+          ['$additional-selectors: (".is-link")']
+        ],
+        expected: '.selector.is-link,.selector:visited,.selector:link{font-size:16px}'
       }
     ];
 
@@ -73,11 +65,13 @@ describe('@mixin on-link(...)', () => {
     });
   });
 
-  it('should out capturing settings with specified selectors if argument $caputuring-selectors is set.', async () => {
+  it('should out capturing settings with specified selectors if argument $capturing-selectors is set.', async () => {
     const cases = [
       {
-        params: [{capturingSelectors: '("a", "button")'}],
-        expected: '.selector:link, .selector:visited, a:link .selector, a:visited .selector, button:link .selector, button:visited .selector { font-size: 16px; }'
+        params: [
+          ['$capturing-selectors: ("a", "button")']
+        ],
+        expected: 'button:visited .selector,button:link .selector,a:visited .selector,a:link .selector,.selector:visited,.selector:link{font-size:16px}'
       }
     ];
 

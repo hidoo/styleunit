@@ -1,37 +1,30 @@
 /* eslint max-len: 0, no-magic-numbers: 0 */
 
 import assert from 'assert';
-import {eachTestCases} from 'test-util';
+import {eachTestCases, useSettingsWith} from '../util';
 
-describe('@mixin use-box-aspect-ratio(...)', () => {
-
-  /**
-   * wrapper
-   *
-   * @param {Object} options options
-   *   @param {String|null} options.width setting for width
-   *   @param {String|null} options.height setting for height
-   * @return {String}
-   */
-  function wrapper(options = {}) {
-    const args = [
-      options.width || options.width === '' ? `$width: ${options.width}` : false,
-      options.height || options.height === '' ? `$height: ${options.height}` : false
-    ];
-
-    return `
-@import "src/lib/mixin/use-box-aspect-ratio";
+/**
+ * wrapper
+ *
+ * @param {Array} args arguments
+ * @param {Array} settings settings of defaults
+ * @return {String}
+ */
+const wrapper = (args = [], settings = []) => `
+${useSettingsWith(settings)}
+@use "src/lib/mixin";
 
 .selector {
-  @include use-box-aspect-ratio(${args.filter((arg) => arg !== false).join(', ')});
+  @include mixin.use-box-aspect-ratio(${args.filter((arg) => arg !== false).join(', ')});
 }
-    `;
-  }
+`;
+
+describe('@mixin use-box-aspect-ratio(...)', () => {
 
   it('should out default properties if arguments not set.', async () => {
     const cases = [
       {
-        params: [{}],
+        params: [],
         expected:
 `.selector::before {
   content: "";
@@ -63,10 +56,12 @@ describe('@mixin use-box-aspect-ratio(...)', () => {
   it('should out properties with specified value if arguments is set.', async () => {
     const cases = [
       {
-        params: [{
-          width: '4',
-          height: '3'
-        }],
+        params: [
+          [
+            '$width: 4',
+            '$height: 3'
+          ]
+        ],
         expected:
 `.selector::before {
   content: "";
@@ -77,10 +72,12 @@ describe('@mixin use-box-aspect-ratio(...)', () => {
 }`
       },
       {
-        params: [{
-          width: '1',
-          height: '1'
-        }],
+        params: [
+          [
+            '$width: 1',
+            '$height: 1'
+          ]
+        ],
         expected:
 `.selector::before {
   content: "";

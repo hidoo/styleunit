@@ -3,6 +3,8 @@
 /// @group features
 ////
 
+@use "sass:meta";
+
 /// use settings of initialized font
 /// @param {String} $style ["normal"] - setting for `font-style`
 /// @param {String|Number} $weight ["normal"] - setting for `font-weight`
@@ -22,11 +24,11 @@
   $style: "normal",
   $weight: "normal"
 ) {
-  @if type-of($style) == "string" and $style != "" {
+  @if meta.type-of($style) == "string" and $style != "" {
     font-style: #{$style};
   }
 
-  @if (type-of($weight) == "string" and $weight != "") or type-of($weight) == "number" {
+  @if (meta.type-of($weight) == "string" and $weight != "") or meta.type-of($weight) == "number" {
     font-weight: #{$weight};
   }
 }

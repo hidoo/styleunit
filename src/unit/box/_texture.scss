@@ -1,37 +1,39 @@
+@use "../../settings";
+
 /*
 texture
 
-texture modifiers of #{$unit-prefix}-box
+texture modifiers of #{settings.$prefix}-box
 
 Weight: -98
 
-Style guide: #{$unit-prefix}-box.texture
+Style guide: #{settings.$prefix}-box.texture
 */
 
 /*
 modifiers: texture
 
-builtin modifiers of texture for #{$unit-prefix}-box
+builtin modifiers of texture for #{settings.$prefix}-box
 
 Weight: -100
 
-Markup: <div class="#{$unit-prefix}-box  {{modifier_class}}">
-  <div class="#{$unit-prefix}-box__container">
+Markup: <div class="#{settings.$prefix}-box  {{modifier_class}}">
+  <div class="#{settings.$prefix}-box__container">
     <!-- some unit -->
-    <p class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <figure class="#{$unit-prefix}-pict  #{$unit-prefix}-pict--fit-max-width  #{$unit-util-prefix}--float-left">
-      <img class="#{$unit-prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
+    <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <figure class="#{settings.$prefix}-pict  #{settings.$prefix}-pict--fit-max-width  #{settings.$util-prefix}--float-left">
+      <img class="#{settings.$prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
     </figure>
-    <p class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     <!-- some unit -->
   </div>
 </div>
 
-#{$unit-prefix}-box--texture-default - default texture
+#{settings.$prefix}-box--texture-default - default texture
 
-Style guide: #{$unit-prefix}-box.texture.builtin
+Style guide: #{settings.$prefix}-box.texture.builtin
 */
-.#{$unit-prefix}-box--texture {
+.#{settings.$prefix}-box--texture { // stylelint-disable-line scss/selector-nest-combinators
   &-default {
     // has no settings
   }

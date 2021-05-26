@@ -1,40 +1,44 @@
+@use "sass:map";
+@use "../../lib/mixin";
+@use "../../settings";
+
 /*
-#{$unit-prefix}-text
+#{settings.$prefix}-text
 
 component for device text.
 
 Weight: -1090
 
-Style guide: #{$unit-prefix}-text
+Style guide: #{settings.$prefix}-text
 */
 
 /*
 core
 
-core module of #{$unit-prefix}-text
+core module of #{settings.$prefix}-text
 
 Weight: -100
 
-Style guide: #{$unit-prefix}-text.core
+Style guide: #{settings.$prefix}-text.core
 */
 
 /*
 default style
 
-default style of #{$unit-prefix}-text
+default style of #{settings.$prefix}-text
 
 Weight: -100
 
-Markup: <h1 class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet.</h1>
-<p class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+Markup: <h1 class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet.</h1>
+<p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 
-Style guide: #{$unit-prefix}-text.core.base
+Style guide: #{settings.$prefix}-text.core.base
 */
-.#{$unit-prefix}-text {
-  @include use-box-base();
-  @include use-text-base();
-  @include use-font-base();
-  @include use-font-size(
+.#{settings.$prefix}-text { // stylelint-disable-line scss/selector-nest-combinators
+  @include mixin.use-box-base();
+  @include mixin.use-text-base();
+  @include mixin.use-font-base();
+  @include mixin.use-font-size(
     $value: "medium"
   );
 
@@ -45,26 +49,26 @@ Style guide: #{$unit-prefix}-text.core.base
 /*
 link style
 
-default style of link in #{$unit-prefix}-text
+default style of link in #{settings.$prefix}-text
 
 Weight: -99
 
-Markup: <h1 class="#{$unit-prefix}-text">Lorem ipsum dolor <a class="#{$unit-prefix}-text__link" href="javascript:;">sit amet</a>.</h1>
-<p class="#{$unit-prefix}-text">Lorem ipsum dolor <a class="#{$unit-prefix}-text__link" href="javascript:;">sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</a>.</p>
+Markup: <h1 class="#{settings.$prefix}-text">Lorem ipsum dolor <a class="#{settings.$prefix}-text__link" href="javascript:;">sit amet</a>.</h1>
+<p class="#{settings.$prefix}-text">Lorem ipsum dolor <a class="#{settings.$prefix}-text__link" href="javascript:;">sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</a>.</p>
 
-Style guide: #{$unit-prefix}-text.core.link
+Style guide: #{settings.$prefix}-text.core.link
 */
-.#{$unit-prefix}-text__link {
+.#{settings.$prefix}-text__link { // stylelint-disable-line scss/selector-nest-combinators
   display: inline;
   background-color: transparent;
 
-  @include on-link() {
+  @include mixin.on-link() {
     text-decoration: underline;
-    color: map-get($unit-link-color, "link");
+    color: map.get(settings.$link-color, "link");
   }
 
-  @include on-focus() {
+  @include mixin.on-focus() {
     text-decoration: none;
-    color: map-get($unit-link-color, "focus");
+    color: map.get(settings.$link-color, "focus");
   }
 }

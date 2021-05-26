@@ -1,39 +1,42 @@
+@use "sass:string";
+@use "../../settings";
+
 /*
 container-width
 
-container-width modifiers of #{$unit-prefix}-box
+container-width modifiers of #{settings.$prefix}-box
 
 Weight: -97
 
-Style guide: #{$unit-prefix}-box.container-width
+Style guide: #{settings.$prefix}-box.container-width
 */
 
 /*
 modifiers: container-width
 
-builtin modifiers of container-width for #{$unit-prefix}-box
+builtin modifiers of container-width for #{settings.$prefix}-box
 
 Weight: -100
 
-Markup: <div class="#{$unit-prefix}-box">
-  <div class="#{$unit-prefix}-box__container  {{modifier_class}}">
+Markup: <div class="#{settings.$prefix}-box">
+  <div class="#{settings.$prefix}-box__container  {{modifier_class}}">
     <!-- some unit -->
-    <p class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <figure class="#{$unit-prefix}-pict  #{$unit-prefix}-pict--fit-max-width  #{$unit-util-prefix}--float-left">
-      <img class="#{$unit-prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
+    <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <figure class="#{settings.$prefix}-pict  #{settings.$prefix}-pict--fit-max-width  #{settings.$util-prefix}--float-left">
+      <img class="#{settings.$prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
     </figure>
-    <p class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     <!-- some unit -->
   </div>
 </div>
 
-#{$unit-prefix}-box__container--width-auto - default container-width
-#{$unit-prefix}-box__container--width-fit - fit parent width
-#{$unit-prefix}-box__container--width-fit-safe-area - fit parent width that computed safe-are
+#{settings.$prefix}-box__container--width-auto - default container-width
+#{settings.$prefix}-box__container--width-fit - fit parent width
+#{settings.$prefix}-box__container--width-fit-safe-area - fit parent width that computed safe-are
 
-Style guide: #{$unit-prefix}-box.container-width.builtin
+Style guide: #{settings.$prefix}-box.container-width.builtin
 */
-.#{$unit-prefix}-box__container--width {
+.#{settings.$prefix}-box__container--width { // stylelint-disable-line scss/selector-nest-combinators
   &-auto {
     // has no settings
   }
@@ -55,8 +58,8 @@ Style guide: #{$unit-prefix}-box.container-width.builtin
     border-right: constant(safe-area-inset-right) solid transparent;
 
     // experimental: for iPhone X (iOS 11.2+)
-    border-left: unquote("env(safe-area-inset-left)") solid transparent;
-    border-right: unquote("env(safe-area-inset-right)") solid transparent;
+    border-left: string.unquote("env(safe-area-inset-left)") solid transparent;
+    border-right: string.unquote("env(safe-area-inset-right)") solid transparent;
 
     // stylelint-enable declaration-block-no-duplicate-properties
   }

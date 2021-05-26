@@ -1,3 +1,6 @@
+@use "../lib/mixin";
+@use "../settings";
+
 /*
 font-family
 
@@ -5,7 +8,7 @@ utilities that tweek of font-family
 
 Weight: -88
 
-Style guide: #{$unit-util-prefix}.font-family
+Style guide: #{settings.$util-prefix}.font-family
 */
 
 /*
@@ -16,24 +19,24 @@ builtin modifiers of font-family
 Weight: -100
 
 Markup: <!-- laten -->
-<p class="#{$unit-prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, <b class="#{$unit-prefix}-text  #{$unit-prefix}-text--inline-true  #{$unit-prefix}-text--weight-bold">consectetur adipiscing elit</b>, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<p class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, <b class="#{settings.$prefix}-text  #{settings.$prefix}-text--inline-true  #{settings.$prefix}-text--weight-bold">consectetur adipiscing elit</b>, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 <!-- japanese -->
-<p class="#{$unit-prefix}-text  {{modifier_class}}">あのイーハトーヴォのすきとおった風、<b class="#{$unit-prefix}-text  #{$unit-prefix}-text--inline-true  #{$unit-prefix}-text--weight-bold">夏でも底に冷たさをもつ青いそら</b>、うつくしい森で飾られたモーリオ市、郊外のぎらぎらひかる草の波。</p>
+<p class="#{settings.$prefix}-text  {{modifier_class}}">あのイーハトーヴォのすきとおった風、<b class="#{settings.$prefix}-text  #{settings.$prefix}-text--inline-true  #{settings.$prefix}-text--weight-bold">夏でも底に冷たさをもつ青いそら</b>、うつくしい森で飾られたモーリオ市、郊外のぎらぎらひかる草の波。</p>
 
-#{$unit-util-prefix}--font-family-default - default font family (**default**)
-#{$unit-util-prefix}--font-family-monospace - monospace font family
+#{settings.$util-prefix}--font-family-default - default font family (**default**)
+#{settings.$util-prefix}--font-family-monospace - monospace font family
 
-Style guide: #{$unit-util-prefix}.font-family.builtin
+Style guide: #{settings.$util-prefix}.font-family.builtin
 */
-.#{$unit-util-prefix}--font-family {
+.#{settings.$util-prefix}--font-family { // stylelint-disable-line scss/selector-nest-combinators
   &-default {
-    @include use-font-family($value: "default", $important: true);
+    @include mixin.use-font-family($value: "default", $important: true);
   }
 
   &-monospace {
-    @include use-font-family($value: "monospace", $important: true);
+    @include mixin.use-font-family($value: "monospace", $important: true);
 
     // not specify !important, because override as possible
-    @include use-font-size($value: "medium", $monospace: true);
+    @include mixin.use-font-size($value: "medium", $monospace: true);
   }
 }

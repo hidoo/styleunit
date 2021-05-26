@@ -3,18 +3,18 @@
 /// @group features
 ////
 
+@use "sass:meta";
+@use "../../settings";
+
 /// use settings of initialized text
-/// @param {Number} $letter-spacing [$unit-letter-spacing] - setting for `letter-spacing`
-/// @param {Number|String} $line-height [$unit-line-height] - setting for `line-height`
+/// @param {Number} $letter-spacing [settings.$letter-spacing] - setting for `letter-spacing`
+/// @param {Number|String} $line-height [settings.$line-height] - setting for `line-height`
 /// @param {String} $text-align ["left"] - setting for `text-align`
 /// @param {String} $text-decoration ["none"] - setting for `text-decoration`
 /// @param {Number} $text-indent [0] - setting for `text-indent`
 /// @param {String} $white-space ["normal"] - setting for `white-space`
 /// @param {String} $word-break ["break-all"] - setting for `word-break`
 /// @param {String} $word-wrap ["break-word"] - setting for `word-wrap`
-///
-/// @require {variable} unit-letter-spacing
-/// @require {variable} unit-line-height
 ///
 /// @example scss - scss inputs
 ///   .selector {
@@ -45,25 +45,25 @@
 ) {
   // normalize $letter-spacing
   @if not $letter-spacing {
-    @if global-variable-exists("unit-letter-spacing") and $unit-letter-spacing {
-      $letter-spacing: $unit-letter-spacing;
+    @if meta.type-of(settings.$letter-spacing) == "number" {
+      $letter-spacing: settings.$letter-spacing;
     }
     @else {
       $letter-spacing: 0.04em;
 
-      @warn "@mixin use-text-base: $letter-spacing set #{$letter-spacing}, bacause global variable $unit-letter-spacing is undefined.";
+      @warn "@mixin use-text-base: $letter-spacing set #{$letter-spacing}, bacause settings.$letter-spacing is not number.";
     }
   }
 
   // normalize $line-height
   @if not $line-height {
-    @if global-variable-exists("unit-line-height") and $unit-line-height {
-      $line-height: $unit-line-height;
+    @if meta.type-of(settings.$line-height) == "number" {
+      $line-height: settings.$line-height;
     }
     @else {
       $line-height: 1.5;
 
-      @warn "@mixin use-text-base: $line-height set #{$line-height}, bacause global variable $unit-line-height is undefined.";
+      @warn "@mixin use-text-base: $line-height set #{$line-height}, bacause settings.$line-height is not number.";
     }
   }
 
@@ -74,17 +74,17 @@
   text-indent: #{$text-indent};
 
   // set white-space property only if $white-space is valid string
-  @if type-of($white-space) == "string" and $white-space != "" {
+  @if meta.type-of($white-space) == "string" and $white-space != "" {
     white-space: #{$white-space};
   }
 
   // set word-break property only if $word-break is valid string
-  @if type-of($word-break) == "string" and $word-break != "" {
+  @if meta.type-of($word-break) == "string" and $word-break != "" {
     word-break: #{$word-break}; // stylelint-disable-line plugin/no-unsupported-browser-features
   }
 
   // set word-wrap property only if $word-wrap is valid string
-  @if type-of($word-wrap) == "string" and $word-wrap != "" {
+  @if meta.type-of($word-wrap) == "string" and $word-wrap != "" {
     word-wrap: #{$word-wrap};
   }
 }

@@ -1,40 +1,36 @@
-/* eslint max-len: 0, no-magic-numbers: 0 */
+/* eslint max-len: off, no-magic-numbers: off */
 
 import assert from 'assert';
-import {eachTestCases, normalizeGlobalSettings} from 'test-util';
+import {eachTestCases, useSettingsWith} from '../util';
+
+/**
+ * wrapper
+ *
+ * @param {Array} args arguments
+ * @param {Array} settings settings of defaults
+ * @return {String}
+ */
+const wrapper = (args = [], settings = []) => `
+${useSettingsWith(settings)}
+@use "src/lib/function";
+
+.selector {
+  $values: function.merge-state-selectors(${args.filter((arg) => arg !== false).join(', ')});
+
+  @each $value in $values {
+    content: $value;
+  }
+}
+`;
 
 describe('@function merge-state-selectors($type, $additional-selectors)', () => {
 
-  /**
-   * wrapper
-   *
-   * @param {String|null} type font size
-   * @param {String|null} additionalSelectors font size
-   * @param {Object} globalSettings global settings
-   * @return {String}
-   */
-  function wrapper(type, additionalSelectors, globalSettings = {}) {
-    const args = [
-      type || type === '' ? `$type: ${type}` : false,
-      additionalSelectors || additionalSelectors === '' ? `$additional-selectors: ${additionalSelectors}` : false
-    ];
-
-    return `
-${normalizeGlobalSettings(globalSettings)}
-@import "src/lib/function/merge-state-selectors";
-
-p {
-  content: #{merge-state-selectors(${args.filter((arg) => arg !== false).join(', ')})};
-}
-    `;
-  }
-
   it('should throw error if argument "$type" is not one of type "link", focus", "disabled" or "current".', async () => {
     const cases = [
-      {params: ['null']},
-      {params: ['false']},
-      {params: ['#000']},
-      {params: ['#hoge']}
+      {params: [['$type: null']]},
+      {params: [['$type: false']]},
+      {params: [['$type: #000']]},
+      {params: [['$type: hoge']]}
     ];
 
     await eachTestCases(cases, wrapper, ({error}, {resolve}) => {
@@ -46,24 +42,34 @@ p {
   it('should return merged selectors if argument "$type" is valid.', async () => {
     const cases = [
       {
-        params: ['"link"'],
-        expected: 'p { content: :link :visited; }'
+        params: [
+          ['$type: "link"']
+        ],
+        expected: '.selector{content:":link";content:":visited"}'
       },
       {
-        params: ['"focus"'],
-        expected: 'p { content: :hover :focus .is-focus; }'
+        params: [
+          ['$type: "focus"']
+        ],
+        expected: '.selector{content:":hover";content:":focus";content:".is-focus"}'
       },
       {
-        params: ['"selected"'],
-        expected: 'p { content: :checked .is-selected; }'
+        params: [
+          ['$type: "selected"']
+        ],
+        expected: '.selector{content:":checked";content:".is-selected"}'
       },
       {
-        params: ['"disabled"'],
-        expected: 'p { content: :disabled .is-disabled; }'
+        params: [
+          ['$type: "disabled"']
+        ],
+        expected: '.selector{content:":disabled";content:".is-disabled"}'
       },
       {
-        params: ['"current"'],
-        expected: 'p { content: .is-current; }'
+        params: [
+          ['$type: "current"']
+        ],
+        expected: '.selector{content:".is-current"}'
       }
     ];
 
@@ -79,22 +85,34 @@ p {
     });
   });
 
-  it('should return merged selectors without global settings if global variable is not defined.', async () => {
+  it('should return merged selectors without default value if variable in defaults is not set.', async () => {
     const cases = [
       {
-        params: ['"focus"', null, {stateSelectorsFocus: null}],
-        expected: 'p { content: :hover :focus; }'
+        params: [
+          ['$type: "focus"'],
+          ['$selector-focus: ""']
+        ],
+        expected: '.selector{content:":hover";content:":focus"}'
       },
       {
-        params: ['"selected"', null, {stateSelectorsSelected: null}],
-        expected: 'p { content: :checked; }'
+        params: [
+          ['$type: "selected"'],
+          ['$selector-selected: ""']
+        ],
+        expected: '.selector{content:":checked"}'
       },
       {
-        params: ['"disabled"', null, {stateSelectorsDisabled: null}],
-        expected: 'p { content: :disabled; }'
+        params: [
+          ['$type: "disabled"'],
+          ['$selector-disabled: ""']
+        ],
+        expected: '.selector{content:":disabled"}'
       },
       {
-        params: ['"current"', null, {stateSelectorsCurrent: null}],
+        params: [
+          ['$type: "current"'],
+          ['$selector-current: ""']
+        ],
         expected: ''
       }
     ];
@@ -114,24 +132,49 @@ p {
   it('should return merged selectors if argument "$additional-selectors" is set.', async () => {
     const cases = [
       {
-        params: ['"link"', '(".is-hoge")'],
-        expected: 'p { content: :link :visited .is-hoge; }'
+        params: [
+          [
+            '$type: "link"',
+            '$additional-selectors: (".is-hoge")'
+          ]
+        ],
+        expected: '.selector{content:":link";content:":visited";content:".is-hoge"}'
       },
       {
-        params: ['"focus"', '(".is-hoge")'],
-        expected: 'p { content: :hover :focus .is-focus .is-hoge; }'
+        params: [
+          [
+            '$type: "focus"',
+            '$additional-selectors: (".is-hoge")'
+          ]
+        ],
+        expected: '.selector{content:":hover";content:":focus";content:".is-focus";content:".is-hoge"}'
       },
       {
-        params: ['"selected"', '(".is-hoge")'],
-        expected: 'p { content: :checked .is-selected .is-hoge; }'
+        params: [
+          [
+            '$type: "selected"',
+            '$additional-selectors: (".is-hoge")'
+          ]
+        ],
+        expected: '.selector{content:":checked";content:".is-selected";content:".is-hoge"}'
       },
       {
-        params: ['"disabled"', '(".is-hoge")'],
-        expected: 'p { content: :disabled .is-disabled .is-hoge; }'
+        params: [
+          [
+            '$type: "disabled"',
+            '$additional-selectors: (".is-hoge")'
+          ]
+        ],
+        expected: '.selector{content:":disabled";content:".is-disabled";content:".is-hoge"}'
       },
       {
-        params: ['"current"', '(".is-hoge")'],
-        expected: 'p { content: .is-current .is-hoge; }'
+        params: [
+          [
+            '$type: "current"',
+            '$additional-selectors: (".is-hoge")'
+          ]
+        ],
+        expected: '.selector{content:".is-current";content:".is-hoge"}'
       }
     ];
 

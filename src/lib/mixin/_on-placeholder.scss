@@ -3,6 +3,19 @@
 /// @group features
 ////
 
+@use "../function";
+
+/// selectors
+/// @access private
+/// @type List
+///
+$_selectors: (
+  "::-webkit-input-placeholder",
+  "::-moz-placeholder",
+  ":-ms-input-placeholder",
+  ":placeholder-shown",
+) !default;
+
 /// wrappper of `:placeholder-shown`
 ///
 /// @example scss - scss inputs
@@ -27,14 +40,7 @@
 ///   }
 ///
 @mixin on-placeholder() {
-  $selectors: (
-    "::-webkit-input-placeholder",
-    "::-moz-placeholder",
-    ":-ms-input-placeholder",
-    ":placeholder-shown"
-  );
-
-  @each $selector in $selectors {
+  @each $selector in $_selectors {
     &#{$selector} {
       @content;
     }

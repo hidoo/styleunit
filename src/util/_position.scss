@@ -1,3 +1,6 @@
+@use "../lib/mixin";
+@use "../settings";
+
 /*
 position
 
@@ -5,7 +8,7 @@ utilities that tweek of position
 
 Weight: -93
 
-Style guide: #{$unit-util-prefix}.position
+Style guide: #{settings.$util-prefix}.position
 */
 
 /*
@@ -19,40 +22,40 @@ Markup: <div style="position:relative; padding:50px;">
   <div class="{{modifier_class}}" style="position:relative; width:50px; height:50px; background:#999;"></div>
 </div>
 
-#{$unit-util-prefix}--position-top-0 - top 0px
-#{$unit-util-prefix}--position-top-60- - top -60px
-#{$unit-util-prefix}--position-top-60 - top 60px
-#{$unit-util-prefix}--position-right-0 - right 0px
-#{$unit-util-prefix}--position-right-60- - right -60px
-#{$unit-util-prefix}--position-right-60 - right 60px
-#{$unit-util-prefix}--position-bottom-0 - bottom 0px
-#{$unit-util-prefix}--position-bottom-60- - bottom -60px
-#{$unit-util-prefix}--position-bottom-60 - bottom 60px
-#{$unit-util-prefix}--position-left-0 - left 0px
-#{$unit-util-prefix}--position-left-60- - left -60px
-#{$unit-util-prefix}--position-left-60 - left 60px
-#{$unit-util-prefix}--position-all-0 - all 0px
-#{$unit-util-prefix}--position-all-60- - all -60px
-#{$unit-util-prefix}--position-all-60 - all 60px
-#{$unit-util-prefix}--position-vertical-0 - vertical 0px
-#{$unit-util-prefix}--position-vertical-60- - vertical -60px
-#{$unit-util-prefix}--position-vertical-60 - vertical 60px
-#{$unit-util-prefix}--position-horizontal-0 - horizontal 0px
-#{$unit-util-prefix}--position-horizontal-60- - horizontal -60px
-#{$unit-util-prefix}--position-horizontal-60 - horizontal 60px
+#{settings.$util-prefix}--position-top-0 - top 0px
+#{settings.$util-prefix}--position-top-60- - top -60px
+#{settings.$util-prefix}--position-top-60 - top 60px
+#{settings.$util-prefix}--position-right-0 - right 0px
+#{settings.$util-prefix}--position-right-60- - right -60px
+#{settings.$util-prefix}--position-right-60 - right 60px
+#{settings.$util-prefix}--position-bottom-0 - bottom 0px
+#{settings.$util-prefix}--position-bottom-60- - bottom -60px
+#{settings.$util-prefix}--position-bottom-60 - bottom 60px
+#{settings.$util-prefix}--position-left-0 - left 0px
+#{settings.$util-prefix}--position-left-60- - left -60px
+#{settings.$util-prefix}--position-left-60 - left 60px
+#{settings.$util-prefix}--position-all-0 - all 0px
+#{settings.$util-prefix}--position-all-60- - all -60px
+#{settings.$util-prefix}--position-all-60 - all 60px
+#{settings.$util-prefix}--position-vertical-0 - vertical 0px
+#{settings.$util-prefix}--position-vertical-60- - vertical -60px
+#{settings.$util-prefix}--position-vertical-60 - vertical 60px
+#{settings.$util-prefix}--position-horizontal-0 - horizontal 0px
+#{settings.$util-prefix}--position-horizontal-60- - horizontal -60px
+#{settings.$util-prefix}--position-horizontal-60 - horizontal 60px
 
-Style guide: #{$unit-util-prefix}.position.builtin
+Style guide: #{settings.$util-prefix}.position.builtin
 */
-.#{$unit-util-prefix}--position {
-  $values: (
-    0,
-    5px, 10px, 15px, 20px, 25px, 30px, 35px, 40px, 45px, 50px, 55px, 60px,
-    -5px, -10px, -15px, -20px, -25px, -30px, -35px, -40px, -45px, -50px, -55px, -60px
+.#{settings.$util-prefix}--position { // stylelint-disable-line scss/selector-nest-combinators
+  // each by directions
+  @include mixin.define-sizes-in-directions(
+    $type: "position",
+    $values: settings.$util-position-values
   );
 
-  // each by directions
-  @include define-sizes-in-directions($type: "position", $values: $values);
-
   // each by direction groups
-  @include define-sizes-in-direction-groups($type: "position", $values: $values);
+  @include mixin.define-sizes-in-direction-groups(
+    $type: "position",
+    $values: settings.$util-position-values
+  );
 }

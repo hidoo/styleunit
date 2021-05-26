@@ -3,11 +3,55 @@
 /// @group features
 ////
 
+@use "sass:list";
+@use "sass:map";
+@use "sass:math";
+@use "sass:meta";
+@use "sass:selector";
+@use "../function";
+
+/// supported types
+/// @access private
+/// @type List
+///
+$_supported-types: (
+  "margin",
+  "padding",
+  "position",
+  "border",
+) !default;
+
+/// direction groups
+/// @access private
+/// @type List
+///
+$_direction-groups: (
+  vertical,
+  horizontal,
+  all,
+) !default;
+
+/// default border size
+/// @access private
+/// @type Number
+///
+$_default-border-size: 1px !default;
+
+/// default border style
+/// @access private
+/// @type String
+///
+$_default-border-style: solid !default;
+
+/// default border color
+/// @access private
+/// @type Color
+///
+$_default-border-color: #000 !default;
+
 /// define sizes in direction groups
 /// @param {String} $type ["margin"] - type of options (one of `"margin"`, `"padding"`, `"position"` or `"border"`)
 /// @param {List} $values [()] list of value
-///
-/// @require {function} ununit
 ///
 /// @example scss - scss inputs
 ///   .selector {
@@ -45,53 +89,48 @@
 ///   }
 ///
 @mixin define-sizes-in-direction-groups($type: "margin", $values: ()) {
-  @if not function-exists("ununit") {
-    @error "@function ununit is not imported.";
-  }
-
-  @if type-of($type) != "string" or not index(("margin", "padding", "position", "border"), $type) {
-    @error "@mixin define-sizes-in-direction-groups: Argument $type is not one of margin, padding, position or border. (specified: #{inspect($type)})";
+  @if type-of($type) != "string" or not list.index($_supported-types, $type) {
+    @error "@mixin define-sizes-in-direction-groups: Argument $type must be one of #{meta.inspect($_supported-types)}.";
   }
 
   @if type-of($values) != "list" {
-    @error "@mixin define-sizes-in-direction-groups: Argument $values is not list. (specified: #{inspect($values)})";
+    @error "@mixin define-sizes-in-direction-groups: Argument $values must be list.";
   }
 
-  $direction-groups: (vertical, horizontal, all);
   $property: if($type == "position", "", "#{$type}-");
 
-  @each $direction-group in $direction-groups {
+  @each $direction-group in $_direction-groups {
     @each $value in $values {
       @if $type == "border" {
-        @if type-of($value) != "map" or not map-has-key($value, "name") {
-          @error "@mixin define-sizes-in-direction-groups: Argument $values is not valid map. (specified: #{inspect($values)})";
+        @if meta.type-of($value) != "map" or not map.has-key($value, "name") {
+          @error "@mixin define-sizes-in-direction-groups: Argument $values is not valid list of map.";
         }
 
-        $name: map-get($value, "name");
-        $selector: selector-append(&, "-#{$direction-group}-#{$name}");
+        $name: map.get($value, "name");
+        $selector: selector.append(&, "-#{$direction-group}-#{$name}");
 
-        @if not map-has-key($value, "size") {
-          $value: map-merge($value, ("size": 1px));
+        @if not map.has-key($value, "size") {
+          $value: map.merge($value, ("size": $_default-border-size));
 
-          @warn "'size' of #{$selector} is not specified. Using default size.";
+          @warn "'size' of #{$selector} is not specified. Using '#{$_default-border-size}' by default.";
         }
 
-        @if not map-has-key($value, "style") {
-          $value: map-merge($value, ("style": solid));
+        @if not map.has-key($value, "style") {
+          $value: map.merge($value, ("style": $_default-border-style));
 
-          @warn "'style' of #{$selector} is not specified. Using default style.";
+          @warn "'style' of #{$selector} is not specified. Using '#{$_default-border-style}' by default.";
         }
 
-        @if not map-has-key($value, "color") {
-          $value: map-merge($value, ("color": #000));
+        @if not map.has-key($value, "color") {
+          $value: map.merge($value, ("color": $_default-border-color));
 
-          @warn "'color' of #{$selector} is not specified. Using default color.";
+          @warn "'color' of #{$selector} is not specified. Using '#{$_default-border-color}' by default .";
         }
 
-        $size: map-get($value, "size");
-        $style: map-get($value, "style");
-        $color: map-get($value, "color");
-        $pure-value: ununit($size);
+        $size: map.get($value, "size");
+        $style: map.get($value, "style");
+        $color: map.get($value, "color");
+        $pure-value: function.ununit($size);
         $one-with-unit: ($size * 0 + 1);
 
         @at-root {
@@ -114,11 +153,11 @@
         }
       }
       @else {
-        $pure-value: ununit($value);
+        $pure-value: function.ununit($value);
         $sign: if($value < 0, "-", "");
         $one-with-unit: ($value * 0 + 1);
 
-        &-#{$direction-group}-#{abs($pure-value)}#{$sign} {
+        &-#{$direction-group}-#{math.abs($pure-value)}#{$sign} {
           @if $direction-group == "vertical" {
             #{$property}top: $pure-value * $one-with-unit !important;
             #{$property}bottom: $pure-value * $one-with-unit !important;

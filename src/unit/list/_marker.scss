@@ -1,59 +1,63 @@
+@use "sass:string";
+@use "../../lib/mixin";
+@use "../../settings";
+
 /*
 marker
 
-marker modifiers of #{$unit-prefix}-list
+marker modifiers of #{settings.$prefix}-list
 
 Weight: -99
 
-Style guide: #{$unit-prefix}-list.marker
+Style guide: #{settings.$prefix}-list.marker
 */
 
 /*
 modifiers: marker
 
-builtin modifiers of marker for #{$unit-prefix}-list
+builtin modifiers of marker for #{settings.$prefix}-list
 
 Weight: -100
 
 Markup: <!-- un ordered list -->
-<ul class="#{$unit-prefix}-list  {{modifier_class}}">
-  <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</li>
-  <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.
-    <ul class="#{$unit-prefix}-list  {{modifier_class}}">
-      <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</li>
-      <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+<ul class="#{settings.$prefix}-list  {{modifier_class}}">
+  <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.</li>
+  <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.
+    <ul class="#{settings.$prefix}-list  {{modifier_class}}">
+      <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.</li>
+      <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
     </ul>
   </li>
 </ul>
 <!-- ordered list -->
-<ol class="#{$unit-prefix}-list  {{modifier_class}}">
-  <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</li>
-  <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.
-    <ol class="#{$unit-prefix}-list  {{modifier_class}}">
-      <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</li>
-      <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+<ol class="#{settings.$prefix}-list  {{modifier_class}}">
+  <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.</li>
+  <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.
+    <ol class="#{settings.$prefix}-list  {{modifier_class}}">
+      <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.</li>
+      <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
     </ol>
   </li>
 </ol>
 
-#{$unit-prefix}-list--marker-none - no marker (**default**)
-#{$unit-prefix}-list--marker-circle - circle marker
-#{$unit-prefix}-list--marker-circle-filled - circle marker (filled)
-#{$unit-prefix}-list--marker-square - square marker
-#{$unit-prefix}-list--marker-square-filled - square marker (filled)
-#{$unit-prefix}-list--marker-numeric - numeric marker
+#{settings.$prefix}-list--marker-none - no marker (**default**)
+#{settings.$prefix}-list--marker-circle - circle marker
+#{settings.$prefix}-list--marker-circle-filled - circle marker (filled)
+#{settings.$prefix}-list--marker-square - square marker
+#{settings.$prefix}-list--marker-square-filled - square marker (filled)
+#{settings.$prefix}-list--marker-numeric - numeric marker
 
-Style guide: #{$unit-prefix}-list.marker.builtin
+Style guide: #{settings.$prefix}-list.marker.builtin
 */
-.#{$unit-prefix}-list--marker {
+.#{settings.$prefix}-list--marker { // stylelint-disable-line scss/selector-nest-combinators
   &-none {
     // has no settings
   }
 
   &-circle {
-    $selector: unique-id();
+    $selector: string.unique-id();
 
-    @include define-placeholder($name: $selector) {
+    @include mixin.define-placeholder($name: $selector) {
       padding-left: 1.3em;
 
       &::before {
@@ -62,7 +66,7 @@ Style guide: #{$unit-prefix}-list.marker.builtin
       }
     }
 
-    > .#{$unit-prefix}-list__item {
+    > .#{settings.$prefix}-list__item { // stylelint-disable-line scss/selector-nest-combinators
       @extend %#{$selector};
 
       &::before {
@@ -71,7 +75,7 @@ Style guide: #{$unit-prefix}-list.marker.builtin
     }
 
     &-filled {
-      > .#{$unit-prefix}-list__item {
+      > .#{settings.$prefix}-list__item { // stylelint-disable-line scss/selector-nest-combinators
         @extend %#{$selector};
 
         &::before {
@@ -82,9 +86,9 @@ Style guide: #{$unit-prefix}-list.marker.builtin
   }
 
   &-square {
-    $selector: unique-id();
+    $selector: string.unique-id();
 
-    @include define-placeholder($name: $selector) {
+    @include mixin.define-placeholder($name: $selector) {
       padding-left: 1.3em;
 
       &::before {
@@ -93,7 +97,7 @@ Style guide: #{$unit-prefix}-list.marker.builtin
       }
     }
 
-    > .#{$unit-prefix}-list__item {
+    > .#{settings.$prefix}-list__item { // stylelint-disable-line scss/selector-nest-combinators
       @extend %#{$selector};
 
       &::before {
@@ -102,7 +106,7 @@ Style guide: #{$unit-prefix}-list.marker.builtin
     }
 
     &-filled {
-      > .#{$unit-prefix}-list__item {
+      > .#{settings.$prefix}-list__item { // stylelint-disable-line scss/selector-nest-combinators
         @extend %#{$selector};
 
         &::before {
@@ -113,11 +117,11 @@ Style guide: #{$unit-prefix}-list.marker.builtin
   }
 
   &-numeric {
-    $counter-name: "#{$unit-prefix}-list--marker-numeric";
+    $counter-name: "#{settings.$prefix}-list--marker-numeric";
 
     counter-reset: #{$counter-name};
 
-    > .#{$unit-prefix}-list__item {
+    > .#{settings.$prefix}-list__item { // stylelint-disable-line scss/selector-nest-combinators
       padding-left: 1.6em;
       counter-increment: #{$counter-name};
 

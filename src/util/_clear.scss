@@ -1,3 +1,5 @@
+@use "../settings";
+
 /*
 clear
 
@@ -5,7 +7,7 @@ utilities that tweek of clear
 
 Weight: -90
 
-Style guide: #{$unit-util-prefix}.clear
+Style guide: #{settings.$util-prefix}.clear
 */
 
 /*
@@ -16,19 +18,19 @@ builtin modifiers of clear
 Weight: -100
 
 Markup: <div style="position:relative; padding:50px;">
-  <div class="#{$unit-util-prefix}--float-left" style="position:relative; width:50px; height:50px; background:#ccc;"></div>
+  <div class="#{settings.$util-prefix}--float-left" style="position:relative; width:50px; height:50px; background:#ccc;"></div>
   <div class="{{modifier_class}}" style="position:relative; width:50px; height:50px; background:#999;"></div>
-  <div class="#{$unit-util-prefix}--float-right" style="position:relative; width:50px; height:50px; background:#ccc;"></div>
+  <div class="#{settings.$util-prefix}--float-right" style="position:relative; width:50px; height:50px; background:#ccc;"></div>
   <div class="{{modifier_class}}" style="position:relative; width:50px; height:50px; background:#999;"></div>
 </div>
 
-#{$unit-util-prefix}--clear-left - clear left side floating
-#{$unit-util-prefix}--clear-right - clear right side floating
-#{$unit-util-prefix}--clear-both - clear both floating
+#{settings.$util-prefix}--clear-left - clear left side floating
+#{settings.$util-prefix}--clear-right - clear right side floating
+#{settings.$util-prefix}--clear-both - clear both floating
 
-Style guide: #{$unit-util-prefix}.clear.builtin
+Style guide: #{settings.$util-prefix}.clear.builtin
 */
-.#{$unit-util-prefix}--clear {
+.#{settings.$util-prefix}--clear { // stylelint-disable-line scss/selector-nest-combinators
   &-left {
     clear: left !important;
   }

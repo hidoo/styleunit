@@ -1,32 +1,34 @@
+@use "../../settings";
+
 /*
 letter-spacing
 
-letter-spacing modifiers of #{$unit-prefix}-text
+letter-spacing modifiers of #{settings.$prefix}-text
 
 Weight: -93
 
-Style guide: #{$unit-prefix}-text.letter-spacing
+Style guide: #{settings.$prefix}-text.letter-spacing
 */
 
 /*
 modifiers: letter-spacing
 
-builtin modifiers of letter-spacing for #{$unit-prefix}-text
+builtin modifiers of letter-spacing for #{settings.$prefix}-text
 
 Weight: -100
 
-Markup: <h1 class="#{$unit-prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet.</h1>
-<p class="#{$unit-prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+Markup: <h1 class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet.</h1>
+<p class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 
-#{$unit-prefix}-text--letter-spacing-default - default letter-spacing (**default**)
-#{$unit-prefix}-text--letter-spacing-narrow - set narrow
-#{$unit-prefix}-text--letter-spacing-wide - set wide
+#{settings.$prefix}-text--letter-spacing-default - default letter-spacing (**default**)
+#{settings.$prefix}-text--letter-spacing-narrow - set narrow
+#{settings.$prefix}-text--letter-spacing-wide - set wide
 
-Style guide: #{$unit-prefix}-text.letter-spacing.builtin
+Style guide: #{settings.$prefix}-text.letter-spacing.builtin
 */
-.#{$unit-prefix}-text--letter-spacing {
+.#{settings.$prefix}-text--letter-spacing { // stylelint-disable-line scss/selector-nest-combinators
   &-default {
-    letter-spacing: $unit-letter-spacing;
+    letter-spacing: settings.$letter-spacing;
   }
 
   &-normal {

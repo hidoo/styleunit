@@ -1,53 +1,56 @@
+@use "../../lib/mixin";
+@use "../../settings";
+
 /*
-#{$unit-prefix}-button
+#{settings.$prefix}-button
 
 component for button.
 
 Weight: -1060
 
-Style guide: #{$unit-prefix}-button
+Style guide: #{settings.$prefix}-button
 */
 
 /*
 core
 
-core module of #{$unit-prefix}-button
+core module of #{settings.$prefix}-button
 
 Weight: -100
 
-Style guide: #{$unit-prefix}-button.core
+Style guide: #{settings.$prefix}-button.core
 */
 
 /*
 default style
 
-default style of #{$unit-prefix}-button
+default style of #{settings.$prefix}-button
 
 Weight: -100
 
 Markup: <!-- link element -->
-<a class="#{$unit-prefix}-button" href="javascript:;">
-  <span class="#{$unit-prefix}-button__label  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</span>
+<a class="#{settings.$prefix}-button" href="javascript:;">
+  <span class="#{settings.$prefix}-button__label  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.</span>
 </a>
 <!-- button element -->
-<button class="#{$unit-prefix}-button">
-  <span class="#{$unit-prefix}-button__label  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</span>
+<button class="#{settings.$prefix}-button">
+  <span class="#{settings.$prefix}-button__label  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.</span>
 </button>
 
-Style guide: #{$unit-prefix}-button.core.base
+Style guide: #{settings.$prefix}-button.core.base
 */
-.#{$unit-prefix}-button {
-  @include use-box-base(
+.#{settings.$prefix}-button { // stylelint-disable-line scss/selector-nest-combinators
+  @include mixin.use-box-base(
     $overflow: "hidden",
     $box-sizing: "border-box"
   );
-  @include use-text-base(
+  @include mixin.use-text-base(
     $letter-spacing: 0,
     $line-height: 1,
     $text-align: "center"
   );
-  @include use-font-base();
-  @include use-font-size(
+  @include mixin.use-font-base();
+  @include mixin.use-font-size(
     $value: "medium"
   );
 

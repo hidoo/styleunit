@@ -3,6 +3,8 @@
 /// @group features
 ////
 
+@use "sass:meta";
+
 /// use advanced settings of font
 /// @param {String} $feature-settings ["palt"] - setting for `font-feature-settings`
 ///
@@ -18,7 +20,7 @@
 ///   }
 ///
 @mixin use-font-advanced-settings($feature-settings: "palt") {
-  @if type-of($feature-settings) == "string" and $feature-settings != "" {
+  @if meta.type-of($feature-settings) == "string" and $feature-settings != "" {
     font-feature-settings: $feature-settings;
 
     // disable when browser is ie 10-11

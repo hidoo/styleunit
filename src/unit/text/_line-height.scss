@@ -1,33 +1,35 @@
+@use "../../settings";
+
 /*
 line-height
 
-line-height modifiers of #{$unit-prefix}-text
+line-height modifiers of #{settings.$prefix}-text
 
 Weight: -92
 
-Style guide: #{$unit-prefix}-text.line-height
+Style guide: #{settings.$prefix}-text.line-height
 */
 
 /*
 modifiers: line-height
 
-builtin modifiers of line-height for #{$unit-prefix}-text
+builtin modifiers of line-height for #{settings.$prefix}-text
 
 Weight: -100
 
-Markup: <h1 class="#{$unit-prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet.</h1>
-<p class="#{$unit-prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+Markup: <h1 class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet.</h1>
+<p class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 
-#{$unit-prefix}-text--line-height-default - set default (**default**)
-#{$unit-prefix}-text--line-height-normal - set normal
-#{$unit-prefix}-text--line-height-narrow - set narrow
-#{$unit-prefix}-text--line-height-wide - set wide
+#{settings.$prefix}-text--line-height-default - set default (**default**)
+#{settings.$prefix}-text--line-height-normal - set normal
+#{settings.$prefix}-text--line-height-narrow - set narrow
+#{settings.$prefix}-text--line-height-wide - set wide
 
-Style guide: #{$unit-prefix}-text.line-height.builtin
+Style guide: #{settings.$prefix}-text.line-height.builtin
 */
-.#{$unit-prefix}-text--line-height {
+.#{settings.$prefix}-text--line-height { // stylelint-disable-line scss/selector-nest-combinators
   &-default {
-    line-height: $unit-line-height;
+    line-height: settings.$line-height;
   }
 
   &-normal {
@@ -35,10 +37,10 @@ Style guide: #{$unit-prefix}-text.line-height.builtin
   }
 
   &-narrow {
-    line-height: $unit-line-height * 0.8;
+    line-height: settings.$line-height * 0.8;
   }
 
   &-wide {
-    line-height: $unit-line-height * 1.2;
+    line-height: settings.$line-height * 1.2;
   }
 }

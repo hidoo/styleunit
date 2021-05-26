@@ -1,39 +1,41 @@
+@use "../../settings";
+
 /*
 copy-protect
 
-copy-protect modifiers of #{$unit-prefix}-pict
+copy-protect modifiers of #{settings.$prefix}-pict
 
 Weight: -97
 
-Style guide: #{$unit-prefix}-pict.copy-protect
+Style guide: #{settings.$prefix}-pict.copy-protect
 */
 
 /*
 modifiers: copy-protect
 
-builtin modifiers of copy-protect for #{$unit-prefix}-pict
+builtin modifiers of copy-protect for #{settings.$prefix}-pict
 
 Weight: -100
 
 Markup: <!-- image element -->
-<figure class="#{$unit-prefix}-pict  {{modifier_class}}">
-  <img class="#{$unit-prefix}-pict__src" src="https://placehold.it/400x300.png" alt="" width="400" height="300" />
+<figure class="#{settings.$prefix}-pict  {{modifier_class}}">
+  <img class="#{settings.$prefix}-pict__src" src="https://via.placeholder.com/400x300" alt="" width="400" height="300" />
 </figure>
 <!-- image element (breaking) -->
-<figure class="#{$unit-prefix}-pict  {{modifier_class}}">
-  <img class="#{$unit-prefix}-pict__src" src="#" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." width="400" height="300" />
+<figure class="#{settings.$prefix}-pict  {{modifier_class}}">
+  <img class="#{settings.$prefix}-pict__src" src="#" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." width="400" height="300" />
 </figure>
 <!-- iframe player -->
-<figure class="#{$unit-prefix}-pict  {{modifier_class}}">
-  <iframe class="#{$unit-prefix}-pict__src" title="vimeo-player" src="https://player.vimeo.com/video/76979871" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+<figure class="#{settings.$prefix}-pict  {{modifier_class}}">
+  <iframe class="#{settings.$prefix}-pict__src" title="vimeo-player" src="https://player.vimeo.com/video/76979871" width="640" height="360" frameborder="0" allowfullscreen></iframe>
 </figure>
 
-#{$unit-prefix}-pict--copy-protect-false - disable copy protection (**default**)
-#{$unit-prefix}-pict--copy-protect-true - enable copy protection
+#{settings.$prefix}-pict--copy-protect-false - disable copy protection (**default**)
+#{settings.$prefix}-pict--copy-protect-true - enable copy protection
 
-Style guide: #{$unit-prefix}-pict.copy-protect.builtin
+Style guide: #{settings.$prefix}-pict.copy-protect.builtin
 */
-.#{$unit-prefix}-pict--copy-protect {
+.#{settings.$prefix}-pict--copy-protect { // stylelint-disable-line scss/selector-nest-combinators
   &-false {
     // has no settings
   }

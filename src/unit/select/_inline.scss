@@ -1,42 +1,44 @@
+@use "../../settings";
+
 /*
 inline
 
-inline modifiers of #{$unit-prefix}-select
+inline modifiers of #{settings.$prefix}-select
 
 Weight: -98
 
-Style guide: #{$unit-prefix}-select.inline
+Style guide: #{settings.$prefix}-select.inline
 */
 
 /*
 modifiers: inline
 
-builtin modifiers of inline for #{$unit-prefix}-select
+builtin modifiers of inline for #{settings.$prefix}-select
 
 Weight: -100
 
-Markup: <span class="#{$unit-prefix}-select  #{$unit-prefix}-select--theme-light  {{modifier_class}}">
-  <select class="#{$unit-prefix}-select__field" name="{{modifier_class}}">
+Markup: <span class="#{settings.$prefix}-select  #{settings.$prefix}-select--theme-light  {{modifier_class}}">
+  <select class="#{settings.$prefix}-select__field" name="{{modifier_class}}">
     <option value="">select...</option>
     <option value="option-1">Lorem ipsum dolor sit amet</option>
     <option value="option-2">Consectetur adipiscing elit</option>
   </select>
 </span>
 <!-- disabled -->
-<span class="#{$unit-prefix}-select  #{$unit-prefix}-select--theme-dark  {{modifier_class}}">
-  <select class="#{$unit-prefix}-select__field" name="{{modifier_class}}" disabled="disabled">
+<span class="#{settings.$prefix}-select  #{settings.$prefix}-select--theme-dark  {{modifier_class}}">
+  <select class="#{settings.$prefix}-select__field" name="{{modifier_class}}" disabled="disabled">
     <option value="">select...</option>
     <option value="option-1">Lorem ipsum dolor sit amet</option>
     <option value="option-2">Consectetur adipiscing elit</option>
   </select>
 </span>
 
-#{$unit-prefix}-select--inline-false - disable inline (**default**)
-#{$unit-prefix}-select--inline-true - enable inline
+#{settings.$prefix}-select--inline-false - disable inline (**default**)
+#{settings.$prefix}-select--inline-true - enable inline
 
-Style guide: #{$unit-prefix}-select.inline.builtin
+Style guide: #{settings.$prefix}-select.inline.builtin
 */
-.#{$unit-prefix}-select--inline {
+.#{settings.$prefix}-select--inline { // stylelint-disable-line scss/selector-nest-combinators
   &-false {
     // has no settings
   }

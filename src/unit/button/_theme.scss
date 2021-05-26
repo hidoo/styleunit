@@ -1,38 +1,44 @@
+@use "sass:map";
+@use "sass:meta";
+@use "sass:string";
+@use "../../lib/mixin";
+@use "../../settings";
+
 /*
 theme
 
-theme modifiers of #{$unit-prefix}-button
+theme modifiers of #{settings.$prefix}-button
 
 Weight: -99
 
-Style guide: #{$unit-prefix}-button.theme
+Style guide: #{settings.$prefix}-button.theme
 */
 
 /*
 modifiers: theme
 
-builtin modifiers of theme for #{$unit-prefix}-button
+builtin modifiers of theme for #{settings.$prefix}-button
 
 Weight: -100
 
 Markup: <!-- link element -->
-<a class="#{$unit-prefix}-button  {{modifier_class}}" href="javascript:;">
-  <span class="#{$unit-prefix}-button__label  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</span>
+<a class="#{settings.$prefix}-button  {{modifier_class}}" href="javascript:;">
+  <span class="#{settings.$prefix}-button__label  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.</span>
 </a>
 <!-- button element -->
-<button class="#{$unit-prefix}-button  {{modifier_class}}">
-  <span class="#{$unit-prefix}-button__label  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</span>
+<button class="#{settings.$prefix}-button  {{modifier_class}}">
+  <span class="#{settings.$prefix}-button__label  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.</span>
 </button>
 
-#{$unit-prefix}-button--theme-light - light theme
-#{$unit-prefix}-button--theme-dark - dark theme
+#{settings.$prefix}-button--theme-light - light theme
+#{settings.$prefix}-button--theme-dark - dark theme
 
-Style guide: #{$unit-prefix}-button.theme.builtin
+Style guide: #{settings.$prefix}-button.theme.builtin
 */
-.#{$unit-prefix}-button--theme {
-  $selector: unique-id();
+.#{settings.$prefix}-button--theme { // stylelint-disable-line scss/selector-nest-combinators
+  $selector: string.unique-id();
 
-  @include define-placeholder($name: $selector) {
+  @include mixin.define-placeholder($name: $selector) {
     padding: 10px;
     border-radius: 3px;
     transition-duration: 0.1s;
@@ -40,13 +46,13 @@ Style guide: #{$unit-prefix}-button.theme.builtin
     transition-timing-function: ease-out;
   }
 
-  @if global-variable-exists("unit-builtin-themes") {
-    @each $name, $theme in $unit-builtin-themes {
-      $color: map-get($theme, "color");
-      $background: map-get($theme, "background");
-      $background-focus: map-get($theme, "background-focus");
-      $border: map-get($theme, "border");
-      $border-focus: map-get($theme, "border-focus");
+  @if meta.type-of(settings.$builtin-themes) == "map" {
+    @each $name, $theme in settings.$builtin-themes {
+      $color: map.get($theme, "color");
+      $background: map.get($theme, "background");
+      $background-focus: map.get($theme, "background-focus");
+      $border: map.get($theme, "border");
+      $border-focus: map.get($theme, "border-focus");
 
       &-#{$name} {
         @extend %#{$selector};
@@ -55,7 +61,7 @@ Style guide: #{$unit-prefix}-button.theme.builtin
         background-color: $background;
         border: 1px solid $border;
 
-        @include on-focus($capturing-selectors: ("a", "button")) {
+        @include mixin.on-focus($capturing-selectors: ("a", "button")) {
           background-color: $background-focus;
           border-color: $border-focus;
         }

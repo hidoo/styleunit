@@ -1,3 +1,6 @@
+@use "../lib/mixin";
+@use "../settings";
+
 /*
 z-index
 
@@ -5,7 +8,7 @@ utilities that tweek of z-index
 
 Weight: -92
 
-Style guide: #{$unit-util-prefix}.z-index
+Style guide: #{settings.$util-prefix}.z-index
 */
 
 /*
@@ -21,15 +24,13 @@ Markup: <div style="position:relative; padding:50px;">
   <div style="position:absolute; width:50px; height:50px; line-height:50px; top:50%; left:50%; margin:0; color:#fff; background:#666; text-align:center; z-index:49">49</div>
 </div>
 
-#{$unit-util-prefix}--z-index-0 - 0 z-index
-#{$unit-util-prefix}--z-index-25 - 25 z-index
-#{$unit-util-prefix}--z-index-50 - 50 z-index
+#{settings.$util-prefix}--z-index-0 - 0 z-index
+#{settings.$util-prefix}--z-index-25 - 25 z-index
+#{settings.$util-prefix}--z-index-50 - 50 z-index
 
-Style guide: #{$unit-util-prefix}.z-index.builtin
+Style guide: #{settings.$util-prefix}.z-index.builtin
 */
-.#{$unit-util-prefix}--z-index {
-  $values: (0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50);
-
+.#{settings.$util-prefix}--z-index { // stylelint-disable-line scss/selector-nest-combinators
   // each by sizes
-  @include define-sizes($type: "z-index", $values: $values);
+  @include mixin.define-sizes($type: "z-index", $values: settings.$util-z-index-values);
 }

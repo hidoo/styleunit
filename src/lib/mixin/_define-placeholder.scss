@@ -3,11 +3,14 @@
 /// @group features
 ////
 
-/// defineded placeholders.
+@use "sass:list";
+@use "sass:meta";
+
+/// defined placeholders.
 /// @access private
 /// @type List
 ///
-$_unit-defineded-placeholders: (); // stylelint-disable-line scss/dollar-variable-default
+$_already-defined: () !default;
 
 /// define placeholder class.
 /// @param {String} $name - name of placeholder class
@@ -35,12 +38,15 @@ $_unit-defineded-placeholders: (); // stylelint-disable-line scss/dollar-variabl
 ///   }
 ///
 @mixin define-placeholder($name) {
-  @if type-of($name) != "string" {
-    @error "@mixin define-placeholder: Argument $name is not string.";
+  @if meta.type-of($name) != "string" or $name == "" {
+    @error "@mixin define-placeholder: Argument $name is not valid string.";
   }
 
   // define placeholder if not already defined
-  @if not index($_unit-defineded-placeholders, $name) {
+  @if list.index($_already-defined, $name) {
+    @warn "@mixin define-placeholder: '%#{$name}' placeholder is already defined and cannot be redefined.";
+  }
+  @else {
     @at-root {
       %#{$name} {
         @content;
@@ -48,6 +54,6 @@ $_unit-defineded-placeholders: (); // stylelint-disable-line scss/dollar-variabl
     }
 
     // cache defined placeholder
-    $_unit-defineded-placeholders: append($_unit-defineded-placeholders, $name) !global;
+    $_already-defined: list.append($_already-defined, $name) !global;
   }
 }

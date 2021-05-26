@@ -1,29 +1,31 @@
+@use "../../settings";
+
 /*
 weight
 
-weight modifiers of #{$unit-prefix}-text
+weight modifiers of #{settings.$prefix}-text
 
 Weight: -94
 
-Style guide: #{$unit-prefix}-text.weight
+Style guide: #{settings.$prefix}-text.weight
 */
 
 /*
 modifiers: weight
 
-builtin modifiers of weight for #{$unit-prefix}-text
+builtin modifiers of weight for #{settings.$prefix}-text
 
 Weight: -100
 
-Markup: <h1 class="#{$unit-prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet.</h1>
-<p class="#{$unit-prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+Markup: <h1 class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet.</h1>
+<p class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 
-#{$unit-prefix}-text--weight-normal - normal (**default**)
-#{$unit-prefix}-text--weight-bold - bold
+#{settings.$prefix}-text--weight-normal - normal (**default**)
+#{settings.$prefix}-text--weight-bold - bold
 
-Style guide: #{$unit-prefix}-text.weight.builtin
+Style guide: #{settings.$prefix}-text.weight.builtin
 */
-.#{$unit-prefix}-text--weight {
+.#{settings.$prefix}-text--weight { // stylelint-disable-line scss/selector-nest-combinators
   &-normal {
     font-weight: normal;
   }

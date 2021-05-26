@@ -1,35 +1,32 @@
 /* eslint max-len: 0, no-magic-numbers: 0 */
 
 import assert from 'assert';
-import {eachTestCases} from 'test-util';
+import {eachTestCases, useSettingsWith} from '../util';
+
+/**
+ * wrapper
+ *
+ * @param {Array} args arguments
+ * @param {Array} settings settings of defaults
+ * @return {String}
+ */
+const wrapper = (args = [], settings = []) => `
+${useSettingsWith(settings)}
+@use "src/lib/function";
+
+.selector {
+  content: function.ununit(${args.filter((arg) => arg !== false).join(', ')});
+}
+`;
 
 describe('@function ununit($number)', () => {
 
-  /**
-   * wrapper
-   *
-   * @param {Number} number font size
-   * @return {String}
-   */
-  function wrapper(number) {
-    const args = [
-      number || number === 0 ? `$number: ${number}` : false
-    ];
-
-    return `
-@import "src/lib/function/ununit";
-
-p {
-  content: ununit(${args.filter((arg) => arg !== false).join(',')});
-}
-    `;
-  }
-
   it('should throw error if argument "$number" is not valid.', async () => {
     const cases = [
-      {params: ['null']},
-      {params: ['false']},
-      {params: ['#000']}
+      {params: [[]]},
+      {params: [['$number: null']]},
+      {params: [['$number: false']]},
+      {params: [['$number: #000']]}
     ];
 
     await eachTestCases(cases, wrapper, ({error}, {resolve}) => {
@@ -41,16 +38,28 @@ p {
   it('should return as it if argument "$number" is number without unit.', async () => {
     const cases = [
       {
-        params: [0],
-        expected: 'p { content: 0; }'
+        params: [
+          [
+            '$number: 0'
+          ]
+        ],
+        expected: '.selector{content:0}'
       },
       {
-        params: [7],
-        expected: 'p { content: 7; }'
+        params: [
+          [
+            '$number: 7'
+          ]
+        ],
+        expected: '.selector{content:7}'
       },
       {
-        params: [14],
-        expected: 'p { content: 14; }'
+        params: [
+          [
+            '$number: 14'
+          ]
+        ],
+        expected: '.selector{content:14}'
       }
     ];
 
@@ -69,16 +78,28 @@ p {
   it('should return number without unit if argument "$number" is number with unit.', async () => {
     const cases = [
       {
-        params: ['0px'],
-        expected: 'p { content: 0; }'
+        params: [
+          [
+            '$number: 0px'
+          ]
+        ],
+        expected: '.selector{content:0}'
       },
       {
-        params: ['7px'],
-        expected: 'p { content: 7; }'
+        params: [
+          [
+            '$number: 7px'
+          ]
+        ],
+        expected: '.selector{content:7}'
       },
       {
-        params: ['14rem'],
-        expected: 'p { content: 14; }'
+        params: [
+          [
+            '$number: 14rem'
+          ]
+        ],
+        expected: '.selector{content:14}'
       }
     ];
 

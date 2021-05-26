@@ -1,43 +1,30 @@
 /* eslint max-len: 0, no-magic-numbers: 0 */
 
 import assert from 'assert';
-import {eachTestCases} from 'test-util';
+import {eachTestCases, useSettingsWith} from '../util';
 
-describe('@mixin use-table-base(...)', () => {
-
-  /**
-   * wrapper
-   *
-   * @param {Object} options options
-   *   @param {String|null} options.width setting for width
-   *   @param {String|null} options.margin setting for margin
-   *   @param {String|null} options.padding setting for padding
-   *   @param {String|null} options.borderStyle setting for border-style
-   *   @param {String|null} options.borderWidth setting for border-width
-   * @return {String}
-   */
-  function wrapper(options = {}) {
-    const args = [
-      options.width || options.width === '' ? `$width: ${options.width}` : false,
-      options.margin || options.margin === '' ? `$margin: ${options.margin}` : false,
-      options.padding || options.padding === '' ? `$padding: ${options.padding}` : false,
-      options.borderStyle || options.borderStyle === '' ? `$border-style: ${options.borderStyle}` : false,
-      options.borderWidth || options.borderWidth === '' ? `$border-width: ${options.borderWidth}` : false
-    ];
-
-    return `
-@import "src/lib/mixin/use-table-base";
+/**
+ * wrapper
+ *
+ * @param {Array} args arguments
+ * @param {Array} settings settings of defaults
+ * @return {String}
+ */
+const wrapper = (args = [], settings = []) => `
+${useSettingsWith(settings)}
+@use "src/lib/mixin";
 
 .selector {
-  @include use-table-base(${args.filter((arg) => arg !== false).join(', ')});
+  @include mixin.use-table-base(${args.filter((arg) => arg !== false).join(', ')});
 }
-    `;
-  }
+`;
+
+describe('@mixin use-table-base(...)', () => {
 
   it('should out default properties if arguments not set.', async () => {
     const cases = [
       {
-        params: [{}],
+        params: [[]],
         expected:
 `.selector {
   display: table;
@@ -71,13 +58,15 @@ describe('@mixin use-table-base(...)', () => {
   it('should out properties with specified value if arguments is set.', async () => {
     const cases = [
       {
-        params: [{
-          width: '100%',
-          margin: '0 auto',
-          padding: '10px',
-          borderStyle: 'dotted',
-          borderWidth: '2px'
-        }],
+        params: [
+          [
+            '$width: 100%',
+            '$margin: 0 auto',
+            '$padding: 10px',
+            '$border-style: dotted',
+            '$border-width: 2px'
+          ]
+        ],
         expected:
 `.selector {
   display: table;

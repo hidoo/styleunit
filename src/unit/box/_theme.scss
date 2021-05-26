@@ -1,42 +1,47 @@
+@use "sass:map";
+@use "sass:meta";
+@use "sass:selector";
+@use "../../settings";
+
 /*
 theme
 
-theme modifiers of #{$unit-prefix}-box
+theme modifiers of #{settings.$prefix}-box
 
 Weight: -99
 
-Style guide: #{$unit-prefix}-box.theme
+Style guide: #{settings.$prefix}-box.theme
 */
 
 /*
 modifiers: theme
 
-builtin modifiers of theme for #{$unit-prefix}-box
+builtin modifiers of theme for #{settings.$prefix}-box
 
 Weight: -100
 
-Markup: <div class="#{$unit-prefix}-box  {{modifier_class}}">
-  <div class="#{$unit-prefix}-box__container">
+Markup: <div class="#{settings.$prefix}-box  {{modifier_class}}">
+  <div class="#{settings.$prefix}-box__container">
     <!-- some unit -->
-    <p class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <figure class="#{$unit-prefix}-pict  #{$unit-prefix}-pict--fit-max-width  #{$unit-util-prefix}--float-left">
-      <img class="#{$unit-prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
+    <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <figure class="#{settings.$prefix}-pict  #{settings.$prefix}-pict--fit-max-width  #{settings.$util-prefix}--float-left">
+      <img class="#{settings.$prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
     </figure>
-    <p class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     <!-- some unit -->
   </div>
 </div>
 
-#{$unit-prefix}-box--theme-light - light theme
-#{$unit-prefix}-box--theme-dark - dark theme
+#{settings.$prefix}-box--theme-light - light theme
+#{settings.$prefix}-box--theme-dark - dark theme
 
-Style guide: #{$unit-prefix}-box.theme.builtin
+Style guide: #{settings.$prefix}-box.theme.builtin
 */
-.#{$unit-prefix}-box--theme {
-  @if global-variable-exists("unit-builtin-themes") {
-    @each $name, $theme in $unit-builtin-themes {
-      $color: map-get($theme, "color");
-      $background: map-get($theme, "background");
+.#{settings.$prefix}-box--theme { // stylelint-disable-line scss/selector-nest-combinators
+  @if meta.type-of(settings.$builtin-themes) == "map" {
+    @each $name, $theme in settings.$builtin-themes {
+      $color: map.get($theme, "color");
+      $background: map.get($theme, "background");
 
       &-#{$name} {
         color: $color;

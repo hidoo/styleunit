@@ -1,37 +1,30 @@
 /* eslint max-len: 0, no-magic-numbers: 0 */
 
 import assert from 'assert';
-import {eachTestCases, normalizeGlobalSettings} from 'test-util';
+import {eachTestCases, useSettingsWith} from '../util';
 
-describe('@mixin use-font-advanced-settings(...)', () => {
-
-  /**
-   * wrapper
-   *
-   * @param {Object} options options
-   *   @param {String|null} options.featureSettings setting for font-feature-settings
-   * @param {Object} globalSettings global settings
-   * @return {String}
-   */
-  function wrapper(options = {}, globalSettings = {}) {
-    const args = [
-      options.featureSettings || options.featureSettings === '' ? `$feature-settings: ${options.featureSettings}` : false
-    ];
-
-    return `
-${normalizeGlobalSettings(globalSettings)}
-@import "src/lib/mixin/use-font-advanced-settings";
+/**
+ * wrapper
+ *
+ * @param {Array} args arguments
+ * @param {Array} settings settings of defaults
+ * @return {String}
+ */
+const wrapper = (args = [], settings = []) => `
+${useSettingsWith(settings)}
+@use "src/lib/mixin";
 
 .selector {
-  @include use-font-advanced-settings(${args.filter((arg) => arg !== false).join(', ')});
+  @include mixin.use-font-advanced-settings(${args.filter((arg) => arg !== false).join(', ')});
 }
-    `;
-  }
+`;
+
+describe('@mixin use-font-advanced-settings(...)', () => {
 
   it('should out default properties if arguments not set.', async () => {
     const cases = [
       {
-        params: [{}],
+        params: [[]],
         expected:
 `.selector {
   font-feature-settings: "palt";
@@ -60,9 +53,9 @@ ${normalizeGlobalSettings(globalSettings)}
   it('should out properties with specified value if arguments is set.', async () => {
     const cases = [
       {
-        params: [{
-          featureSettings: '"pkna"'
-        }],
+        params: [
+          ['$feature-settings: "pkna"']
+        ],
         expected:
 `.selector {
   font-feature-settings: "pkna";

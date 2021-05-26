@@ -1,40 +1,42 @@
+@use "../../settings";
+
 /*
 align
 
-align modifiers of #{$unit-prefix}-pict
+align modifiers of #{settings.$prefix}-pict
 
 Weight: -99
 
-Style guide: #{$unit-prefix}-pict.align
+Style guide: #{settings.$prefix}-pict.align
 */
 
 /*
 modifiers: align
 
-builtin modifiers of alignment for #{$unit-prefix}-pict
+builtin modifiers of alignment for #{settings.$prefix}-pict
 
 Weight: -100
 
 Markup: <!-- image element -->
-<figure class="#{$unit-prefix}-pict  {{modifier_class}}">
-  <img class="#{$unit-prefix}-pict__src" src="https://placehold.it/400x300.png" alt="" width="400" height="300" />
+<figure class="#{settings.$prefix}-pict  {{modifier_class}}">
+  <img class="#{settings.$prefix}-pict__src" src="https://via.placeholder.com/400x300" alt="" width="400" height="300" />
 </figure>
 <!-- image element (breaking) -->
-<figure class="#{$unit-prefix}-pict  {{modifier_class}}">
-  <img class="#{$unit-prefix}-pict__src" src="#" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." width="400" height="300" />
+<figure class="#{settings.$prefix}-pict  {{modifier_class}}">
+  <img class="#{settings.$prefix}-pict__src" src="#" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." width="400" height="300" />
 </figure>
 <!-- iframe player -->
-<figure class="#{$unit-prefix}-pict  {{modifier_class}}">
-  <iframe class="#{$unit-prefix}-pict__src" title="vimeo-player" src="https://player.vimeo.com/video/76979871" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+<figure class="#{settings.$prefix}-pict  {{modifier_class}}">
+  <iframe class="#{settings.$prefix}-pict__src" title="vimeo-player" src="https://player.vimeo.com/video/76979871" width="640" height="360" frameborder="0" allowfullscreen></iframe>
 </figure>
 
-#{$unit-prefix}-pict--align-left - left aligned (**default**)
-#{$unit-prefix}-pict--align-center - center aligned
-#{$unit-prefix}-pict--align-right - right aligned
+#{settings.$prefix}-pict--align-left - left aligned (**default**)
+#{settings.$prefix}-pict--align-center - center aligned
+#{settings.$prefix}-pict--align-right - right aligned
 
-Style guide: #{$unit-prefix}-pict.align.builtin
+Style guide: #{settings.$prefix}-pict.align.builtin
 */
-.#{$unit-prefix}-pict--align {
+.#{settings.$prefix}-pict--align { // stylelint-disable-line scss/selector-nest-combinators
   &-left {
     text-align: left;
   }

@@ -1,27 +1,33 @@
+@use "sass:map";
+@use "sass:meta";
+@use "sass:string";
+@use "../../lib/mixin";
+@use "../../settings";
+
 /*
-#{$unit-prefix}-table
+#{settings.$prefix}-table
 
 component for table.
 
 Weight: -1050
 
-Style guide: #{$unit-prefix}-table
+Style guide: #{settings.$prefix}-table
 */
 
 /*
 core
 
-core module of #{$unit-prefix}-table
+core module of #{settings.$prefix}-table
 
 Weight: -100
 
-Style guide: #{$unit-prefix}-table.core
+Style guide: #{settings.$prefix}-table.core
 */
 
 /*
 builtin style
 
-builtin style of #{$unit-prefix}-table
+builtin style of #{settings.$prefix}-table
 
 Weight: -100
 
@@ -36,42 +42,42 @@ Markup: <table class="{{modifier_class}}">
   </tr>
 </table>
 
-#{$unit-prefix}-table-light - builtin light style
-#{$unit-prefix}-table-dark - builtin dark style
+#{settings.$prefix}-table-light - builtin light style
+#{settings.$prefix}-table-dark - builtin dark style
 
-Style guide: #{$unit-prefix}-table.core.builtin
+Style guide: #{settings.$prefix}-table.core.builtin
 */
-.#{$unit-prefix}-table {
-  $selector: unique-id();
-  $selector-column: unique-id();
+.#{settings.$prefix}-table { // stylelint-disable-line scss/selector-nest-combinators
+  $selector: string.unique-id();
+  $selector-column: string.unique-id();
 
   // define placeholder class
-  @include define-placeholder($name: $selector) {
-    @include use-table-base();
+  @include mixin.define-placeholder($name: $selector) {
+    @include mixin.use-table-base();
 
     color: inherit;
     background-color: transparent;
   }
 
   // define placeholder class of column
-  @include define-placeholder($name: $selector-column) {
-    @include use-table-column-base(
+  @include mixin.define-placeholder($name: $selector-column) {
+    @include mixin.use-table-column-base(
       $padding: 5px 10px (5px * 1.5)
     );
-    @include use-text-base();
-    @include use-font-base();
-    @include use-font-size(
+    @include mixin.use-text-base();
+    @include mixin.use-font-base();
+    @include mixin.use-font-size(
       $value: "medium"
     );
   }
 
-  @if global-variable-exists("unit-builtin-themes") {
-    @each $name, $theme in $unit-builtin-themes {
-      $color: map-get($theme, "color");
-      $background: map-get($theme, "background");
-      $background-focus: map-get($theme, "background-focus");
-      $border: map-get($theme, "border");
-      $border-focus: map-get($theme, "border-focus");
+  @if meta.type-of(settings.$builtin-themes) == "map" {
+    @each $name, $theme in settings.$builtin-themes {
+      $color: map.get($theme, "color");
+      $background: map.get($theme, "background");
+      $background-focus: map.get($theme, "background-focus");
+      $border: map.get($theme, "border");
+      $border-focus: map.get($theme, "border-focus");
 
       &-#{$name} {
         @extend %#{$selector};

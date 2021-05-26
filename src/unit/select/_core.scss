@@ -1,54 +1,57 @@
+@use "../../lib/mixin";
+@use "../../settings";
+
 /*
-#{$unit-prefix}-select
+#{settings.$prefix}-select
 
 component for select field.
 
 Weight: -1010
 
-Style guide: #{$unit-prefix}-select
+Style guide: #{settings.$prefix}-select
 */
 
 /*
 core
 
-core module of #{$unit-prefix}-select
+core module of #{settings.$prefix}-select
 
 Weight: -100
 
-Style guide: #{$unit-prefix}-select.core
+Style guide: #{settings.$prefix}-select.core
 */
 
 /*
 default style
 
-default style of #{$unit-prefix}-select
+default style of #{settings.$prefix}-select
 
 Weight: -100
 
-Markup: <span class="#{$unit-prefix}-select">
-  <select class="#{$unit-prefix}-select__field" name="{{modifier_class}}">
+Markup: <span class="#{settings.$prefix}-select">
+  <select class="#{settings.$prefix}-select__field" name="{{modifier_class}}">
     <option value="">select...</option>
     <option value="option-1">Lorem ipsum dolor sit amet</option>
     <option value="option-2">Consectetur adipiscing elit</option>
   </select>
 </span>
 <!-- disabled -->
-<span class="#{$unit-prefix}-select">
-  <select class="#{$unit-prefix}-select__field" name="{{modifier_class}}" disabled="disabled">
+<span class="#{settings.$prefix}-select">
+  <select class="#{settings.$prefix}-select__field" name="{{modifier_class}}" disabled="disabled">
     <option value="">select...</option>
     <option value="option-1">Lorem ipsum dolor sit amet</option>
     <option value="option-2">Consectetur adipiscing elit</option>
   </select>
 </span>
 
-Style guide: #{$unit-prefix}-select.core.base
+Style guide: #{settings.$prefix}-select.core.base
 */
-.#{$unit-prefix}-select {
-  @include use-box-base(
+.#{settings.$prefix}-select { // stylelint-disable-line scss/selector-nest-combinators
+  @include mixin.use-box-base(
     $box-sizing: "border-box",
     $overflow: "hidden"
   );
-  @include use-text-base(
+  @include mixin.use-text-base(
     $line-height: 0
   );
 
@@ -56,16 +59,16 @@ Style guide: #{$unit-prefix}-select.core.base
   background-color: transparent;
 
   &__field {
-    @include use-box-base(
+    @include mixin.use-box-base(
       $box-sizing: "border-box"
     );
-    @include use-text-base(
+    @include mixin.use-text-base(
       $line-height: "normal",
       $white-space: null,
       $word-wrap: null
     );
-    @include use-font-base();
-    @include use-font-size(
+    @include mixin.use-font-base();
+    @include mixin.use-font-size(
       $value: "medium"
     );
 
@@ -83,7 +86,7 @@ Style guide: #{$unit-prefix}-select.core.base
     appearance: none;
     cursor: pointer;
 
-    @include on-disabled() {
+    @include mixin.on-disabled() {
       cursor: default;
       opacity: 0.5;
     }

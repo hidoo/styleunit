@@ -3,6 +3,23 @@
 /// @group features
 ////
 
+@use "sass:list";
+@use "sass:map";
+@use "sass:meta";
+@use "../../settings";
+
+/// supported types
+/// @access private
+/// @type List
+///
+$_supported-types: (
+  "link",
+  "focus",
+  "selected",
+  "disabled",
+  "current",
+) !default;
+
 /// return merged state selectors
 /// @param {String} $type ["link"] - type of state (one of `"link"`, `"focus"`, `"selected"`, `"disabled"` or `"current"`)
 /// @param {List} $additional-selectors [()] - additional selectors
@@ -12,41 +29,43 @@
 ///   $merged-focus-selectors: merge-state-selectors("link"); // -> (":link", ":visited")
 ///
 @function merge-state-selectors($type: "focus", $additional-selectors: ()) {
-  @if not index(("link", "focus", "selected", "disabled", "current"), $type) {
-    @error "@function merge-state-selectors: Argument $type must be one of 'link', focus', 'selected', disabled' or 'current'. (specified: #{inspect($type)})";
+  @if not list.index($_supported-types, $type) {
+    @error "@function merge-state-selectors: Argument $type must be one of #{meta.inspect($_supported-types)}.";
   }
 
   $selectors: ();
 
   @if $type == "link" {
-    $selectors: join($selectors, (":link", ":visited"));
+    $selectors: list.join($selectors, (":link", ":visited"));
   }
   @else if $type == "focus" {
-    $selectors: join($selectors, (":hover", ":focus"));
+    $selectors: list.join($selectors, (":hover", ":focus"));
 
-    @if global-variable-exists("unit-state-selectors-focus") {
-      $selectors: join($selectors, $unit-state-selectors-focus);
+    @if meta.type-of(settings.$selector-focus) == "list" {
+      $selectors: list.join($selectors, settings.$selector-focus);
     }
   }
   @else if $type == "selected" {
-    $selectors: join($selectors, (":checked",));
+    $selectors: list.join($selectors, (":checked",));
 
-    @if global-variable-exists("unit-state-selectors-selected") {
-      $selectors: join($selectors, $unit-state-selectors-selected);
+    @if meta.type-of(settings.$selector-selected) == "list" {
+      $selectors: list.join($selectors, settings.$selector-selected);
     }
   }
   @else if $type == "disabled" {
-    $selectors: join($selectors, (":disabled",));
+    $selectors: list.join($selectors, (":disabled",));
 
-    @if global-variable-exists("unit-state-selectors-disabled") {
-      $selectors: join($selectors, $unit-state-selectors-disabled);
+    @if meta.type-of(settings.$selector-disabled) == "list" {
+      $selectors: list.join($selectors, settings.$selector-disabled);
     }
   }
   @else if $type == "current" {
-    @if global-variable-exists("unit-state-selectors-current") {
-      $selectors: join($selectors, $unit-state-selectors-current);
+    $current-selectors: settings("current-selectors");
+
+    @if meta.type-of(settings.$selector-current) == "list" {
+      $selectors: list.join($selectors, settings.$selector-current);
     }
   }
 
-  @return join($selectors, $additional-selectors);
+  @return list.join($selectors, $additional-selectors);
 }

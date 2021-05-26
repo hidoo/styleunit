@@ -1,55 +1,58 @@
+@use "../../lib/mixin";
+@use "../../settings";
+
 /*
-#{$unit-prefix}-list
+#{settings.$prefix}-list
 
 component for list of device text.
 
 Weight: -1080
 
-Style guide: #{$unit-prefix}-list
+Style guide: #{settings.$prefix}-list
 */
 
 /*
 core
 
-core module of #{$unit-prefix}-list
+core module of #{settings.$prefix}-list
 
 Weight: -100
 
-Style guide: #{$unit-prefix}-list.core
+Style guide: #{settings.$prefix}-list.core
 */
 
 /*
 default style
 
-default style of #{$unit-prefix}-list
+default style of #{settings.$prefix}-list
 
 Weight: -100
 
 Markup: <!-- un ordered list -->
-<ul class="#{$unit-prefix}-list">
-  <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</li>
-  <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.
-    <ul class="#{$unit-prefix}-list">
-      <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</li>
-      <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+<ul class="#{settings.$prefix}-list">
+  <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.</li>
+  <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.
+    <ul class="#{settings.$prefix}-list">
+      <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.</li>
+      <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
     </ul>
   </li>
 </ul>
 <!-- ordered list -->
-<ol class="#{$unit-prefix}-list">
-  <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</li>
-  <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.
-    <ol class="#{$unit-prefix}-list">
-      <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet.</li>
-      <li class="#{$unit-prefix}-list__item  #{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+<ol class="#{settings.$prefix}-list">
+  <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.</li>
+  <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.
+    <ol class="#{settings.$prefix}-list">
+      <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.</li>
+      <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
     </ol>
   </li>
 </ol>
 
-Style guide: #{$unit-prefix}-list.core.base
+Style guide: #{settings.$prefix}-list.core.base
 */
-.#{$unit-prefix}-list {
-  @include use-box-base();
+.#{settings.$prefix}-list { // stylelint-disable-line scss/selector-nest-combinators
+  @include mixin.use-box-base();
 
   color: inherit;
   background-color: transparent;

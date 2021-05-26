@@ -1,41 +1,38 @@
 /* eslint max-len: 0, no-magic-numbers: 0 */
 
 import assert from 'assert';
-import {eachTestCases} from 'test-util';
+import {eachTestCases, useSettingsWith} from '../util';
 
-describe('@mixin on-placeholder(...)', () => {
-
-  /**
-   * wrapper
-   *
-   * @return {String}
-   */
-  function wrapper() {
-    const args = [];
-
-    return `
-@import "src/lib/mixin/define-placeholder";
-@import "src/lib/mixin/on";
-@import "src/lib/mixin/on-placeholder";
+/**
+ * wrapper
+ *
+ * @param {Array} args arguments
+ * @param {Array} settings settings of defaults
+ * @return {String}
+ */
+const wrapper = (args = [], settings = []) => `
+${useSettingsWith(settings)}
+@use "src/lib/mixin";
 
 .selector {
-  @include on-placeholder(${args.filter((arg) => arg !== false).join(', ')}) {
+  @include mixin.on-placeholder(${args.filter((arg) => arg !== false).join(', ')}) {
     font-size: 16px;
   };
 }
-    `;
-  }
+`;
+
+describe('@mixin on-placeholder(...)', () => {
 
   it('should out placeholder selectors.', async () => {
     const cases = [
       {
-        params: [{}],
+        params: [[]],
         expected: [
-          '.selector::-webkit-input-placeholder { font-size: 16px; }',
-          '.selector::-moz-placeholder { font-size: 16px; }',
-          '.selector:-ms-input-placeholder { font-size: 16px; }',
-          '.selector:placeholder-shown { font-size: 16px; }'
-        ].join('\n\n')
+          '.selector::-webkit-input-placeholder{font-size:16px}',
+          '.selector::-moz-placeholder{font-size:16px}',
+          '.selector:-ms-input-placeholder{font-size:16px}',
+          '.selector:placeholder-shown{font-size:16px}'
+        ].join('')
       }
     ];
 

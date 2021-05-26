@@ -1,53 +1,56 @@
+@use "../../lib/mixin";
+@use "../../settings";
+
 /*
-#{$unit-prefix}-pict
+#{settings.$prefix}-pict
 
 component for pict.
 
 Weight: -1070
 
-Style guide: #{$unit-prefix}-pict
+Style guide: #{settings.$prefix}-pict
 */
 
 /*
 core
 
-core module of #{$unit-prefix}-pict
+core module of #{settings.$prefix}-pict
 
 Weight: -100
 
-Style guide: #{$unit-prefix}-pict.core
+Style guide: #{settings.$prefix}-pict.core
 */
 
 /*
 default style
 
-default style of #{$unit-prefix}-pict
+default style of #{settings.$prefix}-pict
 
 Weight: -100
 
 Markup: <!-- image element -->
-<figure class="#{$unit-prefix}-pict">
-  <img class="#{$unit-prefix}-pict__src" src="//placehold.it/400x300.png" alt="" width="400" height="300" />
+<figure class="#{settings.$prefix}-pict">
+  <img class="#{settings.$prefix}-pict__src" src="https://via.placeholder.com/400x300" alt="" width="400" height="300" />
 </figure>
 <!-- image element (breaking) -->
-<figure class="#{$unit-prefix}-pict">
-  <img class="#{$unit-prefix}-pict__src" src="#" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." width="400" height="300" />
+<figure class="#{settings.$prefix}-pict">
+  <img class="#{settings.$prefix}-pict__src" src="#" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." width="400" height="300" />
 </figure>
 <!-- iframe player -->
-<figure class="#{$unit-prefix}-pict">
-  <iframe class="#{$unit-prefix}-pict__src" title="vimeo-player" src="https://player.vimeo.com/video/76979871" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+<figure class="#{settings.$prefix}-pict">
+  <iframe class="#{settings.$prefix}-pict__src" title="vimeo-player" src="https://player.vimeo.com/video/76979871" width="640" height="360" frameborder="0" allowfullscreen></iframe>
 </figure>
 
-Style guide: #{$unit-prefix}-pict.core.base
+Style guide: #{settings.$prefix}-pict.core.base
 */
-.#{$unit-prefix}-pict {
-  @include use-box-base();
-  @include use-text-base(
+.#{settings.$prefix}-pict { // stylelint-disable-line scss/selector-nest-combinators
+  @include mixin.use-box-base();
+  @include mixin.use-text-base(
     $letter-spacing: 0,
     $line-height: 0
   );
-  @include use-font-base();
-  @include use-font-size(
+  @include mixin.use-font-base();
+  @include mixin.use-font-size(
     $value: "medium"
   );
 
@@ -57,13 +60,13 @@ Style guide: #{$unit-prefix}-pict.core.base
   background-color: transparent;
 
   &__src {
-    @include use-box-base(
+    @include mixin.use-box-base(
       $display: "inline-block",
       $overflow: "hidden"
     );
-    @include use-text-base();
-    @include use-font-base();
-    @include use-font-size(
+    @include mixin.use-text-base();
+    @include mixin.use-font-base();
+    @include mixin.use-font-size(
       $value: "medium"
     );
 

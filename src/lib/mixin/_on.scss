@@ -3,11 +3,13 @@
 /// @group features
 ////
 
+@use "sass:list";
+@use "sass:string";
+@use "define-placeholder" as mixin;
+
 /// wrappper of pseudo class like `:hover`
 /// @param {List} $selectors [()] - list of selectors
 /// @param {List} $capturing-selectors [()] - capturing parent selectors
-///
-/// @require {mixin} define-placeholder
 ///
 /// @example scss - scss inputs
 ///   .selector {
@@ -26,14 +28,10 @@
   $selectors: (),
   $capturing-selectors: ()
 ) {
-  @if not mixin-exists("define-placeholder") {
-    @error "@mixin on: @mixin define-placeholder is required.";
-  }
+  @if list.length($selectors) >= 1 {
+    $unique-id: string.unique-id();
 
-  @if length($selectors) >= 1 {
-    $unique-id: unique-id();
-
-    @include define-placeholder($name: $unique-id) {
+    @include mixin.define-placeholder($name: $unique-id) {
       @content;
     }
 

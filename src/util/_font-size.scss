@@ -1,3 +1,8 @@
+@use "sass:map";
+@use "sass:meta";
+@use "../lib/mixin";
+@use "../settings";
+
 /*
 font-size
 
@@ -5,7 +10,7 @@ utilities that tweek of font-size
 
 Weight: -87
 
-Style guide: #{$unit-util-prefix}.font-size
+Style guide: #{settings.$util-prefix}.font-size
 */
 
 /*
@@ -15,34 +20,25 @@ builtin modifiers of font-size
 
 Weight: -100
 
-Markup: <p class="#{$unit-prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+Markup: <p class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 
-#{$unit-util-prefix}--font-size-xsmall - xsmall font size
-#{$unit-util-prefix}--font-size-small - small font size
-#{$unit-util-prefix}--font-size-medium - medium font size
-#{$unit-util-prefix}--font-size-large - large font size
-#{$unit-util-prefix}--font-size-xlarge - xlarge font size
-#{$unit-util-prefix}--font-size-2xlarge - 2xlarge font size
-#{$unit-util-prefix}--font-size-3xlarge - 3xlarge font size
-#{$unit-util-prefix}--font-size-4xlarge - 4xlarge font size
+#{settings.$util-prefix}--font-size-xsmall - xsmall font size
+#{settings.$util-prefix}--font-size-small - small font size
+#{settings.$util-prefix}--font-size-medium - medium font size
+#{settings.$util-prefix}--font-size-large - large font size
+#{settings.$util-prefix}--font-size-xlarge - xlarge font size
+#{settings.$util-prefix}--font-size-2xlarge - 2xlarge font size
+#{settings.$util-prefix}--font-size-3xlarge - 3xlarge font size
+#{settings.$util-prefix}--font-size-4xlarge - 4xlarge font size
 
-Style guide: #{$unit-util-prefix}.font-size.builtin
+Style guide: #{settings.$util-prefix}.font-size.builtin
 */
-.#{$unit-util-prefix}--font-size {
-  $values: (
-    "xsmall",
-    "small",
-    "medium",
-    "large",
-    "xlarge",
-    "2xlarge",
-    "3xlarge",
-    "4xlarge"
-  );
-
-  @each $value in $values {
-    &-#{$value} {
-      @include use-font-size($value: $value, $important: true);
+.#{settings.$util-prefix}--font-size { // stylelint-disable-line scss/selector-nest-combinators
+  @if meta.type-of(settings.$font-size-presets) == "map" {
+    @each $value in map.keys(settings.$font-size-presets) {
+      &-#{$value} {
+        @include mixin.use-font-size($value: $value, $important: true);
+      }
     }
   }
 }

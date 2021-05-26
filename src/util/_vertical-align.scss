@@ -1,3 +1,5 @@
+@use "../settings";
+
 /*
 vertical-align
 
@@ -5,7 +7,7 @@ utilities that tweek of vertical-align
 
 Weight: -89
 
-Style guide: #{$unit-util-prefix}.vertical-align
+Style guide: #{settings.$util-prefix}.vertical-align
 */
 
 /*
@@ -21,13 +23,13 @@ Markup: <div style="display:table;">
   </div>
 </div>
 
-#{$unit-util-prefix}--vertical-align-top - set top
-#{$unit-util-prefix}--vertical-align-middle - set middle
-#{$unit-util-prefix}--vertical-align-bottom - set bottom
+#{settings.$util-prefix}--vertical-align-top - set top
+#{settings.$util-prefix}--vertical-align-middle - set middle
+#{settings.$util-prefix}--vertical-align-bottom - set bottom
 
-Style guide: #{$unit-util-prefix}.vertical-align.builtin
+Style guide: #{settings.$util-prefix}.vertical-align.builtin
 */
-.#{$unit-util-prefix}--vertical-align {
+.#{settings.$util-prefix}--vertical-align { // stylelint-disable-line scss/selector-nest-combinators
   &-top {
     vertical-align: top !important;
   }

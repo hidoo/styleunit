@@ -1,29 +1,31 @@
+@use "../../settings";
+
 /*
 truncate
 
-truncate modifiers of #{$unit-prefix}-text
+truncate modifiers of #{settings.$prefix}-text
 
 Weight: -95
 
-Style guide: #{$unit-prefix}-text.truncate
+Style guide: #{settings.$prefix}-text.truncate
 */
 
 /*
 modifiers: truncate
 
-builtin modifiers of truncate for #{$unit-prefix}-text
+builtin modifiers of truncate for #{settings.$prefix}-text
 
 Weight: -100
 
-Markup: <h1 class="#{$unit-prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet.</h1>
-<p class="#{$unit-prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+Markup: <h1 class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet.</h1>
+<p class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 
-#{$unit-prefix}-text--truncate-false - disable truncate (**default**)
-#{$unit-prefix}-text--truncate-true - enable truncate
+#{settings.$prefix}-text--truncate-false - disable truncate (**default**)
+#{settings.$prefix}-text--truncate-true - enable truncate
 
-Style guide: #{$unit-prefix}-text.truncate.builtin
+Style guide: #{settings.$prefix}-text.truncate.builtin
 */
-.#{$unit-prefix}-text--truncate {
+.#{settings.$prefix}-text--truncate { // stylelint-disable-line scss/selector-nest-combinators
   &-false {
     // has no settings
   }

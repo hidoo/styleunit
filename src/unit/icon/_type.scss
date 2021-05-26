@@ -1,32 +1,38 @@
+@use "sass:map";
+@use "sass:meta";
+@use "sass:string";
+@use "../../lib/mixin";
+@use "../../settings";
+
 /*
 type
 
-type modifiers of #{$unit-prefix}-icon
+type modifiers of #{settings.$prefix}-icon
 
 Weight: -99
 
-Style guide: #{$unit-prefix}-icon.type
+Style guide: #{settings.$prefix}-icon.type
 */
 
 /*
 modifiers: type
 
-builtin modifiers of type for #{$unit-prefix}-icon
+builtin modifiers of type for #{settings.$prefix}-icon
 
 Weight: -100
 
-Markup: <span class="#{$unit-prefix}-icon  {{modifier_class}}"></span>
+Markup: <span class="#{settings.$prefix}-icon  {{modifier_class}}"></span>
 
-#{$unit-prefix}-icon--type-arrow-light - light arrow
-#{$unit-prefix}-icon--type-arrow-dark - dark arrow
+#{settings.$prefix}-icon--type-arrow-light - light arrow
+#{settings.$prefix}-icon--type-arrow-dark - dark arrow
 
-Style guide: #{$unit-prefix}-icon.type.builtin
+Style guide: #{settings.$prefix}-icon.type.builtin
 */
-.#{$unit-prefix}-icon--type {
+.#{settings.$prefix}-icon--type { // stylelint-disable-line scss/selector-nest-combinators
   &-arrow {
-    $selector: unique-id();
+    $selector: string.unique-id();
 
-    @include define-placeholder($name: $selector) {
+    @include mixin.define-placeholder($name: $selector) {
       width: 12.72px;
       height: 10px;
 
@@ -52,10 +58,10 @@ Style guide: #{$unit-prefix}-icon.type.builtin
       }
     }
 
-    @if global-variable-exists("unit-builtin-themes") {
-      @each $name, $theme in $unit-builtin-themes {
-        $color: map-get($theme, "color");
-        $color-focus: map-get($theme, "color-focus");
+    @if meta.type-of(settings.$builtin-themes) == "map" {
+      @each $name, $theme in settings.$builtin-themes {
+        $color: map.get($theme, "color");
+        $color-focus: map.get($theme, "color-focus");
 
         &-#{$name} {
           @extend %#{$selector};
@@ -65,7 +71,7 @@ Style guide: #{$unit-prefix}-icon.type.builtin
             background-color: $color;
           }
 
-          @include on-focus($capturing-selectors: ("a", "button")) {
+          @include mixin.on-focus($capturing-selectors: ("a", "button")) {
             &::before,
             &::after {
               background-color: $color-focus;

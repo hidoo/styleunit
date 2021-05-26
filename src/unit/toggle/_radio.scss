@@ -1,60 +1,67 @@
+@use "sass:map";
+@use "sass:meta";
+@use "sass:string";
+@use "../../lib/function";
+@use "../../lib/mixin";
+@use "../../settings";
+
 /*
 radio
 
-radio modifiers of #{$unit-prefix}-toggle
+radio modifiers of #{settings.$prefix}-toggle
 
 Weight: -99
 
-Style guide: #{$unit-prefix}-toggle.radio
+Style guide: #{settings.$prefix}-toggle.radio
 */
 
 /*
 modifiers: radio
 
-builtin modifiers of radio for #{$unit-prefix}-toggle
+builtin modifiers of radio for #{settings.$prefix}-toggle
 
 Weight: -100
 
 Markup: <!-- single -->
-<span class="#{$unit-prefix}-toggle  {{modifier_class}}">
-  <input class="#{$unit-prefix}-toggle__field" type="radio" name="{{modifier_class}}" value="1" />
-  <span class="#{$unit-prefix}-toggle__alt"></span>
+<span class="#{settings.$prefix}-toggle  {{modifier_class}}">
+  <input class="#{settings.$prefix}-toggle__field" type="radio" name="{{modifier_class}}" value="1" />
+  <span class="#{settings.$prefix}-toggle__alt"></span>
 </span>
 <!-- single:disabled -->
-<span class="#{$unit-prefix}-toggle  {{modifier_class}}">
-  <input class="#{$unit-prefix}-toggle__field" type="radio" name="{{modifier_class}}" value="2" checked="checked" disabled="disabled" />
-  <span class="#{$unit-prefix}-toggle__alt"></span>
+<span class="#{settings.$prefix}-toggle  {{modifier_class}}">
+  <input class="#{settings.$prefix}-toggle__field" type="radio" name="{{modifier_class}}" value="2" checked="checked" disabled="disabled" />
+  <span class="#{settings.$prefix}-toggle__alt"></span>
 </span>
 <!-- with label -->
 <label>
-  <span class="#{$unit-prefix}-toggle  {{modifier_class}}">
-    <input class="#{$unit-prefix}-toggle__field" type="radio" name="{{modifier_class}}" value="3" />
-    <span class="#{$unit-prefix}-toggle__alt"></span>
+  <span class="#{settings.$prefix}-toggle  {{modifier_class}}">
+    <input class="#{settings.$prefix}-toggle__field" type="radio" name="{{modifier_class}}" value="3" />
+    <span class="#{settings.$prefix}-toggle__alt"></span>
   </span>
   Lorem ipsum dolor sit amet.
 </label>
 
-#{$unit-prefix}-toggle--radio-light - light radio
-#{$unit-prefix}-toggle--radio-dark - dark radio
+#{settings.$prefix}-toggle--radio-light - light radio
+#{settings.$prefix}-toggle--radio-dark - dark radio
 
-Style guide: #{$unit-prefix}-toggle.radio.builtin
+Style guide: #{settings.$prefix}-toggle.radio.builtin
 */
-.#{$unit-prefix}-toggle--radio {
-  $selector: unique-id();
-  $selector-field: unique-id();
-  $selector-alt: unique-id();
-  $selector-alt-checked: unique-id();
-  $selectors-selected: merge-state-selectors("selected");
-  $selectors-focus: merge-state-selectors("focus");
-  $selectors-disabled: merge-state-selectors("disabled");
+.#{settings.$prefix}-toggle--radio { // stylelint-disable-line scss/selector-nest-combinators
+  $selector: string.unique-id();
+  $selector-field: string.unique-id();
+  $selector-alt: string.unique-id();
+  $selector-alt-checked: string.unique-id();
+  $selectors-selected: function.merge-state-selectors("selected");
+  $selectors-focus: function.merge-state-selectors("focus");
+  $selectors-disabled: function.merge-state-selectors("disabled");
 
   // define placeholder class
-  @include define-placeholder($name: $selector) {
+  @include mixin.define-placeholder($name: $selector) {
     vertical-align: middle;
   }
 
   // define placeholder class of field
-  @include define-placeholder($name: $selector-field) {
+  @include mixin.define-placeholder($name: $selector-field) {
     position: absolute;
     z-index: 1;
     top: 0;
@@ -65,7 +72,7 @@ Style guide: #{$unit-prefix}-toggle.radio.builtin
   }
 
   // define placeholder class of alt
-  @include define-placeholder($name: $selector-alt) {
+  @include mixin.define-placeholder($name: $selector-alt) {
     display: block;
     z-index: 0;
     width: 20px;
@@ -94,27 +101,27 @@ Style guide: #{$unit-prefix}-toggle.radio.builtin
   }
 
   // define placeholder class of alt when checked
-  @include define-placeholder($name: $selector-alt-checked) {
+  @include mixin.define-placeholder($name: $selector-alt-checked) {
     &::before {
       transform: scale(1);
     }
   }
 
-  @if global-variable-exists("unit-builtin-themes") {
-    @each $name, $theme in $unit-builtin-themes {
-      $color: map-get($theme, "color");
-      $color-focus: map-get($theme, "color-focus");
+  @if meta.type-of(settings.$builtin-themes) == "map" {
+    @each $name, $theme in settings.$builtin-themes {
+      $color: map.get($theme, "color");
+      $color-focus: map.get($theme, "color-focus");
 
       &-#{$name} {
         @extend %#{$selector};
 
-        $selector-alt-focus: unique-id();
-        $selector-alt-disabled: unique-id();
+        $selector-alt-focus: string.unique-id();
+        $selector-alt-disabled: string.unique-id();
 
-        > .#{$unit-prefix}-toggle__field {
+        > .#{settings.$prefix}-toggle__field { // stylelint-disable-line scss/selector-nest-combinators
           @extend %#{$selector-field};
 
-          + .#{$unit-prefix}-toggle__alt {
+          + .#{settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
             @extend %#{$selector-alt};
 
             border-color: $color;
@@ -127,34 +134,34 @@ Style guide: #{$unit-prefix}-toggle.radio.builtin
 
         // when checked
         @each $state in $selectors-selected {
-          > .#{$unit-prefix}-toggle__field#{$state} {
-            + .#{$unit-prefix}-toggle__alt {
+          > .#{settings.$prefix}-toggle__field#{$state} {
+            + .#{settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
               @extend %#{$selector-alt-checked};
             }
           }
         }
 
         // define placeholder class of alt when focus
-        @include define-placeholder($name: $selector-alt-focus) {
+        @include mixin.define-placeholder($name: $selector-alt-focus) {
           border-color: $color-focus;
         }
 
         @each $state in $selectors-focus {
-          > .#{$unit-prefix}-toggle__field#{$state} {
-            + .#{$unit-prefix}-toggle__alt {
+          > .#{settings.$prefix}-toggle__field#{$state} {
+            + .#{settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
               @extend %#{$selector-alt-focus};
             }
           }
         }
 
         // define placeholder class of alt when disabled
-        @include define-placeholder($name: $selector-alt-disabled) {
+        @include mixin.define-placeholder($name: $selector-alt-disabled) {
           border-color: $color;
         }
 
         @each $state in $selectors-disabled {
-          > .#{$unit-prefix}-toggle__field#{$state} {
-            + .#{$unit-prefix}-toggle__alt {
+          > .#{settings.$prefix}-toggle__field#{$state} {
+            + .#{settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
               @extend %#{$selector-alt-disabled};
             }
           }

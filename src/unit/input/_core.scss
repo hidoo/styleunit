@@ -1,50 +1,54 @@
+@use "sass:meta";
+@use "../../lib/mixin";
+@use "../../settings";
+
 /*
-#{$unit-prefix}-input
+#{settings.$prefix}-input
 
 component for input field.
 
 Weight: -1030
 
-Style guide: #{$unit-prefix}-input
+Style guide: #{settings.$prefix}-input
 */
 
 /*
 core
 
-core module of #{$unit-prefix}-input
+core module of #{settings.$prefix}-input
 
 Weight: -100
 
-Style guide: #{$unit-prefix}-input.core
+Style guide: #{settings.$prefix}-input.core
 */
 
 /*
 default style
 
-default style of #{$unit-prefix}-input
+default style of #{settings.$prefix}-input
 
 Weight: -100
 
 Markup: <!-- input -->
-<input class="#{$unit-prefix}-input" type="text" name="{{modifier_class}}" value="" placeholder="Lorem ipsum dolor sit amet." />
+<input class="#{settings.$prefix}-input" type="text" name="{{modifier_class}}" value="" placeholder="Lorem ipsum dolor sit amet." />
 <!-- input:disabled -->
-<input class="#{$unit-prefix}-input" type="text" name="{{modifier_class}}" value="" placeholder="Lorem ipsum dolor sit amet." disabled="disabled" />
+<input class="#{settings.$prefix}-input" type="text" name="{{modifier_class}}" value="" placeholder="Lorem ipsum dolor sit amet." disabled="disabled" />
 <!-- textarea -->
-<textarea class="#{$unit-prefix}-input" name="{{modifier_class}}" rows="5" cols="10" placeholder="Lorem ipsum dolor sit amet."></textarea>
+<textarea class="#{settings.$prefix}-input" name="{{modifier_class}}" rows="5" cols="10" placeholder="Lorem ipsum dolor sit amet."></textarea>
 
-Style guide: #{$unit-prefix}-input.core.base
+Style guide: #{settings.$prefix}-input.core.base
 */
-.#{$unit-prefix}-input {
-  @include use-box-base(
+.#{settings.$prefix}-input { // stylelint-disable-line scss/selector-nest-combinators
+  @include mixin.use-box-base(
     $box-sizing: "border-box"
   );
-  @include use-text-base(
+  @include mixin.use-text-base(
     $line-height: "normal",
     $white-space: null,
     $word-wrap: null
   );
-  @include use-font-base();
-  @include use-font-size(
+  @include mixin.use-font-base();
+  @include mixin.use-font-size(
     $value: "medium"
   );
 
@@ -61,7 +65,7 @@ Style guide: #{$unit-prefix}-input.core.base
 
   @at-root {
     textarea#{&} {
-      line-height: if(global-variable-exists("unit-line-height"), $unit-line-height, 1.5);
+      line-height: if(meta.type-of(settings.$line-height) == "number", settings.$line-height, 1.5);
 
       // for smooth scrolling
       -webkit-overflow-scrolling: touch;
@@ -73,7 +77,7 @@ Style guide: #{$unit-prefix}-input.core.base
     }
   }
 
-  @include on-disabled() {
+  @include mixin.on-disabled() {
     opacity: 0.5;
   }
 }

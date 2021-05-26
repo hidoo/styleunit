@@ -1,3 +1,0 @@
-@if mixin-exists("hook-pre-import-override") {
-  @include hook-pre-import-override();
-}

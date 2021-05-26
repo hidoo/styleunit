@@ -1,0 +1,25 @@
+@use "../settings";
+
+/*
+#{settings.$util-prefix}
+
+utilities
+
+Weight: 10000
+
+Style guide: #{settings.$util-prefix}
+*/
+@forward "./hidden";
+@forward "./box-model";
+@forward "./width";
+@forward "./height";
+@forward "./margin";
+@forward "./padding";
+@forward "./border";
+@forward "./position";
+@forward "./z-index";
+@forward "./float";
+@forward "./clear";
+@forward "./vertical-align";
+@forward "./font-family";
+@forward "./font-size";

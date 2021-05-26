@@ -1,31 +1,35 @@
+@use "sass:map";
+@use "../../lib/mixin";
+@use "../../settings";
+
 /*
-#{$unit-prefix}-document
+#{settings.$prefix}-document
 
 component for document.
 
 Weight: -1040
 
-Style guide: #{$unit-prefix}-document
+Style guide: #{settings.$prefix}-document
 */
 
 /*
 core
 
-core module of #{$unit-prefix}-document
+core module of #{settings.$prefix}-document
 
 Weight: -100
 
-Style guide: #{$unit-prefix}-document.core
+Style guide: #{settings.$prefix}-document.core
 */
 
 /*
 default style
 
-default style of #{$unit-prefix}-document
+default style of #{settings.$prefix}-document
 
 Weight: -100
 
-Markup: <div class="#{$unit-prefix}-document">
+Markup: <div class="#{settings.$prefix}-document">
   <!-- heading -->
   <h1>Lorem ipsum dolor sit amet.</h1>
   <h2>Lorem ipsum dolor sit amet.</h2>
@@ -67,7 +71,7 @@ Markup: <div class="#{$unit-prefix}-document">
   <p><img src="https://picsum.photos/600/400/?grayscale&amp;blur=10" /></p>
   <hr />
   <!-- embedded image (extended markup) -->
-  <figure class="#{$unit-prefix}-document__pict  #{$unit-prefix}-document__pict--copy-protect-true" style="width: 400px;">
+  <figure class="#{settings.$prefix}-document__pict  #{settings.$prefix}-document__pict--copy-protect-true" style="width: 400px;">
     <img src="https://picsum.photos/400/300/?grayscale&amp;blur=10" alt="" width="400" height="300" />
     <figcaption>Lorem ipsum dolor sit amet.</figcaption>
   </figure>
@@ -79,7 +83,7 @@ Markup: <div class="#{$unit-prefix}-document">
   <hr />
   <!-- embedded video (extended markup) -->
   <p>
-    <span class="#{$unit-prefix}-document__pict  #{$unit-prefix}-document__pict--aspect-ratio-16-9">
+    <span class="#{settings.$prefix}-document__pict  #{settings.$prefix}-document__pict--aspect-ratio-16-9">
       <iframe title="vimeo-player" src="https://player.vimeo.com/video/76979871" width="640" height="360" frameborder="0" allowfullscreen></iframe>
     </span>
   </p>
@@ -97,7 +101,7 @@ Markup: <div class="#{$unit-prefix}-document">
   </table>
   <hr />
   <!-- table (extended markup) -->
-  <div class="#{$unit-prefix}-document__scrollable-table">
+  <div class="#{settings.$prefix}-document__scrollable-table">
     <table>
       <tr>
         <th scope="col">Lorem ipsum dolor sit amet.</th>
@@ -114,7 +118,7 @@ Markup: <div class="#{$unit-prefix}-document">
         <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
         <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
         <td>Lorem ipsum dolor sit amet.
-          <div class="#{$unit-prefix}-document__scrollable-table">
+          <div class="#{settings.$prefix}-document__scrollable-table">
             <table>
               <tr>
                 <th scope="row">Lorem ipsum dolor sit amet.</th>
@@ -176,7 +180,7 @@ Markup: <div class="#{$unit-prefix}-document">
     <p><img src="https://picsum.photos/600/400/?grayscale&amp;blur=10" /></p>
     <hr />
     <!-- embedded image (extended markup) -->
-    <figure class="#{$unit-prefix}-document__pict  #{$unit-prefix}-document__pict--copy-protect-true" style="width: 400px;">
+    <figure class="#{settings.$prefix}-document__pict  #{settings.$prefix}-document__pict--copy-protect-true" style="width: 400px;">
       <img src="https://picsum.photos/400/300/?grayscale&amp;blur=10" alt="" width="400" height="300" />
       <figcaption>Lorem ipsum dolor sit amet.</figcaption>
     </figure>
@@ -188,7 +192,7 @@ Markup: <div class="#{$unit-prefix}-document">
     <hr />
     <!-- embedded video (extended markup) -->
     <p>
-      <span class="#{$unit-prefix}-document__pict  #{$unit-prefix}-document__pict--aspect-ratio-16-9">
+      <span class="#{settings.$prefix}-document__pict  #{settings.$prefix}-document__pict--aspect-ratio-16-9">
         <iframe title="vimeo-player" src="https://player.vimeo.com/video/76979871" width="640" height="360" frameborder="0" allowfullscreen></iframe>
       </span>
     </p>
@@ -206,7 +210,7 @@ Markup: <div class="#{$unit-prefix}-document">
     </table>
     <hr />
     <!-- table (extended markup) -->
-    <div class="#{$unit-prefix}-document__scrollable-table">
+    <div class="#{settings.$prefix}-document__scrollable-table">
       <table>
         <tr>
           <th scope="col">Lorem ipsum dolor sit amet.</th>
@@ -223,7 +227,7 @@ Markup: <div class="#{$unit-prefix}-document">
           <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
           <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
           <td>Lorem ipsum dolor sit amet.
-            <div class="#{$unit-prefix}-document__scrollable-table">
+            <div class="#{settings.$prefix}-document__scrollable-table">
               <table>
                 <tr>
                   <th scope="row">Lorem ipsum dolor sit amet.</th>
@@ -283,14 +287,14 @@ Markup: <div class="#{$unit-prefix}-document">
   </pre>
 </div>
 
-Style guide: #{$unit-prefix}-document.core.base
+Style guide: #{settings.$prefix}-document.core.base
 */
-.#{$unit-prefix}-document {
-  @include use-clearfix();
-  @include use-box-base();
-  @include use-text-base();
-  @include use-font-base();
-  @include use-font-size(
+.#{settings.$prefix}-document { // stylelint-disable-line scss/selector-nest-combinators
+  @include mixin.use-clearfix();
+  @include mixin.use-box-base();
+  @include mixin.use-text-base();
+  @include mixin.use-font-base();
+  @include mixin.use-font-size(
     $value: "medium"
   );
 
@@ -304,7 +308,7 @@ Style guide: #{$unit-prefix}-document.core.base
   // ++++++++++++++++++++++++++++
 
   h1, h2, h3, h4, h5, h6, p, li, figcaption {
-    @include use-box-base(
+    @include mixin.use-box-base(
       $display: null,
       $list-style: null,
     );
@@ -324,7 +328,7 @@ Style guide: #{$unit-prefix}-document.core.base
   }
 
   ul, ol {
-    @include use-box-base(
+    @include mixin.use-box-base(
       $list-style: null,
       $padding: 0 0 0 1.5em
     );
@@ -334,7 +338,7 @@ Style guide: #{$unit-prefix}-document.core.base
   }
 
   img, iframe {
-    @include use-box-base(
+    @include mixin.use-box-base(
       $overflow: "hidden",
       $margin: 0 auto
     );
@@ -347,14 +351,14 @@ Style guide: #{$unit-prefix}-document.core.base
   }
 
   blockquote {
-    @include use-box-base();
+    @include mixin.use-box-base();
 
     color: inherit;
     background-color: transparent;
   }
 
   pre {
-    @include use-box-base(
+    @include mixin.use-box-base(
       $box-sizing: "border-box",
       $overflow: "auto"
     );
@@ -366,7 +370,7 @@ Style guide: #{$unit-prefix}-document.core.base
   }
 
   table {
-    @include use-table-base(
+    @include mixin.use-table-base(
       $margin: 0 auto
     );
 
@@ -376,7 +380,7 @@ Style guide: #{$unit-prefix}-document.core.base
   }
 
   th, td {
-    @include use-table-column-base();
+    @include mixin.use-table-column-base();
 
     color: inherit;
     background-color: transparent;
@@ -414,7 +418,7 @@ Style guide: #{$unit-prefix}-document.core.base
   }
 
   pre, code {
-    @include use-font-family($value: "monospace");
+    @include mixin.use-font-family($value: "monospace");
 
     // small
     font-size: 0.857em;
@@ -488,14 +492,14 @@ Style guide: #{$unit-prefix}-document.core.base
   }
 
   a {
-    @include on-link() {
+    @include mixin.on-link() {
       text-decoration: underline;
-      color: map-get($unit-link-color, "link");
+      color: map.get(settings.$link-color, "link");
     }
 
-    @include on-focus() {
+    @include mixin.on-focus() {
       text-decoration: none;
-      color: map-get($unit-link-color, "focus");
+      color: map.get(settings.$link-color, "focus");
     }
   }
 
@@ -538,7 +542,7 @@ Style guide: #{$unit-prefix}-document.core.base
 
   // image with caption and iframe player
   &__pict {
-    @include use-box-base();
+    @include mixin.use-box-base();
 
     max-width: 100%;
     margin: $top-margin auto 0;
@@ -554,7 +558,7 @@ Style guide: #{$unit-prefix}-document.core.base
     }
 
     p, figcaption, span {
-      @include use-box-base();
+      @include mixin.use-box-base();
 
       padding-top: 5px;
     }
@@ -590,18 +594,18 @@ Style guide: #{$unit-prefix}-document.core.base
       }
 
       &-4-3 {
-        @include use-box-aspect-ratio($width: 4, $height: 3);
+        @include mixin.use-box-aspect-ratio($width: 4, $height: 3);
       }
 
       &-16-9 {
-        @include use-box-aspect-ratio($width: 16, $height: 9);
+        @include mixin.use-box-aspect-ratio($width: 16, $height: 9);
       }
     }
   }
 
   // scrollable table
   &__scrollable-table {
-    @include use-box-base(
+    @include mixin.use-box-base(
       $overflow: "auto",
       $padding: $top-margin 0 0 0
     );

@@ -15,51 +15,43 @@ $ npm install @hidoo/unit
 ## Usage
 
 ```scss
-@import "node_modules/@hidoo/unit/src/index.scss";
+@use "path/to/node_modules/@hidoo/unit/src/index.scss";
 ```
 
-### Import with [node-sass-magic-importer](https://github.com/maoberlehner/node-sass-magic-importer)
+### Use with [node-sass-magic-importer](https://github.com/maoberlehner/node-sass-magic-importer)
 
 ```scss
-@import "~@hidoo/unit";
+@use "~@hidoo/unit";
 ```
 
 ### Usage with custom settings
 
 ```scss
-// import variables in advance
-@import "settings";
-
-// import this package
-@import "node_modules/@hidoo/unit/src/index.scss";
+// use this package with custom settings
+@use "path/to/node_modules/@hidoo/unit/src/index.scss" with (
+  $prefix: "u"
+);
 ```
 
 ### Usage only the required units
 
 ```scss
-// import dependent files
-@import "node_modules/@hidoo/unit/src/settings";
-@import "node_modules/@hidoo/unit/src/lib";
+// use custom settings
+@use "path/to/node_modules/@hidoo/unit/src/settings" with (
+  $prefix: "u"
+);
 
-// import all of text unit
-@import "node_modules/@hidoo/unit/src/unit/text";
+// use all of text unit
+@use "path/to/node_modules/@hidoo/unit/src/unit/text";
 
-// import part of button unit
-@import "node_modules/@hidoo/unit/src/unit/button/core";
-@import "node_modules/@hidoo/unit/src/unit/button/inline";
+// use part of button unit
+@use "path/to/node_modules/@hidoo/unit/src/unit/button/core";
+@use "path/to/node_modules/@hidoo/unit/src/unit/button/inline";
 ```
 
-### Hook mixins
+## Migration 0.4.4 to 0.5.x higher
 
-You can use some hook mixins that called if defined.\
-See [example](./example/src/scss/main.scss).
-
-| Name                              | Called timing                 |
-| :-------------------------------- | :---------------------------- |
-| `@mixin hook-pre-import-lib`      | Before `@import "lib";`.      |
-| `@mixin hook-pre-import-unit`     | Before `@import "unit";`.     |
-| `@mixin hook-pre-import-util`     | Before `@import "util";`.     |
-| `@mixin hook-pre-import-override` | Before `@import "override";`. |
+TODO
 
 ## API
 

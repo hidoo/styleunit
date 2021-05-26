@@ -1,30 +1,32 @@
+@use "../../settings";
+
 /*
 align
 
-align modifiers of #{$unit-prefix}-text
+align modifiers of #{settings.$prefix}-text
 
 Weight: -96
 
-Style guide: #{$unit-prefix}-text.align
+Style guide: #{settings.$prefix}-text.align
 */
 
 /*
 modifiers: align
 
-builtin modifiers of alignment for #{$unit-prefix}-text
+builtin modifiers of alignment for #{settings.$prefix}-text
 
 Weight: -100
 
-Markup: <h1 class="#{$unit-prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet.</h1>
-<p class="#{$unit-prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+Markup: <h1 class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet.</h1>
+<p class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 
-#{$unit-prefix}-text--align-left - left aligned (**default**)
-#{$unit-prefix}-text--align-center - center aligned
-#{$unit-prefix}-text--align-right - right aligned
+#{settings.$prefix}-text--align-left - left aligned (**default**)
+#{settings.$prefix}-text--align-center - center aligned
+#{settings.$prefix}-text--align-right - right aligned
 
-Style guide: #{$unit-prefix}-text.align.builtin
+Style guide: #{settings.$prefix}-text.align.builtin
 */
-.#{$unit-prefix}-text--align {
+.#{settings.$prefix}-text--align { // stylelint-disable-line scss/selector-nest-combinators
   &-left {
     text-align: left;
   }

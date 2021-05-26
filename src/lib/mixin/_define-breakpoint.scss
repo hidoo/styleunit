@@ -3,13 +3,16 @@
 /// @group features
 ////
 
+@use "sass:map";
+@use "sass:math";
+@use "sass:meta";
+@use "../../settings";
+
 /// define breakepoint
 /// @param {Number|String|Null} $from [null] - starting point of breakpoint
 /// @param {Number|String|Null} $until [null] - ending point of breakpoint
 /// @param {Map} $options [()] - options
 /// @param {String} $options.media - custom media name
-///
-/// @require {variable} $unit-breakpoints
 ///
 /// @example scss - scss inputs
 ///   .selector {
@@ -26,28 +29,28 @@
 ///   }
 ///
 @mixin define-breakpoint($from: null, $until: null, $options: ()) {
+  // check settings.$breakpoints is map or not
+  @if meta.type-of(settings.$breakpoints) != "map" {
+    @error "@mixin define-breakpoint: settings.$breakpoints must be map.";
+  }
+
   $normalized: ("from": null, "until": null);
   $media: screen;
 
-  // check $unit-breakpoints is defined or not
-  @if not global-variable-exists("unit-breakpoints") {
-    @error "@mixin define-breakpoint: Global variable $unit-breakpoints is not defined.";
-  }
-
   // normalize arguments
   @each $key, $value in ("from": $from, "until": $until) {
-    @if type-of($value) == "number" or type-of($value) == "null" {
-      $normalized: map-merge($normalized, (#{$key}: $value));
+    @if meta.type-of($value) == "number" or meta.type-of($value) == "null" {
+      $normalized: map.merge($normalized, (#{$key}: $value));
     }
-    @else if type-of($value) == "string" and map-has-key($unit-breakpoints, $value) {
-      $normalized: map-merge($normalized, (#{$key}: map-get($unit-breakpoints, $value)));
+    @else if meta.type-of($value) == "string" and map.has-key(settings.$breakpoints, $value) {
+      $normalized: map.merge($normalized, (#{$key}: map.get(settings.$breakpoints, $value)));
     }
     @else {
-      @if type-of($value) == "string" {
-        @error "@mixin define-breakpoint: Argument $#{$key} is not registerd in $unit-breakpoints. (specified: #{inspect($value)})";
+      @if meta.type-of($value) == "string" {
+        @error "@mixin define-breakpoint: Argument $#{$key} is not registerd in settings.$breakpoints.";
       }
       @else {
-        @error "@mixin define-breakpoint: Argument $#{$key} must be one of type number, string or null. (specified: #{inspect($value)})";
+        @error "@mixin define-breakpoint: Argument $#{$key} must be one of type number, string or null.";
       }
     }
   }
@@ -56,26 +59,26 @@
   //
   // @media only screen and (max-width: 666px) { ... } -> $until: 667px;
   // @media only screen and (min-width: 667px) { ... } -> $from: 667px;
-  @if type-of(map-get($normalized, "until")) == "number" {
-    $normalized: map-merge($normalized, ("until": map-get($normalized, "until") - 1));
+  @if meta.type-of(map.get($normalized, "until")) == "number" {
+    $normalized: map.merge($normalized, ("until": map.get($normalized, "until") - 1));
   }
 
   // normalize options
-  @if type-of($options) == "map" {
-    @if map-has-key($options, "media") {
-      $media: map-get($options, "media");
+  @if meta.type-of($options) == "map" {
+    @if map.has-key($options, "media") {
+      $media: map.get($options, "media");
     }
   }
 
-  $new-from: map-get($normalized, "from");
-  $new-until: map-get($normalized, "until");
+  $new-from: map.get($normalized, "from");
+  $new-until: map.get($normalized, "until");
 
   @if $new-from and $new-until {
-    @if not comparable($new-from, $new-until) {
-      @error "@mixin define-breakpoint: Arguments $from and $until must be same unit. (specified: $from -> #{inspect($from)}, $until -> #{inspect($until)})";
+    @if not math.compatible($new-from, $new-until) {
+      @error "@mixin define-breakpoint: Arguments $from and $until must be same unit.";
     }
     @else if $new-from >= $new-until {
-      @error "@mixin define-breakpoint: Argument $from must be smaller than $until. (specified: $from: -> #{inspect($from)}, $until -> #{inspect($until)})";
+      @error "@mixin define-breakpoint: Argument $from must be smaller than $until.";
     }
 
     @media only #{$media} and (min-width: $new-from) and (max-width: $new-until) {

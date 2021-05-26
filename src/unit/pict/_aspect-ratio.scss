@@ -1,49 +1,54 @@
+@use "../../lib/mixin";
+@use "../../settings";
+
 /*
 aspect-ratio
 
-aspect-ratio modifiers of #{$unit-prefix}-pict
+aspect-ratio modifiers of #{settings.$prefix}-pict
 
 Weight: -98
 
-Style guide: #{$unit-prefix}-pict.aspect-ratio
+Style guide: #{settings.$prefix}-pict.aspect-ratio
 */
 
 /*
 modifiers: aspect-ratio
 
-builtin modifiers of aspect-ratio for #{$unit-prefix}-pict
+builtin modifiers of aspect-ratio for #{settings.$prefix}-pict
 
 Weight: -100
 
 Markup: <!-- image element -->
-<figure class="#{$unit-prefix}-pict  {{modifier_class}}">
-  <img class="#{$unit-prefix}-pict__src" src="https://placehold.it/400x300.png" alt="" width="400" height="300" />
+<figure class="#{settings.$prefix}-pict  {{modifier_class}}">
+  <img class="#{settings.$prefix}-pict__src" src="https://via.placeholder.com/400x300" alt="" width="400" height="300" />
 </figure>
 <!-- image element (breaking) -->
-<figure class="#{$unit-prefix}-pict  {{modifier_class}}">
-  <img class="#{$unit-prefix}-pict__src" src="#" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." width="400" height="300" />
+<figure class="#{settings.$prefix}-pict  {{modifier_class}}">
+  <img class="#{settings.$prefix}-pict__src" src="#" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." width="400" height="300" />
 </figure>
 <!-- iframe player -->
-<figure class="#{$unit-prefix}-pict  {{modifier_class}}">
-  <iframe class="#{$unit-prefix}-pict__src" title="vimeo-player" src="https://player.vimeo.com/video/76979871" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+<figure class="#{settings.$prefix}-pict  {{modifier_class}}">
+  <iframe class="#{settings.$prefix}-pict__src" title="vimeo-player" src="https://player.vimeo.com/video/76979871" width="640" height="360" frameborder="0" allowfullscreen></iframe>
 </figure>
 
-#{$unit-prefix}-pict--aspect-ratio-none - not set (**default**)
-#{$unit-prefix}-pict--aspect-ratio-4-3 - enable 4:3
-#{$unit-prefix}-pict--aspect-ratio-16-9 - enable 16:9
+#{settings.$prefix}-pict--aspect-ratio-none - not set (**default**)
+#{settings.$prefix}-pict--aspect-ratio-1-1 - enable 1:1
+#{settings.$prefix}-pict--aspect-ratio-4-3 - enable 4:3
+#{settings.$prefix}-pict--aspect-ratio-16-9 - enable 16:9
 
-Style guide: #{$unit-prefix}-pict.aspect-ratio.builtin
+Style guide: #{settings.$prefix}-pict.aspect-ratio.builtin
 */
-.#{$unit-prefix}-pict--aspect-ratio {
+.#{settings.$prefix}-pict--aspect-ratio { // stylelint-disable-line scss/selector-nest-combinators
   &-none {
     // has no settings
   }
 
+  &-1-1,
   &-4-3,
   &-16-9 {
     max-width: 100%;
 
-    > .#{$unit-prefix}-pict__src {
+    > .#{settings.$prefix}-pict__src { // stylelint-disable-line scss/selector-nest-combinators
       display: block;
       position: absolute;
       top: 0;
@@ -53,11 +58,15 @@ Style guide: #{$unit-prefix}-pict.aspect-ratio.builtin
     }
   }
 
+  &-1-1 {
+    @include mixin.use-box-aspect-ratio($width: 1, $height: 1);
+  }
+
   &-4-3 {
-    @include use-box-aspect-ratio($width: 4, $height: 3);
+    @include mixin.use-box-aspect-ratio($width: 4, $height: 3);
   }
 
   &-16-9 {
-    @include use-box-aspect-ratio($width: 16, $height: 9);
+    @include mixin.use-box-aspect-ratio($width: 16, $height: 9);
   }
 }

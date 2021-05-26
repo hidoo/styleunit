@@ -1,46 +1,52 @@
+@use "sass:map";
+@use "sass:meta";
+@use "sass:string";
+@use "../../lib/mixin";
+@use "../../settings";
+
 /*
 theme
 
-theme modifiers of #{$unit-prefix}-select
+theme modifiers of #{settings.$prefix}-select
 
 Weight: -99
 
-Style guide: #{$unit-prefix}-select.theme
+Style guide: #{settings.$prefix}-select.theme
 */
 
 /*
 modifiers: theme
 
-builtin modifiers of theme for #{$unit-prefix}-select
+builtin modifiers of theme for #{settings.$prefix}-select
 
 Weight: -100
 
-Markup: <span class="#{$unit-prefix}-select  {{modifier_class}}">
-  <select class="#{$unit-prefix}-select__field" name="{{modifier_class}}">
+Markup: <span class="#{settings.$prefix}-select  {{modifier_class}}">
+  <select class="#{settings.$prefix}-select__field" name="{{modifier_class}}">
     <option value="">select...</option>
     <option value="option-1">Lorem ipsum dolor sit amet</option>
     <option value="option-2">Consectetur adipiscing elit</option>
   </select>
 </span>
 <!-- disabled -->
-<span class="#{$unit-prefix}-select  {{modifier_class}}">
-  <select class="#{$unit-prefix}-select__field" name="{{modifier_class}}" disabled="disabled">
+<span class="#{settings.$prefix}-select  {{modifier_class}}">
+  <select class="#{settings.$prefix}-select__field" name="{{modifier_class}}" disabled="disabled">
     <option value="">select...</option>
     <option value="option-1">Lorem ipsum dolor sit amet</option>
     <option value="option-2">Consectetur adipiscing elit</option>
   </select>
 </span>
 
-#{$unit-prefix}-select--theme-light - light theme
-#{$unit-prefix}-select--theme-dark - dark theme
+#{settings.$prefix}-select--theme-light - light theme
+#{settings.$prefix}-select--theme-dark - dark theme
 
-Style guide: #{$unit-prefix}-select.theme.builtin
+Style guide: #{settings.$prefix}-select.theme.builtin
 */
-.#{$unit-prefix}-select--theme {
-  $selector: unique-id();
-  $selector-field: unique-id();
+.#{settings.$prefix}-select--theme { // stylelint-disable-line scss/selector-nest-combinators
+  $selector: string.unique-id();
+  $selector-field: string.unique-id();
 
-  @include define-placeholder($name: $selector) {
+  @include mixin.define-placeholder($name: $selector) {
     &::after {
       content: "";
       position: absolute;
@@ -60,7 +66,7 @@ Style guide: #{$unit-prefix}-select.theme.builtin
     }
   }
 
-  @include define-placeholder($name: $selector-field) {
+  @include mixin.define-placeholder($name: $selector-field) {
     padding: 10px 30px 10px 10px;
     border-radius: 3px;
     transition-duration: 0.1s;
@@ -68,14 +74,14 @@ Style guide: #{$unit-prefix}-select.theme.builtin
     transition-timing-function: ease-out;
   }
 
-  @if global-variable-exists("unit-builtin-themes") {
-    @each $name, $theme in $unit-builtin-themes {
-      $color: map-get($theme, "color");
-      $color-focus: map-get($theme, "color-focus");
-      $background: map-get($theme, "background");
-      $background-focus: map-get($theme, "background-focus");
-      $border: map-get($theme, "border");
-      $border-focus: map-get($theme, "border-focus");
+  @if meta.type-of(settings.$builtin-themes) == "map" {
+    @each $name, $theme in settings.$builtin-themes {
+      $color: map.get($theme, "color");
+      $color-focus: map.get($theme, "color-focus");
+      $background: map.get($theme, "background");
+      $background-focus: map.get($theme, "background-focus");
+      $border: map.get($theme, "border");
+      $border-focus: map.get($theme, "border-focus");
 
       &-#{$name} {
         @extend %#{$selector};
@@ -86,18 +92,18 @@ Style guide: #{$unit-prefix}-select.theme.builtin
           border-top-color: $color-focus;
         }
 
-        > .#{$unit-prefix}-select__field {
+        > .#{settings.$prefix}-select__field { // stylelint-disable-line scss/selector-nest-combinators
           @extend %#{$selector-field};
 
           background-color: $background;
           border: 1px solid $border;
 
-          @include on-focus() {
+          @include mixin.on-focus() {
             color: $color-focus;
             border-color: $border-focus;
           }
 
-          @include on-disabled() {
+          @include mixin.on-disabled() {
             border: 1px solid $border;
           }
         }

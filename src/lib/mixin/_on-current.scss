@@ -3,12 +3,12 @@
 /// @group features
 ////
 
+@use "../function";
+@use "on" as mixin;
+
 /// wrappper of `.is-current`
 /// @param {List} $additional-selectors [()] - list of additional selectors
 /// @param {List} $capturing-selectors [()] - capturing parent selectors
-///
-/// @require {function} merge-state-selectors
-/// @require {mixin} on
 ///
 /// @example scss - scss inputs
 ///   .selector {
@@ -26,13 +26,9 @@
   $additional-selectors: (),
   $capturing-selectors: ()
 ) {
-  @if not function-exists("merge-state-selectors") {
-    @error "@mixin on-disabled: @function merge-state-selectors is required.";
-  }
+  $selectors: function.merge-state-selectors("current", $additional-selectors);
 
-  $selectors: merge-state-selectors("current", $additional-selectors);
-
-  @include on($selectors: $selectors, $capturing-selectors: $capturing-selectors) {
+  @include mixin.on($selectors: $selectors, $capturing-selectors: $capturing-selectors) {
     @content;
   }
 }

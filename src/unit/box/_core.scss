@@ -1,47 +1,50 @@
+@use "../../lib/mixin";
+@use "../../settings";
+
 /*
-#{$unit-prefix}-box
+#{settings.$prefix}-box
 
 component for box.
 
 Weight: -1000
 
-Style guide: #{$unit-prefix}-box
+Style guide: #{settings.$prefix}-box
 */
 
 /*
 core
 
-core module of #{$unit-prefix}-box
+core module of #{settings.$prefix}-box
 
 Weight: -100
 
-Style guide: #{$unit-prefix}-box.core
+Style guide: #{settings.$prefix}-box.core
 */
 
 /*
 default style
 
-default style of #{$unit-prefix}-box
+default style of #{settings.$prefix}-box
 
 Weight: -100
 
-Markup: <div class="#{$unit-prefix}-box">
-  <div class="#{$unit-prefix}-box__container">
+Markup: <div class="#{settings.$prefix}-box">
+  <div class="#{settings.$prefix}-box__container">
     <!-- some unit -->
-    <p class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <figure class="#{$unit-prefix}-pict  #{$unit-prefix}-pict--fit-max-width  #{$unit-util-prefix}--float-left">
-      <img class="#{$unit-prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
+    <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <figure class="#{settings.$prefix}-pict  #{settings.$prefix}-pict--fit-max-width  #{settings.$util-prefix}--float-left">
+      <img class="#{settings.$prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
     </figure>
-    <p class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     <!-- some unit -->
   </div>
 </div>
 
-Style guide: #{$unit-prefix}-box.core.base
+Style guide: #{settings.$prefix}-box.core.base
 */
-.#{$unit-prefix}-box {
-  @include use-clearfix();
-  @include use-box-base();
+.#{settings.$prefix}-box { // stylelint-disable-line scss/selector-nest-combinators
+  @include mixin.use-clearfix();
+  @include mixin.use-box-base();
 
   width: auto;
   text-align: left;
@@ -49,8 +52,8 @@ Style guide: #{$unit-prefix}-box.core.base
   background-color: transparent;
 
   &__container {
-    @include use-clearfix();
-    @include use-box-base();
+    @include mixin.use-clearfix();
+    @include mixin.use-box-base();
 
     width: auto;
     text-align: left;

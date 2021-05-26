@@ -1,0 +1,94 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group Default settings
+////
+
+/// default font family.
+///
+/// **default**
+/// + `-apple-system` ... use "San Francisco" as primary font in mac
+/// + `BlinkMacSystemFont` ... use "San Francisco" as primary in chrome on mac
+/// + `Helvetica` ... secondary font in mac
+/// + `Arial` ... secondary font in windows
+/// + `Hiragino Kaku Gothic ProN` ... primary japanese font in mac
+/// + `Yu Gothic Medium` ... primary japanese font in windows
+/// + `游ゴシック Medium` ... primary japanese font in ie on windows
+/// + `YuGothic` ... secondary japanese font in mac
+/// + `Meiryo` ... secondary japanese font in windows
+/// + `メイリオ` ... secondary japanese font in ie on windows
+///
+/// @type List
+///
+$family: (
+  -apple-system,
+  BlinkMacSystemFont,
+  Helvetica,
+  Arial,
+  "Hiragino Kaku Gothic ProN",
+  "Yu Gothic Medium",
+  "游ゴシック Medium",
+  YuGothic,
+  Meiryo,
+  "メイリオ",
+  sans-serif,
+) !default;
+
+/// default monospace font family.
+///
+/// **default**
+/// + `Consolas` ... primary font in windows (use it as primary if installed in mac)
+/// + `Monaco` ... primary font in mac
+/// + `Menlo` ... secondary font in mac
+/// + `Courier` ... secondary font in windows
+///
+/// @type List
+///
+$family-monospace: (
+  Consolas,
+  Monaco,
+  Menlo,
+  Courier,
+  monospace,
+) !default;
+
+/// default base font size.
+/// (default: `16px`)
+/// this use if `$enable-relative-size` is `true`
+/// @type Number
+///
+$base-size: 16px !default;
+
+/// default font size
+/// (default: `14px`)
+/// @type Number
+///
+$size: 14px !default;
+
+/// default font size presets
+/// @type Map
+/// @prop {Number} xsmall [0.75] - size xsmall
+/// @prop {Number} small [0.875] - size small
+/// @prop {Number} medium [1] - size medium
+/// @prop {Number} large [1.15] - size large
+/// @prop {Number} xlarge [1.3] - size xlarge
+/// @prop {Number} 2xlarge [1.45] - size 2xlarge
+/// @prop {Number} 3xlarge [1.6] - size 3xlarge
+/// @prop {Number} 4xlarge [1.75] - size 4xlarge
+///
+$size-presets: (
+  "xsmall": 0.75,
+  "small": 0.875,
+  "medium": 1,
+  "large": 1.15,
+  "xlarge": 1.3,
+  "2xlarge": 1.45,
+  "3xlarge": 1.6,
+  "4xlarge": 1.75,
+) !default;
+
+/// enable relative font size specify.
+/// override base size settings of font
+/// (default: `true`)
+/// @type Boolean
+///
+$enable-relative-size: true !default;

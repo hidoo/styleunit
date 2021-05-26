@@ -1,7 +1,4 @@
 @charset "utf-8";
 
-// import hooks
-@import "hook";
-
-// import this package
-@import "../../../src/index.scss";
+// use this package
+@use "../../../src/index.scss";

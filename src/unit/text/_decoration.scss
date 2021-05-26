@@ -1,31 +1,33 @@
+@use "../../settings";
+
 /*
 decoration
 
-decoration modifiers of #{$unit-prefix}-text
+decoration modifiers of #{settings.$prefix}-text
 
 Weight: -91
 
-Style guide: #{$unit-prefix}-text.decoration
+Style guide: #{settings.$prefix}-text.decoration
 */
 
 /*
 modifiers: decoration
 
-builtin modifiers of decoration for #{$unit-prefix}-text
+builtin modifiers of decoration for #{settings.$prefix}-text
 
 Weight: -100
 
-Markup: <h1 class="#{$unit-prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet.</h1>
-<p class="#{$unit-prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+Markup: <h1 class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet.</h1>
+<p class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 
-#{$unit-prefix}-text--decoration-false - disable decoration
-#{$unit-prefix}-text--decoration-overline - enable overline
-#{$unit-prefix}-text--decoration-strikeline - enable strikeline
-#{$unit-prefix}-text--decoration-underline - enable underline
+#{settings.$prefix}-text--decoration-false - disable decoration
+#{settings.$prefix}-text--decoration-overline - enable overline
+#{settings.$prefix}-text--decoration-strikeline - enable strikeline
+#{settings.$prefix}-text--decoration-underline - enable underline
 
-Style guide: #{$unit-prefix}-text.decoration.builtin
+Style guide: #{settings.$prefix}-text.decoration.builtin
 */
-.#{$unit-prefix}-text--decoration {
+.#{settings.$prefix}-text--decoration { // stylelint-disable-line scss/selector-nest-combinators
   &-false {
     // has no settings
   }

@@ -1,117 +1,200 @@
-/* eslint max-len: 0, no-magic-numbers: 0 */
+/* eslint max-len: off, no-magic-numbers: off */
 
 import assert from 'assert';
-import {eachTestCases, normalizeGlobalSettings} from 'test-util';
+import {eachTestCases, useSettingsWith} from '../util';
 
-describe('@mixin define-breakpoint($from, $until)', () => {
-
-  /**
-   * wrapper
-   *
-   * @param {String|Number|null} from starting point of breakpoint
-   * @param {String|Number|null} until ending point of breakpoint
-   * @param {String|Number|null} options ending point of breakpoint
-   * @param {Boolean} undefBreakpoints undefined $unit-breakpoints or not
-   * @return {String}
-   */
-  function wrapper(from, until, options, undefBreakpoints = false) { // eslint-disable-line max-params
-    const args = [
-      from || from === '' ? `$from: ${from}` : false,
-      until || until === '' ? `$until: ${until}` : false,
-      options || options === '' ? `$options: ${options}` : false
-    ];
-
-    return `
-${normalizeGlobalSettings({breakpoints: undefBreakpoints ? null : '("desktop": 1024px, "mobile": 667px)'})}
-@import "src/lib/mixin/define-breakpoint";
+/**
+ * wrapper
+ *
+ * @param {Array} args arguments
+ * @param {Array} settings settings of defaults
+ * @return {String}
+ */
+const wrapper = (args = [], settings = []) => `
+${useSettingsWith(settings)}
+@use "src/lib/mixin";
 
 .selector {
-  @include define-breakpoint(${args.filter((arg) => arg !== false).join(', ')}) {
+  @include mixin.define-breakpoint(${args.filter((arg) => arg !== false).join(', ')}) {
     font-size: 16px;
   };
 }
-    `;
-  }
+`;
 
-  it('should throw error if "$unit-breakpoints" is undefined.', async () => {
+describe('@mixin define-breakpoint($from, $until, $options)', () => {
+
+  it('should throw error if settings.$breakpoints is not map.', async () => {
     const cases = [
-      {params: ['300px', '1000px', null, true]}
+      {
+        params: [
+          [
+            '$from: 300px',
+            '$until: 1000px'
+          ],
+          [
+            '$breakpoints: ""'
+          ]
+        ]
+      }
     ];
 
     await eachTestCases(cases, wrapper, ({error}, {resolve}) => {
       assert(error instanceof Error);
-      assert.equal(error.message, '@mixin define-breakpoint: Global variable $unit-breakpoints is not defined.');
+      assert(error.message.match(/settings\.\$breakpoints must be map\./));
       return resolve();
     });
   });
 
   it('should throw error if argument "$from" is not valid.', async () => {
     const cases = [
-      {params: ['false', '1000px', null]},
-      {params: ['#000', '1000px', null]}
+      {
+        params: [
+          [
+            '$from: false',
+            '$until: 1000px'
+          ]
+        ]
+      },
+      {
+        params: [
+          [
+            '$from: #000',
+            '$until: 1000px'
+          ]
+        ]
+      }
     ];
 
     await eachTestCases(cases, wrapper, ({error}, {resolve}) => {
       assert(error instanceof Error);
+      assert(error.message.match(/Argument \$from must be one of type number, string or null\./));
       return resolve();
     });
   });
 
-  it('should throw error if argument "$from" is not registered in $unit-breakpoints.', async () => {
+  it('should throw error if argument "$from" is not registered in settings.$breakpoints.', async () => {
     const cases = [
-      {params: ['unregistered-breakpoint', '1000px', null]}
+      {
+        params: [
+          [
+            '$from: "UNREGISTERED-BREAKPOINT"',
+            '$until: 1000px'
+          ]
+        ]
+      }
     ];
 
     await eachTestCases(cases, wrapper, ({error}, {resolve}) => {
       assert(error instanceof Error);
+      assert(error.message.match(/Argument \$from is not registerd in settings\.\$breakpoints\./));
       return resolve();
     });
   });
 
   it('should throw error if argument "$until" is not valid.', async () => {
     const cases = [
-      {params: ['1000px', 'false', null]},
-      {params: ['1000px', '#000', null]}
+      {
+        params: [
+          [
+            '$from: 1000px',
+            '$until: false'
+          ]
+        ]
+      },
+      {
+        params: [
+          [
+            '$from: 1000px',
+            '$until: #000'
+          ]
+        ]
+      }
     ];
 
     await eachTestCases(cases, wrapper, ({error}, {resolve}) => {
       assert(error instanceof Error);
+      assert(error.message.match(/Argument \$until must be one of type number, string or null\./));
       return resolve();
     });
   });
 
-  it('should throw error if argument "$until" is not registered in $unit-breakpoints.', async () => {
+  it('should throw error if argument "$until" is not registered in settings.$breakpoints.', async () => {
     const cases = [
-      {params: ['1000px', 'unregistered-breakpoint', null]}
+      {
+        params: [
+          [
+            '$from: 1000px',
+            '$until: "UNREGISTERED-BREAKPOINT"'
+          ]
+        ]
+      }
     ];
 
     await eachTestCases(cases, wrapper, ({error}, {resolve}) => {
       assert(error instanceof Error);
+      assert(error.message.match(/Argument \$until is not registerd in settings\.\$breakpoints\./));
       return resolve();
     });
   });
 
   it('should throw error if unit of argument "$from" is not same to it of "$until".', async () => {
     const cases = [
-      {params: ['0rem', '0px', null]},
-      {params: ['0em', '1000rem', null]}
+      {
+        params: [
+          [
+            '$from: 0rem',
+            '$until: 0px'
+          ]
+        ]
+      },
+      {
+        params: [
+          [
+            '$from: 0em',
+            '$until: 1000rem'
+          ]
+        ]
+      }
     ];
 
     await eachTestCases(cases, wrapper, ({error}, {resolve}) => {
       assert(error instanceof Error);
+      assert(error.message.match(/Arguments \$from and \$until must be same unit\./));
       return resolve();
     });
   });
 
   it('should throw error if argument "$from" is not smaller than argument "$until".', async () => {
     const cases = [
-      {params: ['1000px', '0', null]},
-      {params: ['1000px', '1000px', null]},
-      {params: ['desktop', 'mobile', null]}
+      {
+        params: [
+          [
+            '$from: 1000px',
+            '$until: 0'
+          ]
+        ]
+      },
+      {
+        params: [
+          [
+            '$from: 1000px',
+            '$until: 1000px'
+          ]
+        ]
+      },
+      {
+        params: [
+          [
+            '$from: desktop',
+            '$until: mobile'
+          ]
+        ]
+      }
     ];
 
     await eachTestCases(cases, wrapper, ({error}, {resolve}) => {
       assert(error instanceof Error);
+      assert(error.message.match(/Argument \$from must be smaller than \$until\./));
       return resolve();
     });
   });
@@ -120,50 +203,100 @@ ${normalizeGlobalSettings({breakpoints: undefBreakpoints ? null : '("desktop": 1
     const cases = [
       // both specifed
       {
-        params: ['0', '1000px'],
-        expected: '@media only screen and (min-width: 0) and (max-width: 999px) { .selector { font-size: 16px; } }'
+        params: [
+          [
+            '$from: 0',
+            '$until: 1000px'
+          ]
+        ],
+        expected: '@media only screen and (min-width: 0)and (max-width: 999px){.selector{font-size:16px}}'
       },
       {
-        params: ['30rem', '90rem'],
-        expected: '@media only screen and (min-width: 30rem) and (max-width: 89rem) { .selector { font-size: 16px; } }'
+        params: [
+          [
+            '$from: 30rem',
+            '$until: 90rem'
+          ]
+        ],
+        expected: '@media only screen and (min-width: 30rem)and (max-width: 89rem){.selector{font-size:16px}}'
       },
       {
-        params: ['mobile', 'desktop'],
-        expected: '@media only screen and (min-width: 667px) and (max-width: 1023px) { .selector { font-size: 16px; } }'
+        params: [
+          [
+            '$from: "mobile"',
+            '$until: "desktop"'
+          ]
+        ],
+        expected: '@media only screen and (min-width: 667px)and (max-width: 1023px){.selector{font-size:16px}}'
       },
       // $from is not specified or null
       {
-        params: [null, '1000px'],
-        expected: '@media only screen and (max-width: 999px) { .selector { font-size: 16px; } }'
+        params: [
+          [
+            '$until: 1000px'
+          ]
+        ],
+        expected: '@media only screen and (max-width: 999px){.selector{font-size:16px}}'
       },
       {
-        params: ['null', '1000px'],
-        expected: '@media only screen and (max-width: 999px) { .selector { font-size: 16px; } }'
+        params: [
+          [
+            '$from: null',
+            '$until: 1000px'
+          ]
+        ],
+        expected: '@media only screen and (max-width: 999px){.selector{font-size:16px}}'
       },
       {
-        params: ['null', 'desktop'],
-        expected: '@media only screen and (max-width: 1023px) { .selector { font-size: 16px; } }'
+        params: [
+          [
+            '$from: null',
+            '$until: desktop'
+          ]
+        ],
+        expected: '@media only screen and (max-width: 1023px){.selector{font-size:16px}}'
       },
       // $until is not specified or null
       {
-        params: ['30rem', null],
-        expected: '@media only screen and (min-width: 30rem) { .selector { font-size: 16px; } }'
+        params: [
+          [
+            '$from: 30rem'
+          ]
+        ],
+        expected: '@media only screen and (min-width: 30rem){.selector{font-size:16px}}'
       },
       {
-        params: ['30rem', 'null'],
-        expected: '@media only screen and (min-width: 30rem) { .selector { font-size: 16px; } }'
+        params: [
+          [
+            '$from: 30rem',
+            '$until: null'
+          ]
+        ],
+        expected: '@media only screen and (min-width: 30rem){.selector{font-size:16px}}'
       },
       {
-        params: ['mobile', 'null'],
-        expected: '@media only screen and (min-width: 667px) { .selector { font-size: 16px; } }'
+        params: [
+          [
+            '$from: mobile',
+            '$until: null'
+          ]
+        ],
+        expected: '@media only screen and (min-width: 667px){.selector{font-size:16px}}'
       },
       // both not specified or null (warning)
       {
-        params: [null, null],
+        params: [
+          []
+        ],
         expected: ''
       },
       {
-        params: ['null', 'null'],
+        params: [
+          [
+            '$from: null',
+            '$until: null'
+          ]
+        ],
         expected: ''
       }
     ];
@@ -184,20 +317,40 @@ ${normalizeGlobalSettings({breakpoints: undefBreakpoints ? null : '("desktop": 1
     const cases = [
       // both specifed
       {
-        params: ['0', '1000px', '("media": "print")'],
-        expected: '@media only print and (min-width: 0) and (max-width: 999px) { .selector { font-size: 16px; } }'
+        params: [
+          [
+            '$from: 0',
+            '$until: 1000px',
+            '$options: ("media": "print")'
+          ]
+        ],
+        expected: '@media only print and (min-width: 0)and (max-width: 999px){.selector{font-size:16px}}'
       },
       {
-        params: [null, '1000px', '("media": "print")'],
-        expected: '@media only print and (max-width: 999px) { .selector { font-size: 16px; } }'
+        params: [
+          [
+            '$until: 1000px',
+            '$options: ("media": "print")'
+          ]
+        ],
+        expected: '@media only print and (max-width: 999px){.selector{font-size:16px}}'
       },
       {
-        params: ['30rem', null, '("media": "print")'],
-        expected: '@media only print and (min-width: 30rem) { .selector { font-size: 16px; } }'
+        params: [
+          [
+            '$from: 30rem',
+            '$options: ("media": "print")'
+          ]
+        ],
+        expected: '@media only print and (min-width: 30rem){.selector{font-size:16px}}'
       },
       // both not specified or null (warning)
       {
-        params: [null, null, '("media": "print")'],
+        params: [
+          [
+            '$options: ("media": "print")'
+          ]
+        ],
         expected: ''
       }
     ];

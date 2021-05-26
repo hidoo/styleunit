@@ -1,54 +1,57 @@
+@use "../../lib/mixin";
+@use "../../settings";
+
 /*
 break
 
-break modifiers of #{$unit-prefix}-flex-grid
+break modifiers of #{settings.$prefix}-flex-grid
 
 Weight: -99
 
-Style guide: #{$unit-prefix}-flex-grid.break
+Style guide: #{settings.$prefix}-flex-grid.break
 */
 
 /*
 modifiers: break
 
-builtin modifiers of break for #{$unit-prefix}-flex-grid
+builtin modifiers of break for #{settings.$prefix}-flex-grid
 
 Weight: -100
 
-Markup: <div class="#{$unit-prefix}-flex-grid  {{modifier_class}}">
-  <div class="#{$unit-prefix}-flex-grid__column">
+Markup: <div class="#{settings.$prefix}-flex-grid  {{modifier_class}}">
+  <div class="#{settings.$prefix}-flex-grid__column">
     <!-- some unit -->
-    <p class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <figure class="#{$unit-prefix}-pict  #{$unit-prefix}-pict--fit-max-width  #{$unit-util-prefix}--float-left">
-      <img class="#{$unit-prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
+    <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <figure class="#{settings.$prefix}-pict  #{settings.$prefix}-pict--fit-max-width  #{settings.$util-prefix}--float-left">
+      <img class="#{settings.$prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
     </figure>
-    <p class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     <!-- some unit -->
   </div>
-  <div class="#{$unit-prefix}-flex-grid__column">
+  <div class="#{settings.$prefix}-flex-grid__column">
     <!-- some unit -->
-    <figure class="#{$unit-prefix}-pict  #{$unit-prefix}-pict--fit-max-width  #{$unit-util-prefix}--float-left">
-      <img class="#{$unit-prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
+    <figure class="#{settings.$prefix}-pict  #{settings.$prefix}-pict--fit-max-width  #{settings.$util-prefix}--float-left">
+      <img class="#{settings.$prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
     </figure>
-    <p class="#{$unit-prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     <!-- some unit -->
   </div>
 </div>
 
-#{$unit-prefix}-flex-grid--break-if-mobile - break column if mobile viewport
-#{$unit-prefix}-flex-grid--break-if-not-mobile - break column if not mobile viewport
+#{settings.$prefix}-flex-grid--break-if-mobile - break column if mobile viewport
+#{settings.$prefix}-flex-grid--break-if-not-mobile - break column if not mobile viewport
 
-Style guide: #{$unit-prefix}-flex-grid.break.builtin
+Style guide: #{settings.$prefix}-flex-grid.break.builtin
 */
-.#{$unit-prefix}-flex-grid--break {
+.#{settings.$prefix}-flex-grid--break { // stylelint-disable-line scss/selector-nest-combinators
   &-if-mobile {
-    @include define-breakpoint($until: "mobile") {
+    @include mixin.define-breakpoint($until: "mobile") {
       flex-direction: column;
     }
   }
 
   &-if-not-mobile {
-    @include define-breakpoint($from: "mobile") {
+    @include mixin.define-breakpoint($from: "mobile") {
       flex-direction: column;
     }
   }

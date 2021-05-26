@@ -1,0 +1,78 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group Default settings
+////
+
+@forward "./font" as font-*;
+@forward "./selector" as selector-*;
+@forward "./util" as util-*;
+
+/// prefix of class name of components
+/// (default: `"unit"`)
+/// @type String
+///
+/// @example scss - scss inputs
+///   $prefix: "u";
+///
+/// @example css - css outputs
+///   .u-icon {
+///     /* settings */
+///   }
+///
+$prefix: "unit" !default;
+
+/// default settings of breakpoints
+/// @type Map
+/// @prop {Number} desktop [1024px] - breakpoint for desktop
+/// @prop {Number} mobile [667px] - breakpoint for desktop
+///
+$breakpoints: (
+  "desktop": 1024px,
+  "mobile": 667px,
+) !default;
+
+/// default link color
+/// @type Map
+/// @prop {Color} link [#37a5e4] - color of `:link`
+/// @prop {Color} focus [#7ac3ed] - color of `:focus`
+///
+$link-color: (
+  "link": #37a5e4,
+  "focus": #7ac3ed,
+) !default;
+
+/// default letter-spacing
+/// (default: `0.04em`)
+/// @type Number
+///
+$letter-spacing: 0.04em !default;
+
+/// default line-height
+/// (default: `1.5`)
+/// @type Number
+///
+$line-height: 1.5 !default;
+
+/// default builtin theme
+/// @type Map
+/// @prop {Map} light [(...)] - values of light theme
+/// @prop {Map} dark [(...)] - values of dark theme
+///
+$builtin-themes: (
+  "light": (
+    "color": #3f3f3f,
+    "color-focus": #6b6b6d,
+    "background": #f9f9fa,
+    "background-focus": #ededf0,
+    "border": #c3c3c5,
+    "border-focus": #9f9fa1
+  ),
+  "dark": (
+    "color": #d5d7d9,
+    "color-focus": #ebeced,
+    "background": #14171a,
+    "background-focus": #262c33,
+    "border": #262c33,
+    "border-focus": #777c82
+  )
+) !default;

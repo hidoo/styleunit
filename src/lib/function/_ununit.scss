@@ -3,19 +3,22 @@
 /// @group features
 ////
 
+@use "sass:math";
+@use "sass:meta";
+
 /// return number without unit
 /// @param {Number} $number number with unit
-/// @return {number} number without unit
+/// @return {Number} number without unit
 ///
 /// @example scss - scss inputs
 ///   $pure-number: ununit(14px); // -> 14
 ///
 @function ununit($number) {
-  @if type-of($number) != "number" {
-    @error "@function ununit: Argument $number is not number. (specified: #{inspect($number)})";
+  @if meta.type-of($number) != "number" {
+    @error "@function ununit: Argument $number must be number.";
   }
 
-  @if unitless($number) {
+  @if math.is-unitless($number) {
     @return $number;
   }
 

@@ -1,29 +1,31 @@
+@use "../../settings";
+
 /*
 inline
 
-inline modifiers of #{$unit-prefix}-icon
+inline modifiers of #{settings.$prefix}-icon
 
 Weight: -98
 
-Style guide: #{$unit-prefix}-icon.inline
+Style guide: #{settings.$prefix}-icon.inline
 */
 
 /*
 modifiers: inline
 
-builtin modifiers of inline for #{$unit-prefix}-icon
+builtin modifiers of inline for #{settings.$prefix}-icon
 
 Weight: -100
 
-Markup: <span class="#{$unit-prefix}-icon  #{$unit-prefix}-icon--type-arrow-light  {{modifier_class}}"></span>
-<span class="#{$unit-prefix}-icon  #{$unit-prefix}-icon--type-arrow-dark  {{modifier_class}}"></span>
+Markup: <span class="#{settings.$prefix}-icon  #{settings.$prefix}-icon--type-arrow-light  {{modifier_class}}"></span>
+<span class="#{settings.$prefix}-icon  #{settings.$prefix}-icon--type-arrow-dark  {{modifier_class}}"></span>
 
-#{$unit-prefix}-icon--inline-false - disable inline (**default**)
-#{$unit-prefix}-icon--inline-true - enable inline
+#{settings.$prefix}-icon--inline-false - disable inline (**default**)
+#{settings.$prefix}-icon--inline-true - enable inline
 
-Style guide: #{$unit-prefix}-icon.inline.builtin
+Style guide: #{settings.$prefix}-icon.inline.builtin
 */
-.#{$unit-prefix}-icon--inline {
+.#{settings.$prefix}-icon--inline { // stylelint-disable-line scss/selector-nest-combinators
   &-false {
     // has no settings
   }
