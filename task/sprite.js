@@ -1,0 +1,180 @@
+/**
+ * import modules
+ */
+import {relative, resolve} from 'path';
+import gulp from 'gulp';
+import buildImageSprite from '@hidoo/gulp-task-build-sprite-image';
+import buildSvgSprite from '@hidoo/gulp-task-build-sprite-svg';
+
+/**
+ * import modules - local
+ */
+import * as config from '../config';
+
+/**
+ * url parameter for browser cache
+ *
+ * @type {String}
+ */
+const cacheParameter = process.env.NODE_ENV === 'development' ? // eslint-disable-line node/no-process-env
+  '' : `?version=${config.pkg.version}`;
+
+/**
+ * relative path from css to sprite
+ *
+ * @type {String}
+ */
+const pathToSprite = relative(
+  `${config.path.destCss}/unit-plugin-spritesheet`,
+  config.path.destSprite
+);
+
+/**
+ * return merged build options
+ *
+ * @param {Object} options build task options
+ * @return {Object}
+ */
+function buildOptions(options = {}) {
+  return {
+    ...options,
+    destImg: config.path.destSprite,
+    destCss: `${config.path.srcCss}/unit-plugin-spritesheet/sprite`,
+    imgPath: `${pathToSprite}/${options.imgName}${cacheParameter}`,
+    cssPreprocessor: 'sass',
+    compress: config.compress
+  };
+}
+
+const iconImage = buildImageSprite(buildOptions({
+  name: 'sprite:icon:image',
+  src: `${config.path.srcSprite}/icon-assets/*.png`,
+  imgName: 'icon-image.png',
+  cssName: '_icon-image.scss',
+  cssTemplate: resolve(__dirname, '../template/image-sprite.hbs'),
+  evenize: true
+}));
+
+const iconSvg = buildSvgSprite(buildOptions({
+  name: 'sprite:icon:svg',
+  src: `${config.path.srcSprite}/icon-assets/*.svg`,
+  imgName: 'icon-svg.svg',
+  cssName: '_icon-svg.scss',
+  cssTemplate: resolve(__dirname, '../template/svg-sprite.hbs')
+}));
+
+const textImage = buildImageSprite(buildOptions({
+  name: 'sprite:text:image',
+  src: `${config.path.srcSprite}/text-assets/*.png`,
+  imgName: 'text-image.png',
+  cssName: '_text-image.scss',
+  cssTemplate: resolve(__dirname, '../template/image-sprite.hbs'),
+  evenize: true
+}));
+
+const textSvg = buildSvgSprite(buildOptions({
+  name: 'sprite:text:svg',
+  src: `${config.path.srcSprite}/text-assets/*.svg`,
+  imgName: 'text-svg.svg',
+  cssName: '_text-svg.scss',
+  cssTemplate: resolve(__dirname, '../template/svg-sprite.hbs')
+}));
+
+const radioImage = buildImageSprite(buildOptions({
+  name: 'sprite:radio:image',
+  src: `${config.path.srcSprite}/radio-assets/*.png`,
+  imgName: 'radio-image.png',
+  cssName: '_radio-image.scss',
+  cssTemplate: resolve(__dirname, '../template/image-sprite.hbs'),
+  evenize: true
+}));
+
+const radioSvg = buildSvgSprite(buildOptions({
+  name: 'sprite:radio:svg',
+  src: `${config.path.srcSprite}/radio-assets/*.svg`,
+  imgName: 'radio-svg.svg',
+  cssName: '_radio-svg.scss',
+  cssTemplate: resolve(__dirname, '../template/svg-sprite.hbs')
+}));
+
+const checkImage = buildImageSprite(buildOptions({
+  name: 'sprite:check:image',
+  src: `${config.path.srcSprite}/check-assets/*.png`,
+  imgName: 'check-image.png',
+  cssName: '_check-image.scss',
+  cssTemplate: resolve(__dirname, '../template/image-sprite.hbs'),
+  evenize: true
+}));
+
+const checkSvg = buildSvgSprite(buildOptions({
+  name: 'sprite:check:svg',
+  src: `${config.path.srcSprite}/check-assets/*.svg`,
+  imgName: 'check-svg.svg',
+  cssName: '_check-svg.scss',
+  cssTemplate: resolve(__dirname, '../template/svg-sprite.hbs')
+}));
+
+// define main task
+export const main = gulp.parallel(
+  iconImage,
+  iconSvg,
+  textImage,
+  textSvg,
+  radioImage,
+  radioSvg,
+  checkImage,
+  checkSvg
+);
+
+// define watch task
+export const watch = () => {
+  gulp.watch(
+    [
+      `${config.path.srcSprite}/icon-assets/*.svg`
+    ],
+    iconSvg
+  );
+  gulp.watch(
+    [
+      `${config.path.srcSprite}/icon-assets/*.png`
+    ],
+    iconImage
+  );
+  gulp.watch(
+    [
+      `${config.path.srcSprite}/text-assets/*.png`
+    ],
+    textImage
+  );
+  gulp.watch(
+    [
+      `${config.path.srcSprite}/text-assets/*.svg`
+    ],
+    textSvg
+  );
+  gulp.watch(
+    [
+      `${config.path.srcSprite}/radio-assets/*.png`
+    ],
+    radioImage
+  );
+  gulp.watch(
+    [
+      `${config.path.srcSprite}/radio-assets/*.svg`
+    ],
+    radioSvg
+  );
+  gulp.watch(
+    [
+      `${config.path.srcSprite}/check-assets/*.png`
+    ],
+    checkImage
+  );
+  gulp.watch(
+    [
+      `${config.path.srcSprite}/check-assets/*.svg`
+    ],
+    checkSvg
+  );
+};
+

@@ -1,0 +1,16 @@
+<svg id="example-b--disabled--if-mobile.svg" xmlns="http://www.w3.org/2000/svg" width="26" height="18" viewBox="0 0 26 18">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: 0;
+      }
+
+      .cls-2 {
+        fill-rule: evenodd;
+        opacity: 0.5;
+      }
+    </style>
+  </defs>
+  <rect id="rect" class="cls-1" width="26" height="18"/>
+  <path id="arrow" class="cls-2" d="M57.464,45.465L48.979,36.98l-8.47,8.47-4.243-4.243,8.469-8.469,4.243-4.243,0.016-.016,4.243,4.243-0.016.016,8.485,8.485Z" transform="translate(-36 -28.031)"/>
+</svg>

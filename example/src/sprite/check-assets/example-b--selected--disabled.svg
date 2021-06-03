@@ -1,0 +1,16 @@
+<svg id="example-b--selected--disabled.svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #444;
+      }
+
+      .cls-1, .cls-2 {
+        fill-rule: evenodd;
+        opacity: 0.5;
+      }
+    </style>
+  </defs>
+  <path id="checked" class="cls-1" d="M170.453,34.124l-8.8,8.617-1.886-1.846,0.013-.012-3.97-3.887,1.886-1.846,3.97,3.887,6.9-6.758Z" transform="translate(-153 -27.031)"/>
+  <path id="rect" class="cls-2" d="M153,27.031h20v20H153v-20Zm1,1h18v18H154v-18Z" transform="translate(-153 -27.031)"/>
+</svg>

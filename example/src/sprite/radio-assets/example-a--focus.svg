@@ -1,0 +1,11 @@
+<svg id="example-a--focus.svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #444;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="rect" class="cls-1" d="M33,3.031H53v20H33v-20Zm1,1H52v18H34v-18Z" transform="translate(-33 -3.031)"/>
+</svg>

@@ -1,0 +1,27 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group plugin/spritesheet
+////
+
+@use "sass:map";
+@use "sass:meta";
+
+/// get sheet by type from values of spritesheets
+/// @access private
+/// @param {String} $type type of spritesheet
+/// @param {Map} $spritesheets [()] data of spritesheets
+/// @return {Map|null}
+///
+@function get-sheet-by-type($type, $spritesheets: ()) {
+  @if meta.type-of($spritesheets) != "map" or not map.has-key($spritesheets, $type) {
+    @return null;
+  }
+
+  $sheet-by-type: map.get($spritesheets, $type);
+
+  @if not map.has-key($sheet-by-type, "items") or not map.has-key($sheet-by-type, "image") {
+    @return null;
+  }
+
+  @return $sheet-by-type;
+}

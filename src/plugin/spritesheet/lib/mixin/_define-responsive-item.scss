@@ -1,0 +1,129 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group plugin/spritesheet
+////
+
+@use "sass:map";
+@use "../../../../lib/mixin" as unit-mixin;
+@use "./set-properties" as mixin;
+
+/// define responsive item
+/// @param {String} $name name of spritesheet item
+/// @param {Map} $items [()] spritesheet items
+/// @param {Map} $options [()] options
+///
+@mixin define-responsive-item($name, $items: (), $options: ()) {
+  @if map.has-key($items, $name) {
+    $up: map.get($items, $name);
+    $focus: map.get($items, "#{$name}--focus");
+    $current: map.get($items, "#{$name}--current");
+    $disabled: map.get($items, "#{$name}--disabled");
+    $up-if-mobile: map.get($items, "#{$name}--if-mobile");
+    $focus-if-mobile: map.get($items, "#{$name}--focus--if-mobile");
+    $current-if-mobile: map.get($items, "#{$name}--current--if-mobile");
+    $disabled-if-mobile: map.get($items, "#{$name}--disabled--if-mobile");
+    $use2x: map.get($options, "use2x");
+    $capturing-selectors: map.get($options, "capturing-selectors");
+
+    &-#{$name} {
+      @content;
+
+      @if $up {
+        @include mixin.set-properties(
+          $values: $up,
+          $use2x: $use2x == true
+        );
+
+        @if $up-if-mobile {
+          @include unit-mixin.define-breakpoint($until: "mobile") {
+            @include mixin.set-properties(
+              $values: $up-if-mobile,
+              $use2x: $use2x == true or $use2x == "if-mobile"
+            );
+          }
+        }
+      }
+
+      @if $focus {
+        @include unit-mixin.on-focus($capturing-selectors: $capturing-selectors) {
+          @include mixin.set-properties(
+            $values: (
+              "offset-x": map.get($focus, "offset-x"),
+              "offset-y": map.get($focus, "offset-y")
+            ),
+            $use2x: $use2x == true
+          );
+        }
+
+        @if $focus-if-mobile {
+          @include unit-mixin.define-breakpoint($until: "mobile") {
+            @include unit-mixin.on-focus($capturing-selectors: $capturing-selectors) {
+              @include mixin.set-properties(
+                $values: (
+                  "offset-x": map.get($focus-if-mobile, "offset-x"),
+                  "offset-y": map.get($focus-if-mobile, "offset-y")
+                ),
+                $use2x: $use2x == true or $use2x == "if-mobile"
+              );
+            }
+          }
+        }
+      }
+
+      @if $current {
+        @include unit-mixin.on-current($capturing-selectors: $capturing-selectors) {
+          @include mixin.set-properties(
+            $values: (
+              "offset-x": map.get($current, "offset-x"),
+              "offset-y": map.get($current, "offset-y")
+            ),
+            $use2x: $use2x == true
+          );
+        }
+
+        @if $current-if-mobile {
+          @include unit-mixin.define-breakpoint($until: "mobile") {
+            @include unit-mixin.on-current($capturing-selectors: $capturing-selectors) {
+              @include mixin.set-properties(
+                $values: (
+                  "offset-x": map.get($current-if-mobile, "offset-x"),
+                  "offset-y": map.get($current-if-mobile, "offset-y")
+                ),
+                $use2x: $use2x == true or $use2x == "if-mobile"
+              );
+            }
+          }
+        }
+      }
+
+      @if $disabled {
+        @include unit-mixin.on-disabled($capturing-selectors: $capturing-selectors) {
+          @include mixin.set-properties(
+            $values: (
+              "offset-x": map.get($disabled, "offset-x"),
+              "offset-y": map.get($disabled, "offset-y")
+            ),
+            $use2x: $use2x == true
+          );
+        }
+
+        @if $disabled-if-mobile {
+          @include unit-mixin.define-breakpoint($until: "mobile") {
+            @include unit-mixin.on-disabled($capturing-selectors: $capturing-selectors) {
+              @include mixin.set-properties(
+                $values: (
+                  "offset-x": map.get($disabled-if-mobile, "offset-x"),
+                  "offset-y": map.get($disabled-if-mobile, "offset-y")
+                ),
+                $use2x: $use2x == true or $use2x == "if-mobile"
+              );
+            }
+          }
+        }
+      }
+    }
+  }
+  @else {
+    @warn "@mixin define-responsive-item: Spritesheet '#{$name}' was not generate, because $name: '#{$name}' is not found.";
+  }
+}

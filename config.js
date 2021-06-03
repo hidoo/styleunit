@@ -76,9 +76,11 @@ export const path = {
 
   // source details
   get srcCss() { return `${this.src}/scss`; },
+  get srcSprite() { return `${this.src}/sprite`; },
   get srcStyleguide() { return `${this.dest}/css`; },
 
   // destinaion details
   get destCss() { return `${this.dest}/css`; },
+  get destSprite() { return `${this.dest}/images/sprites`; },
   get destStyleguide() { return `${this.dest}/styleguide`; }
 };

@@ -1,0 +1,15 @@
+<svg id="example-b--selected--focus--if-mobile.svg" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #444;
+      }
+
+      .cls-2 {
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <rect id="checked" class="cls-1" x="6" y="5.938" width="18.062" height="18.125"/>
+  <path id="rect" class="cls-2" d="M162.991,51.031h30v30h-30v-30Zm2,2h26v26h-26v-26Z" transform="translate(-163 -51.031)"/>
+</svg>

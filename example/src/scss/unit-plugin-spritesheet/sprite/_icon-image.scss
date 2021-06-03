@@ -1,0 +1,116 @@
+// stylelint-disable number-no-trailing-zeros
+$sprites: (
+  "icon-image": (
+    "image": "../../images/sprites/icon-image.png",
+    "items": (
+      "example-c--current": (
+        "width": 34px,
+        "height": 24px,
+        "total-width": 98px,
+        "total-height": 84px,
+        "offset-x": 0px,
+        "offset-y": 0px,
+        "image": "../../images/sprites/icon-image.png"
+      ),
+      "example-c--disabled": (
+        "width": 34px,
+        "height": 24px,
+        "total-width": 98px,
+        "total-height": 84px,
+        "offset-x": -36px,
+        "offset-y": 0px,
+        "image": "../../images/sprites/icon-image.png"
+      ),
+      "example-c--focus": (
+        "width": 34px,
+        "height": 24px,
+        "total-width": 98px,
+        "total-height": 84px,
+        "offset-x": 0px,
+        "offset-y": -26px,
+        "image": "../../images/sprites/icon-image.png"
+      ),
+      "example-c": (
+        "width": 34px,
+        "height": 24px,
+        "total-width": 98px,
+        "total-height": 84px,
+        "offset-x": -36px,
+        "offset-y": -26px,
+        "image": "../../images/sprites/icon-image.png"
+      ),
+      "example-d--current--if-mobile": (
+        "width": 26px,
+        "height": 18px,
+        "total-width": 98px,
+        "total-height": 84px,
+        "offset-x": 0px,
+        "offset-y": -52px,
+        "image": "../../images/sprites/icon-image.png"
+      ),
+      "example-d--current": (
+        "width": 18px,
+        "height": 12px,
+        "total-width": 98px,
+        "total-height": 84px,
+        "offset-x": -72px,
+        "offset-y": -40px,
+        "image": "../../images/sprites/icon-image.png"
+      ),
+      "example-d--disabled--if-mobile": (
+        "width": 26px,
+        "height": 18px,
+        "total-width": 98px,
+        "total-height": 84px,
+        "offset-x": -28px,
+        "offset-y": -52px,
+        "image": "../../images/sprites/icon-image.png"
+      ),
+      "example-d--disabled": (
+        "width": 18px,
+        "height": 12px,
+        "total-width": 98px,
+        "total-height": 84px,
+        "offset-x": -72px,
+        "offset-y": -54px,
+        "image": "../../images/sprites/icon-image.png"
+      ),
+      "example-d--focus--if-mobile": (
+        "width": 26px,
+        "height": 18px,
+        "total-width": 98px,
+        "total-height": 84px,
+        "offset-x": -72px,
+        "offset-y": 0px,
+        "image": "../../images/sprites/icon-image.png"
+      ),
+      "example-d--focus": (
+        "width": 18px,
+        "height": 12px,
+        "total-width": 98px,
+        "total-height": 84px,
+        "offset-x": 0px,
+        "offset-y": -72px,
+        "image": "../../images/sprites/icon-image.png"
+      ),
+      "example-d--if-mobile": (
+        "width": 26px,
+        "height": 18px,
+        "total-width": 98px,
+        "total-height": 84px,
+        "offset-x": -72px,
+        "offset-y": -20px,
+        "image": "../../images/sprites/icon-image.png"
+      ),
+      "example-d": (
+        "width": 18px,
+        "height": 12px,
+        "total-width": 98px,
+        "total-height": 84px,
+        "offset-x": -20px,
+        "offset-y": -72px,
+        "image": "../../images/sprites/icon-image.png"
+      ),
+    )
+  )
+);

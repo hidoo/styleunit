@@ -1,0 +1,10 @@
+<svg id="example-b--if-mobile.svg" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+  <defs>
+    <style>
+      .cls-1 {
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="rect" class="cls-1" d="M2.991,51.031h30v30h-30v-30Zm2,2h26v26h-26v-26Z" transform="translate(-3 -51.031)"/>
+</svg>

@@ -1,0 +1,49 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group plugin/spritesheet
+////
+
+@use "sass:map";
+@use "sass:meta";
+
+/// set properties
+/// @access private
+/// @param {Map} $values [()] values of item
+/// @param {Boolean} $use2x [false] use 2x image or not
+///
+@mixin set-properties($values: (), $use2x: false) {
+  @if meta.type-of($values) == "map" {
+    $width: map.get($values, "width");
+    $height: map.get($values, "height");
+    $offset-x: map.get($values, "offset-x");
+    $offset-y: map.get($values, "offset-y");
+    $total-width: map.get($values, "total-width");
+    $total-height: map.get($values, "total-height");
+
+    @if meta.type-of($width) == "number" {
+      $width: if($use2x, $width / 2, $width);
+
+      width: $width;
+    }
+
+    @if meta.type-of($height) == "number" {
+      $height: if($use2x, $height / 2, $height);
+
+      height: $height;
+    }
+
+    @if meta.type-of($offset-x) == "number" and meta.type-of($offset-y) == "number" {
+      $offset-x: if($use2x, $offset-x / 2, $offset-x);
+      $offset-y: if($use2x, $offset-y / 2, $offset-y);
+
+      background-position: $offset-x $offset-y;
+    }
+
+    @if meta.type-of($total-width) == "number" and meta.type-of($total-height) == "number" {
+      $total-width: if($use2x, $total-width / 2, $total-width);
+      $total-height: if($use2x, $total-height / 2, $total-height);
+
+      background-size: $total-width $total-height;
+    }
+  }
+}

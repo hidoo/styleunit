@@ -15,22 +15,35 @@ import * as config from '../config';
  *
  * @type {String}
  */
-const pathToCss = relative(config.path.destStyleguide, config.path.destCss);
 const pathToCssWebsite = relative(config.path.destWebsite, `${config.path.destWebsite}/css`);
 
-// define main task
-export const main = buildStyleguide({
-  name: 'styleguide:build',
-  src: `${config.path.srcStyleguide}`,
-  dest: `${config.path.destStyleguide}`,
-  css: [`${pathToCss}/main.css`],
+// define example tasks
+export const unit = buildStyleguide({
+  name: 'styleguide:main',
+  src: `${config.path.srcStyleguide}/unit`,
+  dest: `${config.path.destStyleguide}/unit`,
+  get css() { return `${relative(this.dest, this.src)}/main.css`; },
+  homepage: resolve(__dirname, '../README.md'),
+  builder: resolve(__dirname, '../../kss-builder')
+});
+export const pluginSpritesheet = buildStyleguide({
+  name: 'styleguide:plugin:spritesheet',
+  src: `${config.path.srcStyleguide}/unit-plugin-spritesheet`,
+  dest: `${config.path.destStyleguide}/unit-plugin-spritesheet`,
+  get css() { return `${relative(this.dest, this.src)}/main.css`; },
   homepage: resolve(__dirname, '../README.md'),
   builder: resolve(__dirname, '../../kss-builder')
 });
 
+// define main task
+export const main = gulp.parallel(
+  unit,
+  pluginSpritesheet
+);
+
 // define website task
 export const website = buildStyleguide({
-  name: 'styleguide:build:website',
+  name: 'styleguide:main:website',
   src: `${config.path.destWebsite}/css`,
   dest: `${config.path.destWebsite}`,
   css: [`${pathToCssWebsite}/main.css`],
@@ -42,8 +55,8 @@ export const website = buildStyleguide({
 export const watch = () => {
   gulp.watch(
     [
-      `./*.md`,
-      `${config.path.srcStyleguide}/*.css`
+      `./**/*.md`,
+      `${config.path.srcStyleguide}/**/*.css`
     ],
     main
   );

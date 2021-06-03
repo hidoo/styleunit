@@ -1,0 +1,116 @@
+// stylelint-disable number-no-trailing-zeros
+$sprites: (
+  "text-image": (
+    "image": "../../images/sprites/text-image.png",
+    "items": (
+      "example-c--current": (
+        "width": 162px,
+        "height": 22px,
+        "total-width": 286px,
+        "total-height": 154px,
+        "offset-x": 0px,
+        "offset-y": 0px,
+        "image": "../../images/sprites/text-image.png"
+      ),
+      "example-c--disabled": (
+        "width": 162px,
+        "height": 22px,
+        "total-width": 286px,
+        "total-height": 154px,
+        "offset-x": 0px,
+        "offset-y": -24px,
+        "image": "../../images/sprites/text-image.png"
+      ),
+      "example-c--focus": (
+        "width": 162px,
+        "height": 22px,
+        "total-width": 286px,
+        "total-height": 154px,
+        "offset-x": 0px,
+        "offset-y": -48px,
+        "image": "../../images/sprites/text-image.png"
+      ),
+      "example-c": (
+        "width": 162px,
+        "height": 22px,
+        "total-width": 286px,
+        "total-height": 154px,
+        "offset-x": 0px,
+        "offset-y": -72px,
+        "image": "../../images/sprites/text-image.png"
+      ),
+      "example-d--current--if-mobile": (
+        "width": 122px,
+        "height": 18px,
+        "total-width": 286px,
+        "total-height": 154px,
+        "offset-x": 0px,
+        "offset-y": -96px,
+        "image": "../../images/sprites/text-image.png"
+      ),
+      "example-d--current": (
+        "width": 82px,
+        "height": 12px,
+        "total-width": 286px,
+        "total-height": 154px,
+        "offset-x": -164px,
+        "offset-y": -20px,
+        "image": "../../images/sprites/text-image.png"
+      ),
+      "example-d--disabled--if-mobile": (
+        "width": 122px,
+        "height": 18px,
+        "total-width": 286px,
+        "total-height": 154px,
+        "offset-x": 0px,
+        "offset-y": -116px,
+        "image": "../../images/sprites/text-image.png"
+      ),
+      "example-d--disabled": (
+        "width": 82px,
+        "height": 12px,
+        "total-width": 286px,
+        "total-height": 154px,
+        "offset-x": -164px,
+        "offset-y": -34px,
+        "image": "../../images/sprites/text-image.png"
+      ),
+      "example-d--focus--if-mobile": (
+        "width": 122px,
+        "height": 18px,
+        "total-width": 286px,
+        "total-height": 154px,
+        "offset-x": 0px,
+        "offset-y": -136px,
+        "image": "../../images/sprites/text-image.png"
+      ),
+      "example-d--focus": (
+        "width": 82px,
+        "height": 12px,
+        "total-width": 286px,
+        "total-height": 154px,
+        "offset-x": -164px,
+        "offset-y": -48px,
+        "image": "../../images/sprites/text-image.png"
+      ),
+      "example-d--if-mobile": (
+        "width": 122px,
+        "height": 18px,
+        "total-width": 286px,
+        "total-height": 154px,
+        "offset-x": -164px,
+        "offset-y": 0px,
+        "image": "../../images/sprites/text-image.png"
+      ),
+      "example-d": (
+        "width": 82px,
+        "height": 12px,
+        "total-width": 286px,
+        "total-height": 154px,
+        "offset-x": -164px,
+        "offset-y": -62px,
+        "image": "../../images/sprites/text-image.png"
+      ),
+    )
+  )
+);

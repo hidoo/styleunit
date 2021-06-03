@@ -1,0 +1,55 @@
+@use "sass:map";
+@use "../../../../../../src/settings";
+@use "../../../../../../src/plugin/spritesheet" as *;
+
+/*
+check
+
+check modifiers of #{settings.$prefix}-toggle
+
+Weight: -98
+
+Style guide: #{settings.$prefix}-toggle.check
+*/
+
+/*
+modifiers: check
+
+builtin modifiers of check for #{settings.$prefix}-toggle
+
+Weight: -100
+
+Markup: <!-- single -->
+<span class="#{settings.$prefix}-toggle  {{modifier_class}}">
+  <input class="#{settings.$prefix}-toggle__field" type="checkbox" name="{{modifier_class}}" value="1" />
+  <span class="#{settings.$prefix}-toggle__alt"></span>
+</span>
+<!-- single:disabled -->
+<span class="#{settings.$prefix}-toggle  {{modifier_class}}">
+  <input class="#{settings.$prefix}-toggle__field" type="checkbox" name="{{modifier_class}}" value="2" checked="checked" disabled="disabled" />
+  <span class="#{settings.$prefix}-toggle__alt"></span>
+</span>
+<!-- with label -->
+<label>
+  <span class="#{settings.$prefix}-toggle  {{modifier_class}}">
+    <input class="#{settings.$prefix}-toggle__field" type="checkbox" name="{{modifier_class}}" value="3" />
+    <span class="#{settings.$prefix}-toggle__alt"></span>
+  </span>
+  Lorem ipsum dolor sit amet.
+</label>
+
+#{settings.$prefix}-toggle--check-example-a - check example-a (svg)
+#{settings.$prefix}-toggle--check-example-b - check example-b (svg, responsive)
+#{settings.$prefix}-toggle--check-example-c - check example-c (image, use2x)
+#{settings.$prefix}-toggle--check-example-d - check example-d (image, responsive, use2x - if mobile)
+
+Style guide: #{settings.$prefix}-toggle.check.extends
+*/
+.#{settings.$prefix}-toggle--check { // stylelint-disable-line scss/selector-nest-combinators
+  $options: ("toggle": true);
+
+  @include use-spritesheet($type: "check-svg", $name: "example-a", $options: $options);
+  @include use-spritesheet($type: "check-svg", $name: "example-b", $options: map-merge($options, ("responsive": true)));
+  @include use-spritesheet($type: "check-image", $name: "example-c", $options: map-merge($options, ("use2x": true)));
+  @include use-spritesheet($type: "check-image", $name: "example-d", $options: map-merge($options, ("responsive": true, "use2x": "if-mobile")));
+}

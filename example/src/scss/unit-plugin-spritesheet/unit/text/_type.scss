@@ -1,0 +1,51 @@
+@use "sass:map";
+@use "../../../../../../src/settings";
+@use "../../../../../../src/plugin/spritesheet" as *;
+
+/*
+type
+
+type modifiers of #{settings.$prefix}-text
+
+Weight: -90
+
+Style guide: #{settings.$prefix}-text.type
+*/
+
+/*
+modifiers: type
+
+builtin modifiers of type for #{settings.$prefix}-text
+
+Weight: -99
+
+Markup: <!-- single -->
+<span class="#{settings.$prefix}-text  {{modifier_class}}">LOREM IPSUM</span>
+<!-- a child -->
+<a href="javascript:;">
+  <span class="#{settings.$prefix}-text  {{modifier_class}}">LOREM IPSUM</span>
+</a>
+<!-- a (current) child -->
+<a class="is-current" href="javascript:;">
+  <span class="#{settings.$prefix}-text  {{modifier_class}}">LOREM IPSUM</span>
+</a>
+<!-- button (disabled) child -->
+<button disabled="disabled">
+  <span class="#{settings.$prefix}-text  {{modifier_class}}">LOREM IPSUM</span>
+</button>
+
+#{settings.$prefix}-text--type-example-a - type example-a (svg)
+#{settings.$prefix}-text--type-example-b - type example-b (svg, responsive)
+#{settings.$prefix}-text--type-example-c - type example-c (image, use2x)
+#{settings.$prefix}-text--type-example-d - type example-d (image, responsive, use2x - if mobile)
+
+Style guide: #{settings.$prefix}-text.type.extend
+*/
+.#{settings.$prefix}-text--type { // stylelint-disable-line scss/selector-nest-combinators
+  $options: ("capturing-selectors": ("a", "button"));
+
+  @include use-spritesheet($type: "text-svg", $name: "example-a", $options: $options);
+  @include use-spritesheet($type: "text-svg", $name: "example-b", $options: map-merge($options, ("responsive": true)));
+  @include use-spritesheet($type: "text-image", $name: "example-c", $options: map-merge($options, ("use2x": true)));
+  @include use-spritesheet($type: "text-image", $name: "example-d", $options: map-merge($options, ("responsive": true, "use2x": "if-mobile")));
+}

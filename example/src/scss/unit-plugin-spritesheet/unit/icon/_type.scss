@@ -1,0 +1,51 @@
+@use "sass:map";
+@use "../../../../../../src/settings";
+@use "../../../../../../src/plugin/spritesheet" as *;
+
+/*
+type
+
+type modifiers of #{settings.$prefix}-icon
+
+Weight: -99
+
+Style guide: #{settings.$prefix}-icon.type
+*/
+
+/*
+modifiers: type
+
+builtin modifiers of type for #{settings.$prefix}-icon
+
+Weight: -99
+
+Markup: <!-- single -->
+<span class="#{settings.$prefix}-icon  {{modifier_class}}"></span>
+<!-- a child -->
+<a href="javascript:;">
+  <span class="#{settings.$prefix}-icon  {{modifier_class}}"></span>
+</a>
+<!-- a (current) child -->
+<a class="is-current" href="javascript:;">
+  <span class="#{settings.$prefix}-icon  {{modifier_class}}"></span>
+</a>
+<!-- button (disabled) child -->
+<button disabled="disabled">
+  <span class="#{settings.$prefix}-icon  {{modifier_class}}"></span>
+</button>
+
+#{settings.$prefix}-icon--type-example-a - type example-a (svg)
+#{settings.$prefix}-icon--type-example-b - type example-b (svg, responsive)
+#{settings.$prefix}-icon--type-example-c - type example-c (image, use2x)
+#{settings.$prefix}-icon--type-example-d - type example-d (image, responsive, use2x - if mobile)
+
+Style guide: #{settings.$prefix}-icon.type.extend
+*/
+.#{settings.$prefix}-icon--type { // stylelint-disable-line scss/selector-nest-combinators
+  $options: ("capturing-selectors": ("a", "button"));
+
+  @include use-spritesheet($type: "icon-svg", $name: "example-a", $options: $options);
+  @include use-spritesheet($type: "icon-svg", $name: "example-b", $options: map.merge($options, ("responsive": true)));
+  @include use-spritesheet($type: "icon-image", $name: "example-c", $options: map.merge($options, ("use2x": true)));
+  @include use-spritesheet($type: "icon-image", $name: "example-d", $options: map.merge($options, ("responsive": true, "use2x": "if-mobile")));
+}

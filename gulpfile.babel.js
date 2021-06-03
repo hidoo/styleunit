@@ -10,6 +10,7 @@ import fancyPrint from '@hidoo/util-fancy-print';
  */
 import * as config from './config';
 import * as css from './task/css';
+import * as sprite from './task/sprite';
 import * as styleguide from './task/styleguide';
 import server from './task/server';
 
@@ -58,6 +59,7 @@ export {default as server} from './task/server';
  * @return {Function}
  */
 export const build = gulp.series(
+  sprite.main,
   css.main,
   styleguide.main
 );
@@ -80,6 +82,7 @@ export const website = gulp.series(
  */
 export const watch = gulp.parallel(
   css.watch,
+  sprite.watch,
   styleguide.watch
 );
 

@@ -1,0 +1,11 @@
+<svg id="example-b--disabled.svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <style>
+      .cls-1 {
+        fill-rule: evenodd;
+        opacity: 0.5;
+      }
+    </style>
+  </defs>
+  <path id="rect" class="cls-1" d="M63,27.031H83v20H63v-20Zm1,1H82v18H64v-18Z" transform="translate(-63 -27.031)"/>
+</svg>

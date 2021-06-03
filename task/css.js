@@ -9,19 +9,32 @@ import buildCss from '@hidoo/gulp-task-build-css-sass';
  */
 import * as config from '../config';
 
-// define main task
-export const main = buildCss({
+// define example tasks
+export const unit = buildCss({
   name: 'css:main',
-  src: `${config.path.srcCss}/main.scss`,
-  dest: `${config.path.destCss}`,
+  src: `${config.path.srcCss}/unit/main.scss`,
+  dest: `${config.path.destCss}/unit`,
+  filename: 'main.css',
+  compress: config.compress
+});
+export const pluginSpritesheet = buildCss({
+  name: 'css:plugin:spritesheet',
+  src: `${config.path.srcCss}/unit-plugin-spritesheet/main.scss`,
+  dest: `${config.path.destCss}/unit-plugin-spritesheet`,
   filename: 'main.css',
   compress: config.compress
 });
 
+// define main task
+export const main = gulp.parallel(
+  unit,
+  pluginSpritesheet
+);
+
 // define website task
 export const website = buildCss({
   name: 'css:main:website',
-  src: `${config.path.srcCss}/main.scss`,
+  src: `${config.path.srcCss}/unit/main.scss`,
   dest: `${config.path.destWebsite}/css`,
   filename: 'main.css',
   compress: config.compress

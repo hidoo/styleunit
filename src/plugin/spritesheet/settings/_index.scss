@@ -1,0 +1,33 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group plugin/spritesheet
+////
+
+/// data store of sprite sheets
+/// @type List|Map
+///
+/// @example scss - scss inputs
+///   // format of spritesheets
+///   $spritesheets: (
+///      // each by types of spritesheet
+///     (
+///       "icon-image": (
+///         "image": "path/to/sprite/icon-image.png",
+///         "items": (
+///           // output each by items
+///           "logo": (
+///             "width": 10px,
+///             "height": 10px,
+///             "total-width": 30px,
+///             "total-height": 30px,
+///             "offset-x": -10px,
+///             "offset-y": -10px
+///           ),
+///           ...
+///         )
+///       )
+///     ),
+///     ...
+///   );
+///
+$spritesheets: () !default;

@@ -1,0 +1,16 @@
+<svg id="example-b--focus.svg" xmlns="http://www.w3.org/2000/svg" width="18" height="12" viewBox="0 0 18 12">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: 0;
+      }
+
+      .cls-2 {
+        fill: #444;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <rect id="rect" class="cls-1" width="18" height="12"/>
+  <path id="arrow" class="cls-2" d="M54.638,22.633l-5.657-5.657-5.646,5.646-2.828-2.828,5.646-5.646,2.829-2.828,0.011-.011,2.828,2.828-0.011.011L57.466,19.8Z" transform="translate(-40.031 -11.031)"/>
+</svg>

@@ -1,0 +1,33 @@
+@charset "utf-8";
+
+// use spritesheet variables
+@use "./sprite/icon-svg";
+@use "./sprite/icon-image";
+@use "./sprite/text-svg";
+@use "./sprite/text-image";
+@use "./sprite/check-svg";
+@use "./sprite/check-image";
+@use "./sprite/radio-svg";
+@use "./sprite/radio-image";
+
+// use spritesheet plugin with configuration
+@use "../../../../src/plugin/spritesheet" with (
+  $spritesheets: (
+    icon-svg.$sprites,
+    icon-image.$sprites,
+    text-svg.$sprites,
+    text-image.$sprites,
+    check-svg.$sprites,
+    check-image.$sprites,
+    radio-svg.$sprites,
+    radio-image.$sprites,
+  )
+);
+
+// use extended unit
+@use "./unit/icon";
+@use "./unit/text";
+@use "./unit/toggle";
+
+// initialize
+@use "../../../../src/bootstrap";
