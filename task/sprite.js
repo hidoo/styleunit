@@ -1,7 +1,7 @@
 /**
  * import modules
  */
-import {relative, resolve} from 'path';
+import {relative} from 'path';
 import gulp from 'gulp';
 import buildImageSprite from '@hidoo/gulp-task-build-sprite-image';
 import buildSvgSprite from '@hidoo/gulp-task-build-sprite-svg';
@@ -41,7 +41,7 @@ function buildOptions(options = {}) {
     destImg: config.path.destSprite,
     destCss: `${config.path.srcCss}/unit-plugin-spritesheet/sprite`,
     imgPath: `${pathToSprite}/${options.imgName}${cacheParameter}`,
-    cssPreprocessor: 'sass',
+    cssPreprocessor: 'sass:module',
     compress: config.compress
   };
 }
@@ -51,7 +51,6 @@ const iconImage = buildImageSprite(buildOptions({
   src: `${config.path.srcSprite}/icon-assets/*.png`,
   imgName: 'icon-image.png',
   cssName: '_icon-image.scss',
-  cssTemplate: resolve(__dirname, '../template/image-sprite.hbs'),
   evenize: true
 }));
 
@@ -59,8 +58,7 @@ const iconSvg = buildSvgSprite(buildOptions({
   name: 'sprite:icon:svg',
   src: `${config.path.srcSprite}/icon-assets/*.svg`,
   imgName: 'icon-svg.svg',
-  cssName: '_icon-svg.scss',
-  cssTemplate: resolve(__dirname, '../template/svg-sprite.hbs')
+  cssName: '_icon-svg.scss'
 }));
 
 const textImage = buildImageSprite(buildOptions({
@@ -68,7 +66,6 @@ const textImage = buildImageSprite(buildOptions({
   src: `${config.path.srcSprite}/text-assets/*.png`,
   imgName: 'text-image.png',
   cssName: '_text-image.scss',
-  cssTemplate: resolve(__dirname, '../template/image-sprite.hbs'),
   evenize: true
 }));
 
@@ -76,8 +73,7 @@ const textSvg = buildSvgSprite(buildOptions({
   name: 'sprite:text:svg',
   src: `${config.path.srcSprite}/text-assets/*.svg`,
   imgName: 'text-svg.svg',
-  cssName: '_text-svg.scss',
-  cssTemplate: resolve(__dirname, '../template/svg-sprite.hbs')
+  cssName: '_text-svg.scss'
 }));
 
 const radioImage = buildImageSprite(buildOptions({
@@ -85,7 +81,6 @@ const radioImage = buildImageSprite(buildOptions({
   src: `${config.path.srcSprite}/radio-assets/*.png`,
   imgName: 'radio-image.png',
   cssName: '_radio-image.scss',
-  cssTemplate: resolve(__dirname, '../template/image-sprite.hbs'),
   evenize: true
 }));
 
@@ -93,8 +88,7 @@ const radioSvg = buildSvgSprite(buildOptions({
   name: 'sprite:radio:svg',
   src: `${config.path.srcSprite}/radio-assets/*.svg`,
   imgName: 'radio-svg.svg',
-  cssName: '_radio-svg.scss',
-  cssTemplate: resolve(__dirname, '../template/svg-sprite.hbs')
+  cssName: '_radio-svg.scss'
 }));
 
 const checkImage = buildImageSprite(buildOptions({
@@ -102,7 +96,6 @@ const checkImage = buildImageSprite(buildOptions({
   src: `${config.path.srcSprite}/check-assets/*.png`,
   imgName: 'check-image.png',
   cssName: '_check-image.scss',
-  cssTemplate: resolve(__dirname, '../template/image-sprite.hbs'),
   evenize: true
 }));
 
@@ -110,8 +103,7 @@ const checkSvg = buildSvgSprite(buildOptions({
   name: 'sprite:check:svg',
   src: `${config.path.srcSprite}/check-assets/*.svg`,
   imgName: 'check-svg.svg',
-  cssName: '_check-svg.scss',
-  cssTemplate: resolve(__dirname, '../template/svg-sprite.hbs')
+  cssName: '_check-svg.scss'
 }));
 
 // define main task

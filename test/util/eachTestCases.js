@@ -1,4 +1,3 @@
-import Fiber from 'fibers';
 import sass from 'sass';
 
 /**
@@ -35,8 +34,7 @@ export default async function eachTestCases(
       sass.render(
         {
           ...opts,
-          data: wrapper(...params),
-          fiber: Fiber
+          data: wrapper(...params)
         },
         (error, result) => rendered(
           {params, expected, error, result},
