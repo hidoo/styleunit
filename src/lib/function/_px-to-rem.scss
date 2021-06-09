@@ -44,5 +44,5 @@
     @warn "@function px-to-rem: This specification is may not render as intented, because argument $size is less than 10.";
   }
 
-  @return $size / $base-size * 1rem;
+  @return math.div($size, $base-size) * 1rem;
 }

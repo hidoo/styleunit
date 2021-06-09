@@ -38,14 +38,13 @@ describe('@function px-to-rem($size, $base-size)', () => {
 
   it('should throw error if argument "$base-size" is not valid.', async () => {
     const cases = [
-      {params: [['$size: 14px', '$base-size: null']]},
-      {params: [['$size: 14px', '$base-size: false']]},
       {params: [['$size: 14px', '$base-size: 14em']]},
       {params: [['$size: 14px', '$base-size: #000']]}
     ];
 
     await eachTestCases(cases, wrapper, ({error}, {resolve}) => {
       assert(error instanceof Error);
+      assert(error.message.match(/Argument \$base-size is not valid number\./));
       return resolve();
     });
   });

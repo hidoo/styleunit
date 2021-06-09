@@ -4,6 +4,7 @@
 ////
 
 @use "sass:map";
+@use "sass:math";
 @use "sass:meta";
 
 /// set properties
@@ -21,27 +22,27 @@
     $total-height: map.get($values, "total-height");
 
     @if meta.type-of($width) == "number" {
-      $width: if($use2x, $width / 2, $width);
+      $width: if($use2x, math.div($width, 2), $width);
 
       width: $width;
     }
 
     @if meta.type-of($height) == "number" {
-      $height: if($use2x, $height / 2, $height);
+      $height: if($use2x, math.div($height, 2), $height);
 
       height: $height;
     }
 
     @if meta.type-of($offset-x) == "number" and meta.type-of($offset-y) == "number" {
-      $offset-x: if($use2x, $offset-x / 2, $offset-x);
-      $offset-y: if($use2x, $offset-y / 2, $offset-y);
+      $offset-x: if($use2x, math.div($offset-x, 2), $offset-x);
+      $offset-y: if($use2x, math.div($offset-y, 2), $offset-y);
 
       background-position: $offset-x $offset-y;
     }
 
     @if meta.type-of($total-width) == "number" and meta.type-of($total-height) == "number" {
-      $total-width: if($use2x, $total-width / 2, $total-width);
-      $total-height: if($use2x, $total-height / 2, $total-height);
+      $total-width: if($use2x, math.div($total-width, 2), $total-width);
+      $total-height: if($use2x, math.div($total-height, 2), $total-height);
 
       background-size: $total-width $total-height;
     }

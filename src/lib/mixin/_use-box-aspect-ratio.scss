@@ -3,6 +3,8 @@
 /// @group features
 ////
 
+@use "sass:math";
+
 /// use settings of aspect ratio box
 /// @param {Number} $width [16] - width
 /// @param {Number} $height [9] - height
@@ -25,7 +27,7 @@
   $width: 16,
   $height: 9
 ) {
-  $ratio: $height / $width * 100;
+  $ratio: math.div($height, $width) * 100;
 
   &::before {
     content: "";
