@@ -76,3 +76,8 @@ $builtin-themes: (
     "border-focus": #777c82
   )
 ) !default;
+
+/// out warnings verbosily or not
+/// @type Boolean
+///
+$verbose: false !default;
