@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/hidoo/unit-sass/compare/v0.5.0...v0.6.0) (2021-06-09)
+
+
+### Bug Fixes
+
+* **kss-builder:** change to use sass module system ([2c20d48](https://github.com/hidoo/unit-sass/commit/2c20d48811550940d97367a051a61aef37e4c102))
+* **unit:** fix deprecated warnings for slash as division ([6039646](https://github.com/hidoo/unit-sass/commit/603964622a20ed251420c3eacd4022d97e1f2692))
+
+
+### Features
+
+* **unit:** add settings.$verbose ([b5f4b4d](https://github.com/hidoo/unit-sass/commit/b5f4b4d0e3b83aeb4bf5c446db527caa6c49f95c))
+* **unit:** add spritesheet plugin ([3f03059](https://github.com/hidoo/unit-sass/commit/3f03059cc2581e75a824174cd1f4dc37c08e4b0b))
+
+
+* feat(unit)!: support module system ([be3e994](https://github.com/hidoo/unit-sass/commit/be3e9946bbfccd9e3c9ede2db829d5fd8ca019ea))
+
+
+### BREAKING CHANGES
+
+*   Drop support for node-sass for migration to module system.
+
+  Remove feature of "Hook mixins". Use instead `with` for configuration of settings.
+
+  Remove `_override.scss` partial. Use instead `_bootstrap.scss`.
+
+
+
+
+
 # [0.5.0](https://github.com/hidoo/unit-sass/compare/v0.4.4...v0.5.0) (2021-06-08)
 
 **Note:** Version bump only for package @hidoo/unit
