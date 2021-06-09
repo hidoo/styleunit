@@ -15,20 +15,20 @@ $ npm install @hidoo/unit
 ## Usage
 
 ```scss
-@use "path/to/node_modules/@hidoo/unit/src/index.scss";
+@use "node_modules/@hidoo/unit/src/index.scss";
 ```
 
-### Use with [node-sass-magic-importer](https://github.com/maoberlehner/node-sass-magic-importer)
+### Use with [@hidoo/sass-importer](https://github.com/hidoo/unit-sass/tree/master/packages/sass-importer)
 
 ```scss
-@use "~@hidoo/unit";
+@use "@hidoo/unit";
 ```
 
 ### Usage with custom settings
 
 ```scss
 // use this package with custom settings
-@use "path/to/node_modules/@hidoo/unit/src/index.scss" with (
+@use "node_modules/@hidoo/unit/src/index.scss" with (
   $prefix: "u"
 );
 ```
@@ -37,19 +37,23 @@ $ npm install @hidoo/unit
 
 ```scss
 // use custom settings
-@use "path/to/node_modules/@hidoo/unit/src/settings" with (
+@use "node_modules/@hidoo/unit/src/settings" with (
   $prefix: "u"
 );
 
 // use all of text unit
-@use "path/to/node_modules/@hidoo/unit/src/unit/text";
+@use "node_modules/@hidoo/unit/src/unit/text";
 
 // use part of button unit
-@use "path/to/node_modules/@hidoo/unit/src/unit/button/core";
-@use "path/to/node_modules/@hidoo/unit/src/unit/button/inline";
+@use "node_modules/@hidoo/unit/src/unit/button/core";
+@use "node_modules/@hidoo/unit/src/unit/button/inline";
 ```
 
-## Migration 0.4.4 to 0.5.x higher
+## Plugins
+
++ [spritesheet](./src/plugin/spritesheet)
+
+## Migration 0.4.4 to 0.6.x higher
 
 TODO
 
