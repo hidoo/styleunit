@@ -34,6 +34,11 @@ $_default-font-applying-units: (
 /// @example scss - scss inputs
 ///   @include bootstrap();
 ///
+/// @example scss - scss inputs
+///   @include bootstrap() {
+///     // with appling additional settings to all units
+///   };
+///
 @mixin bootstrap(
   $enable-font-applying: true,
   $enable-font-advanced-settings: true,
@@ -68,6 +73,10 @@ $_default-font-applying-units: (
         [class^="#{settings.$prefix}-#{$unit}"],
         [class*=" #{settings.$prefix}-#{$unit}"] {
           @extend %#{$selector};
+
+          @if meta.content-exists() {
+            @content;
+          }
         }
       }
     }
