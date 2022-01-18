@@ -51,9 +51,9 @@ Style guide: #{settings.$prefix}-toggle.check.builtin
   $selector-field: string.unique-id();
   $selector-alt: string.unique-id();
   $selector-alt-checked: string.unique-id();
-  $selectors-selected: function.merge-state-selectors("selected");
-  $selectors-focus: function.merge-state-selectors("focus");
-  $selectors-disabled: function.merge-state-selectors("disabled");
+  $selectors-selected: function.selector-merge-state("selected");
+  $selectors-focus: function.selector-merge-state("focus");
+  $selectors-disabled: function.selector-merge-state("disabled");
 
   // define placeholder class
   @include mixin.define-placeholder($name: $selector) {

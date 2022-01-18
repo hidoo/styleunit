@@ -1,31 +1,33 @@
-/* eslint max-len: 0, no-magic-numbers: 0 */
+/* eslint max-len: off, no-magic-numbers: off */
 
 import assert from 'assert';
-import {eachTestCases, useSettingsWith} from '../util';
+import {eachTestCases, useSettingsWith} from '../../util';
 
 /**
  * wrapper
  *
+ * @param {Array} args arguments
  * @param {Array} settings settings of defaults
  * @return {String}
  */
-const wrapper = (settings = []) => `
+const wrapper = (args = [], settings = []) => `
 ${useSettingsWith(settings)}
-@use "sass:meta";
 @use "src/lib/function";
 
 .selector {
-  content: meta.function-exists("ununit", "function");
+  content: function.selector-inverse(${args.filter((arg) => arg !== false).join(', ')});
 }
 `;
 
-describe('[DEPRECATED] @function ununit($number)', () => {
+describe('@function selector-inverse($selector)', () => {
 
-  it('should exists.', async () => {
+  it('should out inverse selector.', async () => {
     const cases = [
       {
-        params: [[]],
-        expected: '.selector{content:true}'
+        params: [
+          ['$selector: ".buzz"']
+        ],
+        expected: `.selector{content:":not(.buzz)"}`
       }
     ];
 
@@ -40,5 +42,4 @@ describe('[DEPRECATED] @function ununit($number)', () => {
       return resolve();
     });
   });
-
 });

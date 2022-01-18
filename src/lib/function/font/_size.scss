@@ -1,0 +1,72 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group font feature
+////
+
+@use "sass:map";
+@use "sass:math";
+@use "sass:meta";
+@use "../math" as _math;
+@use "../../../settings" as settings;
+
+/// default options
+/// @access private
+/// @type Map
+///
+$_default-options: (
+  "monospace": false,
+  "relative-size": false
+) !default;
+
+/// return real font-size
+/// @param {String|Number} $value value of font-size (one of `"xsmall"`, `"small"`, `"medium"`, `"large"`, `"xlarge"`, `"2xlarge"`, `"3xlarge"`, `"4xlarge"` or number)
+/// @param {Map} $options [()] - options
+/// @param {Boolean} $options.monospace [false] - font-family is monospace or not
+/// @param {Boolean} $options.relative-size [false] - convert to rem value or not
+/// @return {Number} real font-sise
+///
+/// @example scss - scss inputs
+///   .selector {
+///     font-size: font-size($value: "medium");
+///   }
+///
+/// @example css - css outputs
+///   .selector {
+///     font-size: 14px;
+///   }
+///
+@function size($value, $options: ()) {
+  @if meta.type-of($value) == "string" {
+    @if meta.type-of(settings.$font-size) != "number" {
+      @error "@function font-size: settings.$font-size must be number.";
+    }
+
+    @if meta.type-of(settings.$font-size-presets) != "map" {
+      @error "@function font-size: settings.$font-size-presets must be map.";
+    }
+
+    $value: math.floor(settings.$font-size * map.get(settings.$font-size-presets, $value));
+  }
+
+  @if meta.type-of($value) != "number" {
+    $presets: meta.inspect(map.keys(settings.$font-size-presets));
+
+    @error "@function font-size: Argument $value must be number or one of #{$presets}.";
+  }
+
+  $opts: map.merge($_default-options, $options);
+  $monospace: map.get($opts, "monospace");
+  $relative-size: map.get($opts, "relative-size");
+
+  // adjust smaller than default
+  @if ($monospace) {
+    $value: math.floor($value * 0.9);
+  }
+
+  // convert to relative size
+  @if ($value > 0 and $relative-size) {
+    @return _math.px-to-rem($value);
+  }
+
+  @return $value;
+}

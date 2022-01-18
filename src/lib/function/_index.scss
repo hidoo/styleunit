@@ -1,3 +1,10 @@
+@forward "./color" as color-*;
+@forward "./font" as font-*;
+@forward "./list" as list-*;
+@forward "./math" as math-*;
+@forward "./meta" as meta-*;
+@forward "./selector" as selector-*;
+@forward "./string" as string-*;
 @forward "./is-empty";
 @forward "./merge-state-selectors";
 @forward "./px-to-rem";

@@ -1,0 +1,64 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group string feature
+////
+
+@use "sass:meta";
+@use "sass:string";
+@use "./replace" as *;
+
+/// percent-encoding mappings
+/// @access private
+/// @type Map
+///
+$_mappings: (
+  "%": "%25",
+  ":": "%3A",
+  "/": "%2F",
+  "?": "%3F",
+  "#": "%23",
+  "[": "%5B",
+  "]": "%5D",
+  "@": "%40",
+  "!": "%21",
+  "$": "%24",
+  "&": "%26",
+  "'": "%27",
+  '"': "%22",
+  "(": "%28",
+  ")": "%29",
+  "*": "%2A",
+  "+": "%2B",
+  ",": "%2C",
+  ";": "%3B",
+  "=": "%3D",
+  " ": "%20",
+) !default;
+
+/// return url encoded string
+/// @param {String} $string - string
+/// @return {String} url encoded string
+///
+/// @example scss - scss inputs
+///   .selector {
+///     content: encode-url('<svg xmlns="http://www.w3.org/2000/svg"></svg>');
+///   }
+///
+/// @example css - css outputs
+///   .selector {
+///     content: <svg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22><%2Fsvg>;
+///   }
+///
+@function encode-url($string) {
+  @if meta.type-of($string) != "string" {
+    @error "@function encode-url: Argument $string must be string.";
+  }
+
+  $encoded: $string;
+
+  @each $search, $replace in $_mappings {
+    $encoded: replace($encoded, $search, $replace);
+  }
+
+  @return $encoded;
+}

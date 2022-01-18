@@ -1,0 +1,25 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group selector features
+////
+
+@use "sass:meta";
+@use "../string";
+@use "../../../settings";
+
+/// return inverse selector
+/// @param {String} $selector - selector
+///
+/// @example scss - scss inputs
+///   .selector {
+///     content: _inverse(".hoge")
+///   }
+///
+/// @example css - css outputs
+///   .selector {
+///     content: ":not(.hoge)";
+///   }
+///
+@function inverse($selector) {
+  @return string.sprintf(":not(%s)", $selector);
+}

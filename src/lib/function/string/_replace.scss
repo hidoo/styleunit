@@ -1,0 +1,68 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group string feature
+////
+
+@use "sass:map";
+@use "sass:meta";
+@use "sass:string";
+
+/// default options
+/// @access private
+/// @type Map
+///
+$_default-options: (
+  "all": true,
+) !default;
+
+/// replace string
+/// @param {String} $string - string
+/// @param {String} $search - substring to replace
+/// @param {String} $replace [""] - replacement string
+/// @param {Map} $options [()] - options
+/// @return {String} replaced string
+///
+/// @example scss - scss inputs
+///   .selector {
+///     content: replace("hogefugapiyohogefugapiyo", "fuga", "FUGA");
+///   }
+///
+/// @example css - css outputs
+///   .selector {
+///     content: hogeFUGApiyohogeFUGApiyo;
+///   }
+///
+@function replace($string, $search, $replace: "", $options: ()) {
+  @if meta.type-of($string) != "string" {
+    @error "@function replace: Argument $string must be string.";
+  }
+
+  @if meta.type-of($search) != "string" {
+    @error "@function replace: Argument $search must be string.";
+  }
+
+  @if meta.type-of($replace) != "string" {
+    $replace: "#{meta.inspect($replace)}";
+  }
+
+  $index: string.index($string, $search);
+
+  @if not $index {
+    @return $string;
+  }
+
+  $opts: $_default-options;
+
+  @if meta.type-of($options) == "map" {
+    $opts: map.merge($_default-options, $options);
+  }
+
+  $prev: string.slice($string, 0, $index - 1);
+  $rest: string.slice($string, $index + string.length($search));
+
+  @if map.get($opts, "all") {
+    @return $prev + $replace + replace($rest, $search, $replace);
+  }
+
+  @return $prev + $replace + $rest;
+}

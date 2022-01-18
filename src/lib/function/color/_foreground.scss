@@ -1,0 +1,53 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group color feature
+////
+
+@use "sass:color";
+@use "sass:map";
+@use "sass:meta";
+@use "../../../settings" as settings;
+
+/// default options
+/// @access private
+/// @type Map
+///
+$_default-options: (
+  "threshold": 60%,
+  "color-mappings": (
+    "dark": #000,
+    "light": #fff,
+  )
+) !default;
+
+/// return foreground color
+/// @param {Color} $background-color - background-color
+/// @param {Map} $options [()] - options
+/// @param {Number} $options.threshold [60%] - threshold
+/// @param {Map} $options.color-mappings - color mappings
+/// @param {Map} $options.color-mappings.dark [settings.$color-scheme.black] - dark color
+/// @param {Map} $options.color-mappings.light [settings.$color-scheme.white] - light color
+/// @return {Color} foreground color
+///
+/// @example scss - scss inputs
+///   .selector {
+///     content: foreground(#000);
+///   }
+///
+/// @example css - css outputs
+///   .selector {
+///     content: #fff;
+///   }
+///
+@function foreground($background-color, $options: ()) {
+  @if meta.type-of($background-color) != "color" {
+    @error "@function foreground: Argument $background-color must be color.";
+  }
+
+  $opts: map.merge($_default-options, $options);
+  $threshold: map.get($opts, "threshold") or 60%;
+  $color-mappings: map.get($opts, "color-mappings");
+  $type: if(color.lightness($background-color) > $threshold, "dark", "light");
+
+  @return map.get($color-mappings, $type);
+}

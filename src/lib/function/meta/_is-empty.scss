@@ -1,0 +1,38 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group meta features
+////
+
+@use "sass:list";
+@use "sass:map";
+@use "sass:meta";
+
+/// value is empty or not
+/// @param {String|Number|List|Map} $value - test value
+/// @return {Boolean} value is empty or not
+///
+/// @example scss - scss inputs
+///   $result: is-empty(""); // -> true
+///
+@function is-empty($value: null) {
+  @if not $value {
+    @return true;
+  }
+
+  $type: meta.type-of($value);
+
+  @if $type == "string" and $value == "" {
+    @return true;
+  }
+  @else if $type == "number" and $value == 0 {
+    @return true;
+  }
+  @else if $type == "list" and list.length($value) == 0 {
+    @return true;
+  }
+  @else if $type == "map" and $value == () {
+    @return true;
+  }
+
+  @return false;
+}

@@ -23,7 +23,7 @@
 ///   }
 ///
 @mixin use-font-family($value: null, $important: false) {
-  @if function.is-empty($value) {
+  @if function.meta-is-empty($value) {
     @error "@mixin use-font-family: Argument $value must not be empty.";
   }
 
@@ -34,14 +34,14 @@
   }
 
   @if $value == "default" {
-    @if function.is-empty(settings.$font-family) {
+    @if function.meta-is-empty(settings.$font-family) {
       @error "@mixin use-font-family: settings.$font-family is not valid.";
     }
 
     font-family: settings.$font-family if($important, !important, null);
   }
   @else if $value == "monospace" {
-    @if function.is-empty(settings.$font-family-monospace) {
+    @if function.meta-is-empty(settings.$font-family-monospace) {
       @error "@mixin use-font-family: settings.$font-family-monospace is not valid.";
     }
 

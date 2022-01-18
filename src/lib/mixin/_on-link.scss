@@ -26,7 +26,7 @@
   $additional-selectors: (),
   $capturing-selectors: ()
 ) {
-  $selectors: function.merge-state-selectors("link", $additional-selectors);
+  $selectors: function.selector-merge-state("link", $additional-selectors);
 
   @include mixin.on($selectors: $selectors, $capturing-selectors: $capturing-selectors) {
     @content;

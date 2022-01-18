@@ -1,0 +1,46 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group list feature
+////
+
+@use "sass:list";
+@use "sass:meta";
+@use "../meta" as _meta;
+
+/// concatenate list as string
+/// @param {List} $list - list
+/// @param {String} $separator [","] - separator
+/// @return {String} concatenated list
+///
+/// @example scss - scss inputs
+///   .selector {
+///     content: concat-as-string(("hoge", "fuga", "piyo"), ":");
+///   }
+///
+/// @example css - css outputs
+///   .selector {
+///     content: hoge:fuga:piyo;
+///   }
+///
+@function concat-as-string($list: (), $separator: ",") {
+  @if meta.type-of($list) != "list" {
+    @error "@function concat-as-string: Argument $list must be list.";
+  }
+
+  @if _meta.is-empty($list) {
+    @return "";
+  }
+
+  $result: "";
+
+  @each $item in $list {
+    @if $result == "" {
+      $result: "#{$item}";
+    }
+    @else {
+      $result: "#{$result}#{$separator}#{$item}";
+    }
+  }
+
+  @return $result;
+}

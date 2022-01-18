@@ -17,9 +17,9 @@
 /// @param {Map} $options [()] options
 ///
 @mixin define-toggle-item($name, $items: (), $options: ()) {
-  $selectors-focus: unit-function.merge-state-selectors("focus");
-  $selectors-disabled: unit-function.merge-state-selectors("disabled");
-  $selectors-selected: unit-function.merge-state-selectors("selected");
+  $selectors-focus: unit-function.selector-merge-state("focus");
+  $selectors-disabled: unit-function.selector-merge-state("disabled");
+  $selectors-selected: unit-function.selector-merge-state("selected");
 
   @if map.has-key($items, $name) {
     $up: map.get($items, $name);

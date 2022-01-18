@@ -3,24 +3,19 @@
 /// @group features
 ////
 
-@use "sass:math";
-@use "sass:meta";
+@use "./math" as math;
 
 /// return number without unit
 /// @param {Number} $number number with unit
 /// @return {Number} number without unit
 ///
+/// @deprecated
+///
 /// @example scss - scss inputs
 ///   $pure-number: ununit(14px); // -> 14
 ///
 @function ununit($number) {
-  @if meta.type-of($number) != "number" {
-    @error "@function ununit: Argument $number must be number.";
-  }
+  @warn "[DEPRECATED] function.ununit is deprecated. Use instead function.math-remove-unit.";
 
-  @if math.is-unitless($number) {
-    @return $number;
-  }
-
-  @return math.div($number, $number * 0 + 1);
+  @return math.remove-unit($number);
 }

@@ -1,0 +1,26 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group math features
+////
+
+@use "sass:math";
+@use "sass:meta";
+
+/// return number without unit
+/// @param {Number} $number number with unit
+/// @return {Number} number without unit
+///
+/// @example scss - scss inputs
+///   $pure-number: remove-unit(14px); // -> 14
+///
+@function remove-unit($number) {
+  @if meta.type-of($number) != "number" {
+    @error "@function remove-unit: Argument $number must be number.";
+  }
+
+  @if math.is-unitless($number) {
+    @return $number;
+  }
+
+  @return math.div($number, $number * 0 + 1);
+}

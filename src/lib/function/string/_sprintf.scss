@@ -1,0 +1,52 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group string feature
+////
+
+@use "sass:meta";
+@use "sass:string";
+
+/// sprintf
+/// @param {String} $format - format
+/// @param {List} $args - arguments
+/// @return {String} formatted string
+///
+/// @example scss - scss inputs
+///   .selector {
+///     content: sprintf("%s is small capital of %s.", "fuga", "FUGA");
+///   }
+///
+/// @example css - css outputs
+///   .selector {
+///     content: fuga is small capital of FUGA.;
+///   }
+///
+@function sprintf($format, $args...) {
+  @if meta.type-of($format) != "string" {
+    @error "@function sprintf: Argument $string must be string.";
+  }
+
+  $formatted: $format;
+
+  @each $arg in $args {
+    $index: string.index($formatted, "%");
+
+    @if meta.type-of($index) != "null" {
+      $prev: string.slice($formatted, 0, $index - 1);
+      $flag: string.slice($formatted, $index, $index + 1);
+      $rest: string.slice($formatted, $index + 2);
+
+      @if $flag == "%s" {
+        $formatted: $prev + "#{$arg}" + $rest;
+      }
+      @else if $flag == "%o" {
+        $formatted: $prev + "#{meta.inspect($arg)}" + $rest;
+      }
+      @else {
+        $formatted: $prev + $arg + $rest;
+      }
+    }
+  }
+
+  @return $formatted;
+}

@@ -130,7 +130,7 @@ $_default-border-color: #000 !default;
         $size: map.get($value, "size");
         $style: map.get($value, "style");
         $color: map.get($value, "color");
-        $pure-value: function.ununit($size);
+        $pure-value: function.math-remove-unit($size);
         $one-with-unit: ($size * 0 + 1);
 
         @at-root {
@@ -153,7 +153,7 @@ $_default-border-color: #000 !default;
         }
       }
       @else {
-        $pure-value: function.ununit($value);
+        $pure-value: function.math-remove-unit($value);
         $sign: if($value < 0, "-", "");
         $one-with-unit: ($value * 0 + 1);
 

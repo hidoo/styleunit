@@ -3,15 +3,14 @@
 /// @group features
 ////
 
-@use "sass:map";
-@use "sass:math";
-@use "sass:meta";
-@use "../../settings";
+@use "./math" as math;
 
 /// convert px to rem
 /// @param {Number} $size - font size
 /// @param {Number} $base-size [settings.$font-base-size] - base font size
 /// @return {Number} rem value
+///
+/// @deprecated
 ///
 /// @example scss - scss inputs
 ///   .selector {
@@ -24,25 +23,7 @@
 ///   }
 ///
 @function px-to-rem($size, $base-size: null) {
-  @if $size == 0 {
-    @return 0;
-  }
+  @warn "[DEPRECATED] function.px-to-rem is deprecated. Use instead function.math-px-to-rem.";
 
-  @if meta.type-of($size) != "number" or math.unit($size) != "px" {
-    @error "@function px-to-rem: Argument $size is not valid number.";
-  }
-
-  @if not $base-size {
-    $base-size: settings.$font-base-size;
-  }
-
-  @if meta.type-of($base-size) != "number" or math.unit($base-size) != "px" {
-    @error "@function px-to-rem: Argument $base-size is not valid number.";
-  }
-
-  @if 0 < $size and $size < 10 {
-    @warn "@function px-to-rem: This specification is may not render as intented, because argument $size is less than 10."; // stylelint-disable-line max-line-length
-  }
-
-  @return math.div($size, $base-size) * 1rem;
+  @return math.px-to-rem($size, $base-size);
 }

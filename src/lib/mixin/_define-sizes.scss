@@ -52,7 +52,7 @@ $_supported-types: (
       @error "@mixin define-sizes: Argument $values includes negative numbers.";
     }
 
-    $pure-value: function.ununit($value);
+    $pure-value: function.math-remove-unit($value);
     $abs-value: math.abs($pure-value);
     $one-with-unit: ($value * 0 + 1);
 

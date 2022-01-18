@@ -26,7 +26,7 @@
   $additional-selectors: (),
   $capturing-selectors: ()
 ) {
-  $selectors: function.merge-state-selectors("current", $additional-selectors);
+  $selectors: function.selector-merge-state("current", $additional-selectors);
 
   @include mixin.on($selectors: $selectors, $capturing-selectors: $capturing-selectors) {
     @content;

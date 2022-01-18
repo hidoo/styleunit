@@ -1,0 +1,67 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group list feature
+////
+
+@use "sass:list";
+@use "sass:map" as _map;
+@use "sass:meta";
+@use "sass:string";
+@use "../meta" as _meta;
+
+/// default options
+/// @access private
+/// @type Map
+///
+$_default-options: (
+  "separator": auto,
+) !default;
+
+/// map list
+/// @param {List} $list - list
+/// @param {Function} $callback - function called each items
+/// @return {List} mapped list
+///
+/// @example scss - scss inputs
+///   .selector {
+///     content: map(
+///       ("hoge", "fuga", "pi", "yo"),
+///       meta.get-function("length", $module: "string")
+///     );
+///   }
+///
+/// @example css - css outputs
+///   .selector {
+///     content: 4 4 2 2;
+///   }
+///
+@function map($list: (), $callback: null, $options: ()) {
+  @if meta.type-of($list) != "list" {
+    @error "@function map: Argument $list must be list.";
+  }
+
+  @if _meta.is-empty($list) {
+    @return $list;
+  }
+
+  @if meta.type-of($callback) != "function" {
+    @error "@function map: Argument $callback must be function.";
+  }
+
+  $mapped: ();
+  $opts: $_default-options;
+
+  @if meta.type-of($options) == "map" {
+    $opts: _map.merge($_default-options, $options);
+  }
+
+  @each $item in $list {
+    $mapped: list.append(
+      $mapped,
+      meta.call($callback, $item),
+      _map.get($opts, "separator")
+    );
+  }
+
+  @return $mapped;
+}
