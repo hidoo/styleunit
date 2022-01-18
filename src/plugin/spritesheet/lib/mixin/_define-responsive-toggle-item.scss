@@ -240,6 +240,7 @@
     }
   }
   @else {
+    // stylelint-disable-next-line max-line-length
     @warn "@mixin define-responsive-toggle-item: Spritesheet '#{$name}' was not generate, because $name: '#{$name}' is not found.";
   }
 }

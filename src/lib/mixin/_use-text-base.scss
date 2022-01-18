@@ -51,6 +51,7 @@
     @else {
       $letter-spacing: 0.04em;
 
+      // stylelint-disable-next-line max-line-length
       @warn "@mixin use-text-base: $letter-spacing set #{$letter-spacing}, bacause settings.$letter-spacing is not number.";
     }
   }

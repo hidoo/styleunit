@@ -24,6 +24,7 @@
     font-feature-settings: $feature-settings;
 
     // disable when browser is ie 10-11
-    -ms-font-feature-settings: normal; // stylelint-disable-line order/properties-order
+    // stylelint-disable-next-line property-no-vendor-prefix, order/properties-order
+    -ms-font-feature-settings: normal;
   }
 }

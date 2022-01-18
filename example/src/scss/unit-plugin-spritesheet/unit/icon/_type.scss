@@ -47,5 +47,5 @@ Style guide: #{settings.$prefix}-icon.type.extend
   @include use-spritesheet($type: "icon-svg", $name: "example-a", $options: $options);
   @include use-spritesheet($type: "icon-svg", $name: "example-b", $options: map.merge($options, ("responsive": true)));
   @include use-spritesheet($type: "icon-image", $name: "example-c", $options: map.merge($options, ("use2x": true)));
-  @include use-spritesheet($type: "icon-image", $name: "example-d", $options: map.merge($options, ("responsive": true, "use2x": "if-mobile")));
+  @include use-spritesheet($type: "icon-image", $name: "example-d", $options: map.merge($options, ("responsive": true, "use2x": "if-mobile"))); // stylelint-disable-line max-line-length
 }

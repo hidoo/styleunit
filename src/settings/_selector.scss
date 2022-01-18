@@ -3,6 +3,8 @@
 /// @group Default settings
 ////
 
+@use "sass:color";
+
 /// settings of selector.
 /// for expressing of state like `:hover` or `:focus`.
 /// (default: `(".is-focus")`)
@@ -42,9 +44,9 @@ $current: (
 /// default link color
 /// @type Map
 /// @prop {Color} link [#37a5e4] - color of `:link`
-/// @prop {Color} focus [lighten(#37a5e4, 15%)] - color of `:focus`
+/// @prop {Color} focus [color.adjust(#37a5e4, 15%)] - color of `:focus`
 ///
 $link-color: (
   "link": #37a5e4,
-  "focus": lighten(#37a5e4, 15%)
+  "focus": color.adjust(#37a5e4, $lightness: 15%)
 ) !default;

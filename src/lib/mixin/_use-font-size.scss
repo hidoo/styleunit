@@ -43,7 +43,9 @@
   }
 
   @if meta.type-of($value) != "number" {
-    @error "@mixin use-font-size: Argument $value must be number or one of #{meta.inspect(map.keys(settings.$font-size-presets))}.";
+    $presets: meta.inspect(map.keys(settings.$font-size-presets));
+
+    @error "@mixin use-font-size: Argument $value must be number or one of #{$presets}.";
   }
 
   // adjust smaller than default
