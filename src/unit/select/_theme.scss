@@ -46,7 +46,7 @@ Style guide: #{settings.$prefix}-select.theme.builtin
   $selector: string.unique-id();
   $selector-field: string.unique-id();
 
-  @include mixin.define-placeholder($name: $selector) {
+  @include mixin.placeholder-define($name: $selector) {
     &::after {
       content: "";
       position: absolute;
@@ -66,7 +66,7 @@ Style guide: #{settings.$prefix}-select.theme.builtin
     }
   }
 
-  @include mixin.define-placeholder($name: $selector-field) {
+  @include mixin.placeholder-define($name: $selector-field) {
     padding: 10px 30px 10px 10px;
     border-radius: 3px;
     transition-duration: 0.1s;

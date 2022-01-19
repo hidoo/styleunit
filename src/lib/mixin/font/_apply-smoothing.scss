@@ -1,0 +1,24 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group font features
+////
+
+@use "sass:meta";
+
+/// apply font-smoothing
+///
+/// @example scss - scss inputs
+///   .selector {
+///     @include apply-smoothing();
+///   }
+///
+/// @example css - css outputs
+///   .selector {
+///     -webkit-font-smoothing: antialiased;
+///     -moz-osx-font-smoothing: grayscale;
+///   }
+///
+@mixin apply-smoothing() {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

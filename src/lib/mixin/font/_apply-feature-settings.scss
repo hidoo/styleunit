@@ -1,0 +1,30 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group font features
+////
+
+@use "sass:meta";
+
+/// apply font-feature-settings
+/// @param {String} $feature-settings ["palt"] - setting for `font-feature-settings`
+///
+/// @example scss - scss inputs
+///   .selector {
+///     @include apply-feature-settings();
+///   }
+///
+/// @example css - css outputs
+///   .selector {
+///     font-feature-settings: "palt";
+///     -ms-font-feature-settings: normal;
+///   }
+///
+@mixin apply-feature-settings($feature-settings: "palt") {
+  @if meta.type-of($feature-settings) == "string" and $feature-settings != "" {
+    font-feature-settings: $feature-settings;
+
+    // disable when browser is ie 10-11
+    // stylelint-disable-next-line property-no-vendor-prefix, order/properties-order
+    -ms-font-feature-settings: normal;
+  }
+}

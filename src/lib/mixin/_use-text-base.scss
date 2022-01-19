@@ -3,8 +3,7 @@
 /// @group features
 ////
 
-@use "sass:meta";
-@use "../../settings";
+@use "./text";
 
 /// use settings of initialized text
 /// @param {Number} $letter-spacing [settings.$letter-spacing] - setting for `letter-spacing`
@@ -15,6 +14,8 @@
 /// @param {String} $white-space ["normal"] - setting for `white-space`
 /// @param {String} $word-break ["break-all"] - setting for `word-break`
 /// @param {String} $word-wrap ["break-word"] - setting for `word-wrap`
+///
+/// @deprecated
 ///
 /// @example scss - scss inputs
 ///   .selector {
@@ -33,59 +34,8 @@
 ///     word-wrap: break-word;
 ///   }
 ///
-@mixin use-text-base(
-  $letter-spacing: null,
-  $line-height: null,
-  $text-align: "left",
-  $text-decoration: "none",
-  $text-indent: 0,
-  $white-space: "normal",
-  $word-break: "break-all",
-  $word-wrap: "break-word",
-) {
-  // normalize $letter-spacing
-  @if not $letter-spacing {
-    @if meta.type-of(settings.$letter-spacing) == "number" {
-      $letter-spacing: settings.$letter-spacing;
-    }
-    @else {
-      $letter-spacing: 0.04em;
+@mixin use-text-base($args...) {
+  @warn "[DEPRECATED] mixin.use-text-base is deprecated. Use instead mixin.text-initialize.";
 
-      // stylelint-disable-next-line max-line-length
-      @warn "@mixin use-text-base: $letter-spacing set #{$letter-spacing}, bacause settings.$letter-spacing is not number.";
-    }
-  }
-
-  // normalize $line-height
-  @if not $line-height {
-    @if meta.type-of(settings.$line-height) == "number" {
-      $line-height: settings.$line-height;
-    }
-    @else {
-      $line-height: 1.5;
-
-      @warn "@mixin use-text-base: $line-height set #{$line-height}, bacause settings.$line-height is not number.";
-    }
-  }
-
-  letter-spacing: #{$letter-spacing};
-  line-height: #{$line-height};
-  text-align: #{$text-align};
-  text-decoration: #{$text-decoration};
-  text-indent: #{$text-indent};
-
-  // set white-space property only if $white-space is valid string
-  @if meta.type-of($white-space) == "string" and $white-space != "" {
-    white-space: #{$white-space};
-  }
-
-  // set word-break property only if $word-break is valid string
-  @if meta.type-of($word-break) == "string" and $word-break != "" {
-    word-break: #{$word-break}; // stylelint-disable-line plugin/no-unsupported-browser-features
-  }
-
-  // set word-wrap property only if $word-wrap is valid string
-  @if meta.type-of($word-wrap) == "string" and $word-wrap != "" {
-    word-wrap: #{$word-wrap};
-  }
+  @include text.initialize($args...);
 }

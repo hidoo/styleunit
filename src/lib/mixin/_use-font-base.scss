@@ -3,11 +3,13 @@
 /// @group features
 ////
 
-@use "sass:meta";
+@use "./font";
 
 /// use settings of initialized font
 /// @param {String} $style ["normal"] - setting for `font-style`
 /// @param {String|Number} $weight ["normal"] - setting for `font-weight`
+///
+/// @deprecated
 ///
 /// @example scss - scss inputs
 ///   .selector {
@@ -20,15 +22,8 @@
 ///     font-weight: normal;
 ///   }
 ///
-@mixin use-font-base(
-  $style: "normal",
-  $weight: "normal"
-) {
-  @if meta.type-of($style) == "string" and $style != "" {
-    font-style: #{$style};
-  }
+@mixin use-font-base($args...) {
+  @warn "[DEPRECATED] mixin.use-font-base is deprecated. Use instead mixin.font-initialize.";
 
-  @if (meta.type-of($weight) == "string" and $weight != "") or meta.type-of($weight) == "number" {
-    font-weight: #{$weight};
-  }
+  @include font.initialize($args...);
 }

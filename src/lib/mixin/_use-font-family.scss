@@ -3,14 +3,13 @@
 /// @group features
 ////
 
-@use "sass:list";
-@use "sass:meta";
-@use "../function";
-@use "../../settings";
+@use "./font";
 
 /// use settings of `font-family`
 /// @param {List|String} $value [null] - setting for `font-family` (one of `"default"`, `"monospace"` or `(...)`)
 /// @param {Boolean} $important [false] - set `!important` or not
+///
+/// @deprecated
 ///
 /// @example scss - scss inputs
 ///   .selector {
@@ -22,32 +21,8 @@
 ///     font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", "游ゴシック Medium", YuGothic, Meiryo, "メイリオ", sans-serif !important;
 ///   }
 ///
-@mixin use-font-family($value: null, $important: false) {
-  @if function.meta-is-empty($value) {
-    @error "@mixin use-font-family: Argument $value must not be empty.";
-  }
+@mixin use-font-family($args...) {
+  @warn "[DEPRECATED] mixin.use-font-family is deprecated. Use instead mixin.font-apply-family.";
 
-  $type: meta.type-of($value);
-
-  @if $type != "list" and $type != "string" {
-    @error "@mixin use-font-family: Argument $value must be list or string.";
-  }
-
-  @if $value == "default" {
-    @if function.meta-is-empty(settings.$font-family) {
-      @error "@mixin use-font-family: settings.$font-family is not valid.";
-    }
-
-    font-family: settings.$font-family if($important, !important, null);
-  }
-  @else if $value == "monospace" {
-    @if function.meta-is-empty(settings.$font-family-monospace) {
-      @error "@mixin use-font-family: settings.$font-family-monospace is not valid.";
-    }
-
-    font-family: settings.$font-family-monospace if($important, !important, null);
-  }
-  @else {
-    font-family: $value if($important, !important, null);
-  }
+  @include font.apply-family($args...);
 }

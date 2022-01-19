@@ -1,0 +1,62 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group plugin/spritesheet
+////
+
+@use "./define" as *;
+
+/// use spritesheet rule
+/// @param {String} $type type of spritesheet
+/// @param {String} $name name of spritesheet item
+/// @param {Map} $options [()] options
+/// @param {Boolean} $options.use2x [false] use 2x image or (one of `true`, `false` or `"if-mobile"`)
+/// @param {Boolean} $options.responsive [false] responsive or not
+/// @param {Boolean} $options.toggle [false] toggle or not
+/// @param {List} $options.capturing-selectors [("a", "button")] capturing parent selectors
+///
+/// @deprecated
+///
+/// @example scss - scss inputs
+///   // use spritesheet plugin with configuration
+///   @use "path/to/node_modules/unit/src/plugin/spritesheet" with (
+///     $spritesheets: (
+///       "icon-image": (
+///         "image": "path/to/sprite/icon-image.png",
+///         "items": (
+///           "logo": (
+///             "width": 10px,
+///             "height": 10px,
+///             "total-width": 30px,
+///             "total-height": 30px,
+///             "offset-x": -10px,
+///             "offset-y": -10px
+///           )
+///         )
+///       )
+///     )
+///   );
+///
+///   // use this mixin
+///   .selector {
+///     @include spritesheet.use-spritesheet($type: "icon-image", $name: "logo");
+///   }
+///
+/// @example css - css outputs
+///   .selector-logo {
+///     overflow: hidden;
+///     text-indent: -100%;
+///     color: transparent;
+///     background-image: url(path/to/sprite/icon-image.png);
+///   }
+///   .selector-logo {
+///     width: 10px;
+///     height: 10px;
+///     background-position: -10px -10px;
+///     background-size: 30px 30px;
+///   }
+///
+@mixin use-spritesheet($args...) {
+  @warn "[DEPRECATED] spritesheet.use-spritesheet is deprecated. Use instead spritesheet.define.";
+
+  @include define($args...);
+}

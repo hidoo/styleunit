@@ -1,0 +1,38 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group features
+////
+
+@use "sass:meta";
+@use "../function";
+@use "on" as mixin;
+
+/// wrappper of `:not(is-active)`
+/// @param {List} $additional-selectors [()] - list of additional selectors
+/// @param {List} $capturing-selectors [()] - capturing parent selectors
+///
+/// @example scss - scss inputs
+///   .selector {
+///     @include on-deactive() {
+///       font-size: 16px;
+///     }
+///   }
+///
+/// @example css - css outputs
+///   .selector:not(.is-active) {
+///     font-size: 16px;
+///   }
+///
+@mixin on-deactive(
+  $additional-selectors: (),
+  $capturing-selectors: ()
+) {
+  $selectors: function.list-map(
+    function.selector-merge-state("active", $additional-selectors),
+    meta.get-function("selector-inverse", $module: "function")
+  );
+
+  @include mixin.on($selectors: $selectors, $capturing-selectors: $capturing-selectors) {
+    @content;
+  }
+}

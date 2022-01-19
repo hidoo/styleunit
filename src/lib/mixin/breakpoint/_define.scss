@@ -1,0 +1,103 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group breakpoint features
+////
+
+@use "sass:map";
+@use "sass:math";
+@use "sass:meta";
+@use "../../../settings";
+
+/// define breakepoint
+/// @param {Number|String|Null} $from [null] - starting point of breakpoint
+/// @param {Number|String|Null} $until [null] - ending point of breakpoint
+/// @param {Map} $options [()] - options
+/// @param {String} $options.media - custom media name
+///
+/// @example scss - scss inputs
+///   .selector {
+///     @include define($from: "mobile", $until: "desktop") {
+///       font-size: 16px;
+///     }
+///   }
+///
+/// @example css - css outputs
+///   @media only screen and (min-width: 667px) and (max-width: 1023px) {
+///     .selector {
+///       font-size: 16px;
+///     }
+///   }
+///
+@mixin define($from: null, $until: null, $options: ()) {
+  // check settings.$breakpoints is map or not
+  @if meta.type-of(settings.$breakpoints) != "map" {
+    @error "@mixin breakpoint-define: settings.$breakpoints must be map.";
+  }
+
+  $normalized: ("from": null, "until": null);
+  $media: screen;
+
+  // normalize arguments
+  @each $key, $value in ("from": $from, "until": $until) {
+    @if meta.type-of($value) == "number" or meta.type-of($value) == "null" {
+      $normalized: map.merge($normalized, (#{$key}: $value));
+    }
+    @else if meta.type-of($value) == "string" and map.has-key(settings.$breakpoints, $value) {
+      $normalized: map.merge($normalized, (#{$key}: map.get(settings.$breakpoints, $value)));
+    }
+    @else {
+      @if meta.type-of($value) == "string" {
+        @error "@mixin breakpoint-define: Argument $#{$key} is not registerd in settings.$breakpoints.";
+      }
+      @else {
+        @error "@mixin breakpoint-define: Argument $#{$key} must be one of type number, string or null.";
+      }
+    }
+  }
+
+  // sub 1 from $until if $until is number for support following case
+  //
+  // @media only screen and (max-width: 666px) { ... } -> $until: 667px;
+  // @media only screen and (min-width: 667px) { ... } -> $from: 667px;
+  @if meta.type-of(map.get($normalized, "until")) == "number" {
+    $normalized: map.merge($normalized, ("until": map.get($normalized, "until") - 1));
+  }
+
+  // normalize options
+  @if meta.type-of($options) == "map" {
+    @if map.has-key($options, "media") {
+      $media: map.get($options, "media");
+    }
+  }
+
+  $new-from: map.get($normalized, "from");
+  $new-until: map.get($normalized, "until");
+
+  @if $new-from and $new-until {
+    @if not math.compatible($new-from, $new-until) {
+      @error "@mixin breakpoint-define: Arguments $from and $until must be same unit.";
+    }
+    @else if $new-from >= $new-until {
+      @error "@mixin breakpoint-define: Argument $from must be smaller than $until.";
+    }
+
+    @media only #{$media} and (min-width: $new-from) and (max-width: $new-until) {
+      @content;
+    }
+  }
+  @else if $new-from == null and $new-until != null {
+    @media only #{$media} and (max-width: $new-until) {
+      @content;
+    }
+  }
+  @else if $new-from != null and $new-until == null {
+    @media only #{$media} and (min-width: $new-from) {
+      @content;
+    }
+  }
+  @else {
+    @if settings.$verbose {
+      @warn "@mixin breakpoint-define: @content is not yield, because argument $from and $until are null.";
+    }
+  }
+}

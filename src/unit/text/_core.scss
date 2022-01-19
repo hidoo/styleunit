@@ -35,10 +35,10 @@ Markup: <h1 class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet.</h1>
 Style guide: #{settings.$prefix}-text.core.base
 */
 .#{settings.$prefix}-text { // stylelint-disable-line scss/selector-nest-combinators
-  @include mixin.use-box-base();
-  @include mixin.use-text-base();
-  @include mixin.use-font-base();
-  @include mixin.use-font-size(
+  @include mixin.box-initialize();
+  @include mixin.text-initialize();
+  @include mixin.font-initialize();
+  @include mixin.font-apply-size(
     $value: "medium"
   );
 

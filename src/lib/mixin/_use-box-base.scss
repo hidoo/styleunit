@@ -3,7 +3,7 @@
 /// @group features
 ////
 
-@use "sass:meta";
+@use "./box";
 
 /// use settings of initialized box
 /// @param {String} $display ["block"] - setting for `display`
@@ -14,6 +14,8 @@
 /// @param {Number|List} $margin [0] - setting for `margin`
 /// @param {Number|List} $padding [0] - setting for `padding`
 /// @param {Number|List} $border [0] - setting for `border`
+///
+/// @deprecated
 ///
 /// @example scss - scss inputs
 ///   .selector {
@@ -31,35 +33,8 @@
 ///     border: 0;
 ///   }
 ///
-@mixin use-box-base(
-  $display: "block",
-  $overflow: null,
-  $box-sizing: "content-box",
-  $position: "relative",
-  $list-style: "none",
-  $margin: 0,
-  $padding: 0,
-  $border: 0
-) {
-  // set display property only if $display is valid string
-  @if meta.type-of($display) == "string" and $display != "" {
-    display: #{$display};
-  }
+@mixin use-box-base($args...) {
+  @warn "[DEPRECATED] mixin.use-box-base is deprecated. Use instead mixin.box-initialize.";
 
-  // set overflow property only if $overflow is valid string
-  @if meta.type-of($overflow) == "string" and $overflow != "" {
-    overflow: #{$overflow};
-  }
-
-  box-sizing: #{$box-sizing};
-  position: #{$position};
-
-  // set list-style property only if $list-style is valid string
-  @if meta.type-of($list-style) == "string" and $list-style != "" {
-    list-style: #{$list-style};
-  }
-
-  margin: #{$margin};
-  padding: #{$padding};
-  border: #{$border};
+  @include box.initialize($args...);
 }

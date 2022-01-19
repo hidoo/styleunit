@@ -38,7 +38,7 @@ Style guide: #{settings.$prefix}-button.theme.builtin
 .#{settings.$prefix}-button--theme { // stylelint-disable-line scss/selector-nest-combinators
   $selector: string.unique-id();
 
-  @include mixin.define-placeholder($name: $selector) {
+  @include mixin.placeholder-define($name: $selector) {
     padding: 10px;
     border-radius: 3px;
     transition-duration: 0.1s;

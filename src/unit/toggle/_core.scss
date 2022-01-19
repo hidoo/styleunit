@@ -50,7 +50,7 @@ Markup: <!-- single -->
 Style guide: #{settings.$prefix}-toggle.core.base
 */
 .#{settings.$prefix}-toggle { // stylelint-disable-line scss/selector-nest-combinators
-  @include mixin.use-box-base(
+  @include mixin.box-initialize(
     $display: "inline-block"
   );
 
@@ -59,7 +59,7 @@ Style guide: #{settings.$prefix}-toggle.core.base
   background-color: transparent;
 
   &__field {
-    @include mixin.use-box-base();
+    @include mixin.box-initialize();
 
     vertical-align: baseline;
     cursor: pointer;
@@ -74,15 +74,15 @@ Style guide: #{settings.$prefix}-toggle.core.base
   }
 
   &__alt {
-    @include mixin.use-box-base(
+    @include mixin.box-initialize(
       $display: "none",
       $overflow: "hidden"
     );
-    @include mixin.use-text-base(
+    @include mixin.text-initialize(
       $text-indent: -100%
     );
-    @include mixin.use-font-base();
-    @include mixin.use-font-size(
+    @include mixin.font-initialize();
+    @include mixin.font-apply-size(
       $value: "medium"
     );
 

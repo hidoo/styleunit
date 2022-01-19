@@ -3,7 +3,11 @@
 /// @group features
 ////
 
+@use "./box";
+
 /// use clearfix
+///
+/// @deprecated
 ///
 /// @example scss - scss inputs
 ///   .selector {
@@ -19,14 +23,8 @@
 ///     clear: both;
 ///   }
 ///
-@mixin use-clearfix() {
-  &::before,
-  &::after {
-    content: "";
-    display: table;
-  }
+@mixin use-clearfix($args...) {
+  @warn "[DEPRECATED] mixin.use-clearfix is deprecated. Use instead mixin.box-apply-clearfix.";
 
-  &::after {
-    clear: both;
-  }
+  @include box.apply-clearfix($args...);
 }

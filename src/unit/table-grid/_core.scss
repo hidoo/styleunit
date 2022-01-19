@@ -51,7 +51,7 @@ Markup: <div class="#{settings.$prefix}-table-grid">
 Style guide: #{settings.$prefix}-table-grid.core.base
 */
 .#{settings.$prefix}-table-grid { // stylelint-disable-line scss/selector-nest-combinators
-  @include mixin.use-box-base(
+  @include mixin.box-initialize(
     $display: "table",
     $box-sizing: "border-box"
   );
@@ -64,8 +64,8 @@ Style guide: #{settings.$prefix}-table-grid.core.base
   border-collapse: collapse;
 
   &__column {
-    @include mixin.use-clearfix();
-    @include mixin.use-box-base(
+    @include mixin.box-apply-clearfix();
+    @include mixin.box-initialize(
       $display: "table-cell",
       $box-sizing: "border-box"
     );

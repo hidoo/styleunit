@@ -47,11 +47,11 @@ Markup: <span class="#{settings.$prefix}-select">
 Style guide: #{settings.$prefix}-select.core.base
 */
 .#{settings.$prefix}-select { // stylelint-disable-line scss/selector-nest-combinators
-  @include mixin.use-box-base(
+  @include mixin.box-initialize(
     $box-sizing: "border-box",
     $overflow: "hidden"
   );
-  @include mixin.use-text-base(
+  @include mixin.text-initialize(
     $line-height: 0
   );
 
@@ -59,16 +59,16 @@ Style guide: #{settings.$prefix}-select.core.base
   background-color: transparent;
 
   &__field {
-    @include mixin.use-box-base(
+    @include mixin.box-initialize(
       $box-sizing: "border-box"
     );
-    @include mixin.use-text-base(
+    @include mixin.text-initialize(
       $line-height: "normal",
       $white-space: null,
       $word-wrap: null
     );
-    @include mixin.use-font-base();
-    @include mixin.use-font-size(
+    @include mixin.font-initialize();
+    @include mixin.font-apply-size(
       $value: "medium"
     );
 

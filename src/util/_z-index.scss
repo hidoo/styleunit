@@ -32,5 +32,5 @@ Style guide: #{settings.$util-prefix}.z-index.builtin
 */
 .#{settings.$util-prefix}--z-index { // stylelint-disable-line scss/selector-nest-combinators
   // each by sizes
-  @include mixin.define-sizes($type: "z-index", $values: settings.$util-z-index-values);
+  @include mixin.size-define($type: "z-index", $values: settings.$util-z-index-values);
 }

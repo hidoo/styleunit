@@ -3,10 +3,12 @@
 /// @group features
 ////
 
-@use "sass:meta";
+@use "./font";
 
 /// use advanced settings of font
 /// @param {String} $feature-settings ["palt"] - setting for `font-feature-settings`
+///
+/// @deprecated
 ///
 /// @example scss - scss inputs
 ///   .selector {
@@ -19,12 +21,8 @@
 ///     -ms-font-feature-settings: normal;
 ///   }
 ///
-@mixin use-font-advanced-settings($feature-settings: "palt") {
-  @if meta.type-of($feature-settings) == "string" and $feature-settings != "" {
-    font-feature-settings: $feature-settings;
+@mixin use-font-advanced-settings($args...) {
+  @warn "[DEPRECATED] mixin.use-font-advanced-settings is deprecated. Use instead mixin.font-apply-feature-settings.";
 
-    // disable when browser is ie 10-11
-    // stylelint-disable-next-line property-no-vendor-prefix, order/properties-order
-    -ms-font-feature-settings: normal;
-  }
+  @include font.apply-feature-settings($args...);
 }

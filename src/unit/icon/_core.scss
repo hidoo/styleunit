@@ -33,14 +33,14 @@ Markup: <span class="#{settings.$prefix}-icon"></span>
 Style guide: #{settings.$prefix}-icon.core.base
 */
 .#{settings.$prefix}-icon { // stylelint-disable-line scss/selector-nest-combinators
-  @include mixin.use-box-base(
+  @include mixin.box-initialize(
     $overflow: "hidden"
   );
-  @include mixin.use-text-base(
+  @include mixin.text-initialize(
     $text-indent: -100%
   );
-  @include mixin.use-font-base();
-  @include mixin.use-font-size(
+  @include mixin.font-initialize();
+  @include mixin.font-apply-size(
     $value: "medium"
   );
 

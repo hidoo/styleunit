@@ -3,12 +3,16 @@
 /// @group features
 ////
 
+@use "./table";
+
 /// use settings of initialized table
 /// @param {Number|String} $width ["auto"] - setting for `width`
 /// @param {Number|List} $margin [0] - setting for `margin`
 /// @param {Number|List} $padding [0] - setting for `padding`
 /// @param {String} $border-style ["solid"] - setting for `border-style`
 /// @param {Number} $border-width [1px] - setting for `border-width`
+///
+/// @deprecated
 ///
 /// @example scss - scss inputs
 ///   .selector {
@@ -26,18 +30,8 @@
 ///     border-width: 1px;
 ///   }
 ///
-@mixin use-table-base(
-  $width: "auto",
-  $margin: 0,
-  $padding: 0,
-  $border-style: "solid",
-  $border-width: 1px
-) {
-  display: table;
-  width: #{$width};
-  margin: #{$margin};
-  padding: #{$padding};
-  border-collapse: collapse;
-  border-style: #{$border-style};
-  border-width: #{$border-width};
+@mixin use-table-base($args...) {
+  @warn "[DEPRECATED] mixin.use-table-base is deprecated. Use instead mixin.table-initialize.";
+
+  @include table.initialize($args...);
 }

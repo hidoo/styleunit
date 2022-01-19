@@ -3,24 +3,13 @@
 /// @group features
 ////
 
-@use "sass:list";
-@use "sass:math";
-@use "sass:meta";
-@use "../function";
-
-/// supported types
-/// @access private
-/// @type List
-///
-$_supported-types: (
-  "width",
-  "height",
-  "z-index",
-) !default;
+@use "./size";
 
 /// define sizes
 /// @param {String} $type ["width"] - type of options (one of `"width"`, `"height"` or `"z-index"`)
 /// @param {List} $values [()] - list of value
+///
+/// @deprecated
 ///
 /// @example scss - scss inputs
 ///   .selector {
@@ -38,36 +27,8 @@ $_supported-types: (
 ///     max-width: 10px !important;
 ///   }
 ///
-@mixin define-sizes($type: "width", $values: ()) {
-  @if meta.type-of($type) != "string" or not list.index($_supported-types, $type) {
-    @error "@mixin define-sizes: Argument $type must be one of #{meta.inspect($_supported-types)}.";
-  }
+@mixin define-sizes($args...) {
+  @warn "[DEPRECATED] mixin.define-sizes is deprecated. Use instead mixin.size-define.";
 
-  @if meta.type-of($values) != "list" {
-    @error "@mixin define-sizes: Argument $values must be list.";
-  }
-
-  @each $value in $values {
-    @if $value < 0 {
-      @error "@mixin define-sizes: Argument $values includes negative numbers.";
-    }
-
-    $pure-value: function.math-remove-unit($value);
-    $abs-value: math.abs($pure-value);
-    $one-with-unit: ($value * 0 + 1);
-
-    &-#{$abs-value} {
-      #{$type}: $pure-value * $one-with-unit !important;
-    }
-
-    @if $type != "z-index" {
-      &-min-#{$abs-value} {
-        min-#{$type}: $pure-value * $one-with-unit !important;
-      }
-
-      &-max-#{$abs-value} {
-        max-#{$type}: $pure-value * $one-with-unit !important;
-      }
-    }
-  }
+  @include size.define($args...);
 }

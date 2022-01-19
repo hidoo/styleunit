@@ -1,0 +1,33 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group text feature
+////
+
+@use "sass:meta";
+
+/// apply multi line truncate
+/// @param {Number} $line [2] - line length
+///
+/// @example scss - scss inputs
+///   .selector {
+///     @include apply-line-truncate($line: 3);
+///   }
+///
+/// @example css - css outputs
+///   .selector {
+///     display: -webkit-box;
+///     -webkit-box-orient: vertical;
+///     -webkit-line-clamp: 3;
+///   }
+///
+@mixin apply-line-truncate($line: 2) {
+  @if meta.type-of($line) != "number" {
+    @error "@mixin text-apply-line-truncate: Argument $line must be number.";
+  }
+
+  @if $line > 0 {
+    display: -webkit-box; // stylelint-disable-line value-no-vendor-prefix
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $line;
+  }
+}

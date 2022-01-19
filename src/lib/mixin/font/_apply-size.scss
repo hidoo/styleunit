@@ -1,0 +1,41 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group font features
+////
+
+@use "sass:map";
+@use "sass:math";
+@use "sass:meta";
+@use "../../function";
+@use "../../../settings";
+
+/// apply font-size settings
+/// @param {String|Number} $value value of font-size (one of `"xsmall"`, `"small"`, `"medium"`, `"large"`, `"xlarge"`, `"2xlarge"`, `"3xlarge"`, `"4xlarge"` or number)
+/// @param {Boolean} $monospace [false] - font-family is monospace or not
+/// @param {Boolean} $important [false] - set !important or not
+///
+/// @example scss - scss inputs
+///   .selector {
+///     @include apply-size($value: "medium", $important: true);
+///   }
+///
+/// @example css - css outputs
+///   .selector {
+///     font-size: 14px !important;
+///     font-size: 0.875rem !important;
+///   }
+///
+@mixin apply-size(
+  $value,
+  $monospace: false,
+  $important: false
+) {
+  $value: function.font-size($value, ("monospace": $monospace));
+
+  font-size: $value if($important, !important, null);
+
+  // override font-size to rem value
+  @if ($value > 0 and settings.$font-enable-relative-size) {
+    font-size: function.math-px-to-rem($value) if($important, !important, null);
+  }
+}

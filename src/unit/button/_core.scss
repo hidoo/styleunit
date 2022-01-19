@@ -40,17 +40,17 @@ Markup: <!-- link element -->
 Style guide: #{settings.$prefix}-button.core.base
 */
 .#{settings.$prefix}-button { // stylelint-disable-line scss/selector-nest-combinators
-  @include mixin.use-box-base(
+  @include mixin.box-initialize(
     $overflow: "hidden",
     $box-sizing: "border-box"
   );
-  @include mixin.use-text-base(
+  @include mixin.text-initialize(
     $letter-spacing: 0,
     $line-height: 1,
     $text-align: "center"
   );
-  @include mixin.use-font-base();
-  @include mixin.use-font-size(
+  @include mixin.font-initialize();
+  @include mixin.font-apply-size(
     $value: "medium"
   );
 

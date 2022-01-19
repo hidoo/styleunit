@@ -52,21 +52,21 @@ Style guide: #{settings.$prefix}-table.core.builtin
   $selector-column: string.unique-id();
 
   // define placeholder class
-  @include mixin.define-placeholder($name: $selector) {
-    @include mixin.use-table-base();
+  @include mixin.placeholder-define($name: $selector) {
+    @include mixin.table-initialize();
 
     color: inherit;
     background-color: transparent;
   }
 
   // define placeholder class of column
-  @include mixin.define-placeholder($name: $selector-column) {
-    @include mixin.use-table-column-base(
+  @include mixin.placeholder-define($name: $selector-column) {
+    @include mixin.table-initialize-column(
       $padding: 5px 10px (5px * 1.5)
     );
-    @include mixin.use-text-base();
-    @include mixin.use-font-base();
-    @include mixin.use-font-size(
+    @include mixin.text-initialize();
+    @include mixin.font-initialize();
+    @include mixin.font-apply-size(
       $value: "medium"
     );
   }

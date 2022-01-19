@@ -59,14 +59,14 @@ Style guide: #{settings.$prefix}-pict.aspect-ratio.builtin
   }
 
   &-1-1 {
-    @include mixin.use-box-aspect-ratio($width: 1, $height: 1);
+    @include mixin.box-apply-aspect-ratio($width: 1, $height: 1);
   }
 
   &-4-3 {
-    @include mixin.use-box-aspect-ratio($width: 4, $height: 3);
+    @include mixin.box-apply-aspect-ratio($width: 4, $height: 3);
   }
 
   &-16-9 {
-    @include mixin.use-box-aspect-ratio($width: 16, $height: 9);
+    @include mixin.box-apply-aspect-ratio($width: 16, $height: 9);
   }
 }

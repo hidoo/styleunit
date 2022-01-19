@@ -1,6 +1,6 @@
 @use "sass:map";
 @use "../../../../../../src/settings";
-@use "../../../../../../src/plugin/spritesheet" as *;
+@use "../../../../../../src/plugin/spritesheet";
 
 /*
 check
@@ -48,8 +48,24 @@ Style guide: #{settings.$prefix}-toggle.check.extends
 .#{settings.$prefix}-toggle--check { // stylelint-disable-line scss/selector-nest-combinators
   $options: ("toggle": true);
 
-  @include use-spritesheet($type: "check-svg", $name: "example-a", $options: $options);
-  @include use-spritesheet($type: "check-svg", $name: "example-b", $options: map-merge($options, ("responsive": true)));
-  @include use-spritesheet($type: "check-image", $name: "example-c", $options: map-merge($options, ("use2x": true)));
-  @include use-spritesheet($type: "check-image", $name: "example-d", $options: map-merge($options, ("responsive": true, "use2x": "if-mobile"))); // stylelint-disable-line max-line-length
+  @include spritesheet.define(
+    $type: "check-svg",
+    $name: "example-a",
+    $options: $options
+  );
+  @include spritesheet.define(
+    $type: "check-svg",
+    $name: "example-b",
+    $options: map-merge($options, ("responsive": true))
+  );
+  @include spritesheet.define(
+    $type: "check-image",
+    $name: "example-c",
+    $options: map-merge($options, ("use2x": true))
+  );
+  @include spritesheet.define(
+    $type: "check-image",
+    $name: "example-d",
+    $options: map-merge($options, ("responsive": true, "use2x": "if-mobile"))
+  );
 }

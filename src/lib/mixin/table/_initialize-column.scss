@@ -1,0 +1,39 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group features
+////
+
+/// initialize table column settings
+/// @param {Number|List} $margin [0] - setting for `margin`
+/// @param {Number|List} $padding [0] - setting for `padding`
+/// @param {String} $border-style ["solid"] - setting for `border-style`
+/// @param {Number} $border-width [1px] - setting for `border-width`
+///
+/// @example scss - scss inputs
+///   .selector {
+///     @include initialize-column();
+///   }
+///
+/// @example css - css outputs
+///   .selector {
+///     display: table-cell;
+///     margin: 0;
+///     padding: 0;
+///     vertical-align: middle;
+///     border-style: solid;
+///     border-width: 1px;
+///   }
+///
+@mixin initialize-column(
+  $margin: 0,
+  $padding: 0,
+  $border-style: "solid",
+  $border-width: 1px
+) {
+  display: table-cell;
+  margin: #{$margin};
+  padding: #{$padding};
+  vertical-align: middle;
+  border-style: #{$border-style};
+  border-width: #{$border-width};
+}

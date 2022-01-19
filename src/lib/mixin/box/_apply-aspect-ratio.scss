@@ -1,0 +1,39 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group box features
+////
+
+@use "sass:math";
+
+/// use settings of aspect ratio box
+/// @param {Number} $width [16] - width
+/// @param {Number} $height [9] - height
+///
+/// @example scss - scss inputs
+///  .selector {
+///    @include apply-aspect-ratio($width: 16, $height: 9);
+///  }
+///
+/// @example css - css outputs
+///  .selector::before {
+///    content: "";
+///    display: block;
+///    width: 100%;
+///    height: 0;
+///    padding-top: 56.25%;
+///  }
+///
+@mixin apply-aspect-ratio(
+  $width: 16,
+  $height: 9
+) {
+  $ratio: math.div($height, $width) * 100;
+
+  &::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 0;
+    padding-top: $ratio * 1%;
+  }
+}

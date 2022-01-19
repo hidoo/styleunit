@@ -1,6 +1,6 @@
 @use "sass:map";
 @use "../../../../../../src/settings";
-@use "../../../../../../src/plugin/spritesheet" as *;
+@use "../../../../../../src/plugin/spritesheet";
 
 /*
 type
@@ -44,8 +44,24 @@ Style guide: #{settings.$prefix}-icon.type.extend
 .#{settings.$prefix}-icon--type { // stylelint-disable-line scss/selector-nest-combinators
   $options: ("capturing-selectors": ("a", "button"));
 
-  @include use-spritesheet($type: "icon-svg", $name: "example-a", $options: $options);
-  @include use-spritesheet($type: "icon-svg", $name: "example-b", $options: map.merge($options, ("responsive": true)));
-  @include use-spritesheet($type: "icon-image", $name: "example-c", $options: map.merge($options, ("use2x": true)));
-  @include use-spritesheet($type: "icon-image", $name: "example-d", $options: map.merge($options, ("responsive": true, "use2x": "if-mobile"))); // stylelint-disable-line max-line-length
+  @include spritesheet.define(
+    $type: "icon-svg",
+    $name: "example-a",
+    $options: $options
+  );
+  @include spritesheet.define(
+    $type: "icon-svg",
+    $name: "example-b",
+    $options: map.merge($options, ("responsive": true))
+  );
+  @include spritesheet.define(
+    $type: "icon-image",
+    $name: "example-c",
+    $options: map.merge($options, ("use2x": true))
+  );
+  @include spritesheet.define(
+    $type: "icon-image",
+    $name: "example-d",
+    $options: map.merge($options, ("responsive": true, "use2x": "if-mobile"))
+  );
 }

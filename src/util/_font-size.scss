@@ -37,7 +37,7 @@ Style guide: #{settings.$util-prefix}.font-size.builtin
   @if meta.type-of(settings.$font-size-presets) == "map" {
     @each $value in map.keys(settings.$font-size-presets) {
       &-#{$value} {
-        @include mixin.use-font-size($value: $value, $important: true);
+        @include mixin.font-apply-size($value: $value, $important: true);
       }
     }
   }

@@ -44,13 +44,13 @@ Markup: <!-- image element -->
 Style guide: #{settings.$prefix}-pict.core.base
 */
 .#{settings.$prefix}-pict { // stylelint-disable-line scss/selector-nest-combinators
-  @include mixin.use-box-base();
-  @include mixin.use-text-base(
+  @include mixin.box-initialize();
+  @include mixin.text-initialize(
     $letter-spacing: 0,
     $line-height: 0
   );
-  @include mixin.use-font-base();
-  @include mixin.use-font-size(
+  @include mixin.font-initialize();
+  @include mixin.font-apply-size(
     $value: "medium"
   );
 
@@ -60,13 +60,13 @@ Style guide: #{settings.$prefix}-pict.core.base
   background-color: transparent;
 
   &__src {
-    @include mixin.use-box-base(
+    @include mixin.box-initialize(
       $display: "inline-block",
       $overflow: "hidden"
     );
-    @include mixin.use-text-base();
-    @include mixin.use-font-base();
-    @include mixin.use-font-size(
+    @include mixin.text-initialize();
+    @include mixin.font-initialize();
+    @include mixin.font-apply-size(
       $value: "medium"
     );
 

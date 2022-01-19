@@ -57,7 +57,7 @@ Style guide: #{settings.$prefix}-list.marker.builtin
   &-circle {
     $selector: string.unique-id();
 
-    @include mixin.define-placeholder($name: $selector) {
+    @include mixin.placeholder-define($name: $selector) {
       padding-left: 1.3em;
 
       &::before {
@@ -88,7 +88,7 @@ Style guide: #{settings.$prefix}-list.marker.builtin
   &-square {
     $selector: string.unique-id();
 
-    @include mixin.define-placeholder($name: $selector) {
+    @include mixin.placeholder-define($name: $selector) {
       padding-left: 1.3em;
 
       &::before {

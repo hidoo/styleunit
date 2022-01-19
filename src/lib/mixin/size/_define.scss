@@ -1,0 +1,108 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group size features
+////
+
+@use "sass:list";
+@use "sass:math";
+@use "sass:meta";
+@use "../breakpoint";
+@use "../../function";
+
+/// supported types
+/// @access private
+/// @type List
+///
+$_supported-types: (
+  "width",
+  "height",
+  "z-index",
+) !default;
+
+/// define sizes
+/// @param {String} $type ["width"] - type of options (one of `"width"`, `"height"` or `"z-index"`)
+/// @param {List} $values [()] - list of value
+/// @param {Map} $breakpoints [null] - mappings of breakpoints
+///
+/// @example scss - scss inputs
+///   .selector {
+///     @include define($type: "width", $values: (10px), $breakpoints: ("if-mobile": ("until": "mobile")))
+///   }
+///
+/// @example css - css outputs
+///   .selector-10 {
+///     width: 10px !important;
+///   }
+///   @media only screen and (max-width: 666px) {
+///     .selector-10-if-mobile {
+///       width: 10px !important;
+///     }
+///   }
+///   .selector-min-10 {
+///     min-width: 10px !important;
+///   }
+///   @media only screen and (max-width: 666px) {
+///     .selector-min-10-if-mobile {
+///       min-width: 10px !important;
+///     }
+///   }
+///   .selector-max-10 {
+///     max-width: 10px !important;
+///   }
+///   @media only screen and (max-width: 666px) {
+///     .selector-max-10-if-mobile {
+///       max-width: 10px !important;
+///     }
+///   }
+///
+@mixin define($type: "width", $values: (), $breakpoints: null) {
+  @if meta.type-of($type) != "string" or not list.index($_supported-types, $type) {
+    @error "@mixin size-define: Argument $type must be one of #{meta.inspect($_supported-types)}.";
+  }
+
+  @if meta.type-of($values) != "list" {
+    @error "@mixin size-define: Argument $values must be list.";
+  }
+
+  @each $value in $values {
+    @if $value < 0 {
+      @error "@mixin size-define: Argument $values includes negative numbers.";
+    }
+
+    $pure-value: function.math-remove-unit($value);
+    $abs-value: math.abs($pure-value);
+    $one-with-unit: ($value * 0 + 1);
+
+    &-#{$abs-value} {
+      #{$type}: $pure-value * $one-with-unit !important;
+
+      @if meta.type-of($breakpoints) == "map" {
+        @each $modifier, $breakpoint in $breakpoints {
+          &-#{$modifier} {
+            @include breakpoint.define($breakpoint...) {
+              #{$type}: $pure-value * $one-with-unit !important;
+            }
+          }
+        }
+      }
+    }
+
+    @if $type != "z-index" {
+      @each $min-or-max in ("min", "max") {
+        &-#{$min-or-max}-#{$abs-value} {
+          #{$min-or-max}-#{$type}: $pure-value * $one-with-unit !important;
+
+          @if meta.type-of($breakpoints) == "map" {
+            @each $modifier, $breakpoint in $breakpoints {
+              &-#{$modifier} {
+                @include breakpoint.define($breakpoint...) {
+                  #{$min-or-max}-#{$type}: $pure-value * $one-with-unit !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

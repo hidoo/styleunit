@@ -290,11 +290,11 @@ Markup: <div class="#{settings.$prefix}-document">
 Style guide: #{settings.$prefix}-document.core.base
 */
 .#{settings.$prefix}-document { // stylelint-disable-line scss/selector-nest-combinators
-  @include mixin.use-clearfix();
-  @include mixin.use-box-base();
-  @include mixin.use-text-base();
-  @include mixin.use-font-base();
-  @include mixin.use-font-size(
+  @include mixin.box-apply-clearfix();
+  @include mixin.box-initialize();
+  @include mixin.text-initialize();
+  @include mixin.font-initialize();
+  @include mixin.font-apply-size(
     $value: "medium"
   );
 
@@ -308,7 +308,7 @@ Style guide: #{settings.$prefix}-document.core.base
   // ++++++++++++++++++++++++++++
 
   h1, h2, h3, h4, h5, h6, p, li, figcaption {
-    @include mixin.use-box-base(
+    @include mixin.box-initialize(
       $display: null,
       $list-style: null,
     );
@@ -328,7 +328,7 @@ Style guide: #{settings.$prefix}-document.core.base
   }
 
   ul, ol {
-    @include mixin.use-box-base(
+    @include mixin.box-initialize(
       $list-style: null,
       $padding: 0 0 0 1.5em
     );
@@ -338,7 +338,7 @@ Style guide: #{settings.$prefix}-document.core.base
   }
 
   img, iframe {
-    @include mixin.use-box-base(
+    @include mixin.box-initialize(
       $overflow: "hidden",
       $margin: 0 auto
     );
@@ -351,14 +351,14 @@ Style guide: #{settings.$prefix}-document.core.base
   }
 
   blockquote {
-    @include mixin.use-box-base();
+    @include mixin.box-initialize();
 
     color: inherit;
     background-color: transparent;
   }
 
   pre {
-    @include mixin.use-box-base(
+    @include mixin.box-initialize(
       $box-sizing: "border-box",
       $overflow: "auto"
     );
@@ -370,7 +370,7 @@ Style guide: #{settings.$prefix}-document.core.base
   }
 
   table {
-    @include mixin.use-table-base(
+    @include mixin.table-initialize(
       $margin: 0 auto
     );
 
@@ -380,7 +380,7 @@ Style guide: #{settings.$prefix}-document.core.base
   }
 
   th, td {
-    @include mixin.use-table-column-base();
+    @include mixin.table-initialize-column();
 
     color: inherit;
     background-color: transparent;
@@ -418,7 +418,7 @@ Style guide: #{settings.$prefix}-document.core.base
   }
 
   pre, code {
-    @include mixin.use-font-family($value: "monospace");
+    @include mixin.font-apply-family($value: "monospace");
 
     // small
     font-size: 0.857em;
@@ -542,7 +542,7 @@ Style guide: #{settings.$prefix}-document.core.base
 
   // image with caption and iframe player
   &__pict {
-    @include mixin.use-box-base();
+    @include mixin.box-initialize();
 
     max-width: 100%;
     margin: $top-margin auto 0;
@@ -558,7 +558,7 @@ Style guide: #{settings.$prefix}-document.core.base
     }
 
     p, figcaption, span {
-      @include mixin.use-box-base();
+      @include mixin.box-initialize();
 
       padding-top: 5px;
     }
@@ -594,18 +594,18 @@ Style guide: #{settings.$prefix}-document.core.base
       }
 
       &-4-3 {
-        @include mixin.use-box-aspect-ratio($width: 4, $height: 3);
+        @include mixin.box-apply-aspect-ratio($width: 4, $height: 3);
       }
 
       &-16-9 {
-        @include mixin.use-box-aspect-ratio($width: 16, $height: 9);
+        @include mixin.box-apply-aspect-ratio($width: 16, $height: 9);
       }
     }
   }
 
   // scrollable table
   &__scrollable-table {
-    @include mixin.use-box-base(
+    @include mixin.box-initialize(
       $overflow: "auto",
       $padding: $top-margin 0 0 0
     );

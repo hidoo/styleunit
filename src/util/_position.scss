@@ -48,13 +48,13 @@ Style guide: #{settings.$util-prefix}.position.builtin
 */
 .#{settings.$util-prefix}--position { // stylelint-disable-line scss/selector-nest-combinators
   // each by directions
-  @include mixin.define-sizes-in-directions(
+  @include mixin.size-define-by-direction(
     $type: "position",
     $values: settings.$util-position-values
   );
 
   // each by direction groups
-  @include mixin.define-sizes-in-direction-groups(
+  @include mixin.size-define-by-direction-group(
     $type: "position",
     $values: settings.$util-position-values
   );

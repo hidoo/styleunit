@@ -1,0 +1,32 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group box features
+////
+
+/// use clearfix
+///
+/// @example scss - scss inputs
+///   .selector {
+///     @include apply-clearfix();
+///   }
+///
+/// @example css - css outputs
+///   .selector::before, .selector::after {
+///     content: "";
+///     display: table;
+///   }
+///   .selector::after {
+///     clear: both;
+///   }
+///
+@mixin apply-clearfix() {
+  &::before,
+  &::after {
+    content: "";
+    display: table;
+  }
+
+  &::after {
+    clear: both;
+  }
+}

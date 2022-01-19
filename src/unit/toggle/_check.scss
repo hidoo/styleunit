@@ -56,12 +56,12 @@ Style guide: #{settings.$prefix}-toggle.check.builtin
   $selectors-disabled: function.selector-merge-state("disabled");
 
   // define placeholder class
-  @include mixin.define-placeholder($name: $selector) {
+  @include mixin.placeholder-define($name: $selector) {
     vertical-align: middle;
   }
 
   // define placeholder class of field
-  @include mixin.define-placeholder($name: $selector-field) {
+  @include mixin.placeholder-define($name: $selector-field) {
     position: absolute;
     z-index: 1;
     top: 0;
@@ -72,7 +72,7 @@ Style guide: #{settings.$prefix}-toggle.check.builtin
   }
 
   // define placeholder class of alt
-  @include mixin.define-placeholder($name: $selector-alt) {
+  @include mixin.placeholder-define($name: $selector-alt) {
     display: block;
     z-index: 0;
     width: 20px;
@@ -107,7 +107,7 @@ Style guide: #{settings.$prefix}-toggle.check.builtin
   }
 
   // define placeholder class of alt when checked
-  @include mixin.define-placeholder($name: $selector-alt-checked) {
+  @include mixin.placeholder-define($name: $selector-alt-checked) {
     &::before,
     &::after {
       transform: translate(8px, -3px) rotate(-45deg) scale(1);
@@ -150,7 +150,7 @@ Style guide: #{settings.$prefix}-toggle.check.builtin
         }
 
         // define placeholder class of alt when focus
-        @include mixin.define-placeholder($name: $selector-alt-focus) {
+        @include mixin.placeholder-define($name: $selector-alt-focus) {
           border-color: $color-focus;
         }
 
@@ -163,7 +163,7 @@ Style guide: #{settings.$prefix}-toggle.check.builtin
         }
 
         // define placeholder class of alt when disabled
-        @include mixin.define-placeholder($name: $selector-alt-disabled) {
+        @include mixin.placeholder-define($name: $selector-alt-disabled) {
           border-color: $color;
         }
 

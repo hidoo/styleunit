@@ -43,8 +43,8 @@ Markup: <div class="#{settings.$prefix}-box">
 Style guide: #{settings.$prefix}-box.core.base
 */
 .#{settings.$prefix}-box { // stylelint-disable-line scss/selector-nest-combinators
-  @include mixin.use-clearfix();
-  @include mixin.use-box-base();
+  @include mixin.box-apply-clearfix();
+  @include mixin.box-initialize();
 
   width: auto;
   text-align: left;
@@ -52,8 +52,8 @@ Style guide: #{settings.$prefix}-box.core.base
   background-color: transparent;
 
   &__container {
-    @include mixin.use-clearfix();
-    @include mixin.use-box-base();
+    @include mixin.box-apply-clearfix();
+    @include mixin.box-initialize();
 
     width: auto;
     text-align: left;

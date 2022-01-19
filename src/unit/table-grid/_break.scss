@@ -45,7 +45,7 @@ Style guide: #{settings.$prefix}-table-grid.break.builtin
 */
 .#{settings.$prefix}-table-grid--break { // stylelint-disable-line scss/selector-nest-combinators
   &-if-mobile {
-    @include mixin.define-breakpoint($until: "mobile") {
+    @include mixin.breakpoint-define($until: "mobile") {
       display: block;
       height: auto;
 
@@ -56,7 +56,7 @@ Style guide: #{settings.$prefix}-table-grid.break.builtin
   }
 
   &-if-not-mobile {
-    @include mixin.define-breakpoint($from: "mobile") {
+    @include mixin.breakpoint-define($from: "mobile") {
       display: block;
       height: auto;
 

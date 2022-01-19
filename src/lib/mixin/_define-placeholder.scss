@@ -3,18 +3,12 @@
 /// @group features
 ////
 
-@use "sass:list";
-@use "sass:meta";
-@use "../../settings";
-
-/// defined placeholders.
-/// @access private
-/// @type List
-///
-$_already-defined: () !default;
+@use "./placeholder";
 
 /// define placeholder class.
 /// @param {String} $name - name of placeholder class
+///
+/// @deprecated
 ///
 /// @example scss - scss inputs
 ///   .selector {
@@ -38,25 +32,10 @@ $_already-defined: () !default;
 ///      font-size: 16px;
 ///   }
 ///
-@mixin define-placeholder($name) {
-  @if meta.type-of($name) != "string" or $name == "" {
-    @error "@mixin define-placeholder: Argument $name is not valid string.";
-  }
+@mixin define-placeholder($args...) {
+  @warn "[DEPRECATED] mixin.define-placeholder is deprecated. Use instead mixin.placeholder-define.";
 
-  // define placeholder if not already defined
-  @if list.index($_already-defined, $name) {
-    @if settings.$verbose {
-      @warn "@mixin define-placeholder: '%#{$name}' placeholder is already defined and cannot be redefined.";
-    }
-  }
-  @else {
-    @at-root {
-      %#{$name} {
-        @content;
-      }
-    }
-
-    // cache defined placeholder
-    $_already-defined: list.append($_already-defined, $name) !global;
+  @include placeholder.define($args...) {
+    @content;
   }
 }

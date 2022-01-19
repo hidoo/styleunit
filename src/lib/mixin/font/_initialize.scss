@@ -1,0 +1,34 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group font features
+////
+
+@use "sass:meta";
+
+/// use settings of initialized font
+/// @param {String} $style ["normal"] - setting for `font-style`
+/// @param {String|Number} $weight ["normal"] - setting for `font-weight`
+///
+/// @example scss - scss inputs
+///   .selector {
+///     @include initialize();
+///   }
+///
+/// @example css - css outputs
+///   .selector {
+///     font-style: normal;
+///     font-weight: normal;
+///   }
+///
+@mixin initialize(
+  $style: "normal",
+  $weight: "normal"
+) {
+  @if meta.type-of($style) == "string" and $style != "" {
+    font-style: #{$style};
+  }
+
+  @if (meta.type-of($weight) == "string" and $weight != "") or meta.type-of($weight) == "number" {
+    font-weight: #{$weight};
+  }
+}

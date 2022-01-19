@@ -52,7 +52,7 @@ Markup: <!-- un ordered list -->
 Style guide: #{settings.$prefix}-list.core.base
 */
 .#{settings.$prefix}-list { // stylelint-disable-line scss/selector-nest-combinators
-  @include mixin.use-box-base();
+  @include mixin.box-initialize();
 
   color: inherit;
   background-color: transparent;

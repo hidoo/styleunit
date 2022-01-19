@@ -1,0 +1,243 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group size features
+////
+
+@use "sass:list";
+@use "sass:map";
+@use "sass:math";
+@use "sass:meta";
+@use "sass:selector";
+@use "../breakpoint";
+@use "../../function";
+@use "../../../settings";
+
+/// supported types
+/// @access private
+/// @type List
+///
+$_supported-types: (
+  "margin",
+  "padding",
+  "position",
+  "border",
+) !default;
+
+/// direction groups
+/// @access private
+/// @type List
+///
+$_direction-groups: (
+  vertical,
+  horizontal,
+  all,
+) !default;
+
+/// default border size
+/// @access private
+/// @type Number
+///
+$_default-border-size: 1px !default;
+
+/// default border style
+/// @access private
+/// @type String
+///
+$_default-border-style: solid !default;
+
+/// default border color
+/// @access private
+/// @type Color
+///
+$_default-border-color: #000 !default;
+
+/// define sizes in direction groups
+/// @param {String} $type ["margin"] - type of options (one of `"margin"`, `"padding"`, `"position"` or `"border"`)
+/// @param {List} $values [()] list of value
+/// @param {Map} $breakpoints [null] - mappings of breakpoints
+///
+/// @example scss - scss inputs
+///   .selector {
+///     @include define-by-direction-group($type: "padding", $values: (5px,), $breakpoints: ("if-mobile": ("until": "mobile")))
+///   }
+///
+/// @example css - css outputs
+///   .selector-vertical-5 {
+///     padding-top: 5px !important;
+///     padding-bottom: 5px !important;
+///   }
+///   @media only screen and (max-width: 666px) {
+///     .selector-vertical-5-if-mobile {
+///       padding-top: 5px !important;
+///       padding-bottom: 5px !important;
+///     }
+///   }
+///   .selector-horizontal-5 {
+///     padding-right: 5px !important;
+///     padding-left: 5px !important;
+///   }
+///   @media only screen and (max-width: 666px) {
+///     .selector-horizontal-5-if-mobile {
+///       padding-right: 5px !important;
+///       padding-left: 5px !important;
+///     }
+///   }
+///   .selector-all-5 {
+///     padding-top: 5px !important;
+///     padding-right: 5px !important;
+///     padding-bottom: 5px !important;
+///     padding-left: 5px !important;
+///   }
+///   @media only screen and (max-width: 666px) {
+///     .selector-all-5-if-mobile {
+///       padding-top: 5px !important;
+///       padding-right: 5px !important;
+///       padding-bottom: 5px !important;
+///       padding-left: 5px !important;
+///     }
+///   }
+///
+@mixin define-by-direction-group($type: "margin", $values: (), $breakpoints: null) {
+  @if type-of($type) != "string" or not list.index($_supported-types, $type) {
+    @error "@mixin size-define-by-direction-group: Argument $type must be one of #{meta.inspect($_supported-types)}.";
+  }
+
+  @if type-of($values) != "list" {
+    @error "@mixin size-define-by-direction-group: Argument $values must be list.";
+  }
+
+  $property: if($type == "position", "", "#{$type}-");
+
+  @each $direction-group in $_direction-groups {
+    @each $value in $values {
+      @if $type == "border" {
+        @if meta.type-of($value) != "map" or not map.has-key($value, "name") {
+          @error "@mixin size-define-by-direction-group: Argument $values is not valid list of map.";
+        }
+
+        $name: map.get($value, "name");
+        $selector: selector.append(&, "-#{$direction-group}-#{$name}");
+
+        @if not map.has-key($value, "size") {
+          $value: map.merge($value, ("size": $_default-border-size));
+
+          @if settings.$verbose {
+            // stylelint-disable-next-line max-line-length
+            @warn "@mixin size-define-by-direction-group: 'size' of #{$selector} is not specified. Using '#{$_default-border-size}' by default.";
+          }
+        }
+
+        @if not map.has-key($value, "style") {
+          $value: map.merge($value, ("style": $_default-border-style));
+
+          @if settings.$verbose {
+            // stylelint-disable-next-line max-line-length
+            @warn "@mixin size-define-by-direction-group: 'style' of #{$selector} is not specified. Using '#{$_default-border-style}' by default.";
+          }
+        }
+
+        @if not map.has-key($value, "color") {
+          $value: map.merge($value, ("color": $_default-border-color));
+
+          @if settings.$verbose {
+            // stylelint-disable-next-line max-line-length
+            @warn "@mixin size-define-by-direction-group: 'color' of #{$selector} is not specified. Using '#{$_default-border-color}' by default .";
+          }
+        }
+
+        $size: map.get($value, "size");
+        $style: map.get($value, "style");
+        $color: map.get($value, "color");
+        $pure-value: function.math-remove-unit($size);
+        $one-with-unit: ($size * 0 + 1);
+
+        @at-root {
+          #{$selector} {
+            @if $direction-group == "vertical" {
+              #{$property}top: $pure-value * $one-with-unit $style $color !important;
+              #{$property}bottom: $pure-value * $one-with-unit $style $color !important;
+            }
+            @else if $direction-group == "horizontal" {
+              #{$property}right: $pure-value * $one-with-unit $style $color !important;
+              #{$property}left: $pure-value * $one-with-unit $style $color !important;
+            }
+            @else if $direction-group == "all" {
+              #{$property}top: $pure-value * $one-with-unit $style $color !important;
+              #{$property}right: $pure-value * $one-with-unit $style $color !important;
+              #{$property}bottom: $pure-value * $one-with-unit $style $color !important;
+              #{$property}left: $pure-value * $one-with-unit $style $color !important;
+            }
+
+            @if meta.type-of($breakpoints) == "map" {
+              @each $modifier, $breakpoint in $breakpoints {
+                &-#{$modifier} {
+                  @include breakpoint.define($breakpoint...) {
+                    @if $direction-group == "vertical" {
+                      #{$property}top: $pure-value * $one-with-unit $style $color !important;
+                      #{$property}bottom: $pure-value * $one-with-unit $style $color !important;
+                    }
+                    @else if $direction-group == "horizontal" {
+                      #{$property}right: $pure-value * $one-with-unit $style $color !important;
+                      #{$property}left: $pure-value * $one-with-unit $style $color !important;
+                    }
+                    @else if $direction-group == "all" {
+                      #{$property}top: $pure-value * $one-with-unit $style $color !important;
+                      #{$property}right: $pure-value * $one-with-unit $style $color !important;
+                      #{$property}bottom: $pure-value * $one-with-unit $style $color !important;
+                      #{$property}left: $pure-value * $one-with-unit $style $color !important;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      @else {
+        $pure-value: function.math-remove-unit($value);
+        $sign: if($value < 0, "-", "");
+        $one-with-unit: ($value * 0 + 1);
+
+        &-#{$direction-group}-#{math.abs($pure-value)}#{$sign} {
+          @if $direction-group == "vertical" {
+            #{$property}top: $pure-value * $one-with-unit !important;
+            #{$property}bottom: $pure-value * $one-with-unit !important;
+          }
+          @else if $direction-group == "horizontal" {
+            #{$property}right: $pure-value * $one-with-unit !important;
+            #{$property}left: $pure-value * $one-with-unit !important;
+          }
+          @else if $direction-group == "all" {
+            #{$property}top: $pure-value * $one-with-unit !important;
+            #{$property}right: $pure-value * $one-with-unit !important;
+            #{$property}bottom: $pure-value * $one-with-unit !important;
+            #{$property}left: $pure-value * $one-with-unit !important;
+          }
+
+          @if meta.type-of($breakpoints) == "map" {
+            @each $modifier, $breakpoint in $breakpoints {
+              &-#{$modifier} {
+                @include breakpoint.define($breakpoint...) {
+                  @if $direction-group == "vertical" {
+                    #{$property}top: $pure-value * $one-with-unit !important;
+                    #{$property}bottom: $pure-value * $one-with-unit !important;
+                  }
+                  @else if $direction-group == "horizontal" {
+                    #{$property}right: $pure-value * $one-with-unit !important;
+                    #{$property}left: $pure-value * $one-with-unit !important;
+                  }
+                  @else if $direction-group == "all" {
+                    #{$property}top: $pure-value * $one-with-unit !important;
+                    #{$property}right: $pure-value * $one-with-unit !important;
+                    #{$property}bottom: $pure-value * $one-with-unit !important;
+                    #{$property}left: $pure-value * $one-with-unit !important;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

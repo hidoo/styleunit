@@ -49,13 +49,13 @@ Style guide: #{settings.$util-prefix}.margin.builtin
 */
 .#{settings.$util-prefix}--margin { // stylelint-disable-line scss/selector-nest-combinators
   // each by directions
-  @include mixin.define-sizes-in-directions(
+  @include mixin.size-define-by-direction(
     $type: "margin",
     $values: settings.$util-margin-values
   );
 
   // each by direction groups
-  @include mixin.define-sizes-in-direction-groups(
+  @include mixin.size-define-by-direction-group(
     $type: "margin",
     $values: settings.$util-margin-values
   );

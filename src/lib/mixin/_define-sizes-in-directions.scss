@@ -3,55 +3,13 @@
 /// @group features
 ////
 
-@use "sass:list";
-@use "sass:map";
-@use "sass:meta";
-@use "sass:selector";
-@use "../function";
-
-/// supported types
-/// @access private
-/// @type List
-///
-$_supported-types: (
-  "margin",
-  "padding",
-  "position",
-  "border",
-) !default;
-
-/// directions
-/// @access private
-/// @type List
-///
-$_directions: (
-  top,
-  right,
-  bottom,
-  left,
-) !default;
-
-/// default border size
-/// @access private
-/// @type Number
-///
-$_default-border-size: 1px !default;
-
-/// default border style
-/// @access private
-/// @type String
-///
-$_default-border-style: solid !default;
-
-/// default border color
-/// @access private
-/// @type Color
-///
-$_default-border-color: #000 !default;
+@use "./size";
 
 /// define sizes in directions
 /// @param {String} $type ["margin"] - type of options (one of `"margin"`, `"padding"`, `"position"` or `"border"`)
 /// @param {List} $values [()] - list of value
+///
+/// @deprecated
 ///
 /// @example scss - scss inputs
 ///   .selector {
@@ -84,65 +42,8 @@ $_default-border-color: #000 !default;
 ///     margin-left: -5px !important;
 ///   }
 ///
-@mixin define-sizes-in-directions($type: "margin", $values: ()) {
-  @if meta.type-of($type) != "string" or not list.index($_supported-types, $type) {
-    @error "@mixin define-sizes-in-directions: Argument $type must be one of #{meta.inspect($_supported-types)}.";
-  }
+@mixin define-sizes-in-directions($args...) {
+  @warn "[DEPRECATED] mixin.define-sizes-in-directions is deprecated. Use instead mixin.size-define-by-direction.";
 
-  @if meta.type-of($values) != "list" {
-    @error "@mixin define-sizes-in-directions: Argument $values must be list.";
-  }
-
-  $property: if($type == "position", "", "#{$type}-");
-
-  @each $direction in $_directions {
-    @each $value in $values {
-      @if $type == "border" {
-        @if meta.type-of($value) != "map" or not map.has-key($value, "name") {
-          @error "@mixin define-sizes-in-directions: Argument $values is not valid list of map.";
-        }
-
-        $selector: selector.append(&, "-#{$direction}-#{map.get($value, "name")}");
-
-        @if not map.has-key($value, "size") {
-          $value: map.merge($value, ("size": $_default-border-size));
-
-          @warn "'size' of #{$selector} is not specified. Using '#{$_default-border-size}' by default.";
-        }
-
-        @if not map.has-key($value, "style") {
-          $value: map.merge($value, ("style": $_default-border-style));
-
-          @warn "'style' of #{$selector} is not specified. Using '#{$_default-border-style}' by default.";
-        }
-
-        @if not map.has-key($value, "color") {
-          $value: map.merge($value, ("color": $_default-border-color));
-
-          @warn "'color' of #{$selector} is not specified. Using '#{$_default-border-color}' by default.";
-        }
-
-        $size: map.get($value, "size");
-        $style: map.get($value, "style");
-        $color: map.get($value, "color");
-        $pure-value: function.math-remove-unit($size);
-        $one-with-unit: ($size * 0 + 1);
-
-        @at-root {
-          #{$selector} {
-            #{$property}#{$direction}: $pure-value * $one-with-unit $style $color !important;
-          }
-        }
-      }
-      @else {
-        $pure-value: function.math-remove-unit($value);
-        $sign: if($value < 0, "-", "");
-        $one-with-unit: ($value * 0 + 1);
-
-        &-#{$direction}-#{abs($pure-value)}#{$sign} {
-          #{$property}#{$direction}: $pure-value * $one-with-unit !important;
-        }
-      }
-    }
-  }
+  @include size.define-by-direction($args...);
 }

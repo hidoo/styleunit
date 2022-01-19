@@ -6,104 +6,39 @@ import {eachTestCases, useSettingsWith} from '../util';
 /**
  * wrapper
  *
- * @param {Array} args arguments
  * @param {Array} settings settings of defaults
  * @return {String}
  */
-const wrapper = (args = [], settings = []) => `
+const wrapper = (settings = []) => `
 ${useSettingsWith(settings)}
+@use "sass:meta";
 @use "src/lib/mixin";
 
 .selector {
-  @include mixin.use-box-aspect-ratio(${args.filter((arg) => arg !== false).join(', ')});
+  content: meta.mixin-exists("use-box-aspect-ratio", "mixin");
 }
 `;
 
-describe('@mixin use-box-aspect-ratio(...)', () => {
+describe('[DEPRECATED] @mixin use-box-aspect-ratio(...)', () => {
 
-  it('should out default properties if arguments not set.', async () => {
+  it('should exists.', async () => {
     const cases = [
       {
-        params: [],
-        expected:
-`.selector::before {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 0;
-  padding-top: 56.25%;
-}`
+        params: [[]],
+        expected: '.selector{content:true}'
       }
     ];
 
-    await eachTestCases(
-      cases,
-      wrapper,
-      ({error, result, expected}, {resolve, reject}) => {
-        if (error) {
-          return reject(error);
-        }
-
-        const actual = result.css.toString().trim();
-
-        assert(actual === expected);
-        return resolve();
-      },
-      {outputStyle: 'expanded'}
-    );
-  });
-
-  it('should out properties with specified value if arguments is set.', async () => {
-    const cases = [
-      {
-        params: [
-          [
-            '$width: 4',
-            '$height: 3'
-          ]
-        ],
-        expected:
-`.selector::before {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 0;
-  padding-top: 75%;
-}`
-      },
-      {
-        params: [
-          [
-            '$width: 1',
-            '$height: 1'
-          ]
-        ],
-        expected:
-`.selector::before {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 0;
-  padding-top: 100%;
-}`
+    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
+      if (error) {
+        return reject(error);
       }
-    ];
 
-    await eachTestCases(
-      cases,
-      wrapper,
-      ({error, result, expected}, {resolve, reject}) => {
-        if (error) {
-          return reject(error);
-        }
+      const actual = result.css.toString().trim();
 
-        const actual = result.css.toString().trim();
-
-        assert(actual === expected);
-        return resolve();
-      },
-      {outputStyle: 'expanded'}
-    );
+      assert(actual === expected);
+      return resolve();
+    });
   });
 
 });

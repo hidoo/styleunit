@@ -1,0 +1,187 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group size features
+////
+
+@use "sass:list";
+@use "sass:map";
+@use "sass:meta";
+@use "sass:selector";
+@use "../breakpoint";
+@use "../../function";
+@use "../../../settings";
+
+/// supported types
+/// @access private
+/// @type List
+///
+$_supported-types: (
+  "margin",
+  "padding",
+  "position",
+  "border",
+) !default;
+
+/// directions
+/// @access private
+/// @type List
+///
+$_directions: (
+  top,
+  right,
+  bottom,
+  left,
+) !default;
+
+/// default border size
+/// @access private
+/// @type Number
+///
+$_default-border-size: 1px !default;
+
+/// default border style
+/// @access private
+/// @type String
+///
+$_default-border-style: solid !default;
+
+/// default border color
+/// @access private
+/// @type Color
+///
+$_default-border-color: #000 !default;
+
+/// define sizes by directions
+/// @param {String} $type ["margin"] - type of options (one of `"margin"`, `"padding"`, `"position"` or `"border"`)
+/// @param {List} $values [()] - list of value
+/// @param {Map} $breakpoints [null] - mappings of breakpoints
+///
+/// @example scss - scss inputs
+///   .selector {
+///     @include define-by-direction($type: "padding", $values: (5px,), $breakpoints: ("if-mobile": ("until": "mobile")))
+///   }
+///
+/// @example css - css outputs
+///   .selector-top-5 {
+///     padding-top: 5px !important;
+///   }
+///   @media only screen and (max-width: 666px) {
+///     .selector-top-5-if-mobile {
+///       padding-top: 5px !important;
+///      }
+///   }
+///   .selector-right-5 {
+///     padding-right: 5px !important;
+///   }
+///   @media only screen and (max-width: 666px) {
+///     .selector-right-5-if-mobile {
+///       padding-right: 5px !important;
+///     }
+///   }
+///   .selector-bottom-5 {
+///     padding-bottom: 5px !important;
+///   }
+///   @media only screen and (max-width: 666px) {
+///     .selector-bottom-5-if-mobile {
+///       padding-bottom: 5px !important;
+///     }
+///   }
+///   .selector-left-5 {
+///     padding-left: 5px !important;
+///   }
+///   @media only screen and (max-width: 666px) {
+///     .selector-left-5-if-mobile {
+///       padding-left: 5px !important;
+///     }
+///   }
+///
+@mixin define-by-direction($type: "margin", $values: (), $breakpoints: null) {
+  @if meta.type-of($type) != "string" or not list.index($_supported-types, $type) {
+    @error "@mixin size-define-by-direction: Argument $type must be one of #{meta.inspect($_supported-types)}.";
+  }
+
+  @if meta.type-of($values) != "list" {
+    @error "@mixin size-define-by-direction: Argument $values must be list.";
+  }
+
+  $property: if($type == "position", "", "#{$type}-");
+
+  @each $direction in $_directions {
+    @each $value in $values {
+      @if $type == "border" {
+        @if meta.type-of($value) != "map" or not map.has-key($value, "name") {
+          @error "@mixin size-define-by-direction: Argument $values is not valid list of map.";
+        }
+
+        $selector: selector.append(&, "-#{$direction}-#{map.get($value, "name")}");
+
+        @if not map.has-key($value, "size") {
+          $value: map.merge($value, ("size": $_default-border-size));
+
+          @if settings.$verbose {
+            // stylelint-disable-next-line max-line-length
+            @warn "@mixin size-define-by-direction: 'size' of #{$selector} is not specified. Using '#{$_default-border-size}' by default.";
+          }
+        }
+
+        @if not map.has-key($value, "style") {
+          $value: map.merge($value, ("style": $_default-border-style));
+
+          @if settings.$verbose {
+            // stylelint-disable-next-line max-line-length
+            @warn "@mixin size-define-by-direction: 'style' of #{$selector} is not specified. Using '#{$_default-border-style}' by default.";
+          }
+        }
+
+        @if not map.has-key($value, "color") {
+          $value: map.merge($value, ("color": $_default-border-color));
+
+          @if settings.$verbose {
+            @warn "@mixin size-define-by-direction: 'color' of #{$selector} is not specified. Using '#{$_default-border-color}' by default."; // stylelint-disable-line max-line-length
+          }
+        }
+
+        $size: map.get($value, "size");
+        $style: map.get($value, "style");
+        $color: map.get($value, "color");
+        $pure-value: function.math-remove-unit($size);
+        $one-with-unit: ($size * 0 + 1);
+
+        @at-root {
+          #{$selector} {
+            #{$property}#{$direction}: $pure-value * $one-with-unit $style $color !important;
+
+            @if meta.type-of($breakpoints) == "map" {
+              @each $modifier, $breakpoint in $breakpoints {
+                &-#{$modifier} {
+                  @include breakpoint.define($breakpoint...) {
+                    #{$property}#{$direction}: $pure-value * $one-with-unit $style $color !important;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      @else {
+        $pure-value: function.math-remove-unit($value);
+        $sign: if($value < 0, "-", "");
+        $one-with-unit: ($value * 0 + 1);
+
+        &-#{$direction}-#{abs($pure-value)}#{$sign} {
+          #{$property}#{$direction}: $pure-value * $one-with-unit !important;
+
+          @if meta.type-of($breakpoints) == "map" {
+            @each $modifier, $breakpoint in $breakpoints {
+              &-#{$modifier} {
+                @include breakpoint.define($breakpoint...) {
+                  #{$property}#{$direction}: $pure-value * $one-with-unit !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

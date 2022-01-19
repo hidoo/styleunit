@@ -30,13 +30,13 @@ Style guide: #{settings.$util-prefix}.font-family.builtin
 */
 .#{settings.$util-prefix}--font-family { // stylelint-disable-line scss/selector-nest-combinators
   &-default {
-    @include mixin.use-font-family($value: "default", $important: true);
+    @include mixin.font-apply-family($value: "default", $important: true);
   }
 
   &-monospace {
-    @include mixin.use-font-family($value: "monospace", $important: true);
+    @include mixin.font-apply-family($value: "monospace", $important: true);
 
     // not specify !important, because override as possible
-    @include mixin.use-font-size($value: "medium", $monospace: true);
+    @include mixin.font-apply-size($value: "medium", $monospace: true);
   }
 }

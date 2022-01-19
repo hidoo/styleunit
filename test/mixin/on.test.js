@@ -21,7 +21,7 @@ ${useSettingsWith(settings)}
 }
 `;
 
-describe('@mixin on ($selectors, $capturing-selectors)', () => {
+describe('@mixin on($selectors, $capturing-selectors)', () => {
 
   it('should not out if argument $selectors is not set.', async () => {
     const cases = [

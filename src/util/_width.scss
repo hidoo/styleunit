@@ -38,7 +38,7 @@ Style guide: #{settings.$util-prefix}.width.builtin
 */
 .#{settings.$util-prefix}--width { // stylelint-disable-line scss/selector-nest-combinators
   // each by sizes
-  @include mixin.define-sizes($type: "width", $values: settings.$util-box-sizes);
+  @include mixin.size-define($type: "width", $values: settings.$util-box-sizes);
 
   &-fit {
     width: 100% !important;

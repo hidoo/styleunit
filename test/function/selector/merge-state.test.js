@@ -70,6 +70,12 @@ describe('@function selector-merge-state($type, $additional-selectors)', () => {
           ['$type: "current"']
         ],
         expected: '.selector{content:".is-current"}'
+      },
+      {
+        params: [
+          ['$type: "active"']
+        ],
+        expected: '.selector{content:".is-active"}'
       }
     ];
 
@@ -112,6 +118,13 @@ describe('@function selector-merge-state($type, $additional-selectors)', () => {
         params: [
           ['$type: "current"'],
           ['$selector-current: ""']
+        ],
+        expected: ''
+      },
+      {
+        params: [
+          ['$type: "active"'],
+          ['$selector-active: ""']
         ],
         expected: ''
       }
@@ -175,6 +188,15 @@ describe('@function selector-merge-state($type, $additional-selectors)', () => {
           ]
         ],
         expected: '.selector{content:".is-current";content:".is-hoge"}'
+      },
+      {
+        params: [
+          [
+            '$type: "active"',
+            '$additional-selectors: (".is-hoge")'
+          ]
+        ],
+        expected: '.selector{content:".is-active";content:".is-hoge"}'
       }
     ];
 

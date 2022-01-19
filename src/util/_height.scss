@@ -38,7 +38,7 @@ Style guide: #{settings.$util-prefix}.height.builtin
 */
 .#{settings.$util-prefix}--height { // stylelint-disable-line scss/selector-nest-combinators
   // each by sizes
-  @include mixin.define-sizes($type: "height", $values: settings.$util-box-sizes);
+  @include mixin.size-define($type: "height", $values: settings.$util-box-sizes);
 
   &-fit {
     height: 100% !important;

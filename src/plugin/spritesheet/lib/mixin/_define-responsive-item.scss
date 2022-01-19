@@ -35,7 +35,7 @@
         );
 
         @if $up-if-mobile {
-          @include unit-mixin.define-breakpoint($until: "mobile") {
+          @include unit-mixin.breakpoint-define($until: "mobile") {
             @include mixin.set-properties(
               $values: $up-if-mobile,
               $use2x: $use2x == true or $use2x == "if-mobile"
@@ -56,7 +56,7 @@
         }
 
         @if $focus-if-mobile {
-          @include unit-mixin.define-breakpoint($until: "mobile") {
+          @include unit-mixin.breakpoint-define($until: "mobile") {
             @include unit-mixin.on-focus($capturing-selectors: $capturing-selectors) {
               @include mixin.set-properties(
                 $values: (
@@ -82,7 +82,7 @@
         }
 
         @if $current-if-mobile {
-          @include unit-mixin.define-breakpoint($until: "mobile") {
+          @include unit-mixin.breakpoint-define($until: "mobile") {
             @include unit-mixin.on-current($capturing-selectors: $capturing-selectors) {
               @include mixin.set-properties(
                 $values: (
@@ -108,7 +108,7 @@
         }
 
         @if $disabled-if-mobile {
-          @include unit-mixin.define-breakpoint($until: "mobile") {
+          @include unit-mixin.breakpoint-define($until: "mobile") {
             @include unit-mixin.on-disabled($capturing-selectors: $capturing-selectors) {
               @include mixin.set-properties(
                 $values: (

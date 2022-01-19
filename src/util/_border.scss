@@ -60,8 +60,8 @@ Style guide: #{settings.$util-prefix}.border.builtin
   }
 
   // each by directions
-  @include mixin.define-sizes-in-directions($type: "border", $values: $values);
+  @include mixin.size-define-by-direction($type: "border", $values: $values);
 
   // each by direction groups
-  @include mixin.define-sizes-in-direction-groups($type: "border", $values: $values);
+  @include mixin.size-define-by-direction-group($type: "border", $values: $values);
 }

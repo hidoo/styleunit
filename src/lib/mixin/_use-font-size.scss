@@ -3,11 +3,7 @@
 /// @group features
 ////
 
-@use "sass:map";
-@use "sass:math";
-@use "sass:meta";
-@use "../function";
-@use "../../settings";
+@use "./font";
 
 /// use settings of font-size
 /// @param {String|Number} $value value of font-size (one of `"xsmall"`, `"small"`, `"medium"`, `"large"`, `"xlarge"`, `"2xlarge"`, `"3xlarge"`, `"4xlarge"` or number)
@@ -25,17 +21,8 @@
 ///     font-size: 0.875rem !important;
 ///   }
 ///
-@mixin use-font-size(
-  $value,
-  $monospace: false,
-  $important: false
-) {
-  $value: function.font-size($value, ("monospace": $monospace));
+@mixin use-font-size($args...) {
+  @warn "[DEPRECATED] mixin.use-font-size is deprecated. Use instead mixin.font-apply-size.";
 
-  font-size: $value if($important, !important, null);
-
-  // override font-size to rem value
-  @if ($value > 0 and settings.$font-enable-relative-size) {
-    font-size: function.math-px-to-rem($value) if($important, !important, null);
-  }
+  @include font.apply-size($args...);
 }

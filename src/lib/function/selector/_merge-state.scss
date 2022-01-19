@@ -18,6 +18,7 @@ $_supported-types: (
   "selected",
   "disabled",
   "current",
+  "active",
 ) !default;
 
 /// return merged state selectors
@@ -60,10 +61,17 @@ $_supported-types: (
     }
   }
   @else if $type == "current" {
-    $current-selectors: settings("current-selectors");
+    $selectors: list.join($selectors, ());
 
     @if meta.type-of(settings.$selector-current) == "list" {
       $selectors: list.join($selectors, settings.$selector-current);
+    }
+  }
+  @else if $type == "active" {
+    $selectors: list.join($selectors, ());
+
+    @if meta.type-of(settings.$selector-active) == "list" {
+      $selectors: list.join($selectors, settings.$selector-active);
     }
   }
 

@@ -42,13 +42,28 @@ const wrapper = (args = [], settings = []) => `
 ${usePluginSpritesheet(settings)}
 
 .selector {
-  @include spritesheet.use-spritesheet(${args.filter((arg) => arg !== false).join(', ')});
+  @include spritesheet.define(${args.filter((arg) => arg !== false).join(', ')});
+}
+`;
+
+/**
+ * wrapper for use-spritesheet
+ *
+ * @param {Array} settings settings of defaults
+ * @return {String}
+ */
+const wrapperUse = (settings = []) => `
+${usePluginSpritesheet(settings)}
+@use "sass:meta";
+
+.selector {
+  content: meta.mixin-exists("use-spritesheet", "spritesheet");
 }
 `;
 
 describe('plugin/spritesheet', () => {
 
-  describe('@mixin use-spritesheet($type, $name, $options)', () => {
+  describe('@mixin define($type, $name, $options)', () => {
 
     it('should throw error if argument "$type" is not valid string.', async () => {
       const cases = [
@@ -1680,6 +1695,30 @@ describe('plugin/spritesheet', () => {
         },
         {outputStyle: 'expanded'}
       );
+    });
+
+  });
+
+  describe('[DEPRECATED] @mixin use-spritesheet($type, $name, $options)', () => {
+
+    it('should exists.', async () => {
+      const cases = [
+        {
+          params: [[]],
+          expected: '.selector{content:true}'
+        }
+      ];
+
+      await eachTestCases(cases, wrapperUse, ({error, result, expected}, {resolve, reject}) => {
+        if (error) {
+          return reject(error);
+        }
+
+        const actual = result.css.toString().trim();
+
+        assert(actual === expected);
+        return resolve();
+      });
     });
 
   });

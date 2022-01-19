@@ -59,3 +59,11 @@ $position-values: (
 $z-index-values: (
   0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50,
 ) !default;
+
+/// default breakpoints
+/// @type Map
+///
+$breakpoints: (
+  "if-mobile": ("until": "mobile"),
+  "if-not-mobile": ("from": "mobile")
+) !default;

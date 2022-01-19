@@ -6,82 +6,39 @@ import {eachTestCases, useSettingsWith} from '../util';
 /**
  * wrapper
  *
- * @param {Array} args arguments
  * @param {Array} settings settings of defaults
  * @return {String}
  */
-const wrapper = (args = [], settings = []) => `
+const wrapper = (settings = []) => `
 ${useSettingsWith(settings)}
+@use "sass:meta";
 @use "src/lib/mixin";
 
 .selector {
-  @include mixin.use-font-base(${args.filter((arg) => arg !== false).join(', ')});
+  content: meta.mixin-exists("use-font-base", "mixin");
 }
 `;
 
-describe('@mixin use-font-base(...)', () => {
+describe('[DEPRECATED] @mixin use-font-base(...)', () => {
 
-  it('should out default properties if arguments not set.', async () => {
+  it('should exists.', async () => {
     const cases = [
       {
         params: [[]],
-        expected:
-`.selector {
-  font-style: normal;
-  font-weight: normal;
-}`
+        expected: '.selector{content:true}'
       }
     ];
 
-    await eachTestCases(
-      cases,
-      wrapper,
-      ({error, result, expected}, {resolve, reject}) => {
-        if (error) {
-          return reject(error);
-        }
-
-        const actual = result.css.toString().trim();
-
-        assert(actual === expected);
-        return resolve();
-      },
-      {outputStyle: 'expanded'}
-    );
-  });
-
-  it('should out properties with specified value if arguments is set.', async () => {
-    const cases = [
-      {
-        params: [
-          [
-            '$style: italic',
-            '$weight: 600'
-          ]
-        ],
-        expected:
-`.selector {
-  font-style: italic;
-  font-weight: 600;
-}`
+    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
+      if (error) {
+        return reject(error);
       }
-    ];
 
-    await eachTestCases(
-      cases,
-      wrapper,
-      ({error, result, expected}, {resolve, reject}) => {
-        if (error) {
-          return reject(error);
-        }
+      const actual = result.css.toString().trim();
 
-        const actual = result.css.toString().trim();
-
-        assert(actual === expected);
-        return resolve();
-      },
-      {outputStyle: 'expanded'}
-    );
+      assert(actual === expected);
+      return resolve();
+    });
   });
 
 });

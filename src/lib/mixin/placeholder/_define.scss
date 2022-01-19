@@ -1,0 +1,62 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group placeholder features
+////
+
+@use "sass:list";
+@use "sass:meta";
+@use "../../../settings";
+
+/// defined placeholders.
+/// @access private
+/// @type List
+///
+$_already-defined: () !default;
+
+/// define placeholder class.
+/// @param {String} $name - name of placeholder class
+///
+/// @example scss - scss inputs
+///   .selector {
+///     $name: unique-id();
+///
+///     @include define($name: $name) {
+///       font-size: 16px;
+///     }
+///
+///     &__child-1 {
+///       @extend %#{$name};
+///     }
+///
+///     &__child-2 {
+///       @extend %#{$name};
+///     }
+///   }
+///
+/// @example css - css outputs
+///   .selector__child-1, .selector__child-2 {
+///      font-size: 16px;
+///   }
+///
+@mixin define($name) {
+  @if meta.type-of($name) != "string" or $name == "" {
+    @error "@mixin placeholder-define: Argument $name is not valid string.";
+  }
+
+  // define placeholder if not already defined
+  @if list.index($_already-defined, $name) {
+    @if settings.$verbose {
+      @warn "@mixin placeholder-define: '%#{$name}' placeholder is already defined and cannot be redefined.";
+    }
+  }
+  @else {
+    @at-root {
+      %#{$name} {
+        @content;
+      }
+    }
+
+    // cache defined placeholder
+    $_already-defined: list.append($_already-defined, $name) !global;
+  }
+}

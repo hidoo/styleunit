@@ -41,13 +41,13 @@ Style guide: #{settings.$util-prefix}.padding.builtin
 */
 .#{settings.$util-prefix}--padding { // stylelint-disable-line scss/selector-nest-combinators
   // each by directions
-  @include mixin.define-sizes-in-directions(
+  @include mixin.size-define-by-direction(
     $type: "padding",
     $values: settings.$util-padding-values
   );
 
   // each by direction groups
-  @include mixin.define-sizes-in-direction-groups(
+  @include mixin.size-define-by-direction-group(
     $type: "padding",
     $values: settings.$util-padding-values
   );

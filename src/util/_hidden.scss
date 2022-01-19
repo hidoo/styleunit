@@ -29,13 +29,13 @@ Style guide: #{settings.$util-prefix}.hidden.builtin
 */
 .#{settings.$util-prefix}--hidden { // stylelint-disable-line scss/selector-nest-combinators
   &-if-mobile {
-    @include mixin.define-breakpoint($until: "mobile") {
+    @include mixin.breakpoint-define($until: "mobile") {
       display: none !important;
     }
   }
 
   &-if-not-mobile {
-    @include mixin.define-breakpoint($from: "mobile") {
+    @include mixin.breakpoint-define($from: "mobile") {
       display: none !important;
     }
   }
