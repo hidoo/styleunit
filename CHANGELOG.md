@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/hidoo/unit-sass/compare/v0.6.0...v0.7.0) (2022-01-20)
+
+
+### Bug Fixes
+
+* **deps:** update stylelint packages and update rules ([0331e7e](https://github.com/hidoo/unit-sass/commit/0331e7e860bb7ab2980602c8f23f355f371d0d22))
+
+
+### Features
+
+* **unit:** add functions and organize by module ([f3d3878](https://github.com/hidoo/unit-sass/commit/f3d387888ff96574b430658f5f2902777fa728b1))
+* **unit:** update mixins and organize by module ([4ee3680](https://github.com/hidoo/unit-sass/commit/4ee36808f9bebd02a2616eb9647394a6b036c326))
+
+
+
+
+
 # [0.6.0](https://github.com/hidoo/unit-sass/compare/v0.5.0...v0.6.0) (2021-06-09)
 
 
