@@ -28,7 +28,7 @@ SCSS
 
 // use this mixin inside block
 .selector {
-  @include spritesheet.use-spritesheet($type: "icon-image", $name: "logo");
+  @include spritesheet.define($type: "icon-image", $name: "logo");
 }
 ```
 

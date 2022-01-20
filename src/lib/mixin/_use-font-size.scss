@@ -10,6 +10,8 @@
 /// @param {Boolean} $monospace [false] - font-family is monospace or not
 /// @param {Boolean} $important [false] - set !important or not
 ///
+/// @deprecated
+///
 /// @example scss - scss inputs
 ///   .selector {
 ///     @include use-font-size($value: "medium", $important: true);

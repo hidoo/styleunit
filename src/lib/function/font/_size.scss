@@ -23,7 +23,7 @@ $_default-options: (
 /// @param {Map} $options [()] - options
 /// @param {Boolean} $options.monospace [false] - font-family is monospace or not
 /// @param {Boolean} $options.relative-size [false] - convert to rem value or not
-/// @return {Number} real font-sise
+/// @return {Number} real font-size
 ///
 /// @example scss - scss inputs
 ///   .selector {
