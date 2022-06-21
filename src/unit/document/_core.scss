@@ -578,6 +578,11 @@ Style guide: #{settings.$prefix}-document.core.base
           // for ie 10
           background-color: rgba(0, 0, 0, 0.005);
         }
+
+        > img {
+          // stylelint-disable-next-line plugin/no-unsupported-browser-features
+          pointer-events: none;
+        }
       }
     }
 
