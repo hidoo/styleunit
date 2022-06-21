@@ -54,5 +54,11 @@ Style guide: #{settings.$prefix}-pict.copy-protect.builtin
       // for ie 10
       background-color: rgba(0, 0, 0, 0.005);
     }
+
+    // stylelint-disable-next-line scss/selector-nest-combinators
+    > img.#{settings.$prefix}-pict__src {
+      // stylelint-disable-next-line plugin/no-unsupported-browser-features
+      pointer-events: none;
+    }
   }
 }
