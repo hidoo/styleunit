@@ -1,0 +1,117 @@
+////
+/// (c) hidoo | MIT Lisence
+/// @group z-index feature
+////
+
+@use "sass:list";
+@use "sass:map";
+@use "sass:meta";
+
+/// default z-index range
+/// @access private
+/// @type List
+///
+$_default-range: (0, 100) !default;
+
+/// content types
+/// @access private
+/// @type Map
+///
+$_types: (
+  "main": (
+    "range": (0, 4999),
+    "stack": (),
+  ),
+  "floating": (
+    "range": (2000000, 2999999),
+    "stack": (),
+  ),
+  "popup": (
+    "range": (3000000, 3999999),
+    "stack": (),
+  ),
+  "navigation": (
+    "range": (5000000, 5999999),
+    "stack": (),
+  ),
+  "fullpage": (
+    "range": (6000000, null),
+    "stack": (),
+  ),
+) !default;
+
+/// default options
+/// @access private
+/// @type Map
+///
+$_default-options: (
+  "debug": false,
+) !default;
+
+/// reserve z-index value each by types
+/// @param {String} $type - content type name
+/// @param {Number} $index - index number
+/// @param {Map} $options - options
+/// @param {Boolean} $options.debug [false] - debug flag
+/// @return {Number} z-index value
+///
+/// @example scss - scss inputs
+///   .selector {
+///     content: reserve("floating", 100);
+///   }
+///
+/// @example css - css outputs
+///   .selector {
+///     content: 2000100;
+///   }
+///
+@function reserve($type, $index, $options: ()) {
+  @if meta.type-of($type) != "string" or $type == "" {
+    @error "@function reserve: Argument $type must be string.";
+  }
+
+  @if meta.type-of($index) != "number" or $index < 0 {
+    @error "@function reserve: Argument $index must be number and 0 or more.";
+  }
+
+  $opts: map.merge($_default-options, $options);
+
+  @if not map.has-key($_types, $type) {
+    $_types: map.set(
+      $_types,
+      $type,
+      (
+        "range": $_default-range,
+        "stack": (),
+      )
+    ) !global;
+  }
+
+  $stack: map.get($_types, $type, "stack");
+
+  @if map.has-key($stack, $index) {
+    $reserved-by: map.get($stack, $index);
+
+    @error "@function reserve: $index \"#{$index}\" is already reserved by \"#{$reserved-by}\" in \"#{$type}\".";
+  }
+
+  $range: map.get($_types, $type, "range");
+  $min: list.nth($range, 1);
+  $max: list.nth($range, 2);
+  $value: $min + $index;
+
+  @if meta.type-of($max) == "number" and $max < $value {
+    @error "@function reserve: Argument $index must be less than or equal to #{$max - $min}.";
+  }
+
+  $stack: map.set($stack, $index, &);
+  $_types: map.set($_types, $type, "stack", $stack) !global;
+
+  @if map.get($opts, "debug") {
+    @each $key, $reserved-by in $stack {
+      @debug "Index #{$key} in \"#{$type}\" is reserved by \"#{$reserved-by}\".";
+    }
+  }
+
+  @return $value;
+}

@@ -5,6 +5,7 @@
 @forward "./meta" as meta-*;
 @forward "./selector" as selector-*;
 @forward "./string" as string-*;
+@forward "./z-index" as z-index-*;
 @forward "./is-empty";
 @forward "./merge-state-selectors";
 @forward "./px-to-rem";
