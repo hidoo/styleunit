@@ -3383,6 +3383,85 @@ css outputs
 }
 ```
 
+<a id="z-index-feature-variable-_default-range"></a>
+
+### $\_default-range
+
+default z-index range
+
++ **Group:** Z-index feature
++ **Access:** private
+
+#### Type
+
+**[List](https://sass-lang.com/documentation/values/lists)**
+
+<a id="z-index-feature-variable-_types"></a>
+
+### $\_types
+
+content types
+
++ **Group:** Z-index feature
++ **Access:** private
+
+#### Type
+
+**[Map](https://sass-lang.com/documentation/values/maps)**
+
+<a id="z-index-feature-variable-_default-options"></a>
+
+### $\_default-options
+
+default options
+
++ **Group:** Z-index feature
++ **Access:** private
+
+#### Type
+
+**[Map](https://sass-lang.com/documentation/values/maps)**
+
+<a id="z-index-feature-function-reserve"></a>
+
+### @function reserve
+
+reserve z-index value each by types
+
++ **Group:** Z-index feature
++ **Access:** public
+
+#### Parameters
+
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`$type`|**[String](https://sass-lang.com/documentation/values/strings)**|content type name|-|
+|`$index`|**[Number](https://sass-lang.com/documentation/values/numbers)**|index number|-|
+|`$options`|**[Map](https://sass-lang.com/documentation/values/maps)**|options|-|
+|`$options.debug`|**[Boolean](https://sass-lang.com/documentation/values/booleans)**|debug flag|`false`|
+
+#### Returns
+
+**[Number](https://sass-lang.com/documentation/values/numbers)** z-index value
+
+#### Examples
+
+scss inputs
+
+```scss
+.selector {
+  content: reserve("floating", 100);
+}
+```
+
+css outputs
+
+```css
+.selector {
+  content: 2000100;
+}
+```
+
 ## Test
 
 ```sh
