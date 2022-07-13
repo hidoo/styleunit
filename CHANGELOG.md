@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/hidoo/unit-sass/compare/v0.7.0...v0.8.0) (2022-07-13)
+
+
+### Bug Fixes
+
+* **unit:** fix an issue --copy-protect modifier of unit-document with images being copied on chrome ([eb9d4f5](https://github.com/hidoo/unit-sass/commit/eb9d4f506fe3eef7821de992c483c5930f4fe592))
+* **unit:** fix an issue --copy-protect modifier of unit-pict with images being copied on chrome ([c08a77b](https://github.com/hidoo/unit-sass/commit/c08a77bb55104c045234d9ba0f0c158363a9cd35))
+
+
+### Features
+
+* **unit:** add [@function](https://github.com/function) z-index-reserve ([6cea008](https://github.com/hidoo/unit-sass/commit/6cea008a629a1cd15181a4fc17bb1d92f99df0a6))
+
+
+
+
+
 # [0.7.0](https://github.com/hidoo/unit-sass/compare/v0.6.0...v0.7.0) (2022-01-20)
 
 
