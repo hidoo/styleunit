@@ -209,10 +209,13 @@ describe('plugin/spritesheet', () => {
           ],
           expected:
 `.selector-logo {
+  background-image: url(path/to/sprite/icon-image.png);
+}
+
+.selector-logo {
   overflow: hidden;
   text-indent: -100%;
   color: transparent;
-  background-image: url(path/to/sprite/icon-image.png);
 }
 
 .selector-logo {
@@ -270,10 +273,13 @@ describe('plugin/spritesheet', () => {
           ],
           expected:
 `.selector-logo {
+  background-image: url(path/to/sprite/icon-image.png);
+}
+
+.selector-logo {
   overflow: hidden;
   text-indent: -100%;
   color: transparent;
-  background-image: url(path/to/sprite/icon-image.png);
 }
 
 .selector-logo {
@@ -281,6 +287,70 @@ describe('plugin/spritesheet', () => {
   height: 5px;
   background-position: -5px -5px;
   background-size: 15px 15px;
+}`
+        }
+      ];
+
+      await eachTestCases(
+        cases,
+        wrapper,
+        ({error, result, expected}, {resolve, reject}) => {
+          if (error) {
+            return reject(error);
+          }
+
+          const actual = result.css.toString().trim();
+
+          assert(actual === expected);
+          return resolve();
+        },
+        {outputStyle: 'expanded'}
+      );
+    });
+
+    it('should out spritesheet settings used css masks if argument $options is ("as-mask": true).', async () => {
+      const cases = [
+        {
+          params: [
+            [
+              '$type: "icon-image"',
+              '$name: "logo"',
+              '$options: ("as-mask": true)'
+            ],
+            [`
+              $spritesheets: (
+                "icon-image": (
+                  "image": "path/to/sprite/icon-image.png",
+                  "items": (
+                    "logo": (
+                      "width": 10px,
+                      "height": 10px,
+                      "total-width": 30px,
+                      "total-height": 30px,
+                      "offset-x": -10px,
+                      "offset-y": -10px
+                    )
+                  )
+                )
+              )
+            `]
+          ],
+          expected:
+`.selector-logo {
+  mask-image: url(path/to/sprite/icon-image.png);
+}
+
+.selector-logo {
+  overflow: hidden;
+  text-indent: -100%;
+  color: transparent;
+}
+
+.selector-logo {
+  width: 10px;
+  height: 10px;
+  mask-position: -10px -10px;
+  mask-size: 30px 30px;
 }`
         }
       ];
@@ -339,10 +409,13 @@ describe('plugin/spritesheet', () => {
           ],
           expected:
 `.selector-logo {
+  background-image: url(path/to/sprite/icon-image.png);
+}
+
+.selector-logo {
   overflow: hidden;
   text-indent: -100%;
   color: transparent;
-  background-image: url(path/to/sprite/icon-image.png);
 }
 
 .selector-logo {
@@ -416,10 +489,13 @@ describe('plugin/spritesheet', () => {
           ],
           expected:
 `.selector-logo {
+  background-image: url(path/to/sprite/icon-image.png);
+}
+
+.selector-logo {
   overflow: hidden;
   text-indent: -100%;
   color: transparent;
-  background-image: url(path/to/sprite/icon-image.png);
 }
 
 .selector-logo {
@@ -493,10 +569,13 @@ describe('plugin/spritesheet', () => {
           ],
           expected:
 `.selector-logo {
+  background-image: url(path/to/sprite/icon-image.png);
+}
+
+.selector-logo {
   overflow: hidden;
   text-indent: -100%;
   color: transparent;
-  background-image: url(path/to/sprite/icon-image.png);
 }
 
 .selector-logo {
@@ -544,10 +623,13 @@ describe('plugin/spritesheet', () => {
           ],
           expected:
 `.selector-logo {
+  background-image: url(path/to/sprite/icon-image.png);
+}
+
+.selector-logo {
   overflow: hidden;
   text-indent: -100%;
   color: transparent;
-  background-image: url(path/to/sprite/icon-image.png);
 }
 
 .selector-logo {
@@ -595,10 +677,13 @@ describe('plugin/spritesheet', () => {
           ],
           expected:
 `.selector-logo {
+  background-image: url(path/to/sprite/icon-image.png);
+}
+
+.selector-logo {
   overflow: hidden;
   text-indent: -100%;
   color: transparent;
-  background-image: url(path/to/sprite/icon-image.png);
 }
 
 .selector-logo {
@@ -683,10 +768,13 @@ describe('plugin/spritesheet', () => {
           ],
           expected:
 `.selector-logo {
+  background-image: url(path/to/sprite/icon-image.png);
+}
+
+.selector-logo {
   overflow: hidden;
   text-indent: -100%;
   color: transparent;
-  background-image: url(path/to/sprite/icon-image.png);
 }
 
 .selector-logo {
@@ -764,10 +852,13 @@ describe('plugin/spritesheet', () => {
           ],
           expected:
 `.selector-logo {
+  background-image: url(path/to/sprite/icon-image.png);
+}
+
+.selector-logo {
   overflow: hidden;
   text-indent: -100%;
   color: transparent;
-  background-image: url(path/to/sprite/icon-image.png);
 }
 
 .selector-logo {
@@ -845,10 +936,13 @@ describe('plugin/spritesheet', () => {
           ],
           expected:
 `.selector-logo {
+  background-image: url(path/to/sprite/icon-image.png);
+}
+
+.selector-logo {
   overflow: hidden;
   text-indent: -100%;
   color: transparent;
-  background-image: url(path/to/sprite/icon-image.png);
 }
 
 .selector-logo {
@@ -922,7 +1016,11 @@ describe('plugin/spritesheet', () => {
             `]
           ],
           expected:
-`.selector-radio {
+`.selector-radio > .unit-toggle__alt {
+  background-image: url(path/to/sprite/radio-image.png);
+}
+
+.selector-radio {
   overflow: hidden;
   vertical-align: middle;
 }
@@ -944,7 +1042,6 @@ describe('plugin/spritesheet', () => {
   text-indent: -100%;
   vertical-align: middle;
   color: transparent;
-  background-image: url(path/to/sprite/radio-image.png);
 }
 
 .selector-radio > .unit-toggle__field + .unit-toggle__alt {
@@ -1001,7 +1098,11 @@ describe('plugin/spritesheet', () => {
             `]
           ],
           expected:
-`.selector-radio {
+`.selector-radio > .unit-toggle__alt {
+  background-image: url(path/to/sprite/radio-image.png);
+}
+
+.selector-radio {
   overflow: hidden;
   vertical-align: middle;
 }
@@ -1023,7 +1124,6 @@ describe('plugin/spritesheet', () => {
   text-indent: -100%;
   vertical-align: middle;
   color: transparent;
-  background-image: url(path/to/sprite/radio-image.png);
 }
 
 .selector-radio > .unit-toggle__field + .unit-toggle__alt {
@@ -1031,6 +1131,88 @@ describe('plugin/spritesheet', () => {
   height: 5px;
   background-position: -5px -5px;
   background-size: 15px 15px;
+}`
+        }
+      ];
+
+      await eachTestCases(
+        cases,
+        wrapper,
+        ({error, result, expected}, {resolve, reject}) => {
+          if (error) {
+            return reject(error);
+          }
+
+          const actual = result.css.toString().trim();
+
+          assert(actual === expected);
+          return resolve();
+        },
+        {outputStyle: 'expanded'}
+      );
+    });
+
+    it('should out spritesheet settings for toggle used css masks if argument $options is ("toggle": true, "as-mask": true).', async () => {
+      const cases = [
+        {
+          params: [
+            [
+              '$type: "radio-image"',
+              '$name: "radio"',
+              '$options: ("toggle": true, "as-mask": true)'
+            ],
+            [`
+              $spritesheets: (
+                "radio-image": (
+                  "image": "path/to/sprite/radio-image.png",
+                  "items": (
+                    "radio": (
+                      "width": 10px,
+                      "height": 10px,
+                      "total-width": 30px,
+                      "total-height": 30px,
+                      "offset-x": -10px,
+                      "offset-y": -10px
+                    )
+                  )
+                )
+              )
+            `]
+          ],
+          expected:
+`.selector-radio > .unit-toggle__alt {
+  mask-image: url(path/to/sprite/radio-image.png);
+}
+
+.selector-radio {
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.selector-radio > .unit-toggle__field {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.selector-radio > .unit-toggle__alt {
+  display: block;
+  overflow: hidden;
+  z-index: 0;
+  text-indent: -100%;
+  vertical-align: middle;
+  color: transparent;
+}
+
+.selector-radio > .unit-toggle__field + .unit-toggle__alt {
+  width: 10px;
+  height: 10px;
+  mask-position: -10px -10px;
+  mask-size: 30px 30px;
 }`
         }
       ];
@@ -1088,7 +1270,11 @@ describe('plugin/spritesheet', () => {
             `]
           ],
           expected:
-`.selector-radio {
+`.selector-radio > .unit-toggle__alt {
+  background-image: url(path/to/sprite/radio-image.png);
+}
+
+.selector-radio {
   overflow: hidden;
   vertical-align: middle;
 }
@@ -1110,7 +1296,6 @@ describe('plugin/spritesheet', () => {
   text-indent: -100%;
   vertical-align: middle;
   color: transparent;
-  background-image: url(path/to/sprite/radio-image.png);
 }
 
 .selector-radio > .unit-toggle__field + .unit-toggle__alt {
@@ -1183,7 +1368,11 @@ describe('plugin/spritesheet', () => {
             `]
           ],
           expected:
-`.selector-radio {
+`.selector-radio > .unit-toggle__alt {
+  background-image: url(path/to/sprite/radio-image.png);
+}
+
+.selector-radio {
   overflow: hidden;
   vertical-align: middle;
 }
@@ -1205,7 +1394,6 @@ describe('plugin/spritesheet', () => {
   text-indent: -100%;
   vertical-align: middle;
   color: transparent;
-  background-image: url(path/to/sprite/radio-image.png);
 }
 
 .selector-radio > .unit-toggle__field + .unit-toggle__alt {
@@ -1278,7 +1466,11 @@ describe('plugin/spritesheet', () => {
             `]
           ],
           expected:
-`.selector-radio {
+`.selector-radio > .unit-toggle__alt {
+  background-image: url(path/to/sprite/radio-image.png);
+}
+
+.selector-radio {
   overflow: hidden;
   vertical-align: middle;
 }
@@ -1300,7 +1492,6 @@ describe('plugin/spritesheet', () => {
   text-indent: -100%;
   vertical-align: middle;
   color: transparent;
-  background-image: url(path/to/sprite/radio-image.png);
 }
 
 .selector-radio > .unit-toggle__field + .unit-toggle__alt {
@@ -1384,7 +1575,11 @@ describe('plugin/spritesheet', () => {
             `]
           ],
           expected:
-`.selector-radio {
+`.selector-radio > .unit-toggle__alt {
+  background-image: url(path/to/sprite/radio-image.png);
+}
+
+.selector-radio {
   overflow: hidden;
   vertical-align: middle;
 }
@@ -1406,7 +1601,6 @@ describe('plugin/spritesheet', () => {
   text-indent: -100%;
   vertical-align: middle;
   color: transparent;
-  background-image: url(path/to/sprite/radio-image.png);
 }
 
 .selector-radio > .unit-toggle__field + .unit-toggle__alt {
@@ -1482,7 +1676,11 @@ describe('plugin/spritesheet', () => {
             `]
           ],
           expected:
-`.selector-radio {
+`.selector-radio > .unit-toggle__alt {
+  background-image: url(path/to/sprite/radio-image.png);
+}
+
+.selector-radio {
   overflow: hidden;
   vertical-align: middle;
 }
@@ -1504,7 +1702,6 @@ describe('plugin/spritesheet', () => {
   text-indent: -100%;
   vertical-align: middle;
   color: transparent;
-  background-image: url(path/to/sprite/radio-image.png);
 }
 
 .selector-radio > .unit-toggle__field + .unit-toggle__alt {
@@ -1612,7 +1809,11 @@ describe('plugin/spritesheet', () => {
             `]
           ],
           expected:
-`.selector-radio {
+`.selector-radio > .unit-toggle__alt {
+  background-image: url(path/to/sprite/radio-image.png);
+}
+
+.selector-radio {
   overflow: hidden;
   vertical-align: middle;
 }
@@ -1634,7 +1835,6 @@ describe('plugin/spritesheet', () => {
   text-indent: -100%;
   vertical-align: middle;
   color: transparent;
-  background-image: url(path/to/sprite/radio-image.png);
 }
 
 .selector-radio > .unit-toggle__field + .unit-toggle__alt {

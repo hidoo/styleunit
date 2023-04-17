@@ -10,6 +10,7 @@
 /// @param {String} $name name of spritesheet item
 /// @param {Map} $options [()] options
 /// @param {Boolean} $options.use2x [false] use 2x image or (one of `true`, `false` or `"if-mobile"`)
+/// @param {Boolean} $options.as-mask [false] use as mask image or not
 /// @param {Boolean} $options.responsive [false] responsive or not
 /// @param {Boolean} $options.toggle [false] toggle or not
 /// @param {List} $options.capturing-selectors [("a", "button")] capturing parent selectors

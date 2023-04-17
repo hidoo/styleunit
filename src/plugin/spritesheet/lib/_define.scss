@@ -17,6 +17,7 @@
 ///
 $_default-options: (
   "use2x": false,
+  "as-mask": false,
   "responsive": false,
   "toggle": false,
   "capturing-selectors": ()
@@ -27,6 +28,7 @@ $_default-options: (
 /// @param {String} $name name of spritesheet item
 /// @param {Map} $options [()] options
 /// @param {Boolean} $options.use2x [false] use 2x image or (one of `true`, `false` or `"if-mobile"`)
+/// @param {Boolean} $options.as-mask [false] use as mask image or not
 /// @param {Boolean} $options.responsive [false] responsive or not
 /// @param {Boolean} $options.toggle [false] toggle or not
 /// @param {List} $options.capturing-selectors [("a", "button")] capturing parent selectors
@@ -88,6 +90,8 @@ $_default-options: (
     map.merge($_default-options, $options),
     $_default-options
   );
+  $use2x: map.get($options, "use2x");
+  $as-mask: map.get($options, "as-mask"); // stylelint-disable-line plugin/no-unsupported-browser-features
 
   @if meta.type-of($spritesheets) == "map" {
     $sheet-by-type: _function.get-sheet-by-type($type, $spritesheets);
@@ -95,6 +99,16 @@ $_default-options: (
     @if meta.type-of($sheet-by-type) == "map" {
       $image: map.get($sheet-by-type, "image");
       $items: map.get($sheet-by-type, "items");
+      $type-background: "#{$type}-background";
+      $type-mask: "#{$type}-mask"; // stylelint-disable-line plugin/no-unsupported-browser-features
+
+      @include mixin.placeholder-define($name: $type-background) {
+        background-image: url(#{$image});
+      }
+
+      @include mixin.placeholder-define($name: $type-mask) {
+        mask-image: url(#{$image}); // stylelint-disable-line plugin/no-unsupported-browser-features
+      }
 
       @if map.get($options, "toggle") {
         $type-field: "#{$type}-field";
@@ -122,7 +136,6 @@ $_default-options: (
           text-indent: -100%;
           vertical-align: middle;
           color: transparent;
-          background-image: url(#{$image});
         }
 
         @if map.get($options, "responsive") {
@@ -139,6 +152,13 @@ $_default-options: (
 
             > .#{settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
               @extend %#{$type-alt};
+
+              @if $as-mask {
+                @extend %#{$type-mask};
+              }
+              @else {
+                @extend %#{$type-background};
+              }
             }
           }
         }
@@ -156,6 +176,13 @@ $_default-options: (
 
             > .#{settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
               @extend %#{$type-alt};
+
+              @if $as-mask {
+                @extend %#{$type-mask};
+              }
+              @else {
+                @extend %#{$type-background};
+              }
             }
           }
         }
@@ -165,7 +192,6 @@ $_default-options: (
           overflow: hidden;
           text-indent: -100%;
           color: transparent;
-          background-image: url(#{$image});
         }
 
         @if map.get($options, "responsive") {
@@ -175,6 +201,13 @@ $_default-options: (
             $options: $options
           ) {
             @extend %#{$type};
+
+            @if $as-mask {
+              @extend %#{$type-mask};
+            }
+            @else {
+              @extend %#{$type-background};
+            }
           }
         }
         @else {
@@ -184,6 +217,13 @@ $_default-options: (
             $options: $options
           ) {
             @extend %#{$type};
+
+            @if $as-mask {
+              @extend %#{$type-mask};
+            }
+            @else {
+              @extend %#{$type-background};
+            }
           }
         }
       }

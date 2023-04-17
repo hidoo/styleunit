@@ -4,10 +4,11 @@
 ////
 
 @use "sass:map";
-@use "../../../../lib/mixin" as unit-mixin;
-@use "./set-properties" as mixin;
+@use "../../../../lib/mixin";
+@use "./set-properties" as _mixin;
 
 /// define responsive item
+/// @access private
 /// @param {String} $name name of spritesheet item
 /// @param {Map} $items [()] spritesheet items
 /// @param {Map} $options [()] options
@@ -29,41 +30,53 @@
       @content;
 
       @if $up {
-        @include mixin.set-properties(
+        @include _mixin.set-properties(
           $values: $up,
-          $use2x: $use2x == true
+          $options: map.merge(
+            $options,
+            ("use2x": $use2x == true)
+          )
         );
 
         @if $up-if-mobile {
-          @include unit-mixin.breakpoint-define($until: "mobile") {
-            @include mixin.set-properties(
+          @include mixin.breakpoint-define($until: "mobile") {
+            @include _mixin.set-properties(
               $values: $up-if-mobile,
-              $use2x: $use2x == true or $use2x == "if-mobile"
+              $options: map.merge(
+                $options,
+                ("use2x": $use2x == true or $use2x == "if-mobile")
+              )
             );
           }
         }
       }
 
       @if $focus {
-        @include unit-mixin.on-focus($capturing-selectors: $capturing-selectors) {
-          @include mixin.set-properties(
+        @include mixin.on-focus($capturing-selectors: $capturing-selectors) {
+          @include _mixin.set-properties(
             $values: (
               "offset-x": map.get($focus, "offset-x"),
               "offset-y": map.get($focus, "offset-y")
             ),
-            $use2x: $use2x == true
+            $options: map.merge(
+              $options,
+              ("use2x": $use2x == true)
+            )
           );
         }
 
         @if $focus-if-mobile {
-          @include unit-mixin.breakpoint-define($until: "mobile") {
-            @include unit-mixin.on-focus($capturing-selectors: $capturing-selectors) {
-              @include mixin.set-properties(
+          @include mixin.breakpoint-define($until: "mobile") {
+            @include mixin.on-focus($capturing-selectors: $capturing-selectors) {
+              @include _mixin.set-properties(
                 $values: (
                   "offset-x": map.get($focus-if-mobile, "offset-x"),
                   "offset-y": map.get($focus-if-mobile, "offset-y")
                 ),
-                $use2x: $use2x == true or $use2x == "if-mobile"
+                $options: map.merge(
+                  $options,
+                  ("use2x": $use2x == true or $use2x == "if-mobile")
+                )
               );
             }
           }
@@ -71,25 +84,31 @@
       }
 
       @if $current {
-        @include unit-mixin.on-current($capturing-selectors: $capturing-selectors) {
-          @include mixin.set-properties(
+        @include mixin.on-current($capturing-selectors: $capturing-selectors) {
+          @include _mixin.set-properties(
             $values: (
               "offset-x": map.get($current, "offset-x"),
               "offset-y": map.get($current, "offset-y")
             ),
-            $use2x: $use2x == true
+            $options: map.merge(
+              $options,
+              ("use2x": $use2x == true)
+            )
           );
         }
 
         @if $current-if-mobile {
-          @include unit-mixin.breakpoint-define($until: "mobile") {
-            @include unit-mixin.on-current($capturing-selectors: $capturing-selectors) {
-              @include mixin.set-properties(
+          @include mixin.breakpoint-define($until: "mobile") {
+            @include mixin.on-current($capturing-selectors: $capturing-selectors) {
+              @include _mixin.set-properties(
                 $values: (
                   "offset-x": map.get($current-if-mobile, "offset-x"),
                   "offset-y": map.get($current-if-mobile, "offset-y")
                 ),
-                $use2x: $use2x == true or $use2x == "if-mobile"
+                $options: map.merge(
+                  $options,
+                  ("use2x": $use2x == true or $use2x == "if-mobile")
+                )
               );
             }
           }
@@ -97,25 +116,31 @@
       }
 
       @if $disabled {
-        @include unit-mixin.on-disabled($capturing-selectors: $capturing-selectors) {
-          @include mixin.set-properties(
+        @include mixin.on-disabled($capturing-selectors: $capturing-selectors) {
+          @include _mixin.set-properties(
             $values: (
               "offset-x": map.get($disabled, "offset-x"),
               "offset-y": map.get($disabled, "offset-y")
             ),
-            $use2x: $use2x == true
+            $options: map.merge(
+              $options,
+              ("use2x": $use2x == true)
+            )
           );
         }
 
         @if $disabled-if-mobile {
-          @include unit-mixin.breakpoint-define($until: "mobile") {
-            @include unit-mixin.on-disabled($capturing-selectors: $capturing-selectors) {
-              @include mixin.set-properties(
+          @include mixin.breakpoint-define($until: "mobile") {
+            @include mixin.on-disabled($capturing-selectors: $capturing-selectors) {
+              @include _mixin.set-properties(
                 $values: (
                   "offset-x": map.get($disabled-if-mobile, "offset-x"),
                   "offset-y": map.get($disabled-if-mobile, "offset-y")
                 ),
-                $use2x: $use2x == true or $use2x == "if-mobile"
+                $options: map.merge(
+                  $options,
+                  ("use2x": $use2x == true or $use2x == "if-mobile")
+                )
               );
             }
           }

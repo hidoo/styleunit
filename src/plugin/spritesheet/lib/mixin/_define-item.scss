@@ -4,8 +4,8 @@
 ////
 
 @use "sass:map";
-@use "../../../../lib/mixin" as unit-mixin;
-@use "./set-properties" as mixin;
+@use "../../../../lib/mixin";
+@use "./set-properties" as _mixin;
 
 /// define item
 /// @access private
@@ -19,51 +19,50 @@
     $focus: map.get($items, "#{$name}--focus");
     $current: map.get($items, "#{$name}--current");
     $disabled: map.get($items, "#{$name}--disabled");
-    $use2x: map.get($options, "use2x");
     $capturing-selectors: map.get($options, "capturing-selectors");
 
     &-#{$name} {
       @content;
 
       @if $up {
-        @include mixin.set-properties(
+        @include _mixin.set-properties(
           $values: $up,
-          $use2x: $use2x == true
+          $options: $options
         );
       }
 
       @if $focus {
-        @include unit-mixin.on-focus($capturing-selectors: $capturing-selectors) {
-          @include mixin.set-properties(
+        @include mixin.on-focus($capturing-selectors: $capturing-selectors) {
+          @include _mixin.set-properties(
             $values: (
               "offset-x": map.get($focus, "offset-x"),
               "offset-y": map.get($focus, "offset-y")
             ),
-            $use2x: $use2x == true
+            $options: $options
           );
         }
       }
 
       @if $current {
-        @include unit-mixin.on-current($capturing-selectors: $capturing-selectors) {
-          @include mixin.set-properties(
+        @include mixin.on-current($capturing-selectors: $capturing-selectors) {
+          @include _mixin.set-properties(
             $values: (
               "offset-x": map.get($current, "offset-x"),
               "offset-y": map.get($current, "offset-y")
             ),
-            $use2x: $use2x == true
+            $options: $options
           );
         }
       }
 
       @if $disabled {
-        @include unit-mixin.on-disabled($capturing-selectors: $capturing-selectors) {
-          @include mixin.set-properties(
+        @include mixin.on-disabled($capturing-selectors: $capturing-selectors) {
+          @include _mixin.set-properties(
             $values: (
               "offset-x": map.get($disabled, "offset-x"),
               "offset-y": map.get($disabled, "offset-y")
             ),
-            $use2x: $use2x == true
+            $options: $options
           );
         }
       }

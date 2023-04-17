@@ -5,10 +5,10 @@
 
 @use "sass:map";
 @use "sass:string";
-@use "../../../../lib/function" as unit-function;
-@use "../../../../lib/mixin" as unit-mixin;
-@use "../../../../settings" as unit-settings;
-@use "./set-properties" as mixin;
+@use "../../../../lib/function";
+@use "../../../../lib/mixin";
+@use "../../../../settings";
+@use "./set-properties" as _mixin;
 
 /// define toggle item
 /// @access private
@@ -17,9 +17,9 @@
 /// @param {Map} $options [()] options
 ///
 @mixin define-toggle-item($name, $items: (), $options: ()) {
-  $selectors-focus: unit-function.selector-merge-state("focus");
-  $selectors-disabled: unit-function.selector-merge-state("disabled");
-  $selectors-selected: unit-function.selector-merge-state("selected");
+  $selectors-focus: function.selector-merge-state("focus");
+  $selectors-disabled: function.selector-merge-state("disabled");
+  $selectors-selected: function.selector-merge-state("selected");
 
   @if map.has-key($items, $name) {
     $up: map.get($items, $name);
@@ -28,17 +28,16 @@
     $selected: map.get($items, "#{$name}--selected");
     $selected--focus: map.get($items, "#{$name}--selected--focus");
     $selected--disabled: map.get($items, "#{$name}--selected--disabled");
-    $use2x: map.get($options, "use2x");
 
     &-#{$name} {
       @content;
 
       @if $up {
-        > .#{unit-settings.$prefix}-toggle__field { // stylelint-disable-line scss/selector-nest-combinators
-          + .#{unit-settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
-            @include mixin.set-properties(
+        > .#{settings.$prefix}-toggle__field { // stylelint-disable-line scss/selector-nest-combinators
+          + .#{settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
+            @include _mixin.set-properties(
               $values: $up,
-              $use2x: $use2x == true
+              $options: $options
             );
           }
         }
@@ -48,19 +47,19 @@
       @if $focus {
         $selector: string.unique-id();
 
-        @include unit-mixin.placeholder-define($name: $selector) {
-          @include mixin.set-properties(
+        @include mixin.placeholder-define($name: $selector) {
+          @include _mixin.set-properties(
             $values: (
               "offset-x": map.get($focus, "offset-x"),
               "offset-y": map.get($focus, "offset-y")
             ),
-            $use2x: $use2x == true
+            $options: $options
           );
         }
 
         @each $state in $selectors-focus {
-          > .#{unit-settings.$prefix}-toggle__field#{$state} {
-            + .#{unit-settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
+          > .#{settings.$prefix}-toggle__field#{$state} {
+            + .#{settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
               @extend %#{$selector};
             }
           }
@@ -71,19 +70,19 @@
       @if $disabled {
         $selector: string.unique-id();
 
-        @include unit-mixin.placeholder-define($name: $selector) {
-          @include mixin.set-properties(
+        @include mixin.placeholder-define($name: $selector) {
+          @include _mixin.set-properties(
             $values: (
               "offset-x": map.get($disabled, "offset-x"),
               "offset-y": map.get($disabled, "offset-y")
             ),
-            $use2x: $use2x == true
+            $options: $options
           );
         }
 
         @each $state in $selectors-disabled {
-          > .#{unit-settings.$prefix}-toggle__field#{$state} {
-            + .#{unit-settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
+          > .#{settings.$prefix}-toggle__field#{$state} {
+            + .#{settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
               @extend %#{$selector};
             }
           }
@@ -94,19 +93,19 @@
       @if $selected {
         $selector: string.unique-id();
 
-        @include unit-mixin.placeholder-define($name: $selector) {
-          @include mixin.set-properties(
+        @include mixin.placeholder-define($name: $selector) {
+          @include _mixin.set-properties(
             $values: (
               "offset-x": map.get($selected, "offset-x"),
               "offset-y": map.get($selected, "offset-y")
             ),
-            $use2x: $use2x == true
+            $options: $options
           );
         }
 
         @each $state in $selectors-selected {
-          > .#{unit-settings.$prefix}-toggle__field#{$state} {
-            + .#{unit-settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
+          > .#{settings.$prefix}-toggle__field#{$state} {
+            + .#{settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
               @extend %#{$selector};
             }
           }
@@ -117,20 +116,20 @@
       @if $selected--focus {
         $selector: string.unique-id();
 
-        @include unit-mixin.placeholder-define($name: $selector) {
-          @include mixin.set-properties(
+        @include mixin.placeholder-define($name: $selector) {
+          @include _mixin.set-properties(
             $values: (
               "offset-x": map.get($selected--focus, "offset-x"),
               "offset-y": map.get($selected--focus, "offset-y")
             ),
-            $use2x: $use2x == true
+            $options: $options
           );
         }
 
         @each $state-selected in $selectors-selected {
           @each $state in $selectors-focus {
-            > .#{unit-settings.$prefix}-toggle__field#{$state-selected}#{$state} {
-              + .#{unit-settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
+            > .#{settings.$prefix}-toggle__field#{$state-selected}#{$state} {
+              + .#{settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
                 @extend %#{$selector};
               }
             }
@@ -142,20 +141,20 @@
       @if $selected--disabled {
         $selector: string.unique-id();
 
-        @include unit-mixin.placeholder-define($name: $selector) {
-          @include mixin.set-properties(
+        @include mixin.placeholder-define($name: $selector) {
+          @include _mixin.set-properties(
             $values: (
               "offset-x": map.get($selected--disabled, "offset-x"),
               "offset-y": map.get($selected--disabled, "offset-y")
             ),
-            $use2x: $use2x == true
+            $options: $options
           );
         }
 
         @each $state-selected in $selectors-selected {
           @each $state in $selectors-disabled {
-            > .#{unit-settings.$prefix}-toggle__field#{$state-selected}#{$state} {
-              + .#{unit-settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
+            > .#{settings.$prefix}-toggle__field#{$state-selected}#{$state} {
+              + .#{settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
                 @extend %#{$selector};
               }
             }
