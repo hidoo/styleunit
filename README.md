@@ -1403,6 +1403,37 @@ css outputs
 }
 ```
 
+<a id="features-mixin-on-print"></a>
+
+### @mixin on-print
+
+The wrapper of `@media print`
+
++ **Group:** Features
++ **Access:** public
+
+#### Examples
+
+scss inputs
+
+```scss
+.selector {
+  @include on-print() {
+    font-size: 16px;
+  }
+}
+```
+
+css outputs
+
+```css
+@media print {
+  .selector.is-active {
+    font-size: 16px;
+  }
+}
+```
+
 <a id="features-mixin-on"></a>
 
 ### @mixin on
@@ -2290,6 +2321,19 @@ scss inputs
 $result: is-empty(""); // -> true
 ```
 
+<a id="pict-feature-variable-_default-options"></a>
+
+### $\_default-options
+
+default options
+
++ **Group:** Pict feature
++ **Access:** private
+
+#### Type
+
+**[Map](https://sass-lang.com/documentation/values/maps)**
+
 <a id="pict-feature-mixin-apply-flexible-size"></a>
 
 ### @mixin apply-flexible-size
@@ -2303,8 +2347,10 @@ apply flexible size to pict
 
 |Name|Type|Description|Default|
 |:--|:--|:--|:--|
-|`$width`|**[Number](https://sass-lang.com/documentation/values/numbers)**|width|-|
-|`$height`|**[Number](https://sass-lang.com/documentation/values/numbers)**|height|-|
+|`$width`|**[Number](https://sass-lang.com/documentation/values/numbers)**|width|`16`|
+|`$height`|**[Number](https://sass-lang.com/documentation/values/numbers)**|height|`9`|
+|`$options`|**[Map](https://sass-lang.com/documentation/values/maps)**|height|-|
+|`$options.use-object-fit`|**[Boolean](https://sass-lang.com/documentation/values/booleans)**|use object-fit|`false`|
 
 #### Examples
 
@@ -2397,6 +2443,19 @@ css outputs
    font-size: 16px;
 }
 ```
+
+<a id="plugin/spritesheet-variable-_default-options"></a>
+
+### $\_default-options
+
+default options
+
++ **Group:** Plugin/spritesheet
++ **Access:** private
+
+#### Type
+
+**[Map](https://sass-lang.com/documentation/values/maps)**
 
 <a id="plugin/spritesheet-variable-_default-options"></a>
 
@@ -2509,6 +2568,7 @@ define spritesheet
 |`$name`|**[String](https://sass-lang.com/documentation/values/strings)**|name of spritesheet item|-|
 |`$options`|**[Map](https://sass-lang.com/documentation/values/maps)**|options|`()`|
 |`$options.use2x`|**[Boolean](https://sass-lang.com/documentation/values/booleans)**|use 2x image or (one of `true`, `false` or `"if-mobile"`)|`false`|
+|`$options.as-mask`|**[Boolean](https://sass-lang.com/documentation/values/booleans)**|use as mask image or not|`false`|
 |`$options.responsive`|**[Boolean](https://sass-lang.com/documentation/values/booleans)**|responsive or not|`false`|
 |`$options.toggle`|**[Boolean](https://sass-lang.com/documentation/values/booleans)**|toggle or not|`false`|
 |`$options.capturing-selectors`|**[List](https://sass-lang.com/documentation/values/lists)**|capturing parent selectors|`("a", "button")`|
@@ -2579,6 +2639,7 @@ use spritesheet rule
 |`$name`|**[String](https://sass-lang.com/documentation/values/strings)**|name of spritesheet item|-|
 |`$options`|**[Map](https://sass-lang.com/documentation/values/maps)**|options|`()`|
 |`$options.use2x`|**[Boolean](https://sass-lang.com/documentation/values/booleans)**|use 2x image or (one of `true`, `false` or `"if-mobile"`)|`false`|
+|`$options.as-mask`|**[Boolean](https://sass-lang.com/documentation/values/booleans)**|use as mask image or not|`false`|
 |`$options.responsive`|**[Boolean](https://sass-lang.com/documentation/values/booleans)**|responsive or not|`false`|
 |`$options.toggle`|**[Boolean](https://sass-lang.com/documentation/values/booleans)**|toggle or not|`false`|
 |`$options.capturing-selectors`|**[List](https://sass-lang.com/documentation/values/lists)**|capturing parent selectors|`("a", "button")`|
@@ -2654,7 +2715,7 @@ define item
 define responsive item
 
 + **Group:** Plugin/spritesheet
-+ **Access:** public
++ **Access:** private
 
 #### Parameters
 
@@ -2712,7 +2773,7 @@ set properties
 |Name|Type|Description|Default|
 |:--|:--|:--|:--|
 |`$values`|**[Map](https://sass-lang.com/documentation/values/maps)**|values of item|`()`|
-|`$use2x`|**[Boolean](https://sass-lang.com/documentation/values/booleans)**|use 2x image or not|`false`|
+|`$options`|**[Map](https://sass-lang.com/documentation/values/maps)**|options|`()`|
 
 <a id="selector-features-variable-_supported-types"></a>
 
