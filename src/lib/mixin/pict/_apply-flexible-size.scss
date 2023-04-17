@@ -2,12 +2,24 @@
 /// @group pict feature
 ////
 
+@use "sass:map";
 @use "sass:meta";
-@use "../box" as box;
+@use "../box";
+@use "../../../settings";
+
+/// default options
+/// @access private
+/// @type Map
+///
+$_default-options: (
+  "use-object-fit": false,
+) !default;
 
 /// apply flexible size to pict
-/// @param {Number} $width - width
-/// @param {Number} $height - height
+/// @param {Number} $width [16] - width
+/// @param {Number} $height [9] - height
+/// @param {Map} $options - height
+/// @param {Boolean} $options.use-object-fit [false] - use object-fit
 ///
 /// @example scss - scss inputs
 ///   .selector {
@@ -35,19 +47,37 @@
 ///      margin: auto;
 ///   }
 ///
-@mixin apply-flexible-size($args...) {
-  @include box.apply-aspect-ratio($args...);
+@mixin apply-flexible-size($width: 16, $height: 9, $options: ()) {
+  // normalize options
+  $opts: if(
+    meta.type-of($options) == "map",
+    map.merge($_default-options, $options),
+    $_default-options
+  );
 
-  > .unit-pict__src {
+  @include box.apply-aspect-ratio($width, $height);
+
+  // stylelint-disable-next-line scss/selector-nest-combinators
+  > .#{settings.$prefix}-pict__src {
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    width: auto;
-    max-width: 100%;
-    height: auto;
-    max-height: 100%;
     margin: auto;
+
+    @if map.get($opts, "use-object-fit") {
+      width: 100%;
+      height: 100%;
+
+      // stylelint-disable-next-line plugin/no-unsupported-browser-features
+      object-fit: contain;
+    }
+    @else {
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: 100%;
+    }
   }
 }

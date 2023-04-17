@@ -19,7 +19,7 @@ ${useSettingsWith(settings)}
 }
 `;
 
-describe('@mixin pict-apply-flexible-size($width, $height)', () => {
+describe('@mixin pict-apply-flexible-size($width, $height, $options)', () => {
 
   it('should out default properties if arguments not set.', async () => {
     const cases = [
@@ -39,11 +39,11 @@ describe('@mixin pict-apply-flexible-size($width, $height)', () => {
   right: 0;
   bottom: 0;
   left: 0;
+  margin: auto;
   width: auto;
   max-width: 100%;
   height: auto;
   max-height: 100%;
-  margin: auto;
 }`
       }
     ];
@@ -88,11 +88,11 @@ describe('@mixin pict-apply-flexible-size($width, $height)', () => {
   right: 0;
   bottom: 0;
   left: 0;
+  margin: auto;
   width: auto;
   max-width: 100%;
   height: auto;
   max-height: 100%;
-  margin: auto;
 }`
       },
       {
@@ -116,11 +116,39 @@ describe('@mixin pict-apply-flexible-size($width, $height)', () => {
   right: 0;
   bottom: 0;
   left: 0;
+  margin: auto;
   width: auto;
   max-width: 100%;
   height: auto;
   max-height: 100%;
+}`
+      },
+      {
+        params: [
+          [
+            '$width: 1',
+            '$height: 1',
+            '$options: ("use-object-fit": true,)'
+          ]
+        ],
+        expected:
+`.selector::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 0;
+  padding-top: 100%;
+}
+.selector > .unit-pict__src {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   margin: auto;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }`
       }
     ];
