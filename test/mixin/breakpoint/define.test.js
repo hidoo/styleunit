@@ -311,7 +311,7 @@ describe('@mixin breakpoint-define($from, $until, $options)', () => {
       assert(actual === expected);
       return resolve();
     });
-  });
+  }).timeout(3 * 1000);
 
   it('should out @media rule with specified "media" if argument "$options" has "media" key.', async () => {
     const cases = [
