@@ -1,0 +1,26 @@
+////
+/// (c) hidoo | MIT License
+/// @group features
+////
+
+/// The wrapper of `@media print`
+///
+/// @example scss - scss inputs
+///   .selector {
+///     @include on-print() {
+///       font-size: 16px;
+///     }
+///   }
+///
+/// @example css - css outputs
+///   @media print {
+///     .selector.is-active {
+///       font-size: 16px;
+///     }
+///   }
+///
+@mixin on-print() {
+  @media print {
+    @content;
+  }
+}
