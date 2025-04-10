@@ -59,7 +59,7 @@ describe('@mixin pict-apply-flexible-size($width, $height, $options)', () => {
         assert(actual === expected);
         return resolve();
       },
-      { outputStyle: 'expanded' }
+      { style: 'expanded' }
     );
   });
 
@@ -147,7 +147,7 @@ describe('@mixin pict-apply-flexible-size($width, $height, $options)', () => {
         assert(actual === expected);
         return resolve();
       },
-      { outputStyle: 'expanded' }
+      { style: 'expanded' }
     );
   });
 });

@@ -44,7 +44,7 @@ describe('@mixin font-initialize(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      { outputStyle: 'expanded' }
+      { style: 'expanded' }
     );
   });
 
@@ -72,7 +72,7 @@ describe('@mixin font-initialize(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      { outputStyle: 'expanded' }
+      { style: 'expanded' }
     );
   });
 });

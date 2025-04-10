@@ -1,4 +1,4 @@
-import sass from 'sass';
+import * as sass from 'sass';
 
 /**
  * default options of eachCompile
@@ -6,7 +6,8 @@ import sass from 'sass';
  * @type {Object}
  */
 const defaultOptions = {
-  outputStyle: 'compressed'
+  style: 'compressed',
+  loadPaths: [process.cwd()]
 };
 
 /* eslint-disable max-params */
@@ -25,23 +26,26 @@ export default async function eachTestCases(
   rendered = () => {}, // eslint-disable-line no-empty-function
   options = {}
 ) {
-  const opts = {...defaultOptions, ...options};
+  const opts = { ...defaultOptions, ...options };
 
-  await Promise.all(testCases.map(
-    (testCase) => new Promise((resolve, reject) => {
-      const {params, expected} = testCase;
+  await Promise.all(
+    testCases.map(
+      (testCase) =>
+        new Promise((resolve, reject) => {
+          const { params, expected } = testCase;
+          const src = wrapper(...params);
+          let result = null;
+          let error = null;
 
-      sass.render(
-        {
-          ...opts,
-          data: wrapper(...params)
-        },
-        (error, result) => rendered(
-          {params, expected, error, result},
-          {resolve, reject}
-        )
-      );
-    })
-  ));
+          try {
+            result = sass.compileString(src, opts);
+          } catch (err) {
+            error = err;
+          }
+
+          rendered({ params, expected, error, result }, { resolve, reject });
+        })
+    )
+  );
 }
 /* eslint-enable max-params */

@@ -60,7 +60,7 @@ describe('@mixin text-apply-line-truncate($line)', () => {
         assert(actual === expected);
         return resolve();
       },
-      { outputStyle: 'expanded' }
+      { style: 'expanded' }
     );
   });
 
@@ -97,7 +97,7 @@ describe('@mixin text-apply-line-truncate($line)', () => {
         assert(actual === expected);
         return resolve();
       },
-      { outputStyle: 'expanded' }
+      { style: 'expanded' }
     );
   });
 });

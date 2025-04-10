@@ -247,7 +247,7 @@ describe('plugin/spritesheet', () => {
           assert.equal(actual, expected);
           return resolve();
         },
-        { outputStyle: 'expanded' }
+        { style: 'expanded' }
       );
     });
 
@@ -312,7 +312,7 @@ describe('plugin/spritesheet', () => {
           assert.equal(actual, expected);
           return resolve();
         },
-        { outputStyle: 'expanded' }
+        { style: 'expanded' }
       );
     });
 
@@ -377,7 +377,7 @@ describe('plugin/spritesheet', () => {
           assert.equal(actual, expected);
           return resolve();
         },
-        { outputStyle: 'expanded' }
+        { style: 'expanded' }
       );
     });
 
@@ -458,7 +458,7 @@ describe('plugin/spritesheet', () => {
           assert.equal(actual, expected);
           return resolve();
         },
-        { outputStyle: 'expanded' }
+        { style: 'expanded' }
       );
     });
 
@@ -539,7 +539,7 @@ describe('plugin/spritesheet', () => {
           assert.equal(actual, expected);
           return resolve();
         },
-        { outputStyle: 'expanded' }
+        { style: 'expanded' }
       );
     });
 
@@ -713,7 +713,7 @@ describe('plugin/spritesheet', () => {
           assert.equal(actual, expected);
           return resolve();
         },
-        { outputStyle: 'expanded' }
+        { style: 'expanded' }
       );
     });
 
@@ -989,7 +989,7 @@ describe('plugin/spritesheet', () => {
           assert.equal(actual, expected);
           return resolve();
         },
-        { outputStyle: 'expanded' }
+        { style: 'expanded' }
       );
     });
 
@@ -1072,7 +1072,7 @@ describe('plugin/spritesheet', () => {
           assert.equal(actual, expected);
           return resolve();
         },
-        { outputStyle: 'expanded' }
+        { style: 'expanded' }
       );
     });
 
@@ -1155,7 +1155,7 @@ describe('plugin/spritesheet', () => {
           assert.equal(actual, expected);
           return resolve();
         },
-        { outputStyle: 'expanded' }
+        { style: 'expanded' }
       );
     });
 
@@ -1238,7 +1238,7 @@ describe('plugin/spritesheet', () => {
           assert.equal(actual, expected);
           return resolve();
         },
-        { outputStyle: 'expanded' }
+        { style: 'expanded' }
       );
     });
 
@@ -1337,7 +1337,7 @@ describe('plugin/spritesheet', () => {
           assert.equal(actual, expected);
           return resolve();
         },
-        { outputStyle: 'expanded' }
+        { style: 'expanded' }
       );
     });
 
@@ -1436,7 +1436,7 @@ describe('plugin/spritesheet', () => {
           assert.equal(actual, expected);
           return resolve();
         },
-        { outputStyle: 'expanded' }
+        { style: 'expanded' }
       );
     });
 
@@ -1530,7 +1530,7 @@ describe('plugin/spritesheet', () => {
           assert.equal(actual, expected);
           return resolve();
         },
-        { outputStyle: 'expanded' }
+        { style: 'expanded' }
       );
     });
 
@@ -1907,7 +1907,7 @@ describe('plugin/spritesheet', () => {
           assert.equal(actual, expected);
           return resolve();
         },
-        { outputStyle: 'expanded' }
+        { style: 'expanded' }
       );
     });
   });

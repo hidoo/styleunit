@@ -47,7 +47,7 @@ describe('@mixin box-apply-clearfix(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      { outputStyle: 'expanded' }
+      { style: 'expanded' }
     );
   });
 });

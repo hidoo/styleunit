@@ -44,7 +44,7 @@ describe('@mixin font-apply-smoothing(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      { outputStyle: 'expanded' }
+      { style: 'expanded' }
     );
   });
 });

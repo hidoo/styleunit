@@ -49,7 +49,7 @@ describe('@mixin box-initialize(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      { outputStyle: 'expanded' }
+      { style: 'expanded' }
     );
   });
 
@@ -81,7 +81,7 @@ describe('@mixin box-initialize(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      { outputStyle: 'expanded' }
+      { style: 'expanded' }
     );
   });
 
@@ -115,7 +115,7 @@ describe('@mixin box-initialize(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      { outputStyle: 'expanded' }
+      { style: 'expanded' }
     );
   });
 
@@ -147,7 +147,7 @@ describe('@mixin box-initialize(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      { outputStyle: 'expanded' }
+      { style: 'expanded' }
     );
   });
 
@@ -190,7 +190,7 @@ describe('@mixin box-initialize(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      { outputStyle: 'expanded' }
+      { style: 'expanded' }
     );
   });
 });

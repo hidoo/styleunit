@@ -47,7 +47,7 @@ describe('@mixin box-apply-aspect-ratio(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      { outputStyle: 'expanded' }
+      { style: 'expanded' }
     );
   });
 
@@ -88,7 +88,7 @@ describe('@mixin box-apply-aspect-ratio(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      { outputStyle: 'expanded' }
+      { style: 'expanded' }
     );
   });
 });
