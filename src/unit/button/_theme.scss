@@ -35,15 +35,17 @@ Markup: <!-- link element -->
 
 Style guide: #{settings.$prefix}-button.theme.builtin
 */
-.#{settings.$prefix}-button--theme { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-button--theme {
   $selector: string.unique-id();
 
   @include mixin.placeholder-define($name: $selector) {
     padding: 10px;
+
     border-radius: 3px;
+
+    transition-timing-function: ease-out;
     transition-duration: 0.1s;
     transition-property: background-color;
-    transition-timing-function: ease-out;
   }
 
   @if meta.type-of(settings.$builtin-themes) == "map" {
@@ -57,14 +59,19 @@ Style guide: #{settings.$prefix}-button.theme.builtin
       &-#{$name} {
         @extend %#{$selector};
 
-        color: $color;
-        background-color: $background;
-        border: 1px solid $border;
-
-        @include mixin.on-focus($capturing-selectors: ("a", "button")) {
+        @include mixin.on-focus(
+          $capturing-selectors: (
+            "a",
+            "button"
+          )
+        ) {
           background-color: $background-focus;
           border-color: $border-focus;
         }
+
+        color: $color;
+        background-color: $background;
+        border: 1px solid $border;
       }
     }
   }

@@ -1,7 +1,7 @@
 /* eslint max-len: 0, no-magic-numbers: 0 */
 
 import assert from 'assert';
-import {eachTestCases, useSettingsWith} from '../../util';
+import { eachTestCases, useSettingsWith } from '../../util/index.js';
 
 /**
  * wrapper
@@ -20,13 +20,11 @@ ${useSettingsWith(settings)}
 `;
 
 describe('@mixin font-apply-smoothing(...)', () => {
-
   it('should out default properties.', async () => {
     const cases = [
       {
         params: [[]],
-        expected:
-`.selector {
+        expected: `.selector {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }`
@@ -36,7 +34,7 @@ describe('@mixin font-apply-smoothing(...)', () => {
     await eachTestCases(
       cases,
       wrapper,
-      ({error, result, expected}, {resolve, reject}) => {
+      ({ error, result, expected }, { resolve, reject }) => {
         if (error) {
           return reject(error);
         }
@@ -46,8 +44,7 @@ describe('@mixin font-apply-smoothing(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      {outputStyle: 'expanded'}
+      { outputStyle: 'expanded' }
     );
   });
-
 });

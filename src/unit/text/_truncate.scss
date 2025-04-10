@@ -25,16 +25,18 @@ Markup: <h1 class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dol
 
 Style guide: #{settings.$prefix}-text.truncate.builtin
 */
-.#{settings.$prefix}-text--truncate { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-text--truncate {
   &-false {
     // has no settings
   }
 
   &-true {
     overflow: hidden;
+
     width: 100%;
+
     text-overflow: ellipsis;
-    white-space: nowrap;
     word-wrap: normal;
+    white-space: nowrap;
   }
 }

@@ -33,15 +33,17 @@ Markup: <!-- input -->
 
 Style guide: #{settings.$prefix}-input.theme.builtin
 */
-.#{settings.$prefix}-input--theme {// stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-input--theme {
   $selector: string.unique-id();
 
   @include mixin.placeholder-define($name: $selector) {
     padding: 10px;
+
     border-radius: 3px;
+
+    transition-timing-function: ease-out;
     transition-duration: 0.1s;
     transition-property: border-color;
-    transition-timing-function: ease-out;
   }
 
   @if meta.type-of(settings.$builtin-themes) == "map" {
@@ -57,11 +59,6 @@ Style guide: #{settings.$prefix}-input.theme.builtin
       &-#{$name} {
         @extend %#{$selector};
 
-        color: $color;
-        background-color: $background;
-        border: 1px solid $border;
-        box-shadow: inset rgba(0, 0, 0, $shadow-alpha) 0 2px 2px;
-
         @include mixin.on-placeholder() {
           color: $color-focus;
         }
@@ -73,6 +70,11 @@ Style guide: #{settings.$prefix}-input.theme.builtin
         @include mixin.on-disabled() {
           border: 1px solid $border;
         }
+
+        color: $color;
+        background-color: $background;
+        border: 1px solid $border;
+        box-shadow: inset rgba(0, 0, 0, $shadow-alpha) 0 2px 2px;
       }
     }
   }

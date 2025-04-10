@@ -28,7 +28,7 @@ Markup: <h1 class="#{settings.$prefix}-text">Lorem ipsum dolor <a class="#{setti
 
 Style guide: #{settings.$prefix}-text.link-theme.builtin
 */
-.#{settings.$prefix}-text__link--theme { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-text__link--theme {
   @if meta.type-of(settings.$builtin-themes) == "map" {
     @each $name, $theme in settings.$builtin-themes {
       $color: map.get($theme, "color");
@@ -36,13 +36,13 @@ Style guide: #{settings.$prefix}-text.link-theme.builtin
 
       &-#{$name} {
         @include mixin.on-link() {
-          text-decoration: underline;
           color: $color;
+          text-decoration: underline;
         }
 
         @include mixin.on-focus() {
-          text-decoration: none;
           color: $color-focus;
+          text-decoration: none;
         }
       }
     }

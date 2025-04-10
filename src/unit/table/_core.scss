@@ -47,7 +47,7 @@ Markup: <table class="{{modifier_class}}">
 
 Style guide: #{settings.$prefix}-table.core.builtin
 */
-.#{settings.$prefix}-table { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-table {
   $selector: string.unique-id();
   $selector-column: string.unique-id();
 
@@ -62,13 +62,14 @@ Style guide: #{settings.$prefix}-table.core.builtin
   // define placeholder class of column
   @include mixin.placeholder-define($name: $selector-column) {
     @include mixin.table-initialize-column(
-      $padding: 5px 10px (5px * 1.5)
+      $padding: 5px 10px
+        (
+          5px * 1.5
+        )
     );
     @include mixin.text-initialize();
     @include mixin.font-initialize();
-    @include mixin.font-apply-size(
-      $value: "medium"
-    );
+    @include mixin.font-apply-size($value: "medium");
   }
 
   @if meta.type-of(settings.$builtin-themes) == "map" {

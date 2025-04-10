@@ -33,7 +33,7 @@ Markup: <p class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolo
 
 Style guide: #{settings.$util-prefix}.font-size.builtin
 */
-.#{settings.$util-prefix}--font-size { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$util-prefix}--font-size {
   @if meta.type-of(settings.$font-size-presets) == "map" {
     @each $value in map.keys(settings.$font-size-presets) {
       &-#{$value} {

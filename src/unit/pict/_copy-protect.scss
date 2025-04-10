@@ -35,7 +35,7 @@ Markup: <!-- image element -->
 
 Style guide: #{settings.$prefix}-pict.copy-protect.builtin
 */
-.#{settings.$prefix}-pict--copy-protect { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-pict--copy-protect {
   &-false {
     // has no settings
   }
@@ -43,11 +43,14 @@ Style guide: #{settings.$prefix}-pict.copy-protect.builtin
   &-true {
     &::after {
       content: "";
-      display: block;
+
       position: absolute;
       z-index: 1;
       top: 0;
       left: 0;
+
+      display: block;
+
       width: 100%;
       height: 100%;
 
@@ -55,7 +58,6 @@ Style guide: #{settings.$prefix}-pict.copy-protect.builtin
       background-color: rgba(0, 0, 0, 0.005);
     }
 
-    // stylelint-disable-next-line scss/selector-nest-combinators
     > img.#{settings.$prefix}-pict__src {
       // stylelint-disable-next-line plugin/no-unsupported-browser-features
       pointer-events: none;

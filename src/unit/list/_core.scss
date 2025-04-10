@@ -51,7 +51,7 @@ Markup: <!-- un ordered list -->
 
 Style guide: #{settings.$prefix}-list.core.base
 */
-.#{settings.$prefix}-list { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-list {
   @include mixin.box-initialize();
 
   color: inherit;
@@ -59,14 +59,17 @@ Style guide: #{settings.$prefix}-list.core.base
 
   &__item {
     &::before {
-      display: none; // stylelint-disable-line a11y/no-display-none
       position: absolute;
       top: 0;
       left: 0;
+
+      display: none; // stylelint-disable-line a11y/no-display-none
+
       margin: auto;
+
       text-align: center;
-      white-space: nowrap;
       word-wrap: normal;
+      white-space: nowrap;
     }
   }
 }

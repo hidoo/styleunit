@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json.schemastore.org/eslintrc.json",
+  "root": true,
+  "extends": [
+    "@hidoo/eslint-config",
+    "@hidoo/eslint-config/+prettier",
+    "@hidoo/eslint-config/+node"
+  ],
+  "rules": {
+    "import/no-anonymous-default-export": "off",
+    "node/file-extension-in-import": ["error", "always"]
+  },
+  "overrides": [
+    {
+      "files": ["task/**/*.js", "config.js", "gulpfile.js"],
+      "rules": {
+        "no-underscore-dangle": [
+          "error",
+          { "allow": ["__dirname", "__filename"] }
+        ],
+        "node/file-extension-in-import": ["error", "always"],
+        "node/no-process-env": "off"
+      }
+    },
+    {
+      "files": ["**/*.test.js"],
+      "extends": ["@hidoo/eslint-config/+mocha"],
+      "rules": {
+        "max-len": "off",
+        "no-magic-numbers": "off"
+      }
+    }
+  ]
+}

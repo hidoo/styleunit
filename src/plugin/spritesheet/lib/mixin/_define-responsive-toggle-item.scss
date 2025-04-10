@@ -32,22 +32,30 @@
     $focus-if-mobile: map.get($items, "#{$name}--focus--if-mobile");
     $disabled-if-mobile: map.get($items, "#{$name}--disabled--if-mobile");
     $selected-if-mobile: map.get($items, "#{$name}--selected--if-mobile");
-    $selected-focus-if-mobile: map.get($items, "#{$name}--selected--focus--if-mobile");
-    $selected-disabled-if-mobile: map.get($items, "#{$name}--selected--disabled--if-mobile");
+    $selected-focus-if-mobile: map.get(
+      $items,
+      "#{$name}--selected--focus--if-mobile"
+    );
+    $selected-disabled-if-mobile: map.get(
+      $items,
+      "#{$name}--selected--disabled--if-mobile"
+    );
     $use2x: map.get($options, "use2x");
 
     &-#{$name} {
       @content;
 
       @if $up {
-        > .#{settings.$prefix}-toggle__field { // stylelint-disable-line scss/selector-nest-combinators
-          + .#{settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
+        > .#{settings.$prefix}-toggle__field {
+          + .#{settings.$prefix}-toggle__alt {
             @include _mixin.set-properties(
               $values: $up,
               $options: map.merge(
-                $options,
-                ("use2x": $use2x == true)
-              )
+                  $options,
+                  (
+                    "use2x": $use2x == true
+                  )
+                )
             );
 
             @if $up-if-mobile {
@@ -55,9 +63,11 @@
                 @include _mixin.set-properties(
                   $values: $up-if-mobile,
                   $options: map.merge(
-                    $options,
-                    ("use2x": $use2x == true or $use2x == "if-mobile")
-                  )
+                      $options,
+                      (
+                        "use2x": $use2x == true or $use2x == "if-mobile"
+                      )
+                    )
                 );
               }
             }
@@ -76,9 +86,11 @@
               "offset-y": map.get($focus, "offset-y")
             ),
             $options: map.merge(
-              $options,
-              ("use2x": $use2x == true)
-            )
+                $options,
+                (
+                  "use2x": $use2x == true
+                )
+              )
           );
 
           @if $focus-if-mobile {
@@ -89,9 +101,11 @@
                   "offset-y": map.get($focus-if-mobile, "offset-y")
                 ),
                 $options: map.merge(
-                  $options,
-                  ("use2x": $use2x == true or $use2x == "if-mobile")
-                )
+                    $options,
+                    (
+                      "use2x": $use2x == true or $use2x == "if-mobile"
+                    )
+                  )
               );
             }
           }
@@ -99,7 +113,7 @@
 
         @each $state in $selectors-focus {
           > .#{settings.$prefix}-toggle__field#{$state} {
-            + .#{settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
+            + .#{settings.$prefix}-toggle__alt {
               @extend %#{$selector};
             }
           }
@@ -117,9 +131,11 @@
               "offset-y": map.get($disabled, "offset-y")
             ),
             $options: map.merge(
-              $options,
-              ("use2x": $use2x == true)
-            )
+                $options,
+                (
+                  "use2x": $use2x == true
+                )
+              )
           );
 
           @if $disabled-if-mobile {
@@ -130,9 +146,11 @@
                   "offset-y": map.get($disabled-if-mobile, "offset-y")
                 ),
                 $options: map.merge(
-                  $options,
-                  ("use2x": $use2x == true or $use2x == "if-mobile")
-                )
+                    $options,
+                    (
+                      "use2x": $use2x == true or $use2x == "if-mobile"
+                    )
+                  )
               );
             }
           }
@@ -140,7 +158,7 @@
 
         @each $state in $selectors-disabled {
           > .#{settings.$prefix}-toggle__field#{$state} {
-            + .#{settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
+            + .#{settings.$prefix}-toggle__alt {
               @extend %#{$selector};
             }
           }
@@ -158,9 +176,11 @@
               "offset-y": map.get($selected, "offset-y")
             ),
             $options: map.merge(
-              $options,
-              ("use2x": $use2x == true)
-            )
+                $options,
+                (
+                  "use2x": $use2x == true
+                )
+              )
           );
 
           @if $selected-if-mobile {
@@ -171,9 +191,11 @@
                   "offset-y": map.get($selected-if-mobile, "offset-y")
                 ),
                 $options: map.merge(
-                  $options,
-                  ("use2x": $use2x == true or $use2x == "if-mobile")
-                )
+                    $options,
+                    (
+                      "use2x": $use2x == true or $use2x == "if-mobile"
+                    )
+                  )
               );
             }
           }
@@ -181,7 +203,7 @@
 
         @each $state in $selectors-selected {
           > .#{settings.$prefix}-toggle__field#{$state} {
-            + .#{settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
+            + .#{settings.$prefix}-toggle__alt {
               @extend %#{$selector};
             }
           }
@@ -199,9 +221,11 @@
               "offset-y": map.get($selected-focus, "offset-y")
             ),
             $options: map.merge(
-              $options,
-              ("use2x": $use2x == true)
-            )
+                $options,
+                (
+                  "use2x": $use2x == true
+                )
+              )
           );
 
           @if $selected-focus-if-mobile {
@@ -212,9 +236,11 @@
                   "offset-y": map.get($selected-focus-if-mobile, "offset-y")
                 ),
                 $options: map.merge(
-                  $options,
-                  ("use2x": $use2x == true or $use2x == "if-mobile")
-                )
+                    $options,
+                    (
+                      "use2x": $use2x == true or $use2x == "if-mobile"
+                    )
+                  )
               );
             }
           }
@@ -223,7 +249,7 @@
         @each $state-selected in $selectors-selected {
           @each $state in $selectors-focus {
             > .#{settings.$prefix}-toggle__field#{$state-selected}#{$state} {
-              + .#{settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
+              + .#{settings.$prefix}-toggle__alt {
                 @extend %#{$selector};
               }
             }
@@ -242,9 +268,11 @@
               "offset-y": map.get($selected-disabled, "offset-y")
             ),
             $options: map.merge(
-              $options,
-              ("use2x": $use2x == true)
-            )
+                $options,
+                (
+                  "use2x": $use2x == true
+                )
+              )
           );
 
           @if $selected-disabled-if-mobile {
@@ -255,9 +283,11 @@
                   "offset-y": map.get($selected-disabled-if-mobile, "offset-y")
                 ),
                 $options: map.merge(
-                  $options,
-                  ("use2x": $use2x == true or $use2x == "if-mobile")
-                )
+                    $options,
+                    (
+                      "use2x": $use2x == true or $use2x == "if-mobile"
+                    )
+                  )
               );
             }
           }
@@ -266,7 +296,7 @@
         @each $state-selected in $selectors-selected {
           @each $state in $selectors-disabled {
             > .#{settings.$prefix}-toggle__field#{$state-selected}#{$state} {
-              + .#{settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
+              + .#{settings.$prefix}-toggle__alt {
                 @extend %#{$selector};
               }
             }
@@ -274,8 +304,7 @@
         }
       }
     }
-  }
-  @else {
+  } @else {
     // stylelint-disable-next-line max-line-length
     @warn "@mixin define-responsive-toggle-item: Spritesheet '#{$name}' was not generate, because $name: '#{$name}' is not found.";
   }

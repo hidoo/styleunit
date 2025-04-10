@@ -34,33 +34,44 @@
     @error "@mixin breakpoint-define: settings.$breakpoints must be map.";
   }
 
-  $normalized: ("from": null, "until": null);
+  $normalized: (
+    "from": null,
+    "until": null
+  );
   $media: screen;
 
   // normalize arguments
   @each $key, $value in ("from": $from, "until": $until) {
     @if meta.type-of($value) == "number" or meta.type-of($value) == "null" {
       $normalized: map.merge($normalized, (#{$key}: $value));
-    }
-    @else if meta.type-of($value) == "string" and map.has-key(settings.$breakpoints, $value) {
-      $normalized: map.merge($normalized, (#{$key}: map.get(settings.$breakpoints, $value)));
-    }
-    @else {
+    } @else if
+      meta.type-of($value) ==
+      "string" and
+      map.has-key(settings.$breakpoints, $value)
+    {
+      $normalized: map.merge(
+        $normalized,
+        (#{$key}: map.get(settings.$breakpoints, $value))
+      );
+    } @else {
       @if meta.type-of($value) == "string" {
         @error "@mixin breakpoint-define: Argument $#{$key} is not registerd in settings.$breakpoints.";
-      }
-      @else {
+      } @else {
         @error "@mixin breakpoint-define: Argument $#{$key} must be one of type number, string or null.";
       }
     }
   }
 
   // sub 1 from $until if $until is number for support following case
-  //
   // @media only screen and (max-width: 666px) { ... } -> $until: 667px;
   // @media only screen and (min-width: 667px) { ... } -> $from: 667px;
   @if meta.type-of(map.get($normalized, "until")) == "number" {
-    $normalized: map.merge($normalized, ("until": map.get($normalized, "until") - 1));
+    $normalized: map.merge(
+      $normalized,
+      (
+        "until": map.get($normalized, "until") - 1
+      )
+    );
   }
 
   // normalize options
@@ -76,26 +87,22 @@
   @if $new-from and $new-until {
     @if not math.compatible($new-from, $new-until) {
       @error "@mixin breakpoint-define: Arguments $from and $until must be same unit.";
-    }
-    @else if $new-from >= $new-until {
+    } @else if $new-from >= $new-until {
       @error "@mixin breakpoint-define: Argument $from must be smaller than $until.";
     }
 
     @media only #{$media} and (min-width: $new-from) and (max-width: $new-until) {
       @content;
     }
-  }
-  @else if $new-from == null and $new-until != null {
+  } @else if $new-from == null and $new-until != null {
     @media only #{$media} and (max-width: $new-until) {
       @content;
     }
-  }
-  @else if $new-from != null and $new-until == null {
+  } @else if $new-from != null and $new-until == null {
     @media only #{$media} and (min-width: $new-from) {
       @content;
     }
-  }
-  @else {
+  } @else {
     @if settings.$verbose {
       @warn "@mixin breakpoint-define: @content is not yield, because argument $from and $until are null.";
     }

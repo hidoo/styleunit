@@ -1,15 +1,15 @@
 /* eslint max-len: off, max-statements: off, no-magic-numbers: off */
 
 import assert from 'assert';
-import {eachTestCases} from '../../../util';
+import { eachTestCases } from '../../../util/index.js';
 
 /**
  * generate `@use "src/plugin/spritesheet" with (...settings);`
  *
- * @param {Array} [settings=[]] settings
+ * @param {Array} settings settings
  * @return {String}
  */
-export default function usePluginSpritesheet(settings = []) {
+function usePluginSpritesheet(settings = []) {
   const withoutSettings = `
 @use "src/plugin/spritesheet";
 `;
@@ -62,19 +62,17 @@ ${usePluginSpritesheet(settings)}
 `;
 
 describe('plugin/spritesheet', () => {
-
   describe('@mixin define($type, $name, $options)', () => {
-
     it('should throw error if argument "$type" is not valid string.', async () => {
       const cases = [
-        {params: [['$type: null', '$name: "hoge"']]},
-        {params: [['$type: 0', '$name: "hoge"']]},
-        {params: [['$type: ()', '$name: "hoge"']]},
-        {params: [['$type: #000', '$name: "hoge"']]},
-        {params: [['$type: ""', '$name: "hoge"']]}
+        { params: [['$type: null', '$name: "hoge"']] },
+        { params: [['$type: 0', '$name: "hoge"']] },
+        { params: [['$type: ()', '$name: "hoge"']] },
+        { params: [['$type: #000', '$name: "hoge"']] },
+        { params: [['$type: ""', '$name: "hoge"']] }
       ];
 
-      await eachTestCases(cases, wrapper, ({error}, {resolve}) => {
+      await eachTestCases(cases, wrapper, ({ error }, { resolve }) => {
         assert(error instanceof Error);
         assert(error.message.match(/Argument \$type must be valid string\./));
         return resolve();
@@ -83,14 +81,14 @@ describe('plugin/spritesheet', () => {
 
     it('should throw error if argument "$name" is not valid string.', async () => {
       const cases = [
-        {params: [['$type: "hoge"', '$name: null']]},
-        {params: [['$type: "hoge"', '$name: 0']]},
-        {params: [['$type: "hoge"', '$name: ()']]},
-        {params: [['$type: "hoge"', '$name: #000']]},
-        {params: [['$type: "hoge"', '$name: ""']]}
+        { params: [['$type: "hoge"', '$name: null']] },
+        { params: [['$type: "hoge"', '$name: 0']] },
+        { params: [['$type: "hoge"', '$name: ()']] },
+        { params: [['$type: "hoge"', '$name: #000']] },
+        { params: [['$type: "hoge"', '$name: ""']] }
       ];
 
-      await eachTestCases(cases, wrapper, ({error}, {resolve}) => {
+      await eachTestCases(cases, wrapper, ({ error }, { resolve }) => {
         assert(error instanceof Error);
         assert(error.message.match(/Argument \$name must be valid string\./));
         return resolve();
@@ -108,16 +106,20 @@ describe('plugin/spritesheet', () => {
         }
       ];
 
-      await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-        if (error) {
-          return reject(error);
+      await eachTestCases(
+        cases,
+        wrapper,
+        ({ error, result, expected }, { resolve, reject }) => {
+          if (error) {
+            return reject(error);
+          }
+
+          const actual = result.css.toString().trim();
+
+          assert.equal(actual, expected);
+          return resolve();
         }
-
-        const actual = result.css.toString().trim();
-
-        assert(actual === expected);
-        return resolve();
-      });
+      );
     });
 
     it('should not out if specified $type value is not found in spritesheets value.', async () => {
@@ -131,16 +133,20 @@ describe('plugin/spritesheet', () => {
         }
       ];
 
-      await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-        if (error) {
-          return reject(error);
+      await eachTestCases(
+        cases,
+        wrapper,
+        ({ error, result, expected }, { resolve, reject }) => {
+          if (error) {
+            return reject(error);
+          }
+
+          const actual = result.css.toString().trim();
+
+          assert.equal(actual, expected);
+          return resolve();
         }
-
-        const actual = result.css.toString().trim();
-
-        assert(actual === expected);
-        return resolve();
-      });
+      );
     });
 
     it('should not out if specified $type value is not valid.', async () => {
@@ -168,28 +174,29 @@ describe('plugin/spritesheet', () => {
         }
       ];
 
-      await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-        if (error) {
-          return reject(error);
+      await eachTestCases(
+        cases,
+        wrapper,
+        ({ error, result, expected }, { resolve, reject }) => {
+          if (error) {
+            return reject(error);
+          }
+
+          const actual = result.css.toString().trim();
+
+          assert.equal(actual, expected);
+          return resolve();
         }
-
-        const actual = result.css.toString().trim();
-
-        assert(actual === expected);
-        return resolve();
-      });
+      );
     });
 
     it('should out spritesheet settings.', async () => {
       const cases = [
         {
           params: [
+            ['$type: "icon-image"', '$name: "logo"', '$options: null'],
             [
-              '$type: "icon-image"',
-              '$name: "logo"',
-              '$options: null'
-            ],
-            [`
+              `
               $spritesheets: (
                 "icon-image": (
                   "image": "path/to/sprite/icon-image.png",
@@ -205,17 +212,17 @@ describe('plugin/spritesheet', () => {
                   )
                 )
               )
-            `]
+            `
+            ]
           ],
-          expected:
-`.selector-logo {
+          expected: `.selector-logo {
   background-image: url(path/to/sprite/icon-image.png);
 }
 
 .selector-logo {
   overflow: hidden;
-  text-indent: -100%;
   color: transparent;
+  text-indent: -100%;
 }
 
 .selector-logo {
@@ -230,17 +237,17 @@ describe('plugin/spritesheet', () => {
       await eachTestCases(
         cases,
         wrapper,
-        ({error, result, expected}, {resolve, reject}) => {
+        ({ error, result, expected }, { resolve, reject }) => {
           if (error) {
             return reject(error);
           }
 
           const actual = result.css.toString().trim();
 
-          assert(actual === expected);
+          assert.equal(actual, expected);
           return resolve();
         },
-        {outputStyle: 'expanded'}
+        { outputStyle: 'expanded' }
       );
     });
 
@@ -253,7 +260,8 @@ describe('plugin/spritesheet', () => {
               '$name: "logo"',
               '$options: ("use2x": true)'
             ],
-            [`
+            [
+              `
               $spritesheets: (
                 "icon-image": (
                   "image": "path/to/sprite/icon-image.png",
@@ -269,17 +277,17 @@ describe('plugin/spritesheet', () => {
                   )
                 )
               )
-            `]
+            `
+            ]
           ],
-          expected:
-`.selector-logo {
+          expected: `.selector-logo {
   background-image: url(path/to/sprite/icon-image.png);
 }
 
 .selector-logo {
   overflow: hidden;
-  text-indent: -100%;
   color: transparent;
+  text-indent: -100%;
 }
 
 .selector-logo {
@@ -294,17 +302,17 @@ describe('plugin/spritesheet', () => {
       await eachTestCases(
         cases,
         wrapper,
-        ({error, result, expected}, {resolve, reject}) => {
+        ({ error, result, expected }, { resolve, reject }) => {
           if (error) {
             return reject(error);
           }
 
           const actual = result.css.toString().trim();
 
-          assert(actual === expected);
+          assert.equal(actual, expected);
           return resolve();
         },
-        {outputStyle: 'expanded'}
+        { outputStyle: 'expanded' }
       );
     });
 
@@ -317,7 +325,8 @@ describe('plugin/spritesheet', () => {
               '$name: "logo"',
               '$options: ("as-mask": true)'
             ],
-            [`
+            [
+              `
               $spritesheets: (
                 "icon-image": (
                   "image": "path/to/sprite/icon-image.png",
@@ -333,17 +342,17 @@ describe('plugin/spritesheet', () => {
                   )
                 )
               )
-            `]
+            `
+            ]
           ],
-          expected:
-`.selector-logo {
+          expected: `.selector-logo {
   mask-image: url(path/to/sprite/icon-image.png);
 }
 
 .selector-logo {
   overflow: hidden;
-  text-indent: -100%;
   color: transparent;
+  text-indent: -100%;
 }
 
 .selector-logo {
@@ -358,17 +367,17 @@ describe('plugin/spritesheet', () => {
       await eachTestCases(
         cases,
         wrapper,
-        ({error, result, expected}, {resolve, reject}) => {
+        ({ error, result, expected }, { resolve, reject }) => {
           if (error) {
             return reject(error);
           }
 
           const actual = result.css.toString().trim();
 
-          assert(actual === expected);
+          assert.equal(actual, expected);
           return resolve();
         },
-        {outputStyle: 'expanded'}
+        { outputStyle: 'expanded' }
       );
     });
 
@@ -381,7 +390,8 @@ describe('plugin/spritesheet', () => {
               '$name: "logo"',
               '$options: ("responsive": true)'
             ],
-            [`
+            [
+              `
               $spritesheets: (
                 "icon-image": (
                   "image": "path/to/sprite/icon-image.png",
@@ -405,17 +415,17 @@ describe('plugin/spritesheet', () => {
                   )
                 )
               )
-            `]
+            `
+            ]
           ],
-          expected:
-`.selector-logo {
+          expected: `.selector-logo {
   background-image: url(path/to/sprite/icon-image.png);
 }
 
 .selector-logo {
   overflow: hidden;
-  text-indent: -100%;
   color: transparent;
+  text-indent: -100%;
 }
 
 .selector-logo {
@@ -438,17 +448,17 @@ describe('plugin/spritesheet', () => {
       await eachTestCases(
         cases,
         wrapper,
-        ({error, result, expected}, {resolve, reject}) => {
+        ({ error, result, expected }, { resolve, reject }) => {
           if (error) {
             return reject(error);
           }
 
           const actual = result.css.toString().trim();
 
-          assert(actual === expected);
+          assert.equal(actual, expected);
           return resolve();
         },
-        {outputStyle: 'expanded'}
+        { outputStyle: 'expanded' }
       );
     });
 
@@ -461,7 +471,8 @@ describe('plugin/spritesheet', () => {
               '$name: "logo"',
               '$options: ("use2x": if-mobile, "responsive": true)'
             ],
-            [`
+            [
+              `
               $spritesheets: (
                 "icon-image": (
                   "image": "path/to/sprite/icon-image.png",
@@ -485,17 +496,17 @@ describe('plugin/spritesheet', () => {
                   )
                 )
               )
-            `]
+            `
+            ]
           ],
-          expected:
-`.selector-logo {
+          expected: `.selector-logo {
   background-image: url(path/to/sprite/icon-image.png);
 }
 
 .selector-logo {
   overflow: hidden;
-  text-indent: -100%;
   color: transparent;
+  text-indent: -100%;
 }
 
 .selector-logo {
@@ -518,17 +529,17 @@ describe('plugin/spritesheet', () => {
       await eachTestCases(
         cases,
         wrapper,
-        ({error, result, expected}, {resolve, reject}) => {
+        ({ error, result, expected }, { resolve, reject }) => {
           if (error) {
             return reject(error);
           }
 
           const actual = result.css.toString().trim();
 
-          assert(actual === expected);
+          assert.equal(actual, expected);
           return resolve();
         },
-        {outputStyle: 'expanded'}
+        { outputStyle: 'expanded' }
       );
     });
 
@@ -536,12 +547,9 @@ describe('plugin/spritesheet', () => {
       const cases = [
         {
           params: [
+            ['$type: "icon-image"', '$name: "logo"', '$options: null'],
             [
-              '$type: "icon-image"',
-              '$name: "logo"',
-              '$options: null'
-            ],
-            [`
+              `
               $spritesheets: (
                 "icon-image": (
                   "image": "path/to/sprite/icon-image.png",
@@ -565,17 +573,17 @@ describe('plugin/spritesheet', () => {
                   )
                 )
               )
-            `]
+            `
+            ]
           ],
-          expected:
-`.selector-logo {
+          expected: `.selector-logo {
   background-image: url(path/to/sprite/icon-image.png);
 }
 
 .selector-logo {
   overflow: hidden;
-  text-indent: -100%;
   color: transparent;
+  text-indent: -100%;
 }
 
 .selector-logo {
@@ -590,12 +598,9 @@ describe('plugin/spritesheet', () => {
         },
         {
           params: [
+            ['$type: "icon-image"', '$name: "logo"', '$options: null'],
             [
-              '$type: "icon-image"',
-              '$name: "logo"',
-              '$options: null'
-            ],
-            [`
+              `
               $spritesheets: (
                 "icon-image": (
                   "image": "path/to/sprite/icon-image.png",
@@ -619,17 +624,17 @@ describe('plugin/spritesheet', () => {
                   )
                 )
               )
-            `]
+            `
+            ]
           ],
-          expected:
-`.selector-logo {
+          expected: `.selector-logo {
   background-image: url(path/to/sprite/icon-image.png);
 }
 
 .selector-logo {
   overflow: hidden;
-  text-indent: -100%;
   color: transparent;
+  text-indent: -100%;
 }
 
 .selector-logo {
@@ -644,12 +649,9 @@ describe('plugin/spritesheet', () => {
         },
         {
           params: [
+            ['$type: "icon-image"', '$name: "logo"', '$options: null'],
             [
-              '$type: "icon-image"',
-              '$name: "logo"',
-              '$options: null'
-            ],
-            [`
+              `
               $spritesheets: (
                 "icon-image": (
                   "image": "path/to/sprite/icon-image.png",
@@ -673,17 +675,17 @@ describe('plugin/spritesheet', () => {
                   )
                 )
               )
-            `]
+            `
+            ]
           ],
-          expected:
-`.selector-logo {
+          expected: `.selector-logo {
   background-image: url(path/to/sprite/icon-image.png);
 }
 
 .selector-logo {
   overflow: hidden;
-  text-indent: -100%;
   color: transparent;
+  text-indent: -100%;
 }
 
 .selector-logo {
@@ -701,17 +703,17 @@ describe('plugin/spritesheet', () => {
       await eachTestCases(
         cases,
         wrapper,
-        ({error, result, expected}, {resolve, reject}) => {
+        ({ error, result, expected }, { resolve, reject }) => {
           if (error) {
             return reject(error);
           }
 
           const actual = result.css.toString().trim();
 
-          assert(actual === expected);
+          assert.equal(actual, expected);
           return resolve();
         },
-        {outputStyle: 'expanded'}
+        { outputStyle: 'expanded' }
       );
     });
 
@@ -724,7 +726,8 @@ describe('plugin/spritesheet', () => {
               '$name: "logo"',
               '$options: ("responsive": true)'
             ],
-            [`
+            [
+              `
               $spritesheets: (
                 "icon-image": (
                   "image": "path/to/sprite/icon-image.png",
@@ -764,17 +767,17 @@ describe('plugin/spritesheet', () => {
                   )
                 )
               )
-            `]
+            `
+            ]
           ],
-          expected:
-`.selector-logo {
+          expected: `.selector-logo {
   background-image: url(path/to/sprite/icon-image.png);
 }
 
 .selector-logo {
   overflow: hidden;
-  text-indent: -100%;
   color: transparent;
+  text-indent: -100%;
 }
 
 .selector-logo {
@@ -808,7 +811,8 @@ describe('plugin/spritesheet', () => {
               '$name: "logo"',
               '$options: ("responsive": true)'
             ],
-            [`
+            [
+              `
               $spritesheets: (
                 "icon-image": (
                   "image": "path/to/sprite/icon-image.png",
@@ -848,17 +852,17 @@ describe('plugin/spritesheet', () => {
                   )
                 )
               )
-            `]
+            `
+            ]
           ],
-          expected:
-`.selector-logo {
+          expected: `.selector-logo {
   background-image: url(path/to/sprite/icon-image.png);
 }
 
 .selector-logo {
   overflow: hidden;
-  text-indent: -100%;
   color: transparent;
+  text-indent: -100%;
 }
 
 .selector-logo {
@@ -892,7 +896,8 @@ describe('plugin/spritesheet', () => {
               '$name: "logo"',
               '$options: ("responsive": true)'
             ],
-            [`
+            [
+              `
               $spritesheets: (
                 "icon-image": (
                   "image": "path/to/sprite/icon-image.png",
@@ -932,17 +937,17 @@ describe('plugin/spritesheet', () => {
                   )
                 )
               )
-            `]
+            `
+            ]
           ],
-          expected:
-`.selector-logo {
+          expected: `.selector-logo {
   background-image: url(path/to/sprite/icon-image.png);
 }
 
 .selector-logo {
   overflow: hidden;
-  text-indent: -100%;
   color: transparent;
+  text-indent: -100%;
 }
 
 .selector-logo {
@@ -974,17 +979,17 @@ describe('plugin/spritesheet', () => {
       await eachTestCases(
         cases,
         wrapper,
-        ({error, result, expected}, {resolve, reject}) => {
+        ({ error, result, expected }, { resolve, reject }) => {
           if (error) {
             return reject(error);
           }
 
           const actual = result.css.toString().trim();
 
-          assert(actual === expected);
+          assert.equal(actual, expected);
           return resolve();
         },
-        {outputStyle: 'expanded'}
+        { outputStyle: 'expanded' }
       );
     });
 
@@ -997,7 +1002,8 @@ describe('plugin/spritesheet', () => {
               '$name: "radio"',
               '$options: ("toggle": true)'
             ],
-            [`
+            [
+              `
               $spritesheets: (
                 "radio-image": (
                   "image": "path/to/sprite/radio-image.png",
@@ -1013,10 +1019,10 @@ describe('plugin/spritesheet', () => {
                   )
                 )
               )
-            `]
+            `
+            ]
           ],
-          expected:
-`.selector-radio > .unit-toggle__alt {
+          expected: `.selector-radio > .unit-toggle__alt {
   background-image: url(path/to/sprite/radio-image.png);
 }
 
@@ -1036,12 +1042,12 @@ describe('plugin/spritesheet', () => {
 }
 
 .selector-radio > .unit-toggle__alt {
-  display: block;
-  overflow: hidden;
   z-index: 0;
+  overflow: hidden;
+  display: block;
+  color: transparent;
   text-indent: -100%;
   vertical-align: middle;
-  color: transparent;
 }
 
 .selector-radio > .unit-toggle__field + .unit-toggle__alt {
@@ -1056,17 +1062,17 @@ describe('plugin/spritesheet', () => {
       await eachTestCases(
         cases,
         wrapper,
-        ({error, result, expected}, {resolve, reject}) => {
+        ({ error, result, expected }, { resolve, reject }) => {
           if (error) {
             return reject(error);
           }
 
           const actual = result.css.toString().trim();
 
-          assert(actual === expected);
+          assert.equal(actual, expected);
           return resolve();
         },
-        {outputStyle: 'expanded'}
+        { outputStyle: 'expanded' }
       );
     });
 
@@ -1079,7 +1085,8 @@ describe('plugin/spritesheet', () => {
               '$name: "radio"',
               '$options: ("toggle": true, "use2x": true)'
             ],
-            [`
+            [
+              `
               $spritesheets: (
                 "radio-image": (
                   "image": "path/to/sprite/radio-image.png",
@@ -1095,10 +1102,10 @@ describe('plugin/spritesheet', () => {
                   )
                 )
               )
-            `]
+            `
+            ]
           ],
-          expected:
-`.selector-radio > .unit-toggle__alt {
+          expected: `.selector-radio > .unit-toggle__alt {
   background-image: url(path/to/sprite/radio-image.png);
 }
 
@@ -1118,12 +1125,12 @@ describe('plugin/spritesheet', () => {
 }
 
 .selector-radio > .unit-toggle__alt {
-  display: block;
-  overflow: hidden;
   z-index: 0;
+  overflow: hidden;
+  display: block;
+  color: transparent;
   text-indent: -100%;
   vertical-align: middle;
-  color: transparent;
 }
 
 .selector-radio > .unit-toggle__field + .unit-toggle__alt {
@@ -1138,17 +1145,17 @@ describe('plugin/spritesheet', () => {
       await eachTestCases(
         cases,
         wrapper,
-        ({error, result, expected}, {resolve, reject}) => {
+        ({ error, result, expected }, { resolve, reject }) => {
           if (error) {
             return reject(error);
           }
 
           const actual = result.css.toString().trim();
 
-          assert(actual === expected);
+          assert.equal(actual, expected);
           return resolve();
         },
-        {outputStyle: 'expanded'}
+        { outputStyle: 'expanded' }
       );
     });
 
@@ -1161,7 +1168,8 @@ describe('plugin/spritesheet', () => {
               '$name: "radio"',
               '$options: ("toggle": true, "as-mask": true)'
             ],
-            [`
+            [
+              `
               $spritesheets: (
                 "radio-image": (
                   "image": "path/to/sprite/radio-image.png",
@@ -1177,10 +1185,10 @@ describe('plugin/spritesheet', () => {
                   )
                 )
               )
-            `]
+            `
+            ]
           ],
-          expected:
-`.selector-radio > .unit-toggle__alt {
+          expected: `.selector-radio > .unit-toggle__alt {
   mask-image: url(path/to/sprite/radio-image.png);
 }
 
@@ -1200,12 +1208,12 @@ describe('plugin/spritesheet', () => {
 }
 
 .selector-radio > .unit-toggle__alt {
-  display: block;
-  overflow: hidden;
   z-index: 0;
+  overflow: hidden;
+  display: block;
+  color: transparent;
   text-indent: -100%;
   vertical-align: middle;
-  color: transparent;
 }
 
 .selector-radio > .unit-toggle__field + .unit-toggle__alt {
@@ -1220,17 +1228,17 @@ describe('plugin/spritesheet', () => {
       await eachTestCases(
         cases,
         wrapper,
-        ({error, result, expected}, {resolve, reject}) => {
+        ({ error, result, expected }, { resolve, reject }) => {
           if (error) {
             return reject(error);
           }
 
           const actual = result.css.toString().trim();
 
-          assert(actual === expected);
+          assert.equal(actual, expected);
           return resolve();
         },
-        {outputStyle: 'expanded'}
+        { outputStyle: 'expanded' }
       );
     });
 
@@ -1243,7 +1251,8 @@ describe('plugin/spritesheet', () => {
               '$name: "radio"',
               '$options: ("toggle": true, "responsive": true)'
             ],
-            [`
+            [
+              `
               $spritesheets: (
                 "radio-image": (
                   "image": "path/to/sprite/radio-image.png",
@@ -1267,10 +1276,10 @@ describe('plugin/spritesheet', () => {
                   )
                 )
               )
-            `]
+            `
+            ]
           ],
-          expected:
-`.selector-radio > .unit-toggle__alt {
+          expected: `.selector-radio > .unit-toggle__alt {
   background-image: url(path/to/sprite/radio-image.png);
 }
 
@@ -1290,12 +1299,12 @@ describe('plugin/spritesheet', () => {
 }
 
 .selector-radio > .unit-toggle__alt {
-  display: block;
-  overflow: hidden;
   z-index: 0;
+  overflow: hidden;
+  display: block;
+  color: transparent;
   text-indent: -100%;
   vertical-align: middle;
-  color: transparent;
 }
 
 .selector-radio > .unit-toggle__field + .unit-toggle__alt {
@@ -1318,17 +1327,17 @@ describe('plugin/spritesheet', () => {
       await eachTestCases(
         cases,
         wrapper,
-        ({error, result, expected}, {resolve, reject}) => {
+        ({ error, result, expected }, { resolve, reject }) => {
           if (error) {
             return reject(error);
           }
 
           const actual = result.css.toString().trim();
 
-          assert(actual === expected);
+          assert.equal(actual, expected);
           return resolve();
         },
-        {outputStyle: 'expanded'}
+        { outputStyle: 'expanded' }
       );
     });
 
@@ -1341,7 +1350,8 @@ describe('plugin/spritesheet', () => {
               '$name: "radio"',
               '$options: ("toggle": true, "use2x": "if-mobile", "responsive": true)'
             ],
-            [`
+            [
+              `
               $spritesheets: (
                 "radio-image": (
                   "image": "path/to/sprite/radio-image.png",
@@ -1365,10 +1375,10 @@ describe('plugin/spritesheet', () => {
                   )
                 )
               )
-            `]
+            `
+            ]
           ],
-          expected:
-`.selector-radio > .unit-toggle__alt {
+          expected: `.selector-radio > .unit-toggle__alt {
   background-image: url(path/to/sprite/radio-image.png);
 }
 
@@ -1388,12 +1398,12 @@ describe('plugin/spritesheet', () => {
 }
 
 .selector-radio > .unit-toggle__alt {
-  display: block;
-  overflow: hidden;
   z-index: 0;
+  overflow: hidden;
+  display: block;
+  color: transparent;
   text-indent: -100%;
   vertical-align: middle;
-  color: transparent;
 }
 
 .selector-radio > .unit-toggle__field + .unit-toggle__alt {
@@ -1416,17 +1426,17 @@ describe('plugin/spritesheet', () => {
       await eachTestCases(
         cases,
         wrapper,
-        ({error, result, expected}, {resolve, reject}) => {
+        ({ error, result, expected }, { resolve, reject }) => {
           if (error) {
             return reject(error);
           }
 
           const actual = result.css.toString().trim();
 
-          assert(actual === expected);
+          assert.equal(actual, expected);
           return resolve();
         },
-        {outputStyle: 'expanded'}
+        { outputStyle: 'expanded' }
       );
     });
 
@@ -1439,7 +1449,8 @@ describe('plugin/spritesheet', () => {
               '$name: "radio"',
               '$options: ("toggle": true)'
             ],
-            [`
+            [
+              `
               $spritesheets: (
                 "radio-image": (
                   "image": "path/to/sprite/radio-image.png",
@@ -1463,10 +1474,10 @@ describe('plugin/spritesheet', () => {
                   )
                 )
               )
-            `]
+            `
+            ]
           ],
-          expected:
-`.selector-radio > .unit-toggle__alt {
+          expected: `.selector-radio > .unit-toggle__alt {
   background-image: url(path/to/sprite/radio-image.png);
 }
 
@@ -1486,12 +1497,12 @@ describe('plugin/spritesheet', () => {
 }
 
 .selector-radio > .unit-toggle__alt {
-  display: block;
-  overflow: hidden;
   z-index: 0;
+  overflow: hidden;
+  display: block;
+  color: transparent;
   text-indent: -100%;
   vertical-align: middle;
-  color: transparent;
 }
 
 .selector-radio > .unit-toggle__field + .unit-toggle__alt {
@@ -1509,17 +1520,17 @@ describe('plugin/spritesheet', () => {
       await eachTestCases(
         cases,
         wrapper,
-        ({error, result, expected}, {resolve, reject}) => {
+        ({ error, result, expected }, { resolve, reject }) => {
           if (error) {
             return reject(error);
           }
 
           const actual = result.css.toString().trim();
 
-          assert(actual === expected);
+          assert.equal(actual, expected);
           return resolve();
         },
-        {outputStyle: 'expanded'}
+        { outputStyle: 'expanded' }
       );
     });
 
@@ -1532,7 +1543,8 @@ describe('plugin/spritesheet', () => {
               '$name: "radio"',
               '$options: ("toggle": true, "responsive": true)'
             ],
-            [`
+            [
+              `
               $spritesheets: (
                 "radio-image": (
                   "image": "path/to/sprite/radio-image.png",
@@ -1572,10 +1584,10 @@ describe('plugin/spritesheet', () => {
                   )
                 )
               )
-            `]
+            `
+            ]
           ],
-          expected:
-`.selector-radio > .unit-toggle__alt {
+          expected: `.selector-radio > .unit-toggle__alt {
   background-image: url(path/to/sprite/radio-image.png);
 }
 
@@ -1595,12 +1607,12 @@ describe('plugin/spritesheet', () => {
 }
 
 .selector-radio > .unit-toggle__alt {
-  display: block;
-  overflow: hidden;
   z-index: 0;
+  overflow: hidden;
+  display: block;
+  color: transparent;
   text-indent: -100%;
   vertical-align: middle;
-  color: transparent;
 }
 
 .selector-radio > .unit-toggle__field + .unit-toggle__alt {
@@ -1633,7 +1645,8 @@ describe('plugin/spritesheet', () => {
               '$name: "radio"',
               '$options: ("toggle": true, "responsive": true)'
             ],
-            [`
+            [
+              `
               $spritesheets: (
                 "radio-image": (
                   "image": "path/to/sprite/radio-image.png",
@@ -1673,10 +1686,10 @@ describe('plugin/spritesheet', () => {
                   )
                 )
               )
-            `]
+            `
+            ]
           ],
-          expected:
-`.selector-radio > .unit-toggle__alt {
+          expected: `.selector-radio > .unit-toggle__alt {
   background-image: url(path/to/sprite/radio-image.png);
 }
 
@@ -1696,12 +1709,12 @@ describe('plugin/spritesheet', () => {
 }
 
 .selector-radio > .unit-toggle__alt {
-  display: block;
-  overflow: hidden;
   z-index: 0;
+  overflow: hidden;
+  display: block;
+  color: transparent;
   text-indent: -100%;
   vertical-align: middle;
-  color: transparent;
 }
 
 .selector-radio > .unit-toggle__field + .unit-toggle__alt {
@@ -1734,7 +1747,8 @@ describe('plugin/spritesheet', () => {
               '$name: "radio"',
               '$options: ("toggle": true, "responsive": true)'
             ],
-            [`
+            [
+              `
               $spritesheets: (
                 "radio-image": (
                   "image": "path/to/sprite/radio-image.png",
@@ -1806,10 +1820,10 @@ describe('plugin/spritesheet', () => {
                   )
                 )
               )
-            `]
+            `
+            ]
           ],
-          expected:
-`.selector-radio > .unit-toggle__alt {
+          expected: `.selector-radio > .unit-toggle__alt {
   background-image: url(path/to/sprite/radio-image.png);
 }
 
@@ -1829,12 +1843,12 @@ describe('plugin/spritesheet', () => {
 }
 
 .selector-radio > .unit-toggle__alt {
-  display: block;
-  overflow: hidden;
   z-index: 0;
+  overflow: hidden;
+  display: block;
+  color: transparent;
   text-indent: -100%;
   vertical-align: middle;
-  color: transparent;
 }
 
 .selector-radio > .unit-toggle__field + .unit-toggle__alt {
@@ -1883,24 +1897,22 @@ describe('plugin/spritesheet', () => {
       await eachTestCases(
         cases,
         wrapper,
-        ({error, result, expected}, {resolve, reject}) => {
+        ({ error, result, expected }, { resolve, reject }) => {
           if (error) {
             return reject(error);
           }
 
           const actual = result.css.toString().trim();
 
-          assert(actual === expected);
+          assert.equal(actual, expected);
           return resolve();
         },
-        {outputStyle: 'expanded'}
+        { outputStyle: 'expanded' }
       );
     });
-
   });
 
   describe('[DEPRECATED] @mixin use-spritesheet($type, $name, $options)', () => {
-
     it('should exists.', async () => {
       const cases = [
         {
@@ -1909,18 +1921,20 @@ describe('plugin/spritesheet', () => {
         }
       ];
 
-      await eachTestCases(cases, wrapperUse, ({error, result, expected}, {resolve, reject}) => {
-        if (error) {
-          return reject(error);
+      await eachTestCases(
+        cases,
+        wrapperUse,
+        ({ error, result, expected }, { resolve, reject }) => {
+          if (error) {
+            return reject(error);
+          }
+
+          const actual = result.css.toString().trim();
+
+          assert.equal(actual, expected);
+          return resolve();
         }
-
-        const actual = result.css.toString().trim();
-
-        assert(actual === expected);
-        return resolve();
-      });
+      );
     });
-
   });
-
 });

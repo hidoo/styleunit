@@ -38,7 +38,7 @@ Markup: <!-- image element -->
 
 Style guide: #{settings.$prefix}-pict.aspect-ratio.builtin
 */
-.#{settings.$prefix}-pict--aspect-ratio { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-pict--aspect-ratio {
   &-none {
     // has no settings
   }
@@ -48,11 +48,13 @@ Style guide: #{settings.$prefix}-pict.aspect-ratio.builtin
   &-16-9 {
     max-width: 100%;
 
-    > .#{settings.$prefix}-pict__src { // stylelint-disable-line scss/selector-nest-combinators
-      display: block;
+    > .#{settings.$prefix}-pict__src {
       position: absolute;
       top: 0;
       left: 0;
+
+      display: block;
+
       width: 100%;
       height: 100%;
     }

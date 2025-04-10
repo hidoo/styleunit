@@ -43,16 +43,11 @@ Markup: <!-- image element -->
 
 Style guide: #{settings.$prefix}-pict.core.base
 */
-.#{settings.$prefix}-pict { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-pict {
   @include mixin.box-initialize();
-  @include mixin.text-initialize(
-    $letter-spacing: 0,
-    $line-height: 0
-  );
+  @include mixin.text-initialize($letter-spacing: 0, $line-height: 0);
   @include mixin.font-initialize();
-  @include mixin.font-apply-size(
-    $value: "medium"
-  );
+  @include mixin.font-apply-size($value: "medium");
 
   width: auto;
   height: auto;
@@ -66,9 +61,7 @@ Style guide: #{settings.$prefix}-pict.core.base
     );
     @include mixin.text-initialize();
     @include mixin.font-initialize();
-    @include mixin.font-apply-size(
-      $value: "medium"
-    );
+    @include mixin.font-apply-size($value: "medium");
 
     color: inherit;
     background-color: transparent;

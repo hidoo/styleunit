@@ -28,7 +28,7 @@ Markup: <div style="position:relative; padding:50px;">
 
 Style guide: #{settings.$util-prefix}.float.builtin
 */
-.#{settings.$util-prefix}--float { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$util-prefix}--float {
   &-left {
     float: left !important;
   }

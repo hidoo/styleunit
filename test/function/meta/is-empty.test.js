@@ -1,7 +1,5 @@
-/* eslint max-len: off, no-magic-numbers: off */
-
 import assert from 'assert';
-import {eachTestCases, useSettingsWith} from '../../util';
+import { eachTestCases, useSettingsWith } from '../../util/index.js';
 
 /**
  * wrapper
@@ -21,7 +19,6 @@ ${useSettingsWith(settings)}
 `;
 
 describe('@function meta-is-empty($value)', () => {
-
   it('should return $value is empty or not.', async () => {
     const cases = [
       // empty
@@ -70,16 +67,19 @@ describe('@function meta-is-empty($value)', () => {
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({ error, result, expected }, { resolve, reject }) => {
+        if (error) {
+          return reject(error);
+        }
+
+        const actual = result.css.toString().trim();
+
+        assert(actual === expected);
+        return resolve();
       }
-
-      const actual = result.css.toString().trim();
-
-      assert(actual === expected);
-      return resolve();
-    });
+    );
   });
-
 });

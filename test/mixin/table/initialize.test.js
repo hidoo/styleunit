@@ -1,7 +1,7 @@
 /* eslint max-len: 0, no-magic-numbers: 0 */
 
 import assert from 'assert';
-import {eachTestCases, useSettingsWith} from '../../util';
+import { eachTestCases, useSettingsWith } from '../../util/index.js';
 
 /**
  * wrapper
@@ -20,18 +20,16 @@ ${useSettingsWith(settings)}
 `;
 
 describe('@mixin table-initialize(...)', () => {
-
   it('should out default properties if arguments not set.', async () => {
     const cases = [
       {
         params: [[]],
-        expected:
-`.selector {
+        expected: `.selector {
   display: table;
+  border-collapse: collapse;
   width: auto;
   margin: 0;
   padding: 0;
-  border-collapse: collapse;
   border-style: solid;
   border-width: 1px;
 }`
@@ -41,7 +39,7 @@ describe('@mixin table-initialize(...)', () => {
     await eachTestCases(
       cases,
       wrapper,
-      ({error, result, expected}, {resolve, reject}) => {
+      ({ error, result, expected }, { resolve, reject }) => {
         if (error) {
           return reject(error);
         }
@@ -51,7 +49,7 @@ describe('@mixin table-initialize(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      {outputStyle: 'expanded'}
+      { outputStyle: 'expanded' }
     );
   });
 
@@ -67,13 +65,12 @@ describe('@mixin table-initialize(...)', () => {
             '$border-width: 2px'
           ]
         ],
-        expected:
-`.selector {
+        expected: `.selector {
   display: table;
+  border-collapse: collapse;
   width: 100%;
   margin: 0 auto;
   padding: 10px;
-  border-collapse: collapse;
   border-style: dotted;
   border-width: 2px;
 }`
@@ -83,7 +80,7 @@ describe('@mixin table-initialize(...)', () => {
     await eachTestCases(
       cases,
       wrapper,
-      ({error, result, expected}, {resolve, reject}) => {
+      ({ error, result, expected }, { resolve, reject }) => {
         if (error) {
           return reject(error);
         }
@@ -93,8 +90,7 @@ describe('@mixin table-initialize(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      {outputStyle: 'expanded'}
+      { outputStyle: 'expanded' }
     );
   });
-
 });

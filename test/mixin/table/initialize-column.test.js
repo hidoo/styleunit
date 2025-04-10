@@ -1,7 +1,7 @@
 /* eslint max-len: 0, no-magic-numbers: 0 */
 
 import assert from 'assert';
-import {eachTestCases, useSettingsWith} from '../../util';
+import { eachTestCases, useSettingsWith } from '../../util/index.js';
 
 /**
  * wrapper
@@ -20,13 +20,11 @@ ${useSettingsWith(settings)}
 `;
 
 describe('@mixin table-initialize-column(...)', () => {
-
   it('should out default properties if arguments not set.', async () => {
     const cases = [
       {
         params: [[]],
-        expected:
-`.selector {
+        expected: `.selector {
   display: table-cell;
   margin: 0;
   padding: 0;
@@ -40,7 +38,7 @@ describe('@mixin table-initialize-column(...)', () => {
     await eachTestCases(
       cases,
       wrapper,
-      ({error, result, expected}, {resolve, reject}) => {
+      ({ error, result, expected }, { resolve, reject }) => {
         if (error) {
           return reject(error);
         }
@@ -50,7 +48,7 @@ describe('@mixin table-initialize-column(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      {outputStyle: 'expanded'}
+      { outputStyle: 'expanded' }
     );
   });
 
@@ -65,8 +63,7 @@ describe('@mixin table-initialize-column(...)', () => {
             '$border-width: 2px'
           ]
         ],
-        expected:
-`.selector {
+        expected: `.selector {
   display: table-cell;
   margin: 0 auto;
   padding: 10px;
@@ -80,7 +77,7 @@ describe('@mixin table-initialize-column(...)', () => {
     await eachTestCases(
       cases,
       wrapper,
-      ({error, result, expected}, {resolve, reject}) => {
+      ({ error, result, expected }, { resolve, reject }) => {
         if (error) {
           return reject(error);
         }
@@ -90,8 +87,7 @@ describe('@mixin table-initialize-column(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      {outputStyle: 'expanded'}
+      { outputStyle: 'expanded' }
     );
   });
-
 });

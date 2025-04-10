@@ -31,7 +31,9 @@
 
   &::before {
     content: "";
+
     display: block;
+
     width: 100%;
     height: 0;
     padding-top: $ratio * 1%;

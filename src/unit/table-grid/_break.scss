@@ -43,13 +43,13 @@ Markup: <div class="#{settings.$prefix}-table-grid  {{modifier_class}}">
 
 Style guide: #{settings.$prefix}-table-grid.break.builtin
 */
-.#{settings.$prefix}-table-grid--break { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-table-grid--break {
   &-if-mobile {
     @include mixin.breakpoint-define($until: "mobile") {
       display: block;
       height: auto;
 
-      > .#{settings.$prefix}-table-grid__column { // stylelint-disable-line scss/selector-nest-combinators
+      > .#{settings.$prefix}-table-grid__column {
         display: block;
       }
     }
@@ -60,7 +60,7 @@ Style guide: #{settings.$prefix}-table-grid.break.builtin
       display: block;
       height: auto;
 
-      > .#{settings.$prefix}-table-grid__column { // stylelint-disable-line scss/selector-nest-combinators
+      > .#{settings.$prefix}-table-grid__column {
         display: block;
       }
     }

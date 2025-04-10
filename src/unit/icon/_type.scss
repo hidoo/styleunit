@@ -28,7 +28,7 @@ Markup: <span class="#{settings.$prefix}-icon  {{modifier_class}}"></span>
 
 Style guide: #{settings.$prefix}-icon.type.builtin
 */
-.#{settings.$prefix}-icon--type { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-icon--type {
   &-arrow {
     $selector: string.unique-id();
 
@@ -39,12 +39,14 @@ Style guide: #{settings.$prefix}-icon.type.builtin
       &::before,
       &::after {
         content: "";
-        display: block;
+
         position: absolute;
         top: 0;
         left: 0;
         transform-origin: 0 0;
         transform: translate(6.36px, 0) rotate(45deg);
+
+        display: block;
       }
 
       &::before {
@@ -66,16 +68,21 @@ Style guide: #{settings.$prefix}-icon.type.builtin
         &-#{$name} {
           @extend %#{$selector};
 
-          &::before,
-          &::after {
-            background-color: $color;
-          }
-
-          @include mixin.on-focus($capturing-selectors: ("a", "button")) {
+          @include mixin.on-focus(
+            $capturing-selectors: (
+              "a",
+              "button"
+            )
+          ) {
             &::before,
             &::after {
               background-color: $color-focus;
             }
+          }
+
+          &::before,
+          &::after {
+            background-color: $color;
           }
         }
       }

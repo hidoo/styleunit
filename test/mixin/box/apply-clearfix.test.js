@@ -1,7 +1,7 @@
 /* eslint max-len: 0, no-magic-numbers: 0 */
 
 import assert from 'assert';
-import {eachTestCases, useSettingsWith} from '../../util';
+import { eachTestCases, useSettingsWith } from '../../util/index.js';
 
 /**
  * wrapper
@@ -20,13 +20,11 @@ ${useSettingsWith(settings)}
 `;
 
 describe('@mixin box-apply-clearfix(...)', () => {
-
   it('should out clearfix settings.', async () => {
     const cases = [
       {
         params: [[]],
-        expected:
-`.selector::before, .selector::after {
+        expected: `.selector::before, .selector::after {
   content: "";
   display: table;
 }
@@ -39,7 +37,7 @@ describe('@mixin box-apply-clearfix(...)', () => {
     await eachTestCases(
       cases,
       wrapper,
-      ({error, result, expected}, {resolve, reject}) => {
+      ({ error, result, expected }, { resolve, reject }) => {
         if (error) {
           return reject(error);
         }
@@ -49,8 +47,7 @@ describe('@mixin box-apply-clearfix(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      {outputStyle: 'expanded'}
+      { outputStyle: 'expanded' }
     );
   });
-
 });

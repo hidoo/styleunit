@@ -1,7 +1,5 @@
-/* eslint max-len: off, no-magic-numbers: off */
-
 import assert from 'assert';
-import {eachTestCases, useSettingsWith} from '../../util';
+import { eachTestCases, useSettingsWith } from '../../util/index.js';
 
 /**
  * wrapper
@@ -20,26 +18,27 @@ ${useSettingsWith(settings)}
 `;
 
 describe('@function selector-inverse($selector)', () => {
-
   it('should out inverse selector.', async () => {
     const cases = [
       {
-        params: [
-          ['$selector: ".buzz"']
-        ],
+        params: [['$selector: ".buzz"']],
         expected: `.selector{content:":not(.buzz)"}`
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({ error, result, expected }, { resolve, reject }) => {
+        if (error) {
+          return reject(error);
+        }
+
+        const actual = result.css.toString().trim();
+
+        assert(actual === expected);
+        return resolve();
       }
-
-      const actual = result.css.toString().trim();
-
-      assert(actual === expected);
-      return resolve();
-    });
+    );
   });
 });

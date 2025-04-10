@@ -43,7 +43,7 @@ Markup: <div class="#{settings.$prefix}-flex-grid  {{modifier_class}}">
 
 Style guide: #{settings.$prefix}-flex-grid.break.builtin
 */
-.#{settings.$prefix}-flex-grid--break { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-flex-grid--break {
   &-if-mobile {
     @include mixin.breakpoint-define($until: "mobile") {
       flex-direction: column;

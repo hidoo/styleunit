@@ -39,20 +39,15 @@ Markup: <!-- link element -->
 
 Style guide: #{settings.$prefix}-button.core.base
 */
-.#{settings.$prefix}-button { // stylelint-disable-line scss/selector-nest-combinators
-  @include mixin.box-initialize(
-    $overflow: "hidden",
-    $box-sizing: "border-box"
-  );
+.#{settings.$prefix}-button {
+  @include mixin.box-initialize($overflow: "hidden", $box-sizing: "border-box");
   @include mixin.text-initialize(
     $letter-spacing: 0,
     $line-height: 1,
     $text-align: "center"
   );
   @include mixin.font-initialize();
-  @include mixin.font-apply-size(
-    $value: "medium"
-  );
+  @include mixin.font-apply-size($value: "medium");
 
   // for button element, because it always inline-block
   width: 100%;
@@ -63,15 +58,15 @@ Style guide: #{settings.$prefix}-button.core.base
 
   @at-root {
     button#{&} {
-      appearance: none; // stylelint-disable-line plugin/no-unsupported-browser-features
       cursor: pointer;
+      appearance: none; // stylelint-disable-line plugin/no-unsupported-browser-features
     }
   }
 
   &__label {
     line-height: normal;
-    text-align: center;
     color: inherit;
+    text-align: center;
     background-color: transparent;
   }
 }

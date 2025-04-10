@@ -35,7 +35,7 @@
   font-size: $value if($important, !important, null);
 
   // override font-size to rem value
-  @if ($value > 0 and settings.$font-enable-relative-size) {
+  @if $value > 0 and settings.$font-enable-relative-size {
     font-size: function.math-px-to-rem($value) if($important, !important, null);
   }
 }

@@ -1,7 +1,7 @@
 /**
  * generate `@use "settings" with (...settings);`
  *
- * @param {Array} [settings=[]] settings
+ * @param {Array} settings settings
  * @return {String}
  */
 export default function useSettingsWith(settings = []) {

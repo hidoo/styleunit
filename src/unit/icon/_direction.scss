@@ -27,7 +27,7 @@ Markup: <span class="#{settings.$prefix}-icon  #{settings.$prefix}-icon--type-ar
 
 Style guide: #{settings.$prefix}-icon.direction.builtin
 */
-.#{settings.$prefix}-icon--direction { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-icon--direction {
   &-top {
     transform-origin: 50% 50%;
     transform: rotate(0);

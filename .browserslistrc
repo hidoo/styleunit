@@ -1,0 +1,6 @@
+defaults
+> 0.5% in JP
+not OperaMini all
+not QQAndroid > 0
+not UCAndroid > 0
+not KaiOS > 0

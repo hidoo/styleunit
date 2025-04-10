@@ -25,7 +25,7 @@ Markup: <span class="#{settings.$prefix}-icon  #{settings.$prefix}-icon--type-ar
 
 Style guide: #{settings.$prefix}-icon.inline.builtin
 */
-.#{settings.$prefix}-icon--inline { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-icon--inline {
   &-false {
     // has no settings
   }

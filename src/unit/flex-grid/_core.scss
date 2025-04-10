@@ -50,32 +50,30 @@ Markup: <div class="#{settings.$prefix}-flex-grid">
 
 Style guide: #{settings.$prefix}-flex-grid.core.base
 */
-.#{settings.$prefix}-flex-grid { // stylelint-disable-line scss/selector-nest-combinators
-  @include mixin.box-initialize(
-    $display: "flex",
-    $box-sizing: "border-box"
-  );
+.#{settings.$prefix}-flex-grid {
+  @include mixin.box-initialize($display: "flex", $box-sizing: "border-box");
+
+  border-collapse: collapse;
 
   // flex box settings
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: stretch;
   align-content: flex-start;
+  align-items: stretch;
+  justify-content: flex-start;
 
   // other settings
   width: 100%;
   height: 100%;
-  vertical-align: top;
+
   color: inherit;
+  vertical-align: top;
+
   background-color: transparent;
-  border-collapse: collapse;
 
   &__column {
     @include mixin.box-apply-clearfix();
-    @include mixin.box-initialize(
-      $box-sizing: "border-box"
-    );
+    @include mixin.box-initialize($box-sizing: "border-box");
 
     // flex box settings
     flex-basis: 1;
@@ -84,8 +82,10 @@ Style guide: #{settings.$prefix}-flex-grid.core.base
 
     // other settings
     width: auto;
-    vertical-align: inherit;
+
     color: inherit;
+    vertical-align: inherit;
+
     background-color: transparent;
   }
 }

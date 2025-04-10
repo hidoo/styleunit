@@ -26,7 +26,7 @@ Markup: <h1 class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dol
 
 Style guide: #{settings.$prefix}-text.letter-spacing.builtin
 */
-.#{settings.$prefix}-text--letter-spacing { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-text--letter-spacing {
   &-default {
     letter-spacing: settings.$letter-spacing;
   }

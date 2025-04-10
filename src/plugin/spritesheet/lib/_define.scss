@@ -91,7 +91,10 @@ $_default-options: (
     $_default-options
   );
   $use2x: map.get($options, "use2x");
-  $as-mask: map.get($options, "as-mask"); // stylelint-disable-line plugin/no-unsupported-browser-features
+  $as-mask: map.get(
+    $options,
+    "as-mask"
+  ); // stylelint-disable-line plugin/no-unsupported-browser-features
 
   @if meta.type-of($spritesheets) == "map" {
     $sheet-by-type: _function.get-sheet-by-type($type, $spritesheets);
@@ -124,18 +127,22 @@ $_default-options: (
           z-index: 1;
           top: 0;
           left: 0;
+
           width: 100%;
           height: 100%;
+
           opacity: 0;
         }
 
         @include mixin.placeholder-define($name: $type-alt) {
-          display: block;
-          overflow: hidden;
           z-index: 0;
+
+          overflow: hidden;
+          display: block;
+
+          color: transparent;
           text-indent: -100%;
           vertical-align: middle;
-          color: transparent;
         }
 
         @if map.get($options, "responsive") {
@@ -146,23 +153,21 @@ $_default-options: (
           ) {
             @extend %#{$type};
 
-            > .#{settings.$prefix}-toggle__field { // stylelint-disable-line scss/selector-nest-combinators
+            > .#{settings.$prefix}-toggle__field {
               @extend %#{$type-field};
             }
 
-            > .#{settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
+            > .#{settings.$prefix}-toggle__alt {
               @extend %#{$type-alt};
 
               @if $as-mask {
                 @extend %#{$type-mask};
-              }
-              @else {
+              } @else {
                 @extend %#{$type-background};
               }
             }
           }
-        }
-        @else {
+        } @else {
           @include _mixin.define-toggle-item(
             $name: $name,
             $items: $items,
@@ -170,28 +175,26 @@ $_default-options: (
           ) {
             @extend %#{$type};
 
-            > .#{settings.$prefix}-toggle__field { // stylelint-disable-line scss/selector-nest-combinators
+            > .#{settings.$prefix}-toggle__field {
               @extend %#{$type-field};
             }
 
-            > .#{settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
+            > .#{settings.$prefix}-toggle__alt {
               @extend %#{$type-alt};
 
               @if $as-mask {
                 @extend %#{$type-mask};
-              }
-              @else {
+              } @else {
                 @extend %#{$type-background};
               }
             }
           }
         }
-      }
-      @else {
+      } @else {
         @include mixin.placeholder-define($name: $type) {
           overflow: hidden;
-          text-indent: -100%;
           color: transparent;
+          text-indent: -100%;
         }
 
         @if map.get($options, "responsive") {
@@ -204,13 +207,11 @@ $_default-options: (
 
             @if $as-mask {
               @extend %#{$type-mask};
-            }
-            @else {
+            } @else {
               @extend %#{$type-background};
             }
           }
-        }
-        @else {
+        } @else {
           @include _mixin.define-item(
             $name: $name,
             $items: $items,
@@ -220,19 +221,16 @@ $_default-options: (
 
             @if $as-mask {
               @extend %#{$type-mask};
-            }
-            @else {
+            } @else {
               @extend %#{$type-background};
             }
           }
         }
       }
-    }
-    @else {
+    } @else {
       @warn "@mixin spritesheet.define: Spritesheet '#{$name}' is not generate, because $type: '#{$type}' is not found."; // stylelint-disable-line max-line-length
     }
-  }
-  @else {
+  } @else {
     @warn "@mixin spritesheet.define: Spritesheet '#{$name}' is not generate, because spritesheets value not configure."; // stylelint-disable-line max-line-length
   }
 }

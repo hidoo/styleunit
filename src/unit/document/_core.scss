@@ -289,109 +289,7 @@ Markup: <div class="#{settings.$prefix}-document">
 
 Style guide: #{settings.$prefix}-document.core.base
 */
-.#{settings.$prefix}-document { // stylelint-disable-line scss/selector-nest-combinators
-  @include mixin.box-apply-clearfix();
-  @include mixin.box-initialize();
-  @include mixin.text-initialize();
-  @include mixin.font-initialize();
-  @include mixin.font-apply-size(
-    $value: "medium"
-  );
-
-  color: inherit;
-  background-color: transparent;
-
-  // stylelint-disable no-duplicate-selectors, selector-list-comma-newline-after, plugin/selector-tag-no-without-class
-
-  // ++++++++++++++++++++++++++++
-  // reset default settings
-  // ++++++++++++++++++++++++++++
-
-  h1, h2, h3, h4, h5, h6, p, li, figcaption {
-    @include mixin.box-initialize(
-      $display: null,
-      $list-style: null,
-    );
-
-    color: inherit;
-    background-color: transparent;
-  }
-
-  strong, b, em, i, u, del, s, code, a, span {
-    color: inherit;
-    background-color: transparent;
-    border: 0;
-  }
-
-  code {
-    display: inline-block;
-  }
-
-  ul, ol {
-    @include mixin.box-initialize(
-      $list-style: null,
-      $padding: 0 0 0 1.5em
-    );
-
-    color: inherit;
-    background-color: transparent;
-  }
-
-  img, iframe {
-    @include mixin.box-initialize(
-      $overflow: "hidden",
-      $margin: 0 auto
-    );
-
-    max-width: 100%;
-  }
-
-  img {
-    height: auto;
-  }
-
-  blockquote {
-    @include mixin.box-initialize();
-
-    color: inherit;
-    background-color: transparent;
-  }
-
-  pre {
-    @include mixin.box-initialize(
-      $box-sizing: "border-box",
-      $overflow: "auto"
-    );
-
-    white-space: pre;
-    word-wrap: normal;
-    color: inherit;
-    background-color: transparent;
-  }
-
-  table {
-    @include mixin.table-initialize(
-      $margin: 0 auto
-    );
-
-    max-width: 100%;
-    color: inherit;
-    background-color: transparent;
-  }
-
-  th, td {
-    @include mixin.table-initialize-column();
-
-    color: inherit;
-    background-color: transparent;
-  }
-
-  hr {
-    clear: both;
-    margin: 0;
-    padding: 0;
-  }
-
+.#{settings.$prefix}-document {
   // ++++++++++++++++++++++++++++
   // font settings
   // ++++++++++++++++++++++++++++
@@ -411,13 +309,120 @@ Style guide: #{settings.$prefix}-document.core.base
     "h6": 1em
   );
 
-  @each $key, $value in $font-sizes {
-    #{$key} {
-      font-size: $value;
-    }
+  // ++++++++++++++++++++++++++++
+  // margin settings
+  // ++++++++++++++++++++++++++++
+
+  $top-margin: 20px;
+
+  @include mixin.box-apply-clearfix();
+  @include mixin.box-initialize();
+  @include mixin.text-initialize();
+  @include mixin.font-initialize();
+  @include mixin.font-apply-size($value: "medium");
+
+  color: inherit;
+  background-color: transparent;
+
+  // stylelint-disable no-duplicate-selectors, selector-list-comma-newline-after, plugin/selector-tag-no-without-class
+
+  // ++++++++++++++++++++++++++++
+  // reset default settings
+  // ++++++++++++++++++++++++++++
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  li,
+  figcaption {
+    @include mixin.box-initialize($display: null, $list-style: null);
+
+    color: inherit;
+    background-color: transparent;
   }
 
-  pre, code {
+  strong,
+  b,
+  em,
+  i,
+  u,
+  del,
+  s,
+  code,
+  a,
+  span {
+    color: inherit;
+    background-color: transparent;
+    border: 0;
+  }
+
+  code {
+    display: inline-block;
+  }
+
+  ul,
+  ol {
+    @include mixin.box-initialize($list-style: null, $padding: 0 0 0 1.5em);
+
+    color: inherit;
+    background-color: transparent;
+  }
+
+  img,
+  iframe {
+    @include mixin.box-initialize($overflow: "hidden", $margin: 0 auto);
+
+    max-width: 100%;
+  }
+
+  img {
+    height: auto;
+  }
+
+  blockquote {
+    @include mixin.box-initialize();
+
+    color: inherit;
+    background-color: transparent;
+  }
+
+  pre {
+    @include mixin.box-initialize($box-sizing: "border-box", $overflow: "auto");
+
+    color: inherit;
+    word-wrap: normal;
+    white-space: pre;
+    background-color: transparent;
+  }
+
+  table {
+    @include mixin.table-initialize($margin: 0 auto);
+
+    max-width: 100%;
+    color: inherit;
+    background-color: transparent;
+  }
+
+  th,
+  td {
+    @include mixin.table-initialize-column();
+
+    color: inherit;
+    background-color: transparent;
+  }
+
+  hr {
+    clear: both;
+    margin: 0;
+    padding: 0;
+  }
+
+  pre,
+  code {
     @include mixin.font-apply-family($value: "monospace");
 
     // small
@@ -430,13 +435,15 @@ Style guide: #{settings.$prefix}-document.core.base
     }
   }
 
-  // ++++++++++++++++++++++++++++
-  // margin settings
-  // ++++++++++++++++++++++++++++
-
-  $top-margin: 20px;
-
-  h1, h2, h3, h4, h5, h6, p, ul, ol {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  ul,
+  ol {
     padding-top: $top-margin;
 
     &:first-child {
@@ -444,7 +451,9 @@ Style guide: #{settings.$prefix}-document.core.base
     }
   }
 
-  blockquote, pre, table {
+  blockquote,
+  pre,
+  table {
     margin-top: $top-margin;
 
     &:first-child {
@@ -460,19 +469,27 @@ Style guide: #{settings.$prefix}-document.core.base
   // styling
   // ++++++++++++++++++++++++++++
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-weight: bold;
   }
 
-  p, li {
+  p,
+  li {
     font-weight: normal;
   }
 
-  strong, b {
+  strong,
+  b {
     font-weight: bold;
   }
 
-  em, i {
+  em,
+  i {
     font-style: italic;
   }
 
@@ -480,26 +497,27 @@ Style guide: #{settings.$prefix}-document.core.base
     text-decoration: underline;
   }
 
-  del, s {
+  del,
+  s {
     text-decoration: line-through;
   }
 
   code {
     padding: 0 2px;
     border-style: solid;
-    border-radius: 3px;
     border-width: 1px;
+    border-radius: 3px;
   }
 
   a {
     @include mixin.on-link() {
-      text-decoration: underline;
       color: map.get(settings.$link-color, "link");
+      text-decoration: underline;
     }
 
     @include mixin.on-focus() {
-      text-decoration: none;
       color: map.get(settings.$link-color, "focus");
+      text-decoration: none;
     }
   }
 
@@ -511,9 +529,10 @@ Style guide: #{settings.$prefix}-document.core.base
 
   pre {
     max-width: 100%;
+
     border-style: solid;
-    border-radius: 3px;
     border-width: 1px;
+    border-radius: 3px;
 
     // for smooth scrolling
     -webkit-overflow-scrolling: touch;
@@ -523,13 +542,15 @@ Style guide: #{settings.$prefix}-document.core.base
     // has no settings
   }
 
-  th, td {
+  th,
+  td {
     padding: 5px 10px 7.5px;
     font-weight: normal;
   }
 
   hr {
     height: 0;
+
     background: transparent;
     border: 0;
     border-bottom-style: solid;
@@ -549,15 +570,19 @@ Style guide: #{settings.$prefix}-document.core.base
     color: inherit;
     background-color: transparent;
 
-    p > &, li > & {
+    p > &,
+    li > & {
       margin-top: 0;
     }
 
-    > img, > iframe {
+    > img,
+    > iframe {
       // has no settings
     }
 
-    p, figcaption, span {
+    p,
+    figcaption,
+    span {
       @include mixin.box-initialize();
 
       padding-top: 5px;
@@ -567,11 +592,14 @@ Style guide: #{settings.$prefix}-document.core.base
       &-true {
         &::after {
           content: "";
-          display: block;
+
           position: absolute;
           z-index: 1;
           top: 0;
           left: 0;
+
+          display: block;
+
           width: 100%;
           height: 100%;
 
@@ -589,10 +617,12 @@ Style guide: #{settings.$prefix}-document.core.base
     &--aspect-ratio {
       &-4-3,
       &-16-9 {
-        > img, > iframe {
+        > img,
+        > iframe {
           position: absolute;
           top: 0;
           left: 0;
+
           width: 100%;
           height: 100%;
         }
@@ -616,17 +646,26 @@ Style guide: #{settings.$prefix}-document.core.base
     );
 
     max-width: 100%;
-    white-space: nowrap;
+
     color: inherit;
+    white-space: nowrap;
+
     background-color: transparent;
 
     // for smooth scrolling
     -webkit-overflow-scrolling: touch;
 
     > table {
-      th, td {
+      th,
+      td {
         white-space: normal;
       }
+    }
+  }
+
+  @each $key, $value in $font-sizes {
+    #{$key} {
+      font-size: $value;
     }
   }
   // stylelint-enable no-duplicate-selectors, selector-list-comma-newline-after, plugin/selector-tag-no-without-class

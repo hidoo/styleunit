@@ -1,7 +1,5 @@
-/* eslint max-len: off, no-magic-numbers: off */
-
 import assert from 'assert';
-import {eachTestCases, useSettingsWith} from '../../util';
+import { eachTestCases, useSettingsWith } from '../../util/index.js';
 
 /**
  * wrapper
@@ -20,38 +18,29 @@ ${useSettingsWith(settings)}
 `;
 
 describe('@mixin text-initialize(...)', () => {
-
   it('should out properties with default value if corresponding variable in defaults is not number.', async () => {
     const cases = [
       {
-        params: [
-          [],
-          ['$letter-spacing: ""']
-        ],
-        expected:
-`.selector {
-  letter-spacing: 0.04em;
+        params: [[], ['$letter-spacing: ""']],
+        expected: `.selector {
   line-height: 1.5;
   text-align: left;
   text-decoration: none;
   text-indent: 0;
+  letter-spacing: 0.04em;
   white-space: normal;
   word-break: break-all;
   word-wrap: break-word;
 }`
       },
       {
-        params: [
-          [],
-          ['$line-height: ""']
-        ],
-        expected:
-`.selector {
-  letter-spacing: 0.04em;
+        params: [[], ['$line-height: ""']],
+        expected: `.selector {
   line-height: 1.5;
   text-align: left;
   text-decoration: none;
   text-indent: 0;
+  letter-spacing: 0.04em;
   white-space: normal;
   word-break: break-all;
   word-wrap: break-word;
@@ -62,7 +51,7 @@ describe('@mixin text-initialize(...)', () => {
     await eachTestCases(
       cases,
       wrapper,
-      ({error, result, expected}, {resolve, reject}) => {
+      ({ error, result, expected }, { resolve, reject }) => {
         if (error) {
           return reject(error);
         }
@@ -72,23 +61,20 @@ describe('@mixin text-initialize(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      {outputStyle: 'expanded'}
+      { outputStyle: 'expanded' }
     );
   });
 
   it('should out default properties if arguments not set.', async () => {
     const cases = [
       {
-        params: [
-          []
-        ],
-        expected:
-`.selector {
-  letter-spacing: 0.04em;
+        params: [[]],
+        expected: `.selector {
   line-height: 1.5;
   text-align: left;
   text-decoration: none;
   text-indent: 0;
+  letter-spacing: 0.04em;
   white-space: normal;
   word-break: break-all;
   word-wrap: break-word;
@@ -99,7 +85,7 @@ describe('@mixin text-initialize(...)', () => {
     await eachTestCases(
       cases,
       wrapper,
-      ({error, result, expected}, {resolve, reject}) => {
+      ({ error, result, expected }, { resolve, reject }) => {
         if (error) {
           return reject(error);
         }
@@ -109,23 +95,20 @@ describe('@mixin text-initialize(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      {outputStyle: 'expanded'}
+      { outputStyle: 'expanded' }
     );
   });
 
   it('should out properties without white-space if arguments $white-space is valid string.', async () => {
     const cases = [
       {
-        params: [
-          ['$white-space: null']
-        ],
-        expected:
-`.selector {
-  letter-spacing: 0.04em;
+        params: [['$white-space: null']],
+        expected: `.selector {
   line-height: 1.5;
   text-align: left;
   text-decoration: none;
   text-indent: 0;
+  letter-spacing: 0.04em;
   word-break: break-all;
   word-wrap: break-word;
 }`
@@ -135,7 +118,7 @@ describe('@mixin text-initialize(...)', () => {
     await eachTestCases(
       cases,
       wrapper,
-      ({error, result, expected}, {resolve, reject}) => {
+      ({ error, result, expected }, { resolve, reject }) => {
         if (error) {
           return reject(error);
         }
@@ -145,23 +128,20 @@ describe('@mixin text-initialize(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      {outputStyle: 'expanded'}
+      { outputStyle: 'expanded' }
     );
   });
 
   it('should out properties without word-break if arguments $word-break is valid string.', async () => {
     const cases = [
       {
-        params: [
-          ['$word-break: null']
-        ],
-        expected:
-`.selector {
-  letter-spacing: 0.04em;
+        params: [['$word-break: null']],
+        expected: `.selector {
   line-height: 1.5;
   text-align: left;
   text-decoration: none;
   text-indent: 0;
+  letter-spacing: 0.04em;
   white-space: normal;
   word-wrap: break-word;
 }`
@@ -171,7 +151,7 @@ describe('@mixin text-initialize(...)', () => {
     await eachTestCases(
       cases,
       wrapper,
-      ({error, result, expected}, {resolve, reject}) => {
+      ({ error, result, expected }, { resolve, reject }) => {
         if (error) {
           return reject(error);
         }
@@ -181,23 +161,20 @@ describe('@mixin text-initialize(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      {outputStyle: 'expanded'}
+      { outputStyle: 'expanded' }
     );
   });
 
   it('should out properties without word-wrap if arguments $word-wrap is valid string.', async () => {
     const cases = [
       {
-        params: [
-          ['$word-wrap: null']
-        ],
-        expected:
-`.selector {
-  letter-spacing: 0.04em;
+        params: [['$word-wrap: null']],
+        expected: `.selector {
   line-height: 1.5;
   text-align: left;
   text-decoration: none;
   text-indent: 0;
+  letter-spacing: 0.04em;
   white-space: normal;
   word-break: break-all;
 }`
@@ -207,7 +184,7 @@ describe('@mixin text-initialize(...)', () => {
     await eachTestCases(
       cases,
       wrapper,
-      ({error, result, expected}, {resolve, reject}) => {
+      ({ error, result, expected }, { resolve, reject }) => {
         if (error) {
           return reject(error);
         }
@@ -217,7 +194,7 @@ describe('@mixin text-initialize(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      {outputStyle: 'expanded'}
+      { outputStyle: 'expanded' }
     );
   });
 
@@ -236,13 +213,12 @@ describe('@mixin text-initialize(...)', () => {
             '$word-wrap: normal'
           ]
         ],
-        expected:
-`.selector {
-  letter-spacing: 0.1em;
+        expected: `.selector {
   line-height: 15px;
   text-align: right;
   text-decoration: underline;
   text-indent: -100%;
+  letter-spacing: 0.1em;
   white-space: pre;
   word-break: normal;
   word-wrap: normal;
@@ -253,7 +229,7 @@ describe('@mixin text-initialize(...)', () => {
     await eachTestCases(
       cases,
       wrapper,
-      ({error, result, expected}, {resolve, reject}) => {
+      ({ error, result, expected }, { resolve, reject }) => {
         if (error) {
           return reject(error);
         }
@@ -263,8 +239,7 @@ describe('@mixin text-initialize(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      {outputStyle: 'expanded'}
+      { outputStyle: 'expanded' }
     );
   });
-
 });

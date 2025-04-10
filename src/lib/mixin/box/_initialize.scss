@@ -51,15 +51,16 @@
     overflow: #{$overflow};
   }
 
-  box-sizing: #{$box-sizing};
   position: #{$position};
+
+  box-sizing: #{$box-sizing};
+  margin: #{$margin};
+  padding: #{$padding};
+
+  border: #{$border};
 
   // set list-style property only if $list-style is valid string
   @if meta.type-of($list-style) == "string" and $list-style != "" {
     list-style: #{$list-style};
   }
-
-  margin: #{$margin};
-  padding: #{$padding};
-  border: #{$border};
 }

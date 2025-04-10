@@ -36,7 +36,7 @@ Markup: <!-- image element -->
 
 Style guide: #{settings.$prefix}-pict.align.builtin
 */
-.#{settings.$prefix}-pict--align { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-pict--align {
   &-left {
     text-align: left;
   }

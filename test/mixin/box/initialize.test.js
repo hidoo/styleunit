@@ -1,7 +1,7 @@
 /* eslint max-len: 0, no-magic-numbers: 0 */
 
 import assert from 'assert';
-import {eachTestCases, useSettingsWith} from '../../util';
+import { eachTestCases, useSettingsWith } from '../../util/index.js';
 
 /**
  * wrapper
@@ -20,20 +20,18 @@ ${useSettingsWith(settings)}
 `;
 
 describe('@mixin box-initialize(...)', () => {
-
   it('should out default properties if arguments not set.', async () => {
     const cases = [
       {
         params: [[]],
-        expected:
-`.selector {
+        expected: `.selector {
   display: block;
-  box-sizing: content-box;
   position: relative;
-  list-style: none;
+  box-sizing: content-box;
   margin: 0;
   padding: 0;
   border: 0;
+  list-style: none;
 }`
       }
     ];
@@ -41,7 +39,7 @@ describe('@mixin box-initialize(...)', () => {
     await eachTestCases(
       cases,
       wrapper,
-      ({error, result, expected}, {resolve, reject}) => {
+      ({ error, result, expected }, { resolve, reject }) => {
         if (error) {
           return reject(error);
         }
@@ -51,24 +49,21 @@ describe('@mixin box-initialize(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      {outputStyle: 'expanded'}
+      { outputStyle: 'expanded' }
     );
   });
 
   it('should out properties without display if arguments $display is null.', async () => {
     const cases = [
       {
-        params: [
-          ['$display: null']
-        ],
-        expected:
-`.selector {
-  box-sizing: content-box;
+        params: [['$display: null']],
+        expected: `.selector {
   position: relative;
-  list-style: none;
+  box-sizing: content-box;
   margin: 0;
   padding: 0;
   border: 0;
+  list-style: none;
 }`
       }
     ];
@@ -76,7 +71,7 @@ describe('@mixin box-initialize(...)', () => {
     await eachTestCases(
       cases,
       wrapper,
-      ({error, result, expected}, {resolve, reject}) => {
+      ({ error, result, expected }, { resolve, reject }) => {
         if (error) {
           return reject(error);
         }
@@ -86,26 +81,23 @@ describe('@mixin box-initialize(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      {outputStyle: 'expanded'}
+      { outputStyle: 'expanded' }
     );
   });
 
   it('should out properties with overflow if arguments $overflow is valid string.', async () => {
     const cases = [
       {
-        params: [
-          ['$overflow: scroll']
-        ],
-        expected:
-`.selector {
+        params: [['$overflow: scroll']],
+        expected: `.selector {
   display: block;
   overflow: scroll;
-  box-sizing: content-box;
   position: relative;
-  list-style: none;
+  box-sizing: content-box;
   margin: 0;
   padding: 0;
   border: 0;
+  list-style: none;
 }`
       }
     ];
@@ -113,7 +105,7 @@ describe('@mixin box-initialize(...)', () => {
     await eachTestCases(
       cases,
       wrapper,
-      ({error, result, expected}, {resolve, reject}) => {
+      ({ error, result, expected }, { resolve, reject }) => {
         if (error) {
           return reject(error);
         }
@@ -123,21 +115,18 @@ describe('@mixin box-initialize(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      {outputStyle: 'expanded'}
+      { outputStyle: 'expanded' }
     );
   });
 
   it('should out properties without list-style if arguments $list-style is null.', async () => {
     const cases = [
       {
-        params: [
-          ['$list-style: null']
-        ],
-        expected:
-`.selector {
+        params: [['$list-style: null']],
+        expected: `.selector {
   display: block;
-  box-sizing: content-box;
   position: relative;
+  box-sizing: content-box;
   margin: 0;
   padding: 0;
   border: 0;
@@ -148,7 +137,7 @@ describe('@mixin box-initialize(...)', () => {
     await eachTestCases(
       cases,
       wrapper,
-      ({error, result, expected}, {resolve, reject}) => {
+      ({ error, result, expected }, { resolve, reject }) => {
         if (error) {
           return reject(error);
         }
@@ -158,7 +147,7 @@ describe('@mixin box-initialize(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      {outputStyle: 'expanded'}
+      { outputStyle: 'expanded' }
     );
   });
 
@@ -176,15 +165,14 @@ describe('@mixin box-initialize(...)', () => {
             '$border: 1px solid #000'
           ]
         ],
-        expected:
-`.selector {
+        expected: `.selector {
   display: inline-block;
-  box-sizing: border-box;
   position: absolute;
-  list-style: disc;
+  box-sizing: border-box;
   margin: 10px 0;
   padding: 15px;
   border: 1px solid #000;
+  list-style: disc;
 }`
       }
     ];
@@ -192,7 +180,7 @@ describe('@mixin box-initialize(...)', () => {
     await eachTestCases(
       cases,
       wrapper,
-      ({error, result, expected}, {resolve, reject}) => {
+      ({ error, result, expected }, { resolve, reject }) => {
         if (error) {
           return reject(error);
         }
@@ -202,8 +190,7 @@ describe('@mixin box-initialize(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      {outputStyle: 'expanded'}
+      { outputStyle: 'expanded' }
     );
   });
-
 });

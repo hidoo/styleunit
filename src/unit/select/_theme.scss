@@ -42,36 +42,41 @@ Markup: <span class="#{settings.$prefix}-select  {{modifier_class}}">
 
 Style guide: #{settings.$prefix}-select.theme.builtin
 */
-.#{settings.$prefix}-select--theme { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-select--theme {
   $selector: string.unique-id();
   $selector-field: string.unique-id();
 
   @include mixin.placeholder-define($name: $selector) {
     &::after {
       content: "";
+
       position: absolute;
       z-index: 1;
       top: 0;
       right: 12px;
       bottom: 0;
+
       width: 0;
       height: 0;
       margin: auto 0;
+
+      opacity: 0.8;
       border-top-style: solid;
       border-top-width: 8px;
       border-right: 6px solid transparent;
       border-bottom: 0 solid transparent;
       border-left: 6px solid transparent;
-      opacity: 0.8;
     }
   }
 
   @include mixin.placeholder-define($name: $selector-field) {
     padding: 10px 30px 10px 10px;
+
     border-radius: 3px;
+
+    transition-timing-function: ease-out;
     transition-duration: 0.1s;
     transition-property: border-color;
-    transition-timing-function: ease-out;
   }
 
   @if meta.type-of(settings.$builtin-themes) == "map" {
@@ -92,11 +97,8 @@ Style guide: #{settings.$prefix}-select.theme.builtin
           border-top-color: $color-focus;
         }
 
-        > .#{settings.$prefix}-select__field { // stylelint-disable-line scss/selector-nest-combinators
+        > .#{settings.$prefix}-select__field {
           @extend %#{$selector-field};
-
-          background-color: $background;
-          border: 1px solid $border;
 
           @include mixin.on-focus() {
             color: $color-focus;
@@ -106,6 +108,9 @@ Style guide: #{settings.$prefix}-select.theme.builtin
           @include mixin.on-disabled() {
             border: 1px solid $border;
           }
+
+          background-color: $background;
+          border: 1px solid $border;
         }
       }
     }

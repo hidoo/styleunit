@@ -42,7 +42,7 @@ Markup: <div style="position:relative; padding:50px;">
 
 Style guide: #{settings.$util-prefix}.border.builtin
 */
-.#{settings.$util-prefix}--border { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$util-prefix}--border {
   $values: ();
 
   @if meta.type-of(settings.$builtin-themes) == "map" {
@@ -63,5 +63,8 @@ Style guide: #{settings.$util-prefix}.border.builtin
   @include mixin.size-define-by-direction($type: "border", $values: $values);
 
   // each by direction groups
-  @include mixin.size-define-by-direction-group($type: "border", $values: $values);
+  @include mixin.size-define-by-direction-group(
+    $type: "border",
+    $values: $values
+  );
 }

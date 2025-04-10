@@ -26,7 +26,7 @@ Markup: <h1 class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dol
 
 Style guide: #{settings.$prefix}-text.inline.builtin
 */
-.#{settings.$prefix}-text--inline { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-text--inline {
   &-false {
     // has no settings
   }

@@ -27,7 +27,7 @@ Markup: <h1 class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dol
 
 Style guide: #{settings.$prefix}-text.line-height.builtin
 */
-.#{settings.$prefix}-text--line-height { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-text--line-height {
   &-default {
     line-height: settings.$line-height;
   }

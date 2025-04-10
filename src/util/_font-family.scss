@@ -28,7 +28,7 @@ Markup: <!-- laten -->
 
 Style guide: #{settings.$util-prefix}.font-family.builtin
 */
-.#{settings.$util-prefix}--font-family { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$util-prefix}--font-family {
   &-default {
     @include mixin.font-apply-family($value: "default", $important: true);
   }

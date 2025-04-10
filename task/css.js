@@ -1,13 +1,6 @@
-/**
- * import modules
- */
 import gulp from 'gulp';
 import buildCss from '@hidoo/gulp-task-build-css-sass';
-
-/**
- * import modules - local
- */
-import * as config from '../config';
+import * as config from '../config.js';
 
 // define example tasks
 export const unit = buildCss({
@@ -26,28 +19,9 @@ export const pluginSpritesheet = buildCss({
 });
 
 // define main task
-export const main = gulp.parallel(
-  unit,
-  pluginSpritesheet
-);
-
-// define website task
-export const website = buildCss({
-  name: 'css:main:website',
-  src: `${config.path.srcCss}/unit/main.scss`,
-  dest: `${config.path.destWebsite}/css`,
-  filename: 'main.css',
-  compress: config.compress
-});
+export const main = gulp.parallel(unit, pluginSpritesheet);
 
 // define watch task
 export const watch = () => {
-  gulp.watch(
-    [
-      `./src/**/*.scss`,
-      `${config.path.srcCss}/**/*.scss`
-    ],
-    main
-  );
+  gulp.watch([`./src/**/*.scss`, `${config.path.srcCss}/**/*.scss`], main);
 };
-

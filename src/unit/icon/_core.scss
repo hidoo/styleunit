@@ -32,17 +32,11 @@ Markup: <span class="#{settings.$prefix}-icon"></span>
 
 Style guide: #{settings.$prefix}-icon.core.base
 */
-.#{settings.$prefix}-icon { // stylelint-disable-line scss/selector-nest-combinators
-  @include mixin.box-initialize(
-    $overflow: "hidden"
-  );
-  @include mixin.text-initialize(
-    $text-indent: -100%
-  );
+.#{settings.$prefix}-icon {
+  @include mixin.box-initialize($overflow: "hidden");
+  @include mixin.text-initialize($text-indent: -100%);
   @include mixin.font-initialize();
-  @include mixin.font-apply-size(
-    $value: "medium"
-  );
+  @include mixin.font-apply-size($value: "medium");
 
   color: inherit;
   background-color: transparent;

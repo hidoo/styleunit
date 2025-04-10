@@ -1,7 +1,7 @@
 /* eslint max-len: 0, no-magic-numbers: 0 */
 
 import assert from 'assert';
-import {eachTestCases, useSettingsWith} from '../util';
+import { eachTestCases, useSettingsWith } from '../util/index.js';
 
 /**
  * wrapper
@@ -22,7 +22,6 @@ ${useSettingsWith(settings)}
 `;
 
 describe('@mixin on-disabled(...)', () => {
-
   it('should out with default selectors if argument is not set.', async () => {
     const cases = [
       {
@@ -31,79 +30,93 @@ describe('@mixin on-disabled(...)', () => {
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({ error, result, expected }, { resolve, reject }) => {
+        if (error) {
+          return reject(error);
+        }
+
+        const actual = result.css.toString().trim();
+
+        assert(actual === expected);
+        return resolve();
       }
-
-      const actual = result.css.toString().trim();
-
-      assert(actual === expected);
-      return resolve();
-    });
+    );
   });
 
   it('should out pseudo selector only if argument is not set and settings.$selector-disabled is not set.', async () => {
     const cases = [
       {
-        params: [
-          [],
-          ['$selector-disabled: ""']
-        ],
+        params: [[], ['$selector-disabled: ""']],
         expected: '.selector:disabled{font-size:16px}'
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({ error, result, expected }, { resolve, reject }) => {
+        if (error) {
+          return reject(error);
+        }
+
+        const actual = result.css.toString().trim();
+
+        assert(actual === expected);
+        return resolve();
       }
-
-      const actual = result.css.toString().trim();
-
-      assert(actual === expected);
-      return resolve();
-    });
+    );
   });
 
   it('should out with specified selectors if argument $additional-selectors is set.', async () => {
     const cases = [
       {
         params: [['$additional-selectors: (".is-not-use")']],
-        expected: '.selector.is-not-use,.selector.is-disabled,.selector:disabled{font-size:16px}'
+        expected:
+          '.selector.is-not-use,.selector.is-disabled,.selector:disabled{font-size:16px}'
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({ error, result, expected }, { resolve, reject }) => {
+        if (error) {
+          return reject(error);
+        }
+
+        const actual = result.css.toString().trim();
+
+        assert(actual === expected);
+        return resolve();
       }
-
-      const actual = result.css.toString().trim();
-
-      assert(actual === expected);
-      return resolve();
-    });
+    );
   });
 
   it('should out capturing settings with specified selectors if argument $capturing-selectors is set.', async () => {
     const cases = [
       {
         params: [['$capturing-selectors: ("button")']],
-        expected: 'button.is-disabled .selector,button:disabled .selector,.selector.is-disabled,.selector:disabled{font-size:16px}'
+        expected:
+          'button.is-disabled .selector,button:disabled .selector,.selector.is-disabled,.selector:disabled{font-size:16px}'
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({ error, result, expected }, { resolve, reject }) => {
+        if (error) {
+          return reject(error);
+        }
+
+        const actual = result.css.toString().trim();
+
+        assert(actual === expected);
+        return resolve();
       }
-
-      const actual = result.css.toString().trim();
-
-      assert(actual === expected);
-      return resolve();
-    });
+    );
   });
-
 });

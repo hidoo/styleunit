@@ -29,7 +29,7 @@ Markup: <div style="display:table;">
 
 Style guide: #{settings.$util-prefix}.vertical-align.builtin
 */
-.#{settings.$util-prefix}--vertical-align { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$util-prefix}--vertical-align {
   &-top {
     vertical-align: top !important;
   }

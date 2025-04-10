@@ -26,7 +26,7 @@ Markup: <div style="position:relative; padding:50px;">
 
 Style guide: #{settings.$util-prefix}.box-model.builtin
 */
-.#{settings.$util-prefix}--box-model { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$util-prefix}--box-model {
   &-border {
     box-sizing: border-box !important;
   }

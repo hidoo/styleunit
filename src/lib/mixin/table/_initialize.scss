@@ -34,10 +34,12 @@
   $border-width: 1px
 ) {
   display: table;
+  border-collapse: collapse;
+
   width: #{$width};
   margin: #{$margin};
   padding: #{$padding};
-  border-collapse: collapse;
+
   border-style: #{$border-style};
   border-width: #{$border-width};
 }

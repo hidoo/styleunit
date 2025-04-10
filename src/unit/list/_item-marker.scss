@@ -36,7 +36,7 @@ Markup: <!-- un ordered list -->
 
 Style guide: #{settings.$prefix}-list.item-marker.builtin
 */
-.#{settings.$prefix}-list__item--marker { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-list__item--marker {
   &-none {
     &::before {
       content: none !important;

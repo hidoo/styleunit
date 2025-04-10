@@ -1,7 +1,7 @@
 /* eslint max-len: 0, no-magic-numbers: 0 */
 
 import assert from 'assert';
-import {eachTestCases, useSettingsWith} from '../../util';
+import { eachTestCases, useSettingsWith } from '../../util/index.js';
 
 /**
  * wrapper
@@ -20,13 +20,11 @@ ${useSettingsWith(settings)}
 `;
 
 describe('@mixin font-apply-feature-settings(...)', () => {
-
   it('should out default properties if arguments not set.', async () => {
     const cases = [
       {
         params: [[]],
-        expected:
-`.selector {
+        expected: `.selector {
   font-feature-settings: "palt";
   -ms-font-feature-settings: normal;
 }`
@@ -36,7 +34,7 @@ describe('@mixin font-apply-feature-settings(...)', () => {
     await eachTestCases(
       cases,
       wrapper,
-      ({error, result, expected}, {resolve, reject}) => {
+      ({ error, result, expected }, { resolve, reject }) => {
         if (error) {
           return reject(error);
         }
@@ -46,18 +44,15 @@ describe('@mixin font-apply-feature-settings(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      {outputStyle: 'expanded'}
+      { outputStyle: 'expanded' }
     );
   });
 
   it('should out properties with specified value if arguments is set.', async () => {
     const cases = [
       {
-        params: [
-          ['$feature-settings: "pkna"']
-        ],
-        expected:
-`.selector {
+        params: [['$feature-settings: "pkna"']],
+        expected: `.selector {
   font-feature-settings: "pkna";
   -ms-font-feature-settings: normal;
 }`
@@ -67,7 +62,7 @@ describe('@mixin font-apply-feature-settings(...)', () => {
     await eachTestCases(
       cases,
       wrapper,
-      ({error, result, expected}, {resolve, reject}) => {
+      ({ error, result, expected }, { resolve, reject }) => {
         if (error) {
           return reject(error);
         }
@@ -77,8 +72,7 @@ describe('@mixin font-apply-feature-settings(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      {outputStyle: 'expanded'}
+      { outputStyle: 'expanded' }
     );
   });
-
 });

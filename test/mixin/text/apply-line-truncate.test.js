@@ -1,7 +1,7 @@
 /* eslint max-len: 0, no-magic-numbers: 0 */
 
 import assert from 'assert';
-import {eachTestCases, useSettingsWith} from '../../util';
+import { eachTestCases, useSettingsWith } from '../../util/index.js';
 
 /**
  * wrapper
@@ -20,16 +20,15 @@ ${useSettingsWith(settings)}
 `;
 
 describe('@mixin text-apply-line-truncate($line)', () => {
-
   it('should throw error if argument "$line" is not valid.', async () => {
     const cases = [
-      {params: [['$line: null']]},
-      {params: [['$line: false']]},
-      {params: [['$line: #000']]},
-      {params: [['$line: "3"']]}
+      { params: [['$line: null']] },
+      { params: [['$line: false']] },
+      { params: [['$line: #000']] },
+      { params: [['$line: "3"']] }
     ];
 
-    await eachTestCases(cases, wrapper, ({error}, {resolve}) => {
+    await eachTestCases(cases, wrapper, ({ error }, { resolve }) => {
       assert(error instanceof Error);
       assert(error.message.match(/Argument \$line must be number/));
       return resolve();
@@ -40,8 +39,7 @@ describe('@mixin text-apply-line-truncate($line)', () => {
     const cases = [
       {
         params: [],
-        expected:
-`.selector {
+        expected: `.selector {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -52,7 +50,7 @@ describe('@mixin text-apply-line-truncate($line)', () => {
     await eachTestCases(
       cases,
       wrapper,
-      ({error, result, expected}, {resolve, reject}) => {
+      ({ error, result, expected }, { resolve, reject }) => {
         if (error) {
           return reject(error);
         }
@@ -62,29 +60,23 @@ describe('@mixin text-apply-line-truncate($line)', () => {
         assert(actual === expected);
         return resolve();
       },
-      {outputStyle: 'expanded'}
+      { outputStyle: 'expanded' }
     );
   });
 
   it('should out properties with specified value if arguments is set.', async () => {
     const cases = [
       {
-        params: [
-          ['$line: 3']
-        ],
-        expected:
-`.selector {
+        params: [['$line: 3']],
+        expected: `.selector {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
 }`
       },
       {
-        params: [
-          ['$line: 5']
-        ],
-        expected:
-`.selector {
+        params: [['$line: 5']],
+        expected: `.selector {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 5;
@@ -95,7 +87,7 @@ describe('@mixin text-apply-line-truncate($line)', () => {
     await eachTestCases(
       cases,
       wrapper,
-      ({error, result, expected}, {resolve, reject}) => {
+      ({ error, result, expected }, { resolve, reject }) => {
         if (error) {
           return reject(error);
         }
@@ -105,8 +97,7 @@ describe('@mixin text-apply-line-truncate($line)', () => {
         assert(actual === expected);
         return resolve();
       },
-      {outputStyle: 'expanded'}
+      { outputStyle: 'expanded' }
     );
   });
-
 });

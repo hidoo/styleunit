@@ -42,13 +42,13 @@ Markup: <div class="#{settings.$prefix}-box">
 
 Style guide: #{settings.$prefix}-box.core.base
 */
-.#{settings.$prefix}-box { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-box {
   @include mixin.box-apply-clearfix();
   @include mixin.box-initialize();
 
   width: auto;
-  text-align: left;
   color: inherit;
+  text-align: left;
   background-color: transparent;
 
   &__container {
@@ -56,8 +56,8 @@ Style guide: #{settings.$prefix}-box.core.base
     @include mixin.box-initialize();
 
     width: auto;
-    text-align: left;
     color: inherit;
+    text-align: left;
     background-color: transparent;
   }
 }

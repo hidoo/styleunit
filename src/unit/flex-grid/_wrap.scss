@@ -58,7 +58,7 @@ Markup: <div class="#{settings.$prefix}-flex-grid  {{modifier_class}}">
 
 Style guide: #{settings.$prefix}-flex-grid.wrap.builtin
 */
-.#{settings.$prefix}-flex-grid--wrap { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-flex-grid--wrap {
   &-false {
     flex-wrap: nowrap;
   }

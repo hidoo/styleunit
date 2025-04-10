@@ -1,7 +1,7 @@
 /* eslint max-len: 0, no-magic-numbers: 0 */
 
 import assert from 'assert';
-import {eachTestCases, useSettingsWith} from '../util';
+import { eachTestCases, useSettingsWith } from '../util/index.js';
 
 /**
  * wrapper
@@ -22,7 +22,6 @@ ${useSettingsWith(settings)}
 `;
 
 describe('@mixin on-print(...)', () => {
-
   it('should out placeholder selectors.', async () => {
     const cases = [
       {
@@ -31,16 +30,19 @@ describe('@mixin on-print(...)', () => {
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({ error, result, expected }, { resolve, reject }) => {
+        if (error) {
+          return reject(error);
+        }
+
+        const actual = result.css.toString().trim();
+
+        assert(actual === expected);
+        return resolve();
       }
-
-      const actual = result.css.toString().trim();
-
-      assert(actual === expected);
-      return resolve();
-    });
+    );
   });
-
 });

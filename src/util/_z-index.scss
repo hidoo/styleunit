@@ -30,7 +30,10 @@ Markup: <div style="position:relative; padding:50px;">
 
 Style guide: #{settings.$util-prefix}.z-index.builtin
 */
-.#{settings.$util-prefix}--z-index { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$util-prefix}--z-index {
   // each by sizes
-  @include mixin.size-define($type: "z-index", $values: settings.$util-z-index-values);
+  @include mixin.size-define(
+    $type: "z-index",
+    $values: settings.$util-z-index-values
+  );
 }

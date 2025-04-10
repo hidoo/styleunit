@@ -46,7 +46,7 @@ Markup: <div style="position:relative; padding:50px;">
 
 Style guide: #{settings.$util-prefix}.position.builtin
 */
-.#{settings.$util-prefix}--position { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$util-prefix}--position {
   // each by directions
   @include mixin.size-define-by-direction(
     $type: "position",

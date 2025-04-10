@@ -73,11 +73,11 @@
     }
   }
 
-  letter-spacing: #{$letter-spacing};
   line-height: #{$line-height};
   text-align: #{$text-align};
   text-decoration: #{$text-decoration};
   text-indent: #{$text-indent};
+  letter-spacing: #{$letter-spacing};
 
   // set white-space property only if $white-space is valid string
   @if meta.type-of($white-space) == "string" and $white-space != "" {

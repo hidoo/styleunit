@@ -28,6 +28,7 @@
   @if $line > 0 {
     display: -webkit-box; // stylelint-disable-line value-no-vendor-prefix
     -webkit-box-orient: vertical;
+
     -webkit-line-clamp: $line;
   }
 }

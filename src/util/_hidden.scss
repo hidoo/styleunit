@@ -27,7 +27,7 @@ Markup: <div style="position:relative; padding:50px;">
 
 Style guide: #{settings.$util-prefix}.hidden.builtin
 */
-.#{settings.$util-prefix}--hidden { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$util-prefix}--hidden {
   &-if-mobile {
     @include mixin.breakpoint-define($until: "mobile") {
       display: none !important;

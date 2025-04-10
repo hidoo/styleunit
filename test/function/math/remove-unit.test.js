@@ -1,7 +1,7 @@
 /* eslint max-len: 0, no-magic-numbers: 0 */
 
 import assert from 'assert';
-import {eachTestCases, useSettingsWith} from '../../util';
+import { eachTestCases, useSettingsWith } from '../../util/index.js';
 
 /**
  * wrapper
@@ -20,16 +20,15 @@ ${useSettingsWith(settings)}
 `;
 
 describe('@function math-remove-unit($number)', () => {
-
   it('should throw error if argument "$number" is not valid.', async () => {
     const cases = [
-      {params: [[]]},
-      {params: [['$number: null']]},
-      {params: [['$number: false']]},
-      {params: [['$number: #000']]}
+      { params: [[]] },
+      { params: [['$number: null']] },
+      { params: [['$number: false']] },
+      { params: [['$number: #000']] }
     ];
 
-    await eachTestCases(cases, wrapper, ({error}, {resolve}) => {
+    await eachTestCases(cases, wrapper, ({ error }, { resolve }) => {
       assert(error instanceof Error);
       return resolve();
     });
@@ -38,81 +37,64 @@ describe('@function math-remove-unit($number)', () => {
   it('should return as it if argument "$number" is number without unit.', async () => {
     const cases = [
       {
-        params: [
-          [
-            '$number: 0'
-          ]
-        ],
+        params: [['$number: 0']],
         expected: '.selector{content:0}'
       },
       {
-        params: [
-          [
-            '$number: 7'
-          ]
-        ],
+        params: [['$number: 7']],
         expected: '.selector{content:7}'
       },
       {
-        params: [
-          [
-            '$number: 14'
-          ]
-        ],
+        params: [['$number: 14']],
         expected: '.selector{content:14}'
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({ error, result, expected }, { resolve, reject }) => {
+        if (error) {
+          return reject(error);
+        }
+
+        const actual = result.css.toString().trim();
+
+        assert(actual === expected);
+        return resolve();
       }
-
-      const actual = result.css.toString().trim();
-
-      assert(actual === expected);
-      return resolve();
-    });
+    );
   });
 
   it('should return number without unit if argument "$number" is number with unit.', async () => {
     const cases = [
       {
-        params: [
-          [
-            '$number: 0px'
-          ]
-        ],
+        params: [['$number: 0px']],
         expected: '.selector{content:0}'
       },
       {
-        params: [
-          [
-            '$number: 7px'
-          ]
-        ],
+        params: [['$number: 7px']],
         expected: '.selector{content:7}'
       },
       {
-        params: [
-          [
-            '$number: 14rem'
-          ]
-        ],
+        params: [['$number: 14rem']],
         expected: '.selector{content:14}'
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({ error, result, expected }, { resolve, reject }) => {
+        if (error) {
+          return reject(error);
+        }
+
+        const actual = result.css.toString().trim();
+
+        assert(actual === expected);
+        return resolve();
       }
-
-      const actual = result.css.toString().trim();
-
-      assert(actual === expected);
-      return resolve();
-    });
+    );
   });
-
 });

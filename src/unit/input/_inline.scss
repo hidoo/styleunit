@@ -29,7 +29,7 @@ Markup: <!-- input -->
 
 Style guide: #{settings.$prefix}-input.inline.builtin
 */
-.#{settings.$prefix}-input--inline { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-input--inline {
   &-false {
     // has no settings
   }

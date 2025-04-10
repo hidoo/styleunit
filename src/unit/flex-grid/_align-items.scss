@@ -60,7 +60,7 @@ Markup: <div class="#{settings.$prefix}-flex-grid  {{modifier_class}}">
 
 Style guide: #{settings.$prefix}-flex-grid.align-items.builtin
 */
-.#{settings.$prefix}-flex-grid--align-items { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-flex-grid--align-items {
   &-stretch {
     align-items: stretch;
   }

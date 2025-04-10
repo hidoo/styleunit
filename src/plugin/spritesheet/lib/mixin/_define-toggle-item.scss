@@ -33,12 +33,9 @@
       @content;
 
       @if $up {
-        > .#{settings.$prefix}-toggle__field { // stylelint-disable-line scss/selector-nest-combinators
-          + .#{settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
-            @include _mixin.set-properties(
-              $values: $up,
-              $options: $options
-            );
+        > .#{settings.$prefix}-toggle__field {
+          + .#{settings.$prefix}-toggle__alt {
+            @include _mixin.set-properties($values: $up, $options: $options);
           }
         }
       }
@@ -59,7 +56,7 @@
 
         @each $state in $selectors-focus {
           > .#{settings.$prefix}-toggle__field#{$state} {
-            + .#{settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
+            + .#{settings.$prefix}-toggle__alt {
               @extend %#{$selector};
             }
           }
@@ -82,7 +79,7 @@
 
         @each $state in $selectors-disabled {
           > .#{settings.$prefix}-toggle__field#{$state} {
-            + .#{settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
+            + .#{settings.$prefix}-toggle__alt {
               @extend %#{$selector};
             }
           }
@@ -105,7 +102,7 @@
 
         @each $state in $selectors-selected {
           > .#{settings.$prefix}-toggle__field#{$state} {
-            + .#{settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
+            + .#{settings.$prefix}-toggle__alt {
               @extend %#{$selector};
             }
           }
@@ -129,7 +126,7 @@
         @each $state-selected in $selectors-selected {
           @each $state in $selectors-focus {
             > .#{settings.$prefix}-toggle__field#{$state-selected}#{$state} {
-              + .#{settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
+              + .#{settings.$prefix}-toggle__alt {
                 @extend %#{$selector};
               }
             }
@@ -154,7 +151,7 @@
         @each $state-selected in $selectors-selected {
           @each $state in $selectors-disabled {
             > .#{settings.$prefix}-toggle__field#{$state-selected}#{$state} {
-              + .#{settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
+              + .#{settings.$prefix}-toggle__alt {
                 @extend %#{$selector};
               }
             }
@@ -162,8 +159,7 @@
         }
       }
     }
-  }
-  @else {
+  } @else {
     @warn "@mixin define-toggle-item: Spritesheet '#{$name}' was not generate, because $name: '#{$name}' is not found.";
   }
 }

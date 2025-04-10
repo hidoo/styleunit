@@ -1,7 +1,5 @@
-/* eslint max-len: off, no-magic-numbers: off */
-
 import assert from 'assert';
-import {eachTestCases, useSettingsWith} from '../../util';
+import { eachTestCases, useSettingsWith } from '../../util/index.js';
 
 /**
  * wrapper
@@ -21,16 +19,15 @@ ${useSettingsWith(settings)}
 `;
 
 describe('@function color-foreground($background-color, $options)', () => {
-
   it('should throw error if argument "$background-color" is not valid.', async () => {
     const cases = [
-      {params: [[]]},
-      {params: [['$background-color: null']]},
-      {params: [['$background-color: false']]},
-      {params: [['$background-color: 0']]}
+      { params: [[]] },
+      { params: [['$background-color: null']] },
+      { params: [['$background-color: false']] },
+      { params: [['$background-color: 0']] }
     ];
 
-    await eachTestCases(cases, wrapper, ({error}, {resolve}) => {
+    await eachTestCases(cases, wrapper, ({ error }, { resolve }) => {
       assert(error instanceof Error);
       return resolve();
     });
@@ -97,25 +94,36 @@ describe('@function color-foreground($background-color, $options)', () => {
       },
       // with $options.color-mappings
       {
-        params: [['$background-color: #fff, $options: ("color-mappings": ("dark": #333))']],
+        params: [
+          [
+            '$background-color: #fff, $options: ("color-mappings": ("dark": #333))'
+          ]
+        ],
         expected: '.selector{content:#333}'
       },
       {
-        params: [['$background-color: #000, $options: ("color-mappings": ("light": #ccc))']],
+        params: [
+          [
+            '$background-color: #000, $options: ("color-mappings": ("light": #ccc))'
+          ]
+        ],
         expected: '.selector{content:#ccc}'
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({ error, result, expected }, { resolve, reject }) => {
+        if (error) {
+          return reject(error);
+        }
+
+        const actual = result.css.toString().trim();
+
+        assert(actual === expected);
+        return resolve();
       }
-
-      const actual = result.css.toString().trim();
-
-      assert(actual === expected);
-      return resolve();
-    });
+    );
   });
-
 });

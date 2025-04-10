@@ -49,42 +49,33 @@ Markup: <!-- single -->
 
 Style guide: #{settings.$prefix}-toggle.core.base
 */
-.#{settings.$prefix}-toggle { // stylelint-disable-line scss/selector-nest-combinators
-  @include mixin.box-initialize(
-    $display: "inline-block"
-  );
+.#{settings.$prefix}-toggle {
+  @include mixin.box-initialize($display: "inline-block");
 
-  vertical-align: baseline;
   color: inherit;
+  vertical-align: baseline;
   background-color: transparent;
 
   &__field {
     @include mixin.box-initialize();
 
-    vertical-align: baseline;
-    cursor: pointer;
-
-    // stylelint-disable-next-line plugin/no-unsupported-browser-features
-    outline: none;
-
     @include mixin.on-disabled() {
       cursor: default;
       opacity: 0.8;
     }
+
+    cursor: pointer;
+    vertical-align: baseline;
+
+    // stylelint-disable-next-line plugin/no-unsupported-browser-features
+    outline: none;
   }
 
   &__alt {
-    @include mixin.box-initialize(
-      $display: "none",
-      $overflow: "hidden"
-    );
-    @include mixin.text-initialize(
-      $text-indent: -100%
-    );
+    @include mixin.box-initialize($display: "none", $overflow: "hidden");
+    @include mixin.text-initialize($text-indent: -100%);
     @include mixin.font-initialize();
-    @include mixin.font-apply-size(
-      $value: "medium"
-    );
+    @include mixin.font-apply-size($value: "medium");
 
     color: inherit;
     background-color: transparent;

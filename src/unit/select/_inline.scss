@@ -38,7 +38,7 @@ Markup: <span class="#{settings.$prefix}-select  #{settings.$prefix}-select--the
 
 Style guide: #{settings.$prefix}-select.inline.builtin
 */
-.#{settings.$prefix}-select--inline { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-select--inline {
   &-false {
     // has no settings
   }

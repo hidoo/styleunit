@@ -12,7 +12,7 @@
 /// @type Map
 ///
 $_default-options: (
-  "use-object-fit": false,
+  "use-object-fit": false
 ) !default;
 
 /// apply flexible size to pict
@@ -55,15 +55,15 @@ $_default-options: (
     $_default-options
   );
 
-  @include box.apply-aspect-ratio($width, $height);
+  @include box.apply-aspect-ratio($width: $width, $height: $height);
 
-  // stylelint-disable-next-line scss/selector-nest-combinators
   > .#{settings.$prefix}-pict__src {
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
+
     margin: auto;
 
     @if map.get($opts, "use-object-fit") {
@@ -72,8 +72,7 @@ $_default-options: (
 
       // stylelint-disable-next-line plugin/no-unsupported-browser-features
       object-fit: contain;
-    }
-    @else {
+    } @else {
       width: auto;
       max-width: 100%;
       height: auto;

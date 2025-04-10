@@ -1,7 +1,7 @@
 /* eslint max-len: 0, no-magic-numbers: 0 */
 
 import assert from 'assert';
-import {eachTestCases, useSettingsWith} from '../../util';
+import { eachTestCases, useSettingsWith } from '../../util/index.js';
 
 /**
  * wrapper
@@ -20,13 +20,11 @@ ${useSettingsWith(settings)}
 `;
 
 describe('@mixin font-initialize(...)', () => {
-
   it('should out default properties if arguments not set.', async () => {
     const cases = [
       {
         params: [[]],
-        expected:
-`.selector {
+        expected: `.selector {
   font-style: normal;
   font-weight: normal;
 }`
@@ -36,7 +34,7 @@ describe('@mixin font-initialize(...)', () => {
     await eachTestCases(
       cases,
       wrapper,
-      ({error, result, expected}, {resolve, reject}) => {
+      ({ error, result, expected }, { resolve, reject }) => {
         if (error) {
           return reject(error);
         }
@@ -46,21 +44,15 @@ describe('@mixin font-initialize(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      {outputStyle: 'expanded'}
+      { outputStyle: 'expanded' }
     );
   });
 
   it('should out properties with specified value if arguments is set.', async () => {
     const cases = [
       {
-        params: [
-          [
-            '$style: italic',
-            '$weight: 600'
-          ]
-        ],
-        expected:
-`.selector {
+        params: [['$style: italic', '$weight: 600']],
+        expected: `.selector {
   font-style: italic;
   font-weight: 600;
 }`
@@ -70,7 +62,7 @@ describe('@mixin font-initialize(...)', () => {
     await eachTestCases(
       cases,
       wrapper,
-      ({error, result, expected}, {resolve, reject}) => {
+      ({ error, result, expected }, { resolve, reject }) => {
         if (error) {
           return reject(error);
         }
@@ -80,8 +72,7 @@ describe('@mixin font-initialize(...)', () => {
         assert(actual === expected);
         return resolve();
       },
-      {outputStyle: 'expanded'}
+      { outputStyle: 'expanded' }
     );
   });
-
 });

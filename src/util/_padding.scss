@@ -39,7 +39,7 @@ Markup: <div style="position:relative; padding:50px;">
 
 Style guide: #{settings.$util-prefix}.padding.builtin
 */
-.#{settings.$util-prefix}--padding { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$util-prefix}--padding {
   // each by directions
   @include mixin.size-define-by-direction(
     $type: "padding",

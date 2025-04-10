@@ -46,7 +46,7 @@ Markup: <!-- single -->
 
 Style guide: #{settings.$prefix}-toggle.radio.builtin
 */
-.#{settings.$prefix}-toggle--radio { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-toggle--radio {
   $selector: string.unique-id();
   $selector-field: string.unique-id();
   $selector-alt: string.unique-id();
@@ -66,37 +66,46 @@ Style guide: #{settings.$prefix}-toggle.radio.builtin
     z-index: 1;
     top: 0;
     left: 0;
+
     width: 100%;
     height: 100%;
+
     opacity: 0;
   }
 
   // define placeholder class of alt
   @include mixin.placeholder-define($name: $selector-alt) {
-    display: block;
     z-index: 0;
+
+    display: block;
+
     width: 20px;
     height: 20px;
+
     border-style: solid;
-    border-radius: 20px;
     border-width: 1px;
+    border-radius: 20px;
 
     &::before {
       content: "";
+
       position: absolute;
       top: 0;
       right: 0;
       bottom: 0;
       left: 0;
+      transform-origin: 50% 50%;
+      transform: scale(0);
+
       width: 12px;
       height: 12px;
       margin: auto;
+
       border-radius: 12px;
-      transform-origin: 50% 50%;
-      transform: scale(0);
+
+      transition-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
       transition-duration: 0.2s;
       transition-property: transform;
-      transition-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
     }
   }
 
@@ -113,19 +122,30 @@ Style guide: #{settings.$prefix}-toggle.radio.builtin
       $color-focus: map.get($theme, "color-focus");
 
       &-#{$name} {
-        @extend %#{$selector};
-
         $selector-alt-focus: string.unique-id();
         $selector-alt-disabled: string.unique-id();
 
-        > .#{settings.$prefix}-toggle__field { // stylelint-disable-line scss/selector-nest-combinators
+        @extend %#{$selector};
+
+        // define placeholder class of alt when focus
+        @include mixin.placeholder-define($name: $selector-alt-focus) {
+          border-color: $color-focus;
+        }
+
+        // define placeholder class of alt when disabled
+        @include mixin.placeholder-define($name: $selector-alt-disabled) {
+          border-color: $color;
+        }
+
+        > .#{settings.$prefix}-toggle__field {
           @extend %#{$selector-field};
 
-          + .#{settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
+          + .#{settings.$prefix}-toggle__alt {
             @extend %#{$selector-alt};
 
             border-color: $color;
 
+            // stylelint-disable-next-line max-nesting-depth
             &::before {
               background-color: $color;
             }
@@ -135,33 +155,23 @@ Style guide: #{settings.$prefix}-toggle.radio.builtin
         // when checked
         @each $state in $selectors-selected {
           > .#{settings.$prefix}-toggle__field#{$state} {
-            + .#{settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
+            + .#{settings.$prefix}-toggle__alt {
               @extend %#{$selector-alt-checked};
             }
           }
         }
 
-        // define placeholder class of alt when focus
-        @include mixin.placeholder-define($name: $selector-alt-focus) {
-          border-color: $color-focus;
-        }
-
         @each $state in $selectors-focus {
           > .#{settings.$prefix}-toggle__field#{$state} {
-            + .#{settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
+            + .#{settings.$prefix}-toggle__alt {
               @extend %#{$selector-alt-focus};
             }
           }
         }
 
-        // define placeholder class of alt when disabled
-        @include mixin.placeholder-define($name: $selector-alt-disabled) {
-          border-color: $color;
-        }
-
         @each $state in $selectors-disabled {
           > .#{settings.$prefix}-toggle__field#{$state} {
-            + .#{settings.$prefix}-toggle__alt { // stylelint-disable-line scss/selector-nest-combinators
+            + .#{settings.$prefix}-toggle__alt {
               @extend %#{$selector-alt-disabled};
             }
           }

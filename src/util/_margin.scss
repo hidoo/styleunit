@@ -47,7 +47,7 @@ Markup: <div style="position:relative; padding:50px;">
 
 Style guide: #{settings.$util-prefix}.margin.builtin
 */
-.#{settings.$util-prefix}--margin { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$util-prefix}--margin {
   // each by directions
   @include mixin.size-define-by-direction(
     $type: "margin",

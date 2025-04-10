@@ -45,8 +45,10 @@ Markup: <!-- single -->
 
 Style guide: #{settings.$prefix}-toggle.check.extends
 */
-.#{settings.$prefix}-toggle--check { // stylelint-disable-line scss/selector-nest-combinators
-  $options: ("toggle": true);
+.#{settings.$prefix}-toggle--check {
+  $options: (
+    "toggle": true
+  );
 
   @include spritesheet.define(
     $type: "check-svg",
@@ -56,16 +58,32 @@ Style guide: #{settings.$prefix}-toggle.check.extends
   @include spritesheet.define(
     $type: "check-svg",
     $name: "example-b",
-    $options: map-merge($options, ("responsive": true))
+    $options: map-merge(
+        $options,
+        (
+          "responsive": true
+        )
+      )
   );
   @include spritesheet.define(
     $type: "check-image",
     $name: "example-c",
-    $options: map-merge($options, ("use2x": true))
+    $options: map-merge(
+        $options,
+        (
+          "use2x": true
+        )
+      )
   );
   @include spritesheet.define(
     $type: "check-image",
     $name: "example-d",
-    $options: map-merge($options, ("responsive": true, "use2x": "if-mobile"))
+    $options: map-merge(
+        $options,
+        (
+          "responsive": true,
+          "use2x": "if-mobile"
+        )
+      )
   );
 }

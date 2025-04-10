@@ -31,7 +31,7 @@ Markup: <!-- link element -->
 
 Style guide: #{settings.$prefix}-button.inline.builtin
 */
-.#{settings.$prefix}-button--inline { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-button--inline {
   &-false {
     // has no settings
   }

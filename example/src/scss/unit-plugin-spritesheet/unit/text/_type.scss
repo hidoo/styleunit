@@ -41,8 +41,13 @@ Markup: <!-- single -->
 
 Style guide: #{settings.$prefix}-text.type.extend
 */
-.#{settings.$prefix}-text--type { // stylelint-disable-line scss/selector-nest-combinators
-  $options: ("capturing-selectors": ("a", "button"));
+.#{settings.$prefix}-text--type {
+  $options: (
+    "capturing-selectors": (
+      "a",
+      "button"
+    )
+  );
 
   @include spritesheet.define(
     $type: "text-svg",
@@ -52,16 +57,32 @@ Style guide: #{settings.$prefix}-text.type.extend
   @include spritesheet.define(
     $type: "text-svg",
     $name: "example-b",
-    $options: map-merge($options, ("responsive": true))
+    $options: map-merge(
+        $options,
+        (
+          "responsive": true
+        )
+      )
   );
   @include spritesheet.define(
     $type: "text-image",
     $name: "example-c",
-    $options: map-merge($options, ("use2x": true))
+    $options: map-merge(
+        $options,
+        (
+          "use2x": true
+        )
+      )
   );
   @include spritesheet.define(
     $type: "text-image",
     $name: "example-d",
-    $options: map-merge($options, ("responsive": true, "use2x": "if-mobile"))
+    $options: map-merge(
+        $options,
+        (
+          "responsive": true,
+          "use2x": "if-mobile"
+        )
+      )
   );
 }

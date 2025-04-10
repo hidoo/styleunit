@@ -27,7 +27,7 @@ Markup: <h1 class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dol
 
 Style guide: #{settings.$prefix}-text.theme.builtin
 */
-.#{settings.$prefix}-text--theme { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-text--theme {
   @if meta.type-of(settings.$builtin-themes) == "map" {
     @each $name, $theme in settings.$builtin-themes {
       $color: map.get($theme, "color");

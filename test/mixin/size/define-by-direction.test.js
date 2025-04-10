@@ -1,7 +1,7 @@
 /* eslint max-len: 0, no-magic-numbers: 0 */
 
 import assert from 'assert';
-import {eachTestCases, useSettingsWith} from '../../util';
+import { eachTestCases, useSettingsWith } from '../../util/index.js';
 
 /**
  * wrapper
@@ -20,20 +20,19 @@ ${useSettingsWith(settings)}
 `;
 
 describe('@mixin size-define-by-direction($type, $values, $breakpoints)', () => {
-
   it('should throw error if argument "$type" is not valid.', async () => {
     const cases = [
-      {params: [['$type: null']]},
-      {params: [['$type: false']]},
-      {params: [['$type: 14px']]},
-      {params: [['$type: #000']]},
-      {params: [['$type: "_margin"']]},
-      {params: [['$type: "_padding"']]},
-      {params: [['$type: "_position"']]},
-      {params: [['$type: "_border"']]}
+      { params: [['$type: null']] },
+      { params: [['$type: false']] },
+      { params: [['$type: 14px']] },
+      { params: [['$type: #000']] },
+      { params: [['$type: "_margin"']] },
+      { params: [['$type: "_padding"']] },
+      { params: [['$type: "_position"']] },
+      { params: [['$type: "_border"']] }
     ];
 
-    await eachTestCases(cases, wrapper, ({error}, {resolve}) => {
+    await eachTestCases(cases, wrapper, ({ error }, { resolve }) => {
       assert(error instanceof Error);
       assert(error.message.match(/Argument \$type must be one of/));
       return resolve();
@@ -42,13 +41,13 @@ describe('@mixin size-define-by-direction($type, $values, $breakpoints)', () => 
 
   it('should throw error if argument "$values" is not valid.', async () => {
     const cases = [
-      {params: [['$values: null']]},
-      {params: [['$values: false']]},
-      {params: [['$values: 14px']]},
-      {params: [['$values: #000']]}
+      { params: [['$values: null']] },
+      { params: [['$values: false']] },
+      { params: [['$values: 14px']] },
+      { params: [['$values: #000']] }
     ];
 
-    await eachTestCases(cases, wrapper, ({error}, {resolve}) => {
+    await eachTestCases(cases, wrapper, ({ error }, { resolve }) => {
       assert(error instanceof Error);
       assert(error.message.match(/Argument \$values must be list\./));
       return resolve();
@@ -57,13 +56,15 @@ describe('@mixin size-define-by-direction($type, $values, $breakpoints)', () => 
 
   it('should throw error if argument "$type" is "border" and argument item of "$values" is not map or invalid.', async () => {
     const cases = [
-      {params: [['$type: "border"', '$values: (10rem,)']]},
-      {params: [['$type: "border"', '$values: (("nameless": "hoge"),)']]}
+      { params: [['$type: "border"', '$values: (10rem,)']] },
+      { params: [['$type: "border"', '$values: (("nameless": "hoge"),)']] }
     ];
 
-    await eachTestCases(cases, wrapper, ({error}, {resolve}) => {
+    await eachTestCases(cases, wrapper, ({ error }, { resolve }) => {
       assert(error instanceof Error);
-      assert(error.message.match(/Argument \$values is not valid list of map\./));
+      assert(
+        error.message.match(/Argument \$values is not valid list of map\./)
+      );
       return resolve();
     });
   });
@@ -106,7 +107,12 @@ describe('@mixin size-define-by-direction($type, $values, $breakpoints)', () => 
         ].join('')
       },
       {
-        params: [['$type: "border"', '$values: (("name": "example", "size": 2px, "style": dashed, "color": #ccc),)']],
+        params: [
+          [
+            '$type: "border"',
+            '$values: (("name": "example", "size": 2px, "style": dashed, "color": #ccc),)'
+          ]
+        ],
         expected: [
           '.selector-top-example{border-top:2px dashed #ccc !important}',
           '.selector-right-example{border-right:2px dashed #ccc !important}',
@@ -115,7 +121,9 @@ describe('@mixin size-define-by-direction($type, $values, $breakpoints)', () => 
         ].join('')
       },
       {
-        params: [['$type: "border"', '$values: (("name": "example-default-value"),)']],
+        params: [
+          ['$type: "border"', '$values: (("name": "example-default-value"),)']
+        ],
         expected: [
           '.selector-top-example-default-value{border-top:1px solid #000 !important}',
           '.selector-right-example-default-value{border-right:1px solid #000 !important}',
@@ -125,22 +133,32 @@ describe('@mixin size-define-by-direction($type, $values, $breakpoints)', () => 
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({ error, result, expected }, { resolve, reject }) => {
+        if (error) {
+          return reject(error);
+        }
+
+        const actual = result.css.toString().trim();
+
+        assert(actual === expected);
+        return resolve();
       }
-
-      const actual = result.css.toString().trim();
-
-      assert(actual === expected);
-      return resolve();
-    });
+    );
   });
 
   it('should out options each by direction with breakpoints.', async () => {
     const cases = [
       {
-        params: [['$type: "margin"', '$values: (5px, -5em)', '$breakpoints: ("if-mobile": ("until": "mobile"))']],
+        params: [
+          [
+            '$type: "margin"',
+            '$values: (5px, -5em)',
+            '$breakpoints: ("if-mobile": ("until": "mobile"))'
+          ]
+        ],
         expected: [
           '.selector-top-5{margin-top:5px !important}',
           '@media only screen and (max-width: 666px){.selector-top-5-if-mobile{margin-top:5px !important}}',
@@ -161,7 +179,13 @@ describe('@mixin size-define-by-direction($type, $values, $breakpoints)', () => 
         ].join('')
       },
       {
-        params: [['$type: "padding"', '$values: (10rem,)', '$breakpoints: ("if-mobile": ("until": "mobile"))']],
+        params: [
+          [
+            '$type: "padding"',
+            '$values: (10rem,)',
+            '$breakpoints: ("if-mobile": ("until": "mobile"))'
+          ]
+        ],
         expected: [
           '.selector-top-10{padding-top:10rem !important}',
           '@media only screen and (max-width: 666px){.selector-top-10-if-mobile{padding-top:10rem !important}}',
@@ -174,7 +198,13 @@ describe('@mixin size-define-by-direction($type, $values, $breakpoints)', () => 
         ].join('')
       },
       {
-        params: [['$type: "position"', '$values: (5px, -5em)', '$breakpoints: ("if-mobile": ("until": "mobile"))']],
+        params: [
+          [
+            '$type: "position"',
+            '$values: (5px, -5em)',
+            '$breakpoints: ("if-mobile": ("until": "mobile"))'
+          ]
+        ],
         expected: [
           '.selector-top-5{top:5px !important}',
           '@media only screen and (max-width: 666px){.selector-top-5-if-mobile{top:5px !important}}',
@@ -195,7 +225,13 @@ describe('@mixin size-define-by-direction($type, $values, $breakpoints)', () => 
         ].join('')
       },
       {
-        params: [['$type: "border"', '$values: (("name": "example", "size": 2px, "style": dashed, "color": #ccc),)', '$breakpoints: ("if-mobile": ("until": "mobile"))']],
+        params: [
+          [
+            '$type: "border"',
+            '$values: (("name": "example", "size": 2px, "style": dashed, "color": #ccc),)',
+            '$breakpoints: ("if-mobile": ("until": "mobile"))'
+          ]
+        ],
         expected: [
           '.selector-top-example{border-top:2px dashed #ccc !important}',
           '@media only screen and (max-width: 666px){.selector-top-example-if-mobile{border-top:2px dashed #ccc !important}}',
@@ -209,16 +245,19 @@ describe('@mixin size-define-by-direction($type, $values, $breakpoints)', () => 
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({ error, result, expected }, { resolve, reject }) => {
+        if (error) {
+          return reject(error);
+        }
+
+        const actual = result.css.toString().trim();
+
+        assert(actual === expected);
+        return resolve();
       }
-
-      const actual = result.css.toString().trim();
-
-      assert(actual === expected);
-      return resolve();
-    });
+    );
   });
-
 });

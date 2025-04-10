@@ -1,7 +1,7 @@
 /* eslint max-len: 0, no-magic-numbers: 0 */
 
 import assert from 'assert';
-import {eachTestCases, useSettingsWith} from '../../util';
+import { eachTestCases, useSettingsWith } from '../../util/index.js';
 
 /**
  * wrapper
@@ -20,19 +20,18 @@ ${useSettingsWith(settings)}
 `;
 
 describe('@mixin size-define($type, $values, $breakpoints)', () => {
-
   it('should throw error if argument "$type" is not valid.', async () => {
     const cases = [
-      {params: [['$type: null']]},
-      {params: [['$type: false']]},
-      {params: [['$type: 14px']]},
-      {params: [['$type: #000']]},
-      {params: [['$type: "_width"']]},
-      {params: [['$type: "_height"']]},
-      {params: [['$type: "_z-index"']]}
+      { params: [['$type: null']] },
+      { params: [['$type: false']] },
+      { params: [['$type: 14px']] },
+      { params: [['$type: #000']] },
+      { params: [['$type: "_width"']] },
+      { params: [['$type: "_height"']] },
+      { params: [['$type: "_z-index"']] }
     ];
 
-    await eachTestCases(cases, wrapper, ({error}, {resolve}) => {
+    await eachTestCases(cases, wrapper, ({ error }, { resolve }) => {
       assert(error instanceof Error);
       assert(error.message.match(/Argument \$type must be one of/));
       return resolve();
@@ -41,13 +40,13 @@ describe('@mixin size-define($type, $values, $breakpoints)', () => {
 
   it('should throw error if argument "$values" is not valid.', async () => {
     const cases = [
-      {params: [['$values: null']]},
-      {params: [['$values: false']]},
-      {params: [['$values: 14px']]},
-      {params: [['$values: #000']]}
+      { params: [['$values: null']] },
+      { params: [['$values: false']] },
+      { params: [['$values: 14px']] },
+      { params: [['$values: #000']] }
     ];
 
-    await eachTestCases(cases, wrapper, ({error}, {resolve}) => {
+    await eachTestCases(cases, wrapper, ({ error }, { resolve }) => {
       assert(error instanceof Error);
       assert(error.message.match(/Argument \$values must be list/));
       return resolve();
@@ -55,13 +54,13 @@ describe('@mixin size-define($type, $values, $breakpoints)', () => {
   });
 
   it('should throw error if argument "$values" includes negative numbers.', async () => {
-    const cases = [
-      {params: [['$values: (-1px,)']]}
-    ];
+    const cases = [{ params: [['$values: (-1px,)']] }];
 
-    await eachTestCases(cases, wrapper, ({error}, {resolve}) => {
+    await eachTestCases(cases, wrapper, ({ error }, { resolve }) => {
       assert(error instanceof Error);
-      assert(error.message.match(/Argument \$values includes negative numbers\./));
+      assert(
+        error.message.match(/Argument \$values includes negative numbers\./)
+      );
       return resolve();
     });
   });
@@ -96,22 +95,32 @@ describe('@mixin size-define($type, $values, $breakpoints)', () => {
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({ error, result, expected }, { resolve, reject }) => {
+        if (error) {
+          return reject(error);
+        }
+
+        const actual = result.css.toString().trim();
+
+        assert(actual === expected);
+        return resolve();
       }
-
-      const actual = result.css.toString().trim();
-
-      assert(actual === expected);
-      return resolve();
-    });
+    );
   });
 
   it('should out options each by size with breakpoints.', async () => {
     const cases = [
       {
-        params: [['$type: "width"', '$values: (10rem,)', '$breakpoints: ("if-mobile": ("until": "mobile"))']],
+        params: [
+          [
+            '$type: "width"',
+            '$values: (10rem,)',
+            '$breakpoints: ("if-mobile": ("until": "mobile"))'
+          ]
+        ],
         expected: [
           '.selector-10{width:10rem !important}',
           '@media only screen and (max-width: 666px){.selector-10-if-mobile{width:10rem !important}}',
@@ -122,7 +131,13 @@ describe('@mixin size-define($type, $values, $breakpoints)', () => {
         ].join('')
       },
       {
-        params: [['$type: "height"', '$values: (10px, 20px)', '$breakpoints: ("if-mobile": ("until": "mobile"))']],
+        params: [
+          [
+            '$type: "height"',
+            '$values: (10px, 20px)',
+            '$breakpoints: ("if-mobile": ("until": "mobile"))'
+          ]
+        ],
         expected: [
           '.selector-10{height:10px !important}',
           '@media only screen and (max-width: 666px){.selector-10-if-mobile{height:10px !important}}',
@@ -139,7 +154,13 @@ describe('@mixin size-define($type, $values, $breakpoints)', () => {
         ].join('')
       },
       {
-        params: [['$type: "z-index"', '$values: (5, 10)', '$breakpoints: ("if-mobile": ("until": "mobile"))']],
+        params: [
+          [
+            '$type: "z-index"',
+            '$values: (5, 10)',
+            '$breakpoints: ("if-mobile": ("until": "mobile"))'
+          ]
+        ],
         expected: [
           '.selector-5{z-index:5 !important}',
           '@media only screen and (max-width: 666px){.selector-5-if-mobile{z-index:5 !important}}',
@@ -149,16 +170,19 @@ describe('@mixin size-define($type, $values, $breakpoints)', () => {
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({ error, result, expected }, { resolve, reject }) => {
+        if (error) {
+          return reject(error);
+        }
+
+        const actual = result.css.toString().trim();
+
+        assert(actual === expected);
+        return resolve();
       }
-
-      const actual = result.css.toString().trim();
-
-      assert(actual === expected);
-      return resolve();
-    });
+    );
   });
-
 });

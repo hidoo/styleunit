@@ -38,34 +38,34 @@ Markup: <!-- image element -->
 
 Style guide: #{settings.$prefix}-pict.fit.builtin
 */
-.#{settings.$prefix}-pict--fit { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-pict--fit {
   &-none {
     // has no settings
   }
 
   &-width {
-    > .#{settings.$prefix}-pict__src { // stylelint-disable-line scss/selector-nest-combinators
+    > .#{settings.$prefix}-pict__src {
       width: 100%;
       height: auto;
     }
   }
 
   &-max-width {
-    > .#{settings.$prefix}-pict__src { // stylelint-disable-line scss/selector-nest-combinators
+    > .#{settings.$prefix}-pict__src {
       max-width: 100%;
       height: auto;
     }
   }
 
   &-height {
-    > .#{settings.$prefix}-pict__src { // stylelint-disable-line scss/selector-nest-combinators
+    > .#{settings.$prefix}-pict__src {
       width: auto;
       height: 100%;
     }
   }
 
   &-max-height {
-    > .#{settings.$prefix}-pict__src { // stylelint-disable-line scss/selector-nest-combinators
+    > .#{settings.$prefix}-pict__src {
       width: auto;
       max-height: 100%;
     }

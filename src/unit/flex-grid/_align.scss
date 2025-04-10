@@ -61,29 +61,29 @@ Markup: <div class="#{settings.$prefix}-flex-grid  {{modifier_class}}">
 
 Style guide: #{settings.$prefix}-flex-grid.align.builtin
 */
-.#{settings.$prefix}-flex-grid--align { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-flex-grid--align {
   &-start {
-    justify-content: flex-start;
     align-content: flex-start;
+    justify-content: flex-start;
   }
 
   &-center {
-    justify-content: center;
     align-content: center;
+    justify-content: center;
   }
 
   &-end {
-    justify-content: flex-end;
     align-content: flex-end;
+    justify-content: flex-end;
   }
 
   &-space-between {
-    justify-content: space-between;
     align-content: space-between;
+    justify-content: space-between;
   }
 
   &-space-around {
-    justify-content: space-around;
     align-content: space-around;
+    justify-content: space-around;
   }
 }

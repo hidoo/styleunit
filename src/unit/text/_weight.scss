@@ -25,7 +25,7 @@ Markup: <h1 class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dol
 
 Style guide: #{settings.$prefix}-text.weight.builtin
 */
-.#{settings.$prefix}-text--weight { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-text--weight {
   &-normal {
     font-weight: normal;
   }

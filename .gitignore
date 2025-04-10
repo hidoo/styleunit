@@ -1,0 +1,4 @@
+.git/
+node_modules/
+example/build/
+test/fixture/dest/

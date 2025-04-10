@@ -30,7 +30,7 @@ Markup: <div style="position:relative; padding:50px;">
 
 Style guide: #{settings.$util-prefix}.clear.builtin
 */
-.#{settings.$util-prefix}--clear { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$util-prefix}--clear {
   &-left {
     clear: left !important;
   }

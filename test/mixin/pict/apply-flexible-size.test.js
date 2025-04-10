@@ -1,7 +1,7 @@
 /* eslint max-len: 0, no-magic-numbers: 0 */
 
 import assert from 'assert';
-import {eachTestCases, useSettingsWith} from '../../util';
+import { eachTestCases, useSettingsWith } from '../../util/index.js';
 
 /**
  * wrapper
@@ -20,13 +20,11 @@ ${useSettingsWith(settings)}
 `;
 
 describe('@mixin pict-apply-flexible-size($width, $height, $options)', () => {
-
   it('should out default properties if arguments not set.', async () => {
     const cases = [
       {
         params: [],
-        expected:
-`.selector::before {
+        expected: `.selector::before {
   content: "";
   display: block;
   width: 100%;
@@ -51,7 +49,7 @@ describe('@mixin pict-apply-flexible-size($width, $height, $options)', () => {
     await eachTestCases(
       cases,
       wrapper,
-      ({error, result, expected}, {resolve, reject}) => {
+      ({ error, result, expected }, { resolve, reject }) => {
         if (error) {
           return reject(error);
         }
@@ -61,21 +59,15 @@ describe('@mixin pict-apply-flexible-size($width, $height, $options)', () => {
         assert(actual === expected);
         return resolve();
       },
-      {outputStyle: 'expanded'}
+      { outputStyle: 'expanded' }
     );
   });
 
   it('should out properties with specified value if arguments is set.', async () => {
     const cases = [
       {
-        params: [
-          [
-            '$width: 4',
-            '$height: 3'
-          ]
-        ],
-        expected:
-`.selector::before {
+        params: [['$width: 4', '$height: 3']],
+        expected: `.selector::before {
   content: "";
   display: block;
   width: 100%;
@@ -96,14 +88,8 @@ describe('@mixin pict-apply-flexible-size($width, $height, $options)', () => {
 }`
       },
       {
-        params: [
-          [
-            '$width: 1',
-            '$height: 1'
-          ]
-        ],
-        expected:
-`.selector::before {
+        params: [['$width: 1', '$height: 1']],
+        expected: `.selector::before {
   content: "";
   display: block;
   width: 100%;
@@ -125,14 +111,9 @@ describe('@mixin pict-apply-flexible-size($width, $height, $options)', () => {
       },
       {
         params: [
-          [
-            '$width: 1',
-            '$height: 1',
-            '$options: ("use-object-fit": true,)'
-          ]
+          ['$width: 1', '$height: 1', '$options: ("use-object-fit": true,)']
         ],
-        expected:
-`.selector::before {
+        expected: `.selector::before {
   content: "";
   display: block;
   width: 100%;
@@ -156,7 +137,7 @@ describe('@mixin pict-apply-flexible-size($width, $height, $options)', () => {
     await eachTestCases(
       cases,
       wrapper,
-      ({error, result, expected}, {resolve, reject}) => {
+      ({ error, result, expected }, { resolve, reject }) => {
         if (error) {
           return reject(error);
         }
@@ -166,8 +147,7 @@ describe('@mixin pict-apply-flexible-size($width, $height, $options)', () => {
         assert(actual === expected);
         return resolve();
       },
-      {outputStyle: 'expanded'}
+      { outputStyle: 'expanded' }
     );
   });
-
 });

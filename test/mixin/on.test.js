@@ -1,7 +1,7 @@
 /* eslint max-len: 0, no-magic-numbers: 0 */
 
 import assert from 'assert';
-import {eachTestCases, useSettingsWith} from '../util';
+import { eachTestCases, useSettingsWith } from '../util/index.js';
 
 /**
  * wrapper
@@ -22,7 +22,6 @@ ${useSettingsWith(settings)}
 `;
 
 describe('@mixin on($selectors, $capturing-selectors)', () => {
-
   it('should not out if argument $selectors is not set.', async () => {
     const cases = [
       {
@@ -31,16 +30,20 @@ describe('@mixin on($selectors, $capturing-selectors)', () => {
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({ error, result, expected }, { resolve, reject }) => {
+        if (error) {
+          return reject(error);
+        }
+
+        const actual = result.css.toString().trim();
+
+        assert(actual === expected);
+        return resolve();
       }
-
-      const actual = result.css.toString().trim();
-
-      assert(actual === expected);
-      return resolve();
-    });
+    );
   });
 
   it('should out with specified selectors if argument $selectors is set.', async () => {
@@ -55,28 +58,30 @@ describe('@mixin on($selectors, $capturing-selectors)', () => {
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({ error, result, expected }, { resolve, reject }) => {
+        if (error) {
+          return reject(error);
+        }
+
+        const actual = result.css.toString().trim();
+
+        assert(actual === expected);
+        return resolve();
       }
-
-      const actual = result.css.toString().trim();
-
-      assert(actual === expected);
-      return resolve();
-    });
+    );
   });
 
   it('should out capturing settings with specified selectors if argument $capturing-selectors is set and argument $capturing-selectors is true.', async () => {
     const cases = [
       {
         params: [
-          [
-            '$selectors: (":hover")',
-            '$capturing-selectors: ("a", "button")'
-          ]
+          ['$selectors: (":hover")', '$capturing-selectors: ("a", "button")']
         ],
-        expected: 'button:hover .selector,a:hover .selector,.selector:hover{font-size:16px}'
+        expected:
+          'button:hover .selector,a:hover .selector,.selector:hover{font-size:16px}'
       },
       {
         params: [
@@ -85,20 +90,24 @@ describe('@mixin on($selectors, $capturing-selectors)', () => {
             '$capturing-selectors: ("a", "button")'
           ]
         ],
-        expected: 'button.is-hover .selector,button:hover .selector,a.is-hover .selector,a:hover .selector,.selector.is-hover,.selector:hover{font-size:16px}'
+        expected:
+          'button.is-hover .selector,button:hover .selector,a.is-hover .selector,a:hover .selector,.selector.is-hover,.selector:hover{font-size:16px}'
       }
     ];
 
-    await eachTestCases(cases, wrapper, ({error, result, expected}, {resolve, reject}) => {
-      if (error) {
-        return reject(error);
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({ error, result, expected }, { resolve, reject }) => {
+        if (error) {
+          return reject(error);
+        }
+
+        const actual = result.css.toString().trim();
+
+        assert(actual === expected);
+        return resolve();
       }
-
-      const actual = result.css.toString().trim();
-
-      assert(actual === expected);
-      return resolve();
-    });
+    );
   });
-
 });

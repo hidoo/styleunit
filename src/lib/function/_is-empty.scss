@@ -3,7 +3,7 @@
 /// @group features
 ////
 
-@use "./meta" as meta;
+@use "./meta";
 
 /// value is empty or not
 /// @param {String|Number|List|Map} $value - test value

@@ -36,7 +36,7 @@ Markup: <div class="#{settings.$prefix}-box">
 
 Style guide: #{settings.$prefix}-box.container-width.builtin
 */
-.#{settings.$prefix}-box__container--width { // stylelint-disable-line scss/selector-nest-combinators
+.#{settings.$prefix}-box__container--width {
   &-auto {
     // has no settings
   }
@@ -51,15 +51,16 @@ Style guide: #{settings.$prefix}-box.container-width.builtin
     width: 100%;
     margin: 0 auto;
 
+    border-right: constant(safe-area-inset-right) solid transparent;
+    border-right: string.unquote("env(safe-area-inset-right)") solid transparent;
+
     // stylelint-disable declaration-block-no-duplicate-properties
 
     // experimental: for iPhone X (iOS 11.1+)
     border-left: constant(safe-area-inset-left) solid transparent;
-    border-right: constant(safe-area-inset-right) solid transparent;
 
     // experimental: for iPhone X (iOS 11.2+)
     border-left: string.unquote("env(safe-area-inset-left)") solid transparent;
-    border-right: string.unquote("env(safe-area-inset-right)") solid transparent;
 
     // stylelint-enable declaration-block-no-duplicate-properties
   }
