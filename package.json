@@ -2,10 +2,10 @@
   "name": "@hidoo/unit",
   "version": "0.9.0",
   "description": "Sass based css framework.",
-  "packageManager": "pnpm@10.8.0",
+  "packageManager": "pnpm@10.8.1",
   "engines": {
     "node": ">=18.12.0",
-    "pnpm": "10.8.0"
+    "pnpm": "10.8.1"
   },
   "type": "module",
   "main": "src/index.scss",
@@ -15,6 +15,7 @@
   "scripts": {
     "start": "gulp",
     "build": "cross-env NODE_ENV=production pnpm run --sequential '/^build:[^:]+$/'",
+    "build:clean": "gulp clean",
     "build:document": "sassdoc2md ./src ./README.md -m ./README.md -s API --autofill ''",
     "build:example": "gulp build",
     "format": "prettier --write .",
@@ -43,25 +44,33 @@
   "devDependencies": {
     "@commitlint/cli": "19.8.0",
     "@commitlint/config-conventional": "19.8.0",
-    "@hidoo/eslint-config": "1.3.1",
-    "@hidoo/gulp-task-build-css-sass": "1.0.0-alpha.1",
-    "@hidoo/gulp-task-build-sprite-image": "1.0.0-alpha.1",
-    "@hidoo/gulp-task-build-sprite-svg": "1.0.0-alpha.1",
-    "@hidoo/gulp-task-build-styleguide-kss": "1.0.0-alpha.1",
-    "@hidoo/kss-builder": "1.0.0",
+    "@hidoo/eslint-config": "2.0.0",
+    "@hidoo/gulp-task-build-css-sass": "1.0.0-alpha.2",
+    "@hidoo/gulp-task-build-sprite-image": "1.0.0-alpha.2",
+    "@hidoo/gulp-task-build-sprite-svg": "1.0.0-alpha.2",
+    "@hidoo/gulp-task-build-styleguide-kss": "1.0.0-alpha.2",
+    "@hidoo/kss-builder": "1.0.1",
     "@hidoo/sassdoc-to-markdown": "1.0.0",
-    "@hidoo/stylelint-config": "1.0.0",
+    "@hidoo/stylelint-config": "1.1.0",
     "browser-sync": "3.0.4",
     "chalk": "5.4.1",
     "commander": "13.1.0",
     "cross-env": "7.0.3",
-    "eslint": "8.57.0",
-    "gulp": "4.0.2",
-    "lint-staged": "15.5.0",
+    "eslint": "9.24.0",
+    "gulp": "5.0.0",
+    "lint-staged": "15.5.1",
     "mocha": "11.1.0",
-    "pnpm": "10.8.0",
+    "pnpm": "10.8.1",
     "prettier": "3.5.3",
-    "sass": "1.72.0",
+    "sass": "1.86.3",
     "stylelint": "16.18.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "webp-bin",
+      "gifsicle",
+      "mozjpeg",
+      "optipng-bin"
+    ]
   }
 }

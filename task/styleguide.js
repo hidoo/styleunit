@@ -4,7 +4,7 @@ import gulp from 'gulp';
 import buildStyleguide from '@hidoo/gulp-task-build-styleguide-kss';
 import * as config from '../config.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // define example tasks
 export const unit = buildStyleguide({
@@ -14,8 +14,7 @@ export const unit = buildStyleguide({
   get css() {
     return `${path.relative(this.dest, this.src)}/main.css`;
   },
-  homepage: path.resolve(__dirname, '../README.md'),
-  builder: '@hidoo/kss-builder'
+  homepage: path.resolve(dirname, '../README.md')
 });
 export const pluginSpritesheet = buildStyleguide({
   name: 'styleguide:plugin:spritesheet',
@@ -24,8 +23,7 @@ export const pluginSpritesheet = buildStyleguide({
   get css() {
     return `${path.relative(this.dest, this.src)}/main.css`;
   },
-  homepage: path.resolve(__dirname, '../README.md'),
-  builder: '@hidoo/kss-builder'
+  homepage: path.resolve(dirname, '../README.md')
 });
 
 // define main task
