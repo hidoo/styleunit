@@ -6,6 +6,7 @@
       "files": ["**/*.scss"],
       "extends": ["@hidoo/stylelint-config/+scss"],
       "rules": {
+        "at-rule-prelude-no-invalid": null,
         "scss/at-use-no-unnamespaced": null,
         "scss/no-unused-private-members": null,
         "scss/selector-nest-combinators": null
