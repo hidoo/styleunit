@@ -88,9 +88,9 @@ Style guide: #{settings.$prefix}-table.core.builtin
         &__column {
           @extend %#{$selector-column};
 
+          border-color: if($name == "light", $border, $border-focus);
           color: $color;
           background-color: $background;
-          border-color: if($name == "light", $border, $border-focus);
 
           &--head {
             background-color: $background-focus;

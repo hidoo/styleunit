@@ -55,7 +55,7 @@ Style guide: #{settings.$prefix}-pict.copy-protect.builtin
       height: 100%;
 
       // for ie 10
-      background-color: rgba(0, 0, 0, 0.005);
+      background-color: rgb(0, 0, 0, 0.005);
     }
 
     > img.#{settings.$prefix}-pict__src {

@@ -28,9 +28,9 @@ describe('@mixin table-initialize-column(...)', () => {
   display: table-cell;
   margin: 0;
   padding: 0;
-  vertical-align: middle;
   border-style: solid;
   border-width: 1px;
+  vertical-align: middle;
 }`
       }
     ];
@@ -45,7 +45,7 @@ describe('@mixin table-initialize-column(...)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       },
       { style: 'expanded' }
@@ -67,9 +67,9 @@ describe('@mixin table-initialize-column(...)', () => {
   display: table-cell;
   margin: 0 auto;
   padding: 10px;
-  vertical-align: middle;
   border-style: dotted;
   border-width: 2px;
+  vertical-align: middle;
 }`
       }
     ];
@@ -84,7 +84,7 @@ describe('@mixin table-initialize-column(...)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       },
       { style: 'expanded' }

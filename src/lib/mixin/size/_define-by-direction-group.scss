@@ -16,22 +16,13 @@
 /// @access private
 /// @type List
 ///
-$_supported-types: (
-  "margin",
-  "padding",
-  "position",
-  "border",
-) !default;
+$_supported-types: ("margin", "padding", "position", "border") !default;
 
 /// direction groups
 /// @access private
 /// @type List
 ///
-$_direction-groups: (
-  vertical,
-  horizontal,
-  all,
-) !default;
+$_direction-groups: (vertical, horizontal, all) !default;
 
 /// default border size
 /// @access private
@@ -97,12 +88,19 @@ $_default-border-color: #000 !default;
 ///     }
 ///   }
 ///
-@mixin define-by-direction-group($type: "margin", $values: (), $breakpoints: null) {
-  @if type-of($type) != "string" or not list.index($_supported-types, $type) {
+@mixin define-by-direction-group(
+  $type: "margin",
+  $values: (),
+  $breakpoints: null
+) {
+  @if meta.type-of($type) !=
+    "string" or not
+    list.index($_supported-types, $type)
+  {
     @error "@mixin size-define-by-direction-group: Argument $type must be one of #{meta.inspect($_supported-types)}.";
   }
 
-  @if type-of($values) != "list" {
+  @if meta.type-of($values) != "list" {
     @error "@mixin size-define-by-direction-group: Argument $values must be list.";
   }
 
@@ -119,7 +117,12 @@ $_default-border-color: #000 !default;
         $selector: selector.append(&, "-#{$direction-group}-#{$name}");
 
         @if not map.has-key($value, "size") {
-          $value: map.merge($value, ("size": $_default-border-size));
+          $value: map.merge(
+            $value,
+            (
+              "size": $_default-border-size
+            )
+          );
 
           @if settings.$verbose {
             // stylelint-disable-next-line max-line-length
@@ -128,7 +131,12 @@ $_default-border-color: #000 !default;
         }
 
         @if not map.has-key($value, "style") {
-          $value: map.merge($value, ("style": $_default-border-style));
+          $value: map.merge(
+            $value,
+            (
+              "style": $_default-border-style
+            )
+          );
 
           @if settings.$verbose {
             // stylelint-disable-next-line max-line-length
@@ -137,7 +145,12 @@ $_default-border-color: #000 !default;
         }
 
         @if not map.has-key($value, "color") {
-          $value: map.merge($value, ("color": $_default-border-color));
+          $value: map.merge(
+            $value,
+            (
+              "color": $_default-border-color
+            )
+          );
 
           @if settings.$verbose {
             // stylelint-disable-next-line max-line-length
@@ -154,18 +167,40 @@ $_default-border-color: #000 !default;
         @at-root {
           #{$selector} {
             @if $direction-group == "vertical" {
-              #{$property}top: $pure-value * $one-with-unit $style $color !important;
-              #{$property}bottom: $pure-value * $one-with-unit $style $color !important;
-            }
-            @else if $direction-group == "horizontal" {
-              #{$property}right: $pure-value * $one-with-unit $style $color !important;
-              #{$property}left: $pure-value * $one-with-unit $style $color !important;
-            }
-            @else if $direction-group == "all" {
-              #{$property}top: $pure-value * $one-with-unit $style $color !important;
-              #{$property}right: $pure-value * $one-with-unit $style $color !important;
-              #{$property}bottom: $pure-value * $one-with-unit $style $color !important;
-              #{$property}left: $pure-value * $one-with-unit $style $color !important;
+              #{$property}top: $pure-value *
+                $one-with-unit
+                $style
+                $color !important;
+              #{$property}bottom: $pure-value *
+                $one-with-unit
+                $style
+                $color !important;
+            } @else if $direction-group == "horizontal" {
+              #{$property}right: $pure-value *
+                $one-with-unit
+                $style
+                $color !important;
+              #{$property}left: $pure-value *
+                $one-with-unit
+                $style
+                $color !important;
+            } @else if $direction-group == "all" {
+              #{$property}top: $pure-value *
+                $one-with-unit
+                $style
+                $color !important;
+              #{$property}right: $pure-value *
+                $one-with-unit
+                $style
+                $color !important;
+              #{$property}bottom: $pure-value *
+                $one-with-unit
+                $style
+                $color !important;
+              #{$property}left: $pure-value *
+                $one-with-unit
+                $style
+                $color !important;
             }
 
             @if meta.type-of($breakpoints) == "map" {
@@ -173,18 +208,40 @@ $_default-border-color: #000 !default;
                 &-#{$modifier} {
                   @include breakpoint.define($breakpoint...) {
                     @if $direction-group == "vertical" {
-                      #{$property}top: $pure-value * $one-with-unit $style $color !important;
-                      #{$property}bottom: $pure-value * $one-with-unit $style $color !important;
-                    }
-                    @else if $direction-group == "horizontal" {
-                      #{$property}right: $pure-value * $one-with-unit $style $color !important;
-                      #{$property}left: $pure-value * $one-with-unit $style $color !important;
-                    }
-                    @else if $direction-group == "all" {
-                      #{$property}top: $pure-value * $one-with-unit $style $color !important;
-                      #{$property}right: $pure-value * $one-with-unit $style $color !important;
-                      #{$property}bottom: $pure-value * $one-with-unit $style $color !important;
-                      #{$property}left: $pure-value * $one-with-unit $style $color !important;
+                      #{$property}top: $pure-value *
+                        $one-with-unit
+                        $style
+                        $color !important;
+                      #{$property}bottom: $pure-value *
+                        $one-with-unit
+                        $style
+                        $color !important;
+                    } @else if $direction-group == "horizontal" {
+                      #{$property}right: $pure-value *
+                        $one-with-unit
+                        $style
+                        $color !important;
+                      #{$property}left: $pure-value *
+                        $one-with-unit
+                        $style
+                        $color !important;
+                    } @else if $direction-group == "all" {
+                      #{$property}top: $pure-value *
+                        $one-with-unit
+                        $style
+                        $color !important;
+                      #{$property}right: $pure-value *
+                        $one-with-unit
+                        $style
+                        $color !important;
+                      #{$property}bottom: $pure-value *
+                        $one-with-unit
+                        $style
+                        $color !important;
+                      #{$property}left: $pure-value *
+                        $one-with-unit
+                        $style
+                        $color !important;
                     }
                   }
                 }
@@ -192,8 +249,7 @@ $_default-border-color: #000 !default;
             }
           }
         }
-      }
-      @else {
+      } @else {
         $pure-value: function.math-remove-unit($value);
         $sign: if($value < 0, "-", "");
         $one-with-unit: ($value * 0 + 1);
@@ -202,12 +258,10 @@ $_default-border-color: #000 !default;
           @if $direction-group == "vertical" {
             #{$property}top: $pure-value * $one-with-unit !important;
             #{$property}bottom: $pure-value * $one-with-unit !important;
-          }
-          @else if $direction-group == "horizontal" {
+          } @else if $direction-group == "horizontal" {
             #{$property}right: $pure-value * $one-with-unit !important;
             #{$property}left: $pure-value * $one-with-unit !important;
-          }
-          @else if $direction-group == "all" {
+          } @else if $direction-group == "all" {
             #{$property}top: $pure-value * $one-with-unit !important;
             #{$property}right: $pure-value * $one-with-unit !important;
             #{$property}bottom: $pure-value * $one-with-unit !important;
@@ -221,12 +275,10 @@ $_default-border-color: #000 !default;
                   @if $direction-group == "vertical" {
                     #{$property}top: $pure-value * $one-with-unit !important;
                     #{$property}bottom: $pure-value * $one-with-unit !important;
-                  }
-                  @else if $direction-group == "horizontal" {
+                  } @else if $direction-group == "horizontal" {
                     #{$property}right: $pure-value * $one-with-unit !important;
                     #{$property}left: $pure-value * $one-with-unit !important;
-                  }
-                  @else if $direction-group == "all" {
+                  } @else if $direction-group == "all" {
                     #{$property}top: $pure-value * $one-with-unit !important;
                     #{$property}right: $pure-value * $one-with-unit !important;
                     #{$property}bottom: $pure-value * $one-with-unit !important;

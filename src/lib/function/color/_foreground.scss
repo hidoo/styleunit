@@ -16,7 +16,7 @@ $_default-options: (
   "threshold": 60%,
   "color-mappings": (
     "dark": #000,
-    "light": #fff,
+    "light": #fff
   )
 ) !default;
 
@@ -47,7 +47,11 @@ $_default-options: (
   $opts: map.merge($_default-options, $options);
   $threshold: map.get($opts, "threshold") or 60%;
   $color-mappings: map.get($opts, "color-mappings");
-  $type: if(color.lightness($background-color) > $threshold, "dark", "light");
+  $type: if(
+    color.channel($background-color, "lightness", hsl) > $threshold,
+    "dark",
+    "light"
+  );
 
   @return map.get($color-mappings, $type);
 }

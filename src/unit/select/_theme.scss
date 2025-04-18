@@ -59,19 +59,18 @@ Style guide: #{settings.$prefix}-select.theme.builtin
       width: 0;
       height: 0;
       margin: auto 0;
-
-      opacity: 0.8;
       border-top-style: solid;
       border-top-width: 8px;
       border-right: 6px solid transparent;
       border-bottom: 0 solid transparent;
       border-left: 6px solid transparent;
+
+      opacity: 0.8;
     }
   }
 
   @include mixin.placeholder-define($name: $selector-field) {
     padding: 10px 30px 10px 10px;
-
     border-radius: 3px;
 
     transition-timing-function: ease-out;
@@ -101,16 +100,16 @@ Style guide: #{settings.$prefix}-select.theme.builtin
           @extend %#{$selector-field};
 
           @include mixin.on-focus() {
-            color: $color-focus;
             border-color: $border-focus;
+            color: $color-focus;
           }
 
           @include mixin.on-disabled() {
             border: 1px solid $border;
           }
 
-          background-color: $background;
           border: 1px solid $border;
+          background-color: $background;
         }
       }
     }

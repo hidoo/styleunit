@@ -57,7 +57,7 @@ Style guide: #{settings.$prefix}-text.type.extend
   @include spritesheet.define(
     $type: "text-svg",
     $name: "example-b",
-    $options: map-merge(
+    $options: map.merge(
         $options,
         (
           "responsive": true
@@ -67,7 +67,7 @@ Style guide: #{settings.$prefix}-text.type.extend
   @include spritesheet.define(
     $type: "text-image",
     $name: "example-c",
-    $options: map-merge(
+    $options: map.merge(
         $options,
         (
           "use2x": true
@@ -77,7 +77,7 @@ Style guide: #{settings.$prefix}-text.type.extend
   @include spritesheet.define(
     $type: "text-image",
     $name: "example-d",
-    $options: map-merge(
+    $options: map.merge(
         $options,
         (
           "responsive": true,

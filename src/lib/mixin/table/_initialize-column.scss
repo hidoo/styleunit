@@ -34,9 +34,8 @@
 
   margin: #{$margin};
   padding: #{$padding};
-
-  vertical-align: middle;
-
   border-style: #{$border-style};
   border-width: #{$border-width};
+
+  vertical-align: middle;
 }

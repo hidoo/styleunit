@@ -88,7 +88,7 @@ describe('@mixin font-apply-family(...)', () => {
       {
         params: [['$value: "default"']],
         expected:
-          '.selector{font-family:-apple-system,BlinkMacSystemFont,Helvetica,Arial,"Hiragino Kaku Gothic ProN","Yu Gothic Medium","游ゴシック Medium",YuGothic,Meiryo,"メイリオ",sans-serif}'
+          '.selector{font-family:system-ui,-apple-system,BlinkMacSystemFont,Helvetica,Arial,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic Medium","YuGothic",Meiryo,sans-serif}'
       },
       {
         params: [['$value: "monospace"']],
@@ -122,7 +122,7 @@ describe('@mixin font-apply-family(...)', () => {
       {
         params: [['$value: "default"', '$important: true']],
         expected:
-          '.selector{font-family:-apple-system,BlinkMacSystemFont,Helvetica,Arial,"Hiragino Kaku Gothic ProN","Yu Gothic Medium","游ゴシック Medium",YuGothic,Meiryo,"メイリオ",sans-serif !important}'
+          '.selector{font-family:system-ui,-apple-system,BlinkMacSystemFont,Helvetica,Arial,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic Medium","YuGothic",Meiryo,sans-serif !important}'
       },
       {
         params: [['$value: "monospace"', '$important: true']],

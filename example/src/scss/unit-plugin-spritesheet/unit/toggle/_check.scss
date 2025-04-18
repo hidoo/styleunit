@@ -58,7 +58,7 @@ Style guide: #{settings.$prefix}-toggle.check.extends
   @include spritesheet.define(
     $type: "check-svg",
     $name: "example-b",
-    $options: map-merge(
+    $options: map.merge(
         $options,
         (
           "responsive": true
@@ -68,7 +68,7 @@ Style guide: #{settings.$prefix}-toggle.check.extends
   @include spritesheet.define(
     $type: "check-image",
     $name: "example-c",
-    $options: map-merge(
+    $options: map.merge(
         $options,
         (
           "use2x": true
@@ -78,7 +78,7 @@ Style guide: #{settings.$prefix}-toggle.check.extends
   @include spritesheet.define(
     $type: "check-image",
     $name: "example-d",
-    $options: map-merge(
+    $options: map.merge(
         $options,
         (
           "responsive": true,

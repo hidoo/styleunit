@@ -355,9 +355,9 @@ Style guide: #{settings.$prefix}-document.core.base
   code,
   a,
   span {
+    border: 0;
     color: inherit;
     background-color: transparent;
-    border: 0;
   }
 
   code {
@@ -529,7 +529,6 @@ Style guide: #{settings.$prefix}-document.core.base
 
   pre {
     max-width: 100%;
-
     border-style: solid;
     border-width: 1px;
     border-radius: 3px;
@@ -550,11 +549,11 @@ Style guide: #{settings.$prefix}-document.core.base
 
   hr {
     height: 0;
-
-    background: transparent;
     border: 0;
     border-bottom-style: solid;
     border-bottom-width: 1px;
+
+    background: transparent;
   }
 
   // ++++++++++++++++++++++++++++
@@ -604,7 +603,7 @@ Style guide: #{settings.$prefix}-document.core.base
           height: 100%;
 
           // for ie 10
-          background-color: rgba(0, 0, 0, 0.005);
+          background-color: rgb(0, 0, 0, 0.005);
         }
 
         > img {

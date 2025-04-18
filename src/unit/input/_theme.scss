@@ -38,7 +38,6 @@ Style guide: #{settings.$prefix}-input.theme.builtin
 
   @include mixin.placeholder-define($name: $selector) {
     padding: 10px;
-
     border-radius: 3px;
 
     transition-timing-function: ease-out;
@@ -71,9 +70,9 @@ Style guide: #{settings.$prefix}-input.theme.builtin
           border: 1px solid $border;
         }
 
+        border: 1px solid $border;
         color: $color;
         background-color: $background;
-        border: 1px solid $border;
         box-shadow: inset rgba(0, 0, 0, $shadow-alpha) 0 2px 2px;
       }
     }
