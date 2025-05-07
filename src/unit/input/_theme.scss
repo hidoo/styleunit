@@ -1,79 +1,113 @@
 @use "sass:map";
 @use "sass:meta";
-@use "sass:string";
 @use "../../lib/mixin";
 @use "../../settings";
 
-/*
-theme
+/// Package name
+/// @access private
+/// @type String
+///
+$_pkg: settings.$pkg !default;
 
-theme modifiers of #{settings.$prefix}-input
+/*
+Theme
+
+The theme module.
 
 Weight: -99
 
 Style guide: #{settings.$prefix}-input.theme
 */
 
-/*
-modifiers: theme
+@if meta.type-of(settings.$builtin-themes) == "map" {
+  /*
+Modifiers
 
-builtin modifiers of theme for #{settings.$prefix}-input
+The theme modifiers.
 
 Weight: -100
 
 Markup: <!-- input -->
 <input class="#{settings.$prefix}-input  {{modifier_class}}" type="text" name="{{modifier_class}}" value="" placeholder="Lorem ipsum dolor sit amet." />
 <!-- input:disabled -->
-<input class="#{settings.$prefix}-input  {{modifier_class}}" type="text" name="{{modifier_class}}" value="" placeholder="Lorem ipsum dolor sit amet." disabled="disabled" />
+<input class="#{settings.$prefix}-input  {{modifier_class}}" type="text" name="{{modifier_class}}" value="" placeholder="あのイーハトーヴォのすきとおった風。" disabled="disabled" />
 <!-- textarea -->
 <textarea class="#{settings.$prefix}-input  {{modifier_class}}" name="{{modifier_class}}" rows="5" cols="10" placeholder="Lorem ipsum dolor sit amet."></textarea>
 
-#{settings.$prefix}-input--theme-light - light theme
-#{settings.$prefix}-input--theme-dark - dark theme
+#{settings.$prefix}-input--theme-normal - Normal theme
 
 Style guide: #{settings.$prefix}-input.theme.builtin
 */
-.#{settings.$prefix}-input--theme {
-  $selector: string.unique-id();
+  .#{settings.$prefix}-input--theme {
+    &-normal {
+      $default-theme: map.get(settings.$builtin-themes, "light");
 
-  @include mixin.placeholder-define($name: $selector) {
-    padding: 10px;
-    border-radius: 3px;
+      // Load colors
+      --color-up: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "color")})
+      );
+      --color-focus: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "color-focus")})
+      );
+      --background-color-up: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "background")})
+      );
+      --background-color-focus: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "background-focus")})
+      );
+      --border-color-up: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "border")})
+      );
+      --border-color-focus: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "border-focus")})
+      );
 
-    transition-timing-function: ease-out;
-    transition-duration: 0.1s;
-    transition-property: border-color;
-  }
+      // Default settings
+      --padding: 10px;
+      --border-radius: 3px;
+      --color: var(--color-up);
+      --background-color: var(--background-color-up);
+      --border: 1px solid var(--border-color-up);
+      --box-shadow: inset rgb(0, 0, 0, 0.1) 0 2px 2px;
+      --transition: border-color 0.1s ease-out;
 
-  @if meta.type-of(settings.$builtin-themes) == "map" {
-    @each $name, $theme in settings.$builtin-themes {
-      $color: map.get($theme, "color");
-      $color-focus: map.get($theme, "color-focus");
-      $background: map.get($theme, "background");
-      $background-focus: map.get($theme, "background-focus");
-      $border: map.get($theme, "border");
-      $border-focus: map.get($theme, "border-focus");
-      $shadow-alpha: if($name == "light", 0.1, 1);
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
 
-      &-#{$name} {
-        @extend %#{$selector};
+      @include mixin.on-focus() {
+        --border: 1px solid var(--border-color-focus);
+      }
 
-        @include mixin.on-placeholder() {
-          color: $color-focus;
+      @include mixin.on-disabled() {
+        --border: 1px solid var(--border-color-up);
+      }
+
+      @include mixin.on-placeholder() {
+        --color: var(--color-focus);
+      }
+
+      // Settings by color schemes
+      @each $name, $theme in settings.$builtin-themes {
+        @media (prefers-color-scheme: #{$name}) {
+          $color-up: map.get($theme, "color");
+          $color-focus: map.get($theme, "color-focus");
+          $background-up: map.get($theme, "background");
+          $background-focus: map.get($theme, "background-focus");
+          $border-up: map.get($theme, "border");
+          $border-focus: map.get($theme, "border-focus");
+
+          // Apply colors to settings
+          --color-up: rgb(var(--#{$_pkg}-color-#{$color-up}));
+          --color-focus: rgb(var(--#{$_pkg}-color-#{$color-focus}));
+          --background-color-up: rgb(var(--#{$_pkg}-color-#{$background-up}));
+          --background-color-focus: rgb(
+            var(--#{$_pkg}-color-#{$background-focus})
+          );
+          --border-color-up: rgb(var(--#{$_pkg}-color-#{$border-up}));
+          --border-color-focus: rgb(var(--#{$_pkg}-color-#{$border-focus}));
+          --box-shadow: inset rgb(0, 0, 0, #{if($name == "light", 0.1, 0.5)}) 0
+            2px 2px;
         }
-
-        @include mixin.on-focus() {
-          border-color: $border-focus;
-        }
-
-        @include mixin.on-disabled() {
-          border: 1px solid $border;
-        }
-
-        border: 1px solid $border;
-        color: $color;
-        background-color: $background;
-        box-shadow: inset rgba(0, 0, 0, $shadow-alpha) 0 2px 2px;
       }
     }
   }

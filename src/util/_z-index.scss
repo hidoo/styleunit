@@ -1,10 +1,14 @@
+@use "sass:math";
+@use "sass:meta";
+@use "sass:list";
+@use "../lib/function";
 @use "../lib/mixin";
 @use "../settings";
 
 /*
-z-index
+Z index
 
-utilities that tweek of z-index
+The z-index module.
 
 Weight: -92
 
@@ -12,28 +16,108 @@ Style guide: #{settings.$util-prefix}.z-index
 */
 
 /*
-modifiers: z-index
+Modifiers
 
-builtin modifiers of z-index. (0 to 50 in 5 steps)
+The z-index modifiers.
+Values: #{meta.inspect(settings.$util-z-index)}.
 
 Weight: -100
 
-Markup: <div style="position:relative; padding:50px;">
-  <div style="position:absolute; width:50px; height:50px; top:50%; left:50%; margin:-50px 0 0 -50px; line-height:50px; color:#fff; background:#ccc; text-align:center; z-index:1;">1</div>
-  <div class="{{modifier_class}}" style="position:absolute; width:50px; height:50px; line-height:50px; top:50%; left:50%; margin:-25px 0 0 -25px; background:#999;"></div>
-  <div style="position:absolute; width:50px; height:50px; line-height:50px; top:50%; left:50%; margin:0; color:#fff; background:#666; text-align:center; z-index:49">49</div>
+Markup: <div class="z-index-example-wrapper">
+  <div class="z-index-example-1">1</div>
+  <div class="z-index-example {{modifier_class}}"></div>
+  <div class="z-index-example-49">49</div>
 </div>
+<style>
+  :where(.z-index-example-wrapper) {
+    position: relative;
+    width: 75px;
+    height: 75px;
+  }
+  :where(.z-index-example) {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    top: 50%;
+    left: 50%;
+    margin: -25px 0 0 -25px;
+    background: #999;
+    z-index: 2;
+  }
+  :where(.z-index-example-1) {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    left: 50%;
+    margin: -50px 0 0 -50px;
+    line-height: 50px;
+    color: #fff;
+    background: #ccc;
+    text-align: center;
+    z-index: 1;
+  }
+  :where(.z-index-example-49) {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    top: 50%;
+    left: 50%;
+    margin: 0;
+    color: #fff;
+    background: #666;
+    text-align: center;
+    z-index: 49;
+  }
+</style>
 
 #{settings.$util-prefix}--z-index-0 - 0 z-index
-#{settings.$util-prefix}--z-index-25 - 25 z-index
 #{settings.$util-prefix}--z-index-50 - 50 z-index
+#{settings.$util-prefix}--z-index-normal - Normal z-index
+#{settings.$util-prefix}--z-index-0-if-mobile - 0px z-index if mobile viewport.
+#{settings.$util-prefix}--z-index-0-if-not-mobile - 0px z-index if not mobile viewport.
 
 Style guide: #{settings.$util-prefix}.z-index.builtin
 */
 .#{settings.$util-prefix}--z-index {
-  // each by sizes
-  @include mixin.size-define(
-    $type: "z-index",
-    $values: settings.$util-z-index-values
-  );
+  $z-indexes: settings.$util-z-index;
+
+  @each $z-index in $z-indexes {
+    $name: "";
+
+    // stylelint-disable scss/no-duplicate-dollar-variables
+    @if meta.type-of($z-index) == "list" {
+      $name: list.nth($z-index, 1);
+      $z-index: list.nth($z-index, 2);
+    } @else if $z-index == "auto" {
+      $name: $z-index;
+    } @else {
+      $name: function.math-remove-unit($z-index);
+
+      @if $z-index < 0 {
+        $name: "_#{math.abs($name)}";
+      }
+    }
+    // stylelint-enable scss/no-duplicate-dollar-variables
+
+    &-#{$name} {
+      --z-index: #{$z-index};
+
+      z-index: var(--z-index);
+    }
+
+    @each $bp, $query in settings.$breakpoints {
+      @if meta.type-of($query) == "string" {
+        &-#{$name}-#{$bp} {
+          @include mixin.media($query: $query) {
+            --z-index: #{$z-index};
+
+            z-index: var(--z-index);
+          }
+        }
+      }
+    }
+  }
 }

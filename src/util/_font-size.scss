@@ -3,10 +3,16 @@
 @use "../lib/mixin";
 @use "../settings";
 
-/*
-font-size
+/// Package name
+/// @access private
+/// @type String
+///
+$_pkg: settings.$pkg !default;
 
-utilities that tweek of font-size
+/*
+Font size
+
+The font-size module.
 
 Weight: -87
 
@@ -14,30 +20,47 @@ Style guide: #{settings.$util-prefix}.font-size
 */
 
 /*
-modifiers: font-size
+Modifiers
 
-builtin modifiers of font-size
+The font-size modifiers .
 
 Weight: -100
 
 Markup: <p class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<p class="#{settings.$prefix}-text  {{modifier_class}}">あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモーリオ市、郊外のぎらぎらひかる草の波。</p>
 
-#{settings.$util-prefix}--font-size-xsmall - xsmall font size
-#{settings.$util-prefix}--font-size-small - small font size
-#{settings.$util-prefix}--font-size-medium - medium font size
-#{settings.$util-prefix}--font-size-large - large font size
-#{settings.$util-prefix}--font-size-xlarge - xlarge font size
-#{settings.$util-prefix}--font-size-2xlarge - 2xlarge font size
-#{settings.$util-prefix}--font-size-3xlarge - 3xlarge font size
-#{settings.$util-prefix}--font-size-4xlarge - 4xlarge font size
+#{settings.$util-prefix}--font-size-xsmall - Extra small font size.
+#{settings.$util-prefix}--font-size-small - Small font size.
+#{settings.$util-prefix}--font-size-medium - Medium font size.
+#{settings.$util-prefix}--font-size-large - Large font size.
+#{settings.$util-prefix}--font-size-xlarge - Extra large font size.
+#{settings.$util-prefix}--font-size-2xlarge - 2 extra large font size.
+#{settings.$util-prefix}--font-size-3xlarge - 3 extra large font size.
+#{settings.$util-prefix}--font-size-4xlarge - 4 extra large font size.
+#{settings.$util-prefix}--font-size-2xlarge-if-mobile - 2 extra large font size if mobile viewport
+#{settings.$util-prefix}--font-size-2xlarge-if-not-mobile - 2 extra large font size if not mobile viewport
 
 Style guide: #{settings.$util-prefix}.font-size.builtin
 */
 .#{settings.$util-prefix}--font-size {
-  @if meta.type-of(settings.$font-size-presets) == "map" {
-    @each $value in map.keys(settings.$font-size-presets) {
-      &-#{$value} {
-        @include mixin.font-apply-size($value: $value, $important: true);
+  $presets: settings.$font-size-presets;
+
+  @each $name, $font-size in $presets {
+    &-#{$name} {
+      --font-size: var(--#{$_pkg}-font-size-#{$name});
+
+      font-size: var(--font-size);
+    }
+
+    @each $bp, $query in settings.$breakpoints {
+      @if meta.type-of($query) == "string" {
+        &-#{$name}-#{$bp} {
+          @include mixin.media($query: $query) {
+            --font-size: var(--#{$_pkg}-font-size-#{$name});
+
+            font-size: var(--font-size);
+          }
+        }
       }
     }
   }

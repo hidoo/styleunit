@@ -4,10 +4,16 @@
 @use "../../lib/mixin";
 @use "../../settings";
 
+/// Package name
+/// @access private
+/// @type String
+///
+$_pkg: settings.$pkg !default;
+
 /*
 #{settings.$prefix}-table
 
-component for table.
+The table unit.
 
 Weight: -1050
 
@@ -15,9 +21,9 @@ Style guide: #{settings.$prefix}-table
 */
 
 /*
-core
+Core
 
-core module of #{settings.$prefix}-table
+The core module.
 
 Weight: -100
 
@@ -25,78 +31,95 @@ Style guide: #{settings.$prefix}-table.core
 */
 
 /*
-builtin style
+Default style
 
-builtin style of #{settings.$prefix}-table
+The default style.
 
 Weight: -100
 
-Markup: <table class="{{modifier_class}}">
+Markup: <table class="#{settings.$prefix}-table">
   <tr>
-    <th class="{{modifier_class}}__column  {{modifier_class}}__column--head" scope="row">Lorem ipsum dolor sit amet.</th>
-    <td class="{{modifier_class}}__column">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+    <th class="#{settings.$prefix}-table__column" scope="row">Lorem ipsum dolor sit amet.</th>
+    <td class="#{settings.$prefix}-table__column">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
   </tr>
   <tr>
-    <th class="{{modifier_class}}__column  {{modifier_class}}__column--head" scope="row">Lorem ipsum dolor sit amet.</th>
-    <td class="{{modifier_class}}__column">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
+    <th class="#{settings.$prefix}-table__column" scope="row">あのイーハトーヴォのすきとおった風。</th>
+    <td class="#{settings.$prefix}-table__column">あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</td>
   </tr>
 </table>
 
-#{settings.$prefix}-table-light - builtin light style
-#{settings.$prefix}-table-dark - builtin dark style
-
-Style guide: #{settings.$prefix}-table.core.builtin
+Style guide: #{settings.$prefix}-table.core.default
 */
 .#{settings.$prefix}-table {
-  $selector: string.unique-id();
-  $selector-column: string.unique-id();
+  --display: table;
+  --border-collapse: collapse;
+  --width: auto;
+  --margin: 0;
+  --padding: 0;
+  --border-color: currentColor;
+  --border-style: solid;
+  --border-width: 1px;
+  --color: inherit;
+  --background-color: transparent;
 
-  // define placeholder class
-  @include mixin.placeholder-define($name: $selector) {
-    @include mixin.table-initialize();
+  // For columns
+  --column-display: table-cell;
+  --column-padding: 5px 10px calc(5px * var(--column-line-height));
+  --column-border-color: var(--border-color);
+  --column-border-style: var(--border-style);
+  --column-border-width: var(--border-width);
+  --column-font-size: var(--#{$_pkg}-font-size);
+  --column-font-weight: var(--#{$_pkg}-font-weight);
+  --column-font-style: normal;
+  --column-line-height: var(--#{$_pkg}-line-height);
+  --column-color: inherit;
+  --column-text-align: left;
+  --column-text-decoration: none;
+  --column-text-indent: 0;
+  --column-letter-spacing: var(--#{$_pkg}-letter-spacing);
+  --column-white-space: normal;
+  --column-vertical-align: middle;
+  --column-background-color: transparent;
+  --column-heading-background-color: transparent;
 
-    color: inherit;
-    background-color: transparent;
-  }
+  display: var(--display);
+  border-collapse: var(--border-collapse);
 
-  // define placeholder class of column
-  @include mixin.placeholder-define($name: $selector-column) {
-    @include mixin.table-initialize-column(
-      $padding: 5px 10px
-        (
-          5px * 1.5
-        )
-    );
-    @include mixin.text-initialize();
-    @include mixin.font-initialize();
-    @include mixin.font-apply-size($value: "medium");
-  }
+  width: var(--width);
+  margin: var(--margin);
+  padding: var(--padding);
+  border-color: var(--border-color);
+  border-style: var(--border-style);
+  border-width: var(--border-width);
 
-  @if meta.type-of(settings.$builtin-themes) == "map" {
-    @each $name, $theme in settings.$builtin-themes {
-      $color: map.get($theme, "color");
-      $background: map.get($theme, "background");
-      $background-focus: map.get($theme, "background-focus");
-      $border: map.get($theme, "border");
-      $border-focus: map.get($theme, "border-focus");
+  color: var(--color);
 
-      &-#{$name} {
-        @extend %#{$selector};
+  background-color: var(--background-color);
 
-        border-color: if($name == "light", $border, $border-focus);
+  &__column {
+    display: var(--column-display);
 
-        &__column {
-          @extend %#{$selector-column};
+    padding: var(--column-padding);
+    border-color: var(--column-border-color);
+    border-style: var(--column-border-style);
+    border-width: var(--column-border-width);
 
-          border-color: if($name == "light", $border, $border-focus);
-          color: $color;
-          background-color: $background;
+    font-size: var(--column-font-size);
+    font-weight: var(--column-font-weight);
+    font-style: var(--column-font-style);
+    line-height: var(--column-line-height);
+    color: var(--column-color);
+    text-align: var(--column-text-align);
+    text-decoration: var(--column-text-decoration);
+    text-indent: var(--column-text-indent);
+    letter-spacing: var(--column-letter-spacing);
+    white-space: var(--column-white-space);
+    vertical-align: var(--column-vertical-align);
 
-          &--head {
-            background-color: $background-focus;
-          }
-        }
-      }
+    background-color: var(--column-background-color);
+
+    &:where([scope]) {
+      --column-background-color: var(--column-heading-background-color);
     }
   }
 }

@@ -1,5 +1,5 @@
 ////
-/// (c) hidoo | MIT Lisence
+/// (c) hidoo | MIT License
 /// @group string feature
 ////
 
@@ -38,11 +38,9 @@
 
       @if $flag == "%s" {
         $formatted: $prev + "#{$arg}" + $rest;
-      }
-      @else if $flag == "%o" {
+      } @else if $flag == "%o" {
         $formatted: $prev + "#{meta.inspect($arg)}" + $rest;
-      }
-      @else {
+      } @else {
         $formatted: $prev + $arg + $rest;
       }
     }

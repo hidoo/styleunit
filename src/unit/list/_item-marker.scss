@@ -1,9 +1,9 @@
 @use "../../settings";
 
 /*
-item-marker
+Item marker
 
-item-marker modifiers of #{settings.$prefix}-list
+The item marker module.
 
 Weight: -98
 
@@ -11,47 +11,44 @@ Style guide: #{settings.$prefix}-list.item-marker
 */
 
 /*
-modifiers: item-marker
+Modifiers
 
-builtin modifiers of item-marker for #{settings.$prefix}-list
+The item marker modifiers.
 
 Weight: -100
 
-Markup: <!-- un ordered list -->
-<ul class="#{settings.$prefix}-list  #{settings.$prefix}-list--marker-circle-filled">
+Markup:
+<!-- un ordered list -->
+<ul class="#{settings.$prefix}-list  #{settings.$prefix}-list--marker-circle">
   <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.</li>
   <li class="#{settings.$prefix}-list__item  {{modifier_class}}  #{settings.$prefix}-text" data-#{settings.$prefix}-list-item-marker="▸">Lorem ipsum dolor sit amet.</li>
   <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.</li>
 </ul>
 <!-- ordered list -->
 <ol class="#{settings.$prefix}-list  #{settings.$prefix}-list--marker-numeric">
-  <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.</li>
-  <li class="#{settings.$prefix}-list__item  {{modifier_class}}  #{settings.$prefix}-text" data-#{settings.$prefix}-list-item-marker="Ⅱ">Lorem ipsum dolor sit amet.</li>
-  <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.</li>
+  <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">あのイーハトーヴォのすきとおった風。</li>
+  <li class="#{settings.$prefix}-list__item  {{modifier_class}}  #{settings.$prefix}-text" data-#{settings.$prefix}-list-item-marker="弐">あのイーハトーヴォのすきとおった風。</li>
+  <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">あのイーハトーヴォのすきとおった風。</li>
 </ol>
 
-#{settings.$prefix}-list__item--marker-none - no item-marker
-#{settings.$prefix}-list__item--marker-no-increment - no-increment item-marker
-#{settings.$prefix}-list__item--marker-custom - custom item-marker
+#{settings.$prefix}-list__item--marker-none - No item marker
+#{settings.$prefix}-list__item--marker-no-increment - No increment item marker
+#{settings.$prefix}-list__item--marker-custom - Custom item marker
 
 Style guide: #{settings.$prefix}-list.item-marker.builtin
 */
 .#{settings.$prefix}-list__item--marker {
   &-none {
-    &::before {
-      content: none !important;
-    }
+    --item-marker-content: none;
   }
 
   &-no-increment {
-    counter-increment: none !important;
+    --item-counter-increment: none;
   }
 
   &-custom {
     $attribute-name: "data-#{settings.$prefix}-list-item-marker";
 
-    &::before {
-      content: attr(#{$attribute-name}) !important;
-    }
+    --item-marker-content: attr(#{$attribute-name});
   }
 }

@@ -1,0 +1,85 @@
+////
+/// (c) hidoo | MIT License
+/// @group Default settings
+////
+
+/// Color palette
+/// @type Map
+/// @prop {List} black [(0, 0, 0)] - <span style="color: rgb(0, 0, 0);">&#9608;</span>
+/// @prop {List} dark-moon [(20, 23, 26)] - <span style="color: rgb(20, 23, 26);">&#9608;</span>
+/// @prop {List} night-sky [(38, 44, 51)] - <span style="color: rgb(38, 44, 51);">&#9608;</span>
+/// @prop {List} black-olive [(63, 63, 63)] - <span style="color: rgb(63, 63, 63);">&#9608;</span>
+/// @prop {List} dim-gray [(107, 107, 109)] - <span style="color: rgb(107, 107, 109);">&#9608;</span>
+/// @prop {List} nocturnal [(119, 124, 130)] - <span style="color: rgb(119, 124, 130);">&#9608;</span>
+/// @prop {List} gateway-gray [(159, 159, 161)] - <span style="color: rgb(159, 159, 161);">&#9608;</span>
+/// @prop {List} stone [(195, 195, 197)] - <span style="color: rgb(195, 195, 197);">&#9608;</span>
+/// @prop {List} olympus-white [(213, 215, 217)] - <span style="color: rgb(213, 215, 217);">&#9608;</span>
+/// @prop {List} mercury [(235, 236, 237)] - <span style="color: rgb(235, 236, 237);">&#9608;</span>
+/// @prop {List} snow-flake [(237, 237, 240)] - <span style="color: rgb(237, 237, 240);">&#9608;</span>
+/// @prop {List} ghost-white [(249, 249, 250)] - <span style="color: rgb(249, 249, 250);">&#9608;</span>
+/// @prop {List} white [(255, 255, 255)] - <span style="color: rgb(255, 255, 255);">&#9608;</span>
+/// @prop {List} summer-sky [(55, 165, 228)] - <span style="color: rgb(55, 165, 228);">&#9608;</span>
+/// @prop {List} sky-blue [(122, 195, 237)] - <span style="color: rgb(255, 255, 255);">&#9608;</span>
+///
+$palette: (
+  // prettier-ignore
+  "black": (0, 0, 0),
+  "dark-moon": (20, 23, 26),
+  "night-sky": (38, 44, 51),
+  "black-olive": (63, 63, 63),
+  "dim-gray": (107, 107, 109),
+  "nocturnal": (119, 124, 130),
+  "gateway-gray": (159, 159, 161),
+  "stone": (195, 195, 197),
+  "olympus-white": (213, 215, 217),
+  "mercury": (235, 236, 237),
+  "snow-flake": (237, 237, 240),
+  "ghost-white": (249, 249, 250),
+  "white": (255, 255, 255),
+  "summer-sky": (55, 165, 228),
+  "sky-blue": (122, 195, 237)
+) !default;
+
+/// Color mappings
+/// @type Map
+/// @prop {String} a [black] - type a
+/// @prop {String} b [dark-moon] - type b
+/// @prop {String} c [night-sky] - type c
+/// @prop {String} d [black-olive] - type d
+/// @prop {String} e [dim-gray] - type e
+/// @prop {String} f [nocturnal] - type f
+/// @prop {String} g [gateway-gray] - type g
+/// @prop {String} h [stone] - type h
+/// @prop {String} i [olympus-white] - type i
+/// @prop {String} j [mercury] - type j
+/// @prop {String} k [snow-flake] - type k
+/// @prop {String} l [ghost-white] - type l
+/// @prop {String} m [white] - type m
+/// @prop {String} n [summer-sky] - type n
+/// @prop {String} o [sky-blue] - type o
+/// @prop {String} foreground [black] - type foreground
+/// @prop {String} background [white] - type background
+/// @prop {String} link [summer-sky] - type link
+/// @prop {String} focus [sky-blue] - type focus
+///
+$mappings: (
+  "a": "black",
+  "b": "dark-moon",
+  "c": "night-sky",
+  "d": "black-olive",
+  "e": "dim-gray",
+  "f": "nocturnal",
+  "g": "gateway-gray",
+  "h": "stone",
+  "i": "olympus-white",
+  "j": "mercury",
+  "k": "snow-flake",
+  "l": "ghost-white",
+  "m": "white",
+  "n": "summer-sky",
+  "o": "sky-blue",
+  "foreground": "black",
+  "background": "white",
+  "link": "summer-sky",
+  "focus": "sky-blue"
+) !default;

@@ -2,10 +2,16 @@
 @use "../../lib/mixin";
 @use "../../settings";
 
+/// Package name
+/// @access private
+/// @type String
+///
+$_pkg: settings.$pkg !default;
+
 /*
 #{settings.$prefix}-input
 
-component for input field.
+The input unit.
 
 Weight: -1030
 
@@ -13,9 +19,9 @@ Style guide: #{settings.$prefix}-input
 */
 
 /*
-core
+Core
 
-core module of #{settings.$prefix}-input
+The core module.
 
 Weight: -100
 
@@ -23,61 +29,89 @@ Style guide: #{settings.$prefix}-input.core
 */
 
 /*
-default style
+Default style
 
-default style of #{settings.$prefix}-input
+The default style.
 
 Weight: -100
 
 Markup: <!-- input -->
 <input class="#{settings.$prefix}-input" type="text" name="{{modifier_class}}" value="" placeholder="Lorem ipsum dolor sit amet." />
 <!-- input:disabled -->
-<input class="#{settings.$prefix}-input" type="text" name="{{modifier_class}}" value="" placeholder="Lorem ipsum dolor sit amet." disabled="disabled" />
+<input class="#{settings.$prefix}-input" type="text" name="{{modifier_class}}" value="" placeholder="あのイーハトーヴォのすきとおった風。" disabled="disabled" />
 <!-- textarea -->
 <textarea class="#{settings.$prefix}-input" name="{{modifier_class}}" rows="5" cols="10" placeholder="Lorem ipsum dolor sit amet."></textarea>
 
-Style guide: #{settings.$prefix}-input.core.base
+Style guide: #{settings.$prefix}-input.core.default
 */
 .#{settings.$prefix}-input {
-  @include mixin.box-initialize($box-sizing: "border-box");
-  @include mixin.text-initialize(
-    $line-height: "normal",
-    $white-space: null,
-    $word-wrap: null
-  );
-  @include mixin.font-initialize();
-  @include mixin.font-apply-size($value: "medium");
+  --resize: none;
+  --position: relative;
+  --display: block;
+  --overflow: visible;
+  --box-sizing: border-box;
+  --width: 100%;
+  --height: auto;
+  --margin: 0;
+  --padding: 0;
+  --border: 0;
+  --border-radius: 0px;
+  --font-size: var(--#{$_pkg}-font-size);
+  --font-weight: var(--#{$_pkg}-font-weight);
+  --font-style: normal;
+  --line-height: normal;
+  --color: inherit;
+  --text-align: left;
+  --text-decoration: none;
+  --text-indent: 0;
+  --letter-spacing: var(--#{$_pkg}-letter-spacing);
+  --vertical-align: baseline;
+  --list-style: none;
+  --appearance: none;
+  --opacity: 1;
+  --background-color: transparent;
+  --outline: 0;
+
+  resize: var(--resize);
+
+  position: var(--position);
+
+  overflow: var(--overflow);
+  display: var(--display);
+
+  box-sizing: var(--box-sizing);
+  width: var(--width);
+  height: var(--height);
+  margin: var(--margin);
+  padding: var(--padding);
+  border: var(--border);
+  border-radius: var(--border-radius);
+
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  font-style: var(--font-style);
+  line-height: var(--line-height);
+  color: var(--color);
+  text-align: var(--text-align);
+  text-decoration: var(--text-decoration);
+  text-indent: var(--text-indent);
+  letter-spacing: var(--letter-spacing);
+  vertical-align: var(--vertical-align);
+  list-style: var(--list-style);
+
+  appearance: var(--appearance);
+  opacity: var(--opacity);
+  background-color: var(--background-color);
+  outline: var(--outline);
 
   @include mixin.on-disabled() {
-    opacity: 0.5;
+    --opacity: 0.5;
   }
 
-  width: 100%;
-  border-radius: 0;
-
-  color: inherit;
-
-  // stylelint-disable-next-line plugin/no-unsupported-browser-features
-  appearance: none;
-  background-color: transparent;
-
-  // stylelint-disable-next-line plugin/no-unsupported-browser-features
-  outline: 0;
-
-  @at-root {
-    textarea#{&} {
-      // restrict to only vertical resizing
-      // + ie, edge, ios and android are not supported
-      // stylelint-disable-next-line plugin/no-unsupported-browser-features
-      resize: vertical;
-      line-height: if(
-        meta.type-of(settings.$line-height) == "number",
-        settings.$line-height,
-        1.5
-      );
-
-      // for smooth scrolling
-      -webkit-overflow-scrolling: touch;
-    }
+  &:where(textarea) {
+    // restrict to only vertical resizing
+    // + ie, edge, ios and android are not supported
+    --resize: vertical;
+    --line-height: var(--#{$_pkg}-line-height);
   }
 }

@@ -1,47 +1,44 @@
 ////
-/// (c) hidoo | MIT Lisence
+/// (c) hidoo | MIT License
 /// @group Default settings
 ////
 
-/// default font family.
-///
-/// **default**
-/// + `-apple-system` ... use "San Francisco" as primary font in mac
-/// + `BlinkMacSystemFont` ... use "San Francisco" as primary in chrome on mac
-/// + `Helvetica` ... secondary font in mac
-/// + `Arial` ... secondary font in windows
-/// + `Hiragino Kaku Gothic ProN` ... primary japanese font in mac
-/// + `Yu Gothic Medium` ... primary japanese font in windows
-/// + `游ゴシック Medium` ... primary japanese font in ie on windows
-/// + `YuGothic` ... secondary japanese font in mac
-/// + `Meiryo` ... secondary japanese font in windows
-/// + `メイリオ` ... secondary japanese font in ie on windows
-///
+/// Default font family.
+/// |Name|Description|
+/// |:--|:--|
+/// |`system-ui`|Use system ui font as a primary font family in macOS.|
+/// |`-apple-system`|Use "San Francisco" as a secondary font family in macOS.|
+/// |`BlinkMacSystemFont`|Use "San Francisco" as a primary font family in chrome on macOS.|
+/// |`Helvetica`|Use as a fallback font family in macOS.|
+/// |`Arial`|Use as a primary font family in Windows.|
+/// |`Hiragino Sans`|Use as a primary japanese font family in macOS.|
+/// |`Hiragino Kaku Gothic ProN`|Use as a fallback of Hiragino Sans in macOS.|
+/// |`Yu Gothic Medium`|Use as a primary japanese font family in Windows.|
+/// |`YuGothic`|Use as a secondary japanese font family in macOS.|
+/// |`Meiryo`|Use as a secondary japanese font family in Windows.|
 /// @type List
 ///
 $family: (
-  // stylelint-disable value-keyword-case
+  system-ui,
   -apple-system,
   BlinkMacSystemFont,
   Helvetica,
   Arial,
+  "Hiragino Sans",
   "Hiragino Kaku Gothic ProN",
   "Yu Gothic Medium",
-  "游ゴシック Medium",
-  YuGothic,
+  "YuGothic",
   Meiryo,
-  "メイリオ",
-  sans-serif // stylelint-enable value-keyword-case
+  sans-serif
 ) !default;
 
-/// default monospace font family.
-///
-/// **default**
-/// + `Consolas` ... primary font in windows (use it as primary if installed in mac)
-/// + `Monaco` ... primary font in mac
-/// + `Menlo` ... secondary font in mac
-/// + `Courier` ... secondary font in windows
-///
+/// Default monospace font family.
+/// |Name|Description|
+/// |:--|:--|
+/// |`Consolas`|Use as a primary monospace font family in Windows. (Use it if installed in macOS)|
+/// |`Monaco`|Use as a primary monospace font family in macOS.|
+/// |`Menlo`|Use as a secondary monospace font family in macOS.|
+/// |`Courier`|Use as a secondary monospace font family in Windows.|
 /// @type List
 ///
 $family-monospace: (
@@ -53,20 +50,30 @@ $family-monospace: (
   monospace // stylelint-enable value-keyword-case
 ) !default;
 
-/// default base font size.
+/// Default font family presets
+/// @type Map
+/// @prop {String} default [$family] - Default font family
+/// @prop {String} monospace [$family-monospace] - Monospace font family
+///
+$family-presets: (
+  "default": $family,
+  "monospace": $family-monospace
+) !default;
+
+/// Default font size.
+/// (default: `14px`)
+/// @type Number
+///
+$size: 14px !default;
+
+/// Default base font size.
 /// (default: `16px`)
 /// this use if `$enable-relative-size` is `true`
 /// @type Number
 ///
 $base-size: 16px !default;
 
-/// default font size
-/// (default: `14px`)
-/// @type Number
-///
-$size: 14px !default;
-
-/// default font size presets
+/// Default font size presets
 /// @type Map
 /// @prop {Number} xsmall [0.75] - size xsmall
 /// @prop {Number} small [0.875] - size small
@@ -88,9 +95,72 @@ $size-presets: (
   "4xlarge": 1.75
 ) !default;
 
+/// Default font weight.
+/// (default: `400`)
+/// @type Number
+///
+$weight: 400 !default;
+
+/// Font weight presets
+/// @type Map
+/// @prop {Number} thin [100] - thin
+/// @prop {Number} extra-light [200] - extra-light
+/// @prop {Number} light [300] - light
+/// @prop {Number} regular [400] - regular
+/// @prop {Number} medium [500] - medium
+/// @prop {Number} semi-bold [600] - semi-bold
+/// @prop {Number} bold [700] - bold
+/// @prop {Number} extra-bold [800] - extra-bold
+/// @prop {Number} black [900] - black
+///
+$weight-presets: (
+  "thin": 100,
+  "extra-light": 200,
+  "light": 200,
+  "regular": 400,
+  "medium": 500,
+  "semi-bold": 600,
+  "bold": 700,
+  "extra-bold": 800,
+  "black": 900
+) !default;
+
+/// Default font variant
+/// (default: (common-ligatures proportional-width emoji))
+/// @type List
+///
+$variant: (common-ligatures proportional-width emoji) !default;
+
+/// Default font smoothing
+/// (webkit: antialiased, moz-osx: grayscale)
+/// @type Map
+/// @prop {Number} webkit [antialiased] - For browsers macOS
+/// @prop {Number} moz-osx [grayscale] - For firefox on macOS
+///
+$smoothing: (
+  "webkit": antialiased,
+  "moz-osx": grayscale
+) !default;
+
 /// enable relative font size specify.
 /// override base size settings of font
 /// (default: `true`)
 /// @type Boolean
 ///
 $enable-relative-size: true !default;
+
+/// Default list of units that applying font
+/// @access private
+/// @type List
+///
+$applying-units: (
+  "icon",
+  "text",
+  "pict",
+  "button",
+  "table",
+  "document",
+  "input",
+  "toggle",
+  "select"
+) !default;

@@ -4,7 +4,7 @@
 /*
 #{settings.$prefix}-table-grid
 
-component for table-grid.
+DEPRECATED: This unit is deprecated. Use instead #{settings.$prefix}-flex-grid.
 
 Weight: -990
 
@@ -12,9 +12,9 @@ Style guide: #{settings.$prefix}-table-grid
 */
 
 /*
-core
+Core
 
-core module of #{settings.$prefix}-table-grid
+The core module.
 
 Weight: -100
 
@@ -22,57 +22,96 @@ Style guide: #{settings.$prefix}-table-grid.core
 */
 
 /*
-default style
+Default style
 
-default style of #{settings.$prefix}-table-grid
+The default style.
 
 Weight: -100
 
 Markup: <div class="#{settings.$prefix}-table-grid">
   <div class="#{settings.$prefix}-table-grid__column">
-    <!-- some unit -->
+    <!-- content -->
     <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <figure class="#{settings.$prefix}-pict  #{settings.$prefix}-pict--fit-max-width  #{settings.$util-prefix}--float-left">
-      <img class="#{settings.$prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
-    </figure>
-    <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <!-- some unit -->
+    <p class="#{settings.$prefix}-text">あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</p>
+    <!-- content -->
   </div>
   <div class="#{settings.$prefix}-table-grid__column">
-    <!-- some unit -->
-    <figure class="#{settings.$prefix}-pict  #{settings.$prefix}-pict--fit-max-width  #{settings.$util-prefix}--float-left">
-      <img class="#{settings.$prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
-    </figure>
+    <!-- content -->
+    <p class="#{settings.$prefix}-text">あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</p>
     <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <!-- some unit -->
+    <!-- content -->
   </div>
 </div>
 
-Style guide: #{settings.$prefix}-table-grid.core.base
+Style guide: #{settings.$prefix}-table-grid.core.default
 */
 .#{settings.$prefix}-table-grid {
-  @include mixin.box-initialize($display: "table", $box-sizing: "border-box");
+  --position: relative;
+  --display: table;
+  --overflow: visible;
+  --border-collapse: collapse;
+  --box-sizing: border-box;
+  --width: 100%;
+  --height: 100%;
+  --margin: 0;
+  --padding: 0;
+  --border: 0;
+  --color: inherit;
+  --vertical-align: top;
+  --list-style: none;
+  --background-color: transparent;
 
-  border-collapse: collapse;
+  // For column
+  --column-position: relative;
+  --column-display: table-cell;
+  --column-overflow: visible;
+  --column-box-sizing: border-box;
+  --column-width: auto;
+  --column-height: auto;
+  --column-margin: 0;
+  --column-padding: 0;
+  --column-border: 0;
+  --column-color: inherit;
+  --column-vertical-align: inherit;
+  --column-list-style: none;
+  --column-background-color: transparent;
 
-  width: 100%;
-  height: 100%;
+  position: var(--position);
 
-  color: inherit;
-  vertical-align: top;
+  overflow: var(--overflow);
+  display: var(--display);
+  border-collapse: var(--border-collapse);
 
-  background-color: transparent;
+  box-sizing: var(--box-sizing);
+  width: var(--width);
+  height: var(--height);
+  margin: var(--margin);
+  padding: var(--padding);
+  border: var(--border);
+
+  color: var(--color);
+  vertical-align: var(--vertical-align);
+  list-style: var(--list-style);
+
+  background-color: var(--background-color);
 
   &__column {
-    @include mixin.box-apply-clearfix();
-    @include mixin.box-initialize(
-      $display: "table-cell",
-      $box-sizing: "border-box"
-    );
+    position: var(--column-position);
 
-    width: auto;
-    color: inherit;
-    vertical-align: inherit;
-    background-color: transparent;
+    overflow: var(--column-overflow);
+    display: var(--column-display);
+
+    box-sizing: var(--column-box-sizing);
+    width: var(--column-width);
+    height: var(--column-height);
+    margin: var(--column-margin);
+    padding: var(--column-padding);
+    border: var(--column-border);
+
+    color: var(--column-color);
+    vertical-align: var(--column-vertical-align);
+    list-style: var(--column-list-style);
+
+    background-color: var(--column-background-color);
   }
 }

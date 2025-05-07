@@ -4,7 +4,7 @@
 /*
 #{settings.$prefix}-flex-grid
 
-component for flex-grid.
+The flex grid unit.
 
 Weight: -980
 
@@ -12,9 +12,9 @@ Style guide: #{settings.$prefix}-flex-grid
 */
 
 /*
-core
+Core
 
-core module of #{settings.$prefix}-flex-grid
+The core module.
 
 Weight: -100
 
@@ -22,70 +22,114 @@ Style guide: #{settings.$prefix}-flex-grid.core
 */
 
 /*
-default style
+Default style
 
-default style of #{settings.$prefix}-flex-grid
+The default style.
 
 Weight: -100
 
 Markup: <div class="#{settings.$prefix}-flex-grid">
   <div class="#{settings.$prefix}-flex-grid__column">
-    <!-- some unit -->
+    <!-- contents -->
     <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <figure class="#{settings.$prefix}-pict  #{settings.$prefix}-pict--fit-max-width  #{settings.$util-prefix}--float-left">
-      <img class="#{settings.$prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
+    <figure class="#{settings.$prefix}-pict  #{settings.$prefix}-pict--fit-max-width">
+      <img class="#{settings.$prefix}-pict__src" src="https://placehold.co/200x150" alt="" width="200" height="150" loading="auto" />
     </figure>
-    <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <!-- some unit -->
+    <!-- contents -->
   </div>
   <div class="#{settings.$prefix}-flex-grid__column">
-    <!-- some unit -->
-    <figure class="#{settings.$prefix}-pict  #{settings.$prefix}-pict--fit-max-width  #{settings.$util-prefix}--float-left">
-      <img class="#{settings.$prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
+    <!-- contents -->
+    <figure class="#{settings.$prefix}-pict  #{settings.$prefix}-pict--fit-max-width">
+      <img class="#{settings.$prefix}-pict__src" src="https://placehold.co/200x150" alt="" width="200" height="150" loading="auto" />
     </figure>
-    <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <!-- some unit -->
+    <p class="#{settings.$prefix}-text">あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</p>
+    <!-- contents -->
   </div>
 </div>
 
-Style guide: #{settings.$prefix}-flex-grid.core.base
+Style guide: #{settings.$prefix}-flex-grid.core.default
 */
 .#{settings.$prefix}-flex-grid {
-  @include mixin.box-initialize($display: "flex", $box-sizing: "border-box");
+  --position: relative;
+  --overflow: visible;
+  --display: flex;
+  --flex-direction: row;
+  --flex-wrap: nowrap;
+  --align-content: flex-start;
+  --align-items: stretch;
+  --justify-content: flex-start;
+  --box-sizing: border-box;
+  --width: 100%;
+  --height: 100%;
+  --margin: 0;
+  --padding: 0;
+  --border: 0;
+  --color: inherit;
+  --vertical-align: baseline;
+  --list-style: none;
+  --background-color: transparent;
 
-  border-collapse: collapse;
+  // For column
+  --column-position: relative;
+  --column-overflow: visible;
+  --column-display: block;
+  --column-flex-basis: 1;
+  --column-flex-grow: 1;
+  --column-flex-shrink: 1;
+  --column-box-sizing: border-box;
+  --column-width: auto;
+  --column-height: auto;
+  --column-margin: 0;
+  --column-padding: 0;
+  --column-border: 0;
+  --column-color: inherit;
+  --column-vertical-align: inherit;
+  --column-list-style: none;
+  --column-background-color: transparent;
 
-  // flex box settings
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-content: flex-start;
-  align-items: stretch;
-  justify-content: flex-start;
+  position: var(--position);
 
-  // other settings
-  width: 100%;
-  height: 100%;
+  overflow: var(--overflow);
+  display: var(--display);
+  flex-direction: var(--flex-direction);
+  flex-wrap: var(--flex-wrap);
+  align-content: var(--align-content);
+  align-items: var(--align-items);
+  justify-content: var(--justify-content);
 
-  color: inherit;
-  vertical-align: top;
+  box-sizing: var(--box-sizing);
+  width: var(--width);
+  height: var(--height);
+  margin: var(--margin);
+  padding: var(--padding);
+  border: var(--border);
 
-  background-color: transparent;
+  color: var(--color);
+  vertical-align: var(--vertical-align);
+  list-style: var(--list-style);
+
+  background-color: var(--background-color);
 
   &__column {
-    @include mixin.box-apply-clearfix();
-    @include mixin.box-initialize($box-sizing: "border-box");
+    position: var(--column-position);
 
-    // flex box settings
-    flex-basis: 1;
-    flex-grow: 1;
-    flex-shrink: 1;
+    overflow: var(--column-overflow);
+    display: var(--column-display);
+    flex-basis: var(--column-flex-basis);
+    flex-grow: var(--column-flex-grow);
+    flex-shrink: var(--column-flex-shrink);
 
-    // other settings
-    width: auto;
+    box-sizing: var(--column-box-sizing);
+    width: var(--column-width);
+    height: var(--column-height);
+    margin: var(--column-margin);
+    padding: var(--column-padding);
+    border: var(--column-border);
 
-    color: inherit;
-    vertical-align: inherit;
+    color: var(--column-color);
+    vertical-align: var(--column-vertical-align);
+    list-style: var(--column-list-style);
 
-    background-color: transparent;
+    background-color: var(--column-background-color);
   }
 }

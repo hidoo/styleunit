@@ -1,0 +1,28 @@
+////
+/// (c) hidoo | MIT License
+/// @group Default settings
+////
+
+/// Default builtin theme
+/// @type Map
+/// @prop {Map} light [(...)] - values of light theme
+/// @prop {Map} dark [(...)] - values of dark theme
+///
+$themes: (
+  "light": (
+    "color": "black-olive",
+    "color-focus": "dim-gray",
+    "background": "ghost-white",
+    "background-focus": "snow-flake",
+    "border": "stone",
+    "border-focus": "gateway-gray"
+  ),
+  "dark": (
+    "color": "olympus-white",
+    "color-focus": "mercury",
+    "background": "dark-moon",
+    "background-focus": "night-sky",
+    "border": "night-sky",
+    "border-focus": "nocturnal"
+  )
+) !default;

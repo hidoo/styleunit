@@ -1,5 +1,5 @@
 ////
-/// (c) hidoo | MIT Lisence
+/// (c) hidoo | MIT License
 /// @group plugin/spritesheet
 ////
 
@@ -10,149 +10,128 @@
 @use "../../../../settings";
 @use "./set-properties" as _mixin;
 
-/// define toggle item
+/// Define toggle item
 /// @access private
 /// @param {String} $name name of spritesheet item
 /// @param {Map} $items [()] spritesheet items
 /// @param {Map} $options [()] options
 ///
 @mixin define-toggle-item($name, $items: (), $options: ()) {
-  $selectors-focus: function.selector-merge-state("focus");
-  $selectors-disabled: function.selector-merge-state("disabled");
-  $selectors-selected: function.selector-merge-state("selected");
-
   @if map.has-key($items, $name) {
-    $up: map.get($items, $name);
-    $focus: map.get($items, "#{$name}--focus");
-    $disabled: map.get($items, "#{$name}--disabled");
-    $selected: map.get($items, "#{$name}--selected");
-    $selected--focus: map.get($items, "#{$name}--selected--focus");
-    $selected--disabled: map.get($items, "#{$name}--selected--disabled");
-
     &-#{$name} {
+      $up: map.get($items, $name);
+
       @content;
 
-      @if $up {
-        > .#{settings.$prefix}-toggle__field {
-          + .#{settings.$prefix}-toggle__alt {
-            @include _mixin.set-properties($values: $up, $options: $options);
+      &::before {
+        @include _mixin.set-properties($values: $up, $options: $options);
+      }
+
+      @if map.has-key($items, "#{$name}--focus") {
+        $focus: map.get($items, "#{$name}--focus");
+
+        @include mixin.has-focus() {
+          &::before {
+            @include _mixin.set-properties(
+              $values: (
+                "offset-x": map.get($focus, "offset-x"),
+                "offset-y": map.get($focus, "offset-y")
+              ),
+              $options: map.merge(
+                  $options,
+                  (
+                    "with-property": false
+                  )
+                )
+            );
           }
         }
       }
 
-      // when focus
-      @if $focus {
-        $selector: string.unique-id();
+      @if map.has-key($items, "#{$name}--disabled") {
+        $disabled: map.get($items, "#{$name}--disabled");
 
-        @include mixin.placeholder-define($name: $selector) {
-          @include _mixin.set-properties(
-            $values: (
-              "offset-x": map.get($focus, "offset-x"),
-              "offset-y": map.get($focus, "offset-y")
-            ),
-            $options: $options
-          );
-        }
+        @include mixin.has-disabled() {
+          --field-opacity: 0;
 
-        @each $state in $selectors-focus {
-          > .#{settings.$prefix}-toggle__field#{$state} {
-            + .#{settings.$prefix}-toggle__alt {
-              @extend %#{$selector};
-            }
+          &::before {
+            @include _mixin.set-properties(
+              $values: (
+                "offset-x": map.get($disabled, "offset-x"),
+                "offset-y": map.get($disabled, "offset-y")
+              ),
+              $options: map.merge(
+                  $options,
+                  (
+                    "with-property": false
+                  )
+                )
+            );
           }
         }
       }
 
-      // when disabled
-      @if $disabled {
-        $selector: string.unique-id();
+      @if map.has-key($items, "#{$name}--selected") {
+        $selected: map.get($items, "#{$name}--selected");
 
-        @include mixin.placeholder-define($name: $selector) {
-          @include _mixin.set-properties(
-            $values: (
-              "offset-x": map.get($disabled, "offset-x"),
-              "offset-y": map.get($disabled, "offset-y")
-            ),
-            $options: $options
-          );
-        }
-
-        @each $state in $selectors-disabled {
-          > .#{settings.$prefix}-toggle__field#{$state} {
-            + .#{settings.$prefix}-toggle__alt {
-              @extend %#{$selector};
-            }
+        @include mixin.has-selected() {
+          &::before {
+            @include _mixin.set-properties(
+              $values: (
+                "offset-x": map.get($selected, "offset-x"),
+                "offset-y": map.get($selected, "offset-y")
+              ),
+              $options: map.merge(
+                  $options,
+                  (
+                    "with-property": false
+                  )
+                )
+            );
           }
         }
-      }
 
-      // when selected
-      @if $selected {
-        $selector: string.unique-id();
+        @if map.has-key($items, "#{$name}--selected--focus") {
+          $selected-focus: map.get($items, "#{$name}--selected--focus");
 
-        @include mixin.placeholder-define($name: $selector) {
-          @include _mixin.set-properties(
-            $values: (
-              "offset-x": map.get($selected, "offset-x"),
-              "offset-y": map.get($selected, "offset-y")
-            ),
-            $options: $options
-          );
-        }
-
-        @each $state in $selectors-selected {
-          > .#{settings.$prefix}-toggle__field#{$state} {
-            + .#{settings.$prefix}-toggle__alt {
-              @extend %#{$selector};
-            }
-          }
-        }
-      }
-
-      // when selected and focus
-      @if $selected--focus {
-        $selector: string.unique-id();
-
-        @include mixin.placeholder-define($name: $selector) {
-          @include _mixin.set-properties(
-            $values: (
-              "offset-x": map.get($selected--focus, "offset-x"),
-              "offset-y": map.get($selected--focus, "offset-y")
-            ),
-            $options: $options
-          );
-        }
-
-        @each $state-selected in $selectors-selected {
-          @each $state in $selectors-focus {
-            > .#{settings.$prefix}-toggle__field#{$state-selected}#{$state} {
-              + .#{settings.$prefix}-toggle__alt {
-                @extend %#{$selector};
+          @include mixin.has-selected() {
+            @include mixin.has-focus() {
+              &::before {
+                @include _mixin.set-properties(
+                  $values: (
+                    "offset-x": map.get($selected-focus, "offset-x"),
+                    "offset-y": map.get($selected-focus, "offset-y")
+                  ),
+                  $options: map.merge(
+                      $options,
+                      (
+                        "with-property": false
+                      )
+                    )
+                );
               }
             }
           }
         }
-      }
 
-      // when selected and disabled
-      @if $selected--disabled {
-        $selector: string.unique-id();
+        @if map.has-key($items, "#{$name}--selected--disabled") {
+          $selected-disabled: map.get($items, "#{$name}--selected--disabled");
 
-        @include mixin.placeholder-define($name: $selector) {
-          @include _mixin.set-properties(
-            $values: (
-              "offset-x": map.get($selected--disabled, "offset-x"),
-              "offset-y": map.get($selected--disabled, "offset-y")
-            ),
-            $options: $options
-          );
-        }
-
-        @each $state-selected in $selectors-selected {
-          @each $state in $selectors-disabled {
-            > .#{settings.$prefix}-toggle__field#{$state-selected}#{$state} {
-              + .#{settings.$prefix}-toggle__alt {
-                @extend %#{$selector};
+          @include mixin.has-selected() {
+            @include mixin.has-disabled() {
+              &::before {
+                @include _mixin.set-properties(
+                  $values: (
+                    "offset-x": map.get($selected-disabled, "offset-x"),
+                    "offset-y": map.get($selected-disabled, "offset-y")
+                  ),
+                  $options: map.merge(
+                      $options,
+                      (
+                        "with-property": false
+                      )
+                    )
+                );
               }
             }
           }

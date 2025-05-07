@@ -1,10 +1,13 @@
+@use "sass:meta";
+@use "sass:list";
+@use "../lib/function";
 @use "../lib/mixin";
 @use "../settings";
 
 /*
-padding
+Padding
 
-utilities that tweek of padding
+The padding module.
 
 Weight: -95
 
@@ -12,43 +15,86 @@ Style guide: #{settings.$util-prefix}.padding
 */
 
 /*
-modifiers: padding
+Modifiers
 
-builtin modifiers of padding. (0 to 60px in 5px steps)
+The padding modifiers.
+Sizes: #{meta.inspect(settings.$util-padding)}.
+Direction: #{meta.inspect(settings.$util-directions)}.
 
 Weight: -100
 
-Markup: <div style="position:relative; padding:50px;">
-  <div class="{{modifier_class}}" style="position:relative; width:50px; height:50px; background:#999;"></div>
-</div>
+Markup: <div class="padding-example {{modifier_class}}"></div>
+<style>
+  :where(.padding-example) {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background: #999;
+  }
+</style>
 
-#{settings.$util-prefix}--padding-top-0 - top 0px padding
-#{settings.$util-prefix}--padding-top-60 - top 60px padding
-#{settings.$util-prefix}--padding-right-0 - right 0px padding
-#{settings.$util-prefix}--padding-right-60 - right 60px padding
-#{settings.$util-prefix}--padding-bottom-0 - bottom 0px padding
-#{settings.$util-prefix}--padding-bottom-60 - bottom 60px padding
-#{settings.$util-prefix}--padding-left-0 - left 0px padding
-#{settings.$util-prefix}--padding-left-60 - left 60px padding
-#{settings.$util-prefix}--padding-all-0 - all 0px padding
-#{settings.$util-prefix}--padding-all-60 - all 60px padding
-#{settings.$util-prefix}--padding-vertical-0 - vertical 0px padding
-#{settings.$util-prefix}--padding-vertical-60 - vertical 60px padding
-#{settings.$util-prefix}--padding-horizontal-0 - horizontal 0px padding
-#{settings.$util-prefix}--padding-horizontal-60 - horizontal 60px padding
+#{settings.$util-prefix}--padding-0 - All 0px padding
+#{settings.$util-prefix}--padding-50 - All 50px padding
+#{settings.$util-prefix}--padding-normal - All normal padding
+#{settings.$util-prefix}--padding-top-0 - Top 0px padding
+#{settings.$util-prefix}--padding-top-50 - Top 50px padding
+#{settings.$util-prefix}--padding-top-normal - Top normal padding
+#{settings.$util-prefix}--padding-right-0 - Right 0px padding
+#{settings.$util-prefix}--padding-right-50 - Right 50px padding
+#{settings.$util-prefix}--padding-right-normal - Right normal padding
+#{settings.$util-prefix}--padding-bottom-0 - Bottom 0px padding
+#{settings.$util-prefix}--padding-bottom-50 - Bottom 50px padding
+#{settings.$util-prefix}--padding-bottom-normal - Bottom normal padding
+#{settings.$util-prefix}--padding-left-0 - Left 0px padding
+#{settings.$util-prefix}--padding-left-50 - Left 50px padding
+#{settings.$util-prefix}--padding-left-normal - Left normal padding
+#{settings.$util-prefix}--padding-block-0 - Block 0px padding
+#{settings.$util-prefix}--padding-block-50 - Block 50px padding
+#{settings.$util-prefix}--padding-block-normal - Block normal padding
+#{settings.$util-prefix}--padding-inline-0 - Inline 0px padding
+#{settings.$util-prefix}--padding-inline-50 - Inline 50px padding
+#{settings.$util-prefix}--padding-inline-normal - Inline normal padding
+#{settings.$util-prefix}--padding-50-if-mobile - All 50px padding if mobile viewport.
+#{settings.$util-prefix}--padding-50-if-not-mobile - All 50px padding if not mobile viewport.
 
 Style guide: #{settings.$util-prefix}.padding.builtin
 */
 .#{settings.$util-prefix}--padding {
-  // each by directions
-  @include mixin.size-define-by-direction(
-    $type: "padding",
-    $values: settings.$util-padding-values
-  );
+  $paddings: settings.$util-padding;
+  $directions: settings.$util-directions;
 
-  // each by direction groups
-  @include mixin.size-define-by-direction-group(
-    $type: "padding",
-    $values: settings.$util-padding-values
-  );
+  @each $padding in $paddings {
+    $name: "";
+
+    // stylelint-disable scss/no-duplicate-dollar-variables
+    @if meta.type-of($padding) == "list" {
+      $name: list.nth($padding, 1);
+      $padding: list.nth($padding, 2);
+    } @else {
+      $name: function.math-remove-unit($padding);
+    }
+    // stylelint-enable scss/no-duplicate-dollar-variables
+
+    @each $direction in $directions {
+      $direction: if($direction == "", $direction, "-#{$direction}");
+
+      &#{$direction}-#{$name} {
+        --padding#{$direction}: #{$padding};
+
+        padding#{$direction}: var(--padding#{$direction});
+      }
+
+      @each $bp, $query in settings.$breakpoints {
+        @if meta.type-of($query) == "string" {
+          &#{$direction}-#{$name}-#{$bp} {
+            @include mixin.media($query: $query) {
+              --padding#{$direction}: #{$padding};
+
+              padding#{$direction}: var(--padding#{$direction});
+            }
+          }
+        }
+      }
+    }
+  }
 }

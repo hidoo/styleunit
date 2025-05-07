@@ -1,12 +1,20 @@
 ////
-/// (c) hidoo | MIT Lisence
+/// (c) hidoo | MIT License
 /// @group features
 ////
 
-@use "../function";
-@use "on" as mixin;
+@use "sass:list";
+@use "sass:meta";
+@use "./on" as mixin;
+@use "../../settings";
 
-/// wrappper of `.is-current`
+/// Default selectors
+/// @access private
+/// @type List
+///
+$_default-selectors: () !default;
+
+/// Utility for pseudo classes like `.is-current`
 /// @param {List} $additional-selectors [()] - list of additional selectors
 /// @param {List} $capturing-selectors [()] - capturing parent selectors
 ///
@@ -18,17 +26,29 @@
 ///   }
 ///
 /// @example css - css outputs
-///   .selector.is-current {
+///   .selector:where(.is-current) {
 ///     font-size: 16px;
 ///   }
 ///
-@mixin on-current(
-  $additional-selectors: (),
-  $capturing-selectors: ()
-) {
-  $selectors: function.selector-merge-state("current", $additional-selectors);
+@mixin on-current($additional-selectors: (), $capturing-selectors: ()) {
+  $selectors: $_default-selectors;
 
-  @include mixin.on($selectors: $selectors, $capturing-selectors: $capturing-selectors) {
+  @if meta.type-of(settings.$selector-current) == "list" {
+    $selectors: list.join(
+      $selectors,
+      settings.$selector-current,
+      $separator: comma
+    );
+  }
+
+  @if meta.type-of($additional-selectors) == "list" {
+    $selectors: list.join($selectors, $additional-selectors, $separator: comma);
+  }
+
+  @include mixin.on(
+    $selectors: $selectors,
+    $capturing-selectors: $capturing-selectors
+  ) {
     @content;
   }
 }

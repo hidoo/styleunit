@@ -1,5 +1,5 @@
 ////
-/// (c) hidoo | MIT Lisence
+/// (c) hidoo | MIT License
 /// @group box features
 ////
 
@@ -23,10 +23,7 @@
 ///    padding-top: 56.25%;
 ///  }
 ///
-@mixin apply-aspect-ratio(
-  $width: 16,
-  $height: 9
-) {
+@mixin apply-aspect-ratio($width: 16, $height: 9) {
   $ratio: math.div($height, $width) * 100;
 
   &::before {

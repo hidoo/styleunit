@@ -1,77 +1,109 @@
 @use "sass:map";
 @use "sass:meta";
-@use "sass:string";
 @use "../../lib/mixin";
 @use "../../settings";
 
-/*
-theme
+/// Package name
+/// @access private
+/// @type String
+///
+$_pkg: settings.$pkg !default;
 
-theme modifiers of #{settings.$prefix}-button
+/*
+Theme
+
+The theme module.
 
 Weight: -99
 
 Style guide: #{settings.$prefix}-button.theme
 */
 
-/*
-modifiers: theme
+@if meta.type-of(settings.$builtin-themes) == "map" {
+  /*
+Modifiers
 
-builtin modifiers of theme for #{settings.$prefix}-button
+The theme modifiers.
 
 Weight: -100
 
-Markup: <!-- link element -->
-<a class="#{settings.$prefix}-button  {{modifier_class}}" href="javascript:;">
+Markup: <!-- with anchor element -->
+<a class="#{settings.$prefix}-button  {{modifier_class}}" href="#">
   <span class="#{settings.$prefix}-button__label  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.</span>
 </a>
-<!-- button element -->
+<!-- with button element -->
 <button class="#{settings.$prefix}-button  {{modifier_class}}">
-  <span class="#{settings.$prefix}-button__label  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.</span>
+  <span class="#{settings.$prefix}-button__label  #{settings.$prefix}-text">あのイーハトーヴォのすきとおった風。</span>
 </button>
 
-#{settings.$prefix}-button--theme-light - light theme
-#{settings.$prefix}-button--theme-dark - dark theme
+#{settings.$prefix}-button--theme-normal - Normal theme
 
 Style guide: #{settings.$prefix}-button.theme.builtin
 */
-.#{settings.$prefix}-button--theme {
-  $selector: string.unique-id();
+  .#{settings.$prefix}-button--theme {
+    &-normal {
+      $default-theme: map.get(settings.$builtin-themes, "light");
 
-  @include mixin.placeholder-define($name: $selector) {
-    padding: 10px;
+      // Load colors
+      --color-up: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "color")})
+      );
+      --color-focus: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "color-focus")})
+      );
+      --background-color-up: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "background")})
+      );
+      --background-color-focus: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "background-focus")})
+      );
+      --border-color-up: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "border")})
+      );
+      --border-color-focus: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "border-focus")})
+      );
 
-    border-radius: 3px;
+      // Default settings
+      --padding: 10px;
+      --border-radius: 3px;
+      --border-style: 1px solid;
+      --transition: background-color 0.1s ease-out;
+      --color: var(--color-up);
+      --background-color: var(--background-color-up);
+      --border: var(--border-style) var(--border-color-up);
 
-    transition-timing-function: ease-out;
-    transition-duration: 0.1s;
-    transition-property: background-color;
-  }
+      border-radius: var(--border-radius);
+      transition: var(--transition);
 
-  @if meta.type-of(settings.$builtin-themes) == "map" {
-    @each $name, $theme in settings.$builtin-themes {
-      $color: map.get($theme, "color");
-      $background: map.get($theme, "background");
-      $background-focus: map.get($theme, "background-focus");
-      $border: map.get($theme, "border");
-      $border-focus: map.get($theme, "border-focus");
-
-      &-#{$name} {
-        @extend %#{$selector};
-
-        @include mixin.on-focus(
-          $capturing-selectors: (
-            "a",
-            "button"
-          )
-        ) {
-          background-color: $background-focus;
-          border-color: $border-focus;
+      &:where(a[href], button) {
+        @include mixin.on-focus() {
+          --color: var(--color-focus);
+          --background-color: var(--background-color-focus);
+          --border: var(--border-style) var(--border-color-focus);
         }
+      }
 
-        color: $color;
-        background-color: $background;
-        border: 1px solid $border;
+      // Settings by color schemes
+      @each $name, $theme in settings.$builtin-themes {
+        @media (prefers-color-scheme: #{$name}) {
+          $color-up: map.get($theme, "color");
+          $color-focus: map.get($theme, "color-focus");
+          $background-up: map.get($theme, "background");
+          $background-focus: map.get($theme, "background-focus");
+          $border-up: map.get($theme, "border");
+          $border-focus: map.get($theme, "border-focus");
+
+          // Apply colors to settings
+          --color-up: rgb(var(--#{$_pkg}-color-#{$color-up}));
+          --color-focus: rgb(var(--#{$_pkg}-color-#{$color-focus}));
+          --background-color-up: rgb(var(--#{$_pkg}-color-#{$background-up}));
+          --background-color-focus: rgb(
+            var(--#{$_pkg}-color-#{$background-focus})
+          );
+          --border-color-up: rgb(var(--#{$_pkg}-color-#{$border-up}));
+          --border-color-focus: rgb(var(--#{$_pkg}-color-#{$border-focus}));
+        }
       }
     }
   }

@@ -1,5 +1,5 @@
 ////
-/// (c) hidoo | MIT Lisence
+/// (c) hidoo | MIT License
 /// @group text features
 ////
 
@@ -41,14 +41,13 @@
   $text-indent: 0,
   $white-space: "normal",
   $word-break: "break-all",
-  $word-wrap: "break-word",
+  $word-wrap: "break-word"
 ) {
   // normalize $letter-spacing
   @if not $letter-spacing {
     @if meta.type-of(settings.$letter-spacing) == "number" {
       $letter-spacing: settings.$letter-spacing;
-    }
-    @else {
+    } @else {
       $letter-spacing: 0.04em;
 
       @if settings.$verbose {
@@ -62,8 +61,7 @@
   @if not $line-height {
     @if meta.type-of(settings.$line-height) == "number" {
       $line-height: settings.$line-height;
-    }
-    @else {
+    } @else {
       $line-height: 1.5;
 
       @if settings.$verbose {

@@ -1,88 +1,104 @@
 @use "sass:map";
 @use "sass:meta";
-@use "sass:string";
 @use "../../lib/mixin";
 @use "../../settings";
 
-/*
-type
+/// Package name
+/// @access private
+/// @type String
+///
+$_pkg: settings.$pkg !default;
 
-type modifiers of #{settings.$prefix}-icon
+/*
+Type
+
+The type module.
 
 Weight: -99
 
 Style guide: #{settings.$prefix}-icon.type
 */
 
-/*
-modifiers: type
+@if meta.type-of(settings.$builtin-themes) == "map" {
+  /*
+Modifiers
 
-builtin modifiers of type for #{settings.$prefix}-icon
+The inline modifiers.
 
 Weight: -100
 
 Markup: <span class="#{settings.$prefix}-icon  {{modifier_class}}"></span>
 
-#{settings.$prefix}-icon--type-arrow-light - light arrow
-#{settings.$prefix}-icon--type-arrow-dark - dark arrow
+#{settings.$prefix}-icon--type-arrow-normal - Normal type
 
 Style guide: #{settings.$prefix}-icon.type.builtin
 */
-.#{settings.$prefix}-icon--type {
-  &-arrow {
-    $selector: string.unique-id();
+  .#{settings.$prefix}-icon--type {
+    &-arrow {
+      &-normal {
+        $default-theme: map.get(settings.$builtin-themes, "light");
+        $this: #{&};
 
-    @include mixin.placeholder-define($name: $selector) {
-      width: 12.72px;
-      height: 10px;
+        // Load colors
+        --color-up: rgb(
+          var(--#{$_pkg}-color-#{map.get($default-theme, "color")})
+        );
+        --color-focus: rgb(
+          var(--#{$_pkg}-color-#{map.get($default-theme, "color-focus")})
+        );
 
-      &::before,
-      &::after {
-        content: "";
+        // Default settings
+        --width: 18px;
+        --height: 12px;
+        --color: var(--color-up);
+        --icon-content: "";
+        --icon-position: absolute;
+        --icon-inset: 0 auto auto 0;
+        --icon-transform-origin: 0 0;
+        --icon-transform: none;
+        --icon-display: block;
+        --icon-width: 18px;
+        --icon-height: 12px;
+        --icon-color: var(--color);
+        --icon-clip-path: path(
+          "M9.003,11.593 L0.093,2.683 L2.319,0.458 L9.018,7.157 L15.702,0.472 L17.909,2.679 L9.003,11.593 Z"
+        );
 
-        position: absolute;
-        top: 0;
-        left: 0;
-        transform-origin: 0 0;
-        transform: translate(6.36px, 0) rotate(45deg);
+        &::after {
+          content: var(--icon-content);
 
-        display: block;
-      }
+          position: var(--icon-position);
+          inset: var(--icon-inset);
+          transform-origin: var(--icon-transform-origin);
+          transform: var(--icon-transform);
 
-      &::before {
-        width: 9px;
-        height: 2px;
-      }
+          display: var(--icon-display);
 
-      &::after {
-        width: 2px;
-        height: 9px;
-      }
-    }
+          width: var(--icon-width);
+          height: var(--icon-height);
 
-    @if meta.type-of(settings.$builtin-themes) == "map" {
-      @each $name, $theme in settings.$builtin-themes {
-        $color: map.get($theme, "color");
-        $color-focus: map.get($theme, "color-focus");
+          background-color: var(--icon-color);
+          clip-path: var(--icon-clip-path);
+        }
 
-        &-#{$name} {
-          @extend %#{$selector};
+        @include mixin.on-focus(
+          $capturing-selectors: (
+            "a[href]",
+            "button"
+          )
+        ) {
+          --color: var(--color-focus);
+        }
 
-          @include mixin.on-focus(
-            $capturing-selectors: (
-              "a",
-              "button"
-            )
-          ) {
-            &::before,
-            &::after {
-              background-color: $color-focus;
-            }
-          }
+        // Settings by color schemes
+        @each $name, $theme in settings.$builtin-themes {
+          @media (prefers-color-scheme: #{$name}) {
+            $color-up: map.get($theme, "color");
+            $color-focus: map.get($theme, "color-focus");
 
-          &::before,
-          &::after {
-            background-color: $color;
+            // Apply colors to settings
+            --color-up: rgb(var(--#{$_pkg}-color-#{$color-up}));
+            --color-focus: rgb(var(--#{$_pkg}-color-#{$color-focus}));
           }
         }
       }

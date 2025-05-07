@@ -1,10 +1,15 @@
-@use "../../lib/mixin";
 @use "../../settings";
+
+/// Package name
+/// @access private
+/// @type String
+///
+$_pkg: settings.$pkg !default;
 
 /*
 #{settings.$prefix}-button
 
-component for button.
+The button unit.
 
 Weight: -1060
 
@@ -12,9 +17,9 @@ Style guide: #{settings.$prefix}-button
 */
 
 /*
-core
+Core
 
-core module of #{settings.$prefix}-button
+The core module.
 
 Weight: -100
 
@@ -22,51 +27,94 @@ Style guide: #{settings.$prefix}-button.core
 */
 
 /*
-default style
+Default style
 
-default style of #{settings.$prefix}-button
+The default style.
 
 Weight: -100
 
-Markup: <!-- link element -->
-<a class="#{settings.$prefix}-button" href="javascript:;">
+Markup: <!-- with anchor element -->
+<a class="#{settings.$prefix}-button" href="#">
   <span class="#{settings.$prefix}-button__label  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.</span>
 </a>
-<!-- button element -->
+<!-- with button element -->
 <button class="#{settings.$prefix}-button">
-  <span class="#{settings.$prefix}-button__label  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.</span>
+  <span class="#{settings.$prefix}-button__label  #{settings.$prefix}-text">あのイーハトーヴォのすきとおった風。</span>
 </button>
 
-Style guide: #{settings.$prefix}-button.core.base
+Style guide: #{settings.$prefix}-button.core.default
 */
 .#{settings.$prefix}-button {
-  @include mixin.box-initialize($overflow: "hidden", $box-sizing: "border-box");
-  @include mixin.text-initialize(
-    $letter-spacing: 0,
-    $line-height: 1,
-    $text-align: "center"
-  );
-  @include mixin.font-initialize();
-  @include mixin.font-apply-size($value: "medium");
+  --cursor: pointer;
+  --position: relative;
+  --display: block;
+  --overflow: hidden;
+  --box-sizing: border-box;
 
-  // for button element, because it always inline-block
-  width: 100%;
+  // For button element, because it always `inline-block`
+  --width: 100%;
+  --height: auto;
+  --margin: 0;
+  --padding: 0;
+  --border: 0;
+  --font-size: var(--#{$_pkg}-font-size);
+  --font-weight: var(--#{$_pkg}-font-weight);
+  --font-style: normal;
+  --line-height: 1;
+  --color: inherit;
+  --text-align: center;
+  --text-decoration: none;
+  --text-indent: 0;
+  --letter-spacing: 0;
+  --white-space: normal;
+  --vertical-align: baseline;
+  --list-style: none;
+  --appearance: none;
+  --background-color: transparent;
 
-  // other settings
-  color: inherit;
-  background-color: transparent;
+  // For label
+  --label-font-size: inherit;
+  --label-line-height: normal;
+  --label-color: inherit;
+  --label-text-align: center;
+  --label-background-color: transparent;
 
-  @at-root {
-    button#{&} {
-      cursor: pointer;
-      appearance: none; // stylelint-disable-line plugin/no-unsupported-browser-features
-    }
+  position: var(--position);
+
+  overflow: var(--overflow);
+  display: var(--display);
+
+  box-sizing: var(--box-sizing);
+  width: var(--width);
+  height: var(--height);
+  margin: var(--margin);
+  padding: var(--padding);
+  border: var(--border);
+
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  font-style: var(--font-style);
+  line-height: var(--line-height);
+  color: var(--color);
+  text-align: var(--text-align);
+  text-decoration: var(--text-decoration);
+  text-indent: var(--text-indent);
+  white-space: var(--white-space);
+  vertical-align: var(--vertical-align);
+  list-style: var(--list-style);
+
+  appearance: var(--appearance);
+  background-color: var(--background-color);
+
+  &:where(button) {
+    cursor: var(--cursor);
   }
 
   &__label {
-    line-height: normal;
-    color: inherit;
-    text-align: center;
-    background-color: transparent;
+    --font-size: var(--label-font-size);
+    --line-height: var(--label-line-height);
+    --color: var(--label-color);
+    --text-align: var(--label-text-align);
+    --background-color: var(--label-background-color);
   }
 }

@@ -1,5 +1,5 @@
 ////
-/// (c) hidoo | MIT Lisence
+/// (c) hidoo | MIT License
 /// @group selector features
 ////
 
@@ -18,7 +18,7 @@ $_supported-types: (
   "selected",
   "disabled",
   "current",
-  "active",
+  "active"
 ) !default;
 
 /// return merged state selectors
@@ -38,36 +38,31 @@ $_supported-types: (
 
   @if $type == "link" {
     $selectors: list.join($selectors, (":link", ":visited"));
-  }
-  @else if $type == "focus" {
+  } @else if $type == "focus" {
     $selectors: list.join($selectors, (":hover", ":focus"));
 
     @if meta.type-of(settings.$selector-focus) == "list" {
       $selectors: list.join($selectors, settings.$selector-focus);
     }
-  }
-  @else if $type == "selected" {
-    $selectors: list.join($selectors, (":checked",));
+  } @else if $type == "selected" {
+    $selectors: list.join($selectors, (":checked"));
 
     @if meta.type-of(settings.$selector-selected) == "list" {
       $selectors: list.join($selectors, settings.$selector-selected);
     }
-  }
-  @else if $type == "disabled" {
-    $selectors: list.join($selectors, (":disabled",));
+  } @else if $type == "disabled" {
+    $selectors: list.join($selectors, (":disabled"));
 
     @if meta.type-of(settings.$selector-disabled) == "list" {
       $selectors: list.join($selectors, settings.$selector-disabled);
     }
-  }
-  @else if $type == "current" {
+  } @else if $type == "current" {
     $selectors: list.join($selectors, ());
 
     @if meta.type-of(settings.$selector-current) == "list" {
       $selectors: list.join($selectors, settings.$selector-current);
     }
-  }
-  @else if $type == "active" {
+  } @else if $type == "active" {
     $selectors: list.join($selectors, ());
 
     @if meta.type-of(settings.$selector-active) == "list" {

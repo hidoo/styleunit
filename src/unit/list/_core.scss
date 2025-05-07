@@ -4,7 +4,7 @@
 /*
 #{settings.$prefix}-list
 
-component for list of device text.
+The list unit.
 
 Weight: -1080
 
@@ -12,9 +12,9 @@ Style guide: #{settings.$prefix}-list
 */
 
 /*
-core
+Core
 
-core module of #{settings.$prefix}-list
+The core module.
 
 Weight: -100
 
@@ -22,9 +22,9 @@ Style guide: #{settings.$prefix}-list.core
 */
 
 /*
-default style
+Default style
 
-default style of #{settings.$prefix}-list
+The default style.
 
 Weight: -100
 
@@ -40,36 +40,93 @@ Markup: <!-- un ordered list -->
 </ul>
 <!-- ordered list -->
 <ol class="#{settings.$prefix}-list">
-  <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.</li>
-  <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.
+  <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">あのイーハトーヴォのすきとおった風。</li>
+  <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">あのイーハトーヴォのすきとおった風。
     <ol class="#{settings.$prefix}-list">
-      <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.</li>
-      <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+      <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">あのイーハトーヴォのすきとおった風。</li>
+      <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</li>
     </ol>
   </li>
 </ol>
 
-Style guide: #{settings.$prefix}-list.core.base
+Style guide: #{settings.$prefix}-list.core.default
 */
 .#{settings.$prefix}-list {
-  @include mixin.box-initialize();
+  --counter-reset: none;
+  --counter-increment: none;
+  --position: relative;
+  --display: block;
+  --overflow: visible;
+  --box-sizing: content-box;
+  --width: auto;
+  --height: auto;
+  --margin: 0;
+  --padding: 0;
+  --border: 0;
+  --color: inherit;
+  --list-style: none;
+  --background-color: transparent;
 
-  color: inherit;
-  background-color: transparent;
+  // For item
+  --item-padding: 0;
 
-  &__item {
+  // For marker
+  --marker-position: absolute;
+  --marker-top: 0px;
+  --marker-left: 0px;
+  --marker-content: none;
+  --marker-display: block;
+  --marker-width: auto;
+  --marker-margin: auto;
+  --marker-color: currentColor;
+  --marker-text-align: center;
+  --marker-word-wrap: normal;
+  --marker-white-space: nowrap;
+  --marker-font-variant: common-ligatures proportional-width text;
+
+  counter-reset: var(--counter-reset);
+
+  position: var(--position);
+
+  overflow: var(--overflow);
+  display: var(--display);
+
+  box-sizing: var(--box-sizing);
+  width: var(--width);
+  height: var(--height);
+  margin: var(--margin);
+  padding: var(--padding);
+  border: var(--border);
+
+  color: var(--color);
+  list-style: var(--list-style);
+
+  background-color: var(--background-color);
+
+  &__item:where(& > &__item) {
+    --padding: var(--item-padding);
+    --item-counter-increment: var(--counter-increment);
+    --item-marker-content: var(--marker-content);
+
+    counter-increment: var(--item-counter-increment);
+
     &::before {
-      position: absolute;
-      top: 0;
-      left: 0;
+      content: var(--item-marker-content);
 
-      display: none; // stylelint-disable-line a11y/no-display-none
+      position: var(--marker-position);
+      top: var(--marker-top);
+      left: var(--marker-left);
 
-      margin: auto;
+      display: var(--marker-display);
 
-      text-align: center;
-      word-wrap: normal;
-      white-space: nowrap;
+      width: var(--marker-width);
+      margin: var(--marker-margin);
+
+      font-variant: var(--marker-font-variant);
+      color: var(--marker-color);
+      text-align: var(--marker-text-align);
+      word-wrap: var(--marker-word-wrap);
+      white-space: var(--marker-white-space);
     }
   }
 }

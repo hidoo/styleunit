@@ -1,9 +1,9 @@
 @use "../../settings";
 
 /*
-align
+Align
 
-align modifiers of #{settings.$prefix}-text
+The align module.
 
 Weight: -96
 
@@ -11,31 +11,31 @@ Style guide: #{settings.$prefix}-text.align
 */
 
 /*
-modifiers: align
+Modifiers
 
-builtin modifiers of alignment for #{settings.$prefix}-text
+The align modifiers.
 
 Weight: -100
 
-Markup: <h1 class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet.</h1>
-<p class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+Markup: <h1 class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h1>
+<p class="#{settings.$prefix}-text  {{modifier_class}}">あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</p>
 
-#{settings.$prefix}-text--align-left - left aligned (**default**)
-#{settings.$prefix}-text--align-center - center aligned
-#{settings.$prefix}-text--align-right - right aligned
+#{settings.$prefix}-text--align-left - Left alignment
+#{settings.$prefix}-text--align-center - Center alignment
+#{settings.$prefix}-text--align-right - Right alignment
 
 Style guide: #{settings.$prefix}-text.align.builtin
 */
 .#{settings.$prefix}-text--align {
   &-left {
-    text-align: left;
+    --text-align: left;
   }
 
   &-center {
-    text-align: center;
+    --text-align: center;
   }
 
   &-right {
-    text-align: right;
+    --text-align: right;
   }
 }

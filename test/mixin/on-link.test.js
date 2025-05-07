@@ -26,7 +26,7 @@ describe('@mixin on-link(...)', () => {
     const cases = [
       {
         params: [[]],
-        expected: '.selector:visited,.selector:link{font-size:16px}'
+        expected: '.selector:where(:link,:visited){font-size:16px}'
       }
     ];
 
@@ -40,7 +40,7 @@ describe('@mixin on-link(...)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       }
     );
@@ -49,9 +49,8 @@ describe('@mixin on-link(...)', () => {
   it('should out with specified selectors if argument $additional-selectors is set.', async () => {
     const cases = [
       {
-        params: [['$additional-selectors: (".is-link")']],
-        expected:
-          '.selector.is-link,.selector:visited,.selector:link{font-size:16px}'
+        params: [['$additional-selectors: (".is-link",)']],
+        expected: '.selector:where(:link,:visited,.is-link){font-size:16px}'
       }
     ];
 
@@ -65,7 +64,7 @@ describe('@mixin on-link(...)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       }
     );
@@ -76,7 +75,7 @@ describe('@mixin on-link(...)', () => {
       {
         params: [['$capturing-selectors: ("a", "button")']],
         expected:
-          'button:visited .selector,button:link .selector,a:visited .selector,a:link .selector,.selector:visited,.selector:link{font-size:16px}'
+          ':where(a,button):where(:link,:visited) .selector,.selector:where(:link,:visited){font-size:16px}'
       }
     ];
 
@@ -90,7 +89,7 @@ describe('@mixin on-link(...)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       }
     );

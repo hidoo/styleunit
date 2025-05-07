@@ -26,7 +26,7 @@ describe('@mixin on-deactive(...)', () => {
     const cases = [
       {
         params: [[]],
-        expected: '.selector:not(.is-active){font-size:16px}'
+        expected: '.selector:where(:not(.is-active)){font-size:16px}'
       }
     ];
 
@@ -40,7 +40,7 @@ describe('@mixin on-deactive(...)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       }
     );
@@ -64,7 +64,7 @@ describe('@mixin on-deactive(...)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       }
     );
@@ -73,9 +73,8 @@ describe('@mixin on-deactive(...)', () => {
   it('should out with specified selectors if argument $additional-selectors is set.', async () => {
     const cases = [
       {
-        params: [['$additional-selectors: (".is-hover")']],
-        expected:
-          '.selector:not(.is-hover),.selector:not(.is-active){font-size:16px}'
+        params: [['$additional-selectors: (".is-hover",)']],
+        expected: '.selector:where(:not(.is-active,.is-hover)){font-size:16px}'
       }
     ];
 
@@ -89,7 +88,7 @@ describe('@mixin on-deactive(...)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       }
     );
@@ -100,7 +99,7 @@ describe('@mixin on-deactive(...)', () => {
       {
         params: [['$capturing-selectors: ("a", "button")']],
         expected:
-          'button:not(.is-active) .selector,a:not(.is-active) .selector,.selector:not(.is-active){font-size:16px}'
+          ':where(a,button):where(:not(.is-active)) .selector,.selector:where(:not(.is-active)){font-size:16px}'
       }
     ];
 
@@ -114,7 +113,7 @@ describe('@mixin on-deactive(...)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       }
     );

@@ -1,10 +1,11 @@
+@use "sass:meta";
 @use "../../lib/mixin";
 @use "../../settings";
 
 /*
-break
+Break
 
-break modifiers of #{settings.$prefix}-table-grid
+The break module.
 
 Weight: -99
 
@@ -12,56 +13,41 @@ Style guide: #{settings.$prefix}-table-grid.break
 */
 
 /*
-modifiers: break
+Modifiers
 
-builtin modifiers of break for #{settings.$prefix}-table-grid
+The break modifiers.
 
 Weight: -100
 
 Markup: <div class="#{settings.$prefix}-table-grid  {{modifier_class}}">
   <div class="#{settings.$prefix}-table-grid__column">
-    <!-- some unit -->
+    <!-- content -->
     <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <figure class="#{settings.$prefix}-pict  #{settings.$prefix}-pict--fit-max-width  #{settings.$util-prefix}--float-left">
-      <img class="#{settings.$prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
-    </figure>
-    <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <!-- some unit -->
+    <p class="#{settings.$prefix}-text">あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</p>
+    <!-- content -->
   </div>
   <div class="#{settings.$prefix}-table-grid__column">
-    <!-- some unit -->
-    <figure class="#{settings.$prefix}-pict  #{settings.$prefix}-pict--fit-max-width  #{settings.$util-prefix}--float-left">
-      <img class="#{settings.$prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
-    </figure>
+    <!-- content -->
+    <p class="#{settings.$prefix}-text">あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</p>
     <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <!-- some unit -->
+    <!-- content -->
   </div>
 </div>
 
-#{settings.$prefix}-table-grid--break-if-mobile - break column if mobile viewport
-#{settings.$prefix}-table-grid--break-if-not-mobile - break column if not mobile viewport
+#{settings.$prefix}-table-grid--break-if-mobile - Break column if mobile viewport.
+#{settings.$prefix}-table-grid--break-if-not-mobile - Break column if not mobile viewport.
 
 Style guide: #{settings.$prefix}-table-grid.break.builtin
 */
 .#{settings.$prefix}-table-grid--break {
-  &-if-mobile {
-    @include mixin.breakpoint-define($until: "mobile") {
-      display: block;
-      height: auto;
-
-      > .#{settings.$prefix}-table-grid__column {
-        display: block;
-      }
-    }
-  }
-
-  &-if-not-mobile {
-    @include mixin.breakpoint-define($from: "mobile") {
-      display: block;
-      height: auto;
-
-      > .#{settings.$prefix}-table-grid__column {
-        display: block;
+  @each $name, $query in settings.$breakpoints {
+    @if meta.type-of($query) == "string" {
+      &-#{$name} {
+        @include mixin.media($query: $query) {
+          --display: block;
+          --height: auto;
+          --column-display: block;
+        }
       }
     }
   }

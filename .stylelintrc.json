@@ -1,6 +1,11 @@
 {
   "$scheme": "https://json.schemastore.org/stylelintrc.json",
-  "extends": ["@hidoo/stylelint-config", "@hidoo/stylelint-config/+order"],
+  "extends": [
+    "@hidoo/stylelint-config",
+    "@hidoo/stylelint-config/+compatibility",
+    "@hidoo/stylelint-config/+order",
+    "@hidoo/stylelint-config/+performance"
+  ],
   "overrides": [
     {
       "files": ["**/*.scss"],
@@ -9,7 +14,15 @@
         "at-rule-prelude-no-invalid": null,
         "scss/at-use-no-unnamespaced": null,
         "scss/no-unused-private-members": null,
-        "scss/selector-nest-combinators": null
+        "scss/selector-nest-combinators": null,
+        "plugin/no-unsupported-browser-features": [
+          true,
+          {
+            "ignore": ["css-nesting", "css-when-else"],
+            "ignorePartialSupport": true,
+            "severity": "warning"
+          }
+        ]
       }
     }
   ]

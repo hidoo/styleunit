@@ -1,5 +1,5 @@
 ////
-/// (c) hidoo | MIT Lisence
+/// (c) hidoo | MIT License
 /// @group features
 ////
 
@@ -22,7 +22,7 @@ $_default-font-applying-units: (
   "document",
   "input",
   "toggle",
-  "select",
+  "select"
 ) !default;
 
 /// bootstrap
@@ -44,7 +44,10 @@ $_default-font-applying-units: (
   $font-applying-units: $_default-font-applying-units
 ) {
   // set base font size
-  @if settings.$font-enable-relative-size and meta.type-of(settings.$font-base-size) == "number" {
+  @if settings.$font-enable-relative-size and
+    meta.type-of(settings.$font-base-size) ==
+    "number"
+  {
     html {
       font-size: settings.$font-base-size;
     }

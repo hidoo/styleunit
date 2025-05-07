@@ -270,36 +270,116 @@ css outputs
 }
 ```
 
+<a id="default-settings-variable-themes"></a>
+
+### $themes
+
+Default builtin theme
+
+- **Group:** Default settings
+- **Access:** public
+
+#### Type
+
+**[Map](https://sass-lang.com/documentation/values/maps)**
+
+#### Properties
+
+| Name    | Type                                                       | Description           | Default |
+| :------ | :--------------------------------------------------------- | :-------------------- | :------ |
+| `light` | **[Map](https://sass-lang.com/documentation/values/maps)** | values of light theme | `(...)` |
+| `dark`  | **[Map](https://sass-lang.com/documentation/values/maps)** | values of dark theme  | `(...)` |
+
+<a id="default-settings-variable-palette"></a>
+
+### $palette
+
+Color palette
+
+- **Group:** Default settings
+- **Access:** public
+
+#### Type
+
+**[Map](https://sass-lang.com/documentation/values/maps)**
+
+#### Properties
+
+| Name            | Type                                                         | Description                                       | Default           |
+| :-------------- | :----------------------------------------------------------- | :------------------------------------------------ | :---------------- |
+| `black`         | **[List](https://sass-lang.com/documentation/values/lists)** | <span style="color: rgb(0, 0, 0);">█</span>       | `(0, 0, 0)`       |
+| `dark-moon`     | **[List](https://sass-lang.com/documentation/values/lists)** | <span style="color: rgb(20, 23, 26);">█</span>    | `(20, 23, 26)`    |
+| `night-sky`     | **[List](https://sass-lang.com/documentation/values/lists)** | <span style="color: rgb(38, 44, 51);">█</span>    | `(38, 44, 51)`    |
+| `black-olive`   | **[List](https://sass-lang.com/documentation/values/lists)** | <span style="color: rgb(63, 63, 63);">█</span>    | `(63, 63, 63)`    |
+| `dim-gray`      | **[List](https://sass-lang.com/documentation/values/lists)** | <span style="color: rgb(107, 107, 109);">█</span> | `(107, 107, 109)` |
+| `nocturnal`     | **[List](https://sass-lang.com/documentation/values/lists)** | <span style="color: rgb(119, 124, 130);">█</span> | `(119, 124, 130)` |
+| `gateway-gray`  | **[List](https://sass-lang.com/documentation/values/lists)** | <span style="color: rgb(159, 159, 161);">█</span> | `(159, 159, 161)` |
+| `stone`         | **[List](https://sass-lang.com/documentation/values/lists)** | <span style="color: rgb(195, 195, 197);">█</span> | `(195, 195, 197)` |
+| `olympus-white` | **[List](https://sass-lang.com/documentation/values/lists)** | <span style="color: rgb(213, 215, 217);">█</span> | `(213, 215, 217)` |
+| `mercury`       | **[List](https://sass-lang.com/documentation/values/lists)** | <span style="color: rgb(235, 236, 237);">█</span> | `(235, 236, 237)` |
+| `snow-flake`    | **[List](https://sass-lang.com/documentation/values/lists)** | <span style="color: rgb(237, 237, 240);">█</span> | `(237, 237, 240)` |
+| `ghost-white`   | **[List](https://sass-lang.com/documentation/values/lists)** | <span style="color: rgb(249, 249, 250);">█</span> | `(249, 249, 250)` |
+| `white`         | **[List](https://sass-lang.com/documentation/values/lists)** | <span style="color: rgb(255, 255, 255);">█</span> | `(255, 255, 255)` |
+| `summer-sky`    | **[List](https://sass-lang.com/documentation/values/lists)** | <span style="color: rgb(55, 165, 228);">█</span>  | `(55, 165, 228)`  |
+| `sky-blue`      | **[List](https://sass-lang.com/documentation/values/lists)** | <span style="color: rgb(255, 255, 255);">█</span> | `(122, 195, 237)` |
+
+<a id="default-settings-variable-mappings"></a>
+
+### $mappings
+
+Color mappings
+
+- **Group:** Default settings
+- **Access:** public
+
+#### Type
+
+**[Map](https://sass-lang.com/documentation/values/maps)**
+
+#### Properties
+
+| Name         | Type                                                             | Description     | Default         |
+| :----------- | :--------------------------------------------------------------- | :-------------- | :-------------- |
+| `a`          | **[String](https://sass-lang.com/documentation/values/strings)** | type a          | `black`         |
+| `b`          | **[String](https://sass-lang.com/documentation/values/strings)** | type b          | `dark-moon`     |
+| `c`          | **[String](https://sass-lang.com/documentation/values/strings)** | type c          | `night-sky`     |
+| `d`          | **[String](https://sass-lang.com/documentation/values/strings)** | type d          | `black-olive`   |
+| `e`          | **[String](https://sass-lang.com/documentation/values/strings)** | type e          | `dim-gray`      |
+| `f`          | **[String](https://sass-lang.com/documentation/values/strings)** | type f          | `nocturnal`     |
+| `g`          | **[String](https://sass-lang.com/documentation/values/strings)** | type g          | `gateway-gray`  |
+| `h`          | **[String](https://sass-lang.com/documentation/values/strings)** | type h          | `stone`         |
+| `i`          | **[String](https://sass-lang.com/documentation/values/strings)** | type i          | `olympus-white` |
+| `j`          | **[String](https://sass-lang.com/documentation/values/strings)** | type j          | `mercury`       |
+| `k`          | **[String](https://sass-lang.com/documentation/values/strings)** | type k          | `snow-flake`    |
+| `l`          | **[String](https://sass-lang.com/documentation/values/strings)** | type l          | `ghost-white`   |
+| `m`          | **[String](https://sass-lang.com/documentation/values/strings)** | type m          | `white`         |
+| `n`          | **[String](https://sass-lang.com/documentation/values/strings)** | type n          | `summer-sky`    |
+| `o`          | **[String](https://sass-lang.com/documentation/values/strings)** | type o          | `sky-blue`      |
+| `foreground` | **[String](https://sass-lang.com/documentation/values/strings)** | type foreground | `black`         |
+| `background` | **[String](https://sass-lang.com/documentation/values/strings)** | type background | `white`         |
+| `link`       | **[String](https://sass-lang.com/documentation/values/strings)** | type link       | `summer-sky`    |
+| `focus`      | **[String](https://sass-lang.com/documentation/values/strings)** | type focus      | `sky-blue`      |
+
 <a id="default-settings-variable-family"></a>
 
 ### $family
 
-default font family.
+Default font family.
 
-**default**
-
-- `-apple-system` ... use "San Francisco" as primary font in mac
-
-- `BlinkMacSystemFont` ... use "San Francisco" as primary in chrome on mac
-
-- `Helvetica` ... secondary font in mac
-
-- `Arial` ... secondary font in windows
-
-- `Hiragino Kaku Gothic ProN` ... primary japanese font in mac
-
-- `Yu Gothic Medium` ... primary japanese font in windows
-
-- `游ゴシック Medium` ... primary japanese font in ie on windows
-
-- `YuGothic` ... secondary japanese font in mac
-
-- `Meiryo` ... secondary japanese font in windows
-
-- `メイリオ` ... secondary japanese font in ie on windows
+| Name                        | Description                                                      |
+| :-------------------------- | :--------------------------------------------------------------- |
+| `system-ui`                 | Use system ui font as a primary font family in macOS.            |
+| `-apple-system`             | Use "San Francisco" as a secondary font family in macOS.         |
+| `BlinkMacSystemFont`        | Use "San Francisco" as a primary font family in chrome on macOS. |
+| `Helvetica`                 | Use as a fallback font family in macOS.                          |
+| `Arial`                     | Use as a primary font family in Windows.                         |
+| `Hiragino Sans`             | Use as a primary japanese font family in macOS.                  |
+| `Hiragino Kaku Gothic ProN` | Use as a fallback of Hiragino Sans in macOS.                     |
+| `Yu Gothic Medium`          | Use as a primary japanese font family in Windows.                |
+| `YuGothic`                  | Use as a secondary japanese font family in macOS.                |
+| `Meiryo`                    | Use as a secondary japanese font family in Windows.              |
 
 - **Group:** Default settings
-
 - **Access:** public
 
 #### Type
@@ -310,33 +390,48 @@ default font family.
 
 ### $family-monospace
 
-default monospace font family.
+Default monospace font family.
 
-**default**
-
-- `Consolas` ... primary font in windows (use it as primary if installed in mac)
-
-- `Monaco` ... primary font in mac
-
-- `Menlo` ... secondary font in mac
-
-- `Courier` ... secondary font in windows
+| Name       | Description                                                                       |
+| :--------- | :-------------------------------------------------------------------------------- |
+| `Consolas` | Use as a primary monospace font family in Windows. (Use it if installed in macOS) |
+| `Monaco`   | Use as a primary monospace font family in macOS.                                  |
+| `Menlo`    | Use as a secondary monospace font family in macOS.                                |
+| `Courier`  | Use as a secondary monospace font family in Windows.                              |
 
 - **Group:** Default settings
-
 - **Access:** public
 
 #### Type
 
 **[List](https://sass-lang.com/documentation/values/lists)**
 
-<a id="default-settings-variable-base-size"></a>
+<a id="default-settings-variable-family-presets"></a>
 
-### $base-size
+### $family-presets
 
-default base font size.
-(default: `16px`)
-this use if `$enable-relative-size` is `true`
+Default font family presets
+
+- **Group:** Default settings
+- **Access:** public
+
+#### Type
+
+**[Map](https://sass-lang.com/documentation/values/maps)**
+
+#### Properties
+
+| Name        | Type                                                             | Description           | Default             |
+| :---------- | :--------------------------------------------------------------- | :-------------------- | :------------------ |
+| `default`   | **[String](https://sass-lang.com/documentation/values/strings)** | Default font family   | `$family`           |
+| `monospace` | **[String](https://sass-lang.com/documentation/values/strings)** | Monospace font family | `$family-monospace` |
+
+<a id="default-settings-variable-size"></a>
+
+### $size
+
+Default font size.
+(default: `14px`)
 
 - **Group:** Default settings
 - **Access:** public
@@ -345,12 +440,13 @@ this use if `$enable-relative-size` is `true`
 
 **[Number](https://sass-lang.com/documentation/values/numbers)**
 
-<a id="default-settings-variable-size"></a>
+<a id="default-settings-variable-base-size"></a>
 
-### $size
+### $base-size
 
-default font size
-(default: `14px`)
+Default base font size.
+(default: `16px`)
+this use if `$enable-relative-size` is `true`
 
 - **Group:** Default settings
 - **Access:** public
@@ -363,7 +459,7 @@ default font size
 
 ### $size-presets
 
-default font size presets
+Default font size presets
 
 - **Group:** Default settings
 - **Access:** public
@@ -385,6 +481,82 @@ default font size presets
 | `3xlarge` | **[Number](https://sass-lang.com/documentation/values/numbers)** | size 3xlarge | `1.6`   |
 | `4xlarge` | **[Number](https://sass-lang.com/documentation/values/numbers)** | size 4xlarge | `1.75`  |
 
+<a id="default-settings-variable-weight"></a>
+
+### $weight
+
+Default font weight.
+(default: `400`)
+
+- **Group:** Default settings
+- **Access:** public
+
+#### Type
+
+**[Number](https://sass-lang.com/documentation/values/numbers)**
+
+<a id="default-settings-variable-weight-presets"></a>
+
+### $weight-presets
+
+Font weight presets
+
+- **Group:** Default settings
+- **Access:** public
+
+#### Type
+
+**[Map](https://sass-lang.com/documentation/values/maps)**
+
+#### Properties
+
+| Name          | Type                                                             | Description | Default |
+| :------------ | :--------------------------------------------------------------- | :---------- | :------ |
+| `thin`        | **[Number](https://sass-lang.com/documentation/values/numbers)** | thin        | `100`   |
+| `extra-light` | **[Number](https://sass-lang.com/documentation/values/numbers)** | extra-light | `200`   |
+| `light`       | **[Number](https://sass-lang.com/documentation/values/numbers)** | light       | `300`   |
+| `regular`     | **[Number](https://sass-lang.com/documentation/values/numbers)** | regular     | `400`   |
+| `medium`      | **[Number](https://sass-lang.com/documentation/values/numbers)** | medium      | `500`   |
+| `semi-bold`   | **[Number](https://sass-lang.com/documentation/values/numbers)** | semi-bold   | `600`   |
+| `bold`        | **[Number](https://sass-lang.com/documentation/values/numbers)** | bold        | `700`   |
+| `extra-bold`  | **[Number](https://sass-lang.com/documentation/values/numbers)** | extra-bold  | `800`   |
+| `black`       | **[Number](https://sass-lang.com/documentation/values/numbers)** | black       | `900`   |
+
+<a id="default-settings-variable-variant"></a>
+
+### $variant
+
+Default font variant
+(default: (common-ligatures proportional-width emoji))
+
+- **Group:** Default settings
+- **Access:** public
+
+#### Type
+
+**[List](https://sass-lang.com/documentation/values/lists)**
+
+<a id="default-settings-variable-smoothing"></a>
+
+### $smoothing
+
+Default font smoothing
+(webkit: antialiased, moz-osx: grayscale)
+
+- **Group:** Default settings
+- **Access:** public
+
+#### Type
+
+**[Map](https://sass-lang.com/documentation/values/maps)**
+
+#### Properties
+
+| Name      | Type                                                             | Description          | Default       |
+| :-------- | :--------------------------------------------------------------- | :------------------- | :------------ |
+| `webkit`  | **[Number](https://sass-lang.com/documentation/values/numbers)** | For browsers macOS   | `antialiased` |
+| `moz-osx` | **[Number](https://sass-lang.com/documentation/values/numbers)** | For firefox on macOS | `grayscale`   |
+
 <a id="default-settings-variable-enable-relative-size"></a>
 
 ### $enable-relative-size
@@ -400,11 +572,54 @@ override base size settings of font
 
 **[Boolean](https://sass-lang.com/documentation/values/booleans)**
 
+<a id="default-settings-variable-applying-units"></a>
+
+### $applying-units
+
+Default list of units that applying font
+
+- **Group:** Default settings
+- **Access:** private
+
+#### Type
+
+**[List](https://sass-lang.com/documentation/values/lists)**
+
+<a id="default-settings-variable-pkg"></a>
+
+### $pkg
+
+Package name.
+(default: `"unit"`)
+
+- **Group:** Default settings
+- **Access:** public
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+#### Examples
+
+scss inputs
+
+```scss
+$pkg: 'un';
+```
+
+css outputs
+
+```css
+:root {
+  --un-breakpoint-mobile: 667px;
+}
+```
+
 <a id="default-settings-variable-prefix"></a>
 
 ### $prefix
 
-prefix of class name of components
+Default prefix of unit class name.
 (default: `"unit"`)
 
 - **Group:** Default settings
@@ -434,7 +649,7 @@ css outputs
 
 ### $breakpoints
 
-default settings of breakpoints
+Default breakpoints.
 
 - **Group:** Default settings
 - **Access:** public
@@ -445,50 +660,18 @@ default settings of breakpoints
 
 #### Properties
 
-| Name      | Type                                                             | Description            | Default  |
-| :-------- | :--------------------------------------------------------------- | :--------------------- | :------- |
-| `desktop` | **[Number](https://sass-lang.com/documentation/values/numbers)** | breakpoint for desktop | `1024px` |
-| `mobile`  | **[Number](https://sass-lang.com/documentation/values/numbers)** | breakpoint for desktop | `667px`  |
-
-<a id="default-settings-variable-link-color"></a>
-
-### $link-color
-
-default link color
-
-- **Group:** Default settings
-- **Access:** public
-
-#### Type
-
-**[Map](https://sass-lang.com/documentation/values/maps)**
-
-#### Properties
-
-| Name    | Type                                                           | Description       | Default   |
-| :------ | :------------------------------------------------------------- | :---------------- | :-------- |
-| `link`  | **[Color](https://sass-lang.com/documentation/values/colors)** | color of `:link`  | `#37a5e4` |
-| `focus` | **[Color](https://sass-lang.com/documentation/values/colors)** | color of `:focus` | `#7ac3ed` |
-
-<a id="default-settings-variable-letter-spacing"></a>
-
-### $letter-spacing
-
-default letter-spacing
-(default: `0.04em`)
-
-- **Group:** Default settings
-- **Access:** public
-
-#### Type
-
-**[Number](https://sass-lang.com/documentation/values/numbers)**
+| Name            | Type                                                             | Description                               | Default                                |
+| :-------------- | :--------------------------------------------------------------- | :---------------------------------------- | :------------------------------------- |
+| `desktop`       | **[Number](https://sass-lang.com/documentation/values/numbers)** | Breakpoint width for desktop.             | `1024px`                               |
+| `mobile`        | **[Number](https://sass-lang.com/documentation/values/numbers)** | Breakpoint width for mobile.              | `667px`                                |
+| `if-mobile`     | **[String](https://sass-lang.com/documentation/values/strings)** | Breakpoint name when mobile viewport.     | `"only screen and (width < $mobile)"`  |
+| `if-not-mobile` | **[String](https://sass-lang.com/documentation/values/strings)** | Breakpoint name when not mobile viewport. | `"only screen and ($mobile <= width)"` |
 
 <a id="default-settings-variable-line-height"></a>
 
 ### $line-height
 
-default line-height
+Default line-height
 (default: `1.5`)
 
 - **Group:** Default settings
@@ -498,31 +681,123 @@ default line-height
 
 **[Number](https://sass-lang.com/documentation/values/numbers)**
 
-<a id="default-settings-variable-builtin-themes"></a>
+<a id="default-settings-variable-hyphens"></a>
 
-### $builtin-themes
+### $hyphens
 
-default builtin theme
+Default hyphens
+(default: `auto`)
 
 - **Group:** Default settings
 - **Access:** public
 
 #### Type
 
-**[Map](https://sass-lang.com/documentation/values/maps)**
+**[String](https://sass-lang.com/documentation/values/strings)**
 
-#### Properties
+<a id="default-settings-variable-letter-spacing"></a>
 
-| Name    | Type                                                       | Description           | Default |
-| :------ | :--------------------------------------------------------- | :-------------------- | :------ |
-| `light` | **[Map](https://sass-lang.com/documentation/values/maps)** | values of light theme | `(...)` |
-| `dark`  | **[Map](https://sass-lang.com/documentation/values/maps)** | values of dark theme  | `(...)` |
+### $letter-spacing
+
+Default letter-spacing
+(default: `0.04em`)
+
+- **Group:** Default settings
+- **Access:** public
+
+#### Type
+
+**[Number](https://sass-lang.com/documentation/values/numbers)**
+
+<a id="default-settings-variable-text-size-adjust"></a>
+
+### $text-size-adjust
+
+Default text-size-adjust
+(default: `100%`)
+
+- **Group:** Default settings
+- **Access:** public
+
+#### Type
+
+**[Number](https://sass-lang.com/documentation/values/numbers)**
+
+<a id="default-settings-variable-word-break"></a>
+
+### $word-break
+
+Default word-break
+(default: `normal`)
+
+- **Group:** Default settings
+- **Access:** public
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="default-settings-variable-word-wrap"></a>
+
+### $word-wrap
+
+Default word-wrap
+(default: `break-word`)
+
+- **Group:** Default settings
+- **Access:** public
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="default-settings-variable-line-break"></a>
+
+### $line-break
+
+Default line-break
+(default: `strict`)
+
+- **Group:** Default settings
+- **Access:** public
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="default-settings-variable-overflow-wrap"></a>
+
+### $overflow-wrap
+
+Default line-break
+(default: `strict`)
+
+- **Group:** Default settings
+- **Access:** public
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="default-settings-variable-message-on-image-error"></a>
+
+### $message-on-image-error
+
+Default message on image error
+(default: `Failed to load image.`)
+
+- **Group:** Default settings
+- **Access:** public
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
 
 <a id="default-settings-variable-verbose"></a>
 
 ### $verbose
 
-out warnings verbosily or not
+out warnings verbosely or not
 
 - **Group:** Default settings
 - **Access:** public
@@ -531,86 +806,11 @@ out warnings verbosily or not
 
 **[Boolean](https://sass-lang.com/documentation/values/booleans)**
 
-<a id="default-settings-variable-focus"></a>
-
-### $focus
-
-settings of selector.
-for expressing of state like `:hover` or `:focus`.
-(default: `(".is-focus")`)
-
-- **Group:** Default settings
-- **Access:** public
-
-#### Type
-
-**[List](https://sass-lang.com/documentation/values/lists)**
-
-<a id="default-settings-variable-selected"></a>
-
-### $selected
-
-settings of selector
-for expressing of state like `:checked`.
-(default: `(".is-selected")`)
-
-- **Group:** Default settings
-- **Access:** public
-
-#### Type
-
-**[List](https://sass-lang.com/documentation/values/lists)**
-
-<a id="default-settings-variable-disabled"></a>
-
-### $disabled
-
-settings of selector.
-for expressing of state like `:disabled`.
-(default: `(".is-disabled")`)
-
-- **Group:** Default settings
-- **Access:** public
-
-#### Type
-
-**[List](https://sass-lang.com/documentation/values/lists)**
-
-<a id="default-settings-variable-current"></a>
-
-### $current
-
-settings of selector.
-for expressing of state like `".is-current"`
-(default: `(".is-current")`)
-
-- **Group:** Default settings
-- **Access:** public
-
-#### Type
-
-**[List](https://sass-lang.com/documentation/values/lists)**
-
-<a id="default-settings-variable-active"></a>
-
-### $active
-
-settings of selector.
-for expressing of state like `is-active`.
-(default: `(".is-active")`)
-
-- **Group:** Default settings
-- **Access:** public
-
-#### Type
-
-**[List](https://sass-lang.com/documentation/values/lists)**
-
 <a id="default-settings-variable-prefix"></a>
 
 ### $prefix
 
-prefix of class name of util
+Default prefix for utility class name.
 (default: `"util"`)
 
 - **Group:** Default settings
@@ -636,24 +836,11 @@ css outputs
 }
 ```
 
-<a id="default-settings-variable-box-sizes"></a>
+<a id="default-settings-variable-width"></a>
 
-### $box-sizes
+### $width
 
-default values of width / height utilities
-
-- **Group:** Default settings
-- **Access:** public
-
-#### Type
-
-**[List](https://sass-lang.com/documentation/values/lists)**
-
-<a id="default-settings-variable-margin-values"></a>
-
-### $margin-values
-
-default values of margin
+Default width list.
 
 - **Group:** Default settings
 - **Access:** public
@@ -662,24 +849,11 @@ default values of margin
 
 **[List](https://sass-lang.com/documentation/values/lists)**
 
-<a id="default-settings-variable-padding-values"></a>
+<a id="default-settings-variable-height"></a>
 
-### $padding-values
+### $height
 
-default values of padding
-
-- **Group:** Default settings
-- **Access:** public
-
-#### Type
-
-**[List](https://sass-lang.com/documentation/values/lists)**
-
-<a id="default-settings-variable-position-values"></a>
-
-### $position-values
-
-default values of position
+Default height list.
 
 - **Group:** Default settings
 - **Access:** public
@@ -688,11 +862,11 @@ default values of position
 
 **[List](https://sass-lang.com/documentation/values/lists)**
 
-<a id="default-settings-variable-z-index-values"></a>
+<a id="default-settings-variable-margin"></a>
 
-### $z-index-values
+### $margin
 
-default values of z-index
+Default margin list
 
 - **Group:** Default settings
 - **Access:** public
@@ -701,24 +875,216 @@ default values of z-index
 
 **[List](https://sass-lang.com/documentation/values/lists)**
 
-<a id="default-settings-variable-breakpoints"></a>
+<a id="default-settings-variable-padding"></a>
 
-### $breakpoints
+### $padding
 
-default breakpoints
+Default padding list
 
 - **Group:** Default settings
 - **Access:** public
 
 #### Type
 
-**[Map](https://sass-lang.com/documentation/values/maps)**
+**[List](https://sass-lang.com/documentation/values/lists)**
+
+<a id="default-settings-variable-position"></a>
+
+### $position
+
+Default position list
+
+- **Group:** Default settings
+- **Access:** public
+
+#### Type
+
+**[List](https://sass-lang.com/documentation/values/lists)**
+
+<a id="default-settings-variable-directions"></a>
+
+### $directions
+
+Default direction list
+
+- **Group:** Default settings
+- **Access:** public
+
+#### Type
+
+**[List](https://sass-lang.com/documentation/values/lists)**
+
+<a id="default-settings-variable-z-index"></a>
+
+### $z-index
+
+Default z-index list
+
+- **Group:** Default settings
+- **Access:** public
+
+#### Type
+
+**[List](https://sass-lang.com/documentation/values/lists)**
+
+\<a id="features-css-//-prettier-ignore-$\_default-selectors:-(":disabled"-)-!default;--///-Utility-for-`:has`-pseudo-classes-with-`:disabled`-///-\@param"></a>
+
+### css// prettier-ignore
+
+$\_default-selectors: (":disabled",) !default;
+
+/// Utility for \`:has\` pseudo classes with \`:disabled\`
+/// @param
+
+Default selectors
+
+- **Group:** Features
+- **Access:** private
+
+\<a id="features-css-//-prettier-ignore-$\_default-selectors:-(":hover"--":focus")-!default;--///-Utility-for-`:has`-pseudo-classes-with-`:hover`-and-`:focus`-///-\@param"></a>
+
+### css// prettier-ignore
+
+$\_default-selectors: (":hover", ":focus") !default;
+
+/// Utility for \`:has\` pseudo classes with \`:hover\` and \`:focus\`
+/// @param
+
+Default selectors
+
+- **Group:** Features
+- **Access:** private
+
+\<a id="features-css-//-prettier-ignore-$\_default-selectors:-(":checked"-)-!default;--///-Utility-for-`:has`-pseudo-classes-with-`:checked`-///-\@param"></a>
+
+### css// prettier-ignore
+
+$\_default-selectors: (":checked",) !default;
+
+/// Utility for \`:has\` pseudo classes with \`:checked\`
+/// @param
+
+Default selectors
+
+- **Group:** Features
+- **Access:** private
+
+\<a id="features-css-//-prettier-ignore-$\_default-selectors:-(":disabled"-)-!default;--///-Utility-for-pseudo-classes-like-`:disabled`-///-\@param"></a>
+
+### css// prettier-ignore
+
+$\_default-selectors: (":disabled",) !default;
+
+/// Utility for pseudo classes like \`:disabled\`
+/// @param
+
+Default selectors
+
+- **Group:** Features
+- **Access:** private
 
 <a id="features-variable-_default-font-applying-units"></a>
 
 ### $\_default-font-applying-units
 
 default list of units that applying font
+
+- **Group:** Features
+- **Access:** private
+
+#### Type
+
+**[List](https://sass-lang.com/documentation/values/lists)**
+
+<a id="features-variable-_default-options"></a>
+
+### $\_default-options
+
+Default options
+
+- **Group:** Features
+- **Access:** private
+
+#### Type
+
+**[Map](https://sass-lang.com/documentation/values/maps)**
+
+#### Properties
+
+| Name  | Type                                                               | Description                   | Default |
+| :---- | :----------------------------------------------------------------- | :---------------------------- | :------ |
+| `not` | **[Boolean](https://sass-lang.com/documentation/values/booleans)** | Deny selectors whether or not | `false` |
+
+<a id="features-variable-_default-options"></a>
+
+### $\_default-options
+
+Default options
+
+- **Group:** Features
+- **Access:** private
+
+#### Type
+
+**[Map](https://sass-lang.com/documentation/values/maps)**
+
+<a id="features-variable-_default-selectors"></a>
+
+### $\_default-selectors
+
+Default selectors
+
+- **Group:** Features
+- **Access:** private
+
+#### Type
+
+**[List](https://sass-lang.com/documentation/values/lists)**
+
+<a id="features-variable-_default-selectors"></a>
+
+### $\_default-selectors
+
+Default selectors
+
+- **Group:** Features
+- **Access:** private
+
+#### Type
+
+**[List](https://sass-lang.com/documentation/values/lists)**
+
+<a id="features-variable-_default-selectors"></a>
+
+### $\_default-selectors
+
+Default selectors
+
+- **Group:** Features
+- **Access:** private
+
+#### Type
+
+**[List](https://sass-lang.com/documentation/values/lists)**
+
+<a id="features-variable-_default-selectors"></a>
+
+### $\_default-selectors
+
+Default selectors
+
+- **Group:** Features
+- **Access:** private
+
+#### Type
+
+**[List](https://sass-lang.com/documentation/values/lists)**
+
+<a id="features-variable-_default-selectors"></a>
+
+### $\_default-selectors
+
+Default selectors
 
 - **Group:** Features
 - **Access:** private
@@ -739,6 +1105,25 @@ selectors
 #### Type
 
 **[List](https://sass-lang.com/documentation/values/lists)**
+
+<a id="features-variable-_default-options"></a>
+
+### $\_default-options
+
+Default options
+
+- **Group:** Features
+- **Access:** private
+
+#### Type
+
+**[Map](https://sass-lang.com/documentation/values/maps)**
+
+#### Properties
+
+| Name  | Type                                                               | Description                   | Default |
+| :---- | :----------------------------------------------------------------- | :---------------------------- | :------ |
+| `not` | **[Boolean](https://sass-lang.com/documentation/values/booleans)** | Deny selectors whether or not | `false` |
 
 <a id="features-function-is-empty"></a>
 
@@ -1170,11 +1555,199 @@ css outputs
 }
 ```
 
+<a id="features-mixin-has-disabled"></a>
+
+### @mixin has-disabled
+
+Utility for `:has` pseudo classes with `:disabled`
+
+- **Group:** Features
+- **Access:** public
+
+#### Parameters
+
+| Name                    | Type                                                         | Description                  | Default |
+| :---------------------- | :----------------------------------------------------------- | :--------------------------- | :------ |
+| `$additional-selectors` | **[List](https://sass-lang.com/documentation/values/lists)** | list of additional selectors | `()`    |
+| `$options`              | **[Map](https://sass-lang.com/documentation/values/maps)**   | options                      | `()`    |
+
+#### Examples
+
+scss inputs
+
+```scss
+.selector {
+  @include has-disabled() {
+    font-size: 16px;
+  }
+}
+```
+
+css outputs
+
+```css
+.selector:has(:disabled, .is-disabled) {
+  font-size: 16px;
+}
+```
+
+<a id="features-mixin-has-focus"></a>
+
+### @mixin has-focus
+
+Utility for `:has` pseudo classes with `:hover` and `:focus`
+
+- **Group:** Features
+- **Access:** public
+
+#### Parameters
+
+| Name                    | Type                                                         | Description                  | Default |
+| :---------------------- | :----------------------------------------------------------- | :--------------------------- | :------ |
+| `$additional-selectors` | **[List](https://sass-lang.com/documentation/values/lists)** | list of additional selectors | `()`    |
+| `$options`              | **[Map](https://sass-lang.com/documentation/values/maps)**   | options                      | `()`    |
+
+#### Examples
+
+scss inputs
+
+```scss
+.selector {
+  @include has-focus() {
+    font-size: 16px;
+  }
+}
+```
+
+css outputs
+
+```css
+.selector:has(:hover, :focus, .is-focus) {
+  font-size: 16px;
+}
+```
+
+<a id="features-mixin-has-selected"></a>
+
+### @mixin has-selected
+
+Utility for `:has` pseudo classes with `:checked`
+
+- **Group:** Features
+- **Access:** public
+
+#### Parameters
+
+| Name                    | Type                                                         | Description                  | Default |
+| :---------------------- | :----------------------------------------------------------- | :--------------------------- | :------ |
+| `$additional-selectors` | **[List](https://sass-lang.com/documentation/values/lists)** | list of additional selectors | `()`    |
+| `$options`              | **[Map](https://sass-lang.com/documentation/values/maps)**   | options                      | `()`    |
+
+#### Examples
+
+scss inputs
+
+```scss
+.selector {
+  @include has-selected() {
+    font-size: 16px;
+  }
+}
+```
+
+css outputs
+
+```css
+.selector:has(:checked, .is-selected) {
+  font-size: 16px;
+}
+```
+
+<a id="features-mixin-has"></a>
+
+### @mixin has
+
+The utility mixin for `:has` pseudo classes.
+
+- **Group:** Features
+- **Access:** public
+
+#### Parameters
+
+| Name         | Type                                                         | Description       | Default |
+| :----------- | :----------------------------------------------------------- | :---------------- | :------ |
+| `$selectors` | **[List](https://sass-lang.com/documentation/values/lists)** | list of selectors | `()`    |
+| `$options`   | **[Map](https://sass-lang.com/documentation/values/maps)**   | options           | `()`    |
+
+#### Examples
+
+scss inputs
+
+```scss
+.selector {
+  @include has((':hover', ':focus')) {
+    font-size: 16px;
+  }
+}
+```
+
+css outputs
+
+```scss
+.selector:has(:hover, :focus) {
+  font-size: 16px;
+}
+```
+
+<a id="features-mixin-media"></a>
+
+### @mixin media
+
+The media query helper.
+
+- **Group:** Features
+- **Access:** public
+
+#### Parameters
+
+| Name                  | Type                                                             | Description                           | Default |
+| :-------------------- | :--------------------------------------------------------------- | :------------------------------------ | :------ |
+| `$query`              | **[String](https://sass-lang.com/documentation/values/strings)** | Breakpoint name or media query string | -       |
+| `$options`            | **[Map](https://sass-lang.com/documentation/values/maps)**       | Options                               | `()`    |
+| `$options.eval-query` | **[String](https://sass-lang.com/documentation/values/strings)** | Eval query as template whether or not | `false` |
+
+#### Examples
+
+scss inputs
+
+```scss
+$breakpoint: (
+  'sm': '(width <= 666)',
+  ...
+);
+
+.selector {
+  @include media($query: 'sm') {
+    font-size: 16px;
+  }
+}
+```
+
+css outputs
+
+```css
+@media (width <= 666) {
+  .selector {
+    font-size: 16px;
+  }
+}
+```
+
 <a id="features-mixin-on-active"></a>
 
 ### @mixin on-active
 
-wrappper of `is-active`
+Utility for pseudo classes like `.is-active`
 
 - **Group:** Features
 - **Access:** public
@@ -1201,7 +1774,7 @@ scss inputs
 css outputs
 
 ```css
-.selector.is-active {
+.selector:where(.is-active) {
   font-size: 16px;
 }
 ```
@@ -1210,7 +1783,7 @@ css outputs
 
 ### @mixin on-current
 
-wrappper of `.is-current`
+Utility for pseudo classes like `.is-current`
 
 - **Group:** Features
 - **Access:** public
@@ -1237,7 +1810,7 @@ scss inputs
 css outputs
 
 ```css
-.selector.is-current {
+.selector:where(.is-current) {
   font-size: 16px;
 }
 ```
@@ -1246,7 +1819,7 @@ css outputs
 
 ### @mixin on-deactive
 
-wrappper of `:not(is-active)`
+Utility for pseudo classes like `:not(is-active)`
 
 - **Group:** Features
 - **Access:** public
@@ -1273,7 +1846,7 @@ scss inputs
 css outputs
 
 ```css
-.selector:not(.is-active) {
+.selector::where(not(.is-active)) {
   font-size: 16px;
 }
 ```
@@ -1282,7 +1855,7 @@ css outputs
 
 ### @mixin on-disabled
 
-wrappper of `:disabled`
+Utility for pseudo classes like `:disabled`
 
 - **Group:** Features
 - **Access:** public
@@ -1309,8 +1882,7 @@ scss inputs
 css outputs
 
 ```css
-.selector:disabled,
-.selector.is-disabled {
+.selector:where(:disabled, .is-disabled) {
   font-size: 16px;
 }
 ```
@@ -1319,7 +1891,7 @@ css outputs
 
 ### @mixin on-focus
 
-wrappper of `:hover` and `:focus`
+Utility for pseudo classes like `:hover` and `:focus`
 
 - **Group:** Features
 - **Access:** public
@@ -1346,9 +1918,7 @@ scss inputs
 css outputs
 
 ```css
-.selector:hover,
-.selector:focus,
-.selector.is-focus {
+.selector:where(:hover, :focus, .is-focus) {
   font-size: 16px;
 }
 ```
@@ -1357,7 +1927,7 @@ css outputs
 
 ### @mixin on-link
 
-wrappper of `:link` and `:visited`
+Utility for pseudo classes like `:link` and `:visited`
 
 - **Group:** Features
 - **Access:** public
@@ -1384,8 +1954,7 @@ scss inputs
 css outputs
 
 ```css
-.selector:link,
-.selector:visited {
+.selector:where(:link) {
   font-size: 16px;
 }
 ```
@@ -1463,7 +2032,7 @@ css outputs
 
 ### @mixin on
 
-wrappper of pseudo class like `:hover`
+Utility for pseudo classes
 
 - **Group:** Features
 - **Access:** public
@@ -1474,6 +2043,7 @@ wrappper of pseudo class like `:hover`
 | :--------------------- | :----------------------------------------------------------- | :------------------------- | :------ |
 | `$selectors`           | **[List](https://sass-lang.com/documentation/values/lists)** | list of selectors          | `()`    |
 | `$capturing-selectors` | **[List](https://sass-lang.com/documentation/values/lists)** | capturing parent selectors | `()`    |
+| `$options`             | **[Map](https://sass-lang.com/documentation/values/maps)**   | options                    | `()`    |
 
 #### Examples
 
@@ -1490,8 +2060,7 @@ scss inputs
 css outputs
 
 ```scss
-.selector:hover,
-.selector:focus {
+.selector:where(:hover, :focus) {
   font-size: 16px;
 }
 ```
@@ -1723,7 +2292,8 @@ css outputs
 
 ```css
 .selector {
-  font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial,
+  font-family:
+    -apple-system, BlinkMacSystemFont, Helvetica, Arial,
     'Hiragino Kaku Gothic ProN', 'Yu Gothic Medium', '游ゴシック Medium',
     YuGothic, Meiryo, 'メイリオ', sans-serif !important;
 }
@@ -2028,7 +2598,8 @@ css outputs
 
 ```css
 .selector {
-  font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial,
+  font-family:
+    -apple-system, BlinkMacSystemFont, Helvetica, Arial,
     'Hiragino Kaku Gothic ProN', 'Yu Gothic Medium', '游ゴシック Medium',
     YuGothic, Meiryo, 'メイリオ', sans-serif !important;
 }
@@ -2586,7 +3157,7 @@ normalize values of spritesheet
 
 ### @mixin define
 
-define spritesheet
+Define spritesheet
 
 - **Group:** Plugin/spritesheet
 - **Access:** public
@@ -2638,16 +3209,23 @@ css outputs
 
 ```css
 .selector-logo {
-  overflow: hidden;
-  text-indent: -100%;
-  color: transparent;
-  background-image: url(path/to/sprite/icon-image.png);
+  --background-image: url(path/to/sprite/icon-image.png);
+  background-image: var(--background-image);
 }
 .selector-logo {
-  width: 10px;
-  height: 10px;
-  background-position: -10px -10px;
-  background-size: 30px 30px;
+  --overflow: hidden;
+  --color: transparent;
+  --text-indent: -100%;
+}
+.selector-logo {
+  --width: 10px;
+  width: var(--width);
+  --height: 10px;
+  height: var(--height);
+  --background-position: -10px -10px;
+  background-position: var(--background-position);
+  --background-size: 30px 30px;
+  background-size: var(--background-size);
 }
 ```
 
@@ -2726,7 +3304,7 @@ css outputs
 
 ### @mixin define-item
 
-define item
+Define item
 
 - **Group:** Plugin/spritesheet
 - **Access:** private
@@ -2743,7 +3321,7 @@ define item
 
 ### @mixin define-responsive-item
 
-define responsive item
+Define responsive item
 
 - **Group:** Plugin/spritesheet
 - **Access:** private
@@ -2760,7 +3338,7 @@ define responsive item
 
 ### @mixin define-responsive-toggle-item
 
-define responsive toggle item
+Define responsive toggle item
 
 - **Group:** Plugin/spritesheet
 - **Access:** private
@@ -2777,7 +3355,7 @@ define responsive toggle item
 
 ### @mixin define-toggle-item
 
-define toggle item
+Define toggle item
 
 - **Group:** Plugin/spritesheet
 - **Access:** private
@@ -3504,6 +4082,383 @@ css outputs
   word-wrap: break-word;
 }
 ```
+
+<a id="general-variable-_pkg"></a>
+
+### $\_pkg
+
+Package name
+
+- **Group:** General
+- **Access:** private
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="general-variable-_name"></a>
+
+### $\_name
+
+Unit name
+
+- **Group:** General
+- **Access:** private
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="general-variable-_pkg"></a>
+
+### $\_pkg
+
+Package name
+
+- **Group:** General
+- **Access:** private
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="general-variable-_pkg"></a>
+
+### $\_pkg
+
+Package name
+
+- **Group:** General
+- **Access:** private
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="general-variable-_pkg"></a>
+
+### $\_pkg
+
+Package name
+
+- **Group:** General
+- **Access:** private
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="general-variable-_pkg"></a>
+
+### $\_pkg
+
+Package name
+
+- **Group:** General
+- **Access:** private
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="general-variable-_pkg"></a>
+
+### $\_pkg
+
+Package name
+
+- **Group:** General
+- **Access:** private
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="general-variable-_pkg"></a>
+
+### $\_pkg
+
+Package name
+
+- **Group:** General
+- **Access:** private
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="general-variable-_pkg"></a>
+
+### $\_pkg
+
+Package name
+
+- **Group:** General
+- **Access:** private
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="general-variable-_pkg"></a>
+
+### $\_pkg
+
+Package name
+
+- **Group:** General
+- **Access:** private
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="general-variable-_pkg"></a>
+
+### $\_pkg
+
+Package name
+
+- **Group:** General
+- **Access:** private
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="general-variable-_pkg"></a>
+
+### $\_pkg
+
+Package name
+
+- **Group:** General
+- **Access:** private
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="general-variable-_pkg"></a>
+
+### $\_pkg
+
+Package name
+
+- **Group:** General
+- **Access:** private
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="general-variable-_pkg"></a>
+
+### $\_pkg
+
+Package name
+
+- **Group:** General
+- **Access:** private
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="general-variable-_pkg"></a>
+
+### $\_pkg
+
+Package name
+
+- **Group:** General
+- **Access:** private
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="general-variable-_pkg"></a>
+
+### $\_pkg
+
+Package name
+
+- **Group:** General
+- **Access:** private
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="general-variable-_pkg"></a>
+
+### $\_pkg
+
+Package name
+
+- **Group:** General
+- **Access:** private
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="general-variable-_pkg"></a>
+
+### $\_pkg
+
+Package name
+
+- **Group:** General
+- **Access:** private
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="general-variable-_pkg"></a>
+
+### $\_pkg
+
+Package name
+
+- **Group:** General
+- **Access:** private
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="general-variable-_pkg"></a>
+
+### $\_pkg
+
+Package name
+
+- **Group:** General
+- **Access:** private
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="general-variable-_pkg"></a>
+
+### $\_pkg
+
+Package name
+
+- **Group:** General
+- **Access:** private
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="general-variable-_pkg"></a>
+
+### $\_pkg
+
+Package name
+
+- **Group:** General
+- **Access:** private
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="general-variable-_pkg"></a>
+
+### $\_pkg
+
+Package name
+
+- **Group:** General
+- **Access:** private
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="general-variable-_pkg"></a>
+
+### $\_pkg
+
+Package name
+
+- **Group:** General
+- **Access:** private
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="general-variable-_pkg"></a>
+
+### $\_pkg
+
+Package name
+
+- **Group:** General
+- **Access:** private
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="general-variable-_pkg"></a>
+
+### $\_pkg
+
+Package name
+
+- **Group:** General
+- **Access:** private
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="general-variable-_pkg"></a>
+
+### $\_pkg
+
+Package name
+
+- **Group:** General
+- **Access:** private
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="general-variable-_pkg"></a>
+
+### $\_pkg
+
+Package name
+
+- **Group:** General
+- **Access:** private
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
+<a id="general-variable-_pkg"></a>
+
+### $\_pkg
+
+Package name
+
+- **Group:** General
+- **Access:** private
+
+#### Type
+
+**[String](https://sass-lang.com/documentation/values/strings)**
 
 <a id="z-index-feature-variable-_default-range"></a>
 

@@ -1,9 +1,11 @@
+@use "sass:meta";
+@use "../lib/mixin";
 @use "../settings";
 
 /*
-float
+Float
 
-utilities that tweek of float
+The float module.
 
 Weight: -91
 
@@ -11,33 +13,53 @@ Style guide: #{settings.$util-prefix}.float
 */
 
 /*
-modifiers: float
+Modifiers
 
-builtin modifiers of float
+The float modifiers .
 
 Weight: -100
 
-Markup: <div style="position:relative; padding:50px;">
-  <div class="{{modifier_class}}" style="position:relative; width:50px; height:50px; background:#999;"></div>
-  <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-</div>
+Markup: <div class="float-example {{modifier_class}}"></div>
+<p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<p class="#{settings.$prefix}-text">あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</p>
+<style>
+  :where(.float-example) {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background: #999;
+    transition: width 0.2s ease-in-out;
+  }
+</style>
 
-#{settings.$util-prefix}--float-left - float to left side
-#{settings.$util-prefix}--float-right - float to right side
-#{settings.$util-prefix}--float-none - disable float
+#{settings.$util-prefix}--float-left - Float to left side
+#{settings.$util-prefix}--float-right - Float to right side
+#{settings.$util-prefix}--float-none - Disable floating
+#{settings.$util-prefix}--float-left-if-mobile - Float to left side if mobile viewport
+#{settings.$util-prefix}--float-left-if-not-mobile - Float to left side if not mobile viewport
 
 Style guide: #{settings.$util-prefix}.float.builtin
 */
 .#{settings.$util-prefix}--float {
-  &-left {
-    float: left !important;
-  }
+  $floats: ("left", "right", "none");
 
-  &-right {
-    float: right !important;
-  }
+  @each $float in $floats {
+    &-#{$float} {
+      --float: #{$float};
 
-  &-none {
-    float: none !important;
+      float: var(--float);
+    }
+
+    @each $bp, $query in settings.$breakpoints {
+      @if meta.type-of($query) == "string" {
+        &-#{$float}-#{$bp} {
+          @include mixin.media($query: $query) {
+            --float: #{$float};
+
+            float: var(--float);
+          }
+        }
+      }
+    }
   }
 }

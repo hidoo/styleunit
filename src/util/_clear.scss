@@ -1,9 +1,11 @@
+@use "sass:meta";
+@use "../lib/mixin";
 @use "../settings";
 
 /*
-clear
+Clear
 
-utilities that tweek of clear
+The clear module.
 
 Weight: -90
 
@@ -11,35 +13,53 @@ Style guide: #{settings.$util-prefix}.clear
 */
 
 /*
-modifiers: clear
+Modifiers
 
-builtin modifiers of clear
+The clear modifiers .
 
 Weight: -100
 
-Markup: <div style="position:relative; padding:50px;">
-  <div class="#{settings.$util-prefix}--float-left" style="position:relative; width:50px; height:50px; background:#ccc;"></div>
-  <div class="{{modifier_class}}" style="position:relative; width:50px; height:50px; background:#999;"></div>
-  <div class="#{settings.$util-prefix}--float-right" style="position:relative; width:50px; height:50px; background:#ccc;"></div>
-  <div class="{{modifier_class}}" style="position:relative; width:50px; height:50px; background:#999;"></div>
-</div>
+Markup: <div class="clear-example  #{settings.$util-prefix}--float-left"></div>
+<p class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<div class="clear-example  #{settings.$util-prefix}--float-right"></div>
+<p class="#{settings.$prefix}-text  {{modifier_class}}">あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</p>
+<style>
+  :where(.clear-example) {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background: #999;
+  }
+</style>
 
-#{settings.$util-prefix}--clear-left - clear left side floating
-#{settings.$util-prefix}--clear-right - clear right side floating
-#{settings.$util-prefix}--clear-both - clear both floating
+#{settings.$util-prefix}--clear-left - Clear left side floating
+#{settings.$util-prefix}--clear-right - Clear right side floating
+#{settings.$util-prefix}--clear-both - Clear both floating
+#{settings.$util-prefix}--clear-left-if-mobile - Clear left side floating if mobile viewport
+#{settings.$util-prefix}--clear-left-if-not-mobile - Clear left side floating if not mobile viewport
 
 Style guide: #{settings.$util-prefix}.clear.builtin
 */
 .#{settings.$util-prefix}--clear {
-  &-left {
-    clear: left !important;
-  }
+  $clears: ("left", "right", "both");
 
-  &-right {
-    clear: right !important;
-  }
+  @each $clear in $clears {
+    &-#{$clear} {
+      --clear: #{$clear};
 
-  &-both {
-    clear: both !important;
+      clear: var(--clear);
+    }
+
+    @each $bp, $query in settings.$breakpoints {
+      @if meta.type-of($query) == "string" {
+        &-#{$clear}-#{$bp} {
+          @include mixin.media($query: $query) {
+            --clear: #{$clear};
+
+            clear: var(--clear);
+          }
+        }
+      }
+    }
   }
 }

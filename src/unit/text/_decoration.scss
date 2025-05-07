@@ -1,9 +1,9 @@
 @use "../../settings";
 
 /*
-decoration
+Decoration
 
-decoration modifiers of #{settings.$prefix}-text
+The decoration module.
 
 Weight: -91
 
@@ -11,36 +11,31 @@ Style guide: #{settings.$prefix}-text.decoration
 */
 
 /*
-modifiers: decoration
+Modifiers
 
-builtin modifiers of decoration for #{settings.$prefix}-text
+The decoration modifiers.
 
 Weight: -100
 
-Markup: <h1 class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet.</h1>
-<p class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+Markup: <h1 class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h1>
+<p class="#{settings.$prefix}-text  {{modifier_class}}">あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</p>
 
-#{settings.$prefix}-text--decoration-false - disable decoration
-#{settings.$prefix}-text--decoration-overline - enable overline
-#{settings.$prefix}-text--decoration-strikeline - enable strikeline
-#{settings.$prefix}-text--decoration-underline - enable underline
+#{settings.$prefix}-text--decoration-overline - Overline
+#{settings.$prefix}-text--decoration-strikeline - Strike line
+#{settings.$prefix}-text--decoration-underline - Underline
 
 Style guide: #{settings.$prefix}-text.decoration.builtin
 */
 .#{settings.$prefix}-text--decoration {
-  &-false {
-    // has no settings
-  }
-
   &-overline {
-    text-decoration: overline;
+    --text-decoration: overline;
   }
 
   &-strikeline {
-    text-decoration: line-through;
+    --text-decoration: line-through;
   }
 
   &-underline {
-    text-decoration: underline;
+    --text-decoration: underline;
   }
 }

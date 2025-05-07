@@ -1,9 +1,16 @@
+@use "sass:map";
 @use "../../settings";
 
-/*
-fit
+/// Package name
+/// @access private
+/// @type String
+///
+$_pkg: settings.$pkg !default;
 
-fit modifiers of #{settings.$prefix}-pict
+/*
+Fit
+
+The fit module.
 
 Weight: -96
 
@@ -11,63 +18,56 @@ Style guide: #{settings.$prefix}-pict.fit
 */
 
 /*
-modifiers: fit
+Modifiers
 
-builtin modifiers of fit for #{settings.$prefix}-pict
+The fit modifiers.
 
 Weight: -100
 
-Markup: <!-- image element -->
+Markup: <!-- with img element -->
 <figure class="#{settings.$prefix}-pict  {{modifier_class}}">
-  <img class="#{settings.$prefix}-pict__src" src="https://via.placeholder.com/400x300" alt="" width="400" height="300" />
+  <img class="#{settings.$prefix}-pict__src" src="https://placehold.co/400x300.png" alt="" width="400" height="300" loading="auto" />
 </figure>
-<!-- image element (breaking) -->
+<!-- with breaking img element -->
 <figure class="#{settings.$prefix}-pict  {{modifier_class}}">
-  <img class="#{settings.$prefix}-pict__src" src="#" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." width="400" height="300" />
+  <img class="#{settings.$prefix}-pict__src" src="#" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." width="400" height="300" loading="auto" />
 </figure>
-<!-- iframe player -->
+<!-- with picture element -->
+<picture class="#{settings.$prefix}-pict  {{modifier_class}}">
+  <source media="(min-width: #{map.get(settings.$breakpoints, "mobile") + 1px})" srcset="https://placehold.co/800x600.png 800w, https://placehold.co/400x300.png 400w" sizes="400px" />
+  <source media="(max-width: #{map.get(settings.$breakpoints, "mobile")})" srcset="https://placehold.co/600x600.png 600w, https://placehold.co/300x300.png 300w" sizes="300px" />
+  <img class="#{settings.$prefix}-pict__src" src="https://placehold.co/800x600.png" alt="" loading="auto" />
+</picture>
+<!-- with iframe player -->
 <figure class="#{settings.$prefix}-pict  {{modifier_class}}">
-  <iframe class="#{settings.$prefix}-pict__src" title="vimeo-player" src="https://player.vimeo.com/video/76979871" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+  <iframe class="#{settings.$prefix}-pict__src" title="vimeo-player" src="https://player.vimeo.com/video/76979871" width="640" height="360" frameborder="0" allowfullscreen  loading="auto"></iframe>
 </figure>
 
-#{settings.$prefix}-pict--fit-false - disable fit (**default**)
-#{settings.$prefix}-pict--fit-width - enable fit to width
-#{settings.$prefix}-pict--fit-max-width - enable fit to max-width
-#{settings.$prefix}-pict--fit-height - enable fit to height
-#{settings.$prefix}-pict--fit-max-height - enable fit to max-height
+#{settings.$prefix}-pict--fit-width - Fit to width
+#{settings.$prefix}-pict--fit-max-width - Fit to max-width
 
 Style guide: #{settings.$prefix}-pict.fit.builtin
 */
 .#{settings.$prefix}-pict--fit {
-  &-none {
-    // has no settings
+  &-width,
+  &-max-width {
+    --src-object-fit: fill;
+
+    .#{settings.$prefix}-pict__src:where(
+        .#{settings.$prefix}-pict > .#{settings.$prefix}-pict__src
+      ) {
+      width: var(--src-width);
+      height: var(--src-height);
+    }
   }
 
   &-width {
-    > .#{settings.$prefix}-pict__src {
-      width: 100%;
-      height: auto;
-    }
+    --src-width: 100%;
+    --src-height: auto;
   }
 
   &-max-width {
-    > .#{settings.$prefix}-pict__src {
-      max-width: 100%;
-      height: auto;
-    }
-  }
-
-  &-height {
-    > .#{settings.$prefix}-pict__src {
-      width: auto;
-      height: 100%;
-    }
-  }
-
-  &-max-height {
-    > .#{settings.$prefix}-pict__src {
-      width: auto;
-      max-height: 100%;
-    }
+    --src-max-width: 100%;
+    --src-height: auto;
   }
 }

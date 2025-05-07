@@ -1,5 +1,5 @@
 ////
-/// (c) hidoo | MIT Lisence
+/// (c) hidoo | MIT License
 /// @group list feature
 ////
 
@@ -36,8 +36,7 @@
   @each $item in $list {
     @if $result == "" {
       $result: "#{$item}";
-    }
-    @else {
+    } @else {
       $result: "#{$result}#{$separator}#{$item}";
     }
   }

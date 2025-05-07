@@ -1,11 +1,16 @@
-@use "sass:map";
 @use "../../lib/mixin";
 @use "../../settings";
+
+/// Package name
+/// @access private
+/// @type String
+///
+$_pkg: settings.$pkg !default;
 
 /*
 #{settings.$prefix}-text
 
-component for device text.
+The text unit.
 
 Weight: -1090
 
@@ -13,9 +18,9 @@ Style guide: #{settings.$prefix}-text
 */
 
 /*
-core
+Core
 
-core module of #{settings.$prefix}-text
+The core module.
 
 Weight: -100
 
@@ -23,50 +28,99 @@ Style guide: #{settings.$prefix}-text.core
 */
 
 /*
-default style
+Default style
 
-default style of #{settings.$prefix}-text
+The default style.
 
 Weight: -100
 
-Markup: <h1 class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet.</h1>
-<p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+Markup: <h1 class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h1>
+<p class="#{settings.$prefix}-text">あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</p>
 
-Style guide: #{settings.$prefix}-text.core.base
+Style guide: #{settings.$prefix}-text.core.default
 */
 .#{settings.$prefix}-text {
-  @include mixin.box-initialize();
-  @include mixin.text-initialize();
-  @include mixin.font-initialize();
-  @include mixin.font-apply-size($value: "medium");
+  --position: relative;
+  --display: block;
+  --overflow: visible;
+  --box-sizing: content-box;
+  --width: auto;
+  --height: auto;
+  --margin: 0;
+  --padding: 0;
+  --border: 0;
+  --font-size: var(--#{$_pkg}-font-size);
+  --font-weight: var(--#{$_pkg}-font-weight);
+  --font-style: normal;
+  --line-height: var(--#{$_pkg}-line-height);
+  --color: inherit;
+  --text-align: left;
+  --text-decoration: none;
+  --text-indent: 0;
+  --letter-spacing: var(--#{$_pkg}-letter-spacing);
+  --white-space: normal;
+  --vertical-align: baseline;
+  --list-style: none;
+  --background-color: transparent;
 
-  color: inherit;
-  background-color: transparent;
+  position: var(--position);
+
+  overflow: var(--overflow);
+  display: var(--display);
+
+  box-sizing: var(--box-sizing);
+  width: var(--width);
+  height: var(--height);
+  margin: var(--margin);
+  padding: var(--padding);
+  border: var(--border);
+
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  font-style: var(--font-style);
+  line-height: var(--line-height);
+  color: var(--color);
+  text-align: var(--text-align);
+  text-decoration: var(--text-decoration);
+  text-indent: var(--text-indent);
+  letter-spacing: var(--letter-spacing);
+  white-space: var(--white-space);
+  vertical-align: var(--vertical-align);
+  list-style: var(--list-style);
+
+  background-color: var(--background-color);
 }
 
 /*
-link style
+Default link style
 
-default style of link in #{settings.$prefix}-text
+The default link style.
 
 Weight: -99
 
-Markup: <h1 class="#{settings.$prefix}-text">Lorem ipsum dolor <a class="#{settings.$prefix}-text__link" href="javascript:;">sit amet</a>.</h1>
-<p class="#{settings.$prefix}-text">Lorem ipsum dolor <a class="#{settings.$prefix}-text__link" href="javascript:;">sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</a>.</p>
+Markup: <h1 class="#{settings.$prefix}-text">Lorem ipsum dolor <a class="#{settings.$prefix}-text__link" href="#">sit amet</a>, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h1>
+<p class="#{settings.$prefix}-text">あの<a class="#{settings.$prefix}-text__link" href="#">イーハトーヴォ</a>のすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</p>
 
 Style guide: #{settings.$prefix}-text.core.link
 */
 .#{settings.$prefix}-text__link {
+  --display: inline;
+  --color: var(--#{$_pkg}-color-link);
+  --text-decoration: none;
+  --background-color: transparent;
+
+  display: var(--display);
+  color: var(--color);
+  text-decoration: var(--text-decoration);
+  background-color: var(--background-color);
+
   @include mixin.on-link() {
-    color: map.get(settings.$link-color, "link");
-    text-decoration: underline;
+    --color: rgb(var(--#{$_pkg}-color-link));
+    --text-decoration: underline;
   }
 
   @include mixin.on-focus() {
-    color: map.get(settings.$link-color, "focus");
-    text-decoration: none;
+    --color: rgb(var(--#{$_pkg}-color-focus));
+    --text-decoration: none;
   }
-
-  display: inline;
-  background-color: transparent;
 }

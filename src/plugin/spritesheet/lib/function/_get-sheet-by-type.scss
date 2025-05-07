@@ -1,5 +1,5 @@
 ////
-/// (c) hidoo | MIT Lisence
+/// (c) hidoo | MIT License
 /// @group plugin/spritesheet
 ////
 
@@ -13,13 +13,19 @@
 /// @return {Map|null}
 ///
 @function get-sheet-by-type($type, $spritesheets: ()) {
-  @if meta.type-of($spritesheets) != "map" or not map.has-key($spritesheets, $type) {
+  @if meta.type-of($spritesheets) !=
+    "map" or not
+    map.has-key($spritesheets, $type)
+  {
     @return null;
   }
 
   $sheet-by-type: map.get($spritesheets, $type);
 
-  @if not map.has-key($sheet-by-type, "items") or not map.has-key($sheet-by-type, "image") {
+  @if not
+    map.has-key($sheet-by-type, "items") or not
+    map.has-key($sheet-by-type, "image")
+  {
     @return null;
   }
 

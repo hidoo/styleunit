@@ -1,178 +1,143 @@
 @use "sass:map";
 @use "sass:meta";
-@use "sass:string";
-@use "../../lib/function";
 @use "../../lib/mixin";
 @use "../../settings";
 
-/*
-radio
+/// Package name
+/// @access private
+/// @type String
+///
+$_pkg: settings.$pkg !default;
 
-radio modifiers of #{settings.$prefix}-toggle
+/*
+Radio
+
+The radio module.
 
 Weight: -99
 
 Style guide: #{settings.$prefix}-toggle.radio
 */
 
-/*
-modifiers: radio
+@if meta.type-of(settings.$builtin-themes) == "map" {
+  /*
+Modifiers
 
-builtin modifiers of radio for #{settings.$prefix}-toggle
+The radio modifiers.
 
 Weight: -100
 
 Markup: <!-- single -->
 <span class="#{settings.$prefix}-toggle  {{modifier_class}}">
-  <input class="#{settings.$prefix}-toggle__field" type="radio" name="{{modifier_class}}" value="1" />
-  <span class="#{settings.$prefix}-toggle__alt"></span>
+  <input class="#{settings.$prefix}-toggle__field" type="radio" name="{{or modifier_class 'toggle'}}" value="1" />
+</span>
+<!-- single (legacy) -->
+<span class="#{settings.$prefix}-toggle  {{modifier_class}}">
+  <input class="#{settings.$prefix}-toggle__field" type="radio" name="{{or modifier_class 'toggle'}}" value="2" />
+  <span class="#{settings.$prefix}-toggle__alt"><!-- Alt element is not use. --></span>
 </span>
 <!-- single:disabled -->
 <span class="#{settings.$prefix}-toggle  {{modifier_class}}">
-  <input class="#{settings.$prefix}-toggle__field" type="radio" name="{{modifier_class}}" value="2" checked="checked" disabled="disabled" />
-  <span class="#{settings.$prefix}-toggle__alt"></span>
+  <input class="#{settings.$prefix}-toggle__field" type="radio" name="{{or modifier_class 'toggle'}}" value="3" checked="checked" disabled="disabled" />
 </span>
 <!-- with label -->
-<label>
+<label class="#{settings.$prefix}-text  #{settings.$prefix}-text--inline-block">
   <span class="#{settings.$prefix}-toggle  {{modifier_class}}">
-    <input class="#{settings.$prefix}-toggle__field" type="radio" name="{{modifier_class}}" value="3" />
-    <span class="#{settings.$prefix}-toggle__alt"></span>
+    <input class="#{settings.$prefix}-toggle__field" type="radio" name="{{or modifier_class 'toggle'}}" value="4" />
   </span>
   Lorem ipsum dolor sit amet.
 </label>
 
-#{settings.$prefix}-toggle--radio-light - light radio
-#{settings.$prefix}-toggle--radio-dark - dark radio
+#{settings.$prefix}-toggle--radio-normal - Normal radio
 
 Style guide: #{settings.$prefix}-toggle.radio.builtin
 */
-.#{settings.$prefix}-toggle--radio {
-  $selector: string.unique-id();
-  $selector-field: string.unique-id();
-  $selector-alt: string.unique-id();
-  $selector-alt-checked: string.unique-id();
-  $selectors-selected: function.selector-merge-state("selected");
-  $selectors-focus: function.selector-merge-state("focus");
-  $selectors-disabled: function.selector-merge-state("disabled");
+  .#{settings.$prefix}-toggle--radio {
+    &-normal {
+      $default-theme: map.get(settings.$builtin-themes, "light");
 
-  // define placeholder class
-  @include mixin.placeholder-define($name: $selector) {
-    vertical-align: middle;
-  }
+      // Load colors
+      --color-up: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "color")})
+      );
+      --color-focus: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "color-focus")})
+      );
 
-  // define placeholder class of field
-  @include mixin.placeholder-define($name: $selector-field) {
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: 0;
+      // Default settings
+      --width: 20px;
+      --height: 20px;
+      --border: 1px solid var(--color-up);
+      --border-radius: 20px;
+      --vertical-align: middle;
+      --opacity: 1;
+      --transition: border-color 0.2s ease-out;
 
-    width: 100%;
-    height: 100%;
+      // For field
+      --field-position: absolute;
+      --field-z-index: 1;
+      --field-inset: 0;
+      --field-width: 100%;
+      --field-height: 100%;
+      --field-opacity: 0;
 
-    opacity: 0;
-  }
+      // For pseudo
+      --pseudo-transform: scale(0);
+      --pseudo-background-color: var(--color-up);
+      --pseudo-transition:
+        transform 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+        background-color 0.2s ease-out;
 
-  // define placeholder class of alt
-  @include mixin.placeholder-define($name: $selector-alt) {
-    z-index: 0;
+      border-radius: var(--border-radius);
+      vertical-align: var(--vertical-align);
+      opacity: var(--opacity);
+      transition: var(--transition);
 
-    display: block;
+      &::before {
+        content: "";
 
-    width: 20px;
-    height: 20px;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 20px;
+        position: absolute;
+        inset: 0;
+        transform-origin: 50% 50%;
+        transform: var(--pseudo-transform);
 
-    &::before {
-      content: "";
+        width: 12px;
+        height: 12px;
+        margin: auto;
+        border-radius: 12px;
 
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      transform-origin: 50% 50%;
-      transform: scale(0);
+        background-color: var(--pseudo-background-color);
 
-      width: 12px;
-      height: 12px;
-      margin: auto;
-      border-radius: 12px;
+        transition-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        transition-duration: 0.2s;
+        transition-property: transform, background-color;
+      }
 
-      transition-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
-      transition-duration: 0.2s;
-      transition-property: transform;
-    }
-  }
+      @include mixin.has-selected() {
+        --pseudo-transform: scale(1);
+      }
 
-  // define placeholder class of alt when checked
-  @include mixin.placeholder-define($name: $selector-alt-checked) {
-    &::before {
-      transform: scale(1);
-    }
-  }
+      @include mixin.has-focus() {
+        --border: 1px solid var(--color-focus);
+        --pseudo-background-color: var(--color-focus);
+      }
 
-  @if meta.type-of(settings.$builtin-themes) == "map" {
-    @each $name, $theme in settings.$builtin-themes {
-      $color: map.get($theme, "color");
-      $color-focus: map.get($theme, "color-focus");
+      @include mixin.has-disabled() {
+        --opacity: 0.5;
+        --border: 1px solid var(--color-up);
+        --pseudo-background-color: var(--color-up);
+        --field-opacity: 0;
+      }
 
-      &-#{$name} {
-        $selector-alt-focus: string.unique-id();
-        $selector-alt-disabled: string.unique-id();
+      // Settings by color schemes
+      @each $name, $theme in settings.$builtin-themes {
+        @media (prefers-color-scheme: #{$name}) {
+          $color-up: map.get($theme, "color");
+          $color-focus: map.get($theme, "color-focus");
 
-        @extend %#{$selector};
-
-        // define placeholder class of alt when focus
-        @include mixin.placeholder-define($name: $selector-alt-focus) {
-          border-color: $color-focus;
-        }
-
-        // define placeholder class of alt when disabled
-        @include mixin.placeholder-define($name: $selector-alt-disabled) {
-          border-color: $color;
-        }
-
-        > .#{settings.$prefix}-toggle__field {
-          @extend %#{$selector-field};
-
-          + .#{settings.$prefix}-toggle__alt {
-            @extend %#{$selector-alt};
-
-            border-color: $color;
-
-            // stylelint-disable-next-line max-nesting-depth
-            &::before {
-              background-color: $color;
-            }
-          }
-        }
-
-        // when checked
-        @each $state in $selectors-selected {
-          > .#{settings.$prefix}-toggle__field#{$state} {
-            + .#{settings.$prefix}-toggle__alt {
-              @extend %#{$selector-alt-checked};
-            }
-          }
-        }
-
-        @each $state in $selectors-focus {
-          > .#{settings.$prefix}-toggle__field#{$state} {
-            + .#{settings.$prefix}-toggle__alt {
-              @extend %#{$selector-alt-focus};
-            }
-          }
-        }
-
-        @each $state in $selectors-disabled {
-          > .#{settings.$prefix}-toggle__field#{$state} {
-            + .#{settings.$prefix}-toggle__alt {
-              @extend %#{$selector-alt-disabled};
-            }
-          }
+          // Apply colors to settings
+          --color-up: rgb(var(--#{$_pkg}-color-#{$color-up}));
+          --color-focus: rgb(var(--#{$_pkg}-color-#{$color-focus}));
         }
       }
     }

@@ -1,5 +1,5 @@
 ////
-/// (c) hidoo | MIT Lisence
+/// (c) hidoo | MIT License
 /// @group size features
 ////
 
@@ -13,11 +13,7 @@
 /// @access private
 /// @type List
 ///
-$_supported-types: (
-  "width",
-  "height",
-  "z-index",
-) !default;
+$_supported-types: ("width", "height", "z-index") !default;
 
 /// define sizes
 /// @param {String} $type ["width"] - type of options (one of `"width"`, `"height"` or `"z-index"`)
@@ -56,7 +52,10 @@ $_supported-types: (
 ///   }
 ///
 @mixin define($type: "width", $values: (), $breakpoints: null) {
-  @if meta.type-of($type) != "string" or not list.index($_supported-types, $type) {
+  @if meta.type-of($type) !=
+    "string" or not
+    list.index($_supported-types, $type)
+  {
     @error "@mixin size-define: Argument $type must be one of #{meta.inspect($_supported-types)}.";
   }
 

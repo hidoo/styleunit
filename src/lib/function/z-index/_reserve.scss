@@ -1,5 +1,5 @@
 ////
-/// (c) hidoo | MIT Lisence
+/// (c) hidoo | MIT License
 /// @group z-index feature
 ////
 
@@ -19,25 +19,40 @@ $_default-range: (0, 100) !default;
 ///
 $_types: (
   "main": (
-    "range": (0, 4999),
-    "stack": (),
+    "range": (
+      0,
+      4999
+    ),
+    "stack": ()
   ),
   "floating": (
-    "range": (2000000, 2999999),
-    "stack": (),
+    "range": (
+      2000000,
+      2999999
+    ),
+    "stack": ()
   ),
   "popup": (
-    "range": (3000000, 3999999),
-    "stack": (),
+    "range": (
+      3000000,
+      3999999
+    ),
+    "stack": ()
   ),
   "navigation": (
-    "range": (5000000, 5999999),
-    "stack": (),
+    "range": (
+      5000000,
+      5999999
+    ),
+    "stack": ()
   ),
   "fullpage": (
-    "range": (6000000, null),
-    "stack": (),
-  ),
+    "range": (
+      6000000,
+      null
+    ),
+    "stack": ()
+  )
 ) !default;
 
 /// default options
@@ -45,7 +60,7 @@ $_types: (
 /// @type Map
 ///
 $_default-options: (
-  "debug": false,
+  "debug": false
 ) !default;
 
 /// reserve z-index value each by types
@@ -82,7 +97,7 @@ $_default-options: (
       $type,
       (
         "range": $_default-range,
-        "stack": (),
+        "stack": ()
       )
     ) !global;
   }
@@ -109,7 +124,7 @@ $_default-options: (
 
   @if map.get($opts, "debug") {
     @each $key, $reserved-by in $stack {
-      @debug "Index #{$key} in \"#{$type}\" is reserved by \"#{$reserved-by}\".";
+      @debug 'Index #{$key} in "#{$type}" is reserved by "#{$reserved-by}".';
     }
   }
 

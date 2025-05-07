@@ -1,9 +1,9 @@
 @use "../../settings";
 
 /*
-inline
+Inline
 
-inline modifiers of #{settings.$prefix}-button
+The inline module.
 
 Weight: -98
 
@@ -11,34 +11,29 @@ Style guide: #{settings.$prefix}-button.inline
 */
 
 /*
-modifiers: inline
+Modifiers
 
-builtin modifiers of inline for #{settings.$prefix}-button
+The inline modifiers.
 
 Weight: -100
 
-Markup: <!-- link element -->
-<a class="#{settings.$prefix}-button  #{settings.$prefix}-button--theme-light  {{modifier_class}}" href="javascript:;">
+Markup: <!-- with anchor element -->
+<a class="#{settings.$prefix}-button  #{settings.$prefix}-button--theme-normal  {{modifier_class}}" href="#">
   <span class="#{settings.$prefix}-button__label  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.</span>
 </a>
-<!-- button element -->
-<button class="#{settings.$prefix}-button  #{settings.$prefix}-button--theme-dark  {{modifier_class}}">
-  <span class="#{settings.$prefix}-button__label  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.</span>
+<!-- with button element -->
+<button class="#{settings.$prefix}-button  #{settings.$prefix}-button--theme-normal  {{modifier_class}}">
+  <span class="#{settings.$prefix}-button__label  #{settings.$prefix}-text">あのイーハトーヴォのすきとおった風。</span>
 </button>
 
-#{settings.$prefix}-button--inline-false - disable inline (**default**)
-#{settings.$prefix}-button--inline-true - enable inline
+#{settings.$prefix}-button--inline-true - Enable inline
 
 Style guide: #{settings.$prefix}-button.inline.builtin
 */
 .#{settings.$prefix}-button--inline {
-  &-false {
-    // has no settings
-  }
-
   &-true {
-    display: inline-block;
-    width: auto;
-    vertical-align: middle;
+    --display: inline-block;
+    --width: auto;
+    --vertical-align: middle;
   }
 }

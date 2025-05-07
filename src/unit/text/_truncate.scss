@@ -1,9 +1,9 @@
 @use "../../settings";
 
 /*
-truncate
+Truncate
 
-truncate modifiers of #{settings.$prefix}-text
+The truncate module.
 
 Weight: -95
 
@@ -11,32 +11,27 @@ Style guide: #{settings.$prefix}-text.truncate
 */
 
 /*
-modifiers: truncate
+Modifiers
 
-builtin modifiers of truncate for #{settings.$prefix}-text
+The truncate modifiers.
 
 Weight: -100
 
-Markup: <h1 class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet.</h1>
-<p class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+Markup: <h1 class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h1>
+<p class="#{settings.$prefix}-text  {{modifier_class}}">あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</p>
 
-#{settings.$prefix}-text--truncate-false - disable truncate (**default**)
-#{settings.$prefix}-text--truncate-true - enable truncate
+#{settings.$prefix}-text--truncate-true - Enable truncate
 
 Style guide: #{settings.$prefix}-text.truncate.builtin
 */
 .#{settings.$prefix}-text--truncate {
-  &-false {
-    // has no settings
-  }
-
   &-true {
-    overflow: hidden;
+    --overflow: hidden;
+    --width: 100%;
+    --text-overflow: ellipsis;
+    --word-wrap: normal;
+    --white-space: nowrap;
 
-    width: 100%;
-
-    text-overflow: ellipsis;
-    word-wrap: normal;
-    white-space: nowrap;
+    text-overflow: var(--text-overflow);
   }
 }

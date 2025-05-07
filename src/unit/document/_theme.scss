@@ -1,33 +1,39 @@
 @use "sass:map";
 @use "sass:meta";
-@use "../../lib/mixin";
 @use "../../settings";
 
-/*
-theme
+/// Package name
+/// @access private
+/// @type String
+///
+$_pkg: settings.$pkg !default;
 
-theme modifiers of #{settings.$prefix}-document
+/*
+Theme
+
+The theme module.
 
 Weight: -99
 
 Style guide: #{settings.$prefix}-document.theme
 */
 
-/*
-modifiers: theme
+@if meta.type-of(settings.$builtin-themes) == "map" {
+  /*
+Modifiers
 
-builtin modifiers of theme for #{settings.$prefix}-document
+The theme modifiers.
 
 Weight: -100
 
 Markup: <div class="#{settings.$prefix}-document  {{modifier_class}}">
   <!-- heading -->
   <h1>Lorem ipsum dolor sit amet.</h1>
-  <h2>Lorem ipsum dolor sit amet.</h2>
+  <h2>あのイーハトーヴォのすきとおった風。</h2>
   <h3>Lorem ipsum dolor sit amet.</h3>
-  <h4>Lorem ipsum dolor sit amet.</h4>
+  <h4>あのイーハトーヴォのすきとおった風。</h4>
   <h5>Lorem ipsum dolor sit amet.</h5>
-  <h6>Lorem ipsum dolor sit amet.</h6>
+  <h6>あのイーハトーヴォのすきとおった風。</h6>
   <hr />
   <!-- paragraph -->
   <p>Lorem ipsum dolor sit amet.</p>
@@ -49,17 +55,20 @@ Markup: <div class="#{settings.$prefix}-document  {{modifier_class}}">
     </li>
   </ul>
   <ol>
-    <li>Lorem ipsum dolor sit amet.</li>
-    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    <li>あのイーハトーヴォのすきとおった風。</li>
+    <li>あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。
       <ol>
-        <li>Lorem ipsum dolor sit amet.</li>
-        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+        <li>あのイーハトーヴォのすきとおった風。</li>
+        <li>あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</li>
       </ol>
     </li>
   </ol>
   <hr />
   <!-- embedded image -->
   <p><img src="https://picsum.photos/600/400/?grayscale&amp;blur=10" /></p>
+  <hr />
+  <!-- embedded image (error) -->
+  <p><img src="#" alt="Lorem ipsum dolor sit amet." /></p>
   <hr />
   <!-- embedded image (extended markup) -->
   <figure class="#{settings.$prefix}-document__pict  #{settings.$prefix}-document__pict--copy-protect-true" style="width: 400px;">
@@ -86,8 +95,8 @@ Markup: <div class="#{settings.$prefix}-document  {{modifier_class}}">
       <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
     </tr>
     <tr>
-      <th scope="row">Lorem ipsum dolor sit amet.</th>
-      <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
+      <th scope="row">あのイーハトーヴォのすきとおった風。</th>
+      <td>あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</td>
     </tr>
   </table>
   <hr />
@@ -96,29 +105,29 @@ Markup: <div class="#{settings.$prefix}-document  {{modifier_class}}">
     <table>
       <tr>
         <th scope="col">Lorem ipsum dolor sit amet.</th>
+        <th scope="col">あのイーハトーヴォのすきとおった風。</th>
         <th scope="col">Lorem ipsum dolor sit amet.</th>
+        <th scope="col">あのイーハトーヴォのすきとおった風。</th>
         <th scope="col">Lorem ipsum dolor sit amet.</th>
-        <th scope="col">Lorem ipsum dolor sit amet.</th>
-        <th scope="col">Lorem ipsum dolor sit amet.</th>
-        <th scope="col">Lorem ipsum dolor sit amet.</th>
+        <th scope="col">あのイーハトーヴォのすきとおった風。</th>
       </tr>
       <tr>
         <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
-        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
+        <td>あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</td>
         <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
+        <td>あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</td>
         <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
         <td>Lorem ipsum dolor sit amet.
           <div class="#{settings.$prefix}-document__scrollable-table">
             <table>
               <tr>
                 <th scope="row">Lorem ipsum dolor sit amet.</th>
-                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
+                <td>あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</td>
                 <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
               </tr>
               <tr>
                 <th scope="row">Lorem ipsum dolor sit amet.</th>
-                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+                <td>あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら。</td>
                 <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
               </tr>
             </table>
@@ -132,11 +141,11 @@ Markup: <div class="#{settings.$prefix}-document  {{modifier_class}}">
   <blockquote>
     <!-- heading -->
     <h1>Lorem ipsum dolor sit amet.</h1>
-    <h2>Lorem ipsum dolor sit amet.</h2>
+    <h2>あのイーハトーヴォのすきとおった風。</h2>
     <h3>Lorem ipsum dolor sit amet.</h3>
-    <h4>Lorem ipsum dolor sit amet.</h4>
+    <h4>あのイーハトーヴォのすきとおった風。</h4>
     <h5>Lorem ipsum dolor sit amet.</h5>
-    <h6>Lorem ipsum dolor sit amet.</h6>
+    <h6>あのイーハトーヴォのすきとおった風。</h6>
     <hr />
     <!-- paragraph -->
     <p>Lorem ipsum dolor sit amet.</p>
@@ -158,17 +167,20 @@ Markup: <div class="#{settings.$prefix}-document  {{modifier_class}}">
       </li>
     </ul>
     <ol>
-      <li>Lorem ipsum dolor sit amet.</li>
-      <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      <li>あのイーハトーヴォのすきとおった風。</li>
+      <li>あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。
         <ol>
-          <li>Lorem ipsum dolor sit amet.</li>
-          <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+          <li>あのイーハトーヴォのすきとおった風。</li>
+          <li>あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</li>
         </ol>
       </li>
     </ol>
     <hr />
     <!-- embedded image -->
     <p><img src="https://picsum.photos/600/400/?grayscale&amp;blur=10" /></p>
+    <hr />
+    <!-- embedded image (error) -->
+    <p><img src="#" alt="Lorem ipsum dolor sit amet." /></p>
     <hr />
     <!-- embedded image (extended markup) -->
     <figure class="#{settings.$prefix}-document__pict  #{settings.$prefix}-document__pict--copy-protect-true" style="width: 400px;">
@@ -195,8 +207,8 @@ Markup: <div class="#{settings.$prefix}-document  {{modifier_class}}">
         <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
       </tr>
       <tr>
-        <th scope="row">Lorem ipsum dolor sit amet.</th>
-        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
+        <th scope="row">あのイーハトーヴォのすきとおった風。</th>
+        <td>あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</td>
       </tr>
     </table>
     <hr />
@@ -205,29 +217,29 @@ Markup: <div class="#{settings.$prefix}-document  {{modifier_class}}">
       <table>
         <tr>
           <th scope="col">Lorem ipsum dolor sit amet.</th>
+          <th scope="col">あのイーハトーヴォのすきとおった風。</th>
           <th scope="col">Lorem ipsum dolor sit amet.</th>
+          <th scope="col">あのイーハトーヴォのすきとおった風。</th>
           <th scope="col">Lorem ipsum dolor sit amet.</th>
-          <th scope="col">Lorem ipsum dolor sit amet.</th>
-          <th scope="col">Lorem ipsum dolor sit amet.</th>
-          <th scope="col">Lorem ipsum dolor sit amet.</th>
+          <th scope="col">あのイーハトーヴォのすきとおった風。</th>
         </tr>
         <tr>
           <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
-          <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
+          <td>あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</td>
           <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-          <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
+          <td>あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</td>
           <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
           <td>Lorem ipsum dolor sit amet.
             <div class="#{settings.$prefix}-document__scrollable-table">
               <table>
                 <tr>
                   <th scope="row">Lorem ipsum dolor sit amet.</th>
-                  <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
+                  <td>あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</td>
                   <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
                 </tr>
                 <tr>
                   <th scope="row">Lorem ipsum dolor sit amet.</th>
-                  <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+                  <td>あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら。</td>
                   <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
                 </tr>
               </table>
@@ -236,7 +248,7 @@ Markup: <div class="#{settings.$prefix}-document  {{modifier_class}}">
         </tr>
       </table>
     </div>
-  </blockquote>
+    </blockquote>
   <hr />
   <pre>
 &lt;!-- heading --&gt;
@@ -278,67 +290,69 @@ Markup: <div class="#{settings.$prefix}-document  {{modifier_class}}">
   </pre>
 </div>
 
-#{settings.$prefix}-document--theme-light - light theme
-#{settings.$prefix}-document--theme-dark - dark theme
+#{settings.$prefix}-document--theme-normal - Normal theme
 
 Style guide: #{settings.$prefix}-document.theme.builtin
 */
-.#{settings.$prefix}-document--theme {
-  @if meta.type-of(settings.$builtin-themes) == "map" {
-    @each $name, $theme in settings.$builtin-themes {
-      $color: map.get($theme, "color");
-      $color-focus: map.get($theme, "color-focus");
-      $background: map.get($theme, "background");
-      $background-focus: map.get($theme, "background-focus");
-      $border: map.get($theme, "border");
-      $border-focus: map.get($theme, "border-focus");
+  .#{settings.$prefix}-document--theme {
+    &-normal {
+      $default-theme: map.get(settings.$builtin-themes, "light");
 
-      &-#{$name} {
-        color: $color;
+      // Load colors
+      --color-up: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "color")})
+      );
+      --color-focus: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "color-focus")})
+      );
+      --background-color-up: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "background")})
+      );
+      --background-color-focus: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "background-focus")})
+      );
+      --border-color-up: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "border")})
+      );
+      --border-color-focus: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "border-focus")})
+      );
 
-        code {
-          border-color: $border-focus;
-          background-color: $background-focus;
-        }
+      // Default settings
+      --color: var(--color-up);
+      --link-color: var(--color-up);
+      --focus-color: var(--color-focus);
+      --pre-color: var(--color-focus);
+      --pre-background-color: var(--background-color-focus);
+      --pre-border: 1px solid var(--border-color-up);
+      --code-color: var(--color-focus);
+      --code-background-color: var(--background-color-focus);
+      --code-border: 1px solid var(--border-color-up);
+      --blockquote-border: 3px solid var(--border-color-up);
+      --table-border: 1px solid var(--border-color-focus);
+      --table-background-color: var(--background-color-up);
+      --table-heading-background-color: var(--background-color-focus);
+      --hr-border: 1px solid var(--border-color-focus);
 
-        a {
-          @include mixin.on-link() {
-            color: $color;
-          }
+      // Settings by color schemes
+      @each $name, $theme in settings.$builtin-themes {
+        @media (prefers-color-scheme: #{$name}) {
+          $color-up: map.get($theme, "color");
+          $color-focus: map.get($theme, "color-focus");
+          $background-up: map.get($theme, "background");
+          $background-focus: map.get($theme, "background-focus");
+          $border-up: map.get($theme, "border");
+          $border-focus: map.get($theme, "border-focus");
 
-          @include mixin.on-focus() {
-            color: $color-focus;
-          }
-        }
-
-        blockquote {
-          border-left-color: $border-focus;
-        }
-
-        pre {
-          border-color: $border-focus;
-          background-color: $background-focus;
-        }
-
-        table {
-          border-color: if($name == "light", $border, $border-focus);
-        }
-
-        th,
-        td {
-          border-color: if($name == "light", $border, $border-focus);
-        }
-
-        th {
-          background-color: $background-focus;
-        }
-
-        td {
-          background-color: $background;
-        }
-
-        hr {
-          border-bottom-color: $border-focus;
+          // Apply colors to settings
+          --color-up: rgb(var(--#{$_pkg}-color-#{$color-up}));
+          --color-focus: rgb(var(--#{$_pkg}-color-#{$color-focus}));
+          --background-color-up: rgb(var(--#{$_pkg}-color-#{$background-up}));
+          --background-color-focus: rgb(
+            var(--#{$_pkg}-color-#{$background-focus})
+          );
+          --border-color-up: rgb(var(--#{$_pkg}-color-#{$border-up}));
+          --border-color-focus: rgb(var(--#{$_pkg}-color-#{$border-focus}));
         }
       }
     }

@@ -1,10 +1,11 @@
+@use "sass:meta";
 @use "../../lib/mixin";
 @use "../../settings";
 
 /*
-break
+Break
 
-break modifiers of #{settings.$prefix}-flex-grid
+The break module.
 
 Weight: -99
 
@@ -12,47 +13,44 @@ Style guide: #{settings.$prefix}-flex-grid.break
 */
 
 /*
-modifiers: break
+Modifiers
 
-builtin modifiers of break for #{settings.$prefix}-flex-grid
+The break modifiers.
 
 Weight: -100
 
 Markup: <div class="#{settings.$prefix}-flex-grid  {{modifier_class}}">
   <div class="#{settings.$prefix}-flex-grid__column">
-    <!-- some unit -->
+    <!-- contents -->
     <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <figure class="#{settings.$prefix}-pict  #{settings.$prefix}-pict--fit-max-width  #{settings.$util-prefix}--float-left">
-      <img class="#{settings.$prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
+    <figure class="#{settings.$prefix}-pict  #{settings.$prefix}-pict--fit-max-width">
+      <img class="#{settings.$prefix}-pict__src" src="https://placehold.co/200x150" alt="" width="200" height="150" loading="auto" />
     </figure>
-    <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <!-- some unit -->
+    <!-- contents -->
   </div>
   <div class="#{settings.$prefix}-flex-grid__column">
-    <!-- some unit -->
-    <figure class="#{settings.$prefix}-pict  #{settings.$prefix}-pict--fit-max-width  #{settings.$util-prefix}--float-left">
-      <img class="#{settings.$prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
+    <!-- contents -->
+    <figure class="#{settings.$prefix}-pict  #{settings.$prefix}-pict--fit-max-width">
+      <img class="#{settings.$prefix}-pict__src" src="https://placehold.co/200x150" alt="" width="200" height="150" loading="auto" />
     </figure>
-    <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <!-- some unit -->
+    <p class="#{settings.$prefix}-text">あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</p>
+    <!-- contents -->
   </div>
 </div>
 
-#{settings.$prefix}-flex-grid--break-if-mobile - break column if mobile viewport
-#{settings.$prefix}-flex-grid--break-if-not-mobile - break column if not mobile viewport
+#{settings.$prefix}-flex-grid--break-if-mobile - Break column if mobile viewport.
+#{settings.$prefix}-flex-grid--break-if-not-mobile - Break column if not mobile viewport.
 
 Style guide: #{settings.$prefix}-flex-grid.break.builtin
 */
 .#{settings.$prefix}-flex-grid--break {
-  &-if-mobile {
-    @include mixin.breakpoint-define($until: "mobile") {
-      flex-direction: column;
-    }
-  }
-
-  &-if-not-mobile {
-    @include mixin.breakpoint-define($from: "mobile") {
-      flex-direction: column;
+  @each $name, $query in settings.$breakpoints {
+    @if meta.type-of($query) == "string" {
+      &-#{$name} {
+        @include mixin.media($query: $query) {
+          --flex-direction: column;
+        }
+      }
     }
   }
 }

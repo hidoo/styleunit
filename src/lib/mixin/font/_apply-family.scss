@@ -1,5 +1,5 @@
 ////
-/// (c) hidoo | MIT Lisence
+/// (c) hidoo | MIT License
 /// @group font features
 ////
 
@@ -39,15 +39,14 @@
     }
 
     font-family: settings.$font-family if($important, !important, null);
-  }
-  @else if $value == "monospace" {
+  } @else if $value == "monospace" {
     @if function.meta-is-empty(settings.$font-family-monospace) {
       @error "@mixin apply-family: settings.$font-family-monospace is not valid.";
     }
 
-    font-family: settings.$font-family-monospace if($important, !important, null);
-  }
-  @else {
+    font-family: settings.$font-family-monospace
+      if($important, !important, null);
+  } @else {
     font-family: $value if($important, !important, null);
   }
 }

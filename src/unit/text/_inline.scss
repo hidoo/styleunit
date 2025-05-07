@@ -1,9 +1,9 @@
 @use "../../settings";
 
 /*
-inline
+Inline
 
-inline modifiers of #{settings.$prefix}-text
+The inline module.
 
 Weight: -97
 
@@ -11,31 +11,26 @@ Style guide: #{settings.$prefix}-text.inline
 */
 
 /*
-modifiers: inline
+Modifiers
 
-builtin modifiers of inline for #{settings.$prefix}-text
+The inline modifiers.
 
 Weight: -100
 
-Markup: <h1 class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet.</h1>
-<p class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+Markup: <h1 class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h1>
+<p class="#{settings.$prefix}-text  {{modifier_class}}">あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</p>
 
-#{settings.$prefix}-text--inline-false - disable inline (**default**)
-#{settings.$prefix}-text--inline-true - enable inline
-#{settings.$prefix}-text--inline-block - enable inline-block
+#{settings.$prefix}-text--inline-true - Enable inline
+#{settings.$prefix}-text--inline-block - Enable inline-block
 
 Style guide: #{settings.$prefix}-text.inline.builtin
 */
 .#{settings.$prefix}-text--inline {
-  &-false {
-    // has no settings
-  }
-
   &-true {
-    display: inline;
+    --display: inline;
   }
 
   &-block {
-    display: inline-block;
+    --display: inline-block;
   }
 }

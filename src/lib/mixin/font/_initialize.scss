@@ -1,5 +1,5 @@
 ////
-/// (c) hidoo | MIT Lisence
+/// (c) hidoo | MIT License
 /// @group font features
 ////
 
@@ -20,15 +20,15 @@
 ///     font-weight: normal;
 ///   }
 ///
-@mixin initialize(
-  $style: "normal",
-  $weight: "normal"
-) {
+@mixin initialize($style: "normal", $weight: "normal") {
   @if meta.type-of($style) == "string" and $style != "" {
     font-style: #{$style};
   }
 
-  @if (meta.type-of($weight) == "string" and $weight != "") or meta.type-of($weight) == "number" {
+  @if (meta.type-of($weight) == "string" and $weight != "") or
+    meta.type-of($weight) ==
+    "number"
+  {
     font-weight: #{$weight};
   }
 }

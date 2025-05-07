@@ -1,10 +1,13 @@
+@use "sass:meta";
+@use "sass:list";
+@use "../lib/function";
 @use "../lib/mixin";
 @use "../settings";
 
 /*
-height
+Height
 
-utilities that tweek of height
+The height module.
 
 Weight: -97
 
@@ -12,16 +15,23 @@ Style guide: #{settings.$util-prefix}.height
 */
 
 /*
-modifiers: height
+Modifiers
 
-builtin modifiers of height.
-(0 to 150px in 25px steps, 200px to 450px in 50px steps, 500px to 1000px in 100px steps)
+The height modifiers.
+Sizes: #{meta.inspect(settings.$util-height)}.
 
 Weight: -100
 
-Markup: <div style="position:relative; padding:50px;">
-  <div class="{{modifier_class}}" style="position:relative; width:50px; height:50px; background:#999;"></div>
-</div>
+Markup: <div class="height-example {{modifier_class}}"></div>
+<style>
+  :where(.height-example) {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background: #999;
+    transition: height 0.2s ease-in-out;
+  }
+</style>
 
 #{settings.$util-prefix}--height-0 - 0px height
 #{settings.$util-prefix}--height-min-0 - 0px min height
@@ -29,33 +39,63 @@ Markup: <div style="position:relative; padding:50px;">
 #{settings.$util-prefix}--height-1000 - 1000px height
 #{settings.$util-prefix}--height-min-1000 - 1000px min height
 #{settings.$util-prefix}--height-max-1000 - 1000px max height
+#{settings.$util-prefix}--height-normal - Normal height
+#{settings.$util-prefix}--height-min-normal - Normal min height
+#{settings.$util-prefix}--height-max-normal - Normal max height
 #{settings.$util-prefix}--height-fit - 100% height
 #{settings.$util-prefix}--height-min-fit - 100% min height
 #{settings.$util-prefix}--height-max-fit - 100% max height
 #{settings.$util-prefix}--height-auto - auto height
+#{settings.$util-prefix}--height-min-none - None min height.
+#{settings.$util-prefix}--height-max-none - None max height.
+#{settings.$util-prefix}--height-0-if-mobile - 0px height if mobile viewport.
+#{settings.$util-prefix}--height-0-if-not-mobile - 0px height if not mobile viewport.
 
 Style guide: #{settings.$util-prefix}.height.builtin
 */
 .#{settings.$util-prefix}--height {
-  // each by sizes
-  @include mixin.size-define(
-    $type: "height",
-    $values: settings.$util-box-sizes
-  );
+  $heights: list.join(settings.$util-height, ("fit", "auto", "none"));
 
-  &-fit {
-    height: 100% !important;
-  }
+  @each $height in $heights {
+    $minmax: ("", "min-", "max-");
+    $name: "";
 
-  &-min-fit {
-    min-height: 100% !important;
-  }
+    // stylelint-disable scss/no-duplicate-dollar-variables
+    @if meta.type-of($height) == "list" {
+      $name: list.nth($height, 1);
+      $height: list.nth($height, 2);
+    } @else if $height == "fit" {
+      $name: $height;
+      $height: 100%;
+    } @else if $height == "auto" {
+      $minmax: ("");
+      $name: $height;
+    } @else if $height == "none" {
+      $minmax: ("min-", "max-");
+      $name: $height;
+    } @else {
+      $name: function.math-remove-unit($height);
+    }
+    // stylelint-enable scss/no-duplicate-dollar-variables
 
-  &-max-fit {
-    max-height: 100% !important;
-  }
+    @each $pfx in $minmax {
+      &-#{$pfx}#{$name} {
+        --#{$pfx}height: #{$height};
 
-  &-auto {
-    height: auto !important;
+        #{$pfx}height: var(--#{$pfx}height);
+      }
+
+      @each $bp, $query in settings.$breakpoints {
+        @if meta.type-of($query) == "string" {
+          &-#{$pfx}#{$name}-#{$bp} {
+            @include mixin.media($query: $query) {
+              --#{$pfx}height: #{$height};
+
+              #{$pfx}height: var(--#{$pfx}height);
+            }
+          }
+        }
+      }
+    }
   }
 }

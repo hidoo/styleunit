@@ -1,9 +1,9 @@
 @use "../../settings";
 
 /*
-direction
+Direction
 
-direction modifiers of #{settings.$prefix}-icon
+The direction module.
 
 Weight: -97
 
@@ -11,40 +11,39 @@ Style guide: #{settings.$prefix}-icon.direction
 */
 
 /*
-modifiers: direction
+Modifiers
 
-builtin modifiers of direction for #{settings.$prefix}-icon
+The direction modifiers.
 
 Weight: -100
 
-Markup: <span class="#{settings.$prefix}-icon  #{settings.$prefix}-icon--type-arrow-light  {{modifier_class}}"></span>
-<span class="#{settings.$prefix}-icon  #{settings.$prefix}-icon--type-arrow-dark  {{modifier_class}}"></span>
+Markup: <span class="#{settings.$prefix}-icon  #{settings.$prefix}-icon--type-arrow-normal  {{modifier_class}}"></span>
 
-#{settings.$prefix}-icon--direction-top - top
-#{settings.$prefix}-icon--direction-right - right
-#{settings.$prefix}-icon--direction-bottom - bottom
-#{settings.$prefix}-icon--direction-left - left
+#{settings.$prefix}-icon--direction-top - Top
+#{settings.$prefix}-icon--direction-right - Right
+#{settings.$prefix}-icon--direction-bottom - Bottom
+#{settings.$prefix}-icon--direction-left - Left
 
 Style guide: #{settings.$prefix}-icon.direction.builtin
 */
 .#{settings.$prefix}-icon--direction {
   &-top {
-    transform-origin: 50% 50%;
-    transform: rotate(0);
+    --transform-origin: 50% 50%;
+    --transform: rotate(0);
   }
 
   &-right {
-    transform-origin: 50% 50%;
-    transform: rotate(90deg);
+    --transform-origin: 50% 50%;
+    --transform: rotate(90deg);
   }
 
   &-bottom {
-    transform-origin: 50% 50%;
-    transform: rotate(180deg);
+    --transform-origin: 50% 50%;
+    --transform: rotate(180deg);
   }
 
   &-left {
-    transform-origin: 50% 50%;
-    transform: rotate(-90deg);
+    --transform-origin: 50% 50%;
+    --transform: rotate(-90deg);
   }
 }

@@ -1,10 +1,16 @@
 @use "../../lib/mixin";
 @use "../../settings";
 
+/// Package name
+/// @access private
+/// @type String
+///
+$_pkg: settings.$pkg !default;
+
 /*
 #{settings.$prefix}-icon
 
-component for icon.
+The icon unit.
 
 Weight: -1100
 
@@ -12,9 +18,9 @@ Style guide: #{settings.$prefix}-icon
 */
 
 /*
-core
+Core
 
-core module of #{settings.$prefix}-icon
+The core module.
 
 Weight: -100
 
@@ -22,22 +28,68 @@ Style guide: #{settings.$prefix}-icon.core
 */
 
 /*
-default style
+Default style
 
-default style of #{settings.$prefix}-icon
+The default style.
 
 Weight: -100
 
 Markup: <span class="#{settings.$prefix}-icon"></span>
 
-Style guide: #{settings.$prefix}-icon.core.base
+Style guide: #{settings.$prefix}-icon.core.default
 */
 .#{settings.$prefix}-icon {
-  @include mixin.box-initialize($overflow: "hidden");
-  @include mixin.text-initialize($text-indent: -100%);
-  @include mixin.font-initialize();
-  @include mixin.font-apply-size($value: "medium");
+  --position: relative;
+  --transform-origin: 0 0;
+  --transform: none;
+  --display: block;
+  --overflow: hidden;
+  --box-sizing: content-box;
+  --width: auto;
+  --height: auto;
+  --margin: 0;
+  --padding: 0;
+  --border: 0;
+  --font-size: var(--#{$_pkg}-font-size);
+  --font-weight: var(--#{$_pkg}-font-weight);
+  --font-style: normal;
+  --line-height: var(--#{$_pkg}-line-height);
+  --color: inherit;
+  --text-align: left;
+  --text-decoration: none;
+  --text-indent: -100%;
+  --letter-spacing: var(--#{$_pkg}-letter-spacing);
+  --white-space: normal;
+  --vertical-align: baseline;
+  --list-style: none;
+  --background-color: transparent;
 
-  color: inherit;
-  background-color: transparent;
+  position: var(--position);
+  transform-origin: var(--transform-origin);
+  transform: var(--transform);
+
+  overflow: var(--overflow);
+  display: var(--display);
+
+  box-sizing: var(--box-sizing);
+  width: var(--width);
+  height: var(--height);
+  margin: var(--margin);
+  padding: var(--padding);
+  border: var(--border);
+
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  font-style: var(--font-style);
+  line-height: var(--line-height);
+  color: var(--color);
+  text-align: var(--text-align);
+  text-decoration: var(--text-decoration);
+  text-indent: var(--text-indent);
+  letter-spacing: var(--letter-spacing);
+  white-space: var(--white-space);
+  vertical-align: var(--vertical-align);
+  list-style: var(--list-style);
+
+  background-color: var(--background-color);
 }

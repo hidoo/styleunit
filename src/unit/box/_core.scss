@@ -1,10 +1,9 @@
-@use "../../lib/mixin";
 @use "../../settings";
 
 /*
 #{settings.$prefix}-box
 
-component for box.
+The box unit.
 
 Weight: -1000
 
@@ -12,9 +11,9 @@ Style guide: #{settings.$prefix}-box
 */
 
 /*
-core
+Core
 
-core module of #{settings.$prefix}-box
+The core module.
 
 Weight: -100
 
@@ -22,42 +21,57 @@ Style guide: #{settings.$prefix}-box.core
 */
 
 /*
-default style
+Default style
 
-default style of #{settings.$prefix}-box
+The default style.
 
 Weight: -100
 
 Markup: <div class="#{settings.$prefix}-box">
-  <div class="#{settings.$prefix}-box__container">
-    <!-- some unit -->
+  <!-- content -->
+  <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+  <p class="#{settings.$prefix}-text">あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</p>
+  <!-- nested -->
+  <div class="#{settings.$prefix}-box">
+    <!-- content -->
     <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <figure class="#{settings.$prefix}-pict  #{settings.$prefix}-pict--fit-max-width  #{settings.$util-prefix}--float-left">
-      <img class="#{settings.$prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
-    </figure>
-    <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <!-- some unit -->
+    <p class="#{settings.$prefix}-text">あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</p>
+    <!-- /content -->
   </div>
+  <!-- /nested -->
+  <!-- /content -->
 </div>
 
-Style guide: #{settings.$prefix}-box.core.base
+Style guide: #{settings.$prefix}-box.core.default
 */
 .#{settings.$prefix}-box {
-  @include mixin.box-apply-clearfix();
-  @include mixin.box-initialize();
+  --position: relative;
+  --display: block;
+  --overflow: visible;
+  --box-sizing: content-box;
+  --width: auto;
+  --height: auto;
+  --margin: 0;
+  --padding: 0;
+  --border: 0;
+  --color: inherit;
+  --list-style: none;
+  --background-color: transparent;
 
-  width: auto;
-  color: inherit;
-  text-align: left;
-  background-color: transparent;
+  position: var(--position);
 
-  &__container {
-    @include mixin.box-apply-clearfix();
-    @include mixin.box-initialize();
+  overflow: var(--overflow);
+  display: var(--display);
 
-    width: auto;
-    color: inherit;
-    text-align: left;
-    background-color: transparent;
-  }
+  box-sizing: var(--box-sizing);
+  width: var(--width);
+  height: var(--height);
+  margin: var(--margin);
+  padding: var(--padding);
+  border: var(--border);
+
+  color: var(--color);
+  list-style: var(--list-style);
+
+  background-color: var(--background-color);
 }

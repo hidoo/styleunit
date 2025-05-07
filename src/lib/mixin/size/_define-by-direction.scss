@@ -1,5 +1,5 @@
 ////
-/// (c) hidoo | MIT Lisence
+/// (c) hidoo | MIT License
 /// @group size features
 ////
 
@@ -15,23 +15,13 @@
 /// @access private
 /// @type List
 ///
-$_supported-types: (
-  "margin",
-  "padding",
-  "position",
-  "border",
-) !default;
+$_supported-types: ("margin", "padding", "position", "border") !default;
 
 /// directions
 /// @access private
 /// @type List
 ///
-$_directions: (
-  top,
-  right,
-  bottom,
-  left,
-) !default;
+$_directions: (top, right, bottom, left) !default;
 
 /// default border size
 /// @access private
@@ -96,7 +86,10 @@ $_default-border-color: #000 !default;
 ///   }
 ///
 @mixin define-by-direction($type: "margin", $values: (), $breakpoints: null) {
-  @if meta.type-of($type) != "string" or not list.index($_supported-types, $type) {
+  @if meta.type-of($type) !=
+    "string" or not
+    list.index($_supported-types, $type)
+  {
     @error "@mixin size-define-by-direction: Argument $type must be one of #{meta.inspect($_supported-types)}.";
   }
 
@@ -113,10 +106,18 @@ $_default-border-color: #000 !default;
           @error "@mixin size-define-by-direction: Argument $values is not valid list of map.";
         }
 
-        $selector: selector.append(&, "-#{$direction}-#{map.get($value, "name")}");
+        $selector: selector.append(
+          &,
+          "-#{$direction}-#{map.get($value, "name")}"
+        );
 
         @if not map.has-key($value, "size") {
-          $value: map.merge($value, ("size": $_default-border-size));
+          $value: map.merge(
+            $value,
+            (
+              "size": $_default-border-size
+            )
+          );
 
           @if settings.$verbose {
             // stylelint-disable-next-line max-line-length
@@ -125,7 +126,12 @@ $_default-border-color: #000 !default;
         }
 
         @if not map.has-key($value, "style") {
-          $value: map.merge($value, ("style": $_default-border-style));
+          $value: map.merge(
+            $value,
+            (
+              "style": $_default-border-style
+            )
+          );
 
           @if settings.$verbose {
             // stylelint-disable-next-line max-line-length
@@ -134,7 +140,12 @@ $_default-border-color: #000 !default;
         }
 
         @if not map.has-key($value, "color") {
-          $value: map.merge($value, ("color": $_default-border-color));
+          $value: map.merge(
+            $value,
+            (
+              "color": $_default-border-color
+            )
+          );
 
           @if settings.$verbose {
             @warn "@mixin size-define-by-direction: 'color' of #{$selector} is not specified. Using '#{$_default-border-color}' by default."; // stylelint-disable-line max-line-length
@@ -149,21 +160,22 @@ $_default-border-color: #000 !default;
 
         @at-root {
           #{$selector} {
-            #{$property}#{$direction}: $pure-value * $one-with-unit $style $color !important;
+            #{$property}#{$direction}: $pure-value * $one-with-unit $style
+              $color !important;
 
             @if meta.type-of($breakpoints) == "map" {
               @each $modifier, $breakpoint in $breakpoints {
                 &-#{$modifier} {
                   @include breakpoint.define($breakpoint...) {
-                    #{$property}#{$direction}: $pure-value * $one-with-unit $style $color !important;
+                    #{$property}#{$direction}: $pure-value * $one-with-unit
+                      $style $color !important;
                   }
                 }
               }
             }
           }
         }
-      }
-      @else {
+      } @else {
         $pure-value: function.math-remove-unit($value);
         $sign: if($value < 0, "-", "");
         $one-with-unit: ($value * 0 + 1);

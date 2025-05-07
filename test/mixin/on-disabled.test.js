@@ -26,7 +26,7 @@ describe('@mixin on-disabled(...)', () => {
     const cases = [
       {
         params: [[]],
-        expected: '.selector.is-disabled,.selector:disabled{font-size:16px}'
+        expected: '.selector:where(:disabled,.is-disabled){font-size:16px}'
       }
     ];
 
@@ -40,7 +40,7 @@ describe('@mixin on-disabled(...)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       }
     );
@@ -50,7 +50,7 @@ describe('@mixin on-disabled(...)', () => {
     const cases = [
       {
         params: [[], ['$selector-disabled: ""']],
-        expected: '.selector:disabled{font-size:16px}'
+        expected: '.selector:where(:disabled){font-size:16px}'
       }
     ];
 
@@ -64,7 +64,7 @@ describe('@mixin on-disabled(...)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       }
     );
@@ -73,9 +73,9 @@ describe('@mixin on-disabled(...)', () => {
   it('should out with specified selectors if argument $additional-selectors is set.', async () => {
     const cases = [
       {
-        params: [['$additional-selectors: (".is-not-use")']],
+        params: [['$additional-selectors: (".is-not-use",)']],
         expected:
-          '.selector.is-not-use,.selector.is-disabled,.selector:disabled{font-size:16px}'
+          '.selector:where(:disabled,.is-disabled,.is-not-use){font-size:16px}'
       }
     ];
 
@@ -89,7 +89,7 @@ describe('@mixin on-disabled(...)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       }
     );
@@ -98,9 +98,9 @@ describe('@mixin on-disabled(...)', () => {
   it('should out capturing settings with specified selectors if argument $capturing-selectors is set.', async () => {
     const cases = [
       {
-        params: [['$capturing-selectors: ("button")']],
+        params: [['$capturing-selectors: ("button",)']],
         expected:
-          'button.is-disabled .selector,button:disabled .selector,.selector.is-disabled,.selector:disabled{font-size:16px}'
+          ':where(button):where(:disabled,.is-disabled) .selector,.selector:where(:disabled,.is-disabled){font-size:16px}'
       }
     ];
 
@@ -114,7 +114,7 @@ describe('@mixin on-disabled(...)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       }
     );

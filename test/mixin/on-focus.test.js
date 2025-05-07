@@ -26,8 +26,7 @@ describe('@mixin on-focus(...)', () => {
     const cases = [
       {
         params: [[]],
-        expected:
-          '.selector.is-focus,.selector:focus,.selector:hover{font-size:16px}'
+        expected: '.selector:where(:hover,:focus,.is-focus){font-size:16px}'
       }
     ];
 
@@ -41,7 +40,7 @@ describe('@mixin on-focus(...)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       }
     );
@@ -51,7 +50,7 @@ describe('@mixin on-focus(...)', () => {
     const cases = [
       {
         params: [[], ['$selector-focus: ""']],
-        expected: '.selector:focus,.selector:hover{font-size:16px}'
+        expected: '.selector:where(:hover,:focus){font-size:16px}'
       }
     ];
 
@@ -65,7 +64,7 @@ describe('@mixin on-focus(...)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       }
     );
@@ -74,9 +73,9 @@ describe('@mixin on-focus(...)', () => {
   it('should out with specified selectors if argument $additional-selectors is set.', async () => {
     const cases = [
       {
-        params: [['$additional-selectors: (".is-hover")']],
+        params: [['$additional-selectors: (".is-hover",)']],
         expected:
-          '.selector.is-hover,.selector.is-focus,.selector:focus,.selector:hover{font-size:16px}'
+          '.selector:where(:hover,:focus,.is-focus,.is-hover){font-size:16px}'
       }
     ];
 
@@ -90,7 +89,7 @@ describe('@mixin on-focus(...)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       }
     );
@@ -101,7 +100,7 @@ describe('@mixin on-focus(...)', () => {
       {
         params: [['$capturing-selectors: ("a", "button")']],
         expected:
-          'button.is-focus .selector,button:focus .selector,button:hover .selector,a.is-focus .selector,a:focus .selector,a:hover .selector,.selector.is-focus,.selector:focus,.selector:hover{font-size:16px}'
+          ':where(a,button):where(:hover,:focus,.is-focus) .selector,.selector:where(:hover,:focus,.is-focus){font-size:16px}'
       }
     ];
 
@@ -115,7 +114,7 @@ describe('@mixin on-focus(...)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       }
     );

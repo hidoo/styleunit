@@ -3,46 +3,69 @@
 @use "../../lib/mixin";
 @use "../../settings";
 
-/*
-link-theme
+/// Package name
+/// @access private
+/// @type String
+///
+$_pkg: settings.$pkg !default;
 
-link-theme modifiers of #{settings.$prefix}-text
+/*
+Link theme
+
+The link theme.
 
 Weight: -98
 
 Style guide: #{settings.$prefix}-text.link-theme
 */
 
-/*
-modifiers: link-theme
+@if meta.type-of(settings.$builtin-themes) == "map" {
+  /*
+Modifiers
 
-builtin modifiers of theme for #{settings.$prefix}-text__link
+The link theme modifiers.
 
 Weight: -100
 
-Markup: <h1 class="#{settings.$prefix}-text">Lorem ipsum dolor <a class="#{settings.$prefix}-text__link  {{modifier_class}}" href="javascript:;">sit amet</a>.</h1>
-<p class="#{settings.$prefix}-text">Lorem ipsum dolor <a class="#{settings.$prefix}-text__link  {{modifier_class}}" href="javascript:;">sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</a>.</p>
+Markup: <h1 class="#{settings.$prefix}-text">Lorem ipsum dolor <a class="#{settings.$prefix}-text__link  {{modifier_class}}" href="#">sit amet</a>, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h1>
+<p class="#{settings.$prefix}-text">あの<a class="#{settings.$prefix}-text__link  {{modifier_class}}" href="#">イーハトーヴォ</a>のすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</p>
 
-#{settings.$prefix}-text__link--theme-light - light theme
-#{settings.$prefix}-text__link--theme-dark - dark theme
+#{settings.$prefix}-text__link--theme-normal - Normal theme
 
 Style guide: #{settings.$prefix}-text.link-theme.builtin
 */
-.#{settings.$prefix}-text__link--theme {
-  @if meta.type-of(settings.$builtin-themes) == "map" {
-    @each $name, $theme in settings.$builtin-themes {
-      $color: map.get($theme, "color");
-      $color-focus: map.get($theme, "color-focus");
+  .#{settings.$prefix}-text__link--theme {
+    &-normal {
+      $default-theme: map.get(settings.$builtin-themes, "light");
 
-      &-#{$name} {
-        @include mixin.on-link() {
-          color: $color;
-          text-decoration: underline;
-        }
+      // Load colors
+      --color-link: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "color")})
+      );
+      --color-focus: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "color-focus")})
+      );
 
-        @include mixin.on-focus() {
-          color: $color-focus;
-          text-decoration: none;
+      // Default settings
+      @include mixin.on-link() {
+        --color: var(--color-link);
+        --text-decoration: underline;
+      }
+
+      @include mixin.on-focus() {
+        --color: var(--color-focus);
+        --text-decoration: none;
+      }
+
+      // Settings by color schemes
+      @each $name, $theme in settings.$builtin-themes {
+        @media (prefers-color-scheme: #{$name}) {
+          $color-link: map.get($theme, "color");
+          $color-focus: map.get($theme, "color-focus");
+
+          // Apply colors to settings
+          --color-link: rgb(var(--#{$_pkg}-color-#{$color-link}));
+          --color-focus: rgb(var(--#{$_pkg}-color-#{$color-focus}));
         }
       }
     }

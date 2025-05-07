@@ -1,5 +1,5 @@
 ////
-/// (c) hidoo | MIT Lisence
+/// (c) hidoo | MIT License
 /// @group meta features
 ////
 
@@ -23,14 +23,11 @@
 
   @if $type == "string" and $value == "" {
     @return true;
-  }
-  @else if $type == "number" and $value == 0 {
+  } @else if $type == "number" and $value == 0 {
     @return true;
-  }
-  @else if $type == "list" and list.length($value) == 0 {
+  } @else if $type == "list" and list.length($value) == 0 {
     @return true;
-  }
-  @else if $type == "map" and $value == () {
+  } @else if $type == "map" and $value == () {
     @return true;
   }
 

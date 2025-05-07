@@ -1,9 +1,16 @@
+@use "sass:map";
 @use "../../settings";
 
-/*
-align
+/// Package name
+/// @access private
+/// @type String
+///
+$_pkg: settings.$pkg !default;
 
-align modifiers of #{settings.$prefix}-pict
+/*
+Align
+
+The align module.
 
 Weight: -99
 
@@ -11,41 +18,47 @@ Style guide: #{settings.$prefix}-pict.align
 */
 
 /*
-modifiers: align
+Modifiers
 
-builtin modifiers of alignment for #{settings.$prefix}-pict
+The align modifiers.
 
 Weight: -100
 
-Markup: <!-- image element -->
+Markup: <!-- with img element -->
 <figure class="#{settings.$prefix}-pict  {{modifier_class}}">
-  <img class="#{settings.$prefix}-pict__src" src="https://via.placeholder.com/400x300" alt="" width="400" height="300" />
+  <img class="#{settings.$prefix}-pict__src" src="https://placehold.co/400x300.png" alt="" width="400" height="300" loading="auto" />
 </figure>
-<!-- image element (breaking) -->
+<!-- with breaking img element -->
 <figure class="#{settings.$prefix}-pict  {{modifier_class}}">
-  <img class="#{settings.$prefix}-pict__src" src="#" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." width="400" height="300" />
+  <img class="#{settings.$prefix}-pict__src" src="#" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." width="400" height="300" loading="auto" />
 </figure>
-<!-- iframe player -->
+<!-- with picture element -->
+<picture class="#{settings.$prefix}-pict  {{modifier_class}}">
+  <source media="(min-width: #{map.get(settings.$breakpoints, "mobile") + 1px})" srcset="https://placehold.co/800x600.png 800w, https://placehold.co/400x300.png 400w" sizes="400px" />
+  <source media="(max-width: #{map.get(settings.$breakpoints, "mobile")})" srcset="https://placehold.co/600x600.png 600w, https://placehold.co/300x300.png 300w" sizes="300px" />
+  <img class="#{settings.$prefix}-pict__src" src="https://placehold.co/800x600.png" alt="" loading="auto" />
+</picture>
+<!-- with iframe player -->
 <figure class="#{settings.$prefix}-pict  {{modifier_class}}">
-  <iframe class="#{settings.$prefix}-pict__src" title="vimeo-player" src="https://player.vimeo.com/video/76979871" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+  <iframe class="#{settings.$prefix}-pict__src" title="vimeo-player" src="https://player.vimeo.com/video/76979871" width="640" height="360" frameborder="0" allowfullscreen  loading="auto"></iframe>
 </figure>
 
-#{settings.$prefix}-pict--align-left - left aligned (**default**)
-#{settings.$prefix}-pict--align-center - center aligned
-#{settings.$prefix}-pict--align-right - right aligned
+#{settings.$prefix}-pict--align-left - Left alignment
+#{settings.$prefix}-pict--align-center - Center alignment
+#{settings.$prefix}-pict--align-right - Right alignmentRight alignment
 
 Style guide: #{settings.$prefix}-pict.align.builtin
 */
 .#{settings.$prefix}-pict--align {
   &-left {
-    text-align: left;
+    --text-align: left;
   }
 
   &-center {
-    text-align: center;
+    --text-align: center;
   }
 
   &-right {
-    text-align: right;
+    --text-align: right;
   }
 }

@@ -1,5 +1,5 @@
 ////
-/// (c) hidoo | MIT Lisence
+/// (c) hidoo | MIT License
 /// @group plugin/spritesheet
 ////
 
@@ -7,7 +7,7 @@
 @use "../../../../lib/mixin";
 @use "./set-properties" as _mixin;
 
-/// define item
+/// Define item
 /// @access private
 /// @param {String} $name name of spritesheet item
 /// @param {Map} $items [()] spritesheet items
@@ -15,60 +15,75 @@
 ///
 @mixin define-item($name, $items: (), $options: ()) {
   @if map.has-key($items, $name) {
-    $up: map.get($items, $name);
-    $focus: map.get($items, "#{$name}--focus");
-    $current: map.get($items, "#{$name}--current");
-    $disabled: map.get($items, "#{$name}--disabled");
-    $capturing-selectors: map.get($options, "capturing-selectors");
+    $on-args: (
+      "capturing-selectors": map.get($options, "capturing-selectors")
+    );
 
     &-#{$name} {
+      $up: map.get($items, $name);
+
       @content;
 
-      @if $up {
-        @include _mixin.set-properties(
-          $values: $up,
-          $options: $options
-        );
-      }
+      @include _mixin.set-properties($values: $up, $options: $options);
 
-      @if $focus {
-        @include mixin.on-focus($capturing-selectors: $capturing-selectors) {
+      @if map.has-key($items, "#{$name}--focus") {
+        $focus: map.get($items, "#{$name}--focus");
+
+        @include mixin.on-focus($on-args...) {
           @include _mixin.set-properties(
             $values: (
               "offset-x": map.get($focus, "offset-x"),
               "offset-y": map.get($focus, "offset-y")
             ),
-            $options: $options
+            $options: map.merge(
+                $options,
+                (
+                  "with-property": false
+                )
+              )
           );
         }
       }
 
-      @if $current {
-        @include mixin.on-current($capturing-selectors: $capturing-selectors) {
+      @if map.has-key($items, "#{$name}--current") {
+        $current: map.get($items, "#{$name}--current");
+
+        @include mixin.on-current($on-args...) {
           @include _mixin.set-properties(
             $values: (
               "offset-x": map.get($current, "offset-x"),
               "offset-y": map.get($current, "offset-y")
             ),
-            $options: $options
+            $options: map.merge(
+                $options,
+                (
+                  "with-property": false
+                )
+              )
           );
         }
       }
 
-      @if $disabled {
-        @include mixin.on-disabled($capturing-selectors: $capturing-selectors) {
+      @if map.has-key($items, "#{$name}--disabled") {
+        $disabled: map.get($items, "#{$name}--disabled");
+
+        @include mixin.on-disabled($on-args...) {
           @include _mixin.set-properties(
             $values: (
               "offset-x": map.get($disabled, "offset-x"),
               "offset-y": map.get($disabled, "offset-y")
             ),
-            $options: $options
+            $options: map.merge(
+                $options,
+                (
+                  "with-property": false
+                )
+              )
           );
         }
       }
     }
-  }
-  @else {
+  } @else {
     @warn "@mixin define-item: Spritesheet '#{$name}' was not generate, because $name: '#{$name}' is not found.";
   }
 }

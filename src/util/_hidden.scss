@@ -1,10 +1,11 @@
+@use "sass:meta";
 @use "../lib/mixin";
 @use "../settings";
 
 /*
-hidden
+Hidden
 
-utilities that tweek of hidden
+The hidden module.
 
 Weight: -100
 
@@ -12,31 +13,37 @@ Style guide: #{settings.$util-prefix}.hidden
 */
 
 /*
-modifiers: hidden
+Modifiers
 
-builtin modifiers of hidden
+The hidden modifiers.
 
 Weight: -100
 
-Markup: <div style="position:relative; padding:50px;">
-  <div class="{{modifier_class}}" style="position:relative; width:50px; height:50px; background:#999;"></div>
-</div>
+Markup: <div class="hidden-example {{modifier_class}}"></div>
+<style>
+  :where(.hidden-example) {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background: #999;
+  }
+</style>
 
-#{settings.$util-prefix}--hidden-if-mobile - hidden if mobile
-#{settings.$util-prefix}--hidden-if-not-mobile - hidden if not mobile
+#{settings.$util-prefix}--hidden-if-mobile - Hidden if mobile.
+#{settings.$util-prefix}--hidden-if-not-mobile - Hidden if not mobile.
 
 Style guide: #{settings.$util-prefix}.hidden.builtin
 */
 .#{settings.$util-prefix}--hidden {
-  &-if-mobile {
-    @include mixin.breakpoint-define($until: "mobile") {
-      display: none !important;
-    }
-  }
+  @each $bp, $query in settings.$breakpoints {
+    @if meta.type-of($query) == "string" {
+      &-#{$bp} {
+        @include mixin.media($query: $query) {
+          --display: none;
 
-  &-if-not-mobile {
-    @include mixin.breakpoint-define($from: "mobile") {
-      display: none !important;
+          display: var(--display);
+        }
+      }
     }
   }
 }

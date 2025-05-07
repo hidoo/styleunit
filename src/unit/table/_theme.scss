@@ -1,0 +1,84 @@
+@use "sass:list";
+@use "sass:map";
+@use "sass:meta";
+@use "../../settings";
+
+/// Package name
+/// @access private
+/// @type String
+///
+$_pkg: settings.$pkg !default;
+
+/*
+Theme
+
+The theme module.
+
+Weight: -99
+
+Style guide: #{settings.$prefix}-table.theme
+*/
+
+@if meta.type-of(settings.$builtin-themes) == "map" {
+  /*
+Modifiers
+
+The theme modifiers.
+
+Weight: -100
+
+Markup: <table class="#{settings.$prefix}-table  {{modifier_class}}">
+  <tr>
+    <th class="#{settings.$prefix}-table__column" scope="row">Lorem ipsum dolor sit amet.</th>
+    <td class="#{settings.$prefix}-table__column">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+  </tr>
+  <tr>
+    <th class="#{settings.$prefix}-table__column" scope="row">あのイーハトーヴォのすきとおった風。</th>
+    <td class="#{settings.$prefix}-table__column">あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</td>
+  </tr>
+</table>
+
+#{settings.$prefix}-table--theme-normal - Normal theme
+
+Style guide: #{settings.$prefix}-table.theme.builtin
+*/
+  .#{settings.$prefix}-table--theme {
+    &-normal {
+      $default-theme: map.get(settings.$builtin-themes, "light");
+
+      // Load colors
+      --color-up: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "color")})
+      );
+      --column-heading-background-color-up: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "background")})
+      );
+      --border-color-up: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "border")})
+      );
+
+      // Default settings
+      --color: var(--color-up);
+      --column-heading-background-color: var(
+        --column-heading-background-color-up
+      );
+      --border-color: var(--border-color-up);
+
+      // Settings by color schemes
+      @each $name, $theme in settings.$builtin-themes {
+        @media (prefers-color-scheme: #{$name}) {
+          $color: map.get($theme, "color");
+          $background: map.get($theme, "background");
+          $border: map.get($theme, "border");
+
+          // Apply colors to settings
+          --color: rgb(var(--#{$_pkg}-color-#{$color}));
+          --column-heading-background-color: rgb(
+            var(--#{$_pkg}-color-#{$background})
+          );
+          --border-color: rgb(var(--#{$_pkg}-color-#{$border}));
+        }
+      }
+    }
+  }
+}

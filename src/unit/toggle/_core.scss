@@ -4,7 +4,7 @@
 /*
 #{settings.$prefix}-toggle
 
-component for toggle field.
+The toggle unit.
 
 Weight: -1020
 
@@ -12,9 +12,9 @@ Style guide: #{settings.$prefix}-toggle
 */
 
 /*
-core
+Core
 
-core module of #{settings.$prefix}-toggle
+The core module.
 
 Weight: -100
 
@@ -22,67 +22,118 @@ Style guide: #{settings.$prefix}-toggle.core
 */
 
 /*
-default style
+Default style
 
-default style of #{settings.$prefix}-toggle
+The default style.
 
 Weight: -100
 
 Markup: <!-- single -->
 <span class="#{settings.$prefix}-toggle">
-  <input class="#{settings.$prefix}-toggle__field" type="radio" name="{{modifier_class}}" value="1" />
-  <span class="#{settings.$prefix}-toggle__alt"></span>
+  <input class="#{settings.$prefix}-toggle__field" type="radio" name="{{or modifier_class 'toggle'}}" value="1" />
+</span>
+<!-- single (legacy) -->
+<span class="#{settings.$prefix}-toggle">
+  <input class="#{settings.$prefix}-toggle__field" type="radio" name="{{or modifier_class 'toggle'}}" value="2" />
+  <span class="#{settings.$prefix}-toggle__alt"><!-- Alt element is not use. --></span>
 </span>
 <!-- single:disabled -->
 <span class="#{settings.$prefix}-toggle">
-  <input class="#{settings.$prefix}-toggle__field" type="radio" name="{{modifier_class}}" value="2" checked="checked" disabled="disabled" />
-  <span class="#{settings.$prefix}-toggle__alt"></span>
+  <input class="#{settings.$prefix}-toggle__field" type="radio" name="{{or modifier_class 'toggle'}}" value="3" checked="checked" disabled="disabled" />
 </span>
 <!-- with label -->
-<label>
+<label class="#{settings.$prefix}-text  #{settings.$prefix}-text--inline-block">
   <span class="#{settings.$prefix}-toggle">
-    <input class="#{settings.$prefix}-toggle__field" type="radio" name="{{modifier_class}}" value="3" />
-    <span class="#{settings.$prefix}-toggle__alt"></span>
+    <input class="#{settings.$prefix}-toggle__field" type="radio" name="{{or modifier_class 'toggle'}}" value="4" />
   </span>
   Lorem ipsum dolor sit amet.
 </label>
 
-Style guide: #{settings.$prefix}-toggle.core.base
+Style guide: #{settings.$prefix}-toggle.core.default
 */
 .#{settings.$prefix}-toggle {
-  @include mixin.box-initialize($display: "inline-block");
+  --position: relative;
+  --display: inline-block;
+  --overflow: visible;
+  --box-sizing: content-box;
+  --width: auto;
+  --height: auto;
+  --margin: 0;
+  --padding: 0;
+  --border: 0;
+  --color: inherit;
+  --list-style: none;
+  --background-color: transparent;
+  --vertical-align: baseline;
 
-  color: inherit;
-  vertical-align: baseline;
-  background-color: transparent;
+  // For field
+  --field-cursor: pointer;
+  --field-position: relative;
+  --field-z-index: 1;
+  --field-inset: auto;
+  --field-display: block;
+  --field-overflow: visible;
+  --field-box-sizing: content-box;
+  --field-width: auto;
+  --field-height: auto;
+  --field-margin: 0;
+  --field-padding: 0;
+  --field-border: 0;
+  --field-color: inherit;
+  --field-list-style: none;
+  --field-opacity: 1;
+  --field-background-color: transparent;
+  --field-outline: none;
+
+  position: var(--position);
+
+  overflow: var(--overflow);
+  display: var(--display);
+
+  box-sizing: var(--box-sizing);
+  width: var(--width);
+  height: var(--height);
+  margin: var(--margin);
+  padding: var(--padding);
+  border: var(--border);
+
+  color: var(--color);
+  vertical-align: var(--vertical-align);
+  list-style: var(--list-style);
+
+  background-color: var(--background-color);
 
   &__field {
-    @include mixin.box-initialize();
+    cursor: var(--field-cursor);
 
-    @include mixin.on-disabled() {
-      cursor: default;
-      opacity: 0.8;
-    }
+    position: var(--field-position);
+    z-index: var(--field-z-index);
+    inset: var(--field-inset);
 
-    cursor: pointer;
-    vertical-align: baseline;
+    overflow: var(--field-overflow);
+    display: var(--field-display);
 
-    // stylelint-disable-next-line plugin/no-unsupported-browser-features
-    outline: none;
+    box-sizing: var(--field-box-sizing);
+    width: var(--field-width);
+    height: var(--field-height);
+    margin: var(--field-margin);
+    padding: var(--field-padding);
+    border: var(--field-border);
+
+    color: var(--field-color);
+    list-style: var(--field-list-style);
+
+    opacity: var(--field-opacity);
+    background-color: var(--field-background-color);
+    outline: var(--field-outline);
+  }
+
+  @include mixin.has-disabled() {
+    --field-cursor: default;
+    --field-opacity: 0.8;
   }
 
   &__alt {
-    @include mixin.box-initialize($display: "none", $overflow: "hidden");
-    @include mixin.text-initialize($text-indent: -100%);
-    @include mixin.font-initialize();
-    @include mixin.font-apply-size($value: "medium");
-
-    color: inherit;
-    background-color: transparent;
-  }
-
-  &__field:disabled + &__alt {
-    cursor: default;
-    opacity: 0.5;
+    display: none;
   }
 }

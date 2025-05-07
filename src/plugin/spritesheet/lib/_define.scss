@@ -1,12 +1,11 @@
 ////
-/// (c) hidoo | MIT Lisence
+/// (c) hidoo | MIT License
 /// @group plugin/spritesheet
 ////
 
 @use "sass:map";
 @use "sass:meta";
 @use "../../../lib/mixin";
-@use "../../../settings";
 @use "./function" as _function;
 @use "./mixin" as _mixin;
 @use "../settings" as _settings;
@@ -23,7 +22,7 @@ $_default-options: (
   "capturing-selectors": ()
 ) !default;
 
-/// define spritesheet
+/// Define spritesheet
 /// @param {String} $type type of spritesheet
 /// @param {String} $name name of spritesheet item
 /// @param {Map} $options [()] options
@@ -60,16 +59,23 @@ $_default-options: (
 ///
 /// @example css - css outputs
 ///   .selector-logo {
-///     overflow: hidden;
-///     text-indent: -100%;
-///     color: transparent;
-///     background-image: url(path/to/sprite/icon-image.png);
+///     --background-image: url(path/to/sprite/icon-image.png);
+///     background-image: var(--background-image);
 ///   }
 ///   .selector-logo {
-///     width: 10px;
-///     height: 10px;
-///     background-position: -10px -10px;
-///     background-size: 30px 30px;
+///     --overflow: hidden;
+///     --color: transparent;
+///     --text-indent: -100%;
+///   }
+///   .selector-logo {
+///     --width: 10px;
+///     width: var(--width);
+///     --height: 10px;
+///     height: var(--height);
+///     --background-position: -10px -10px;
+///     background-position: var(--background-position);
+///     --background-size: 30px 30px;
+///     background-size: var(--background-size);
 ///   }
 ///
 @mixin define($type, $name, $options: ()) {
@@ -91,10 +97,7 @@ $_default-options: (
     $_default-options
   );
   $use2x: map.get($options, "use2x");
-  $as-mask: map.get(
-    $options,
-    "as-mask"
-  ); // stylelint-disable-line plugin/no-unsupported-browser-features
+  $as-mask: map.get($options, "as-mask");
 
   @if meta.type-of($spritesheets) == "map" {
     $sheet-by-type: _function.get-sheet-by-type($type, $spritesheets);
@@ -103,46 +106,50 @@ $_default-options: (
       $image: map.get($sheet-by-type, "image");
       $items: map.get($sheet-by-type, "items");
       $type-background: "#{$type}-background";
-      $type-mask: "#{$type}-mask"; // stylelint-disable-line plugin/no-unsupported-browser-features
+      $type-mask: "#{$type}-mask";
 
       @include mixin.placeholder-define($name: $type-background) {
-        background-image: url(#{$image});
+        --background-image: url(#{$image});
+
+        background-image: var(--background-image);
       }
 
       @include mixin.placeholder-define($name: $type-mask) {
-        mask-image: url(#{$image}); // stylelint-disable-line plugin/no-unsupported-browser-features
+        --mask-image: url(#{$image});
+
+        mask-image: var(--mask-image);
       }
 
       @if map.get($options, "toggle") {
-        $type-field: "#{$type}-field";
-        $type-alt: "#{$type}-alt";
+        $type-before: "#{$type}-before";
 
         @include mixin.placeholder-define($name: $type) {
-          overflow: hidden;
-          vertical-align: middle;
+          --overflow: hidden;
+          --vertical-align: baseline;
+          --field-position: absolute;
+          --field-z-index: 1;
+          --field-inset: 0 0;
+          --field-width: 100%;
+          --field-height: 100%;
+          --field-opacity: 0;
+          --pseudo-content: "";
+          --pseudo-position: relative;
+          --pseudo-z-index: 0;
+          --pseudo-display: block;
+          --pseudo-color: transparent;
+          --pseudo-text-indent: -100%;
         }
 
-        @include mixin.placeholder-define($name: $type-field) {
-          position: absolute;
-          z-index: 1;
-          top: 0;
-          left: 0;
+        @include mixin.placeholder-define($name: $type-before) {
+          content: var(--pseudo-content);
 
-          width: 100%;
-          height: 100%;
+          position: var(--pseudo-position);
+          z-index: var(--pseudo-z-index);
 
-          opacity: 0;
-        }
+          display: var(--pseudo-display);
 
-        @include mixin.placeholder-define($name: $type-alt) {
-          z-index: 0;
-
-          overflow: hidden;
-          display: block;
-
-          color: transparent;
-          text-indent: -100%;
-          vertical-align: middle;
+          color: var(--pseudo-color);
+          text-indent: var(--pseudo-text-indent);
         }
 
         @if map.get($options, "responsive") {
@@ -153,12 +160,8 @@ $_default-options: (
           ) {
             @extend %#{$type};
 
-            > .#{settings.$prefix}-toggle__field {
-              @extend %#{$type-field};
-            }
-
-            > .#{settings.$prefix}-toggle__alt {
-              @extend %#{$type-alt};
+            &::before {
+              @extend %#{$type-before};
 
               @if $as-mask {
                 @extend %#{$type-mask};
@@ -175,12 +178,8 @@ $_default-options: (
           ) {
             @extend %#{$type};
 
-            > .#{settings.$prefix}-toggle__field {
-              @extend %#{$type-field};
-            }
-
-            > .#{settings.$prefix}-toggle__alt {
-              @extend %#{$type-alt};
+            &::before {
+              @extend %#{$type-before};
 
               @if $as-mask {
                 @extend %#{$type-mask};
@@ -192,9 +191,9 @@ $_default-options: (
         }
       } @else {
         @include mixin.placeholder-define($name: $type) {
-          overflow: hidden;
-          color: transparent;
-          text-indent: -100%;
+          --overflow: hidden;
+          --color: transparent;
+          --text-indent: -100%;
         }
 
         @if map.get($options, "responsive") {

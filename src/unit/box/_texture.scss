@@ -1,40 +1,39 @@
 @use "../../settings";
 
-/*
-texture
+/// Unit name
+/// @access private
+/// @type String
+///
+$_name: "#{settings.$prefix}-box" !default;
 
-texture modifiers of #{settings.$prefix}-box
+/*
+Texture
+
+The texture module.
 
 Weight: -98
 
-Style guide: #{settings.$prefix}-box.texture
+Style guide: #{$_name}.texture
 */
 
 /*
-modifiers: texture
+Modifiers
 
-builtin modifiers of texture for #{settings.$prefix}-box
+The texture modifiers.
 
 Weight: -100
 
-Markup: <div class="#{settings.$prefix}-box  {{modifier_class}}">
-  <div class="#{settings.$prefix}-box__container">
-    <!-- some unit -->
-    <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <figure class="#{settings.$prefix}-pict  #{settings.$prefix}-pict--fit-max-width  #{settings.$util-prefix}--float-left">
-      <img class="#{settings.$prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
-    </figure>
-    <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <!-- some unit -->
-  </div>
+Markup: <div class="#{$_name}  {{modifier_class}}">
+  <!-- some unit -->
+  <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+  <p class="#{settings.$prefix}-text">あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</p>
+  <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+  <p class="#{settings.$prefix}-text">あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</p>
+  <!-- some unit -->
 </div>
 
-#{settings.$prefix}-box--texture-default - default texture
-
-Style guide: #{settings.$prefix}-box.texture.builtin
+Style guide: #{$_name}.texture.builtin
 */
-.#{settings.$prefix}-box--texture {
-  &-default {
-    // has no settings
-  }
+.#{$_name}--texture {
+  // has no settings
 }

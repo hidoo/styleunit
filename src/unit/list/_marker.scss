@@ -1,11 +1,9 @@
-@use "sass:string";
-@use "../../lib/mixin";
 @use "../../settings";
 
 /*
-marker
+Marker
 
-marker modifiers of #{settings.$prefix}-list
+The marker module.
 
 Weight: -99
 
@@ -13,9 +11,9 @@ Style guide: #{settings.$prefix}-list.marker
 */
 
 /*
-modifiers: marker
+Modifiers
 
-builtin modifiers of marker for #{settings.$prefix}-list
+The marker modifiers.
 
 Weight: -100
 
@@ -31,105 +29,77 @@ Markup: <!-- un ordered list -->
 </ul>
 <!-- ordered list -->
 <ol class="#{settings.$prefix}-list  {{modifier_class}}">
-  <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.</li>
-  <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.
+  <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">あのイーハトーヴォのすきとおった風。</li>
+  <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">あのイーハトーヴォのすきとおった風。
     <ol class="#{settings.$prefix}-list  {{modifier_class}}">
-      <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet.</li>
-      <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+      <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">あのイーハトーヴォのすきとおった風。</li>
+      <li class="#{settings.$prefix}-list__item  #{settings.$prefix}-text">あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</li>
     </ol>
   </li>
 </ol>
 
-#{settings.$prefix}-list--marker-none - no marker (**default**)
-#{settings.$prefix}-list--marker-circle - circle marker
-#{settings.$prefix}-list--marker-circle-filled - circle marker (filled)
-#{settings.$prefix}-list--marker-square - square marker
-#{settings.$prefix}-list--marker-square-filled - square marker (filled)
-#{settings.$prefix}-list--marker-numeric - numeric marker
+#{settings.$prefix}-list--marker-circle - Circle
+#{settings.$prefix}-list--marker-circle-filled - Filled circle
+#{settings.$prefix}-list--marker-square - Square
+#{settings.$prefix}-list--marker-square-filled - Filled square
+#{settings.$prefix}-list--marker-asterisk - Asterisk
+#{settings.$prefix}-list--marker-numeric - Numeric
+#{settings.$prefix}-list--marker-numeric-bracket - Numeric with bracket
 
 Style guide: #{settings.$prefix}-list.marker.builtin
 */
 .#{settings.$prefix}-list--marker {
-  &-none {
-    // has no settings
+  &-circle,
+  &-circle-filled {
+    --item-padding: 0 0 0 1.3em;
+    --marker-width: 1.2em;
   }
 
   &-circle {
-    $selector: string.unique-id();
+    --marker-content: "\0025E6";
+  }
 
-    @include mixin.placeholder-define($name: $selector) {
-      padding-left: 1.3em;
+  &-circle-filled {
+    --marker-content: "\002022";
+  }
 
-      &::before {
-        display: block;
-        width: 1.2em;
-      }
-    }
-
-    > .#{settings.$prefix}-list__item {
-      @extend %#{$selector};
-
-      &::before {
-        content: "\0025E6";
-      }
-    }
-
-    &-filled {
-      > .#{settings.$prefix}-list__item {
-        @extend %#{$selector};
-
-        &::before {
-          content: "\002022";
-        }
-      }
-    }
+  &-square,
+  &-square-filled {
+    --item-padding: 0 0 0 1.3em;
+    --marker-width: 1.2em;
   }
 
   &-square {
-    $selector: string.unique-id();
+    --marker-content: "\0025AB";
+  }
 
-    @include mixin.placeholder-define($name: $selector) {
-      padding-left: 1.3em;
+  &-square-filled {
+    --marker-content: "\0025AA";
+  }
 
-      &::before {
-        display: block;
-        width: 1.2em;
-      }
-    }
-
-    > .#{settings.$prefix}-list__item {
-      @extend %#{$selector};
-
-      &::before {
-        content: "\0025FB";
-      }
-    }
-
-    &-filled {
-      > .#{settings.$prefix}-list__item {
-        @extend %#{$selector};
-
-        &::before {
-          content: "\0025FC";
-        }
-      }
-    }
+  &-asterisk {
+    --item-padding: 0 0 0 1.25em;
+    --marker-content: "\00203B";
+    --marker-width: 1em;
   }
 
   &-numeric {
     $counter-name: "#{settings.$prefix}-list--marker-numeric";
 
-    counter-reset: #{$counter-name};
+    --counter-reset: #{$counter-name};
+    --counter-increment: #{$counter-name};
+    --item-padding: 0 0 0 1.6em;
+    --marker-content: counter(#{$counter-name}, decimal) ".";
+    --marker-width: 1.5em;
+  }
 
-    > .#{settings.$prefix}-list__item {
-      counter-increment: #{$counter-name};
-      padding-left: 1.6em;
+  &-numeric-bracket {
+    $counter-name: "#{settings.$prefix}-list--marker-numeric-bracket";
 
-      &::before {
-        content: counter(#{$counter-name}, decimal) ".";
-        display: block;
-        width: 1.5em;
-      }
-    }
+    --counter-reset: #{$counter-name};
+    --counter-increment: #{$counter-name};
+    --item-padding: 0 0 0 1.9em;
+    --marker-content: "(" counter(#{$counter-name}, decimal) ")";
+    --marker-width: 1.75em;
   }
 }

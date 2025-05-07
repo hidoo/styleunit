@@ -1,9 +1,9 @@
 @use "../../settings";
 
 /*
-inline
+Inline
 
-inline modifiers of #{settings.$prefix}-icon
+The inline module.
 
 Weight: -98
 
@@ -11,27 +11,22 @@ Style guide: #{settings.$prefix}-icon.inline
 */
 
 /*
-modifiers: inline
+Modifiers
 
-builtin modifiers of inline for #{settings.$prefix}-icon
+The inline modifiers.
 
 Weight: -100
 
-Markup: <span class="#{settings.$prefix}-icon  #{settings.$prefix}-icon--type-arrow-light  {{modifier_class}}"></span>
-<span class="#{settings.$prefix}-icon  #{settings.$prefix}-icon--type-arrow-dark  {{modifier_class}}"></span>
+Markup: <span class="#{settings.$prefix}-icon  #{settings.$prefix}-icon--type-arrow-normal  {{modifier_class}}"></span>
+<span class="#{settings.$prefix}-icon  #{settings.$prefix}-icon--type-arrow-normal  {{modifier_class}}"></span>
 
-#{settings.$prefix}-icon--inline-false - disable inline (**default**)
-#{settings.$prefix}-icon--inline-true - enable inline
+#{settings.$prefix}-icon--inline-true - Enable inline
 
 Style guide: #{settings.$prefix}-icon.inline.builtin
 */
 .#{settings.$prefix}-icon--inline {
-  &-false {
-    // has no settings
-  }
-
   &-true {
-    display: inline-block;
-    vertical-align: middle;
+    --display: inline-block;
+    --vertical-align: middle;
   }
 }

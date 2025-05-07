@@ -1,12 +1,20 @@
 ////
-/// (c) hidoo | MIT Lisence
+/// (c) hidoo | MIT License
 /// @group features
 ////
 
-@use "../function";
-@use "on" as mixin;
+@use "sass:list";
+@use "sass:meta";
+@use "./on" as mixin;
+@use "../../settings";
 
-/// wrappper of `:hover` and `:focus`
+/// Default selectors
+/// @access private
+/// @type List
+///
+$_default-selectors: (":hover", ":focus") !default;
+
+/// Utility for pseudo classes like `:hover` and `:focus`
 /// @param {List} $additional-selectors [()] - list of additional selectors
 /// @param {List} $capturing-selectors [()] - capturing parent selectors
 ///
@@ -18,17 +26,29 @@
 ///   }
 ///
 /// @example css - css outputs
-///   .selector:hover, .selector:focus, .selector.is-focus {
+///   .selector:where(:hover, :focus, .is-focus) {
 ///     font-size: 16px;
 ///   }
 ///
-@mixin on-focus(
-  $additional-selectors: (),
-  $capturing-selectors: ()
-) {
-  $selectors: function.selector-merge-state("focus", $additional-selectors);
+@mixin on-focus($additional-selectors: (), $capturing-selectors: ()) {
+  $selectors: $_default-selectors;
 
-  @include mixin.on($selectors: $selectors, $capturing-selectors: $capturing-selectors) {
+  @if meta.type-of(settings.$selector-focus) == "list" {
+    $selectors: list.join(
+      $selectors,
+      settings.$selector-focus,
+      $separator: comma
+    );
+  }
+
+  @if meta.type-of($additional-selectors) == "list" {
+    $selectors: list.join($selectors, $additional-selectors, $separator: comma);
+  }
+
+  @include mixin.on(
+    $selectors: $selectors,
+    $capturing-selectors: $capturing-selectors
+  ) {
     @content;
   }
 }

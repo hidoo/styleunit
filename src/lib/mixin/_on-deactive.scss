@@ -1,13 +1,20 @@
 ////
-/// (c) hidoo | MIT Lisence
+/// (c) hidoo | MIT License
 /// @group features
 ////
 
+@use "sass:list";
 @use "sass:meta";
-@use "../function";
-@use "on" as mixin;
+@use "./on" as mixin;
+@use "../../settings";
 
-/// wrappper of `:not(is-active)`
+/// Default selectors
+/// @access private
+/// @type List
+///
+$_default-selectors: () !default;
+
+/// Utility for pseudo classes like `:not(is-active)`
 /// @param {List} $additional-selectors [()] - list of additional selectors
 /// @param {List} $capturing-selectors [()] - capturing parent selectors
 ///
@@ -19,20 +26,32 @@
 ///   }
 ///
 /// @example css - css outputs
-///   .selector:not(.is-active) {
+///   .selector::where(not(.is-active)) {
 ///     font-size: 16px;
 ///   }
 ///
-@mixin on-deactive(
-  $additional-selectors: (),
-  $capturing-selectors: ()
-) {
-  $selectors: function.list-map(
-    function.selector-merge-state("active", $additional-selectors),
-    meta.get-function("selector-inverse", $module: "function")
-  );
+@mixin on-deactive($additional-selectors: (), $capturing-selectors: ()) {
+  $selectors: $_default-selectors;
 
-  @include mixin.on($selectors: $selectors, $capturing-selectors: $capturing-selectors) {
+  @if meta.type-of(settings.$selector-active) == "list" {
+    $selectors: list.join(
+      $selectors,
+      settings.$selector-active,
+      $separator: comma
+    );
+  }
+
+  @if meta.type-of($additional-selectors) == "list" {
+    $selectors: list.join($selectors, $additional-selectors, $separator: comma);
+  }
+
+  @include mixin.on(
+    $selectors: $selectors,
+    $capturing-selectors: $capturing-selectors,
+    $options: (
+      "not": true
+    )
+  ) {
     @content;
   }
 }

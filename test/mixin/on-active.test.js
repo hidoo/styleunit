@@ -26,7 +26,7 @@ describe('@mixin on-active(...)', () => {
     const cases = [
       {
         params: [[]],
-        expected: '.selector.is-active{font-size:16px}'
+        expected: '.selector:where(.is-active){font-size:16px}'
       }
     ];
 
@@ -40,7 +40,7 @@ describe('@mixin on-active(...)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       }
     );
@@ -64,7 +64,7 @@ describe('@mixin on-active(...)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       }
     );
@@ -73,8 +73,8 @@ describe('@mixin on-active(...)', () => {
   it('should out with specified selectors if argument $additional-selectors is set.', async () => {
     const cases = [
       {
-        params: [['$additional-selectors: (".is-hover")']],
-        expected: '.selector.is-hover,.selector.is-active{font-size:16px}'
+        params: [['$additional-selectors: (".is-playing",)']],
+        expected: '.selector:where(.is-active,.is-playing){font-size:16px}'
       }
     ];
 
@@ -88,7 +88,7 @@ describe('@mixin on-active(...)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       }
     );
@@ -99,7 +99,7 @@ describe('@mixin on-active(...)', () => {
       {
         params: [['$capturing-selectors: ("a", "button")']],
         expected:
-          'button.is-active .selector,a.is-active .selector,.selector.is-active{font-size:16px}'
+          ':where(a,button):where(.is-active) .selector,.selector:where(.is-active){font-size:16px}'
       }
     ];
 
@@ -113,7 +113,7 @@ describe('@mixin on-active(...)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       }
     );

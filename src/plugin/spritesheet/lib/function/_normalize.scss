@@ -1,5 +1,5 @@
 ////
-/// (c) hidoo | MIT Lisence
+/// (c) hidoo | MIT License
 /// @group plugin/spritesheet
 ////
 
@@ -17,15 +17,13 @@
 
   @if meta.type-of($values) == "map" {
     $_spritesheets: $values;
-  }
-  @else if meta.type-of($values) == "list" {
+  } @else if meta.type-of($values) == "list" {
     @each $value in $values {
       @if meta.type-of($value) == "map" {
         $_spritesheets: map.merge($_spritesheets, $value);
       }
     }
-  }
-  @else {
+  } @else {
     @return null;
   }
 
@@ -33,12 +31,10 @@
     @if meta.type-of($value) == "map" {
       @if map.has-key($value, "image") and map.has-key($value, "items") {
         $spritesheets: map.set($spritesheets, $key, $value);
-      }
-      @else {
+      } @else {
         @warn "@function normalize: skip value of '#{$key}'. because it not have 'image' key or 'items' key.";
       }
-    }
-    @else {
+    } @else {
       @warn "@function normalize: skip value of '#{$key}'. because it is not map.";
     }
   }

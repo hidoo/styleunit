@@ -1,10 +1,16 @@
 @use "../../lib/mixin";
 @use "../../settings";
 
+/// Package name
+/// @access private
+/// @type String
+///
+$_pkg: settings.$pkg !default;
+
 /*
 #{settings.$prefix}-select
 
-component for select field.
+The select unit.
 
 Weight: -1010
 
@@ -12,9 +18,9 @@ Style guide: #{settings.$prefix}-select
 */
 
 /*
-core
+Core
 
-core module of #{settings.$prefix}-select
+The core module.
 
 Weight: -100
 
@@ -22,76 +28,144 @@ Style guide: #{settings.$prefix}-select.core
 */
 
 /*
-default style
+Default style
 
-default style of #{settings.$prefix}-select
+The default style.
 
 Weight: -100
 
 Markup: <span class="#{settings.$prefix}-select">
-  <select class="#{settings.$prefix}-select__field" name="{{modifier_class}}">
+  <select class="#{settings.$prefix}-select__field" name="{{or modifier_class 'select'}}">
     <option value="">select...</option>
     <option value="option-1">Lorem ipsum dolor sit amet</option>
-    <option value="option-2">Consectetur adipiscing elit</option>
+    <option value="option-2">あのイーハトーヴォのすきとおった風</option>
   </select>
 </span>
 <!-- disabled -->
 <span class="#{settings.$prefix}-select">
-  <select class="#{settings.$prefix}-select__field" name="{{modifier_class}}" disabled="disabled">
+  <select class="#{settings.$prefix}-select__field" name="{{or modifier_class 'select'}}" disabled="disabled">
     <option value="">select...</option>
     <option value="option-1">Lorem ipsum dolor sit amet</option>
-    <option value="option-2">Consectetur adipiscing elit</option>
+    <option value="option-2">あのイーハトーヴォのすきとおった風</option>
   </select>
 </span>
 
-Style guide: #{settings.$prefix}-select.core.base
+Style guide: #{settings.$prefix}-select.core.default
 */
 .#{settings.$prefix}-select {
-  @include mixin.box-initialize($box-sizing: "border-box", $overflow: "hidden");
-  @include mixin.text-initialize($line-height: 0);
+  --position: relative;
+  --display: block;
+  --overflow: hidden;
+  --box-sizing: border-box;
+  --width: auto;
+  --height: auto;
+  --margin: 0;
+  --padding: 0;
+  --border: 0;
+  --color: inherit;
+  --list-style: none;
+  --background-color: transparent;
+  --opacity: 1;
 
-  color: inherit;
-  background-color: transparent;
+  // For field
+  --field-cursor: pointer;
+  --field-position: relative;
+  --field-z-index: 1;
+  --field-display: block;
+  --field-overflow: visible;
+  --field-box-sizing: border-box;
+  --field-width: 100%;
+  --field-height: 100%;
+  --field-margin: 0;
+  --field-padding: 0;
+  --field-border: 0;
+  --field-border-radius: 0;
+  --field-font-size: var(--#{$_pkg}-font-size);
+  --field-font-weight: var(--#{$_pkg}-font-weight);
+  --field-font-style: normal;
+  --field-line-height: normal;
+  --field-color: inherit;
+  --field-text-align: left;
+  --field-text-decoration: none;
+  --field-text-indent: 0;
+  --field-text-overflow: ellipsis;
+  --field-letter-spacing: var(--#{$_pkg}-letter-spacing);
+  --field-white-space: normal;
+  --field-vertical-align: baseline;
+  --field-list-style: none;
+  --field-appearance: none;
+  --field-background-color: transparent;
+  --field-outline: 0;
+  --field-transition: none;
+  --field-options-padding: 0;
+
+  position: var(--position);
+
+  overflow: var(--overflow);
+  display: var(--display);
+
+  box-sizing: var(--box-sizing);
+  width: var(--width);
+  height: var(--height);
+  margin: var(--margin);
+  padding: var(--padding);
+  border: var(--border);
+
+  color: var(--color);
+  list-style: var(--list-style);
+
+  opacity: var(--opacity);
+  background-color: var(--background-color);
 
   &__field {
-    @include mixin.box-initialize($box-sizing: "border-box");
-    @include mixin.text-initialize(
-      $line-height: "normal",
-      $white-space: null,
-      $word-wrap: null
-    );
-    @include mixin.font-initialize();
-    @include mixin.font-apply-size($value: "medium");
+    cursor: var(--field-cursor);
 
-    @include mixin.on-disabled() {
-      cursor: default;
-      opacity: 0.5;
-    }
+    position: var(--field-position);
+    z-index: var(--field-z-index);
 
-    cursor: pointer;
+    overflow: var(--field-overflow);
+    display: var(--field-display);
 
-    z-index: 1;
+    box-sizing: var(--field-box-sizing);
+    width: var(--field-width);
+    height: var(--field-height);
+    margin: var(--field-margin);
+    padding: var(--field-padding);
+    border: var(--field-border);
+    border-radius: var(--field-border-radius);
 
-    width: 100%;
-    height: 100%;
-    border-radius: 0;
+    font-size: var(--field-font-size);
+    font-weight: var(--field-font-weight);
+    font-style: var(--field-font-style);
+    line-height: var(--field-line-height);
+    color: var(--field-color);
+    text-align: var(--field-text-align);
+    text-decoration: var(--field-text-decoration);
+    text-indent: var(--field-text-indent);
+    text-overflow: var(--field-text-overflow);
+    letter-spacing: var(--field-letter-spacing);
+    white-space: var(--field-white-space);
+    vertical-align: var(--field-vertical-align);
+    list-style: var(--field-list-style);
 
-    color: inherit;
+    appearance: var(--field-appearance);
+    background-color: var(--field-background-color);
+    outline: var(--field-outline);
 
-    // stylelint-disable-next-line plugin/no-unsupported-browser-features
-    appearance: none;
-    background-color: transparent;
+    transition: var(--field-transition);
 
-    // stylelint-disable-next-line plugin/no-unsupported-browser-features
-    outline: 0;
-
-    // ie10+
+    // For ie10+
     &::-ms-expand {
-      visibility: hidden; // stylelint-disable a11y/no-display-none
+      visibility: hidden;
     }
 
     > option {
-      padding: 0;
+      padding: var(--field-options-padding);
     }
+  }
+
+  @include mixin.has-disabled() {
+    --opacity: 0.5;
+    --field-cursor: default;
   }
 }

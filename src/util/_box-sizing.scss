@@ -1,0 +1,61 @@
+@use "sass:meta";
+@use "../lib/mixin";
+@use "../settings";
+
+/*
+Box sizing
+
+The box sizing module.
+
+Weight: -99
+
+Style guide: #{settings.$util-prefix}.box-sizing
+*/
+
+/*
+Modifiers
+
+The box sizing modifiers.
+
+Weight: -100
+
+Markup: <div class="box-sizing-example {{modifier_class}}"></div>
+<style>
+  :where(.box-sizing-example) {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    padding: 25px;
+    background: #999;
+    border: 25px solid #ccc;
+  }
+</style>
+
+#{settings.$util-prefix}--box-sizing-border-box - Set border box
+#{settings.$util-prefix}--box-sizing-border-box-if-mobile - Set border box if mobile viewport.
+#{settings.$util-prefix}--box-sizing-content-box - Set content box
+#{settings.$util-prefix}--box-sizing-content-box-if-mobile - Set content box if mobile viewport.
+
+Style guide: #{settings.$util-prefix}.box-sizing.builtin
+*/
+.#{settings.$util-prefix}--box-sizing {
+  @each $value in ("border-box", "content-box") {
+    &-#{$value} {
+      --box-sizing: #{$value};
+
+      box-sizing: var(--box-sizing);
+    }
+
+    @each $bp, $query in settings.$breakpoints {
+      @if meta.type-of($query) == "string" {
+        &-#{$value}-#{$bp} {
+          @include mixin.media($query: $query) {
+            --box-sizing: #{$value};
+
+            box-sizing: var(--box-sizing);
+          }
+        }
+      }
+    }
+  }
+}

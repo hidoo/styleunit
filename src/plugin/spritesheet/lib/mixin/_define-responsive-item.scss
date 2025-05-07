@@ -1,155 +1,203 @@
 ////
-/// (c) hidoo | MIT Lisence
+/// (c) hidoo | MIT License
 /// @group plugin/spritesheet
 ////
 
 @use "sass:map";
+@use "sass:meta";
 @use "../../../../lib/mixin";
+@use "../../../../settings";
 @use "./set-properties" as _mixin;
 
-/// define responsive item
+/// Define responsive item
 /// @access private
 /// @param {String} $name name of spritesheet item
 /// @param {Map} $items [()] spritesheet items
 /// @param {Map} $options [()] options
 ///
 @mixin define-responsive-item($name, $items: (), $options: ()) {
+  $breakpoints: ();
+
+  // Filter breakpoints
+  @each $bp, $query in settings.$breakpoints {
+    @if meta.type-of($query) == "string" {
+      $breakpoints: map.set($breakpoints, $bp, $query);
+    }
+  }
+
   @if map.has-key($items, $name) {
-    $up: map.get($items, $name);
-    $focus: map.get($items, "#{$name}--focus");
-    $current: map.get($items, "#{$name}--current");
-    $disabled: map.get($items, "#{$name}--disabled");
-    $up-if-mobile: map.get($items, "#{$name}--if-mobile");
-    $focus-if-mobile: map.get($items, "#{$name}--focus--if-mobile");
-    $current-if-mobile: map.get($items, "#{$name}--current--if-mobile");
-    $disabled-if-mobile: map.get($items, "#{$name}--disabled--if-mobile");
     $use2x: map.get($options, "use2x");
-    $capturing-selectors: map.get($options, "capturing-selectors");
+    $on-args: (
+      "capturing-selectors": map.get($options, "capturing-selectors")
+    );
 
     &-#{$name} {
+      $up: map.get($items, $name);
+
       @content;
 
-      @if $up {
-        @include _mixin.set-properties(
-          $values: $up,
-          $options: map.merge(
+      @include _mixin.set-properties(
+        $values: $up,
+        $options: map.merge(
             $options,
-            ("use2x": $use2x == true)
+            (
+              "use2x": $use2x == true
+            )
           )
-        );
+      );
 
-        @if $up-if-mobile {
-          @include mixin.breakpoint-define($until: "mobile") {
+      @each $bp, $query in $breakpoints {
+        @if map.has-key($items, "#{$name}--#{$bp}") {
+          $up-in-bp: map.get($items, "#{$name}--#{$bp}");
+
+          @include mixin.media($query: $query) {
             @include _mixin.set-properties(
-              $values: $up-if-mobile,
+              $values: $up-in-bp,
               $options: map.merge(
-                $options,
-                ("use2x": $use2x == true or $use2x == "if-mobile")
-              )
+                  $options,
+                  (
+                    "use2x": $use2x == $bp or $use2x == true,
+                    "with-property": false
+                  )
+                )
             );
           }
         }
       }
 
-      @if $focus {
-        @include mixin.on-focus($capturing-selectors: $capturing-selectors) {
+      @if map.has-key($items, "#{$name}--focus") {
+        $focus: map.get($items, "#{$name}--focus");
+
+        @include mixin.on-focus($on-args...) {
           @include _mixin.set-properties(
             $values: (
               "offset-x": map.get($focus, "offset-x"),
               "offset-y": map.get($focus, "offset-y")
             ),
             $options: map.merge(
-              $options,
-              ("use2x": $use2x == true)
-            )
+                $options,
+                (
+                  "use2x": $use2x == true,
+                  "with-property": false
+                )
+              )
           );
         }
 
-        @if $focus-if-mobile {
-          @include mixin.breakpoint-define($until: "mobile") {
-            @include mixin.on-focus($capturing-selectors: $capturing-selectors) {
-              @include _mixin.set-properties(
-                $values: (
-                  "offset-x": map.get($focus-if-mobile, "offset-x"),
-                  "offset-y": map.get($focus-if-mobile, "offset-y")
-                ),
-                $options: map.merge(
-                  $options,
-                  ("use2x": $use2x == true or $use2x == "if-mobile")
-                )
-              );
+        @each $bp, $query in settings.$breakpoints {
+          @if map.has-key($items, "#{$name}--focus--#{$bp}") {
+            @include mixin.media($query: $query) {
+              $focus-in-bp: map.get($items, "#{$name}--focus--#{$bp}");
+
+              @include mixin.on-focus($on-args...) {
+                @include _mixin.set-properties(
+                  $values: (
+                    "offset-x": map.get($focus-in-bp, "offset-x"),
+                    "offset-y": map.get($focus-in-bp, "offset-y")
+                  ),
+                  $options: map.merge(
+                      $options,
+                      (
+                        "use2x": $use2x == $bp or $use2x == true,
+                        "with-property": false
+                      )
+                    )
+                );
+              }
             }
           }
         }
       }
 
-      @if $current {
-        @include mixin.on-current($capturing-selectors: $capturing-selectors) {
+      @if map.has-key($items, "#{$name}--current") {
+        $current: map.get($items, "#{$name}--current");
+
+        @include mixin.on-current($on-args...) {
           @include _mixin.set-properties(
             $values: (
               "offset-x": map.get($current, "offset-x"),
               "offset-y": map.get($current, "offset-y")
             ),
             $options: map.merge(
-              $options,
-              ("use2x": $use2x == true)
-            )
+                $options,
+                (
+                  "use2x": $use2x == true,
+                  "with-property": false
+                )
+              )
           );
         }
 
-        @if $current-if-mobile {
-          @include mixin.breakpoint-define($until: "mobile") {
-            @include mixin.on-current($capturing-selectors: $capturing-selectors) {
-              @include _mixin.set-properties(
-                $values: (
-                  "offset-x": map.get($current-if-mobile, "offset-x"),
-                  "offset-y": map.get($current-if-mobile, "offset-y")
-                ),
-                $options: map.merge(
-                  $options,
-                  ("use2x": $use2x == true or $use2x == "if-mobile")
-                )
-              );
+        @each $bp, $query in settings.$breakpoints {
+          @if map.has-key($items, "#{$name}--current--#{$bp}") {
+            @include mixin.media($query: $query) {
+              $current-in-bp: map.get($items, "#{$name}--current--#{$bp}");
+
+              @include mixin.on-current($on-args...) {
+                @include _mixin.set-properties(
+                  $values: (
+                    "offset-x": map.get($current-in-bp, "offset-x"),
+                    "offset-y": map.get($current-in-bp, "offset-y")
+                  ),
+                  $options: map.merge(
+                      $options,
+                      (
+                        "use2x": $use2x == $bp or $use2x == true,
+                        "with-property": false
+                      )
+                    )
+                );
+              }
             }
           }
         }
       }
 
-      @if $disabled {
-        @include mixin.on-disabled($capturing-selectors: $capturing-selectors) {
+      @if map.has-key($items, "#{$name}--disabled") {
+        $disabled: map.get($items, "#{$name}--disabled");
+
+        @include mixin.on-disabled($on-args...) {
           @include _mixin.set-properties(
             $values: (
               "offset-x": map.get($disabled, "offset-x"),
               "offset-y": map.get($disabled, "offset-y")
             ),
             $options: map.merge(
-              $options,
-              ("use2x": $use2x == true)
-            )
+                $options,
+                (
+                  "use2x": $use2x == true,
+                  "with-property": false
+                )
+              )
           );
         }
 
-        @if $disabled-if-mobile {
-          @include mixin.breakpoint-define($until: "mobile") {
-            @include mixin.on-disabled($capturing-selectors: $capturing-selectors) {
-              @include _mixin.set-properties(
-                $values: (
-                  "offset-x": map.get($disabled-if-mobile, "offset-x"),
-                  "offset-y": map.get($disabled-if-mobile, "offset-y")
-                ),
-                $options: map.merge(
-                  $options,
-                  ("use2x": $use2x == true or $use2x == "if-mobile")
-                )
-              );
+        @each $bp, $query in settings.$breakpoints {
+          @if map.has-key($items, "#{$name}--disabled--#{$bp}") {
+            @include mixin.media($query: $query) {
+              $disabled-in-bp: map.get($items, "#{$name}--disabled--#{$bp}");
+
+              @include mixin.on-disabled($on-args...) {
+                @include _mixin.set-properties(
+                  $values: (
+                    "offset-x": map.get($disabled-in-bp, "offset-x"),
+                    "offset-y": map.get($disabled-in-bp, "offset-y")
+                  ),
+                  $options: map.merge(
+                      $options,
+                      (
+                        "use2x": $use2x == $bp or $use2x == true,
+                        "with-property": false
+                      )
+                    )
+                );
+              }
             }
           }
         }
       }
     }
-  }
-  @else {
-    // stylelint-disable-next-line max-line-length
+  } @else {
     @warn "@mixin define-responsive-item: Spritesheet '#{$name}' was not generate, because $name: '#{$name}' is not found.";
   }
 }

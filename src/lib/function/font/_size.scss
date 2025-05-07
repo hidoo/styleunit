@@ -1,5 +1,5 @@
 ////
-/// (c) hidoo | MIT Lisence
+/// (c) hidoo | MIT License
 /// @group font feature
 ////
 
@@ -45,7 +45,9 @@ $_default-options: (
       @error "@function font-size: settings.$font-size-presets must be map.";
     }
 
-    $value: math.floor(settings.$font-size * map.get(settings.$font-size-presets, $value));
+    $value: math.floor(
+      settings.$font-size * map.get(settings.$font-size-presets, $value)
+    );
   }
 
   @if meta.type-of($value) != "number" {

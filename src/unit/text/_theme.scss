@@ -2,38 +2,57 @@
 @use "sass:meta";
 @use "../../settings";
 
-/*
-theme
+/// Package name
+/// @access private
+/// @type String
+///
+$_pkg: settings.$pkg !default;
 
-theme modifiers of #{settings.$prefix}-text
+/*
+Theme
+
+The theme module.
 
 Weight: -99
 
 Style guide: #{settings.$prefix}-text.theme
 */
 
-/*
-modifiers: theme
+@if meta.type-of(settings.$builtin-themes) == "map" {
+  /*
+Modifiers
 
-builtin modifiers of theme for #{settings.$prefix}-text
+The theme modifiers.
 
 Weight: -100
 
-Markup: <h1 class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet.</h1>
-<p class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+Markup: <h1 class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor <a class="#{settings.$prefix}-text__link" href="#">sit amet</a>, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h1>
+<p class="#{settings.$prefix}-text  {{modifier_class}}">あの<a class="#{settings.$prefix}-text__link" href="#">イーハトーヴォ</a>のすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</p>
 
-#{settings.$prefix}-text--theme-light - light theme
-#{settings.$prefix}-text--theme-dark - dark theme
+#{settings.$prefix}-text--theme-normal - Normal theme
 
 Style guide: #{settings.$prefix}-text.theme.builtin
 */
-.#{settings.$prefix}-text--theme {
-  @if meta.type-of(settings.$builtin-themes) == "map" {
-    @each $name, $theme in settings.$builtin-themes {
-      $color: map.get($theme, "color");
+  .#{settings.$prefix}-text--theme {
+    &-normal {
+      $default-theme: map.get(settings.$builtin-themes, "light");
 
-      &-#{$name} {
-        color: $color;
+      // Load colors
+      --color-up: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "color")})
+      );
+
+      // Default settings
+      --color: var(--color-up);
+
+      // Settings by color schemes
+      @each $name, $theme in settings.$builtin-themes {
+        @media (prefers-color-scheme: #{$name}) {
+          $color-up: map.get($theme, "color");
+
+          // Apply colors to settings
+          --color-up: rgb(var(--#{$_pkg}-color-#{$color-up}));
+        }
       }
     }
   }

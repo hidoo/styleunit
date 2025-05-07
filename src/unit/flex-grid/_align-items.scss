@@ -2,9 +2,9 @@
 @use "../../settings";
 
 /*
-align-items
+Align items
 
-align-items modifiers of #{settings.$prefix}-flex-grid
+The align items module.
 
 Weight: -97
 
@@ -12,68 +12,68 @@ Style guide: #{settings.$prefix}-flex-grid.align-items
 */
 
 /*
-modifiers: align-items
+Modifiers
 
-builtin modifiers of align-items for #{settings.$prefix}-flex-grid
+The align items modifiers.
 
 Weight: -100
 
 Markup: <div class="#{settings.$prefix}-flex-grid  {{modifier_class}}">
-  <div class="#{settings.$prefix}-flex-grid__column  #{settings.$util-prefix}--width-max-200">
-    <!-- some unit -->
-    <figure class="#{settings.$prefix}-pict  #{settings.$prefix}-pict--fit-max-width  #{settings.$util-prefix}--float-left">
-      <img class="#{settings.$prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
-    </figure>
+  <div class="#{settings.$prefix}-flex-grid__column">
+    <!-- content -->
     <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <!-- some unit -->
-  </div>
-  <div class="#{settings.$prefix}-flex-grid__column  #{settings.$util-prefix}--width-max-200">
-    <!-- some unit -->
     <figure class="#{settings.$prefix}-pict  #{settings.$prefix}-pict--fit-max-width  #{settings.$util-prefix}--float-left">
-      <img class="#{settings.$prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
+      <img class="#{settings.$prefix}-pict__src" src="https://placehold.co/200x150" alt="" width="200" height="150" loading="auto" />
     </figure>
+    <!-- content -->
+  </div>
+  <div class="#{settings.$prefix}-flex-grid__column">
+    <!-- content -->
+    <figure class="#{settings.$prefix}-pict  #{settings.$prefix}-pict--fit-max-width  #{settings.$util-prefix}--float-left">
+      <img class="#{settings.$prefix}-pict__src" src="https://placehold.co/200x150" alt="" width="200" height="150" loading="auto" />
+    </figure>
+    <p class="#{settings.$prefix}-text">あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</p>
+    <!-- content -->
+  </div>
+  <div class="#{settings.$prefix}-flex-grid__column">
+    <!-- content -->
     <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-    <!-- some unit -->
-  </div>
-  <div class="#{settings.$prefix}-flex-grid__column  #{settings.$util-prefix}--width-max-200">
-    <!-- some unit -->
     <figure class="#{settings.$prefix}-pict  #{settings.$prefix}-pict--fit-max-width  #{settings.$util-prefix}--float-left">
-      <img class="#{settings.$prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
+      <img class="#{settings.$prefix}-pict__src" src="https://placehold.co/200x150" alt="" width="200" height="150" loading="auto" />
     </figure>
-    <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <!-- some unit -->
+    <!-- content -->
   </div>
-  <div class="#{settings.$prefix}-flex-grid__column  #{settings.$util-prefix}--width-max-200">
-    <!-- some unit -->
+  <div class="#{settings.$prefix}-flex-grid__column">
+    <!-- content -->
     <figure class="#{settings.$prefix}-pict  #{settings.$prefix}-pict--fit-max-width  #{settings.$util-prefix}--float-left">
-      <img class="#{settings.$prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
+      <img class="#{settings.$prefix}-pict__src" src="https://placehold.co/200x150" alt="" width="200" height="150" loading="auto" />
     </figure>
-    <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet.</p>
-    <!-- some unit -->
+    <p class="#{settings.$prefix}-text">あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら。</p>
+    <!-- content -->
   </div>
 </div>
 
-#{settings.$prefix}-flex-grid--align-items-stretch - align-items stretch (**default**)
-#{settings.$prefix}-flex-grid--align-items-start - align-items start of flow
-#{settings.$prefix}-flex-grid--align-items-center - align-items center of flow
-#{settings.$prefix}-flex-grid--align-items-end - align-items end of flow
+#{settings.$prefix}-flex-grid--align-items-stretch - Items alignment on axis with stretch
+#{settings.$prefix}-flex-grid--align-items-start - Starting items alignment on axis
+#{settings.$prefix}-flex-grid--align-items-center - Center items alignment on axis
+#{settings.$prefix}-flex-grid--align-items-end - Ending items alignment on axis
 
 Style guide: #{settings.$prefix}-flex-grid.align-items.builtin
 */
 .#{settings.$prefix}-flex-grid--align-items {
   &-stretch {
-    align-items: stretch;
+    --align-items: stretch;
   }
 
   &-start {
-    align-items: flex-start;
+    --align-items: flex-start;
   }
 
   &-center {
-    align-items: center;
+    --align-items: center;
   }
 
   &-end {
-    align-items: flex-end;
+    --align-items: flex-end;
   }
 }

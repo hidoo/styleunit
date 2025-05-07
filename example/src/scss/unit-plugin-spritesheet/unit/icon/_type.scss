@@ -3,9 +3,9 @@
 @use "../../../../../../src/plugin/spritesheet";
 
 /*
-type
+Type
 
-type modifiers of #{settings.$prefix}-icon
+The type module.
 
 Weight: -99
 
@@ -13,9 +13,9 @@ Style guide: #{settings.$prefix}-icon.type
 */
 
 /*
-modifiers: type
+Modifiers
 
-builtin modifiers of type for #{settings.$prefix}-icon
+The additional modifiers.
 
 Weight: -99
 
@@ -25,21 +25,21 @@ Markup: <!-- single -->
 <a href="javascript:;">
   <span class="#{settings.$prefix}-icon  {{modifier_class}}"></span>
 </a>
-<!-- a (current) child -->
-<a class="is-current" href="javascript:;">
+<!-- a child (current) -->
+<a class="is-current" href="#">
   <span class="#{settings.$prefix}-icon  {{modifier_class}}"></span>
 </a>
-<!-- button (disabled) child -->
+<!-- button child (disabled) -->
 <button disabled="disabled">
   <span class="#{settings.$prefix}-icon  {{modifier_class}}"></span>
 </button>
 
-#{settings.$prefix}-icon--type-example-a - type example-a (svg)
-#{settings.$prefix}-icon--type-example-b - type example-b (svg, responsive)
-#{settings.$prefix}-icon--type-example-c - type example-c (image, use2x)
-#{settings.$prefix}-icon--type-example-d - type example-d (image, responsive, use2x - if mobile)
+#{settings.$prefix}-icon--type-example-a - Example a type (svg)
+#{settings.$prefix}-icon--type-example-b - Example b type (svg, responsive)
+#{settings.$prefix}-icon--type-example-c - Example c type (image, use2x)
+#{settings.$prefix}-icon--type-example-d - Example d type (image, responsive, use2x - if mobile)
 
-Style guide: #{settings.$prefix}-icon.type.extend
+Style guide: #{settings.$prefix}-icon.type.additional
 */
 .#{settings.$prefix}-icon--type {
   $options: (

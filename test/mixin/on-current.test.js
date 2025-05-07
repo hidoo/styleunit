@@ -26,7 +26,7 @@ describe('@mixin on-current(...)', () => {
     const cases = [
       {
         params: [[]],
-        expected: '.selector.is-current{font-size:16px}'
+        expected: '.selector:where(.is-current){font-size:16px}'
       }
     ];
 
@@ -40,7 +40,7 @@ describe('@mixin on-current(...)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       }
     );
@@ -64,7 +64,7 @@ describe('@mixin on-current(...)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       }
     );
@@ -73,8 +73,8 @@ describe('@mixin on-current(...)', () => {
   it('should out with specified selectors if argument $additional-selectors is set.', async () => {
     const cases = [
       {
-        params: [['$additional-selectors: (".is-hover")']],
-        expected: '.selector.is-hover,.selector.is-current{font-size:16px}'
+        params: [['$additional-selectors: (".is-now",)']],
+        expected: '.selector:where(.is-current,.is-now){font-size:16px}'
       }
     ];
 
@@ -88,7 +88,7 @@ describe('@mixin on-current(...)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       }
     );
@@ -99,7 +99,7 @@ describe('@mixin on-current(...)', () => {
       {
         params: [['$capturing-selectors: ("a", "button")']],
         expected:
-          'button.is-current .selector,a.is-current .selector,.selector.is-current{font-size:16px}'
+          ':where(a,button):where(.is-current) .selector,.selector:where(.is-current){font-size:16px}'
       }
     ];
 
@@ -113,7 +113,7 @@ describe('@mixin on-current(...)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       }
     );

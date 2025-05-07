@@ -1,9 +1,15 @@
 @use "../../settings";
 
-/*
-line-height
+/// Package name
+/// @access private
+/// @type String
+///
+$_pkg: settings.$pkg !default;
 
-line-height modifiers of #{settings.$prefix}-text
+/*
+Line Height
+
+The line height module.
 
 Weight: -92
 
@@ -11,36 +17,31 @@ Style guide: #{settings.$prefix}-text.line-height
 */
 
 /*
-modifiers: line-height
+Modifiers
 
-builtin modifiers of line-height for #{settings.$prefix}-text
+The line height modifiers.
 
 Weight: -100
 
-Markup: <h1 class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet.</h1>
-<p class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+Markup: <h1 class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h1>
+<p class="#{settings.$prefix}-text  {{modifier_class}}">あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</p>
 
-#{settings.$prefix}-text--line-height-default - set default (**default**)
-#{settings.$prefix}-text--line-height-normal - set normal
-#{settings.$prefix}-text--line-height-narrow - set narrow
-#{settings.$prefix}-text--line-height-wide - set wide
+#{settings.$prefix}-text--line-height-normal - Normal
+#{settings.$prefix}-text--line-height-narrow - Narrow
+#{settings.$prefix}-text--line-height-wide - Wide
 
 Style guide: #{settings.$prefix}-text.line-height.builtin
 */
 .#{settings.$prefix}-text--line-height {
-  &-default {
-    line-height: settings.$line-height;
-  }
-
   &-normal {
-    line-height: normal;
+    --line-height: normal;
   }
 
   &-narrow {
-    line-height: settings.$line-height * 0.8;
+    --line-height: calc(var(--#{$_pkg}-line-height) * 0.8);
   }
 
   &-wide {
-    line-height: settings.$line-height * 1.2;
+    --line-height: calc(var(--#{$_pkg}-line-height) * 1.2);
   }
 }

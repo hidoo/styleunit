@@ -3,9 +3,9 @@
 @use "../../../../../../src/plugin/spritesheet";
 
 /*
-check
+Check
 
-check modifiers of #{settings.$prefix}-toggle
+The check module.
 
 Weight: -98
 
@@ -13,37 +13,39 @@ Style guide: #{settings.$prefix}-toggle.check
 */
 
 /*
-modifiers: check
+Modifiers
 
-builtin modifiers of check for #{settings.$prefix}-toggle
+The additional modifiers.
 
 Weight: -100
 
 Markup: <!-- single -->
 <span class="#{settings.$prefix}-toggle  {{modifier_class}}">
   <input class="#{settings.$prefix}-toggle__field" type="checkbox" name="{{modifier_class}}" value="1" />
-  <span class="#{settings.$prefix}-toggle__alt"></span>
+</span>
+<!-- single (legacy) -->
+<span class="#{settings.$prefix}-toggle  {{modifier_class}}">
+  <input class="#{settings.$prefix}-toggle__field" type="checkbox" name="{{modifier_class}}" value="2" />
+  <span class="unit-toggle__alt"><!-- Alt element is not use. --></span>
 </span>
 <!-- single:disabled -->
 <span class="#{settings.$prefix}-toggle  {{modifier_class}}">
-  <input class="#{settings.$prefix}-toggle__field" type="checkbox" name="{{modifier_class}}" value="2" checked="checked" disabled="disabled" />
-  <span class="#{settings.$prefix}-toggle__alt"></span>
+  <input class="#{settings.$prefix}-toggle__field" type="checkbox" name="{{modifier_class}}" value="3" checked="checked" disabled="disabled" />
 </span>
 <!-- with label -->
-<label>
+<label class="#{settings.$prefix}-text  #{settings.$prefix}-text--inline-block">
   <span class="#{settings.$prefix}-toggle  {{modifier_class}}">
-    <input class="#{settings.$prefix}-toggle__field" type="checkbox" name="{{modifier_class}}" value="3" />
-    <span class="#{settings.$prefix}-toggle__alt"></span>
+    <input class="#{settings.$prefix}-toggle__field" type="checkbox" name="{{modifier_class}}" value="4" />
   </span>
   Lorem ipsum dolor sit amet.
 </label>
 
-#{settings.$prefix}-toggle--check-example-a - check example-a (svg)
-#{settings.$prefix}-toggle--check-example-b - check example-b (svg, responsive)
-#{settings.$prefix}-toggle--check-example-c - check example-c (image, use2x)
-#{settings.$prefix}-toggle--check-example-d - check example-d (image, responsive, use2x - if mobile)
+#{settings.$prefix}-toggle--check-example-a - Check box example a (svg)
+#{settings.$prefix}-toggle--check-example-b - Check box example b (svg, responsive)
+#{settings.$prefix}-toggle--check-example-c - Check box example c (image, use2x)
+#{settings.$prefix}-toggle--check-example-d - Check box example d (image, responsive, use2x - if mobile)
 
-Style guide: #{settings.$prefix}-toggle.check.extends
+Style guide: #{settings.$prefix}-toggle.check.additional
 */
 .#{settings.$prefix}-toggle--check {
   $options: (

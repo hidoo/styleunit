@@ -1,51 +1,76 @@
 @use "sass:map";
 @use "sass:meta";
-@use "sass:selector";
 @use "../../settings";
 
-/*
-theme
+/// Package name
+/// @access private
+/// @type String
+///
+$_pkg: settings.$pkg !default;
 
-theme modifiers of #{settings.$prefix}-box
+/*
+Theme
+
+The theme module.
 
 Weight: -99
 
 Style guide: #{settings.$prefix}-box.theme
 */
 
-/*
-modifiers: theme
+@if meta.type-of(settings.$builtin-themes) == "map" {
+  /*
+Modifiers
 
-builtin modifiers of theme for #{settings.$prefix}-box
+The theme modifiers.
 
 Weight: -100
 
 Markup: <div class="#{settings.$prefix}-box  {{modifier_class}}">
-  <div class="#{settings.$prefix}-box__container">
-    <!-- some unit -->
+  <!-- content -->
+  <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+  <p class="#{settings.$prefix}-text">あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</p>
+  <!-- nested -->
+  <div class="#{settings.$prefix}-box">
+    <!-- content -->
     <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <figure class="#{settings.$prefix}-pict  #{settings.$prefix}-pict--fit-max-width  #{settings.$util-prefix}--float-left">
-      <img class="#{settings.$prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
-    </figure>
-    <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <!-- some unit -->
+    <p class="#{settings.$prefix}-text">あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</p>
+    <!-- /content -->
   </div>
+  <!-- /nested -->
+  <!-- /content -->
 </div>
 
-#{settings.$prefix}-box--theme-light - light theme
-#{settings.$prefix}-box--theme-dark - dark theme
+#{settings.$prefix}-box--theme-normal - Normal theme
 
 Style guide: #{settings.$prefix}-box.theme.builtin
 */
-.#{settings.$prefix}-box--theme {
-  @if meta.type-of(settings.$builtin-themes) == "map" {
-    @each $name, $theme in settings.$builtin-themes {
-      $color: map.get($theme, "color");
-      $background: map.get($theme, "background");
+  .#{settings.$prefix}-box--theme {
+    &-normal {
+      $default-theme: map.get(settings.$builtin-themes, "light");
 
-      &-#{$name} {
-        color: $color;
-        background-color: $background;
+      // Load colors
+      --color-up: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "color")})
+      );
+      --background-color-up: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "background")})
+      );
+
+      // Default settings
+      --color: var(--color-up);
+      --background-color: var(--background-color-up);
+
+      // Settings by color schemes
+      @each $name, $theme in settings.$builtin-themes {
+        @media (prefers-color-scheme: #{$name}) {
+          $color-up: map.get($theme, "color");
+          $background-up: map.get($theme, "background");
+
+          // Apply colors to settings
+          --color-up: rgb(var(--#{$_pkg}-color-#{$color-up}));
+          --background-color-up: rgb(var(--#{$_pkg}-color-#{$background-up}));
+        }
       }
     }
   }

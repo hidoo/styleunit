@@ -1,9 +1,9 @@
 ////
-/// (c) hidoo | MIT Lisence
+/// (c) hidoo | MIT License
 /// @group Default settings
 ////
 
-/// prefix of class name of util
+/// Default prefix for utility class name.
 /// (default: `"util"`)
 /// @type String
 ///
@@ -17,53 +17,43 @@
 ///
 $prefix: "util" !default;
 
-/// default values of width / height utilities
+/// Default width list.
 /// @type List
 ///
-$box-sizes: (
-  0,
-  25px, 50px, 75px, 100px, 125px, 150px,
-  200px, 250px, 300px, 350px, 400px, 450px,
-  500px, 600px, 700px, 800px, 900px, 1000px,
-) !default;
+$width: (0px, 1000px, ("normal", 100px)) !default;
 
-/// default values of margin
+/// Default height list.
 /// @type List
 ///
-$margin-values: (
-  0,
-  5px, 10px, 15px, 20px, 25px, 30px, 35px, 40px, 45px, 50px, 55px, 60px,
-  -5px, -10px, -15px, -20px, -25px, -30px, -35px, -40px, -45px, -50px, -55px, -60px,
-) !default;
+$height: (0px, 1000px, ("normal", 100px)) !default;
 
-/// default values of padding
+/// Default margin list
 /// @type List
 ///
-$padding-values: (
-  0,
-  5px, 10px, 15px, 20px, 25px, 30px, 35px, 40px, 45px, 50px, 55px, 60px,
-) !default;
+$margin: (0, 50px, -50px, ("normal", 25px)) !default;
 
-/// default values of position
+/// Default padding list
 /// @type List
 ///
-$position-values: (
-  0,
-  5px, 10px, 15px, 20px, 25px, 30px, 35px, 40px, 45px, 50px, 55px, 60px,
-  -5px, -10px, -15px, -20px, -25px, -30px, -35px, -40px, -45px, -50px, -55px, -60px,
-) !default;
+$padding: (0, 50px, ("normal", 25px)) !default;
 
-/// default values of z-index
+/// Default border list
 /// @type List
 ///
-$z-index-values: (
-  0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50,
-) !default;
+// prettier-ignore
+$border: (("normal", (2px solid currentColor)), ) !default;
 
-/// default breakpoints
-/// @type Map
+/// Default position list
+/// @type List
 ///
-$breakpoints: (
-  "if-mobile": ("until": "mobile"),
-  "if-not-mobile": ("from": "mobile")
-) !default;
+$position: (0, 50px, -50px, ("normal", 25px)) !default;
+
+/// Default direction list
+/// @type List
+///
+$directions: ("", "top", "right", "bottom", "left", "block", "inline") !default;
+
+/// Default z-index list
+/// @type List
+///
+$z-index: (0, 50, ("normal", 25)) !default;

@@ -1,303 +1,335 @@
 ////
-/// (c) hidoo | MIT Lisence
+/// (c) hidoo | MIT License
 /// @group plugin/spritesheet
 ////
 
+// stylelint max-nesting-depth: null
+
 @use "sass:map";
-@use "sass:string";
-@use "../../../../lib/function";
+@use "sass:meta";
 @use "../../../../lib/mixin";
 @use "../../../../settings";
 @use "./set-properties" as _mixin;
 
-/// define responsive toggle item
+/// Define responsive toggle item
 /// @access private
 /// @param {String} $name name of spritesheet item
 /// @param {Map} $items [()] spritesheet items
 /// @param {Map} $options [()] options
 ///
 @mixin define-responsive-toggle-item($name, $items: (), $options: ()) {
-  $selectors-focus: function.selector-merge-state("focus");
-  $selectors-disabled: function.selector-merge-state("disabled");
-  $selectors-selected: function.selector-merge-state("selected");
+  $breakpoints: ();
+
+  // Filter breakpoints
+  @each $bp, $query in settings.$breakpoints {
+    @if meta.type-of($query) == "string" {
+      $breakpoints: map.set($breakpoints, $bp, $query);
+    }
+  }
 
   @if map.has-key($items, $name) {
-    $up: map.get($items, $name);
-    $focus: map.get($items, "#{$name}--focus");
-    $disabled: map.get($items, "#{$name}--disabled");
-    $selected: map.get($items, "#{$name}--selected");
-    $selected-focus: map.get($items, "#{$name}--selected--focus");
-    $selected-disabled: map.get($items, "#{$name}--selected--disabled");
-    $up-if-mobile: map.get($items, "#{$name}--if-mobile");
-    $focus-if-mobile: map.get($items, "#{$name}--focus--if-mobile");
-    $disabled-if-mobile: map.get($items, "#{$name}--disabled--if-mobile");
-    $selected-if-mobile: map.get($items, "#{$name}--selected--if-mobile");
-    $selected-focus-if-mobile: map.get(
-      $items,
-      "#{$name}--selected--focus--if-mobile"
-    );
-    $selected-disabled-if-mobile: map.get(
-      $items,
-      "#{$name}--selected--disabled--if-mobile"
-    );
     $use2x: map.get($options, "use2x");
 
     &-#{$name} {
+      $up: map.get($items, $name);
+
       @content;
 
-      @if $up {
-        > .#{settings.$prefix}-toggle__field {
-          + .#{settings.$prefix}-toggle__alt {
+      &::before {
+        @include _mixin.set-properties(
+          $values: $up,
+          $options: map.merge(
+              $options,
+              (
+                "use2x": $use2x == true
+              )
+            )
+        );
+
+        @each $bp, $query in $breakpoints {
+          @if map.has-key($items, "#{$name}--#{$bp}") {
+            $up-in-bp: map.get($items, "#{$name}--#{$bp}");
+
+            @include mixin.media($query: $query) {
+              @include _mixin.set-properties(
+                $values: $up-in-bp,
+                $options: map.merge(
+                    $options,
+                    (
+                      "use2x": $use2x == $bp or $use2x == true,
+                      "with-property": false
+                    )
+                  )
+              );
+            }
+          }
+        }
+      }
+
+      @if map.has-key($items, "#{$name}--focus") {
+        $focus: map.get($items, "#{$name}--focus");
+
+        @include mixin.has-focus() {
+          &::before {
             @include _mixin.set-properties(
-              $values: $up,
+              $values: (
+                "offset-x": map.get($focus, "offset-x"),
+                "offset-y": map.get($focus, "offset-y")
+              ),
               $options: map.merge(
                   $options,
                   (
-                    "use2x": $use2x == true
+                    "use2x": $use2x == true,
+                    "with-property": false
                   )
                 )
             );
+          }
+        }
 
-            @if $up-if-mobile {
-              @include mixin.breakpoint-define($until: "mobile") {
+        @each $bp, $query in settings.$breakpoints {
+          @if map.has-key($items, "#{$name}--focus--#{$bp}") {
+            @include mixin.media($query: $query) {
+              $focus-in-bp: map.get($items, "#{$name}--focus--#{$bp}");
+
+              @include mixin.has-focus() {
+                &::before {
+                  @include _mixin.set-properties(
+                    $values: (
+                      "offset-x": map.get($focus-in-bp, "offset-x"),
+                      "offset-y": map.get($focus-in-bp, "offset-y")
+                    ),
+                    $options: map.merge(
+                        $options,
+                        (
+                          "use2x": $use2x == $bp or $use2x == true,
+                          "with-property": false
+                        )
+                      )
+                  );
+                }
+              }
+            }
+          }
+        }
+      }
+
+      @if map.has-key($items, "#{$name}--disabled") {
+        $disabled: map.get($items, "#{$name}--disabled");
+
+        @include mixin.has-disabled() {
+          --field-opacity: 0;
+
+          &::before {
+            @include _mixin.set-properties(
+              $values: (
+                "offset-x": map.get($disabled, "offset-x"),
+                "offset-y": map.get($disabled, "offset-y")
+              ),
+              $options: map.merge(
+                  $options,
+                  (
+                    "use2x": $use2x == true,
+                    "with-property": false
+                  )
+                )
+            );
+          }
+        }
+
+        @each $bp, $query in settings.$breakpoints {
+          @if map.has-key($items, "#{$name}--disabled--#{$bp}") {
+            @include mixin.media($query: $query) {
+              $disabled-in-bp: map.get($items, "#{$name}--disabled--#{$bp}");
+
+              @include mixin.has-disabled() {
+                &::before {
+                  @include _mixin.set-properties(
+                    $values: (
+                      "offset-x": map.get($disabled-in-bp, "offset-x"),
+                      "offset-y": map.get($disabled-in-bp, "offset-y")
+                    ),
+                    $options: map.merge(
+                        $options,
+                        (
+                          "use2x": $use2x == $bp or $use2x == true,
+                          "with-property": false
+                        )
+                      )
+                  );
+                }
+              }
+            }
+          }
+        }
+      }
+
+      @if map.has-key($items, "#{$name}--selected") {
+        $selected: map.get($items, "#{$name}--selected");
+
+        @include mixin.has-selected() {
+          &::before {
+            @include _mixin.set-properties(
+              $values: (
+                "offset-x": map.get($selected, "offset-x"),
+                "offset-y": map.get($selected, "offset-y")
+              ),
+              $options: map.merge(
+                  $options,
+                  (
+                    "use2x": $use2x == true,
+                    "with-property": false
+                  )
+                )
+            );
+          }
+        }
+
+        @each $bp, $query in settings.$breakpoints {
+          @if map.has-key($items, "#{$name}--selected--#{$bp}") {
+            @include mixin.media($query: $query) {
+              $selected-in-bp: map.get($items, "#{$name}--selected--#{$bp}");
+
+              @include mixin.has-selected() {
+                &::before {
+                  @include _mixin.set-properties(
+                    $values: (
+                      "offset-x": map.get($selected-in-bp, "offset-x"),
+                      "offset-y": map.get($selected-in-bp, "offset-y")
+                    ),
+                    $options: map.merge(
+                        $options,
+                        (
+                          "use2x": $use2x == $bp or $use2x == true,
+                          "with-property": false
+                        )
+                      )
+                  );
+                }
+              }
+            }
+          }
+        }
+
+        @if map.has-key($items, "#{$name}--selected--focus") {
+          $selected-focus: map.get($items, "#{$name}--selected--focus");
+
+          @include mixin.has-selected() {
+            @include mixin.has-focus() {
+              &::before {
                 @include _mixin.set-properties(
-                  $values: $up-if-mobile,
+                  $values: (
+                    "offset-x": map.get($selected-focus, "offset-x"),
+                    "offset-y": map.get($selected-focus, "offset-y")
+                  ),
                   $options: map.merge(
                       $options,
                       (
-                        "use2x": $use2x == true or $use2x == "if-mobile"
+                        "use2x": $use2x == true,
+                        "with-property": false
                       )
                     )
                 );
               }
             }
           }
-        }
-      }
 
-      // when focus
-      @if $focus {
-        $selector: string.unique-id();
+          @each $bp, $query in settings.$breakpoints {
+            @if map.has-key($items, "#{$name}--selected--focus--#{$bp}") {
+              @include mixin.media($query: $query) {
+                $selected-focus-in-bp: map.get(
+                  $items,
+                  "#{$name}--selected--focus--#{$bp}"
+                );
 
-        @include mixin.placeholder-define($name: $selector) {
-          @include _mixin.set-properties(
-            $values: (
-              "offset-x": map.get($focus, "offset-x"),
-              "offset-y": map.get($focus, "offset-y")
-            ),
-            $options: map.merge(
-                $options,
-                (
-                  "use2x": $use2x == true
-                )
-              )
-          );
-
-          @if $focus-if-mobile {
-            @include mixin.breakpoint-define($until: "mobile") {
-              @include _mixin.set-properties(
-                $values: (
-                  "offset-x": map.get($focus-if-mobile, "offset-x"),
-                  "offset-y": map.get($focus-if-mobile, "offset-y")
-                ),
-                $options: map.merge(
-                    $options,
-                    (
-                      "use2x": $use2x == true or $use2x == "if-mobile"
-                    )
-                  )
-              );
-            }
-          }
-        }
-
-        @each $state in $selectors-focus {
-          > .#{settings.$prefix}-toggle__field#{$state} {
-            + .#{settings.$prefix}-toggle__alt {
-              @extend %#{$selector};
-            }
-          }
-        }
-      }
-
-      // when disabled
-      @if $disabled {
-        $selector: string.unique-id();
-
-        @include mixin.placeholder-define($name: $selector) {
-          @include _mixin.set-properties(
-            $values: (
-              "offset-x": map.get($disabled, "offset-x"),
-              "offset-y": map.get($disabled, "offset-y")
-            ),
-            $options: map.merge(
-                $options,
-                (
-                  "use2x": $use2x == true
-                )
-              )
-          );
-
-          @if $disabled-if-mobile {
-            @include mixin.breakpoint-define($until: "mobile") {
-              @include _mixin.set-properties(
-                $values: (
-                  "offset-x": map.get($disabled-if-mobile, "offset-x"),
-                  "offset-y": map.get($disabled-if-mobile, "offset-y")
-                ),
-                $options: map.merge(
-                    $options,
-                    (
-                      "use2x": $use2x == true or $use2x == "if-mobile"
-                    )
-                  )
-              );
-            }
-          }
-        }
-
-        @each $state in $selectors-disabled {
-          > .#{settings.$prefix}-toggle__field#{$state} {
-            + .#{settings.$prefix}-toggle__alt {
-              @extend %#{$selector};
-            }
-          }
-        }
-      }
-
-      // when selected
-      @if $selected {
-        $selector: string.unique-id();
-
-        @include mixin.placeholder-define($name: $selector) {
-          @include _mixin.set-properties(
-            $values: (
-              "offset-x": map.get($selected, "offset-x"),
-              "offset-y": map.get($selected, "offset-y")
-            ),
-            $options: map.merge(
-                $options,
-                (
-                  "use2x": $use2x == true
-                )
-              )
-          );
-
-          @if $selected-if-mobile {
-            @include mixin.breakpoint-define($until: "mobile") {
-              @include _mixin.set-properties(
-                $values: (
-                  "offset-x": map.get($selected-if-mobile, "offset-x"),
-                  "offset-y": map.get($selected-if-mobile, "offset-y")
-                ),
-                $options: map.merge(
-                    $options,
-                    (
-                      "use2x": $use2x == true or $use2x == "if-mobile"
-                    )
-                  )
-              );
-            }
-          }
-        }
-
-        @each $state in $selectors-selected {
-          > .#{settings.$prefix}-toggle__field#{$state} {
-            + .#{settings.$prefix}-toggle__alt {
-              @extend %#{$selector};
-            }
-          }
-        }
-      }
-
-      // when selected and focus
-      @if $selected-focus {
-        $selector: string.unique-id();
-
-        @include mixin.placeholder-define($name: $selector) {
-          @include _mixin.set-properties(
-            $values: (
-              "offset-x": map.get($selected-focus, "offset-x"),
-              "offset-y": map.get($selected-focus, "offset-y")
-            ),
-            $options: map.merge(
-                $options,
-                (
-                  "use2x": $use2x == true
-                )
-              )
-          );
-
-          @if $selected-focus-if-mobile {
-            @include mixin.breakpoint-define($until: "mobile") {
-              @include _mixin.set-properties(
-                $values: (
-                  "offset-x": map.get($selected-focus-if-mobile, "offset-x"),
-                  "offset-y": map.get($selected-focus-if-mobile, "offset-y")
-                ),
-                $options: map.merge(
-                    $options,
-                    (
-                      "use2x": $use2x == true or $use2x == "if-mobile"
-                    )
-                  )
-              );
-            }
-          }
-        }
-
-        @each $state-selected in $selectors-selected {
-          @each $state in $selectors-focus {
-            > .#{settings.$prefix}-toggle__field#{$state-selected}#{$state} {
-              + .#{settings.$prefix}-toggle__alt {
-                @extend %#{$selector};
+                @include mixin.has-selected() {
+                  @include mixin.has-focus() {
+                    // stylelint-disable max-nesting-depth
+                    &::before {
+                      @include _mixin.set-properties(
+                        $values: (
+                          "offset-x": map.get($selected-focus-in-bp, "offset-x"),
+                          "offset-y": map.get($selected-focus-in-bp, "offset-y")
+                        ),
+                        $options: map.merge(
+                            $options,
+                            (
+                              "use2x": $use2x == $bp or $use2x == true,
+                              "with-property": false
+                            )
+                          )
+                      );
+                    }
+                    // stylelint-enable max-nesting-depth
+                  }
+                }
               }
             }
           }
         }
-      }
 
-      // when selected and disabled
-      @if $selected-disabled {
-        $selector: string.unique-id();
+        @if map.has-key($items, "#{$name}--selected--disabled") {
+          $selected-disabled: map.get($items, "#{$name}--selected--disabled");
 
-        @include mixin.placeholder-define($name: $selector) {
-          @include _mixin.set-properties(
-            $values: (
-              "offset-x": map.get($selected-disabled, "offset-x"),
-              "offset-y": map.get($selected-disabled, "offset-y")
-            ),
-            $options: map.merge(
-                $options,
-                (
-                  "use2x": $use2x == true
-                )
-              )
-          );
+          @include mixin.has-selected() {
+            @include mixin.has-disabled() {
+              --field-opacity: 0;
 
-          @if $selected-disabled-if-mobile {
-            @include mixin.breakpoint-define($until: "mobile") {
-              @include _mixin.set-properties(
-                $values: (
-                  "offset-x": map.get($selected-disabled-if-mobile, "offset-x"),
-                  "offset-y": map.get($selected-disabled-if-mobile, "offset-y")
-                ),
-                $options: map.merge(
-                    $options,
-                    (
-                      "use2x": $use2x == true or $use2x == "if-mobile"
+              // stylelint-disable max-nesting-depth
+              &::before {
+                @include _mixin.set-properties(
+                  $values: (
+                    "offset-x": map.get($selected-disabled, "offset-x"),
+                    "offset-y": map.get($selected-disabled, "offset-y")
+                  ),
+                  $options: map.merge(
+                      $options,
+                      (
+                        "use2x": $use2x == true,
+                        "with-property": false
+                      )
                     )
-                  )
-              );
+                );
+              }
+              // stylelint-enable max-nesting-depth
             }
           }
-        }
 
-        @each $state-selected in $selectors-selected {
-          @each $state in $selectors-disabled {
-            > .#{settings.$prefix}-toggle__field#{$state-selected}#{$state} {
-              + .#{settings.$prefix}-toggle__alt {
-                @extend %#{$selector};
+          @each $bp, $query in settings.$breakpoints {
+            @if map.has-key($items, "#{$name}--selected--disabled--#{$bp}") {
+              @include mixin.media($query: $query) {
+                $selected-disabled-in-bp: map.get(
+                  $items,
+                  "#{$name}--selected--disabled--#{$bp}"
+                );
+
+                @include mixin.has-selected() {
+                  @include mixin.has-disabled() {
+                    // stylelint-disable max-nesting-depth
+                    &::before {
+                      @include _mixin.set-properties(
+                        $values: (
+                          "offset-x": map.get(
+                              $selected-disabled-in-bp,
+                              "offset-x"
+                            ),
+                          "offset-y": map.get(
+                              $selected-disabled-in-bp,
+                              "offset-y"
+                            )
+                        ),
+                        $options: map.merge(
+                            $options,
+                            (
+                              "use2x": $use2x == $bp or $use2x == true,
+                              "with-property": false
+                            )
+                          )
+                      );
+                    }
+                    // stylelint-enable max-nesting-depth
+                  }
+                }
               }
             }
           }

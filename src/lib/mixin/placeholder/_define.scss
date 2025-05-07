@@ -1,5 +1,5 @@
 ////
-/// (c) hidoo | MIT Lisence
+/// (c) hidoo | MIT License
 /// @group placeholder features
 ////
 
@@ -48,8 +48,7 @@ $_already-defined: () !default;
     @if settings.$verbose {
       @warn "@mixin placeholder-define: '%#{$name}' placeholder is already defined and cannot be redefined.";
     }
-  }
-  @else {
+  } @else {
     @at-root {
       %#{$name} {
         @content;

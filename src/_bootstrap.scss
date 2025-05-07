@@ -1,3 +1,145 @@
-@use "./lib/mixin";
+@use "sass:color";
+@use "sass:list";
+@use "sass:map";
+@use "sass:math";
+@use "sass:meta";
+@use "sass:selector";
+@use "./lib/function";
+@use "./settings";
 
-@include mixin.bootstrap();
+/// Package name
+/// @access private
+/// @type String
+///
+$_pkg: settings.$pkg !default;
+
+// Export settings as custom properties
+:root {
+  $settings: meta.module-variables("settings");
+
+  // Breakpoints
+  @each $name, $value in settings.$breakpoints {
+    --#{$_pkg}-breakpoint-#{$name}: #{$value};
+  }
+
+  // Font family
+  @each $name in ("font-family", "font-family-monospace") {
+    --#{$_pkg}-#{$name}: #{meta.inspect(map.get($settings, $name))};
+  }
+
+  // Font size
+  @each $name in ("font-size") {
+    --#{$_pkg}-#{$name}: #{function.math-px-to-rem(
+        map.get($settings, $name),
+        settings.$font-base-size
+      )};
+  }
+
+  // Font size presets
+  @each $name, $value in settings.$font-size-presets {
+    $size: math.floor(settings.$font-size * $value);
+
+    --#{$_pkg}-font-size-#{$name}: #{function.math-px-to-rem(
+        $size,
+        settings.$font-base-size
+      )};
+  }
+
+  // Font size
+  --#{$_pkg}-font-weight: #{settings.$font-weight};
+
+  // Font weight presets
+  @each $name, $value in settings.$font-weight-presets {
+    --#{$_pkg}-font-weight-#{$name}: #{$value};
+  }
+
+  // Font smoothing
+  @each $name, $value in settings.$font-smoothing {
+    --#{$_pkg}-#{$name}-font-smoothing: #{$value};
+  }
+
+  // Font misc
+  @each $name in ("font-variant") {
+    --#{$_pkg}-#{$name}: #{map.get($settings, $name)};
+  }
+
+  // Text settings
+  @each $name
+    in (
+      "line-height",
+      "letter-spacing",
+      "text-size-adjust",
+      "word-break",
+      "word-wrap",
+      "line-break",
+      "overflow-wrap",
+      "hyphens"
+    )
+  {
+    --#{$_pkg}-#{$name}: #{map.get($settings, $name)};
+  }
+
+  // Color palette
+  @each $name, $value in settings.$color-palette {
+    --#{$_pkg}-color-#{$name}: #{meta.inspect($value)};
+  }
+
+  // Color mappings
+  @each $name, $value in settings.$color-mappings {
+    --#{$_pkg}-color-#{$name}: var(--#{$_pkg}-color-#{$value});
+  }
+
+  // Misc
+  @each $name in ("message-on-image-error") {
+    --#{$_pkg}-#{$name}: "#{map.get($settings, $name)}";
+  }
+}
+
+// Set base font size
+@if meta.type-of(settings.$font-base-size) == "number" {
+  html {
+    font-size: settings.$font-base-size;
+  }
+}
+
+// Configure font settings
+@if meta.type-of(settings.$font-applying-units) == "list" {
+  $_selectors: () !default;
+
+  // Build selector as follow:
+  //   :where(<unit class>, <unit class>, <unit class> ...)
+  @each $unit in settings.$font-applying-units {
+    $_selectors: list.append(
+      $_selectors,
+      ".#{settings.$prefix}-#{$unit}",
+      $separator: comma
+    );
+  }
+
+  :where(#{$_selectors}) {
+    --font-family: var(--#{$_pkg}-font-family);
+    --font-variant: var(--#{$_pkg}-font-variant);
+    --webkit-font-smoothing: var(--#{$_pkg}-webkit-font-smoothing);
+    --moz-osx-font-smoothing: var(--#{$_pkg}-moz-osx-font-smoothing);
+    --hyphens: var(--#{$_pkg}-hyphens);
+    --text-size-adjust: var(--#{$_pkg}-text-size-adjust);
+    --word-break: var(--#{$_pkg}-word-break);
+    --word-wrap: var(--#{$_pkg}-word-wrap);
+    --line-break: var(--#{$_pkg}-line-break);
+    --overflow-wrap: var(--#{$_pkg}-overflow-wrap);
+
+    font-family: var(--font-family, sans-serif);
+    font-variant: var(--font-variant);
+    -webkit-font-smoothing: var(--webkit-font-smoothing);
+    -moz-osx-font-smoothing: var(--moz-osx-font-smoothing);
+    hyphens: var(--hyphens);
+
+    // For mobile browsers
+    // + https://caniuse.com/#search=text-size-adjust
+    text-size-adjust: var(--text-size-adjust);
+    word-break: var(--word-break);
+    word-wrap: var(--word-wrap);
+    line-break: var(--line-break);
+    overflow-wrap: var(--overflow-wrap);
+  }
+}

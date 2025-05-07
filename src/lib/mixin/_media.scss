@@ -1,0 +1,58 @@
+////
+/// (c) hidoo | MIT License
+/// @group features
+////
+
+@use "sass:map";
+@use "../../lib/function";
+@use "../../settings";
+
+/// Default options
+/// @access private
+/// @type Map
+///
+$_default-options: (
+  "eval-query": true
+) !default;
+
+/// The media query helper.
+/// @param {String} $query - Breakpoint name or media query string
+/// @param {Map} $options [()] - Options
+/// @param {String} $options.eval-query [false] - Eval query as template whether or not
+///
+/// @example scss - scss inputs
+///    $breakpoint: (
+///      "sm": "(width <= 666)",
+///      ...
+///    );
+///
+///   .selector {
+///     @include media($query: "sm") {
+///       font-size: 16px;
+///     }
+///   }
+///
+/// @example css - css outputs
+///   @media (width <= 666) {
+///     .selector {
+///       font-size: 16px;
+///     }
+///   }
+///
+@mixin media($query, $options: ()) {
+  $opts: map.merge($_default-options, $options);
+
+  @if map.has-key(settings.$breakpoints, $query) {
+    $query: map.get(settings.$breakpoints, $query);
+  }
+
+  @if map.get($opts, "eval-query") {
+    @each $key, $value in settings.$breakpoints {
+      $query: function.string-replace($query, "$#{$key}", $value);
+    }
+  }
+
+  @media #{$query} {
+    @content;
+  }
+}

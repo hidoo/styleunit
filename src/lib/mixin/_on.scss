@@ -1,16 +1,26 @@
 ////
-/// (c) hidoo | MIT Lisence
+/// (c) hidoo | MIT License
 /// @group features
 ////
 
 @use "sass:list";
-@use "sass:string";
-@use "./placeholder";
+@use "sass:meta";
+@use "sass:map";
 @use "../../settings";
 
-/// wrappper of pseudo class like `:hover`
+/// Default options
+/// @access private
+/// @type Map
+/// @prop {Boolean} not [false] - Deny selectors whether or not
+///
+$_default-options: (
+  "not": false
+) !default;
+
+/// Utility for pseudo classes
 /// @param {List} $selectors [()] - list of selectors
 /// @param {List} $capturing-selectors [()] - capturing parent selectors
+/// @param {Map} $options [()] - options
 ///
 /// @example scss - scss inputs
 ///   .selector {
@@ -20,37 +30,36 @@
 ///   }
 ///
 /// @example scss - css outputs
-///   .selector:hover,
-///   .selector:focus {
+///   .selector:where(:hover, :focus) {
 ///     font-size: 16px;
 ///   }
 ///
-@mixin on(
-  $selectors: (),
-  $capturing-selectors: ()
-) {
-  @if list.length($selectors) >= 1 {
-    $unique-id: string.unique-id();
+@mixin on($selectors: (), $capturing-selectors: (), $options: ()) {
+  $opts: map.merge($_default-options, $options);
+  $not: map.get($opts, "not");
 
-    @include placeholder.define($name: $unique-id) {
-      @content;
+  @if meta.type-of($selectors) == "list" and list.length($selectors) >= 1 {
+    @if $not {
+      $selectors: ":not(#{$selectors})";
     }
 
-    @each $selector in $selectors {
-      &#{$selector} {
-        @extend %#{$unique-id};
-      }
-    }
-
-    @each $capturing-selector in $capturing-selectors {
-      @each $selector in $selectors {
-        #{$capturing-selector}#{$selector} & {
-          @extend %#{$unique-id};
+    @if meta.type-of($capturing-selectors) ==
+      "list" and
+      list.length($capturing-selectors) >=
+      1
+    {
+      @at-root {
+        :where(#{$capturing-selectors}):where(#{$selectors}) &,
+        &:where(#{$selectors}) {
+          @content;
         }
       }
+    } @else {
+      &:where(#{$selectors}) {
+        @content;
+      }
     }
-  }
-  @else {
+  } @else {
     @if settings.$verbose {
       @warn "@mixin on: @content is not yield, because argument $selectors is empty.";
     }

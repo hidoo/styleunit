@@ -49,12 +49,12 @@ describe('@mixin on($selectors, $capturing-selectors)', () => {
   it('should out with specified selectors if argument $selectors is set.', async () => {
     const cases = [
       {
-        params: [['$selectors: (":hover")']],
-        expected: '.selector:hover{font-size:16px}'
+        params: [['$selectors: (":hover",)']],
+        expected: '.selector:where(:hover){font-size:16px}'
       },
       {
         params: [['$selectors: (":hover", ".is-hover")']],
-        expected: '.selector.is-hover,.selector:hover{font-size:16px}'
+        expected: '.selector:where(:hover,.is-hover){font-size:16px}'
       }
     ];
 
@@ -68,7 +68,7 @@ describe('@mixin on($selectors, $capturing-selectors)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       }
     );
@@ -78,10 +78,10 @@ describe('@mixin on($selectors, $capturing-selectors)', () => {
     const cases = [
       {
         params: [
-          ['$selectors: (":hover")', '$capturing-selectors: ("a", "button")']
+          ['$selectors: (":hover",)', '$capturing-selectors: ("a", "button")']
         ],
         expected:
-          'button:hover .selector,a:hover .selector,.selector:hover{font-size:16px}'
+          ':where(a,button):where(:hover) .selector,.selector:where(:hover){font-size:16px}'
       },
       {
         params: [
@@ -91,7 +91,7 @@ describe('@mixin on($selectors, $capturing-selectors)', () => {
           ]
         ],
         expected:
-          'button.is-hover .selector,button:hover .selector,a.is-hover .selector,a:hover .selector,.selector.is-hover,.selector:hover{font-size:16px}'
+          ':where(a,button):where(:hover,.is-hover) .selector,.selector:where(:hover,.is-hover){font-size:16px}'
       }
     ];
 
@@ -105,7 +105,43 @@ describe('@mixin on($selectors, $capturing-selectors)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
+        return resolve();
+      }
+    );
+  });
+
+  it('should out specified selectors with :not() selector if argument $options.not is true.', async () => {
+    const cases = [
+      {
+        params: [
+          ['$selectors: (":hover", ".is-hover"), $options: ("not": true)']
+        ],
+        expected: '.selector:where(:not(:hover,.is-hover)){font-size:16px}'
+      },
+      {
+        params: [
+          [
+            '$selectors: (":hover",)',
+            '$capturing-selectors: ("a", "button"), $options: ("not": true)'
+          ]
+        ],
+        expected:
+          ':where(a,button):where(:not(:hover)) .selector,.selector:where(:not(:hover)){font-size:16px}'
+      }
+    ];
+
+    await eachTestCases(
+      cases,
+      wrapper,
+      ({ error, result, expected }, { resolve, reject }) => {
+        if (error) {
+          return reject(error);
+        }
+
+        const actual = result.css.toString().trim();
+
+        assert.equal(actual, expected);
         return resolve();
       }
     );

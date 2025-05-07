@@ -1,9 +1,15 @@
 @use "../../settings";
 
-/*
-weight
+/// Package name
+/// @access private
+/// @type String
+///
+$_pkg: settings.$pkg !default;
 
-weight modifiers of #{settings.$prefix}-text
+/*
+Weight
+
+The weight module.
 
 Weight: -94
 
@@ -11,26 +17,26 @@ Style guide: #{settings.$prefix}-text.weight
 */
 
 /*
-modifiers: weight
+Modifiers
 
-builtin modifiers of weight for #{settings.$prefix}-text
+The weight modifiers.
 
 Weight: -100
 
-Markup: <h1 class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet.</h1>
-<p class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+Markup: <h1 class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h1>
+<p class="#{settings.$prefix}-text  {{modifier_class}}">あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</p>
 
-#{settings.$prefix}-text--weight-normal - normal (**default**)
-#{settings.$prefix}-text--weight-bold - bold
+#{settings.$prefix}-text--weight-normal - Normal
+#{settings.$prefix}-text--weight-bold - Bold
 
 Style guide: #{settings.$prefix}-text.weight.builtin
 */
 .#{settings.$prefix}-text--weight {
   &-normal {
-    font-weight: normal;
+    --font-weight: var(--#{$_pkg}-font-weight-regular);
   }
 
   &-bold {
-    font-weight: bold;
+    --font-weight: var(--#{$_pkg}-font-weight-bold);
   }
 }

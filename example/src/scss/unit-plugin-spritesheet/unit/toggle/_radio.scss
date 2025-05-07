@@ -3,9 +3,9 @@
 @use "../../../../../../src/plugin/spritesheet";
 
 /*
-radio
+Radio
 
-radio modifiers of #{settings.$prefix}-toggle
+The radio module.
 
 Weight: -98
 
@@ -13,37 +13,39 @@ Style guide: #{settings.$prefix}-toggle.radio
 */
 
 /*
-modifiers: radio
+Modifiers
 
-builtin modifiers of radio for #{settings.$prefix}-toggle
+The additional modifiers.
 
 Weight: -99
 
 Markup: <!-- single -->
 <span class="#{settings.$prefix}-toggle  {{modifier_class}}">
   <input class="#{settings.$prefix}-toggle__field" type="radio" name="{{modifier_class}}" value="1" />
-  <span class="#{settings.$prefix}-toggle__alt"></span>
+</span>
+<!-- single (legacy) -->
+<span class="#{settings.$prefix}-toggle  {{modifier_class}}">
+  <input class="#{settings.$prefix}-toggle__field" type="radio" name="{{modifier_class}}" value="2" />
+  <span class="unit-toggle__alt"><!-- Alt element is not use. --></span>
 </span>
 <!-- single:disabled -->
 <span class="#{settings.$prefix}-toggle  {{modifier_class}}">
-  <input class="#{settings.$prefix}-toggle__field" type="radio" name="{{modifier_class}}" value="2" checked="checked" disabled="disabled" />
-  <span class="#{settings.$prefix}-toggle__alt"></span>
+  <input class="#{settings.$prefix}-toggle__field" type="radio" name="{{modifier_class}}" value="3" checked="checked" disabled="disabled" />
 </span>
 <!-- with label -->
-<label>
+<label class="#{settings.$prefix}-text  #{settings.$prefix}-text--inline-block">
   <span class="#{settings.$prefix}-toggle  {{modifier_class}}">
-    <input class="#{settings.$prefix}-toggle__field" type="radio" name="{{modifier_class}}" value="3" />
-    <span class="#{settings.$prefix}-toggle__alt"></span>
+    <input class="#{settings.$prefix}-toggle__field" type="radio" name="{{modifier_class}}" value="4" />
   </span>
   Lorem ipsum dolor sit amet.
 </label>
 
-#{settings.$prefix}-toggle--radio-example-a - radio example-a (svg)
-#{settings.$prefix}-toggle--radio-example-b - radio example-b (svg, responsive)
-#{settings.$prefix}-toggle--radio-example-c - radio example-c (image, use2x)
-#{settings.$prefix}-toggle--radio-example-d - radio example-d (image, responsive, use2x - if mobile)
+#{settings.$prefix}-toggle--radio-example-a - Radio button example-a (svg)
+#{settings.$prefix}-toggle--radio-example-b - Radio button example-b (svg, responsive)
+#{settings.$prefix}-toggle--radio-example-c - Radio button example-c (image, use2x)
+#{settings.$prefix}-toggle--radio-example-d - Radio button example-d (image, responsive, use2x - if mobile)
 
-Style guide: #{settings.$prefix}-toggle.radio.extends
+Style guide: #{settings.$prefix}-toggle.radio.additional
 */
 .#{settings.$prefix}-toggle--radio {
   $options: (

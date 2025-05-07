@@ -1,0 +1,52 @@
+////
+/// (c) hidoo | MIT License
+/// @group features
+////
+
+@use "sass:list";
+@use "sass:meta";
+@use "./has" as mixin;
+@use "../../settings";
+
+/// Default selectors
+/// @access private
+/// @type List
+///
+// prettier-ignore
+$_default-selectors: (":hover", ":focus") !default;
+
+/// Utility for `:has` pseudo classes with `:hover` and `:focus`
+/// @param {List} $additional-selectors [()] - list of additional selectors
+/// @param {Map} $options [()] - options
+///
+/// @example scss - scss inputs
+///   .selector {
+///     @include has-focus() {
+///       font-size: 16px;
+///     }
+///   }
+///
+/// @example css - css outputs
+///   .selector:has(:hover, :focus, .is-focus) {
+///     font-size: 16px;
+///   }
+///
+@mixin has-focus($additional-selectors: (), $options: ()) {
+  $selectors: $_default-selectors;
+
+  @if meta.type-of(settings.$selector-focus) == "list" {
+    $selectors: list.join(
+      $selectors,
+      settings.$selector-focus,
+      $separator: comma
+    );
+  }
+
+  @if meta.type-of($additional-selectors) == "list" {
+    $selectors: list.join($selectors, $additional-selectors, $separator: comma);
+  }
+
+  @include mixin.has($selectors: $selectors, $options: $options) {
+    @content;
+  }
+}

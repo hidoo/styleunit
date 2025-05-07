@@ -5,9 +5,9 @@
 @use "../settings";
 
 /*
-border
+Border
 
-utilities that tweek of border
+The border module.
 
 Weight: -94
 
@@ -15,56 +15,71 @@ Style guide: #{settings.$util-prefix}.border
 */
 
 /*
-modifiers: border
+Modifiers
 
-builtin modifiers of border
+The border modifiers.
+Sizes: #{meta.inspect(settings.$util-border)}.
+Direction: #{meta.inspect(settings.$util-directions)}.
 
 Weight: -100
 
-Markup: <div style="position:relative; padding:50px;">
-  <div class="{{modifier_class}}" style="position:relative; width:50px; height:50px; background:#999;"></div>
-</div>
+Markup: <div class="border-example {{modifier_class}}"></div>
+<style>
+  :where(.border-example) {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    color: #900;
+    background: #999;
+  }
+</style>
 
-#{settings.$util-prefix}--border-top-light - top light border
-#{settings.$util-prefix}--border-top-dark - top dark border
-#{settings.$util-prefix}--border-right-light - right light border
-#{settings.$util-prefix}--border-right-dark - right dark border
-#{settings.$util-prefix}--border-bottom-light - bottom light border
-#{settings.$util-prefix}--border-bottom-dark - bottom dark border
-#{settings.$util-prefix}--border-left-light - left light border
-#{settings.$util-prefix}--border-left-dark - left dark border
-#{settings.$util-prefix}--border-vertical-light - vertical light border
-#{settings.$util-prefix}--border-vertical-dark - vertical dark border
-#{settings.$util-prefix}--border-horizontal-light - horizontal light border
-#{settings.$util-prefix}--border-horizontal-dark - horizontal dark border
-#{settings.$util-prefix}--border-all-light - all light border
-#{settings.$util-prefix}--border-all-dark - all dark border
+#{settings.$util-prefix}--border-normal - All normal border
+#{settings.$util-prefix}--border-top-normal - Top normal border
+#{settings.$util-prefix}--border-right-normal - Right normal border
+#{settings.$util-prefix}--border-bottom-normal - Bottom normal border
+#{settings.$util-prefix}--border-left-normal - Left normal border
+#{settings.$util-prefix}--border-block-normal - Block normal border
+#{settings.$util-prefix}--border-inline-normal - Inline normal border
+#{settings.$util-prefix}--border-normal-if-mobile - All normal border if mobile viewport.
+#{settings.$util-prefix}--border-normal-if-not-mobile - All normal border if not mobile viewport.
 
 Style guide: #{settings.$util-prefix}.border.builtin
 */
 .#{settings.$util-prefix}--border {
-  $values: ();
+  $borders: settings.$util-border;
+  $directions: settings.$util-directions;
 
-  @if meta.type-of(settings.$builtin-themes) == "map" {
-    @each $name, $theme in settings.$builtin-themes {
-      $values: list.append(
-        $values,
-        (
-          "name": $name,
-          "size": 1px,
-          "style": solid,
-          "color": map.get($theme, "border")
-        )
-      );
+  @each $border in $borders {
+    $name: "";
+
+    // stylelint-disable scss/no-duplicate-dollar-variables
+    @if meta.type-of($border) == "list" {
+      $name: list.nth($border, 1);
+      $border: list.nth($border, 2);
+    }
+    // stylelint-enable scss/no-duplicate-dollar-variables
+
+    @each $direction in $directions {
+      $direction: if($direction == "", $direction, "-#{$direction}");
+
+      &#{$direction}-#{$name} {
+        --border#{$direction}: #{$border};
+
+        border#{$direction}: var(--border#{$direction});
+      }
+
+      @each $bp, $query in settings.$breakpoints {
+        @if meta.type-of($query) == "string" {
+          &#{$direction}-#{$name}-#{$bp} {
+            @include mixin.media($query: $query) {
+              --border#{$direction}: #{$border};
+
+              border#{$direction}: var(--border#{$direction});
+            }
+          }
+        }
+      }
     }
   }
-
-  // each by directions
-  @include mixin.size-define-by-direction($type: "border", $values: $values);
-
-  // each by direction groups
-  @include mixin.size-define-by-direction-group(
-    $type: "border",
-    $values: $values
-  );
 }

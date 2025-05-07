@@ -3,14 +3,14 @@
 /*
 #{settings.$util-prefix}
 
-utilities
+The utility modules.
 
 Weight: 10000
 
 Style guide: #{settings.$util-prefix}
 */
 @forward "./hidden";
-@forward "./box-model";
+@forward "./box-sizing";
 @forward "./width";
 @forward "./height";
 @forward "./margin";
@@ -23,3 +23,4 @@ Style guide: #{settings.$util-prefix}
 @forward "./vertical-align";
 @forward "./font-family";
 @forward "./font-size";
+@forward "./font-weight";

@@ -1,49 +1,46 @@
 ////
-/// (c) hidoo | MIT Lisence
+/// (c) hidoo | MIT License
 /// @group Default settings
 ////
 
-/// settings of selector.
-/// for expressing of state like `:hover` or `:focus`.
+/// Settings for expressing of state like `:link`.
+/// (default: `()`)
+/// @type List
+///
+// prettier-ignore
+$link: () !default;
+
+/// Settings for expressing of state like `:hover` or `:focus`.
 /// (default: `(".is-focus")`)
 /// @type List
 ///
-$focus: (
-  ".is-focus",
-) !default;
+// prettier-ignore
+$focus: (".is-focus",) !default;
 
-/// settings of selector
-/// for expressing of state like `:checked`.
+/// Settings for expressing of state like `:checked`.
 /// (default: `(".is-selected")`)
 /// @type List
 ///
-$selected: (
-  ".is-selected",
-) !default;
+// prettier-ignore
+$selected: (".is-selected",) !default;
 
-/// settings of selector.
-/// for expressing of state like `:disabled`.
+/// Settings for expressing of state like `:disabled`.
 /// (default: `(".is-disabled")`)
 /// @type List
 ///
-$disabled: (
-  ".is-disabled",
-) !default;
+// prettier-ignore
+$disabled: (".is-disabled",) !default;
 
-/// settings of selector.
-/// for expressing of state like `".is-current"`
+/// Settings for expressing of state like `".is-current"`
 /// (default: `(".is-current")`)
 /// @type List
 ///
-$current: (
-  ".is-current",
-) !default;
+// prettier-ignore
+$current: (".is-current",) !default;
 
-/// settings of selector.
-/// for expressing of state like `is-active`.
+/// Settings for expressing of state like `is-active`.
 /// (default: `(".is-active")`)
 /// @type List
 ///
-$active: (
-  ".is-active",
-) !default;
+// prettier-ignore
+$active: (".is-active",) !default;

@@ -1,10 +1,14 @@
+@use "sass:math";
+@use "sass:meta";
+@use "sass:list";
+@use "../lib/function";
 @use "../lib/mixin";
 @use "../settings";
 
 /*
-margin
+Margin
 
-utilities that tweek of margin
+The margin module.
 
 Weight: -96
 
@@ -12,57 +16,99 @@ Style guide: #{settings.$util-prefix}.margin
 */
 
 /*
-modifiers: margin
+Modifiers
 
-builtin modifiers of margin. (-60px to 60px in 5px steps)
+The margin modifiers.
+Sizes: #{meta.inspect(settings.$util-margin)}.
+Direction: #{meta.inspect(settings.$util-directions)}.
 
 Weight: -100
 
-Markup: <div style="position:relative; padding:50px;">
-  <div class="{{modifier_class}}" style="position:relative; width:50px; height:50px; background:#999;"></div>
-</div>
+Markup: <div class="margin-example {{modifier_class}}"></div>
+<style>
+  :where(.margin-example) {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background: #999;
+  }
+</style>
 
-#{settings.$util-prefix}--margin-top-0 - top 0px margin
-#{settings.$util-prefix}--margin-top-60- - top -60px margin
-#{settings.$util-prefix}--margin-top-60 - top 60px margin
-#{settings.$util-prefix}--margin-right-0 - right 0px margin
-#{settings.$util-prefix}--margin-right-60- - right -60px margin
-#{settings.$util-prefix}--margin-right-60 - right 60px margin
-#{settings.$util-prefix}--margin-bottom-0 - bottom 0px margin
-#{settings.$util-prefix}--margin-bottom-60- - bottom -60px margin
-#{settings.$util-prefix}--margin-bottom-60 - bottom 60px margin
-#{settings.$util-prefix}--margin-left-0 - left 0px margin
-#{settings.$util-prefix}--margin-left-60- - left -60px margin
-#{settings.$util-prefix}--margin-left-60 - left 60px margin
-#{settings.$util-prefix}--margin-all-0 - all 0px margin
-#{settings.$util-prefix}--margin-all-60- - all -60px margin
-#{settings.$util-prefix}--margin-all-60 - all 60px margin
-#{settings.$util-prefix}--margin-vertical-0 - vertical 0 margin
-#{settings.$util-prefix}--margin-vertical-60- - vertical -60px margin
-#{settings.$util-prefix}--margin-vertical-60 - vertical 60px margin
-#{settings.$util-prefix}--margin-horizontal-0 - horizontal 0 margin
-#{settings.$util-prefix}--margin-horizontal-60- - horizontal -60px margin
-#{settings.$util-prefix}--margin-horizontal-60 - horizontal 60px margin
-#{settings.$util-prefix}--margin-center - horizontal centering by margin
+#{settings.$util-prefix}--margin-0 - All 0px margin
+#{settings.$util-prefix}--margin-_50 - All -50px margin
+#{settings.$util-prefix}--margin-50 - All 50px margin
+#{settings.$util-prefix}--margin-normal - All normal margin
+#{settings.$util-prefix}--margin-top-0 - Top 0px margin
+#{settings.$util-prefix}--margin-top-_50 - Top -50px margin
+#{settings.$util-prefix}--margin-top-50 - Top 50px margin
+#{settings.$util-prefix}--margin-top-normal - Top normal margin
+#{settings.$util-prefix}--margin-right-0 - Right 0px margin
+#{settings.$util-prefix}--margin-right-_50 - Right -50px margin
+#{settings.$util-prefix}--margin-right-50 - Right 50px margin
+#{settings.$util-prefix}--margin-right-normal - Right normal margin
+#{settings.$util-prefix}--margin-bottom-0 - Bottom 0px margin
+#{settings.$util-prefix}--margin-bottom-_50 - Bottom -50px margin
+#{settings.$util-prefix}--margin-bottom-50 - Bottom 50px margin
+#{settings.$util-prefix}--margin-bottom-normal - Bottom normal margin
+#{settings.$util-prefix}--margin-left-0 - Left 0px margin
+#{settings.$util-prefix}--margin-left-_50 - Left -50px margin
+#{settings.$util-prefix}--margin-left-50 - Left 50px margin
+#{settings.$util-prefix}--margin-left-normal - Left normal margin
+#{settings.$util-prefix}--margin-block-0 - Block 0 margin
+#{settings.$util-prefix}--margin-block-_50 - Block -50px margin
+#{settings.$util-prefix}--margin-block-50 - Block 50px margin
+#{settings.$util-prefix}--margin-block-normal - Block normal margin
+#{settings.$util-prefix}--margin-inline-0 - Inline 0 margin
+#{settings.$util-prefix}--margin-inline-_50 - Inline -50px margin
+#{settings.$util-prefix}--margin-inline-50 - Inline 50px margin
+#{settings.$util-prefix}--margin-inline-normal - Inline normal margin
+#{settings.$util-prefix}--margin-50-if-mobile - All 50px margin if mobile viewport.
+#{settings.$util-prefix}--margin-50-if-not-mobile - All 50px margin if not mobile viewport.
 
 Style guide: #{settings.$util-prefix}.margin.builtin
 */
 .#{settings.$util-prefix}--margin {
-  // each by directions
-  @include mixin.size-define-by-direction(
-    $type: "margin",
-    $values: settings.$util-margin-values
-  );
+  $margins: list.join(settings.$util-margin, ("auto"));
+  $directions: settings.$util-directions;
 
-  // each by direction groups
-  @include mixin.size-define-by-direction-group(
-    $type: "margin",
-    $values: settings.$util-margin-values
-  );
+  @each $margin in $margins {
+    $name: "";
 
-  // horizontal centering
-  &-center {
-    margin-right: auto !important;
-    margin-left: auto !important;
+    // stylelint-disable scss/no-duplicate-dollar-variables
+    @if meta.type-of($margin) == "list" {
+      $name: list.nth($margin, 1);
+      $margin: list.nth($margin, 2);
+    } @else if $margin == "auto" {
+      $name: $margin;
+    } @else {
+      $name: function.math-remove-unit($margin);
+
+      @if $margin < 0 {
+        $name: "_#{math.abs($name)}";
+      }
+    }
+    // stylelint-enable scss/no-duplicate-dollar-variables
+
+    @each $direction in $directions {
+      $direction: if($direction == "", $direction, "-#{$direction}");
+
+      &#{$direction}-#{$name} {
+        --margin#{$direction}: #{$margin};
+
+        margin#{$direction}: var(--margin#{$direction});
+      }
+
+      @each $bp, $query in settings.$breakpoints {
+        @if meta.type-of($query) == "string" {
+          &#{$direction}-#{$name}-#{$bp} {
+            @include mixin.media($query: $query) {
+              --margin#{$direction}: #{$margin};
+
+              margin#{$direction}: var(--margin#{$direction});
+            }
+          }
+        }
+      }
+    }
   }
 }

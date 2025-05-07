@@ -1,10 +1,16 @@
-@use "../../lib/mixin";
+@use "sass:map";
 @use "../../settings";
+
+/// Package name
+/// @access private
+/// @type String
+///
+$_pkg: settings.$pkg !default;
 
 /*
 #{settings.$prefix}-pict
 
-component for pict.
+The pict unit.
 
 Weight: -1070
 
@@ -12,9 +18,9 @@ Style guide: #{settings.$prefix}-pict
 */
 
 /*
-core
+Core
 
-core module of #{settings.$prefix}-pict
+The core module.
 
 Weight: -100
 
@@ -22,48 +28,189 @@ Style guide: #{settings.$prefix}-pict.core
 */
 
 /*
-default style
+Default style
 
-default style of #{settings.$prefix}-pict
+The default style.
 
 Weight: -100
 
-Markup: <!-- image element -->
+Markup: <!-- with img element -->
 <figure class="#{settings.$prefix}-pict">
-  <img class="#{settings.$prefix}-pict__src" src="https://via.placeholder.com/400x300" alt="" width="400" height="300" />
+  <img class="#{settings.$prefix}-pict__src" src="https://placehold.co/400x300.png" alt="" width="400" height="300" loading="auto" />
 </figure>
-<!-- image element (breaking) -->
+<!-- with breaking img element -->
 <figure class="#{settings.$prefix}-pict">
-  <img class="#{settings.$prefix}-pict__src" src="#" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." width="400" height="300" />
+  <img class="#{settings.$prefix}-pict__src" src="#" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." width="400" height="300" loading="auto" />
 </figure>
-<!-- iframe player -->
+<!-- with picture element -->
+<picture class="#{settings.$prefix}-pict">
+  <source media="(min-width: #{map.get(settings.$breakpoints, "mobile") + 1px})" srcset="https://placehold.co/800x600.png 800w, https://placehold.co/400x300.png 400w" sizes="400px" />
+  <source media="(max-width: #{map.get(settings.$breakpoints, "mobile")})" srcset="https://placehold.co/600x600.png 600w, https://placehold.co/300x300.png 300w" sizes="300px" />
+  <img class="#{settings.$prefix}-pict__src" src="https://placehold.co/800x600.png" alt="" loading="auto" />
+</picture>
+<!-- with iframe player -->
 <figure class="#{settings.$prefix}-pict">
-  <iframe class="#{settings.$prefix}-pict__src" title="vimeo-player" src="https://player.vimeo.com/video/76979871" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+  <iframe class="#{settings.$prefix}-pict__src" title="vimeo-player" src="https://player.vimeo.com/video/76979871" width="640" height="360" frameborder="0" allowfullscreen  loading="auto"></iframe>
 </figure>
 
 Style guide: #{settings.$prefix}-pict.core.base
 */
 .#{settings.$prefix}-pict {
-  @include mixin.box-initialize();
-  @include mixin.text-initialize($letter-spacing: 0, $line-height: 0);
-  @include mixin.font-initialize();
-  @include mixin.font-apply-size($value: "medium");
+  --position: relative;
+  --display: block;
+  --overflow: visible;
+  --box-sizing: content-box;
+  --width: auto;
+  --max-width: none;
+  --height: auto;
+  --margin: 0;
+  --padding: 0;
+  --border: 0;
+  --font-size: var(--#{$_pkg}-font-size);
+  --font-weight: var(--#{$_pkg}-font-weight);
+  --font-style: normal;
+  --line-height: 0;
+  --color: inherit;
+  --text-align: left;
+  --text-decoration: none;
+  --text-indent: 0;
+  --letter-spacing: 0;
+  --white-space: normal;
+  --vertical-align: baseline;
+  --list-style: none;
+  --background-color: transparent;
+  --message-on-image-error: var(--#{$_pkg}-message-on-image-error);
 
-  width: auto;
-  height: auto;
-  color: inherit;
-  background-color: transparent;
+  // For src
+  --src-pointer-events: auto;
+  --src-position: relative;
+  --src-display: inline-block;
+  --src-overflow: hidden;
+  --src-box-sizing: content-box;
+  --src-aspect-ratio: auto;
+  --src-width: auto;
+  --src-max-width: none;
+  --src-height: auto;
+  --src-max-height: none;
+  --src-margin: 0;
+  --src-padding: 0;
+  --src-border: 0;
+  --src-font-size: var(--font-size);
+  --src-font-weight: var(--font-weight);
+  --src-font-style: var(--font-style);
+  --src-line-height: 1;
+  --src-color: inherit;
+  --src-text-align: left;
+  --src-text-decoration: none;
+  --src-text-indent: 0;
+  --src-letter-spacing: 0;
+  --src-white-space: normal;
+  --src-vertical-align: baseline;
+  --src-list-style: none;
+  --src-object-fit: none;
+  --src-background-color: transparent;
 
-  &__src {
-    @include mixin.box-initialize(
-      $display: "inline-block",
-      $overflow: "hidden"
-    );
-    @include mixin.text-initialize();
-    @include mixin.font-initialize();
-    @include mixin.font-apply-size($value: "medium");
+  // For breaking image
+  --src-after-position: absolute;
+  --src-after-inset: 0;
+  --src-after-display: flex;
+  --src-after-align-items: center;
+  --src-after-justify-content: center;
+  --src-after-margin: auto;
+  --src-after-padding: 0;
+  --src-after-font-size: var(--font-size);
+  --src-after-text-align: center;
+  --src-after-text-decoration: none;
+  --src-after-text-indent: 0;
+  --src-after-letter-spacing: var(--#{$_pkg}-letter-spacing);
+  --src-after-white-space: normal;
+  --src-after-vertical-align: baseline;
+  --src-after-color: inherit;
+  --src-after-background-color: inherit;
 
-    color: inherit;
-    background-color: transparent;
+  position: var(--position);
+
+  overflow: var(--overflow);
+  display: var(--display);
+
+  box-sizing: var(--box-sizing);
+  width: var(--width);
+  max-width: var(--max-width);
+  height: var(--height);
+  margin: var(--margin);
+  padding: var(--padding);
+  border: var(--border);
+
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  font-style: var(--font-style);
+  line-height: var(--line-height);
+  color: var(--color);
+  text-align: var(--text-align);
+  text-decoration: var(--text-decoration);
+  text-indent: var(--text-indent);
+  letter-spacing: var(--letter-spacing);
+  white-space: var(--white-space);
+  vertical-align: var(--vertical-align);
+  list-style: var(--list-style);
+
+  background-color: var(--background-color);
+
+  &__src:where(& > &__src) {
+    pointer-events: var(--src-pointer-events);
+
+    position: var(--src-position);
+
+    overflow: var(--src-overflow);
+    display: var(--src-display);
+
+    box-sizing: var(--src-box-sizing);
+    max-width: var(--src-max-width);
+    max-height: var(--src-max-height);
+    margin: var(--src-margin);
+    padding: var(--src-padding);
+    border: var(--src-border);
+
+    font-size: var(--src-font-size);
+    font-weight: var(--src-font-weight);
+    font-style: var(--src-font-style);
+    line-height: var(--src-line-height);
+    color: var(--src-color);
+    text-align: var(--src-text-align);
+    text-decoration: var(--src-text-decoration);
+    text-indent: var(--src-text-indent);
+    letter-spacing: var(--src-letter-spacing);
+    white-space: var(--src-white-space);
+    vertical-align: var(--src-vertical-align);
+    list-style: var(--src-list-style);
+
+    object-fit: var(--src-object-fit);
+    background-color: var(--src-background-color);
+
+    // For message on image error
+    &::after {
+      content: var(--message-on-image-error);
+
+      position: var(--src-after-position);
+      inset: var(--src-after-inset);
+
+      display: var(--src-after-display);
+      align-items: var(--src-after-align-items);
+      justify-content: var(--src-after-justify-content);
+
+      margin: var(--src-after-margin);
+      padding: var(--src-after-padding);
+
+      font-size: var(--src-after-font-size);
+      color: var(--src-after-color);
+      text-align: var(--src-after-text-align);
+      text-decoration: var(--src-after-text-decoration);
+      text-indent: var(--src-after-text-indent);
+      letter-spacing: var(--src-after-letter-spacing);
+      white-space: var(--src-after-white-space);
+      vertical-align: var(--src-after-vertical-align);
+
+      background-color: var(--src-after-background-color);
+    }
   }
 }

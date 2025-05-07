@@ -2,9 +2,9 @@
 @use "../../settings";
 
 /*
-align
+Align
 
-align modifiers of #{settings.$prefix}-flex-grid
+The align module.
 
 Weight: -98
 
@@ -12,78 +12,78 @@ Style guide: #{settings.$prefix}-flex-grid.align
 */
 
 /*
-modifiers: align
+Modifiers
 
-builtin modifiers of align for #{settings.$prefix}-flex-grid
+The align modifiers.
 
 Weight: -100
 
 Markup: <div class="#{settings.$prefix}-flex-grid  {{modifier_class}}">
-  <div class="#{settings.$prefix}-flex-grid__column  #{settings.$util-prefix}--width-max-200">
-    <!-- some unit -->
-    <figure class="#{settings.$prefix}-pict  #{settings.$prefix}-pict--fit-max-width  #{settings.$util-prefix}--float-left">
-      <img class="#{settings.$prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
-    </figure>
+  <div class="#{settings.$prefix}-flex-grid__column">
+    <!-- content -->
     <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <!-- some unit -->
-  </div>
-  <div class="#{settings.$prefix}-flex-grid__column  #{settings.$util-prefix}--width-max-200">
-    <!-- some unit -->
     <figure class="#{settings.$prefix}-pict  #{settings.$prefix}-pict--fit-max-width  #{settings.$util-prefix}--float-left">
-      <img class="#{settings.$prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
+      <img class="#{settings.$prefix}-pict__src" src="https://placehold.co/200x150" alt="" width="200" height="150" loading="auto" />
     </figure>
+    <!-- content -->
+  </div>
+  <div class="#{settings.$prefix}-flex-grid__column">
+    <!-- content -->
+    <figure class="#{settings.$prefix}-pict  #{settings.$prefix}-pict--fit-max-width  #{settings.$util-prefix}--float-left">
+      <img class="#{settings.$prefix}-pict__src" src="https://placehold.co/200x150" alt="" width="200" height="150" loading="auto" />
+    </figure>
+    <p class="#{settings.$prefix}-text">あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</p>
+    <!-- content -->
+  </div>
+  <div class="#{settings.$prefix}-flex-grid__column">
+    <!-- content -->
     <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-    <!-- some unit -->
-  </div>
-  <div class="#{settings.$prefix}-flex-grid__column  #{settings.$util-prefix}--width-max-200">
-    <!-- some unit -->
     <figure class="#{settings.$prefix}-pict  #{settings.$prefix}-pict--fit-max-width  #{settings.$util-prefix}--float-left">
-      <img class="#{settings.$prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
+      <img class="#{settings.$prefix}-pict__src" src="https://placehold.co/200x150" alt="" width="200" height="150" loading="auto" />
     </figure>
-    <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <!-- some unit -->
+    <!-- content -->
   </div>
-  <div class="#{settings.$prefix}-flex-grid__column  #{settings.$util-prefix}--width-max-200">
-    <!-- some unit -->
+  <div class="#{settings.$prefix}-flex-grid__column">
+    <!-- content -->
     <figure class="#{settings.$prefix}-pict  #{settings.$prefix}-pict--fit-max-width  #{settings.$util-prefix}--float-left">
-      <img class="#{settings.$prefix}-pict__src" src="https://picsum.photos/200/150/?grayscale&amp;blur=10" alt="" width="200" height="150" />
+      <img class="#{settings.$prefix}-pict__src" src="https://placehold.co/200x150" alt="" width="200" height="150" loading="auto" />
     </figure>
-    <p class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet.</p>
-    <!-- some unit -->
+    <p class="#{settings.$prefix}-text">あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら。</p>
+    <!-- content -->
   </div>
 </div>
 
-#{settings.$prefix}-flex-grid--align-start - align start of flow (**default**)
-#{settings.$prefix}-flex-grid--align-center - align center of flow
-#{settings.$prefix}-flex-grid--align-end - align end of flow
-#{settings.$prefix}-flex-grid--align-space-between - align space between
-#{settings.$prefix}-flex-grid--align-space-around - align space around
+#{settings.$prefix}-flex-grid--align-start - Starting alignment on axis
+#{settings.$prefix}-flex-grid--align-center - Center alignment on axis
+#{settings.$prefix}-flex-grid--align-end - Ending alignment on axis
+#{settings.$prefix}-flex-grid--align-space-between - Alignment on axis with space between
+#{settings.$prefix}-flex-grid--align-space-around - Alignment on axis with space around
 
 Style guide: #{settings.$prefix}-flex-grid.align.builtin
 */
 .#{settings.$prefix}-flex-grid--align {
   &-start {
-    align-content: flex-start;
-    justify-content: flex-start;
+    --align-content: flex-start;
+    --justify-content: flex-start;
   }
 
   &-center {
-    align-content: center;
-    justify-content: center;
+    --align-content: center;
+    --justify-content: center;
   }
 
   &-end {
-    align-content: flex-end;
-    justify-content: flex-end;
+    --align-content: flex-end;
+    --justify-content: flex-end;
   }
 
   &-space-between {
-    align-content: space-between;
-    justify-content: space-between;
+    --align-content: space-between;
+    --justify-content: space-between;
   }
 
   &-space-around {
-    align-content: space-around;
-    justify-content: space-around;
+    --align-content: space-around;
+    --justify-content: space-around;
   }
 }

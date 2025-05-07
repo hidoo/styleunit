@@ -1,5 +1,5 @@
 ////
-/// (c) hidoo | MIT Lisence
+/// (c) hidoo | MIT License
 /// @group plugin/spritesheet
 ////
 
@@ -14,6 +14,7 @@
 $_default-options: (
   "use2x": false,
   "as-mask": false,
+  "with-property": true
 ) !default;
 
 /// set properties
@@ -37,41 +38,68 @@ $_default-options: (
       $_default-options
     );
     $use2x: map.get($options, "use2x");
-    $as-mask: map.get($options, "as-mask"); // stylelint-disable-line plugin/no-unsupported-browser-features
+    $as-mask: map.get($options, "as-mask");
+    $with-property: map.get($options, "with-property");
 
     @if meta.type-of($width) == "number" {
-      $width: if($use2x, math.div($width, 2), $width);
+      --width: #{if($use2x, math.div($width, 2), $width)};
 
-      width: $width;
+      @if $with-property {
+        width: var(--width);
+      }
     }
 
     @if meta.type-of($height) == "number" {
-      $height: if($use2x, math.div($height, 2), $height);
+      --height: #{if($use2x, math.div($height, 2), $height)};
 
-      height: $height;
+      @if $with-property {
+        height: var(--height);
+      }
     }
 
-    @if meta.type-of($offset-x) == "number" and meta.type-of($offset-y) == "number" {
+    @if meta.type-of($offset-x) ==
+      "number" and
+      meta.type-of($offset-y) ==
+      "number"
+    {
       $offset-x: if($use2x, math.div($offset-x, 2), $offset-x);
       $offset-y: if($use2x, math.div($offset-y, 2), $offset-y);
 
       @if $as-mask {
-        mask-position: $offset-x $offset-y; // stylelint-disable-line plugin/no-unsupported-browser-features
-      }
-      @else {
-        background-position: $offset-x $offset-y;
+        --mask-position: #{$offset-x} #{$offset-y};
+
+        @if $with-property {
+          mask-position: var(--mask-position);
+        }
+      } @else {
+        --background-position: #{$offset-x} #{$offset-y};
+
+        @if $with-property {
+          background-position: var(--background-position);
+        }
       }
     }
 
-    @if meta.type-of($total-width) == "number" and meta.type-of($total-height) == "number" {
+    @if meta.type-of($total-width) ==
+      "number" and
+      meta.type-of($total-height) ==
+      "number"
+    {
       $total-width: if($use2x, math.div($total-width, 2), $total-width);
       $total-height: if($use2x, math.div($total-height, 2), $total-height);
 
       @if $as-mask {
-        mask-size: $total-width $total-height; // stylelint-disable-line plugin/no-unsupported-browser-features
-      }
-      @else {
-        background-size: $total-width $total-height; // stylelint-disable-line plugin/no-unsupported-browser-features
+        --mask-size: #{$total-width} #{$total-height};
+
+        @if $with-property {
+          mask-size: var(--mask-size);
+        }
+      } @else {
+        --background-size: #{$total-width} #{$total-height};
+
+        @if $with-property {
+          background-size: var(--background-size);
+        }
       }
     }
   }

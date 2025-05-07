@@ -4,20 +4,27 @@
 @use "../../lib/mixin";
 @use "../../settings";
 
-/*
-theme
+/// Package name
+/// @access private
+/// @type String
+///
+$_pkg: settings.$pkg !default;
 
-theme modifiers of #{settings.$prefix}-select
+/*
+Theme
+
+The theme module.
 
 Weight: -99
 
 Style guide: #{settings.$prefix}-select.theme
 */
 
-/*
-modifiers: theme
+@if meta.type-of(settings.$builtin-themes) == "map" {
+  /*
+Modifiers
 
-builtin modifiers of theme for #{settings.$prefix}-select
+The theme modifiers.
 
 Weight: -100
 
@@ -25,7 +32,7 @@ Markup: <span class="#{settings.$prefix}-select  {{modifier_class}}">
   <select class="#{settings.$prefix}-select__field" name="{{modifier_class}}">
     <option value="">select...</option>
     <option value="option-1">Lorem ipsum dolor sit amet</option>
-    <option value="option-2">Consectetur adipiscing elit</option>
+    <option value="option-2">あのイーハトーヴォのすきとおった風</option>
   </select>
 </span>
 <!-- disabled -->
@@ -33,83 +40,108 @@ Markup: <span class="#{settings.$prefix}-select  {{modifier_class}}">
   <select class="#{settings.$prefix}-select__field" name="{{modifier_class}}" disabled="disabled">
     <option value="">select...</option>
     <option value="option-1">Lorem ipsum dolor sit amet</option>
-    <option value="option-2">Consectetur adipiscing elit</option>
+    <option value="option-2">あのイーハトーヴォのすきとおった風</option>
   </select>
 </span>
 
-#{settings.$prefix}-select--theme-light - light theme
-#{settings.$prefix}-select--theme-dark - dark theme
+#{settings.$prefix}-select--theme-normal - Normal theme
 
 Style guide: #{settings.$prefix}-select.theme.builtin
 */
-.#{settings.$prefix}-select--theme {
-  $selector: string.unique-id();
-  $selector-field: string.unique-id();
+  .#{settings.$prefix}-select--theme {
+    &-normal {
+      $default-theme: map.get(settings.$builtin-themes, "light");
 
-  @include mixin.placeholder-define($name: $selector) {
-    &::after {
-      content: "";
+      // Load colors
+      --color-up: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "color")})
+      );
+      --color-focus: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "color-focus")})
+      );
+      --background-color-up: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "background")})
+      );
+      --background-color-focus: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "background-focus")})
+      );
+      --border-color-up: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "border")})
+      );
+      --border-color-focus: rgb(
+        var(--#{$_pkg}-color-#{map.get($default-theme, "border-focus")})
+      );
 
-      position: absolute;
-      z-index: 1;
-      top: 0;
-      right: 12px;
-      bottom: 0;
+      // Default settings
+      --color: var(--color-up);
+      --field-padding: 10px 25px 10px 10px;
+      --field-border: 1px solid var(--border-color-up);
+      --field-border-radius: 3px;
+      --field-background-color: var(--background-color-up);
+      --field-transition: border-color 0.1s ease-out;
+      --icon-content: "";
+      --icon-position: absolute;
+      --icon-z-index: 1;
+      --icon-inset: 0 12px 0 auto;
+      --icon-transform-origin: 50% 50%;
+      --icon-transform: none;
+      --icon-display: block;
+      --icon-width: 14px;
+      --icon-height: 8px;
+      --icon-margin: auto 0;
+      --icon-color: var(--color-focus);
+      --icon-clip-path: path(
+        "M7.002,7.875 L0.002,0.875 L0.701,0.176 L7.011,6.487 L13.313,0.185 L14.000,0.872 L7.002,7.875 Z"
+      );
 
-      width: 0;
-      height: 0;
-      margin: auto 0;
-      border-top-style: solid;
-      border-top-width: 8px;
-      border-right: 6px solid transparent;
-      border-bottom: 0 solid transparent;
-      border-left: 6px solid transparent;
+      &::after {
+        content: var(--icon-content);
 
-      opacity: 0.8;
-    }
-  }
+        position: var(--icon-position);
+        z-index: var(--icon-z-index);
+        inset: var(--icon-inset);
+        transform-origin: var(--icon-transform-origin);
+        transform: var(--icon-transform);
 
-  @include mixin.placeholder-define($name: $selector-field) {
-    padding: 10px 30px 10px 10px;
-    border-radius: 3px;
+        display: var(--icon-display);
 
-    transition-timing-function: ease-out;
-    transition-duration: 0.1s;
-    transition-property: border-color;
-  }
+        width: var(--icon-width);
+        height: var(--icon-height);
+        margin: var(--icon-margin);
 
-  @if meta.type-of(settings.$builtin-themes) == "map" {
-    @each $name, $theme in settings.$builtin-themes {
-      $color: map.get($theme, "color");
-      $color-focus: map.get($theme, "color-focus");
-      $background: map.get($theme, "background");
-      $background-focus: map.get($theme, "background-focus");
-      $border: map.get($theme, "border");
-      $border-focus: map.get($theme, "border-focus");
+        background-color: var(--icon-color);
+        clip-path: var(--icon-clip-path);
+      }
 
-      &-#{$name} {
-        @extend %#{$selector};
+      @include mixin.has-focus() {
+        --field-border: 1px solid var(--border-color-focus);
+        --field-color: var(--color-focus);
+      }
 
-        color: $color;
+      @include mixin.has-disabled() {
+        --field-border: 1px solid var(--border-color-up);
+        --field-color: var(--color-up);
+      }
 
-        &::after {
-          border-top-color: $color-focus;
-        }
+      // Settings by color schemes
+      @each $name, $theme in settings.$builtin-themes {
+        @media (prefers-color-scheme: #{$name}) {
+          $color-up: map.get($theme, "color");
+          $color-focus: map.get($theme, "color-focus");
+          $background-up: map.get($theme, "background");
+          $background-focus: map.get($theme, "background-focus");
+          $border-up: map.get($theme, "border");
+          $border-focus: map.get($theme, "border-focus");
 
-        > .#{settings.$prefix}-select__field {
-          @extend %#{$selector-field};
-
-          @include mixin.on-focus() {
-            border-color: $border-focus;
-            color: $color-focus;
-          }
-
-          @include mixin.on-disabled() {
-            border: 1px solid $border;
-          }
-
-          border: 1px solid $border;
-          background-color: $background;
+          // Apply colors to settings
+          --color-up: rgb(var(--#{$_pkg}-color-#{$color-up}));
+          --color-focus: rgb(var(--#{$_pkg}-color-#{$color-focus}));
+          --background-color-up: rgb(var(--#{$_pkg}-color-#{$background-up}));
+          --background-color-focus: rgb(
+            var(--#{$_pkg}-color-#{$background-focus})
+          );
+          --border-color-up: rgb(var(--#{$_pkg}-color-#{$border-up}));
+          --border-color-focus: rgb(var(--#{$_pkg}-color-#{$border-focus}));
         }
       }
     }

@@ -1,0 +1,53 @@
+////
+/// (c) hidoo | MIT License
+/// @group features
+////
+
+@use "sass:list";
+@use "sass:meta";
+@use "sass:map";
+@use "../../settings";
+
+/// Default options
+/// @access private
+/// @type Map
+/// @prop {Boolean} not [false] - Deny selectors whether or not
+///
+$_default-options: (
+  "not": false
+) !default;
+
+/// The utility mixin for `:has` pseudo classes.
+/// @param {List} $selectors [()] - list of selectors
+/// @param {Map} $options [()] - options
+///
+/// @example scss - scss inputs
+///   .selector {
+///     @include has((":hover", ":focus")) {
+///       font-size: 16px;
+///     }
+///   }
+///
+/// @example scss - css outputs
+///   .selector:has(:hover, :focus) {
+///     font-size: 16px;
+///   }
+///
+@mixin has($selectors: (), $options: ()) {
+  $opts: map.merge($_default-options, $options);
+  $not: map.get($opts, "not");
+
+  @if meta.type-of($selectors) == "list" and list.length($selectors) >= 1 {
+    @if $not {
+      $selectors: ":not(#{$selectors})";
+    }
+
+    &:has(#{$selectors}) {
+      @content;
+    }
+  } @else {
+    @if settings.$verbose {
+      @warn "@mixin has: @content is not yield, because argument $selectors is empty.";
+    }
+  }
+}

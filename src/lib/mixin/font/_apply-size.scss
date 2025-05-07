@@ -1,5 +1,5 @@
 ////
-/// (c) hidoo | MIT Lisence
+/// (c) hidoo | MIT License
 /// @group font features
 ////
 
@@ -25,12 +25,13 @@
 ///     font-size: 0.875rem !important;
 ///   }
 ///
-@mixin apply-size(
-  $value,
-  $monospace: false,
-  $important: false
-) {
-  $value: function.font-size($value, ("monospace": $monospace));
+@mixin apply-size($value, $monospace: false, $important: false) {
+  $value: function.font-size(
+    $value,
+    (
+      "monospace": $monospace
+    )
+  );
 
   font-size: $value if($important, !important, null);
 

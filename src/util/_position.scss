@@ -1,10 +1,14 @@
+@use "sass:math";
+@use "sass:meta";
+@use "sass:list";
+@use "../lib/function";
 @use "../lib/mixin";
 @use "../settings";
 
 /*
-position
+Position
 
-utilities that tweek of position
+The position module.
 
 Weight: -93
 
@@ -12,50 +16,119 @@ Style guide: #{settings.$util-prefix}.position
 */
 
 /*
-modifiers: position
+Modifiers
 
-builtin modifiers of position. (-60px to 60px in 5px steps)
+The position modifiers.
+Sizes: #{meta.inspect(settings.$util-position)}.
+Direction: #{meta.inspect(settings.$util-directions)}.
 
 Weight: -100
 
-Markup: <div style="position:relative; padding:50px;">
-  <div class="{{modifier_class}}" style="position:relative; width:50px; height:50px; background:#999;"></div>
-</div>
+Markup: <div class="padding-example {{modifier_class}}"></div>
+<style>
+  :where(.padding-example) {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background: #999;
+  }
+</style>
 
-#{settings.$util-prefix}--position-top-0 - top 0px
-#{settings.$util-prefix}--position-top-60- - top -60px
-#{settings.$util-prefix}--position-top-60 - top 60px
-#{settings.$util-prefix}--position-right-0 - right 0px
-#{settings.$util-prefix}--position-right-60- - right -60px
-#{settings.$util-prefix}--position-right-60 - right 60px
-#{settings.$util-prefix}--position-bottom-0 - bottom 0px
-#{settings.$util-prefix}--position-bottom-60- - bottom -60px
-#{settings.$util-prefix}--position-bottom-60 - bottom 60px
-#{settings.$util-prefix}--position-left-0 - left 0px
-#{settings.$util-prefix}--position-left-60- - left -60px
-#{settings.$util-prefix}--position-left-60 - left 60px
-#{settings.$util-prefix}--position-all-0 - all 0px
-#{settings.$util-prefix}--position-all-60- - all -60px
-#{settings.$util-prefix}--position-all-60 - all 60px
-#{settings.$util-prefix}--position-vertical-0 - vertical 0px
-#{settings.$util-prefix}--position-vertical-60- - vertical -60px
-#{settings.$util-prefix}--position-vertical-60 - vertical 60px
-#{settings.$util-prefix}--position-horizontal-0 - horizontal 0px
-#{settings.$util-prefix}--position-horizontal-60- - horizontal -60px
-#{settings.$util-prefix}--position-horizontal-60 - horizontal 60px
+#{settings.$util-prefix}--position-0 - All 0px position
+#{settings.$util-prefix}--position-_50 - All -50px position
+#{settings.$util-prefix}--position-50 - All 50px position
+#{settings.$util-prefix}--position-normal - All normal position
+#{settings.$util-prefix}--position-top-0 - Top 0px position
+#{settings.$util-prefix}--position-top-_50 - Top -50px position
+#{settings.$util-prefix}--position-top-50 - Top 50px position
+#{settings.$util-prefix}--position-top-normal - Top normal position
+#{settings.$util-prefix}--position-right-0 - Right 0px position
+#{settings.$util-prefix}--position-right-_50 - Right -50px position
+#{settings.$util-prefix}--position-right-50 - Right 50px position
+#{settings.$util-prefix}--position-right-normal - Right normal position
+#{settings.$util-prefix}--position-bottom-0 - Bottom 0px position
+#{settings.$util-prefix}--position-bottom-_50 - Bottom -50px position
+#{settings.$util-prefix}--position-bottom-50 - Bottom 50px position
+#{settings.$util-prefix}--position-bottom-normal - Bottom normal position
+#{settings.$util-prefix}--position-left-0 - Left 0px position
+#{settings.$util-prefix}--position-left-_50 - Left -50px position
+#{settings.$util-prefix}--position-left-50 - Left 50px position
+#{settings.$util-prefix}--position-left-normal - Left normal position
+#{settings.$util-prefix}--position-block-0 - Block 0 position
+#{settings.$util-prefix}--position-block-_50 - Block -50px position
+#{settings.$util-prefix}--position-block-50 - Block 50px position
+#{settings.$util-prefix}--position-block-normal - Block normal position
+#{settings.$util-prefix}--position-inline-0 - Inline 0 position
+#{settings.$util-prefix}--position-inline-_50 - Inline -50px position
+#{settings.$util-prefix}--position-inline-50 - Inline 50px position
+#{settings.$util-prefix}--position-inline-normal - Inline normal position
+#{settings.$util-prefix}--position-50-if-mobile - All 50px position if mobile viewport.
+#{settings.$util-prefix}--position-50-if-not-mobile - All 50px position if not mobile viewport.
 
 Style guide: #{settings.$util-prefix}.position.builtin
 */
 .#{settings.$util-prefix}--position {
-  // each by directions
-  @include mixin.size-define-by-direction(
-    $type: "position",
-    $values: settings.$util-position-values
-  );
+  $positions: settings.$util-position;
+  $directions: settings.$util-directions;
 
-  // each by direction groups
-  @include mixin.size-define-by-direction-group(
-    $type: "position",
-    $values: settings.$util-position-values
-  );
+  @each $position in $positions {
+    $name: "";
+
+    // stylelint-disable scss/no-duplicate-dollar-variables
+    @if meta.type-of($position) == "list" {
+      $name: list.nth($position, 1);
+      $position: list.nth($position, 2);
+    } @else if $position == "auto" {
+      $name: $position;
+    } @else {
+      $name: function.math-remove-unit($position);
+
+      @if $position < 0 {
+        $name: "_#{math.abs($name)}";
+      }
+    }
+    // stylelint-enable scss/no-duplicate-dollar-variables
+
+    @each $direction in $directions {
+      $props: ();
+
+      // stylelint-disable scss/no-duplicate-dollar-variables
+      @if $direction == "" {
+        // prettier-ignore
+        $props: ("inset", );
+      } @else if $direction == "block" {
+        $props: ("top", "bottom");
+      } @else if $direction == "inline" {
+        $props: ("right", "left");
+      } @else {
+        // prettier-ignore
+        $props: ($direction, );
+      }
+      // stylelint-enable scss/no-duplicate-dollar-variables
+
+      $direction: if($direction == "", $direction, "-#{$direction}");
+
+      &#{$direction}-#{$name} {
+        @each $prop in $props {
+          --#{$prop}: #{$position};
+
+          #{$prop}: var(--#{$prop});
+        }
+      }
+
+      @each $bp, $query in settings.$breakpoints {
+        @if meta.type-of($query) == "string" {
+          &#{$direction}-#{$name}-#{$bp} {
+            @each $prop in $props {
+              @include mixin.media($query: $query) {
+                --#{$prop}: #{$position};
+
+                #{$prop}: var(--#{$prop});
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

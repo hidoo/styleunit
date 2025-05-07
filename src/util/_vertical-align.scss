@@ -1,9 +1,11 @@
+@use "sass:meta";
+@use "../lib/mixin";
 @use "../settings";
 
 /*
-vertical-align
+Vertical align
 
-utilities that tweek of vertical-align
+The vertical-align module.
 
 Weight: -89
 
@@ -11,34 +13,57 @@ Style guide: #{settings.$util-prefix}.vertical-align
 */
 
 /*
-modifiers: vertical-align
+Modifiers
 
-builtin modifiers of vertical-align
+The vertical-align modifiers.
 
 Weight: -100
 
-Markup: <div style="display:table;">
-  <div class="{{modifier_class}}" style="display:table-cell; height:100px; font-size:0;">
-    <div style="display:inline-block; position:relative; width:50px; height:50px; background:#999;"></div>
-  </div>
+Markup: <div class="valign-example-wrapper  {{modifier_class}}">
+  <div class="valign-example"></div>
 </div>
+<style>
+  :where(.valign-example-wrapper) {
+    display:table-cell;
+     height:100px;
+  }
+  :where(.valign-example) {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background: #999;
+  }
+</style>
 
-#{settings.$util-prefix}--vertical-align-top - set top
-#{settings.$util-prefix}--vertical-align-middle - set middle
-#{settings.$util-prefix}--vertical-align-bottom - set bottom
+#{settings.$util-prefix}--vertical-align-top - Set top
+#{settings.$util-prefix}--vertical-align-middle - Set middle
+#{settings.$util-prefix}--vertical-align-baseline - Set baseline
+#{settings.$util-prefix}--vertical-align-bottom - Set bottom
+#{settings.$util-prefix}--vertical-align-middle-if-mobile - Set middle if mobile viewport
+#{settings.$util-prefix}--vertical-align-middle-if-not-mobile - Set middle if not mobile viewport
 
 Style guide: #{settings.$util-prefix}.vertical-align.builtin
 */
 .#{settings.$util-prefix}--vertical-align {
-  &-top {
-    vertical-align: top !important;
-  }
+  $v-aligns: ("left", "middle", "baseline", "bottom");
 
-  &-middle {
-    vertical-align: middle !important;
-  }
+  @each $v-align in $v-aligns {
+    &-#{$v-align} {
+      --vertical-align: #{$v-align};
 
-  &-bottom {
-    vertical-align: bottom !important;
+      vertical-align: var(--vertical-align);
+    }
+
+    @each $bp, $query in settings.$breakpoints {
+      @if meta.type-of($query) == "string" {
+        &-#{$v-align}-#{$bp} {
+          @include mixin.media($query: $query) {
+            --vertical-align: #{$v-align};
+
+            vertical-align: var(--vertical-align);
+          }
+        }
+      }
+    }
   }
 }

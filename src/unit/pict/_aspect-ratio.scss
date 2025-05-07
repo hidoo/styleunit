@@ -1,10 +1,16 @@
-@use "../../lib/mixin";
+@use "sass:map";
 @use "../../settings";
 
-/*
-aspect-ratio
+/// Package name
+/// @access private
+/// @type String
+///
+$_pkg: settings.$pkg !default;
 
-aspect-ratio modifiers of #{settings.$prefix}-pict
+/*
+Aspect Ratio
+
+The aspect ratio module.
 
 Weight: -98
 
@@ -12,63 +18,64 @@ Style guide: #{settings.$prefix}-pict.aspect-ratio
 */
 
 /*
-modifiers: aspect-ratio
+Modifiers
 
-builtin modifiers of aspect-ratio for #{settings.$prefix}-pict
+The aspect ratio modifiers.
 
 Weight: -100
 
-Markup: <!-- image element -->
+Markup: <!-- with img element -->
 <figure class="#{settings.$prefix}-pict  {{modifier_class}}">
-  <img class="#{settings.$prefix}-pict__src" src="https://via.placeholder.com/400x300" alt="" width="400" height="300" />
+  <img class="#{settings.$prefix}-pict__src" src="https://placehold.co/400x300.png" alt="" width="400" height="300" loading="auto" />
 </figure>
-<!-- image element (breaking) -->
+<!-- with breaking img element -->
 <figure class="#{settings.$prefix}-pict  {{modifier_class}}">
-  <img class="#{settings.$prefix}-pict__src" src="#" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." width="400" height="300" />
+  <img class="#{settings.$prefix}-pict__src" src="#" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." width="400" height="300" loading="auto" />
 </figure>
-<!-- iframe player -->
+<!-- with picture element -->
+<picture class="#{settings.$prefix}-pict  {{modifier_class}}">
+  <source media="(min-width: #{map.get(settings.$breakpoints, "mobile") + 1px})" srcset="https://placehold.co/800x600.png 800w, https://placehold.co/400x300.png 400w" sizes="400px" />
+  <source media="(max-width: #{map.get(settings.$breakpoints, "mobile")})" srcset="https://placehold.co/600x600.png 600w, https://placehold.co/300x300.png 300w" sizes="300px" />
+  <img class="#{settings.$prefix}-pict__src" src="https://placehold.co/800x600.png" alt="" loading="auto" />
+</picture>
+<!-- with iframe player -->
 <figure class="#{settings.$prefix}-pict  {{modifier_class}}">
-  <iframe class="#{settings.$prefix}-pict__src" title="vimeo-player" src="https://player.vimeo.com/video/76979871" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+  <iframe class="#{settings.$prefix}-pict__src" title="vimeo-player" src="https://player.vimeo.com/video/76979871" width="640" height="360" frameborder="0" allowfullscreen  loading="auto"></iframe>
 </figure>
 
-#{settings.$prefix}-pict--aspect-ratio-none - not set (**default**)
-#{settings.$prefix}-pict--aspect-ratio-1-1 - enable 1:1
-#{settings.$prefix}-pict--aspect-ratio-4-3 - enable 4:3
-#{settings.$prefix}-pict--aspect-ratio-16-9 - enable 16:9
+#{settings.$prefix}-pict--aspect-ratio-1-1 - To 1:1
+#{settings.$prefix}-pict--aspect-ratio-4-3 - To 4:3
+#{settings.$prefix}-pict--aspect-ratio-16-9 - To 16:9
 
 Style guide: #{settings.$prefix}-pict.aspect-ratio.builtin
 */
 .#{settings.$prefix}-pict--aspect-ratio {
-  &-none {
-    // has no settings
-  }
-
   &-1-1,
   &-4-3,
   &-16-9 {
-    max-width: 100%;
+    --max-width: 100%;
+    --src-width: 100%;
+    --src-height: auto;
+    --src-object-fit: contain;
 
-    > .#{settings.$prefix}-pict__src {
-      position: absolute;
-      top: 0;
-      left: 0;
-
-      display: block;
-
-      width: 100%;
-      height: 100%;
+    .#{settings.$prefix}-pict__src:where(
+        .#{settings.$prefix}-pict > .#{settings.$prefix}-pict__src
+      ) {
+      aspect-ratio: var(--src-aspect-ratio);
+      width: var(--src-width);
+      height: var(--src-height);
     }
   }
 
   &-1-1 {
-    @include mixin.box-apply-aspect-ratio($width: 1, $height: 1);
+    --src-aspect-ratio: 1/1;
   }
 
   &-4-3 {
-    @include mixin.box-apply-aspect-ratio($width: 4, $height: 3);
+    --src-aspect-ratio: 4/3;
   }
 
   &-16-9 {
-    @include mixin.box-apply-aspect-ratio($width: 16, $height: 9);
+    --src-aspect-ratio: 16/9;
   }
 }

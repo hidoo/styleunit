@@ -1,10 +1,11 @@
+@use "sass:meta";
 @use "../lib/mixin";
 @use "../settings";
 
 /*
-font-family
+Font family
 
-utilities that tweek of font-family
+The font-family module.
 
 Weight: -88
 
@@ -12,31 +13,42 @@ Style guide: #{settings.$util-prefix}.font-family
 */
 
 /*
-modifiers: font-family
+Modifiers
 
-builtin modifiers of font-family
+The font-family modifiers .
 
 Weight: -100
 
-Markup: <!-- laten -->
-<p class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, <b class="#{settings.$prefix}-text  #{settings.$prefix}-text--inline-true  #{settings.$prefix}-text--weight-bold">consectetur adipiscing elit</b>, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-<!-- japanese -->
+Markup: <p class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, <b class="#{settings.$prefix}-text  #{settings.$prefix}-text--inline-true  #{settings.$prefix}-text--weight-bold">consectetur adipiscing elit</b>, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 <p class="#{settings.$prefix}-text  {{modifier_class}}">あのイーハトーヴォのすきとおった風、<b class="#{settings.$prefix}-text  #{settings.$prefix}-text--inline-true  #{settings.$prefix}-text--weight-bold">夏でも底に冷たさをもつ青いそら</b>、うつくしい森で飾られたモーリオ市、郊外のぎらぎらひかる草の波。</p>
 
-#{settings.$util-prefix}--font-family-default - default font family (**default**)
-#{settings.$util-prefix}--font-family-monospace - monospace font family
+#{settings.$util-prefix}--font-family-default - Default.
+#{settings.$util-prefix}--font-family-monospace - Monospace.
+#{settings.$util-prefix}--font-family-monospace-if-mobile - Monospace font family if mobile viewport
+#{settings.$util-prefix}--font-family-monospace-if-not-mobile - Monospace font family if not mobile viewport
 
 Style guide: #{settings.$util-prefix}.font-family.builtin
 */
 .#{settings.$util-prefix}--font-family {
-  &-default {
-    @include mixin.font-apply-family($value: "default", $important: true);
-  }
+  $presets: settings.$font-family-presets;
 
-  &-monospace {
-    @include mixin.font-apply-family($value: "monospace", $important: true);
+  @each $name, $font-family in $presets {
+    &-#{$name} {
+      --font-family: #{$font-family};
 
-    // not specify !important, because override as possible
-    @include mixin.font-apply-size($value: "medium", $monospace: true);
+      font-family: var(--font-family);
+    }
+
+    @each $bp, $query in settings.$breakpoints {
+      @if meta.type-of($query) == "string" {
+        &-#{$name}-#{$bp} {
+          @include mixin.media($query: $query) {
+            --font-family: #{$font-family};
+
+            font-family: var(--font-family);
+          }
+        }
+      }
+    }
   }
 }
