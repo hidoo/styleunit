@@ -1,5 +1,6 @@
 @use "sass:meta";
 @use "sass:list";
+@use "sass:selector";
 @use "../lib/function";
 @use "../lib/mixin";
 @use "../settings";
@@ -48,8 +49,8 @@ Markup: <div class="height-example {{modifier_class}}"></div>
 #{settings.$util-prefix}--height-auto - auto height
 #{settings.$util-prefix}--height-min-none - None min height.
 #{settings.$util-prefix}--height-max-none - None max height.
-#{settings.$util-prefix}--height-0-if-mobile - 0px height if mobile viewport.
-#{settings.$util-prefix}--height-0-if-not-mobile - 0px height if not mobile viewport.
+sm:#{settings.$util-prefix}--height-0 - 0px height if viewport is `"sm"`.
+.not-sm:#{settings.$util-prefix}--height-0 - 0px height if viewport is not `"sm"`.
 
 Style guide: #{settings.$util-prefix}.height.builtin
 */
@@ -87,11 +88,19 @@ Style guide: #{settings.$util-prefix}.height.builtin
 
       @each $bp, $query in settings.$breakpoints {
         @if meta.type-of($query) == "string" {
-          &-#{$pfx}#{$name}-#{$bp} {
-            @include mixin.media($query: $query) {
-              --#{$pfx}height: #{$height};
+          $selector: selector.replace(
+            #{&},
+            #{&},
+            ".#{$bp}\\:#{settings.$util-prefix}--height"
+          );
 
-              #{$pfx}height: var(--#{$pfx}height);
+          @at-root {
+            #{$selector}-#{$pfx}#{$name} {
+              @include mixin.media($query: $query) {
+                --#{$pfx}height: #{$height};
+
+                #{$pfx}height: var(--#{$pfx}height);
+              }
             }
           }
         }

@@ -150,7 +150,7 @@ describe('@mixin size-define-by-direction-group($type, $values, $breakpoints)', 
           [
             '$type: "margin"',
             '$values: (5px, -5em)',
-            '$breakpoints: ("if-mobile": ("until": "mobile"))'
+            '$breakpoints: ("if-mobile": ("until": 667px))'
           ]
         ],
         expected: [
@@ -173,7 +173,7 @@ describe('@mixin size-define-by-direction-group($type, $values, $breakpoints)', 
           [
             '$type: "padding"',
             '$values: (10rem,)',
-            '$breakpoints: ("if-mobile": ("until": "mobile"))'
+            '$breakpoints: ("if-mobile": ("until": 667px))'
           ]
         ],
         expected: [
@@ -190,7 +190,7 @@ describe('@mixin size-define-by-direction-group($type, $values, $breakpoints)', 
           [
             '$type: "position"',
             '$values: (5px, -5em)',
-            '$breakpoints: ("if-mobile": ("until": "mobile"))'
+            '$breakpoints: ("if-mobile": ("until": 667px))'
           ]
         ],
         expected: [
@@ -213,7 +213,7 @@ describe('@mixin size-define-by-direction-group($type, $values, $breakpoints)', 
           [
             '$type: "border"',
             '$values: (("name": "example", "size": 2px, "style": dashed, "color": #ccc),)',
-            '$breakpoints: ("if-mobile": ("until": "mobile"))'
+            '$breakpoints: ("if-mobile": ("until": 667px))'
           ]
         ],
         expected: [

@@ -1,5 +1,6 @@
 @use "sass:map";
 @use "sass:meta";
+@use "sass:selector";
 @use "../lib/mixin";
 @use "../settings";
 
@@ -38,8 +39,8 @@ Markup: <p class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolo
 #{settings.$util-prefix}--font-weight-bold - Bold font weight.
 #{settings.$util-prefix}--font-weight-extra-bold - Extra bold font weight.
 #{settings.$util-prefix}--font-weight-black - Black font weight.
-#{settings.$util-prefix}--font-weight-black-if-mobile - Black font weight if mobile viewport
-#{settings.$util-prefix}--font-weight-black-if-not-mobile - Black font weight if not mobile viewport
+sm:#{settings.$util-prefix}--font-weight-black - Black font weight if viewport is `"sm"`.
+not-sm:#{settings.$util-prefix}--font-weight-black - Black font weight if viewport is not `"sm"`.
 
 Style guide: #{settings.$util-prefix}.font-weight.builtin
 */
@@ -55,11 +56,19 @@ Style guide: #{settings.$util-prefix}.font-weight.builtin
 
     @each $bp, $query in settings.$breakpoints {
       @if meta.type-of($query) == "string" {
-        &-#{$name}-#{$bp} {
-          @include mixin.media($query: $query) {
-            --font-weight: var(--#{$_pkg}-font-weight-#{$name});
+        $selector: selector.replace(
+          #{&},
+          #{&},
+          ".#{$bp}\\:#{settings.$util-prefix}--font-weight"
+        );
 
-            font-weight: var(--font-weight);
+        @at-root {
+          #{$selector}-#{$name} {
+            @include mixin.media($query: $query) {
+              --font-weight: var(--#{$_pkg}-font-weight-#{$name});
+
+              font-weight: var(--font-weight);
+            }
           }
         }
       }

@@ -1,6 +1,7 @@
 @use "sass:math";
 @use "sass:meta";
 @use "sass:list";
+@use "sass:selector";
 @use "../lib/function";
 @use "../lib/mixin";
 @use "../settings";
@@ -76,8 +77,8 @@ Markup: <div class="z-index-example-wrapper">
 #{settings.$util-prefix}--z-index-0 - 0 z-index
 #{settings.$util-prefix}--z-index-50 - 50 z-index
 #{settings.$util-prefix}--z-index-normal - Normal z-index
-#{settings.$util-prefix}--z-index-0-if-mobile - 0px z-index if mobile viewport.
-#{settings.$util-prefix}--z-index-0-if-not-mobile - 0px z-index if not mobile viewport.
+sm:#{settings.$util-prefix}--z-index-0 - 0px z-index if viewport is `"sm"`.
+not-sm:#{settings.$util-prefix}--z-index-0 - 0px z-index if viewport is not `"sm"`.
 
 Style guide: #{settings.$util-prefix}.z-index.builtin
 */
@@ -110,11 +111,19 @@ Style guide: #{settings.$util-prefix}.z-index.builtin
 
     @each $bp, $query in settings.$breakpoints {
       @if meta.type-of($query) == "string" {
-        &-#{$name}-#{$bp} {
-          @include mixin.media($query: $query) {
-            --z-index: #{$z-index};
+        $selector: selector.replace(
+          #{&},
+          #{&},
+          ".#{$bp}\\:#{settings.$util-prefix}--z-index"
+        );
 
-            z-index: var(--z-index);
+        @at-root {
+          #{$selector}-#{$name} {
+            @include mixin.media($query: $query) {
+              --z-index: #{$z-index};
+
+              z-index: var(--z-index);
+            }
           }
         }
       }

@@ -660,12 +660,12 @@ Default breakpoints.
 
 #### Properties
 
-| Name            | Type                                                             | Description                               | Default                                |
-| :-------------- | :--------------------------------------------------------------- | :---------------------------------------- | :------------------------------------- |
-| `desktop`       | **[Number](https://sass-lang.com/documentation/values/numbers)** | Breakpoint width for desktop.             | `1024px`                               |
-| `mobile`        | **[Number](https://sass-lang.com/documentation/values/numbers)** | Breakpoint width for mobile.              | `667px`                                |
-| `if-mobile`     | **[String](https://sass-lang.com/documentation/values/strings)** | Breakpoint name when mobile viewport.     | `"only screen and (width < $mobile)"`  |
-| `if-not-mobile` | **[String](https://sass-lang.com/documentation/values/strings)** | Breakpoint name when not mobile viewport. | `"only screen and ($mobile <= width)"` |
+| Name      | Type                                                             | Description                               | Default                                |
+| :-------- | :--------------------------------------------------------------- | :---------------------------------------- | :------------------------------------- |
+| `desktop` | **[Number](https://sass-lang.com/documentation/values/numbers)** | Breakpoint width for desktop.             | `1024px`                               |
+| `mobile`  | **[Number](https://sass-lang.com/documentation/values/numbers)** | Breakpoint width for mobile.              | `667px`                                |
+| `sm`      | **[String](https://sass-lang.com/documentation/values/strings)** | Breakpoint name when mobile viewport.     | `"only screen and (width < $mobile)"`  |
+| `not-sm`  | **[String](https://sass-lang.com/documentation/values/strings)** | Breakpoint name when not mobile viewport. | `"only screen and ($mobile <= width)"` |
 
 <a id="default-settings-variable-line-height"></a>
 
@@ -3164,16 +3164,16 @@ Define spritesheet
 
 #### Parameters
 
-| Name                           | Type                                                               | Description                                               | Default           |
-| :----------------------------- | :----------------------------------------------------------------- | :-------------------------------------------------------- | :---------------- |
-| `$type`                        | **[String](https://sass-lang.com/documentation/values/strings)**   | type of spritesheet                                       | -                 |
-| `$name`                        | **[String](https://sass-lang.com/documentation/values/strings)**   | name of spritesheet item                                  | -                 |
-| `$options`                     | **[Map](https://sass-lang.com/documentation/values/maps)**         | options                                                   | `()`              |
-| `$options.use2x`               | **[Boolean](https://sass-lang.com/documentation/values/booleans)** | use 2x image or (one of `true`, `false` or `"if-mobile"`) | `false`           |
-| `$options.as-mask`             | **[Boolean](https://sass-lang.com/documentation/values/booleans)** | use as mask image or not                                  | `false`           |
-| `$options.responsive`          | **[Boolean](https://sass-lang.com/documentation/values/booleans)** | responsive or not                                         | `false`           |
-| `$options.toggle`              | **[Boolean](https://sass-lang.com/documentation/values/booleans)** | toggle or not                                             | `false`           |
-| `$options.capturing-selectors` | **[List](https://sass-lang.com/documentation/values/lists)**       | capturing parent selectors                                | `("a", "button")` |
+| Name                           | Type                                                               | Description                                                 | Default           |
+| :----------------------------- | :----------------------------------------------------------------- | :---------------------------------------------------------- | :---------------- |
+| `$type`                        | **[String](https://sass-lang.com/documentation/values/strings)**   | type of spritesheet                                         | -                 |
+| `$name`                        | **[String](https://sass-lang.com/documentation/values/strings)**   | name of spritesheet item                                    | -                 |
+| `$options`                     | **[Map](https://sass-lang.com/documentation/values/maps)**         | options                                                     | `()`              |
+| `$options.use2x`               | **[Boolean](https://sass-lang.com/documentation/values/booleans)** | use 2x image or (one of `true`, `false` or breakpoint name) | `false`           |
+| `$options.as-mask`             | **[Boolean](https://sass-lang.com/documentation/values/booleans)** | use as mask image or not                                    | `false`           |
+| `$options.responsive`          | **[Boolean](https://sass-lang.com/documentation/values/booleans)** | responsive or not                                           | `false`           |
+| `$options.toggle`              | **[Boolean](https://sass-lang.com/documentation/values/booleans)** | toggle or not                                               | `false`           |
+| `$options.capturing-selectors` | **[List](https://sass-lang.com/documentation/values/lists)**       | capturing parent selectors                                  | `("a", "button")` |
 
 #### Examples
 
@@ -3242,16 +3242,16 @@ use spritesheet rule
 
 #### Parameters
 
-| Name                           | Type                                                               | Description                                               | Default           |
-| :----------------------------- | :----------------------------------------------------------------- | :-------------------------------------------------------- | :---------------- |
-| `$type`                        | **[String](https://sass-lang.com/documentation/values/strings)**   | type of spritesheet                                       | -                 |
-| `$name`                        | **[String](https://sass-lang.com/documentation/values/strings)**   | name of spritesheet item                                  | -                 |
-| `$options`                     | **[Map](https://sass-lang.com/documentation/values/maps)**         | options                                                   | `()`              |
-| `$options.use2x`               | **[Boolean](https://sass-lang.com/documentation/values/booleans)** | use 2x image or (one of `true`, `false` or `"if-mobile"`) | `false`           |
-| `$options.as-mask`             | **[Boolean](https://sass-lang.com/documentation/values/booleans)** | use as mask image or not                                  | `false`           |
-| `$options.responsive`          | **[Boolean](https://sass-lang.com/documentation/values/booleans)** | responsive or not                                         | `false`           |
-| `$options.toggle`              | **[Boolean](https://sass-lang.com/documentation/values/booleans)** | toggle or not                                             | `false`           |
-| `$options.capturing-selectors` | **[List](https://sass-lang.com/documentation/values/lists)**       | capturing parent selectors                                | `("a", "button")` |
+| Name                           | Type                                                               | Description                                                 | Default           |
+| :----------------------------- | :----------------------------------------------------------------- | :---------------------------------------------------------- | :---------------- |
+| `$type`                        | **[String](https://sass-lang.com/documentation/values/strings)**   | type of spritesheet                                         | -                 |
+| `$name`                        | **[String](https://sass-lang.com/documentation/values/strings)**   | name of spritesheet item                                    | -                 |
+| `$options`                     | **[Map](https://sass-lang.com/documentation/values/maps)**         | options                                                     | `()`              |
+| `$options.use2x`               | **[Boolean](https://sass-lang.com/documentation/values/booleans)** | use 2x image or (one of `true`, `false` or breakpoint name) | `false`           |
+| `$options.as-mask`             | **[Boolean](https://sass-lang.com/documentation/values/booleans)** | use as mask image or not                                    | `false`           |
+| `$options.responsive`          | **[Boolean](https://sass-lang.com/documentation/values/booleans)** | responsive or not                                           | `false`           |
+| `$options.toggle`              | **[Boolean](https://sass-lang.com/documentation/values/booleans)** | toggle or not                                               | `false`           |
+| `$options.capturing-selectors` | **[List](https://sass-lang.com/documentation/values/lists)**       | capturing parent selectors                                  | `("a", "button")` |
 
 #### Examples
 

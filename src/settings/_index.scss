@@ -41,16 +41,16 @@ $prefix: "unit" !default;
 /// @type Map
 /// @prop {Number} desktop [1024px] - Breakpoint width for desktop.
 /// @prop {Number} mobile [667px] - Breakpoint width for mobile.
-/// @prop {String} if-mobile ["only screen and (width < $mobile)"] - Breakpoint name when mobile viewport.
-/// @prop {String} if-not-mobile ["only screen and ($mobile <= width)"] - Breakpoint name when not mobile viewport.
+/// @prop {String} sm ["only screen and (width < $mobile)"] - Breakpoint name when mobile viewport.
+/// @prop {String} not-sm ["only screen and ($mobile <= width)"] - Breakpoint name when not mobile viewport.
 ///
 $breakpoints: (
   "desktop": 1024px,
   "mobile": 667px,
 
   // queries
-  "if-mobile": "only screen and (width < $mobile)",
-  "if-not-mobile": "only screen and ($mobile <= width)"
+  "sm": "only screen and (width < $mobile)",
+  "not-sm": "only screen and ($mobile <= width)"
 ) !default;
 
 /// Default line-height

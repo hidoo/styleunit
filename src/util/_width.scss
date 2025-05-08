@@ -1,5 +1,6 @@
 @use "sass:meta";
 @use "sass:list";
+@use "sass:selector";
 @use "../lib/function";
 @use "../lib/mixin";
 @use "../settings";
@@ -48,8 +49,8 @@ Markup: <div class="width-example {{modifier_class}}"></div>
 #{settings.$util-prefix}--width-auto - Auto width.
 #{settings.$util-prefix}--width-min-none - None min width.
 #{settings.$util-prefix}--width-max-none - None max width.
-#{settings.$util-prefix}--width-0-if-mobile - 0px width if mobile viewport.
-#{settings.$util-prefix}--width-0-if-not-mobile - 0px width if not mobile viewport.
+sm:#{settings.$util-prefix}--width-0 - 0px width if viewport is `"sm"`.
+.not-sm:#{settings.$util-prefix}--width-0 - 0px width if viewport is not `"sm"`.
 
 Style guide: #{settings.$util-prefix}.width.builtin
 */
@@ -87,11 +88,19 @@ Style guide: #{settings.$util-prefix}.width.builtin
 
       @each $bp, $query in settings.$breakpoints {
         @if meta.type-of($query) == "string" {
-          &-#{$pfx}#{$name}-#{$bp} {
-            @include mixin.media($query: $query) {
-              --#{$pfx}width: #{$width};
+          $selector: selector.replace(
+            #{&},
+            #{&},
+            ".#{$bp}\\:#{settings.$util-prefix}--width"
+          );
 
-              #{$pfx}width: var(--#{$pfx}width);
+          @at-root {
+            #{$selector}-#{$name} {
+              @include mixin.media($query: $query) {
+                --#{$pfx}width: #{$width};
+
+                #{$pfx}width: var(--#{$pfx}width);
+              }
             }
           }
         }

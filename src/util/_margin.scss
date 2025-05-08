@@ -1,6 +1,7 @@
 @use "sass:math";
 @use "sass:meta";
 @use "sass:list";
+@use "sass:selector";
 @use "../lib/function";
 @use "../lib/mixin";
 @use "../settings";
@@ -62,8 +63,8 @@ Markup: <div class="margin-example {{modifier_class}}"></div>
 #{settings.$util-prefix}--margin-inline-_50 - Inline -50px margin
 #{settings.$util-prefix}--margin-inline-50 - Inline 50px margin
 #{settings.$util-prefix}--margin-inline-normal - Inline normal margin
-#{settings.$util-prefix}--margin-50-if-mobile - All 50px margin if mobile viewport.
-#{settings.$util-prefix}--margin-50-if-not-mobile - All 50px margin if not mobile viewport.
+sm:#{settings.$util-prefix}--margin-50 - All 50px margin if viewport is `"sm"`.
+not-sm:#{settings.$util-prefix}--margin-50 - All 50px margin if viewport is not `"sm"`.
 
 Style guide: #{settings.$util-prefix}.margin.builtin
 */
@@ -100,11 +101,20 @@ Style guide: #{settings.$util-prefix}.margin.builtin
 
       @each $bp, $query in settings.$breakpoints {
         @if meta.type-of($query) == "string" {
-          &#{$direction}-#{$name}-#{$bp} {
-            @include mixin.media($query: $query) {
-              --margin#{$direction}: #{$margin};
+          $selector: selector.replace(
+            #{&},
+            #{&},
+            ".#{$bp}\\:#{settings.$util-prefix}--margin"
+          );
 
-              margin#{$direction}: var(--margin#{$direction});
+          @at-root {
+            #{$selector}-#{$name} {
+              // stylelint-disable-next-line max-nesting-depth
+              @include mixin.media($query: $query) {
+                --margin#{$direction}: #{$margin};
+
+                margin#{$direction}: var(--margin#{$direction});
+              }
             }
           }
         }

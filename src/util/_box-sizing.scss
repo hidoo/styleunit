@@ -1,4 +1,5 @@
 @use "sass:meta";
+@use "sass:selector";
 @use "../lib/mixin";
 @use "../settings";
 
@@ -32,9 +33,9 @@ Markup: <div class="box-sizing-example {{modifier_class}}"></div>
 </style>
 
 #{settings.$util-prefix}--box-sizing-border-box - Set border box
-#{settings.$util-prefix}--box-sizing-border-box-if-mobile - Set border box if mobile viewport.
+sm:#{settings.$util-prefix}--box-sizing-border-box - Set border box if viewport is `"sm"`.
 #{settings.$util-prefix}--box-sizing-content-box - Set content box
-#{settings.$util-prefix}--box-sizing-content-box-if-mobile - Set content box if mobile viewport.
+sm:#{settings.$util-prefix}--box-sizing-content-box - Set content box if viewport is `"sm"`.
 
 Style guide: #{settings.$util-prefix}.box-sizing.builtin
 */
@@ -48,11 +49,19 @@ Style guide: #{settings.$util-prefix}.box-sizing.builtin
 
     @each $bp, $query in settings.$breakpoints {
       @if meta.type-of($query) == "string" {
-        &-#{$value}-#{$bp} {
-          @include mixin.media($query: $query) {
-            --box-sizing: #{$value};
+        $selector: selector.replace(
+          #{&},
+          #{&},
+          ".#{$bp}\\:#{settings.$util-prefix}--box-sizing"
+        );
 
-            box-sizing: var(--box-sizing);
+        @at-root {
+          #{$selector}-#{$value} {
+            @include mixin.media($query: $query) {
+              --box-sizing: #{$value};
+
+              box-sizing: var(--box-sizing);
+            }
           }
         }
       }

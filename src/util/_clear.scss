@@ -1,4 +1,5 @@
 @use "sass:meta";
+@use "sass:selector";
 @use "../lib/mixin";
 @use "../settings";
 
@@ -35,8 +36,8 @@ Markup: <div class="clear-example  #{settings.$util-prefix}--float-left"></div>
 #{settings.$util-prefix}--clear-left - Clear left side floating
 #{settings.$util-prefix}--clear-right - Clear right side floating
 #{settings.$util-prefix}--clear-both - Clear both floating
-#{settings.$util-prefix}--clear-left-if-mobile - Clear left side floating if mobile viewport
-#{settings.$util-prefix}--clear-left-if-not-mobile - Clear left side floating if not mobile viewport
+sm:#{settings.$util-prefix}--clear-left - Clear left side floating if viewport is `"sm"`.
+not-sm:#{settings.$util-prefix}--clear-left - Clear left side floating if viewport is not `"sm"`.
 
 Style guide: #{settings.$util-prefix}.clear.builtin
 */
@@ -52,11 +53,19 @@ Style guide: #{settings.$util-prefix}.clear.builtin
 
     @each $bp, $query in settings.$breakpoints {
       @if meta.type-of($query) == "string" {
-        &-#{$clear}-#{$bp} {
-          @include mixin.media($query: $query) {
-            --clear: #{$clear};
+        $selector: selector.replace(
+          #{&},
+          #{&},
+          ".#{$bp}\\:#{settings.$util-prefix}--clear"
+        );
 
-            clear: var(--clear);
+        @at-root {
+          #{$selector}-#{$clear} {
+            @include mixin.media($query: $query) {
+              --clear: #{$clear};
+
+              clear: var(--clear);
+            }
           }
         }
       }

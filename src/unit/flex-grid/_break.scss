@@ -1,4 +1,5 @@
 @use "sass:meta";
+@use "sass:selector";
 @use "../../lib/mixin";
 @use "../../settings";
 
@@ -38,17 +39,28 @@ Markup: <div class="#{settings.$prefix}-flex-grid  {{modifier_class}}">
   </div>
 </div>
 
-#{settings.$prefix}-flex-grid--break-if-mobile - Break column if mobile viewport.
-#{settings.$prefix}-flex-grid--break-if-not-mobile - Break column if not mobile viewport.
+#{settings.$prefix}-flex-grid--break - Break column.
+sm:#{settings.$prefix}-flex-grid--break - Break column if viewport is `"sm"`.
+not-sm:#{settings.$prefix}-flex-grid--break - Break column if viewport is not `"sm"`.
 
 Style guide: #{settings.$prefix}-flex-grid.break.builtin
 */
 .#{settings.$prefix}-flex-grid--break {
-  @each $name, $query in settings.$breakpoints {
+  --flex-direction: column;
+
+  @each $bp, $query in settings.$breakpoints {
     @if meta.type-of($query) == "string" {
-      &-#{$name} {
-        @include mixin.media($query: $query) {
-          --flex-direction: column;
+      $selector: selector.replace(
+        #{&},
+        #{&},
+        ".#{$bp}\\:#{settings.$prefix}-flex-grid--break"
+      );
+
+      @at-root {
+        #{$selector} {
+          @include mixin.media($query: $query) {
+            --flex-direction: column;
+          }
         }
       }
     }

@@ -1,6 +1,7 @@
 @use "sass:list";
 @use "sass:map";
 @use "sass:meta";
+@use "sass:selector";
 @use "../lib/mixin";
 @use "../settings";
 
@@ -41,8 +42,8 @@ Markup: <div class="border-example {{modifier_class}}"></div>
 #{settings.$util-prefix}--border-left-normal - Left normal border
 #{settings.$util-prefix}--border-block-normal - Block normal border
 #{settings.$util-prefix}--border-inline-normal - Inline normal border
-#{settings.$util-prefix}--border-normal-if-mobile - All normal border if mobile viewport.
-#{settings.$util-prefix}--border-normal-if-not-mobile - All normal border if not mobile viewport.
+sm:#{settings.$util-prefix}--border-normal - All normal border if viewport is `"sm"`.
+not-sm:#{settings.$util-prefix}--border-normal - All normal border if viewport is not `"sm"`.
 
 Style guide: #{settings.$util-prefix}.border.builtin
 */
@@ -71,11 +72,20 @@ Style guide: #{settings.$util-prefix}.border.builtin
 
       @each $bp, $query in settings.$breakpoints {
         @if meta.type-of($query) == "string" {
-          &#{$direction}-#{$name}-#{$bp} {
-            @include mixin.media($query: $query) {
-              --border#{$direction}: #{$border};
+          $selector: selector.replace(
+            #{&},
+            #{&},
+            ".#{$bp}\\:#{settings.$util-prefix}--border"
+          );
 
-              border#{$direction}: var(--border#{$direction});
+          @at-root {
+            #{$selector}#{$direction}-#{$name} {
+              // stylelint-disable-next-line max-nesting-depth
+              @include mixin.media($query: $query) {
+                --border#{$direction}: #{$border};
+
+                border#{$direction}: var(--border#{$direction});
+              }
             }
           }
         }

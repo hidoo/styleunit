@@ -40,10 +40,10 @@ Markup: <!-- single -->
   Lorem ipsum dolor sit amet.
 </label>
 
-#{settings.$prefix}-toggle--radio-example-a - Radio button example-a (svg)
-#{settings.$prefix}-toggle--radio-example-b - Radio button example-b (svg, responsive)
-#{settings.$prefix}-toggle--radio-example-c - Radio button example-c (image, use2x)
-#{settings.$prefix}-toggle--radio-example-d - Radio button example-d (image, responsive, use2x - if mobile)
+#{settings.$prefix}-toggle--radio-example-a - Radio button example a (Type: `svg`)
+#{settings.$prefix}-toggle--radio-example-b - Radio button example b (Type: `svg`, Options: `responsive: true`
+#{settings.$prefix}-toggle--radio-example-c - Radio button example c (Type: `image`, Options: `use2x: true`)
+#{settings.$prefix}-toggle--radio-example-d - Radio button example d (Type: `image`, Options: `responsive: true, use2x: "sm"`)
 
 Style guide: #{settings.$prefix}-toggle.radio.additional
 */
@@ -84,7 +84,7 @@ Style guide: #{settings.$prefix}-toggle.radio.additional
         $options,
         (
           "responsive": true,
-          "use2x": "if-mobile"
+          "use2x": "sm"
         )
       )
   );

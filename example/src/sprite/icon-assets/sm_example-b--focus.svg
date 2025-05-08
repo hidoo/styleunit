@@ -1,4 +1,4 @@
-<svg id="example-b--current--if-mobile.svg" xmlns="http://www.w3.org/2000/svg" width="26" height="18" viewBox="0 0 26 18">
+<svg id="sm:example-b--focus.svg" xmlns="http://www.w3.org/2000/svg" width="26" height="18" viewBox="0 0 26 18">
   <defs>
     <style>
       .cls-1 {
@@ -6,7 +6,7 @@
       }
 
       .cls-2 {
-        fill: #fff;
+        fill: #444;
         fill-rule: evenodd;
       }
     </style>

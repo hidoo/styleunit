@@ -34,10 +34,10 @@ Markup: <!-- single -->
   <span class="#{settings.$prefix}-icon  {{modifier_class}}"></span>
 </button>
 
-#{settings.$prefix}-icon--type-example-a - Example a type (svg)
-#{settings.$prefix}-icon--type-example-b - Example b type (svg, responsive)
-#{settings.$prefix}-icon--type-example-c - Example c type (image, use2x)
-#{settings.$prefix}-icon--type-example-d - Example d type (image, responsive, use2x - if mobile)
+#{settings.$prefix}-icon--type-example-a - Example a type (Type: `svg`)
+#{settings.$prefix}-icon--type-example-b - Example b type (Type: `svg`, Options: `responsive: true`)
+#{settings.$prefix}-icon--type-example-c - Example c type (Type: `image`, Options: `use2x: true`)
+#{settings.$prefix}-icon--type-example-d - Example d type (Type: `image`, Options: `responsive: true, use2x: "sm"`)
 
 Style guide: #{settings.$prefix}-icon.type.additional
 */
@@ -81,7 +81,7 @@ Style guide: #{settings.$prefix}-icon.type.additional
         $options,
         (
           "responsive": true,
-          "use2x": "if-mobile"
+          "use2x": "sm"
         )
       )
   );

@@ -39,15 +39,6 @@ $sprites: (
         "offset-y": -72px,
         "image": "../../images/sprites/text-image.png"
       ),
-      "example-d--current--if-mobile": (
-        "width": 122px,
-        "height": 18px,
-        "total-width": 286px,
-        "total-height": 154px,
-        "offset-x": 0px,
-        "offset-y": -96px,
-        "image": "../../images/sprites/text-image.png"
-      ),
       "example-d--current": (
         "width": 82px,
         "height": 12px,
@@ -55,15 +46,6 @@ $sprites: (
         "total-height": 154px,
         "offset-x": -164px,
         "offset-y": -20px,
-        "image": "../../images/sprites/text-image.png"
-      ),
-      "example-d--disabled--if-mobile": (
-        "width": 122px,
-        "height": 18px,
-        "total-width": 286px,
-        "total-height": 154px,
-        "offset-x": 0px,
-        "offset-y": -116px,
         "image": "../../images/sprites/text-image.png"
       ),
       "example-d--disabled": (
@@ -75,15 +57,6 @@ $sprites: (
         "offset-y": -34px,
         "image": "../../images/sprites/text-image.png"
       ),
-      "example-d--focus--if-mobile": (
-        "width": 122px,
-        "height": 18px,
-        "total-width": 286px,
-        "total-height": 154px,
-        "offset-x": 0px,
-        "offset-y": -136px,
-        "image": "../../images/sprites/text-image.png"
-      ),
       "example-d--focus": (
         "width": 82px,
         "height": 12px,
@@ -91,15 +64,6 @@ $sprites: (
         "total-height": 154px,
         "offset-x": -164px,
         "offset-y": -48px,
-        "image": "../../images/sprites/text-image.png"
-      ),
-      "example-d--if-mobile": (
-        "width": 122px,
-        "height": 18px,
-        "total-width": 286px,
-        "total-height": 154px,
-        "offset-x": -164px,
-        "offset-y": 0px,
         "image": "../../images/sprites/text-image.png"
       ),
       "example-d": (
@@ -111,6 +75,42 @@ $sprites: (
         "offset-y": -62px,
         "image": "../../images/sprites/text-image.png"
       ),
+      "sm_example-d--current": (
+        "width": 122px,
+        "height": 18px,
+        "total-width": 286px,
+        "total-height": 154px,
+        "offset-x": 0px,
+        "offset-y": -96px,
+        "image": "../../images/sprites/text-image.png"
+      ),
+      "sm_example-d--disabled": (
+        "width": 122px,
+        "height": 18px,
+        "total-width": 286px,
+        "total-height": 154px,
+        "offset-x": 0px,
+        "offset-y": -116px,
+        "image": "../../images/sprites/text-image.png"
+      ),
+      "sm_example-d--focus": (
+        "width": 122px,
+        "height": 18px,
+        "total-width": 286px,
+        "total-height": 154px,
+        "offset-x": 0px,
+        "offset-y": -136px,
+        "image": "../../images/sprites/text-image.png"
+      ),
+      "sm_example-d": (
+        "width": 122px,
+        "height": 18px,
+        "total-width": 286px,
+        "total-height": 154px,
+        "offset-x": -164px,
+        "offset-y": 0px,
+        "image": "../../images/sprites/text-image.png"
+      )
     )
   )
 ) !default;

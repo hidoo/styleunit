@@ -47,8 +47,8 @@
         );
 
         @each $bp, $query in $breakpoints {
-          @if map.has-key($items, "#{$name}--#{$bp}") {
-            $up-in-bp: map.get($items, "#{$name}--#{$bp}");
+          @if map.has-key($items, "#{$bp}_#{$name}") {
+            $up-in-bp: map.get($items, "#{$bp}_#{$name}");
 
             @include mixin.media($query: $query) {
               @include _mixin.set-properties(
@@ -88,9 +88,9 @@
         }
 
         @each $bp, $query in settings.$breakpoints {
-          @if map.has-key($items, "#{$name}--focus--#{$bp}") {
+          @if map.has-key($items, "#{$bp}_#{$name}--focus") {
             @include mixin.media($query: $query) {
-              $focus-in-bp: map.get($items, "#{$name}--focus--#{$bp}");
+              $focus-in-bp: map.get($items, "#{$bp}_#{$name}--focus");
 
               @include mixin.has-focus() {
                 &::before {
@@ -138,9 +138,9 @@
         }
 
         @each $bp, $query in settings.$breakpoints {
-          @if map.has-key($items, "#{$name}--disabled--#{$bp}") {
+          @if map.has-key($items, "#{$bp}_#{$name}--disabled") {
             @include mixin.media($query: $query) {
-              $disabled-in-bp: map.get($items, "#{$name}--disabled--#{$bp}");
+              $disabled-in-bp: map.get($items, "#{$bp}_#{$name}--disabled");
 
               @include mixin.has-disabled() {
                 &::before {
@@ -186,9 +186,9 @@
         }
 
         @each $bp, $query in settings.$breakpoints {
-          @if map.has-key($items, "#{$name}--selected--#{$bp}") {
+          @if map.has-key($items, "#{$bp}_#{$name}--selected") {
             @include mixin.media($query: $query) {
-              $selected-in-bp: map.get($items, "#{$name}--selected--#{$bp}");
+              $selected-in-bp: map.get($items, "#{$bp}_#{$name}--selected");
 
               @include mixin.has-selected() {
                 &::before {
@@ -235,11 +235,11 @@
           }
 
           @each $bp, $query in settings.$breakpoints {
-            @if map.has-key($items, "#{$name}--selected--focus--#{$bp}") {
+            @if map.has-key($items, "#{$bp}_#{$name}--selected--focus") {
               @include mixin.media($query: $query) {
                 $selected-focus-in-bp: map.get(
                   $items,
-                  "#{$name}--selected--focus--#{$bp}"
+                  "#{$bp}_#{$name}--selected--focus"
                 );
 
                 @include mixin.has-selected() {
@@ -296,11 +296,11 @@
           }
 
           @each $bp, $query in settings.$breakpoints {
-            @if map.has-key($items, "#{$name}--selected--disabled--#{$bp}") {
+            @if map.has-key($items, "#{$bp}_#{$name}--selected--disabled") {
               @include mixin.media($query: $query) {
                 $selected-disabled-in-bp: map.get(
                   $items,
-                  "#{$name}--selected--disabled--#{$bp}"
+                  "#{$bp}_#{$name}--selected--disabled"
                 );
 
                 @include mixin.has-selected() {

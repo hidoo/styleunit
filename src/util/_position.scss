@@ -1,6 +1,7 @@
 @use "sass:math";
 @use "sass:meta";
 @use "sass:list";
+@use "sass:selector";
 @use "../lib/function";
 @use "../lib/mixin";
 @use "../settings";
@@ -62,8 +63,8 @@ Markup: <div class="padding-example {{modifier_class}}"></div>
 #{settings.$util-prefix}--position-inline-_50 - Inline -50px position
 #{settings.$util-prefix}--position-inline-50 - Inline 50px position
 #{settings.$util-prefix}--position-inline-normal - Inline normal position
-#{settings.$util-prefix}--position-50-if-mobile - All 50px position if mobile viewport.
-#{settings.$util-prefix}--position-50-if-not-mobile - All 50px position if not mobile viewport.
+sm:#{settings.$util-prefix}--position-50 - All 50px position if viewport is `"sm"`.
+not-sm:#{settings.$util-prefix}--position-50 - All 50px position if viewport is not `"sm"`.
 
 Style guide: #{settings.$util-prefix}.position.builtin
 */
@@ -118,12 +119,21 @@ Style guide: #{settings.$util-prefix}.position.builtin
 
       @each $bp, $query in settings.$breakpoints {
         @if meta.type-of($query) == "string" {
-          &#{$direction}-#{$name}-#{$bp} {
-            @each $prop in $props {
-              @include mixin.media($query: $query) {
-                --#{$prop}: #{$position};
+          $selector: selector.replace(
+            #{&},
+            #{&},
+            ".#{$bp}\\:#{settings.$util-prefix}--position"
+          );
 
-                #{$prop}: var(--#{$prop});
+          @at-root {
+            #{$selector}-#{$name} {
+              @each $prop in $props {
+                // stylelint-disable-next-line max-nesting-depth
+                @include mixin.media($query: $query) {
+                  --#{$prop}: #{$position};
+
+                  #{$prop}: var(--#{$prop});
+                }
               }
             }
           }

@@ -1,4 +1,5 @@
 @use "sass:meta";
+@use "sass:selector";
 @use "../lib/mixin";
 @use "../settings";
 
@@ -35,8 +36,8 @@ Markup: <div class="float-example {{modifier_class}}"></div>
 #{settings.$util-prefix}--float-left - Float to left side
 #{settings.$util-prefix}--float-right - Float to right side
 #{settings.$util-prefix}--float-none - Disable floating
-#{settings.$util-prefix}--float-left-if-mobile - Float to left side if mobile viewport
-#{settings.$util-prefix}--float-left-if-not-mobile - Float to left side if not mobile viewport
+sm:#{settings.$util-prefix}--float-left - Float to left side if viewport is `"sm"`.
+not-sm:#{settings.$util-prefix}--float-left - Float to left side if viewport is not `"sm"`.
 
 Style guide: #{settings.$util-prefix}.float.builtin
 */
@@ -52,11 +53,19 @@ Style guide: #{settings.$util-prefix}.float.builtin
 
     @each $bp, $query in settings.$breakpoints {
       @if meta.type-of($query) == "string" {
-        &-#{$float}-#{$bp} {
-          @include mixin.media($query: $query) {
-            --float: #{$float};
+        $selector: selector.replace(
+          #{&},
+          #{&},
+          ".#{$bp}\\:#{settings.$util-prefix}--float"
+        );
 
-            float: var(--float);
+        @at-root {
+          #{$selector}-#{$float} {
+            @include mixin.media($query: $query) {
+              --float: #{$float};
+
+              float: var(--float);
+            }
           }
         }
       }

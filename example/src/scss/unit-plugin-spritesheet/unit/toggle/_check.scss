@@ -40,10 +40,10 @@ Markup: <!-- single -->
   Lorem ipsum dolor sit amet.
 </label>
 
-#{settings.$prefix}-toggle--check-example-a - Check box example a (svg)
-#{settings.$prefix}-toggle--check-example-b - Check box example b (svg, responsive)
-#{settings.$prefix}-toggle--check-example-c - Check box example c (image, use2x)
-#{settings.$prefix}-toggle--check-example-d - Check box example d (image, responsive, use2x - if mobile)
+#{settings.$prefix}-toggle--check-example-a - Check box example a (Type: `svg`)
+#{settings.$prefix}-toggle--check-example-b - Check box example b (Type: `svg`, Options: `responsive: true`
+#{settings.$prefix}-toggle--check-example-c - Check box example c (Type: `image`, Options: `use2x: true`)
+#{settings.$prefix}-toggle--check-example-d - Check box example d (Type: `image`, Options: `responsive: true, use2x: "sm"`)
 
 Style guide: #{settings.$prefix}-toggle.check.additional
 */
@@ -84,7 +84,7 @@ Style guide: #{settings.$prefix}-toggle.check.additional
         $options,
         (
           "responsive": true,
-          "use2x": "if-mobile"
+          "use2x": "sm"
         )
       )
   );

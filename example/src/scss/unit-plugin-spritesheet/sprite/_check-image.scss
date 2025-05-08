@@ -57,25 +57,7 @@ $sprites: (
         "offset-y": -42px,
         "image": "../../images/sprites/check-image.png"
       ),
-      "example-d--disabled--if-mobile": (
-        "width": 40px,
-        "height": 40px,
-        "total-width": 166px,
-        "total-height": 146px,
-        "offset-x": 0px,
-        "offset-y": -84px,
-        "image": "../../images/sprites/check-image.png"
-      ),
-      "example-d--focus--if-mobile": (
-        "width": 40px,
-        "height": 40px,
-        "total-width": 166px,
-        "total-height": 146px,
-        "offset-x": -42px,
-        "offset-y": -84px,
-        "image": "../../images/sprites/check-image.png"
-      ),
-      "example-d--focus": (
+      "example-d--disabled": (
         "width": 20px,
         "height": 20px,
         "total-width": 166px,
@@ -84,25 +66,7 @@ $sprites: (
         "offset-y": -126px,
         "image": "../../images/sprites/check-image.png"
       ),
-      "example-d--if-mobile": (
-        "width": 40px,
-        "height": 40px,
-        "total-width": 166px,
-        "total-height": 146px,
-        "offset-x": -84px,
-        "offset-y": -84px,
-        "image": "../../images/sprites/check-image.png"
-      ),
-      "example-d--selected--disabled--if-mobile": (
-        "width": 40px,
-        "height": 40px,
-        "total-width": 166px,
-        "total-height": 146px,
-        "offset-x": -126px,
-        "offset-y": 0px,
-        "image": "../../images/sprites/check-image.png"
-      ),
-      "example-d--selected--disabled": (
+      "example-d--focus": (
         "width": 20px,
         "height": 20px,
         "total-width": 166px,
@@ -111,16 +75,7 @@ $sprites: (
         "offset-y": -126px,
         "image": "../../images/sprites/check-image.png"
       ),
-      "example-d--selected--focus--if-mobile": (
-        "width": 40px,
-        "height": 40px,
-        "total-width": 166px,
-        "total-height": 146px,
-        "offset-x": -126px,
-        "offset-y": -42px,
-        "image": "../../images/sprites/check-image.png"
-      ),
-      "example-d--selected--focus": (
+      "example-d--selected--disabled": (
         "width": 20px,
         "height": 20px,
         "total-width": 166px,
@@ -129,16 +84,7 @@ $sprites: (
         "offset-y": -126px,
         "image": "../../images/sprites/check-image.png"
       ),
-      "example-d--selected--if-mobile": (
-        "width": 40px,
-        "height": 40px,
-        "total-width": 166px,
-        "total-height": 146px,
-        "offset-x": -126px,
-        "offset-y": -84px,
-        "image": "../../images/sprites/check-image.png"
-      ),
-      "example-d--selected": (
+      "example-d--selected--focus": (
         "width": 20px,
         "height": 20px,
         "total-width": 166px,
@@ -147,7 +93,7 @@ $sprites: (
         "offset-y": -126px,
         "image": "../../images/sprites/check-image.png"
       ),
-      "example-d": (
+      "example-d--selected": (
         "width": 20px,
         "height": 20px,
         "total-width": 166px,
@@ -156,6 +102,69 @@ $sprites: (
         "offset-y": -126px,
         "image": "../../images/sprites/check-image.png"
       ),
+      "example-d": (
+        "width": 20px,
+        "height": 20px,
+        "total-width": 166px,
+        "total-height": 146px,
+        "offset-x": -110px,
+        "offset-y": -126px,
+        "image": "../../images/sprites/check-image.png"
+      ),
+      "sm_example-d--disabled": (
+        "width": 40px,
+        "height": 40px,
+        "total-width": 166px,
+        "total-height": 146px,
+        "offset-x": 0px,
+        "offset-y": -84px,
+        "image": "../../images/sprites/check-image.png"
+      ),
+      "sm_example-d--focus": (
+        "width": 40px,
+        "height": 40px,
+        "total-width": 166px,
+        "total-height": 146px,
+        "offset-x": -42px,
+        "offset-y": -84px,
+        "image": "../../images/sprites/check-image.png"
+      ),
+      "sm_example-d--selected--disabled": (
+        "width": 40px,
+        "height": 40px,
+        "total-width": 166px,
+        "total-height": 146px,
+        "offset-x": -84px,
+        "offset-y": -84px,
+        "image": "../../images/sprites/check-image.png"
+      ),
+      "sm_example-d--selected--focus": (
+        "width": 40px,
+        "height": 40px,
+        "total-width": 166px,
+        "total-height": 146px,
+        "offset-x": -126px,
+        "offset-y": 0px,
+        "image": "../../images/sprites/check-image.png"
+      ),
+      "sm_example-d--selected": (
+        "width": 40px,
+        "height": 40px,
+        "total-width": 166px,
+        "total-height": 146px,
+        "offset-x": -126px,
+        "offset-y": -42px,
+        "image": "../../images/sprites/check-image.png"
+      ),
+      "sm_example-d": (
+        "width": 40px,
+        "height": 40px,
+        "total-width": 166px,
+        "total-height": 146px,
+        "offset-x": -126px,
+        "offset-y": -84px,
+        "image": "../../images/sprites/check-image.png"
+      )
     )
   )
 ) !default;

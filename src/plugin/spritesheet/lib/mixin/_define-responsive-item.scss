@@ -47,8 +47,8 @@
       );
 
       @each $bp, $query in $breakpoints {
-        @if map.has-key($items, "#{$name}--#{$bp}") {
-          $up-in-bp: map.get($items, "#{$name}--#{$bp}");
+        @if map.has-key($items, "#{$bp}_#{$name}") {
+          $up-in-bp: map.get($items, "#{$bp}_#{$name}");
 
           @include mixin.media($query: $query) {
             @include _mixin.set-properties(
@@ -85,9 +85,9 @@
         }
 
         @each $bp, $query in settings.$breakpoints {
-          @if map.has-key($items, "#{$name}--focus--#{$bp}") {
+          @if map.has-key($items, "#{$bp}_#{$name}--focus") {
             @include mixin.media($query: $query) {
-              $focus-in-bp: map.get($items, "#{$name}--focus--#{$bp}");
+              $focus-in-bp: map.get($items, "#{$bp}_#{$name}--focus");
 
               @include mixin.on-focus($on-args...) {
                 @include _mixin.set-properties(
@@ -129,9 +129,9 @@
         }
 
         @each $bp, $query in settings.$breakpoints {
-          @if map.has-key($items, "#{$name}--current--#{$bp}") {
+          @if map.has-key($items, "#{$bp}_#{$name}--current") {
             @include mixin.media($query: $query) {
-              $current-in-bp: map.get($items, "#{$name}--current--#{$bp}");
+              $current-in-bp: map.get($items, "#{$bp}_#{$name}--current");
 
               @include mixin.on-current($on-args...) {
                 @include _mixin.set-properties(
@@ -173,9 +173,9 @@
         }
 
         @each $bp, $query in settings.$breakpoints {
-          @if map.has-key($items, "#{$name}--disabled--#{$bp}") {
+          @if map.has-key($items, "#{$bp}_#{$name}--disabled") {
             @include mixin.media($query: $query) {
-              $disabled-in-bp: map.get($items, "#{$name}--disabled--#{$bp}");
+              $disabled-in-bp: map.get($items, "#{$bp}_#{$name}--disabled");
 
               @include mixin.on-disabled($on-args...) {
                 @include _mixin.set-properties(

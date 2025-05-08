@@ -118,7 +118,7 @@ describe('@mixin size-define($type, $values, $breakpoints)', () => {
           [
             '$type: "width"',
             '$values: (10rem,)',
-            '$breakpoints: ("if-mobile": ("until": "mobile"))'
+            '$breakpoints: ("if-mobile": ("until": 667px))'
           ]
         ],
         expected: [
@@ -135,7 +135,7 @@ describe('@mixin size-define($type, $values, $breakpoints)', () => {
           [
             '$type: "height"',
             '$values: (10px, 20px)',
-            '$breakpoints: ("if-mobile": ("until": "mobile"))'
+            '$breakpoints: ("if-mobile": ("until": 667px))'
           ]
         ],
         expected: [
@@ -158,7 +158,7 @@ describe('@mixin size-define($type, $values, $breakpoints)', () => {
           [
             '$type: "z-index"',
             '$values: (5, 10)',
-            '$breakpoints: ("if-mobile": ("until": "mobile"))'
+            '$breakpoints: ("if-mobile": ("until": 667px))'
           ]
         ],
         expected: [

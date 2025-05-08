@@ -1,4 +1,5 @@
 @use "sass:meta";
+@use "sass:selector";
 @use "../lib/mixin";
 @use "../settings";
 
@@ -39,8 +40,8 @@ Markup: <div class="valign-example-wrapper  {{modifier_class}}">
 #{settings.$util-prefix}--vertical-align-middle - Set middle
 #{settings.$util-prefix}--vertical-align-baseline - Set baseline
 #{settings.$util-prefix}--vertical-align-bottom - Set bottom
-#{settings.$util-prefix}--vertical-align-middle-if-mobile - Set middle if mobile viewport
-#{settings.$util-prefix}--vertical-align-middle-if-not-mobile - Set middle if not mobile viewport
+sm:#{settings.$util-prefix}--vertical-align-middle - Set middle if viewport is `"sm"`.
+not-sm:#{settings.$util-prefix}--vertical-align-middle - Set middle if viewport is not `"sm"`.
 
 Style guide: #{settings.$util-prefix}.vertical-align.builtin
 */
@@ -56,11 +57,19 @@ Style guide: #{settings.$util-prefix}.vertical-align.builtin
 
     @each $bp, $query in settings.$breakpoints {
       @if meta.type-of($query) == "string" {
-        &-#{$v-align}-#{$bp} {
-          @include mixin.media($query: $query) {
-            --vertical-align: #{$v-align};
+        $selector: selector.replace(
+          #{&},
+          #{&},
+          ".#{$bp}\\:#{settings.$util-prefix}--vertical-align"
+        );
 
-            vertical-align: var(--vertical-align);
+        @at-root {
+          #{$selector}-#{$v-align} {
+            @include mixin.media($query: $query) {
+              --vertical-align: #{$v-align};
+
+              vertical-align: var(--vertical-align);
+            }
           }
         }
       }

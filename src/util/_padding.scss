@@ -1,5 +1,6 @@
 @use "sass:meta";
 @use "sass:list";
+@use "sass:selector";
 @use "../lib/function";
 @use "../lib/mixin";
 @use "../settings";
@@ -54,8 +55,8 @@ Markup: <div class="padding-example {{modifier_class}}"></div>
 #{settings.$util-prefix}--padding-inline-0 - Inline 0px padding
 #{settings.$util-prefix}--padding-inline-50 - Inline 50px padding
 #{settings.$util-prefix}--padding-inline-normal - Inline normal padding
-#{settings.$util-prefix}--padding-50-if-mobile - All 50px padding if mobile viewport.
-#{settings.$util-prefix}--padding-50-if-not-mobile - All 50px padding if not mobile viewport.
+sm:#{settings.$util-prefix}--padding-50 - All 50px padding if viewport is `"sm"`.
+not-sm:#{settings.$util-prefix}--padding-50 - All 50px padding if viewport is not `"sm"`.
 
 Style guide: #{settings.$util-prefix}.padding.builtin
 */
@@ -86,11 +87,20 @@ Style guide: #{settings.$util-prefix}.padding.builtin
 
       @each $bp, $query in settings.$breakpoints {
         @if meta.type-of($query) == "string" {
-          &#{$direction}-#{$name}-#{$bp} {
-            @include mixin.media($query: $query) {
-              --padding#{$direction}: #{$padding};
+          $selector: selector.replace(
+            #{&},
+            #{&},
+            ".#{$bp}\\:#{settings.$util-prefix}--padding"
+          );
 
-              padding#{$direction}: var(--padding#{$direction});
+          @at-root {
+            #{$selector}-#{$name} {
+              // stylelint-disable-next-line max-nesting-depth
+              @include mixin.media($query: $query) {
+                --padding#{$direction}: #{$padding};
+
+                padding#{$direction}: var(--padding#{$direction});
+              }
             }
           }
         }

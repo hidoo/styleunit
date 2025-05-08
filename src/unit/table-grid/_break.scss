@@ -1,4 +1,5 @@
 @use "sass:meta";
+@use "sass:selector";
 @use "../../lib/mixin";
 @use "../../settings";
 
@@ -34,19 +35,32 @@ Markup: <div class="#{settings.$prefix}-table-grid  {{modifier_class}}">
   </div>
 </div>
 
-#{settings.$prefix}-table-grid--break-if-mobile - Break column if mobile viewport.
-#{settings.$prefix}-table-grid--break-if-not-mobile - Break column if not mobile viewport.
+#{settings.$prefix}-table-grid--break - Break column.
+sm:#{settings.$prefix}-table-grid--break - Break column if viewport is `"sm"`.
+not-sm:#{settings.$prefix}-table-grid--break - Break column if viewport is not `"sm"`.
 
 Style guide: #{settings.$prefix}-table-grid.break.builtin
 */
 .#{settings.$prefix}-table-grid--break {
-  @each $name, $query in settings.$breakpoints {
+  --display: block;
+  --height: auto;
+  --column-display: block;
+
+  @each $bp, $query in settings.$breakpoints {
     @if meta.type-of($query) == "string" {
-      &-#{$name} {
-        @include mixin.media($query: $query) {
-          --display: block;
-          --height: auto;
-          --column-display: block;
+      $selector: selector.replace(
+        #{&},
+        #{&},
+        ".#{$bp}\\:#{settings.$prefix}-table-grid--break "
+      );
+
+      @at-root {
+        #{$selector} {
+          @include mixin.media($query: $query) {
+            --display: block;
+            --height: auto;
+            --column-display: block;
+          }
         }
       }
     }

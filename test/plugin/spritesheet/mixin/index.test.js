@@ -419,7 +419,7 @@ describe('plugin/spritesheet', () => {
                       "offset-x": -10px,
                       "offset-y": -10px
                     ),
-                    "logo--if-mobile": (
+                    "sm_logo": (
                       "width": 20px,
                       "height": 20px,
                       "total-width": 30px,
@@ -482,14 +482,14 @@ describe('plugin/spritesheet', () => {
       );
     });
 
-    it('should out responsive spritesheet settings if argument $options is ("use2x": "if-mobile", "responsive": true).', async () => {
+    it('should out responsive spritesheet settings if argument $options is ("use2x": "sm", "responsive": true).', async () => {
       const cases = [
         {
           params: [
             [
               '$type: "icon-image"',
               '$name: "logo"',
-              '$options: ("use2x": if-mobile, "responsive": true)'
+              '$options: ("use2x": "sm", "responsive": true)'
             ],
             [
               `
@@ -505,7 +505,7 @@ describe('plugin/spritesheet', () => {
                       "offset-x": -10px,
                       "offset-y": -10px
                     ),
-                    "logo--if-mobile": (
+                    "sm_logo": (
                       "width": 20px,
                       "height": 20px,
                       "total-width": 30px,
@@ -757,7 +757,7 @@ describe('plugin/spritesheet', () => {
       );
     });
 
-    it('should out responsive spritesheet settings with state if image like "#{$name}--focus--if-mobile" exists and argument $options is ("responsive": true).', async () => {
+    it('should out responsive spritesheet settings with state if image like "sm_#{$name}--focus" exists and argument $options is ("responsive": true).', async () => {
       const cases = [
         {
           params: [
@@ -780,7 +780,7 @@ describe('plugin/spritesheet', () => {
                       "offset-x": -10px,
                       "offset-y": -10px
                     ),
-                    "logo--if-mobile": (
+                    "sm_logo": (
                       "width": 20px,
                       "height": 20px,
                       "total-width": 30px,
@@ -796,7 +796,7 @@ describe('plugin/spritesheet', () => {
                       "offset-x": -20px,
                       "offset-y": -20px
                     ),
-                    "logo--focus--if-mobile": (
+                    "sm_logo--focus": (
                       "width": 20px,
                       "height": 20px,
                       "total-width": 30px,
@@ -869,7 +869,7 @@ describe('plugin/spritesheet', () => {
                       "offset-x": -10px,
                       "offset-y": -10px
                     ),
-                    "logo--if-mobile": (
+                    "sm_logo": (
                       "width": 20px,
                       "height": 20px,
                       "total-width": 30px,
@@ -885,7 +885,7 @@ describe('plugin/spritesheet', () => {
                       "offset-x": -20px,
                       "offset-y": -20px
                     ),
-                    "logo--disabled--if-mobile": (
+                    "sm_logo--disabled": (
                       "width": 20px,
                       "height": 20px,
                       "total-width": 30px,
@@ -958,7 +958,7 @@ describe('plugin/spritesheet', () => {
                       "offset-x": -10px,
                       "offset-y": -10px
                     ),
-                    "logo--if-mobile": (
+                    "sm_logo": (
                       "width": 20px,
                       "height": 20px,
                       "total-width": 30px,
@@ -974,7 +974,7 @@ describe('plugin/spritesheet', () => {
                       "offset-x": -20px,
                       "offset-y": -20px
                     ),
-                    "logo--current--if-mobile": (
+                    "sm_logo--current": (
                       "width": 20px,
                       "height": 20px,
                       "total-width": 30px,
@@ -1338,7 +1338,7 @@ describe('plugin/spritesheet', () => {
                       "offset-x": -10px,
                       "offset-y": -10px
                     ),
-                    "radio--if-mobile": (
+                    "sm_radio": (
                       "width": 20px,
                       "height": 20px,
                       "total-width": 30px,
@@ -1421,14 +1421,14 @@ describe('plugin/spritesheet', () => {
       );
     });
 
-    it('should out responsive spritesheet settings for toggle if argument $options is ("toggle": true, "use2x": "if-mobile", "responsive": true).', async () => {
+    it('should out responsive spritesheet settings for toggle if argument $options is ("toggle": true, "use2x": "sm", "responsive": true).', async () => {
       const cases = [
         {
           params: [
             [
               '$type: "radio-image"',
               '$name: "radio"',
-              '$options: ("toggle": true, "use2x": "if-mobile", "responsive": true)'
+              '$options: ("toggle": true, "use2x": "sm", "responsive": true)'
             ],
             [
               `
@@ -1444,7 +1444,7 @@ describe('plugin/spritesheet', () => {
                       "offset-x": -10px,
                       "offset-y": -10px
                     ),
-                    "radio--if-mobile": (
+                    "sm_radio": (
                       "width": 20px,
                       "height": 20px,
                       "total-width": 30px,
@@ -1628,7 +1628,7 @@ describe('plugin/spritesheet', () => {
       );
     });
 
-    it('should out responsive spritesheet settings for toggle with state if image like "#{$name}--focus--if-mobile" exists and argument $options is ("toggle": true, "responsive": true).', async () => {
+    it('should out responsive spritesheet settings for toggle with state if image like "sm_#{$name}--focus" exists and argument $options is ("toggle": true, "responsive": true).', async () => {
       const cases = [
         {
           params: [
@@ -1651,7 +1651,7 @@ describe('plugin/spritesheet', () => {
                       "offset-x": -10px,
                       "offset-y": -10px
                     ),
-                    "radio--if-mobile": (
+                    "sm_radio": (
                       "width": 20px,
                       "height": 20px,
                       "total-width": 30px,
@@ -1667,7 +1667,7 @@ describe('plugin/spritesheet', () => {
                       "offset-x": -20px,
                       "offset-y": -20px
                     ),
-                    "radio--focus--if-mobile": (
+                    "sm_radio--focus": (
                       "width": 20px,
                       "height": 20px,
                       "total-width": 30px,
@@ -1760,7 +1760,7 @@ describe('plugin/spritesheet', () => {
                       "offset-x": -10px,
                       "offset-y": -10px
                     ),
-                    "radio--if-mobile": (
+                    "sm_radio": (
                       "width": 20px,
                       "height": 20px,
                       "total-width": 30px,
@@ -1776,7 +1776,7 @@ describe('plugin/spritesheet', () => {
                       "offset-x": -20px,
                       "offset-y": -20px
                     ),
-                    "radio--disabled--if-mobile": (
+                    "sm_radio--disabled": (
                       "width": 20px,
                       "height": 20px,
                       "total-width": 30px,
@@ -1872,7 +1872,7 @@ describe('plugin/spritesheet', () => {
                       "offset-x": -10px,
                       "offset-y": -10px
                     ),
-                    "radio--if-mobile": (
+                    "sm_radio": (
                       "width": 20px,
                       "height": 20px,
                       "total-width": 30px,
@@ -1888,7 +1888,7 @@ describe('plugin/spritesheet', () => {
                       "offset-x": -20px,
                       "offset-y": -20px
                     ),
-                    "radio--disabled--if-mobile": (
+                    "sm_radio--disabled": (
                       "width": 20px,
                       "height": 20px,
                       "total-width": 30px,
@@ -1904,7 +1904,7 @@ describe('plugin/spritesheet', () => {
                       "offset-x": -28px,
                       "offset-y": -28px
                     ),
-                    "radio--selected--if-mobile": (
+                    "sm_radio--selected": (
                       "width": 20px,
                       "height": 20px,
                       "total-width": 38px,
@@ -1920,7 +1920,7 @@ describe('plugin/spritesheet', () => {
                       "offset-x": -25px,
                       "offset-y": -25px
                     ),
-                    "radio--selected--disabled--if-mobile": (
+                    "sm_radio--selected--disabled": (
                       "width": 20px,
                       "height": 20px,
                       "total-width": 60px,

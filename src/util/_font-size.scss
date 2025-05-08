@@ -1,5 +1,6 @@
 @use "sass:map";
 @use "sass:meta";
+@use "sass:selector";
 @use "../lib/mixin";
 @use "../settings";
 
@@ -37,8 +38,8 @@ Markup: <p class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolo
 #{settings.$util-prefix}--font-size-2xlarge - 2 extra large font size.
 #{settings.$util-prefix}--font-size-3xlarge - 3 extra large font size.
 #{settings.$util-prefix}--font-size-4xlarge - 4 extra large font size.
-#{settings.$util-prefix}--font-size-2xlarge-if-mobile - 2 extra large font size if mobile viewport
-#{settings.$util-prefix}--font-size-2xlarge-if-not-mobile - 2 extra large font size if not mobile viewport
+sm:#{settings.$util-prefix}--font-size-2xlarge - 2 extra large font size if viewport is `"sm"`.
+not-sm:#{settings.$util-prefix}--font-size-2xlarge - 2 extra large font size if viewport is not `"sm"`.
 
 Style guide: #{settings.$util-prefix}.font-size.builtin
 */
@@ -54,11 +55,19 @@ Style guide: #{settings.$util-prefix}.font-size.builtin
 
     @each $bp, $query in settings.$breakpoints {
       @if meta.type-of($query) == "string" {
-        &-#{$name}-#{$bp} {
-          @include mixin.media($query: $query) {
-            --font-size: var(--#{$_pkg}-font-size-#{$name});
+        $selector: selector.replace(
+          #{&},
+          #{&},
+          ".#{$bp}\\:#{settings.$util-prefix}--width"
+        );
 
-            font-size: var(--font-size);
+        @at-root {
+          #{$selector}-#{$name} {
+            @include mixin.media($query: $query) {
+              --font-size: var(--#{$_pkg}-font-size-#{$name});
+
+              font-size: var(--font-size);
+            }
           }
         }
       }

@@ -1,4 +1,5 @@
 @use "sass:meta";
+@use "sass:selector";
 @use "../lib/mixin";
 @use "../settings";
 
@@ -24,8 +25,8 @@ Markup: <p class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolo
 
 #{settings.$util-prefix}--font-family-default - Default.
 #{settings.$util-prefix}--font-family-monospace - Monospace.
-#{settings.$util-prefix}--font-family-monospace-if-mobile - Monospace font family if mobile viewport
-#{settings.$util-prefix}--font-family-monospace-if-not-mobile - Monospace font family if not mobile viewport
+sm:#{settings.$util-prefix}--font-family-monospace - Monospace font family if viewport is `"sm"`.
+not-sm:#{settings.$util-prefix}--font-family-monospace - Monospace font family if viewport is not `"sm"`.
 
 Style guide: #{settings.$util-prefix}.font-family.builtin
 */
@@ -41,11 +42,19 @@ Style guide: #{settings.$util-prefix}.font-family.builtin
 
     @each $bp, $query in settings.$breakpoints {
       @if meta.type-of($query) == "string" {
-        &-#{$name}-#{$bp} {
-          @include mixin.media($query: $query) {
-            --font-family: #{$font-family};
+        $selector: selector.replace(
+          #{&},
+          #{&},
+          ".#{$bp}\\:#{settings.$util-prefix}--font-family"
+        );
 
-            font-family: var(--font-family);
+        @at-root {
+          #{$selector}-#{$name} {
+            @include mixin.media($query: $query) {
+              --font-family: #{$font-family};
+
+              font-family: var(--font-family);
+            }
           }
         }
       }
