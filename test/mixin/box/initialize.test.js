@@ -19,7 +19,7 @@ ${useSettingsWith(settings)}
 }
 `;
 
-describe('@mixin box-initialize(...)', () => {
+describe('[DEPRECATED] @mixin box-initialize(...)', () => {
   it('should out default properties if arguments not set.', async () => {
     const cases = [
       {

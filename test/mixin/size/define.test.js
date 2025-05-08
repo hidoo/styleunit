@@ -19,7 +19,7 @@ ${useSettingsWith(settings)}
 }
 `;
 
-describe('@mixin size-define($type, $values, $breakpoints)', () => {
+describe('[DEPRECATED] @mixin size-define($type, $values, $breakpoints)', () => {
   it('should throw error if argument "$type" is not valid.', async () => {
     const cases = [
       { params: [['$type: null']] },

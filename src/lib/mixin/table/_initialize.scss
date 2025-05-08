@@ -10,6 +10,8 @@
 /// @param {String} $border-style ["solid"] - setting for `border-style`
 /// @param {Number} $border-width [1px] - setting for `border-width`
 ///
+/// @deprecated
+///
 /// @example scss - scss inputs
 ///   .selector {
 ///     @include initialize();
@@ -33,6 +35,8 @@
   $border-style: "solid",
   $border-width: 1px
 ) {
+  @warn "[DEPRECATED] mixin.table-initialize is deprecated.";
+
   display: table;
   border-collapse: collapse;
 

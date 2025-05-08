@@ -19,7 +19,7 @@ ${useSettingsWith(settings)}
 }
 `;
 
-describe('@mixin table-initialize-column(...)', () => {
+describe('[DEPRECATED] @mixin table-initialize-column(...)', () => {
   it('should out default properties if arguments not set.', async () => {
     const cases = [
       {

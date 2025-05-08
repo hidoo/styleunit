@@ -14,6 +14,8 @@
 /// @param {Map} $options [()] - options
 /// @param {String} $options.media - custom media name
 ///
+/// @deprecated
+///
 /// @example scss - scss inputs
 ///   .selector {
 ///     @include define($from: "mobile", $until: "desktop") {
@@ -29,6 +31,8 @@
 ///   }
 ///
 @mixin define($from: null, $until: null, $options: ()) {
+  @warn "[DEPRECATED] mixin.breakpoint-define is deprecated. Use instead mixin.media.";
+
   // check settings.$breakpoints is map or not
   @if meta.type-of(settings.$breakpoints) != "map" {
     @error "@mixin breakpoint-define: settings.$breakpoints must be map.";

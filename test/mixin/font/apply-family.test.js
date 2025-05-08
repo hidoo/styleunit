@@ -19,7 +19,7 @@ ${useSettingsWith(settings)}
 }
 `;
 
-describe('@mixin font-apply-family(...)', () => {
+describe('[DEPRECATED] @mixin font-apply-family(...)', () => {
   it('should throw error if argument "$value" is empty.', async () => {
     const cases = [
       { params: [[]] },

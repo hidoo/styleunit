@@ -7,11 +7,6 @@
 @forward "./table" as table-*;
 @forward "./text" as text-*;
 @forward "./bootstrap";
-@forward "./define-breakpoint";
-@forward "./define-placeholder";
-@forward "./define-sizes-in-direction-groups";
-@forward "./define-sizes-in-directions";
-@forward "./define-sizes";
 @forward "./has-disabled";
 @forward "./has-focus";
 @forward "./has-selected";
@@ -26,13 +21,3 @@
 @forward "./on-placeholder";
 @forward "./on-print";
 @forward "./on";
-@forward "./use-box-aspect-ratio";
-@forward "./use-box-base";
-@forward "./use-clearfix";
-@forward "./use-font-advanced-settings";
-@forward "./use-font-base";
-@forward "./use-font-family";
-@forward "./use-font-size";
-@forward "./use-table-base";
-@forward "./use-table-column-base";
-@forward "./use-text-base";

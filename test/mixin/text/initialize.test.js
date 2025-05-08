@@ -17,7 +17,7 @@ ${useSettingsWith(settings)}
 }
 `;
 
-describe('@mixin text-initialize(...)', () => {
+describe('[DEPRECATED] @mixin text-initialize(...)', () => {
   it('should out properties with default value if corresponding variable in defaults is not number.', async () => {
     const cases = [
       {

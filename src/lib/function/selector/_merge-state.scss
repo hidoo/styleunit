@@ -26,10 +26,14 @@ $_supported-types: (
 /// @param {List} $additional-selectors [()] - additional selectors
 /// @return {List}
 ///
+/// @deprecated
+///
 /// @example scss - scss inputs
 ///   $merged-focus-selectors: merge-state("link"); // -> (":link", ":visited")
 ///
 @function merge-state($type: "focus", $additional-selectors: ()) {
+  @warn "[DEPRECATED] function.selector-merge-state is deprecated.";
+
   @if not list.index($_supported-types, $type) {
     @error "@function merge-state: Argument $type must be one of #{meta.inspect($_supported-types)}.";
   }

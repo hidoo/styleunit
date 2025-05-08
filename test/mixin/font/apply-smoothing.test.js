@@ -19,7 +19,7 @@ ${useSettingsWith(settings)}
 }
 `;
 
-describe('@mixin font-apply-smoothing(...)', () => {
+describe('[DEPRECATED] @mixin font-apply-smoothing(...)', () => {
   it('should out default properties.', async () => {
     const cases = [
       {

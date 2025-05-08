@@ -19,7 +19,7 @@ ${useSettingsWith(settings)}
 }
 `;
 
-describe('@mixin breakpoint-define($from, $until, $options)', () => {
+describe('[DEPRECATED] @mixin breakpoint-define($from, $until, $options)', () => {
   it('should throw error if settings.$breakpoints is not map.', async () => {
     const cases = [
       {

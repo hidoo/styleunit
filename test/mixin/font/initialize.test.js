@@ -19,7 +19,7 @@ ${useSettingsWith(settings)}
 }
 `;
 
-describe('@mixin font-initialize(...)', () => {
+describe('[DEPRECATED] @mixin font-initialize(...)', () => {
   it('should out default properties if arguments not set.', async () => {
     const cases = [
       {

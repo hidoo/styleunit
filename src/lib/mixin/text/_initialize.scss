@@ -16,6 +16,8 @@
 /// @param {String} $word-break ["break-all"] - setting for `word-break`
 /// @param {String} $word-wrap ["break-word"] - setting for `word-wrap`
 ///
+/// @deprecated
+///
 /// @example scss - scss inputs
 ///   .selector {
 ///     @include initialize();
@@ -43,6 +45,8 @@
   $word-break: "break-all",
   $word-wrap: "break-word"
 ) {
+  @warn "[DEPRECATED] mixin.text-initialize is deprecated.";
+
   // normalize $letter-spacing
   @if not $letter-spacing {
     @if meta.type-of(settings.$letter-spacing) == "number" {

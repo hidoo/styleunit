@@ -19,7 +19,7 @@ ${useSettingsWith(settings)}
 }
 `;
 
-describe('@mixin table-initialize(...)', () => {
+describe('[DEPRECATED] @mixin table-initialize(...)', () => {
   it('should out default properties if arguments not set.', async () => {
     const cases = [
       {

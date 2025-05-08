@@ -8,6 +8,8 @@
 /// apply font-feature-settings
 /// @param {String} $feature-settings ["palt"] - setting for `font-feature-settings`
 ///
+/// @deprecated
+///
 /// @example scss - scss inputs
 ///   .selector {
 ///     @include apply-feature-settings();
@@ -20,6 +22,8 @@
 ///   }
 ///
 @mixin apply-feature-settings($feature-settings: "palt") {
+  @warn "[DEPRECATED] mixin.font-apply-feature-settings is deprecated.";
+
   @if meta.type-of($feature-settings) == "string" and $feature-settings != "" {
     font-feature-settings: $feature-settings;
 

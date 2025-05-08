@@ -17,7 +17,7 @@ ${useSettingsWith(settings)}
 }
 `;
 
-describe('@mixin font-apply-size(...)', () => {
+describe('[DEPRECATED] @mixin font-apply-size(...)', () => {
   it('should throw error if argument "$value" is not valid.', async () => {
     const cases = [
       { params: [[]] },

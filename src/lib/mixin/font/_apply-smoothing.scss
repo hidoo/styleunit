@@ -7,6 +7,8 @@
 
 /// apply font-smoothing
 ///
+/// @deprecated
+///
 /// @example scss - scss inputs
 ///   .selector {
 ///     @include apply-smoothing();
@@ -19,6 +21,8 @@
 ///   }
 ///
 @mixin apply-smoothing() {
+  @warn "[DEPRECATED] mixin.font-apply-smoothing is deprecated.";
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

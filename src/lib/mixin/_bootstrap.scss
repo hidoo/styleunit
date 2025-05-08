@@ -30,6 +30,8 @@ $_default-font-applying-units: (
 /// @param {Boolean} $enable-font-applying-feature-settings [true] enable applying font feature settings or not
 /// @param {List} $font-applying-units [true] list of units that applying font
 ///
+/// @deprecated
+///
 /// @example scss - scss inputs
 ///   @include bootstrap();
 ///
@@ -43,6 +45,8 @@ $_default-font-applying-units: (
   $enable-font-applying-feature-settings: true,
   $font-applying-units: $_default-font-applying-units
 ) {
+  @warn "[DEPRECATED] mixin.bootstrap is deprecated. Use instead _bootstrap.scss directly.";
+
   // set base font size
   @if settings.$font-enable-relative-size and
     meta.type-of(settings.$font-base-size) ==

@@ -47,6 +47,8 @@ $_default-border-color: #000 !default;
 /// @param {List} $values [()] list of value
 /// @param {Map} $breakpoints [null] - mappings of breakpoints
 ///
+/// @deprecated
+///
 /// @example scss - scss inputs
 ///   .selector {
 ///     @include define-by-direction-group($type: "padding", $values: (5px,), $breakpoints: ("if-mobile": ("until": "mobile")))
@@ -93,6 +95,7 @@ $_default-border-color: #000 !default;
   $values: (),
   $breakpoints: null
 ) {
+  @warn "[DEPRECATED] mixin.size-define-by-direction-group is deprecated.";
   @if meta.type-of($type) !=
     "string" or not
     list.index($_supported-types, $type)

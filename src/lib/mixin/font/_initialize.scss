@@ -9,6 +9,8 @@
 /// @param {String} $style ["normal"] - setting for `font-style`
 /// @param {String|Number} $weight ["normal"] - setting for `font-weight`
 ///
+/// @deprecated
+///
 /// @example scss - scss inputs
 ///   .selector {
 ///     @include initialize();
@@ -21,6 +23,8 @@
 ///   }
 ///
 @mixin initialize($style: "normal", $weight: "normal") {
+  @warn "[DEPRECATED] mixin.font-initialize is deprecated.";
+
   @if meta.type-of($style) == "string" and $style != "" {
     font-style: #{$style};
   }

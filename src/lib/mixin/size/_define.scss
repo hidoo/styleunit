@@ -20,6 +20,8 @@ $_supported-types: ("width", "height", "z-index") !default;
 /// @param {List} $values [()] - list of value
 /// @param {Map} $breakpoints [null] - mappings of breakpoints
 ///
+/// @deprecated
+///
 /// @example scss - scss inputs
 ///   .selector {
 ///     @include define($type: "width", $values: (10px), $breakpoints: ("if-mobile": ("until": "mobile")))
@@ -52,6 +54,8 @@ $_supported-types: ("width", "height", "z-index") !default;
 ///   }
 ///
 @mixin define($type: "width", $values: (), $breakpoints: null) {
+  @warn "[DEPRECATED] mixin.size-define is deprecated.";
+
   @if meta.type-of($type) !=
     "string" or not
     list.index($_supported-types, $type)
