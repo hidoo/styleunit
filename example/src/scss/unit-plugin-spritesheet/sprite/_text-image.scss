@@ -1,7 +1,7 @@
 // stylelint-disable number-no-trailing-zeros
 $sprites: (
   "text-image": (
-    "image": "../../images/sprites/text-image.png",
+    "image": "../../images/sprites/text-image.png?version=0.9.0",
     "items": (
       "example-c--current": (
         "width": 162px,
@@ -10,7 +10,7 @@ $sprites: (
         "total-height": 154px,
         "offset-x": 0px,
         "offset-y": 0px,
-        "image": "../../images/sprites/text-image.png"
+        "image": "../../images/sprites/text-image.png?version=0.9.0"
       ),
       "example-c--disabled": (
         "width": 162px,
@@ -19,7 +19,7 @@ $sprites: (
         "total-height": 154px,
         "offset-x": 0px,
         "offset-y": -24px,
-        "image": "../../images/sprites/text-image.png"
+        "image": "../../images/sprites/text-image.png?version=0.9.0"
       ),
       "example-c--focus": (
         "width": 162px,
@@ -28,7 +28,7 @@ $sprites: (
         "total-height": 154px,
         "offset-x": 0px,
         "offset-y": -48px,
-        "image": "../../images/sprites/text-image.png"
+        "image": "../../images/sprites/text-image.png?version=0.9.0"
       ),
       "example-c": (
         "width": 162px,
@@ -37,7 +37,7 @@ $sprites: (
         "total-height": 154px,
         "offset-x": 0px,
         "offset-y": -72px,
-        "image": "../../images/sprites/text-image.png"
+        "image": "../../images/sprites/text-image.png?version=0.9.0"
       ),
       "example-d--current": (
         "width": 82px,
@@ -46,7 +46,7 @@ $sprites: (
         "total-height": 154px,
         "offset-x": -164px,
         "offset-y": -20px,
-        "image": "../../images/sprites/text-image.png"
+        "image": "../../images/sprites/text-image.png?version=0.9.0"
       ),
       "example-d--disabled": (
         "width": 82px,
@@ -55,7 +55,7 @@ $sprites: (
         "total-height": 154px,
         "offset-x": -164px,
         "offset-y": -34px,
-        "image": "../../images/sprites/text-image.png"
+        "image": "../../images/sprites/text-image.png?version=0.9.0"
       ),
       "example-d--focus": (
         "width": 82px,
@@ -64,7 +64,7 @@ $sprites: (
         "total-height": 154px,
         "offset-x": -164px,
         "offset-y": -48px,
-        "image": "../../images/sprites/text-image.png"
+        "image": "../../images/sprites/text-image.png?version=0.9.0"
       ),
       "example-d": (
         "width": 82px,
@@ -73,7 +73,7 @@ $sprites: (
         "total-height": 154px,
         "offset-x": -164px,
         "offset-y": -62px,
-        "image": "../../images/sprites/text-image.png"
+        "image": "../../images/sprites/text-image.png?version=0.9.0"
       ),
       "sm_example-d--current": (
         "width": 122px,
@@ -82,7 +82,7 @@ $sprites: (
         "total-height": 154px,
         "offset-x": 0px,
         "offset-y": -96px,
-        "image": "../../images/sprites/text-image.png"
+        "image": "../../images/sprites/text-image.png?version=0.9.0"
       ),
       "sm_example-d--disabled": (
         "width": 122px,
@@ -91,7 +91,7 @@ $sprites: (
         "total-height": 154px,
         "offset-x": 0px,
         "offset-y": -116px,
-        "image": "../../images/sprites/text-image.png"
+        "image": "../../images/sprites/text-image.png?version=0.9.0"
       ),
       "sm_example-d--focus": (
         "width": 122px,
@@ -100,7 +100,7 @@ $sprites: (
         "total-height": 154px,
         "offset-x": 0px,
         "offset-y": -136px,
-        "image": "../../images/sprites/text-image.png"
+        "image": "../../images/sprites/text-image.png?version=0.9.0"
       ),
       "sm_example-d": (
         "width": 122px,
@@ -109,7 +109,7 @@ $sprites: (
         "total-height": 154px,
         "offset-x": -164px,
         "offset-y": 0px,
-        "image": "../../images/sprites/text-image.png"
+        "image": "../../images/sprites/text-image.png?version=0.9.0"
       )
     )
   )

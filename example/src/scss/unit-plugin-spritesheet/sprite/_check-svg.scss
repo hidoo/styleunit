@@ -1,7 +1,7 @@
 // stylelint-disable number-no-trailing-zeros
 $sprites: (
   "check-svg": (
-    "image": "../../images/sprites/check-svg.svg",
+    "image": "../../images/sprites/check-svg.svg?version=0.9.0",
     "items": (
       "example-a": (
         "elastic-width": 1em,
@@ -17,7 +17,7 @@ $sprites: (
         "total-height": 116px,
         "offset-x": -2px,
         "offset-y": -70px,
-        "image": "../../images/sprites/check-svg.svg"
+        "image": "../../images/sprites/check-svg.svg?version=0.9.0"
       ),
       "example-a--disabled": (
         "elastic-width": 1em,
@@ -33,7 +33,7 @@ $sprites: (
         "total-height": 116px,
         "offset-x": -26px,
         "offset-y": -70px,
-        "image": "../../images/sprites/check-svg.svg"
+        "image": "../../images/sprites/check-svg.svg?version=0.9.0"
       ),
       "example-a--focus": (
         "elastic-width": 1em,
@@ -49,7 +49,7 @@ $sprites: (
         "total-height": 116px,
         "offset-x": -50px,
         "offset-y": -70px,
-        "image": "../../images/sprites/check-svg.svg"
+        "image": "../../images/sprites/check-svg.svg?version=0.9.0"
       ),
       "example-a--selected": (
         "elastic-width": 1em,
@@ -65,7 +65,7 @@ $sprites: (
         "total-height": 116px,
         "offset-x": -74px,
         "offset-y": -70px,
-        "image": "../../images/sprites/check-svg.svg"
+        "image": "../../images/sprites/check-svg.svg?version=0.9.0"
       ),
       "example-a--selected--disabled": (
         "elastic-width": 1em,
@@ -81,7 +81,7 @@ $sprites: (
         "total-height": 116px,
         "offset-x": -104px,
         "offset-y": -2px,
-        "image": "../../images/sprites/check-svg.svg"
+        "image": "../../images/sprites/check-svg.svg?version=0.9.0"
       ),
       "example-a--selected--focus": (
         "elastic-width": 1em,
@@ -97,7 +97,7 @@ $sprites: (
         "total-height": 116px,
         "offset-x": -104px,
         "offset-y": -26px,
-        "image": "../../images/sprites/check-svg.svg"
+        "image": "../../images/sprites/check-svg.svg?version=0.9.0"
       ),
       "example-b": (
         "elastic-width": 1em,
@@ -113,7 +113,7 @@ $sprites: (
         "total-height": 116px,
         "offset-x": -104px,
         "offset-y": -50px,
-        "image": "../../images/sprites/check-svg.svg"
+        "image": "../../images/sprites/check-svg.svg?version=0.9.0"
       ),
       "example-b--disabled": (
         "elastic-width": 1em,
@@ -129,7 +129,7 @@ $sprites: (
         "total-height": 116px,
         "offset-x": -2px,
         "offset-y": -94px,
-        "image": "../../images/sprites/check-svg.svg"
+        "image": "../../images/sprites/check-svg.svg?version=0.9.0"
       ),
       "example-b--focus": (
         "elastic-width": 1em,
@@ -145,7 +145,7 @@ $sprites: (
         "total-height": 116px,
         "offset-x": -26px,
         "offset-y": -94px,
-        "image": "../../images/sprites/check-svg.svg"
+        "image": "../../images/sprites/check-svg.svg?version=0.9.0"
       ),
       "example-b--selected": (
         "elastic-width": 1em,
@@ -161,7 +161,7 @@ $sprites: (
         "total-height": 116px,
         "offset-x": -50px,
         "offset-y": -94px,
-        "image": "../../images/sprites/check-svg.svg"
+        "image": "../../images/sprites/check-svg.svg?version=0.9.0"
       ),
       "example-b--selected--disabled": (
         "elastic-width": 1em,
@@ -177,7 +177,7 @@ $sprites: (
         "total-height": 116px,
         "offset-x": -74px,
         "offset-y": -94px,
-        "image": "../../images/sprites/check-svg.svg"
+        "image": "../../images/sprites/check-svg.svg?version=0.9.0"
       ),
       "example-b--selected--focus": (
         "elastic-width": 1em,
@@ -193,7 +193,7 @@ $sprites: (
         "total-height": 116px,
         "offset-x": -98px,
         "offset-y": -94px,
-        "image": "../../images/sprites/check-svg.svg"
+        "image": "../../images/sprites/check-svg.svg?version=0.9.0"
       ),
       "sm_example-b": (
         "elastic-width": 1em,
@@ -209,7 +209,7 @@ $sprites: (
         "total-height": 116px,
         "offset-x": -2px,
         "offset-y": -2px,
-        "image": "../../images/sprites/check-svg.svg"
+        "image": "../../images/sprites/check-svg.svg?version=0.9.0"
       ),
       "sm_example-b--disabled": (
         "elastic-width": 1em,
@@ -225,7 +225,7 @@ $sprites: (
         "total-height": 116px,
         "offset-x": -36px,
         "offset-y": -2px,
-        "image": "../../images/sprites/check-svg.svg"
+        "image": "../../images/sprites/check-svg.svg?version=0.9.0"
       ),
       "sm_example-b--focus": (
         "elastic-width": 1em,
@@ -241,7 +241,7 @@ $sprites: (
         "total-height": 116px,
         "offset-x": -2px,
         "offset-y": -36px,
-        "image": "../../images/sprites/check-svg.svg"
+        "image": "../../images/sprites/check-svg.svg?version=0.9.0"
       ),
       "sm_example-b--selected": (
         "elastic-width": 1em,
@@ -257,7 +257,7 @@ $sprites: (
         "total-height": 116px,
         "offset-x": -36px,
         "offset-y": -36px,
-        "image": "../../images/sprites/check-svg.svg"
+        "image": "../../images/sprites/check-svg.svg?version=0.9.0"
       ),
       "sm_example-b--selected--disabled": (
         "elastic-width": 1em,
@@ -273,7 +273,7 @@ $sprites: (
         "total-height": 116px,
         "offset-x": -70px,
         "offset-y": -2px,
-        "image": "../../images/sprites/check-svg.svg"
+        "image": "../../images/sprites/check-svg.svg?version=0.9.0"
       ),
       "sm_example-b--selected--focus": (
         "elastic-width": 1em,
@@ -289,7 +289,7 @@ $sprites: (
         "total-height": 116px,
         "offset-x": -70px,
         "offset-y": -36px,
-        "image": "../../images/sprites/check-svg.svg"
+        "image": "../../images/sprites/check-svg.svg?version=0.9.0"
       )
     )
   )

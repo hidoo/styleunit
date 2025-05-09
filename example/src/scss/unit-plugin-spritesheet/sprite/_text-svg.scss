@@ -1,7 +1,7 @@
 // stylelint-disable number-no-trailing-zeros
 $sprites: (
   "text-svg": (
-    "image": "../../images/sprites/text-svg.svg",
+    "image": "../../images/sprites/text-svg.svg?version=0.9.0",
     "items": (
       "example-a": (
         "elastic-width": 6.833333333333333em,
@@ -17,7 +17,7 @@ $sprites: (
         "total-height": 120px,
         "offset-x": -2px,
         "offset-y": -90px,
-        "image": "../../images/sprites/text-svg.svg"
+        "image": "../../images/sprites/text-svg.svg?version=0.9.0"
       ),
       "example-a--current": (
         "elastic-width": 6.833333333333333em,
@@ -33,7 +33,7 @@ $sprites: (
         "total-height": 120px,
         "offset-x": -2px,
         "offset-y": -106px,
-        "image": "../../images/sprites/text-svg.svg"
+        "image": "../../images/sprites/text-svg.svg?version=0.9.0"
       ),
       "example-a--disabled": (
         "elastic-width": 6.833333333333333em,
@@ -49,7 +49,7 @@ $sprites: (
         "total-height": 120px,
         "offset-x": -129px,
         "offset-y": -2px,
-        "image": "../../images/sprites/text-svg.svg"
+        "image": "../../images/sprites/text-svg.svg?version=0.9.0"
       ),
       "example-a--focus": (
         "elastic-width": 6.833333333333333em,
@@ -65,7 +65,7 @@ $sprites: (
         "total-height": 120px,
         "offset-x": -129px,
         "offset-y": -18px,
-        "image": "../../images/sprites/text-svg.svg"
+        "image": "../../images/sprites/text-svg.svg?version=0.9.0"
       ),
       "example-b": (
         "elastic-width": 6.833333333333333em,
@@ -81,7 +81,7 @@ $sprites: (
         "total-height": 120px,
         "offset-x": -129px,
         "offset-y": -34px,
-        "image": "../../images/sprites/text-svg.svg"
+        "image": "../../images/sprites/text-svg.svg?version=0.9.0"
       ),
       "example-b--current": (
         "elastic-width": 6.833333333333333em,
@@ -97,7 +97,7 @@ $sprites: (
         "total-height": 120px,
         "offset-x": -129px,
         "offset-y": -50px,
-        "image": "../../images/sprites/text-svg.svg"
+        "image": "../../images/sprites/text-svg.svg?version=0.9.0"
       ),
       "example-b--disabled": (
         "elastic-width": 6.833333333333333em,
@@ -113,7 +113,7 @@ $sprites: (
         "total-height": 120px,
         "offset-x": -129px,
         "offset-y": -66px,
-        "image": "../../images/sprites/text-svg.svg"
+        "image": "../../images/sprites/text-svg.svg?version=0.9.0"
       ),
       "example-b--focus": (
         "elastic-width": 6.833333333333333em,
@@ -129,7 +129,7 @@ $sprites: (
         "total-height": 120px,
         "offset-x": -129px,
         "offset-y": -82px,
-        "image": "../../images/sprites/text-svg.svg"
+        "image": "../../images/sprites/text-svg.svg?version=0.9.0"
       ),
       "sm_example-b": (
         "elastic-width": 6.833333333333333em,
@@ -145,7 +145,7 @@ $sprites: (
         "total-height": 120px,
         "offset-x": -2px,
         "offset-y": -2px,
-        "image": "../../images/sprites/text-svg.svg"
+        "image": "../../images/sprites/text-svg.svg?version=0.9.0"
       ),
       "sm_example-b--current": (
         "elastic-width": 6.833333333333333em,
@@ -161,7 +161,7 @@ $sprites: (
         "total-height": 120px,
         "offset-x": -2px,
         "offset-y": -24px,
-        "image": "../../images/sprites/text-svg.svg"
+        "image": "../../images/sprites/text-svg.svg?version=0.9.0"
       ),
       "sm_example-b--disabled": (
         "elastic-width": 6.833333333333333em,
@@ -177,7 +177,7 @@ $sprites: (
         "total-height": 120px,
         "offset-x": -2px,
         "offset-y": -46px,
-        "image": "../../images/sprites/text-svg.svg"
+        "image": "../../images/sprites/text-svg.svg?version=0.9.0"
       ),
       "sm_example-b--focus": (
         "elastic-width": 6.833333333333333em,
@@ -193,7 +193,7 @@ $sprites: (
         "total-height": 120px,
         "offset-x": -2px,
         "offset-y": -68px,
-        "image": "../../images/sprites/text-svg.svg"
+        "image": "../../images/sprites/text-svg.svg?version=0.9.0"
       )
     )
   )
