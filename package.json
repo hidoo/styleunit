@@ -49,7 +49,7 @@
     "@hidoo/gulp-task-build-sprite-image": "1.0.0-alpha.2",
     "@hidoo/gulp-task-build-sprite-svg": "1.0.0-alpha.2",
     "@hidoo/gulp-task-build-styleguide-kss": "1.0.0-alpha.2",
-    "@hidoo/kss-builder": "1.0.1",
+    "@hidoo/kss-builder": "1.0.2",
     "@hidoo/sassdoc-to-markdown": "1.0.0",
     "@hidoo/stylelint-config": "1.1.0",
     "browser-sync": "3.0.4",

@@ -14,7 +14,8 @@ export const unit = buildStyleguide({
   get css() {
     return `${path.relative(this.dest, this.src)}/main.css`;
   },
-  homepage: path.resolve(dirname, '../README.md')
+  homepage: path.resolve(dirname, '../README.md'),
+  builder: path.resolve(dirname, '../node_modules/@hidoo/kss-builder')
 });
 export const pluginSpritesheet = buildStyleguide({
   name: 'styleguide:plugin:spritesheet',
@@ -23,7 +24,8 @@ export const pluginSpritesheet = buildStyleguide({
   get css() {
     return `${path.relative(this.dest, this.src)}/main.css`;
   },
-  homepage: path.resolve(dirname, '../README.md')
+  homepage: path.resolve(dirname, '../README.md'),
+  builder: path.resolve(dirname, '../node_modules/@hidoo/kss-builder')
 });
 
 // define main task
