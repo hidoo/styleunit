@@ -8,7 +8,31 @@
     "pnpm": "10.8.1"
   },
   "type": "module",
-  "main": "src/index.scss",
+  "main": "./src/index.scss",
+  "sass": "./src/index.scss",
+  "exports": {
+    ".": {
+      "sass": "./src/index.scss"
+    },
+    "./lib.scss": {
+      "sass": "./src/lib/_index.scss"
+    },
+    "./*.scss": {
+      "sass": "./src/lib/*/_index.scss"
+    },
+    "./plugin/*.scss": {
+      "sass": "./src/plugin/*/_index.scss"
+    },
+    "./settings.scss": {
+      "sass": "./src/settings/_index.scss"
+    },
+    "./unit/*": {
+      "sass": "./src/unit/*.scss"
+    },
+    "./util/*": {
+      "sass": "./src/util/*.scss"
+    }
+  },
   "files": [
     "src/"
   ],

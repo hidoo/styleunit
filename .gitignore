@@ -2,3 +2,4 @@
 node_modules/
 example/build/
 test/fixture/dest/
+!test/fixture/node_modules/
