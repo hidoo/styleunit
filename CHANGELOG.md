@@ -1,71 +1,48 @@
-# Change Log
-
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
-# [0.9.0](https://github.com/hidoo/unit-sass/compare/v0.8.0...v0.9.0) (2023-04-17)
+# 1.0.0-alpha.0 (2025-05-13)
 
 
-### Features
-
-* **unit:** add as-mask option to plugin/spritesheet ([6d2e4d4](https://github.com/hidoo/unit-sass/commit/6d2e4d48e96706d030c8ab8be9b67eb145dddd93))
-* **unit:** add on-print mixin ([3a177c0](https://github.com/hidoo/unit-sass/commit/3a177c0c6f4bfe8f8ef9885a93a9faedfb1b9774))
-* **unit:** add use-object-fit option to pict-apply-flexible-size ([4bc01bd](https://github.com/hidoo/unit-sass/commit/4bc01bdc466f23baba7aef44ff6e8fb1b2c406cc))
-
-
-
-
-
-# [0.8.0](https://github.com/hidoo/unit-sass/compare/v0.7.0...v0.8.0) (2022-07-13)
+* feat(unit)!: support module system ([9a85972](https://github.com/hidoo/styleunit/commit/9a85972b6be2cc7c52accc3bf94b8244c6546d8c))
 
 
 ### Bug Fixes
 
-* **unit:** fix an issue --copy-protect modifier of unit-document with images being copied on chrome ([eb9d4f5](https://github.com/hidoo/unit-sass/commit/eb9d4f506fe3eef7821de992c483c5930f4fe592))
-* **unit:** fix an issue --copy-protect modifier of unit-pict with images being copied on chrome ([c08a77b](https://github.com/hidoo/unit-sass/commit/c08a77bb55104c045234d9ba0f0c158363a9cd35))
+* change mixin.on-print to be deprecated ([2cb9101](https://github.com/hidoo/styleunit/commit/2cb91016d3ac2404329125b862d51cdfed95776b))
+* **deps:** update stylelint packages and update rules ([0a1bc06](https://github.com/hidoo/styleunit/commit/0a1bc06f8eca65c0f83b141b1aa8eba0801d1fe0))
+* **generator:** fixed in response to changes of commander ([a6f0a51](https://github.com/hidoo/styleunit/commit/a6f0a51d9bc3fa799092f1c72010e1da5da0bf94))
+* **github:** set environment variable NYC_CONFIG for workaround to avoid ERR_REQUIRE_ASYNC_MODULE ([0603dae](https://github.com/hidoo/styleunit/commit/0603dae82f55cd797b416b8d75e76ba9ad24f16d))
+* import from @hidoo/unit monorepo ([400621e](https://github.com/hidoo/styleunit/commit/400621e137f0a3d1b8e34b1e39aad81d56eb997e))
+* **kss-builder:** change to use sass module system ([541405c](https://github.com/hidoo/styleunit/commit/541405c8501ff98c40685a3c7f6bb3481b40b0c6))
+* **unit:** add prefix to $counter-name in unit--list--marker-numeric ([404fe4a](https://github.com/hidoo/styleunit/commit/404fe4a28ddd9db858f0948ba4f9a8482ebaaf9f))
+* **unit:** change to ignore multiple define-inline-placeholder ([28b7161](https://github.com/hidoo/styleunit/commit/28b716157bdfc940a9fa564c2a539e1f7db9831f))
+* **unit:** fix an issue --copy-protect modifier of unit-document with images being copied on chrome ([c413b9b](https://github.com/hidoo/styleunit/commit/c413b9b2b3f0effce37461e15efeea2fe10dfddd))
+* **unit:** fix an issue --copy-protect modifier of unit-pict with images being copied on chrome ([19f366f](https://github.com/hidoo/styleunit/commit/19f366f87d70fded5a75f135cfec107cd5e3dd0b))
+* **unit:** fix default font family in windows ([f2f5358](https://github.com/hidoo/styleunit/commit/f2f5358839769e016095cdb17e61ee0aa17c6ecd))
+* **unit:** fix deprecated warnings for slash as division ([3fa3dd7](https://github.com/hidoo/styleunit/commit/3fa3dd75e332dd990efc2df35e8e4457be15fa9b))
+* **unit:** fix to not override font-family in body ([f84bd85](https://github.com/hidoo/styleunit/commit/f84bd85ca69e08fbe2009839ca06597a2e4d5cc6))
+* **unit:** fix typo ([0621a35](https://github.com/hidoo/styleunit/commit/0621a356de465f65935e22fb2dd7286fc0419294))
+* **unit:** remove argument $feature-settings from [@mixin](https://github.com/mixin) use-font-base ([0cf8d10](https://github.com/hidoo/styleunit/commit/0cf8d10b8aeb40729f6a0ce1fd3fdbf40410e6eb))
+* **unit:** remove text base settings from structure role units ([101981b](https://github.com/hidoo/styleunit/commit/101981b83b3b2ce2b58dda82657f7fa720d570bc))
+* **unit:** rename [@mixin](https://github.com/mixin) define-inline-placeholder to define-placeholder ([eb38e59](https://github.com/hidoo/styleunit/commit/eb38e59fd8592d6d75081527d1d17ffc4123aeab))
+* **unit:** rename to $unit-font-enable-advanced-settings ([9cefbca](https://github.com/hidoo/styleunit/commit/9cefbcad1705ed66403e7d8168b6631759792d84))
 
 
 ### Features
 
-* **unit:** add [@function](https://github.com/function) z-index-reserve ([6cea008](https://github.com/hidoo/unit-sass/commit/6cea008a629a1cd15181a4fc17bb1d92f99df0a6))
-
-
-
-
-
-# [0.7.0](https://github.com/hidoo/unit-sass/compare/v0.6.0...v0.7.0) (2022-01-20)
-
-
-### Bug Fixes
-
-* **deps:** update stylelint packages and update rules ([0331e7e](https://github.com/hidoo/unit-sass/commit/0331e7e860bb7ab2980602c8f23f355f371d0d22))
-
-
-### Features
-
-* **unit:** add functions and organize by module ([f3d3878](https://github.com/hidoo/unit-sass/commit/f3d387888ff96574b430658f5f2902777fa728b1))
-* **unit:** update mixins and organize by module ([4ee3680](https://github.com/hidoo/unit-sass/commit/4ee36808f9bebd02a2616eb9647394a6b036c326))
-
-
-
-
-
-# [0.6.0](https://github.com/hidoo/unit-sass/compare/v0.5.0...v0.6.0) (2021-06-09)
-
-
-### Bug Fixes
-
-* **kss-builder:** change to use sass module system ([2c20d48](https://github.com/hidoo/unit-sass/commit/2c20d48811550940d97367a051a61aef37e4c102))
-* **unit:** fix deprecated warnings for slash as division ([6039646](https://github.com/hidoo/unit-sass/commit/603964622a20ed251420c3eacd4022d97e1f2692))
-
-
-### Features
-
-* **unit:** add settings.$verbose ([b5f4b4d](https://github.com/hidoo/unit-sass/commit/b5f4b4d0e3b83aeb4bf5c446db527caa6c49f95c))
-* **unit:** add spritesheet plugin ([3f03059](https://github.com/hidoo/unit-sass/commit/3f03059cc2581e75a824174cd1f4dc37c08e4b0b))
-
-
-* feat(unit)!: support module system ([be3e994](https://github.com/hidoo/unit-sass/commit/be3e9946bbfccd9e3c9ede2db829d5fd8ca019ea))
+* **package:** add exports field to import via NodePackageImporter ([58c2421](https://github.com/hidoo/styleunit/commit/58c2421c211d0d1cdd21427354fa91c63105bfec))
+* **unit:** add [@function](https://github.com/function) z-index-reserve ([0814c36](https://github.com/hidoo/styleunit/commit/0814c36c257fe650bb4f13ea9680c503af7cfdf6))
+* **unit:** add [@mixin](https://github.com/mixin) use-font-advanced-settings ([0c4c1d9](https://github.com/hidoo/styleunit/commit/0c4c1d94323fe7224172536b5dad3bd6a69eca9b))
+* **unit:** add $capturing-selectors argument to [@mixin](https://github.com/mixin) on-disabled ([2a18b0b](https://github.com/hidoo/styleunit/commit/2a18b0b8ec4866b58cf1f62138dd9b9912f58663))
+* **unit:** add argument $word-break to [@mixin](https://github.com/mixin) use-text-base ([d9b828d](https://github.com/hidoo/styleunit/commit/d9b828dec2be2ec407db456dc991e65076caa0c8))
+* **unit:** add as-mask option to plugin/spritesheet ([7692be5](https://github.com/hidoo/styleunit/commit/7692be5b11e0ae5bc57dcd9b1506acbb38631377))
+* **unit:** add functions and organize by module ([fa1e624](https://github.com/hidoo/styleunit/commit/fa1e6242c24688da910517ba9b0a329618e914e5))
+* **unit:** add hook mixins ([0c7789d](https://github.com/hidoo/styleunit/commit/0c7789def1f7844e1de963913d426e49dc8e5995))
+* **unit:** add on-print mixin ([b7a1e08](https://github.com/hidoo/styleunit/commit/b7a1e08c543dc786e9911d5c9a857f00c64f22a4))
+* **unit:** add package that sass based css framework ([8fb3858](https://github.com/hidoo/styleunit/commit/8fb38588f1e50db23d3bd967b54e69939bd83374))
+* **unit:** add select unit ([5a52ef1](https://github.com/hidoo/styleunit/commit/5a52ef1d8dd5bf837fe35d95d3f288b811be4ab2))
+* **unit:** add settings.$verbose ([a84ddac](https://github.com/hidoo/styleunit/commit/a84ddac46c4ffda20c72c36aafbc27c1ef203dd5))
+* **unit:** add spritesheet plugin ([e31bca8](https://github.com/hidoo/styleunit/commit/e31bca808cd59f337508c04ef7904c4f989d2c6b))
+* **unit:** add use-object-fit option to pict-apply-flexible-size ([fa2721f](https://github.com/hidoo/styleunit/commit/fa2721fa9a88333d9a86df683532c8b3a4f8f746))
+* **unit:** update mixins and organize by module ([8923888](https://github.com/hidoo/styleunit/commit/8923888802fcc53a4849c6705e4da15d2245c337))
 
 
 ### BREAKING CHANGES
@@ -75,122 +52,10 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
   Remove feature of "Hook mixins". Use instead `with` for configuration of settings.
 
   Remove `_override.scss` partial. Use instead `_bootstrap.scss`.
-
-
-
-
-
-# [0.5.0](https://github.com/hidoo/unit-sass/compare/v0.4.4...v0.5.0) (2021-06-08)
-
-**Note:** Version bump only for package @hidoo/unit
-
-
-
-
-
-## [0.4.4](https://github.com/hidoo/unit-sass/compare/v0.4.2...v0.4.4) (2021-03-31)
-
-
-### Bug Fixes
-
-* **generator:** fixed in response to changes of commander ([0454249](https://github.com/hidoo/unit-sass/commit/045424935b894adab654c849efd66ee7e5353ded))
-
-
-
-
-
-## [0.4.3](https://github.com/hidoo/unit-sass/compare/v0.4.2...v0.4.3) (2021-03-31)
-
-
-### Bug Fixes
-
-* **generator:** fixed in response to changes of commander ([0454249](https://github.com/hidoo/unit-sass/commit/045424935b894adab654c849efd66ee7e5353ded))
-
-
-
-
-
-## [0.4.2](https://github.com/hidoo/unit-sass/compare/v0.4.1...v0.4.2) (2020-05-08)
-
-**Note:** Version bump only for package @hidoo/unit
-
-
-
-
-
-## [0.4.1](https://github.com/hidoo/unit-sass/compare/v0.4.0...v0.4.1) (2019-11-11)
-
-**Note:** Version bump only for package @hidoo/unit
-
-
-
-
-
-# [0.4.0](https://github.com/hidoo/unit-sass/compare/v0.3.1...v0.4.0) (2019-09-17)
-
-**Note:** Version bump only for package @hidoo/unit
-
-
-
-
-
-# [0.3.0](https://github.com/hidoo/unit-sass/compare/v0.2.0...v0.3.0) (2019-08-21)
-
-
-### Bug Fixes
-
-* **unit:** fix typo ([50494d9](https://github.com/hidoo/unit-sass/commit/50494d9))
-* **unit:** remove text base settings from structure role units ([a5aec88](https://github.com/hidoo/unit-sass/commit/a5aec88))
-
-
-### BREAKING CHANGES
-
 * **unit:** rename unit-text--decoration-default to unit-text-text--decoration-false and unit-text--decoration-strikelike to unit-text---text--decoration-strikeline
 * **unit:** text styles no longer apply to internal text nodes
-
-
-
-
-
-# [0.2.0](https://github.com/hidoo/unit-sass/compare/v0.1.0...v0.2.0) (2019-08-14)
-
-
-### Bug Fixes
-
-* **unit:** fix to not override font-family in body ([11e12d0](https://github.com/hidoo/unit-sass/commit/11e12d0))
-* **unit:** remove argument $feature-settings from [@mixin](https://github.com/mixin) use-font-base ([4101736](https://github.com/hidoo/unit-sass/commit/4101736))
-
-
-### Features
-
-* **unit:** add [@mixin](https://github.com/mixin) use-font-advanced-settings ([ec0f853](https://github.com/hidoo/unit-sass/commit/ec0f853))
-* **unit:** add argument $word-break to [@mixin](https://github.com/mixin) use-text-base ([0ad73e1](https://github.com/hidoo/unit-sass/commit/0ad73e1))
-
-
-### BREAKING CHANGES
-
 * **unit:** changed @mixin use-font-family not to refer to $unit-font-enable-override
 * **unit:** instead use @mixin use-font-advanced-settings if to set font-feature-settings
 
 
 
-
-
-# 0.1.0 (2019-08-02)
-
-
-### Bug Fixes
-
-* **unit:** add prefix to $counter-name in unit--list--marker-numeric ([8641333](https://github.com/hidoo/unit-sass/commit/8641333))
-* **unit:** change to ignore multiple define-inline-placeholder ([7846b78](https://github.com/hidoo/unit-sass/commit/7846b78))
-* **unit:** fix default font family in windows ([1e05de9](https://github.com/hidoo/unit-sass/commit/1e05de9))
-* **unit:** rename [@mixin](https://github.com/mixin) define-inline-placeholder to define-placeholder ([6d7d1e1](https://github.com/hidoo/unit-sass/commit/6d7d1e1))
-* **unit:** rename to $unit-font-enable-advanced-settings ([7e2d5b2](https://github.com/hidoo/unit-sass/commit/7e2d5b2))
-
-
-### Features
-
-* **unit:** add $capturing-selectors argument to [@mixin](https://github.com/mixin) on-disabled ([a64fa05](https://github.com/hidoo/unit-sass/commit/a64fa05))
-* **unit:** add hook mixins ([ac7176a](https://github.com/hidoo/unit-sass/commit/ac7176a))
-* **unit:** add package that sass based css framework ([b2e9e19](https://github.com/hidoo/unit-sass/commit/b2e9e19))
-* **unit:** add select unit ([924fb6c](https://github.com/hidoo/unit-sass/commit/924fb6c))
