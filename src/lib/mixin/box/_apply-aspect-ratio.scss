@@ -11,7 +11,7 @@
 ///
 /// @example scss - scss inputs
 ///  .selector {
-///    @include apply-aspect-ratio($width: 16, $height: 9);
+///    @include mixin.box-apply-aspect-ratio($width: 16, $height: 9);
 ///  }
 ///
 /// @example css - css outputs

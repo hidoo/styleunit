@@ -1,0 +1,136 @@
+{{!--
+  Each groups
+--}}
+{{#each this}}
+
+{{!--
+  Each items
+--}}
+{{#each this}}
+{{#ifDefined this.deprecated}}{{else}}
+
+{{!--
+  Name
+--}}
+# {{normalizeContextTypes this.context.type}}{{this.context.name}}
+
+{{!--
+  Todo
+--}}
+{{#each this.todo}}
+**[TODO]** {{{this}}}{{#unless @last}}     {{/unless}}
+{{/each}}
+
+{{!--
+  Description
+--}}
+{{{this.description}}}
+
+{{!--
+  Type
+  + variable
+--}}
+{{#if this.type}}
+## Type
+
+{{normalizeTypes this.type}}
+{{/if}}
+
+{{!--
+  Parameters
+  + function, mixin
+--}}
+{{#if this.parameter.[0]}}## Parameters{{/if}}
+{{> parameterTable value=this.parameter isParams=true}}
+
+{{!--
+  Properties
+  + variable
+--}}
+{{#if this.property.[0]}}## Properties{{/if}}
+{{> parameterTable value=this.property}}
+
+{{!--
+  Content
+  + mixin
+--}}
+{{#if this.content}}
+## Contents
+
+{{{this.content}}}
+{{/if}}
+
+{{!--
+  Returns
+  + function
+--}}
+{{#if this.return}}
+## Returns
+
+{{normalizeTypes this.return.type}}{{#if this.return.description}} {{{trim this.return.description}}}{{/if}}
+{{/if}}
+
+{{!--
+  Throws
+  + placeholder, function, mixin
+--}}
+{{#if this.throw.[0]}}## Throws{{/if}}
+
+{{#each this.throw}}
++ {{{this}}}
+{{/each}}
+
+{{!--
+  Outputs
+  + mixin
+--}}
+{{#if this.output}}
+## Outputs
+
+{{{this.output}}}
+{{/if}}
+
+{{!--
+  Examples
+--}}
+{{#if this.example.[0]}}## Examples{{/if}}
+
+{{#each this.example}}
+{{#if this.description}}{{{trim this.description}}}{{/if}}
+
+```{{{this.type}}}
+{{{this.code}}}
+```
+{{/each}}
+
+{{!--
+  Links
+--}}
+{{#if this.link.[0]}}## Links{{/if}}
+
+{{#each this.link}}
++ {{#if this.caption}}[{{this.caption}}]({{this.url}}){{else}}<{{this.url}}>{{/if}}
+{{/each}}
+
+{{!--
+  Since
+--}}
+{{#if this.since.[0]}}## Since{{/if}}
+
+{{#each this.since}}
++ **{{this.version}}**{{#if this.description}} {{{trim this.description}}}{{/if}}
+{{/each}}
+
+{{!--
+  Authors
+--}}
+{{#if this.author.[0]}}## Authors{{/if}}
+
+{{#each this.author}}
++ {{{this}}}
+{{/each}}
+
+{{/ifDefined}}
+{{/each}}
+
+{{/each}}

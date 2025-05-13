@@ -30,29 +30,35 @@ npm install @hidoo/unit
 @use '@hidoo/unit';
 ```
 
-### Usage with custom settings
+### Use with configured settings
 
 ```scss
-// use this package with custom settings
+// Use this package with the configured settings
 @use 'node_modules/@hidoo/unit/src/index.scss' with (
   $prefix: 'u'
 );
+
+// Initialize manually
+@use 'bootstrap';
 ```
 
-### Usage only the required units
+### Usage only with the necessary units
 
 ```scss
-// use custom settings
+// Use this package with the configured settings
 @use 'node_modules/@hidoo/unit/src/settings' with (
   $prefix: 'u'
 );
 
-// use all of text unit
+// Use all of text unit
 @use 'node_modules/@hidoo/unit/src/unit/text';
 
-// use part of button unit
+// Use part of button unit
 @use 'node_modules/@hidoo/unit/src/unit/button/core';
 @use 'node_modules/@hidoo/unit/src/unit/button/inline';
+
+// Initialize manually
+@use 'bootstrap';
 ```
 
 ## Plugins
@@ -61,14 +67,9 @@ npm install @hidoo/unit
 
 ## API
 
-<a id="box-features-mixin-apply-aspect-ratio"></a>
-
 ### @mixin apply-aspect-ratio
 
 apply aspect ratio settings
-
-- **Group:** Box features
-- **Access:** public
 
 #### Parameters
 
@@ -83,7 +84,7 @@ scss inputs
 
 ```scss
 .selector {
-  @include apply-aspect-ratio($width: 16, $height: 9);
+  @include mixin.box-apply-aspect-ratio($width: 16, $height: 9);
 }
 ```
 
@@ -99,14 +100,9 @@ css outputs
 }
 ```
 
-<a id="box-features-mixin-apply-clearfix"></a>
-
 ### @mixin apply-clearfix
 
 apply clearfix
-
-- **Group:** Box features
-- **Access:** public
 
 #### Examples
 
@@ -114,7 +110,7 @@ scss inputs
 
 ```scss
 .selector {
-  @include apply-clearfix();
+  @include mixin.box-apply-clearfix();
 }
 ```
 
@@ -131,117 +127,9 @@ css outputs
 }
 ```
 
-<a id="box-features-mixin-initialize"></a>
-
-### @mixin initialize
-
-> **DEPRECATED!**
-
-initialize box settings
-
-- **Group:** Box features
-- **Access:** public
-
-#### Parameters
-
-| Name          | Type                                                                                                                           | Description              | Default         |
-| :------------ | :----------------------------------------------------------------------------------------------------------------------------- | :----------------------- | :-------------- |
-| `$display`    | **[String](https://sass-lang.com/documentation/values/strings)**                                                               | setting for `display`    | `"block"`       |
-| `$overflow`   | **[String](https://sass-lang.com/documentation/values/strings)**                                                               | setting for `overflow`   | `null`          |
-| `$box-sizing` | **[String](https://sass-lang.com/documentation/values/strings)**                                                               | setting for `box-sizing` | `"content-box"` |
-| `$position`   | **[String](https://sass-lang.com/documentation/values/strings)**                                                               | setting for `position`   | `"relative"`    |
-| `$list-style` | **[String](https://sass-lang.com/documentation/values/strings)**                                                               | setting for `list-style` | `0`             |
-| `$margin`     | **[Number](https://sass-lang.com/documentation/values/numbers)**, **[List](https://sass-lang.com/documentation/values/lists)** | setting for `margin`     | `0`             |
-| `$padding`    | **[Number](https://sass-lang.com/documentation/values/numbers)**, **[List](https://sass-lang.com/documentation/values/lists)** | setting for `padding`    | `0`             |
-| `$border`     | **[Number](https://sass-lang.com/documentation/values/numbers)**, **[List](https://sass-lang.com/documentation/values/lists)** | setting for `border`     | `0`             |
-
-#### Examples
-
-scss inputs
-
-```scss
-.selector {
-  @include initialize();
-}
-```
-
-css outputs
-
-```css
-.selector {
-  display: block;
-  box-sizing: content-box;
-  position: relative;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-```
-
-<a id="breakpoint-features-mixin-define"></a>
-
-### @mixin define
-
-> **DEPRECATED!**
-
-define breakepoint
-
-- **Group:** Breakpoint features
-- **Access:** public
-
-#### Parameters
-
-| Name             | Type                                                                                                                                                                                            | Description                  | Default |
-| :--------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------- | :------ |
-| `$from`          | **[Number](https://sass-lang.com/documentation/values/numbers)**, **[String](https://sass-lang.com/documentation/values/strings)**, **[Null](https://sass-lang.com/documentation/values/null)** | starting point of breakpoint | `null`  |
-| `$until`         | **[Number](https://sass-lang.com/documentation/values/numbers)**, **[String](https://sass-lang.com/documentation/values/strings)**, **[Null](https://sass-lang.com/documentation/values/null)** | ending point of breakpoint   | `null`  |
-| `$options`       | **[Map](https://sass-lang.com/documentation/values/maps)**                                                                                                                                      | options                      | `()`    |
-| `$options.media` | **[String](https://sass-lang.com/documentation/values/strings)**                                                                                                                                | custom media name            | -       |
-
-#### Examples
-
-scss inputs
-
-```scss
-.selector {
-  @include define($from: 'mobile', $until: 'desktop') {
-    font-size: 16px;
-  }
-}
-```
-
-css outputs
-
-```css
-@media only screen and (min-width: 667px) and (max-width: 1023px) {
-  .selector {
-    font-size: 16px;
-  }
-}
-```
-
-<a id="color-feature-variable-_default-options"></a>
-
-### $\_default-options
-
-default options
-
-- **Group:** Color feature
-- **Access:** private
-
-#### Type
-
-**[Map](https://sass-lang.com/documentation/values/maps)**
-
-<a id="color-feature-function-foreground"></a>
-
 ### @function foreground
 
 return foreground color
-
-- **Group:** Color feature
-- **Access:** public
 
 #### Parameters
 
@@ -264,7 +152,7 @@ scss inputs
 
 ```scss
 .selector {
-  content: foreground(#000);
+  content: function.color-foreground(#000);
 }
 ```
 
@@ -276,14 +164,9 @@ css outputs
 }
 ```
 
-<a id="default-settings-variable-themes"></a>
-
 ### $themes
 
 Default builtin theme
-
-- **Group:** Default settings
-- **Access:** public
 
 #### Type
 
@@ -296,14 +179,9 @@ Default builtin theme
 | `light` | **[Map](https://sass-lang.com/documentation/values/maps)** | values of light theme | `(...)` |
 | `dark`  | **[Map](https://sass-lang.com/documentation/values/maps)** | values of dark theme  | `(...)` |
 
-<a id="default-settings-variable-palette"></a>
-
 ### $palette
 
 Color palette
-
-- **Group:** Default settings
-- **Access:** public
 
 #### Type
 
@@ -329,14 +207,9 @@ Color palette
 | `summer-sky`    | **[List](https://sass-lang.com/documentation/values/lists)** | <span style="color: rgb(55, 165, 228);">█</span>  | `(55, 165, 228)`  |
 | `sky-blue`      | **[List](https://sass-lang.com/documentation/values/lists)** | <span style="color: rgb(255, 255, 255);">█</span> | `(122, 195, 237)` |
 
-<a id="default-settings-variable-mappings"></a>
-
 ### $mappings
 
 Color mappings
-
-- **Group:** Default settings
-- **Access:** public
 
 #### Type
 
@@ -366,8 +239,6 @@ Color mappings
 | `link`       | **[String](https://sass-lang.com/documentation/values/strings)** | type link       | `summer-sky`    |
 | `focus`      | **[String](https://sass-lang.com/documentation/values/strings)** | type focus      | `sky-blue`      |
 
-<a id="default-settings-variable-family"></a>
-
 ### $family
 
 Default font family.
@@ -385,14 +256,9 @@ Default font family.
 | `YuGothic`                  | Use as a secondary japanese font family in macOS.                |
 | `Meiryo`                    | Use as a secondary japanese font family in Windows.              |
 
-- **Group:** Default settings
-- **Access:** public
-
 #### Type
 
 **[List](https://sass-lang.com/documentation/values/lists)**
-
-<a id="default-settings-variable-family-monospace"></a>
 
 ### $family-monospace
 
@@ -405,21 +271,13 @@ Default monospace font family.
 | `Menlo`    | Use as a secondary monospace font family in macOS.                                |
 | `Courier`  | Use as a secondary monospace font family in Windows.                              |
 
-- **Group:** Default settings
-- **Access:** public
-
 #### Type
 
 **[List](https://sass-lang.com/documentation/values/lists)**
 
-<a id="default-settings-variable-family-presets"></a>
-
 ### $family-presets
 
 Default font family presets
-
-- **Group:** Default settings
-- **Access:** public
 
 #### Type
 
@@ -432,21 +290,14 @@ Default font family presets
 | `default`   | **[String](https://sass-lang.com/documentation/values/strings)** | Default font family   | `$family`           |
 | `monospace` | **[String](https://sass-lang.com/documentation/values/strings)** | Monospace font family | `$family-monospace` |
 
-<a id="default-settings-variable-size"></a>
-
 ### $size
 
 Default font size.
 (default: `14px`)
 
-- **Group:** Default settings
-- **Access:** public
-
 #### Type
 
 **[Number](https://sass-lang.com/documentation/values/numbers)**
-
-<a id="default-settings-variable-base-size"></a>
 
 ### $base-size
 
@@ -454,21 +305,13 @@ Default base font size.
 (default: `16px`)
 this use if `$enable-relative-size` is `true`
 
-- **Group:** Default settings
-- **Access:** public
-
 #### Type
 
 **[Number](https://sass-lang.com/documentation/values/numbers)**
 
-<a id="default-settings-variable-size-presets"></a>
-
 ### $size-presets
 
 Default font size presets
-
-- **Group:** Default settings
-- **Access:** public
 
 #### Type
 
@@ -487,28 +330,18 @@ Default font size presets
 | `3xlarge` | **[Number](https://sass-lang.com/documentation/values/numbers)** | size 3xlarge | `1.6`   |
 | `4xlarge` | **[Number](https://sass-lang.com/documentation/values/numbers)** | size 4xlarge | `1.75`  |
 
-<a id="default-settings-variable-weight"></a>
-
 ### $weight
 
 Default font weight.
 (default: `400`)
 
-- **Group:** Default settings
-- **Access:** public
-
 #### Type
 
 **[Number](https://sass-lang.com/documentation/values/numbers)**
 
-<a id="default-settings-variable-weight-presets"></a>
-
 ### $weight-presets
 
 Font weight presets
-
-- **Group:** Default settings
-- **Access:** public
 
 #### Type
 
@@ -528,29 +361,19 @@ Font weight presets
 | `extra-bold`  | **[Number](https://sass-lang.com/documentation/values/numbers)** | extra-bold  | `800`   |
 | `black`       | **[Number](https://sass-lang.com/documentation/values/numbers)** | black       | `900`   |
 
-<a id="default-settings-variable-variant"></a>
-
 ### $variant
 
 Default font variant
 (default: (common-ligatures proportional-width emoji))
 
-- **Group:** Default settings
-- **Access:** public
-
 #### Type
 
 **[List](https://sass-lang.com/documentation/values/lists)**
-
-<a id="default-settings-variable-smoothing"></a>
 
 ### $smoothing
 
 Default font smoothing
 (webkit: antialiased, moz-osx: grayscale)
-
-- **Group:** Default settings
-- **Access:** public
 
 #### Type
 
@@ -563,43 +386,28 @@ Default font smoothing
 | `webkit`  | **[Number](https://sass-lang.com/documentation/values/numbers)** | For browsers macOS   | `antialiased` |
 | `moz-osx` | **[Number](https://sass-lang.com/documentation/values/numbers)** | For firefox on macOS | `grayscale`   |
 
-<a id="default-settings-variable-enable-relative-size"></a>
-
 ### $enable-relative-size
 
 enable relative font size specify.
 override base size settings of font
 (default: `true`)
 
-- **Group:** Default settings
-- **Access:** public
-
 #### Type
 
 **[Boolean](https://sass-lang.com/documentation/values/booleans)**
-
-<a id="default-settings-variable-applying-units"></a>
 
 ### $applying-units
 
 Default list of units that applying font
 
-- **Group:** Default settings
-- **Access:** private
-
 #### Type
 
 **[List](https://sass-lang.com/documentation/values/lists)**
-
-<a id="default-settings-variable-pkg"></a>
 
 ### $pkg
 
 Package name.
 (default: `"unit"`)
-
-- **Group:** Default settings
-- **Access:** public
 
 #### Type
 
@@ -621,15 +429,10 @@ css outputs
 }
 ```
 
-<a id="default-settings-variable-prefix"></a>
-
 ### $prefix
 
 Default prefix of unit class name.
 (default: `"unit"`)
-
-- **Group:** Default settings
-- **Access:** public
 
 #### Type
 
@@ -651,14 +454,9 @@ css outputs
 }
 ```
 
-<a id="default-settings-variable-breakpoints"></a>
-
 ### $breakpoints
 
 Default breakpoints.
-
-- **Group:** Default settings
-- **Access:** public
 
 #### Type
 
@@ -673,154 +471,99 @@ Default breakpoints.
 | `sm`      | **[String](https://sass-lang.com/documentation/values/strings)** | Breakpoint name when mobile viewport.     | `"only screen and (width < $mobile)"`  |
 | `not-sm`  | **[String](https://sass-lang.com/documentation/values/strings)** | Breakpoint name when not mobile viewport. | `"only screen and ($mobile <= width)"` |
 
-<a id="default-settings-variable-line-height"></a>
-
 ### $line-height
 
 Default line-height
 (default: `1.5`)
 
-- **Group:** Default settings
-- **Access:** public
-
 #### Type
 
 **[Number](https://sass-lang.com/documentation/values/numbers)**
-
-<a id="default-settings-variable-hyphens"></a>
 
 ### $hyphens
 
 Default hyphens
 (default: `auto`)
 
-- **Group:** Default settings
-- **Access:** public
-
 #### Type
 
 **[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="default-settings-variable-letter-spacing"></a>
 
 ### $letter-spacing
 
 Default letter-spacing
 (default: `0.04em`)
 
-- **Group:** Default settings
-- **Access:** public
-
 #### Type
 
 **[Number](https://sass-lang.com/documentation/values/numbers)**
-
-<a id="default-settings-variable-text-size-adjust"></a>
 
 ### $text-size-adjust
 
 Default text-size-adjust
 (default: `100%`)
 
-- **Group:** Default settings
-- **Access:** public
-
 #### Type
 
 **[Number](https://sass-lang.com/documentation/values/numbers)**
-
-<a id="default-settings-variable-word-break"></a>
 
 ### $word-break
 
 Default word-break
 (default: `normal`)
 
-- **Group:** Default settings
-- **Access:** public
-
 #### Type
 
 **[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="default-settings-variable-word-wrap"></a>
 
 ### $word-wrap
 
 Default word-wrap
 (default: `break-word`)
 
-- **Group:** Default settings
-- **Access:** public
-
 #### Type
 
 **[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="default-settings-variable-line-break"></a>
 
 ### $line-break
 
 Default line-break
 (default: `strict`)
 
-- **Group:** Default settings
-- **Access:** public
-
 #### Type
 
 **[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="default-settings-variable-overflow-wrap"></a>
 
 ### $overflow-wrap
 
 Default line-break
 (default: `strict`)
 
-- **Group:** Default settings
-- **Access:** public
-
 #### Type
 
 **[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="default-settings-variable-message-on-image-error"></a>
 
 ### $message-on-image-error
 
 Default message on image error
 (default: `Failed to load image.`)
 
-- **Group:** Default settings
-- **Access:** public
-
 #### Type
 
 **[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="default-settings-variable-verbose"></a>
 
 ### $verbose
 
 out warnings verbosely or not
 
-- **Group:** Default settings
-- **Access:** public
-
 #### Type
 
 **[Boolean](https://sass-lang.com/documentation/values/booleans)**
-
-<a id="default-settings-variable-prefix"></a>
 
 ### $prefix
 
 Default prefix for utility class name.
 (default: `"util"`)
-
-- **Group:** Default settings
-- **Access:** public
 
 #### Type
 
@@ -842,98 +585,61 @@ css outputs
 }
 ```
 
-<a id="default-settings-variable-width"></a>
-
 ### $width
 
 Default width list.
 
-- **Group:** Default settings
-- **Access:** public
-
 #### Type
 
 **[List](https://sass-lang.com/documentation/values/lists)**
-
-<a id="default-settings-variable-height"></a>
 
 ### $height
 
 Default height list.
 
-- **Group:** Default settings
-- **Access:** public
-
 #### Type
 
 **[List](https://sass-lang.com/documentation/values/lists)**
-
-<a id="default-settings-variable-margin"></a>
 
 ### $margin
 
 Default margin list
 
-- **Group:** Default settings
-- **Access:** public
-
 #### Type
 
 **[List](https://sass-lang.com/documentation/values/lists)**
-
-<a id="default-settings-variable-padding"></a>
 
 ### $padding
 
 Default padding list
 
-- **Group:** Default settings
-- **Access:** public
-
 #### Type
 
 **[List](https://sass-lang.com/documentation/values/lists)**
-
-<a id="default-settings-variable-position"></a>
 
 ### $position
 
 Default position list
 
-- **Group:** Default settings
-- **Access:** public
-
 #### Type
 
 **[List](https://sass-lang.com/documentation/values/lists)**
-
-<a id="default-settings-variable-directions"></a>
 
 ### $directions
 
 Default direction list
 
-- **Group:** Default settings
-- **Access:** public
-
 #### Type
 
 **[List](https://sass-lang.com/documentation/values/lists)**
-
-<a id="default-settings-variable-z-index"></a>
 
 ### $z-index
 
 Default z-index list
 
-- **Group:** Default settings
-- **Access:** public
-
 #### Type
 
 **[List](https://sass-lang.com/documentation/values/lists)**
-
-\<a id="features-css-//-prettier-ignore-$\_default-selectors:-(":disabled"-)-!default;--///-Utility-for-`:has`-pseudo-classes-with-`:disabled`-///-\@param"></a>
 
 ### css// prettier-ignore
 
@@ -944,11 +650,6 @@ $\_default-selectors: (":disabled",) !default;
 
 Default selectors
 
-- **Group:** Features
-- **Access:** private
-
-\<a id="features-css-//-prettier-ignore-$\_default-selectors:-(":hover"--":focus")-!default;--///-Utility-for-`:has`-pseudo-classes-with-`:hover`-and-`:focus`-///-\@param"></a>
-
 ### css// prettier-ignore
 
 $\_default-selectors: (":hover", ":focus") !default;
@@ -957,11 +658,6 @@ $\_default-selectors: (":hover", ":focus") !default;
 /// @param
 
 Default selectors
-
-- **Group:** Features
-- **Access:** private
-
-\<a id="features-css-//-prettier-ignore-$\_default-selectors:-(":checked"-)-!default;--///-Utility-for-`:has`-pseudo-classes-with-`:checked`-///-\@param"></a>
 
 ### css// prettier-ignore
 
@@ -972,11 +668,6 @@ $\_default-selectors: (":checked",) !default;
 
 Default selectors
 
-- **Group:** Features
-- **Access:** private
-
-\<a id="features-css-//-prettier-ignore-$\_default-selectors:-(":disabled"-)-!default;--///-Utility-for-pseudo-classes-like-`:disabled`-///-\@param"></a>
-
 ### css// prettier-ignore
 
 $\_default-selectors: (":disabled",) !default;
@@ -986,194 +677,21 @@ $\_default-selectors: (":disabled",) !default;
 
 Default selectors
 
-- **Group:** Features
-- **Access:** private
-
-<a id="features-variable-_default-font-applying-units"></a>
-
-### $\_default-font-applying-units
-
-default list of units that applying font
-
-- **Group:** Features
-- **Access:** private
-
-#### Type
-
-**[List](https://sass-lang.com/documentation/values/lists)**
-
-<a id="features-variable-_default-options"></a>
-
-### $\_default-options
-
-Default options
-
-- **Group:** Features
-- **Access:** private
-
-#### Type
-
-**[Map](https://sass-lang.com/documentation/values/maps)**
-
 #### Properties
 
 | Name  | Type                                                               | Description                   | Default |
 | :---- | :----------------------------------------------------------------- | :---------------------------- | :------ |
 | `not` | **[Boolean](https://sass-lang.com/documentation/values/booleans)** | Deny selectors whether or not | `false` |
 
-<a id="features-variable-_default-options"></a>
-
-### $\_default-options
-
-Default options
-
-- **Group:** Features
-- **Access:** private
-
-#### Type
-
-**[Map](https://sass-lang.com/documentation/values/maps)**
-
-<a id="features-variable-_default-selectors"></a>
-
-### $\_default-selectors
-
-Default selectors
-
-- **Group:** Features
-- **Access:** private
-
-#### Type
-
-**[List](https://sass-lang.com/documentation/values/lists)**
-
-<a id="features-variable-_default-selectors"></a>
-
-### $\_default-selectors
-
-Default selectors
-
-- **Group:** Features
-- **Access:** private
-
-#### Type
-
-**[List](https://sass-lang.com/documentation/values/lists)**
-
-<a id="features-variable-_default-selectors"></a>
-
-### $\_default-selectors
-
-Default selectors
-
-- **Group:** Features
-- **Access:** private
-
-#### Type
-
-**[List](https://sass-lang.com/documentation/values/lists)**
-
-<a id="features-variable-_default-selectors"></a>
-
-### $\_default-selectors
-
-Default selectors
-
-- **Group:** Features
-- **Access:** private
-
-#### Type
-
-**[List](https://sass-lang.com/documentation/values/lists)**
-
-<a id="features-variable-_default-selectors"></a>
-
-### $\_default-selectors
-
-Default selectors
-
-- **Group:** Features
-- **Access:** private
-
-#### Type
-
-**[List](https://sass-lang.com/documentation/values/lists)**
-
-<a id="features-variable-_selectors"></a>
-
-### $\_selectors
-
-selectors
-
-- **Group:** Features
-- **Access:** private
-
-#### Type
-
-**[List](https://sass-lang.com/documentation/values/lists)**
-
-<a id="features-variable-_default-options"></a>
-
-### $\_default-options
-
-Default options
-
-- **Group:** Features
-- **Access:** private
-
-#### Type
-
-**[Map](https://sass-lang.com/documentation/values/maps)**
-
 #### Properties
 
 | Name  | Type                                                               | Description                   | Default |
 | :---- | :----------------------------------------------------------------- | :---------------------------- | :------ |
 | `not` | **[Boolean](https://sass-lang.com/documentation/values/booleans)** | Deny selectors whether or not | `false` |
-
-<a id="features-mixin-bootstrap"></a>
-
-### @mixin bootstrap
-
-> **DEPRECATED!**
-
-bootstrap
-
-- **Group:** Features
-- **Access:** public
-
-#### Parameters
-
-| Name                                     | Type                                                               | Description                                  | Default |
-| :--------------------------------------- | :----------------------------------------------------------------- | :------------------------------------------- | :------ |
-| `$enable-font-applying`                  | **[Boolean](https://sass-lang.com/documentation/values/booleans)** | enable applying font settings or not         | `true`  |
-| `$enable-font-applying-feature-settings` | **[Boolean](https://sass-lang.com/documentation/values/booleans)** | enable applying font feature settings or not | `true`  |
-| `$font-applying-units`                   | **[List](https://sass-lang.com/documentation/values/lists)**       | list of units that applying font             | `true`  |
-
-#### Examples
-
-scss inputs
-
-```scss
-@include bootstrap();
-```
-
-scss inputs
-
-```scss
-@include bootstrap() {
-  // with appling additional settings to all units
-}
-```
-
-<a id="features-mixin-has-disabled"></a>
 
 ### @mixin has-disabled
 
 Utility for `:has` pseudo classes with `:disabled`
-
-- **Group:** Features
-- **Access:** public
 
 #### Parameters
 
@@ -1188,7 +706,7 @@ scss inputs
 
 ```scss
 .selector {
-  @include has-disabled() {
+  @include mixin.has-disabled() {
     font-size: 16px;
   }
 }
@@ -1202,14 +720,9 @@ css outputs
 }
 ```
 
-<a id="features-mixin-has-focus"></a>
-
 ### @mixin has-focus
 
 Utility for `:has` pseudo classes with `:hover` and `:focus`
-
-- **Group:** Features
-- **Access:** public
 
 #### Parameters
 
@@ -1224,7 +737,7 @@ scss inputs
 
 ```scss
 .selector {
-  @include has-focus() {
+  @include mixin.has-focus() {
     font-size: 16px;
   }
 }
@@ -1238,14 +751,9 @@ css outputs
 }
 ```
 
-<a id="features-mixin-has-selected"></a>
-
 ### @mixin has-selected
 
 Utility for `:has` pseudo classes with `:checked`
-
-- **Group:** Features
-- **Access:** public
 
 #### Parameters
 
@@ -1260,7 +768,7 @@ scss inputs
 
 ```scss
 .selector {
-  @include has-selected() {
+  @include mixin.has-selected() {
     font-size: 16px;
   }
 }
@@ -1274,14 +782,9 @@ css outputs
 }
 ```
 
-<a id="features-mixin-has"></a>
-
 ### @mixin has
 
 The utility mixin for `:has` pseudo classes.
-
-- **Group:** Features
-- **Access:** public
 
 #### Parameters
 
@@ -1296,7 +799,7 @@ scss inputs
 
 ```scss
 .selector {
-  @include has((':hover', ':focus')) {
+  @include mixin.has((':hover', ':focus')) {
     font-size: 16px;
   }
 }
@@ -1310,14 +813,9 @@ css outputs
 }
 ```
 
-<a id="features-mixin-media"></a>
-
 ### @mixin media
 
 The media query helper.
-
-- **Group:** Features
-- **Access:** public
 
 #### Parameters
 
@@ -1338,7 +836,7 @@ $breakpoint: (
 );
 
 .selector {
-  @include media($query: 'sm') {
+  @include mixin.media($query: 'sm') {
     font-size: 16px;
   }
 }
@@ -1354,14 +852,9 @@ css outputs
 }
 ```
 
-<a id="features-mixin-on-active"></a>
-
 ### @mixin on-active
 
 Utility for pseudo classes like `.is-active`
-
-- **Group:** Features
-- **Access:** public
 
 #### Parameters
 
@@ -1376,7 +869,7 @@ scss inputs
 
 ```scss
 .selector {
-  @include on-active() {
+  @include mixin.on-active() {
     font-size: 16px;
   }
 }
@@ -1390,14 +883,9 @@ css outputs
 }
 ```
 
-<a id="features-mixin-on-current"></a>
-
 ### @mixin on-current
 
 Utility for pseudo classes like `.is-current`
-
-- **Group:** Features
-- **Access:** public
 
 #### Parameters
 
@@ -1412,7 +900,7 @@ scss inputs
 
 ```scss
 .selector {
-  @include on-current() {
+  @include mixin.on-current() {
     font-size: 16px;
   }
 }
@@ -1426,14 +914,9 @@ css outputs
 }
 ```
 
-<a id="features-mixin-on-deactive"></a>
-
 ### @mixin on-deactive
 
 Utility for pseudo classes like `:not(is-active)`
-
-- **Group:** Features
-- **Access:** public
 
 #### Parameters
 
@@ -1448,7 +931,7 @@ scss inputs
 
 ```scss
 .selector {
-  @include on-deactive() {
+  @include mixin.on-deactive() {
     font-size: 16px;
   }
 }
@@ -1462,14 +945,9 @@ css outputs
 }
 ```
 
-<a id="features-mixin-on-disabled"></a>
-
 ### @mixin on-disabled
 
 Utility for pseudo classes like `:disabled`
-
-- **Group:** Features
-- **Access:** public
 
 #### Parameters
 
@@ -1484,7 +962,7 @@ scss inputs
 
 ```scss
 .selector {
-  @include on-disabled() {
+  @include mixin.on-disabled() {
     font-size: 16px;
   }
 }
@@ -1498,14 +976,9 @@ css outputs
 }
 ```
 
-<a id="features-mixin-on-focus"></a>
-
 ### @mixin on-focus
 
 Utility for pseudo classes like `:hover` and `:focus`
-
-- **Group:** Features
-- **Access:** public
 
 #### Parameters
 
@@ -1520,7 +993,7 @@ scss inputs
 
 ```scss
 .selector {
-  @include on-focus() {
+  @include mixin.on-focus() {
     font-size: 16px;
   }
 }
@@ -1534,14 +1007,9 @@ css outputs
 }
 ```
 
-<a id="features-mixin-on-link"></a>
-
 ### @mixin on-link
 
 Utility for pseudo classes like `:link` and `:visited`
-
-- **Group:** Features
-- **Access:** public
 
 #### Parameters
 
@@ -1556,7 +1024,7 @@ scss inputs
 
 ```scss
 .selector {
-  @include on-link() {
+  @include mixin.on-link() {
     font-size: 16px;
   }
 }
@@ -1570,14 +1038,9 @@ css outputs
 }
 ```
 
-<a id="features-mixin-on-placeholder"></a>
-
 ### @mixin on-placeholder
 
 wrappper of `:placeholder-shown`
-
-- **Group:** Features
-- **Access:** public
 
 #### Examples
 
@@ -1585,7 +1048,7 @@ scss inputs
 
 ```scss
 .selector {
-  @include on-placeholder() {
+  @include mixin.on-placeholder() {
     font-size: 16px;
   }
 }
@@ -1608,14 +1071,9 @@ css outputs
 }
 ```
 
-<a id="features-mixin-on-print"></a>
-
 ### @mixin on-print
 
 The wrapper of `@media print`
-
-- **Group:** Features
-- **Access:** public
 
 #### Examples
 
@@ -1623,7 +1081,7 @@ scss inputs
 
 ```scss
 .selector {
-  @include on-print() {
+  @include mixin.on-print() {
     font-size: 16px;
   }
 }
@@ -1639,14 +1097,9 @@ css outputs
 }
 ```
 
-<a id="features-mixin-on"></a>
-
 ### @mixin on
 
 Utility for pseudo classes
-
-- **Group:** Features
-- **Access:** public
 
 #### Parameters
 
@@ -1662,7 +1115,7 @@ scss inputs
 
 ```scss
 .selector {
-  @include on((':hover', ':focus')) {
+  @include mixin.on((':hover', ':focus')) {
     font-size: 16px;
   }
 }
@@ -1676,70 +1129,9 @@ css outputs
 }
 ```
 
-<a id="features-mixin-initialize-column"></a>
-
-### @mixin initialize-column
-
-> **DEPRECATED!**
-
-initialize table column settings
-
-- **Group:** Features
-- **Access:** public
-
-#### Parameters
-
-| Name            | Type                                                                                                                           | Description                | Default   |
-| :-------------- | :----------------------------------------------------------------------------------------------------------------------------- | :------------------------- | :-------- |
-| `$margin`       | **[Number](https://sass-lang.com/documentation/values/numbers)**, **[List](https://sass-lang.com/documentation/values/lists)** | setting for `margin`       | `0`       |
-| `$padding`      | **[Number](https://sass-lang.com/documentation/values/numbers)**, **[List](https://sass-lang.com/documentation/values/lists)** | setting for `padding`      | `0`       |
-| `$border-style` | **[String](https://sass-lang.com/documentation/values/strings)**                                                               | setting for `border-style` | `"solid"` |
-| `$border-width` | **[Number](https://sass-lang.com/documentation/values/numbers)**                                                               | setting for `border-width` | `1px`     |
-
-#### Examples
-
-scss inputs
-
-```scss
-.selector {
-  @include initialize-column();
-}
-```
-
-css outputs
-
-```css
-.selector {
-  display: table-cell;
-  margin: 0;
-  padding: 0;
-  vertical-align: middle;
-  border-style: solid;
-  border-width: 1px;
-}
-```
-
-<a id="font-feature-variable-_default-options"></a>
-
-### $\_default-options
-
-default options
-
-- **Group:** Font feature
-- **Access:** private
-
-#### Type
-
-**[Map](https://sass-lang.com/documentation/values/maps)**
-
-<a id="font-feature-function-size"></a>
-
 ### @function size
 
 return real font-size
-
-- **Group:** Font feature
-- **Access:** public
 
 #### Parameters
 
@@ -1760,7 +1152,7 @@ scss inputs
 
 ```scss
 .selector {
-  font-size: font-size($value: 'medium');
+  font-size: function.font-size($value: 'medium');
 }
 ```
 
@@ -1772,233 +1164,9 @@ css outputs
 }
 ```
 
-<a id="font-features-variable-_pkg"></a>
-
-### $\_pkg
-
-Package name
-
-- **Group:** Font features
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="font-features-variable-_pkg"></a>
-
-### $\_pkg
-
-Package name
-
-- **Group:** Font features
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="font-features-mixin-apply-family"></a>
-
-### @mixin apply-family
-
-> **DEPRECATED!**
-
-apply font-family settings
-
-- **Group:** Font features
-- **Access:** public
-
-#### Parameters
-
-| Name         | Type                                                                                                                           | Description                                                              | Default |
-| :----------- | :----------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------- | :------ |
-| `$value`     | **[List](https://sass-lang.com/documentation/values/lists)**, **[String](https://sass-lang.com/documentation/values/strings)** | setting for `font-family` (one of `"default"`, `"monospace"` or `(...)`) | `null`  |
-| `$important` | **[Boolean](https://sass-lang.com/documentation/values/booleans)**                                                             | set `!important` or not                                                  | `false` |
-
-#### Examples
-
-scss inputs
-
-```scss
-.selector {
-  @include apply-family($value: 'default', $important: true);
-}
-```
-
-css outputs
-
-```css
-.selector {
-  font-family:
-    -apple-system, BlinkMacSystemFont, Helvetica, Arial,
-    'Hiragino Kaku Gothic ProN', 'Yu Gothic Medium', '游ゴシック Medium',
-    YuGothic, Meiryo, 'メイリオ', sans-serif !important;
-}
-```
-
-<a id="font-features-mixin-apply-feature-settings"></a>
-
-### @mixin apply-feature-settings
-
-> **DEPRECATED!**
-
-apply font-feature-settings
-
-- **Group:** Font features
-- **Access:** public
-
-#### Parameters
-
-| Name                | Type                                                             | Description                         | Default  |
-| :------------------ | :--------------------------------------------------------------- | :---------------------------------- | :------- |
-| `$feature-settings` | **[String](https://sass-lang.com/documentation/values/strings)** | setting for `font-feature-settings` | `"palt"` |
-
-#### Examples
-
-scss inputs
-
-```scss
-.selector {
-  @include apply-feature-settings();
-}
-```
-
-css outputs
-
-```css
-.selector {
-  font-feature-settings: 'palt';
-  -ms-font-feature-settings: normal;
-}
-```
-
-<a id="font-features-mixin-apply-size"></a>
-
-### @mixin apply-size
-
-> **DEPRECATED!**
-
-apply font-size settings
-
-- **Group:** Font features
-- **Access:** public
-
-#### Parameters
-
-| Name         | Type                                                                                                                               | Description                                                                                                                           | Default |
-| :----------- | :--------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------ | :------ |
-| `$value`     | **[String](https://sass-lang.com/documentation/values/strings)**, **[Number](https://sass-lang.com/documentation/values/numbers)** | value of font-size (one of `"xsmall"`, `"small"`, `"medium"`, `"large"`, `"xlarge"`, `"2xlarge"`, `"3xlarge"`, `"4xlarge"` or number) | -       |
-| `$monospace` | **[Boolean](https://sass-lang.com/documentation/values/booleans)**                                                                 | font-family is monospace or not                                                                                                       | `false` |
-| `$important` | **[Boolean](https://sass-lang.com/documentation/values/booleans)**                                                                 | set !important or not                                                                                                                 | `false` |
-
-#### Examples
-
-scss inputs
-
-```scss
-.selector {
-  @include apply-size($value: 'medium', $important: true);
-}
-```
-
-css outputs
-
-```css
-.selector {
-  font-size: 14px !important;
-  font-size: 0.875rem !important;
-}
-```
-
-<a id="font-features-mixin-apply-smoothing"></a>
-
-### @mixin apply-smoothing
-
-> **DEPRECATED!**
-
-apply font-smoothing
-
-- **Group:** Font features
-- **Access:** public
-
-#### Examples
-
-scss inputs
-
-```scss
-.selector {
-  @include apply-smoothing();
-}
-```
-
-css outputs
-
-```css
-.selector {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-```
-
-<a id="font-features-mixin-initialize"></a>
-
-### @mixin initialize
-
-> **DEPRECATED!**
-
-use settings of initialized font
-
-- **Group:** Font features
-- **Access:** public
-
-#### Parameters
-
-| Name      | Type                                                                                                                               | Description               | Default    |
-| :-------- | :--------------------------------------------------------------------------------------------------------------------------------- | :------------------------ | :--------- |
-| `$style`  | **[String](https://sass-lang.com/documentation/values/strings)**                                                                   | setting for `font-style`  | `"normal"` |
-| `$weight` | **[String](https://sass-lang.com/documentation/values/strings)**, **[Number](https://sass-lang.com/documentation/values/numbers)** | setting for `font-weight` | `"normal"` |
-
-#### Examples
-
-scss inputs
-
-```scss
-.selector {
-  @include initialize();
-}
-```
-
-css outputs
-
-```css
-.selector {
-  font-style: normal;
-  font-weight: normal;
-}
-```
-
-<a id="list-feature-variable-_default-options"></a>
-
-### $\_default-options
-
-default options
-
-- **Group:** List feature
-- **Access:** private
-
-#### Type
-
-**[Map](https://sass-lang.com/documentation/values/maps)**
-
-<a id="list-feature-function-concat-as-string"></a>
-
 ### @function concat-as-string
 
 concatenate list as string
-
-- **Group:** List feature
-- **Access:** public
 
 #### Parameters
 
@@ -2017,7 +1185,7 @@ scss inputs
 
 ```scss
 .selector {
-  content: concat-as-string(('hoge', 'fuga', 'piyo'), ':');
+  content: function.list-concat-as-string(('hoge', 'fuga', 'piyo'), ':');
 }
 ```
 
@@ -2029,14 +1197,9 @@ css outputs
 }
 ```
 
-<a id="list-feature-function-map"></a>
-
 ### @function map
 
 map list
-
-- **Group:** List feature
-- **Access:** public
 
 #### Parameters
 
@@ -2055,7 +1218,7 @@ scss inputs
 
 ```scss
 .selector {
-  content: map(
+  content: function.list-map(
     ('hoge', 'fuga', 'pi', 'yo'),
     meta.get-function('length', $module: 'string')
   );
@@ -2070,14 +1233,9 @@ css outputs
 }
 ```
 
-<a id="math-features-function-px-to-rem"></a>
-
 ### @function px-to-rem
 
 convert px to rem
-
-- **Group:** Math features
-- **Access:** public
 
 #### Parameters
 
@@ -2096,7 +1254,7 @@ scss inputs
 
 ```scss
 .selector {
-  font-size: px-to-rem(14px, 16px);
+  font-size: function.math-px-to-rem(14px, 16px);
 }
 ```
 
@@ -2108,14 +1266,9 @@ css outputs
 }
 ```
 
-<a id="math-features-function-remove-unit"></a>
-
 ### @function remove-unit
 
 return number without unit
-
-- **Group:** Math features
-- **Access:** public
 
 #### Parameters
 
@@ -2132,17 +1285,12 @@ return number without unit
 scss inputs
 
 ```scss
-$pure-number: remove-unit(14px); // -> 14
+$pure-number: function.math-remove-unit(14px); // -> 14
 ```
-
-<a id="meta-features-function-is-empty"></a>
 
 ### @function is-empty
 
 value is empty or not
-
-- **Group:** Meta features
-- **Access:** public
 
 #### Parameters
 
@@ -2159,30 +1307,12 @@ value is empty or not
 scss inputs
 
 ```scss
-$result: is-empty(''); // -> true
+$result: function.meta-is-empty(''); // -> true
 ```
-
-<a id="pict-feature-variable-_default-options"></a>
-
-### $\_default-options
-
-default options
-
-- **Group:** Pict feature
-- **Access:** private
-
-#### Type
-
-**[Map](https://sass-lang.com/documentation/values/maps)**
-
-<a id="pict-feature-mixin-apply-flexible-size"></a>
 
 ### @mixin apply-flexible-size
 
 apply flexible size to pict
-
-- **Group:** Pict feature
-- **Access:** public
 
 #### Parameters
 
@@ -2199,7 +1329,7 @@ scss inputs
 
 ```scss
 .selector {
-  @include apply-flexible-size($width: 16, $height: 9);
+  @include mixin.pict-apply-flexible-size($width: 16, $height: 9);
 }
 ```
 
@@ -2227,27 +1357,9 @@ css outputs
 }
 ```
 
-<a id="placeholder-features-variable-_already-defined"></a>
-
-### $\_already-defined
-
-defined placeholders.
-
-- **Group:** Placeholder features
-- **Access:** private
-
-#### Type
-
-**[List](https://sass-lang.com/documentation/values/lists)**
-
-<a id="placeholder-features-mixin-define"></a>
-
 ### @mixin define
 
 define placeholder class.
-
-- **Group:** Placeholder features
-- **Access:** public
 
 #### Parameters
 
@@ -2263,7 +1375,7 @@ scss inputs
 .selector {
   $name: unique-id();
 
-  @include define($name: $name) {
+  @include mixin.placeholder-define($name: $name) {
     font-size: 16px;
   }
 
@@ -2286,40 +1398,9 @@ css outputs
 }
 ```
 
-<a id="plugin/spritesheet-variable-_default-options"></a>
-
-### $\_default-options
-
-default options
-
-- **Group:** Plugin/spritesheet
-- **Access:** private
-
-#### Type
-
-**[Map](https://sass-lang.com/documentation/values/maps)**
-
-<a id="plugin/spritesheet-variable-_default-options"></a>
-
-### $\_default-options
-
-default options
-
-- **Group:** Plugin/spritesheet
-- **Access:** private
-
-#### Type
-
-**[Map](https://sass-lang.com/documentation/values/maps)**
-
-<a id="plugin/spritesheet-variable-spritesheets"></a>
-
 ### $spritesheets
 
 data store of sprite sheets
-
-- **Group:** Plugin/spritesheet
-- **Access:** public
 
 #### Type
 
@@ -2354,14 +1435,9 @@ $spritesheets: (
 );
 ```
 
-<a id="plugin/spritesheet-function-get-sheet-by-type"></a>
-
 ### @function get-sheet-by-type
 
 get sheet by type from values of spritesheets
-
-- **Group:** Plugin/spritesheet
-- **Access:** private
 
 #### Parameters
 
@@ -2374,14 +1450,9 @@ get sheet by type from values of spritesheets
 
 **[Map](https://sass-lang.com/documentation/values/maps)**, **[Null](https://sass-lang.com/documentation/values/null)**
 
-<a id="plugin/spritesheet-function-normalize"></a>
-
 ### @function normalize
 
 normalize values of spritesheet
-
-- **Group:** Plugin/spritesheet
-- **Access:** private
 
 #### Parameters
 
@@ -2393,14 +1464,9 @@ normalize values of spritesheet
 
 **[Map](https://sass-lang.com/documentation/values/maps)**, **[Null](https://sass-lang.com/documentation/values/null)**
 
-<a id="plugin/spritesheet-mixin-define"></a>
-
 ### @mixin define
 
 Define spritesheet
-
-- **Group:** Plugin/spritesheet
-- **Access:** public
 
 #### Parameters
 
@@ -2469,14 +1535,9 @@ css outputs
 }
 ```
 
-<a id="plugin/spritesheet-mixin-define-item"></a>
-
 ### @mixin define-item
 
 Define item
-
-- **Group:** Plugin/spritesheet
-- **Access:** private
 
 #### Parameters
 
@@ -2485,16 +1546,11 @@ Define item
 | `$name`    | **[String](https://sass-lang.com/documentation/values/strings)** | name of spritesheet item | -       |
 | `$items`   | **[Map](https://sass-lang.com/documentation/values/maps)**       | spritesheet items        | `()`    |
 | `$options` | **[Map](https://sass-lang.com/documentation/values/maps)**       | options                  | `()`    |
-
-<a id="plugin/spritesheet-mixin-define-responsive-item"></a>
 
 ### @mixin define-responsive-item
 
 Define responsive item
 
-- **Group:** Plugin/spritesheet
-- **Access:** private
-
 #### Parameters
 
 | Name       | Type                                                             | Description              | Default |
@@ -2502,16 +1558,11 @@ Define responsive item
 | `$name`    | **[String](https://sass-lang.com/documentation/values/strings)** | name of spritesheet item | -       |
 | `$items`   | **[Map](https://sass-lang.com/documentation/values/maps)**       | spritesheet items        | `()`    |
 | `$options` | **[Map](https://sass-lang.com/documentation/values/maps)**       | options                  | `()`    |
-
-<a id="plugin/spritesheet-mixin-define-responsive-toggle-item"></a>
 
 ### @mixin define-responsive-toggle-item
 
 Define responsive toggle item
 
-- **Group:** Plugin/spritesheet
-- **Access:** private
-
 #### Parameters
 
 | Name       | Type                                                             | Description              | Default |
@@ -2519,16 +1570,11 @@ Define responsive toggle item
 | `$name`    | **[String](https://sass-lang.com/documentation/values/strings)** | name of spritesheet item | -       |
 | `$items`   | **[Map](https://sass-lang.com/documentation/values/maps)**       | spritesheet items        | `()`    |
 | `$options` | **[Map](https://sass-lang.com/documentation/values/maps)**       | options                  | `()`    |
-
-<a id="plugin/spritesheet-mixin-define-toggle-item"></a>
 
 ### @mixin define-toggle-item
 
 Define toggle item
 
-- **Group:** Plugin/spritesheet
-- **Access:** private
-
 #### Parameters
 
 | Name       | Type                                                             | Description              | Default |
@@ -2537,14 +1583,9 @@ Define toggle item
 | `$items`   | **[Map](https://sass-lang.com/documentation/values/maps)**       | spritesheet items        | `()`    |
 | `$options` | **[Map](https://sass-lang.com/documentation/values/maps)**       | options                  | `()`    |
 
-<a id="plugin/spritesheet-mixin-set-properties"></a>
-
 ### @mixin set-properties
 
 set properties
-
-- **Group:** Plugin/spritesheet
-- **Access:** private
 
 #### Parameters
 
@@ -2553,27 +1594,9 @@ set properties
 | `$values`  | **[Map](https://sass-lang.com/documentation/values/maps)** | values of item | `()`    |
 | `$options` | **[Map](https://sass-lang.com/documentation/values/maps)** | options        | `()`    |
 
-<a id="selector-features-variable-_supported-types"></a>
-
-### $\_supported-types
-
-supported types
-
-- **Group:** Selector features
-- **Access:** private
-
-#### Type
-
-**[List](https://sass-lang.com/documentation/values/lists)**
-
-<a id="selector-features-function-inverse"></a>
-
 ### @function inverse
 
 return inverse selector
-
-- **Group:** Selector features
-- **Access:** public
 
 #### Parameters
 
@@ -2587,7 +1610,7 @@ scss inputs
 
 ```scss
 .selector {
-  content: _inverse('.hoge');
+  content: function.selector-inverse('.hoge');
 }
 ```
 
@@ -2599,435 +1622,9 @@ css outputs
 }
 ```
 
-<a id="selector-features-function-merge-state"></a>
-
-### @function merge-state
-
-> **DEPRECATED!**
-
-return merged state selectors
-
-- **Group:** Selector features
-- **Access:** public
-
-#### Parameters
-
-| Name                    | Type                                                             | Description                                                                           | Default  |
-| :---------------------- | :--------------------------------------------------------------- | :------------------------------------------------------------------------------------ | :------- |
-| `$type`                 | **[String](https://sass-lang.com/documentation/values/strings)** | type of state (one of `"link"`, `"focus"`, `"selected"`, `"disabled"` or `"current"`) | `"link"` |
-| `$additional-selectors` | **[List](https://sass-lang.com/documentation/values/lists)**     | additional selectors                                                                  | `()`     |
-
-#### Returns
-
-**[List](https://sass-lang.com/documentation/values/lists)**
-
-#### Examples
-
-scss inputs
-
-```scss
-$merged-focus-selectors: merge-state('link'); // -> (":link", ":visited")
-```
-
-<a id="size-features-variable-_supported-types"></a>
-
-### $\_supported-types
-
-supported types
-
-- **Group:** Size features
-- **Access:** private
-
-#### Type
-
-**[List](https://sass-lang.com/documentation/values/lists)**
-
-<a id="size-features-variable-_direction-groups"></a>
-
-### $\_direction-groups
-
-direction groups
-
-- **Group:** Size features
-- **Access:** private
-
-#### Type
-
-**[List](https://sass-lang.com/documentation/values/lists)**
-
-<a id="size-features-variable-_default-border-size"></a>
-
-### $\_default-border-size
-
-default border size
-
-- **Group:** Size features
-- **Access:** private
-
-#### Type
-
-**[Number](https://sass-lang.com/documentation/values/numbers)**
-
-<a id="size-features-variable-_default-border-style"></a>
-
-### $\_default-border-style
-
-default border style
-
-- **Group:** Size features
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="size-features-variable-_default-border-color"></a>
-
-### $\_default-border-color
-
-default border color
-
-- **Group:** Size features
-- **Access:** private
-
-#### Type
-
-**[Color](https://sass-lang.com/documentation/values/colors)**
-
-<a id="size-features-variable-_supported-types"></a>
-
-### $\_supported-types
-
-supported types
-
-- **Group:** Size features
-- **Access:** private
-
-#### Type
-
-**[List](https://sass-lang.com/documentation/values/lists)**
-
-<a id="size-features-variable-_directions"></a>
-
-### $\_directions
-
-directions
-
-- **Group:** Size features
-- **Access:** private
-
-#### Type
-
-**[List](https://sass-lang.com/documentation/values/lists)**
-
-<a id="size-features-variable-_default-border-size"></a>
-
-### $\_default-border-size
-
-default border size
-
-- **Group:** Size features
-- **Access:** private
-
-#### Type
-
-**[Number](https://sass-lang.com/documentation/values/numbers)**
-
-<a id="size-features-variable-_default-border-style"></a>
-
-### $\_default-border-style
-
-default border style
-
-- **Group:** Size features
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="size-features-variable-_default-border-color"></a>
-
-### $\_default-border-color
-
-default border color
-
-- **Group:** Size features
-- **Access:** private
-
-#### Type
-
-**[Color](https://sass-lang.com/documentation/values/colors)**
-
-<a id="size-features-variable-_supported-types"></a>
-
-### $\_supported-types
-
-supported types
-
-- **Group:** Size features
-- **Access:** private
-
-#### Type
-
-**[List](https://sass-lang.com/documentation/values/lists)**
-
-<a id="size-features-mixin-define-by-direction-group"></a>
-
-### @mixin define-by-direction-group
-
-> **DEPRECATED!**
-
-define sizes in direction groups
-
-- **Group:** Size features
-- **Access:** public
-
-#### Parameters
-
-| Name           | Type                                                             | Description                                                                  | Default    |
-| :------------- | :--------------------------------------------------------------- | :--------------------------------------------------------------------------- | :--------- |
-| `$type`        | **[String](https://sass-lang.com/documentation/values/strings)** | type of options (one of `"margin"`, `"padding"`, `"position"` or `"border"`) | `"margin"` |
-| `$values`      | **[List](https://sass-lang.com/documentation/values/lists)**     | list of value                                                                | `()`       |
-| `$breakpoints` | **[Map](https://sass-lang.com/documentation/values/maps)**       | mappings of breakpoints                                                      | `null`     |
-
-#### Examples
-
-scss inputs
-
-```scss
-.selector {
-  @include define-by-direction-group(
-    $type: 'padding',
-    $values: (
-      5px
-    ),
-    $breakpoints: (
-      'if-mobile': (
-        'until': 'mobile'
-      )
-    )
-  );
-}
-```
-
-css outputs
-
-```css
-.selector-vertical-5 {
-  padding-top: 5px !important;
-  padding-bottom: 5px !important;
-}
-@media only screen and (max-width: 666px) {
-  .selector-vertical-5-if-mobile {
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-  }
-}
-.selector-horizontal-5 {
-  padding-right: 5px !important;
-  padding-left: 5px !important;
-}
-@media only screen and (max-width: 666px) {
-  .selector-horizontal-5-if-mobile {
-    padding-right: 5px !important;
-    padding-left: 5px !important;
-  }
-}
-.selector-all-5 {
-  padding-top: 5px !important;
-  padding-right: 5px !important;
-  padding-bottom: 5px !important;
-  padding-left: 5px !important;
-}
-@media only screen and (max-width: 666px) {
-  .selector-all-5-if-mobile {
-    padding-top: 5px !important;
-    padding-right: 5px !important;
-    padding-bottom: 5px !important;
-    padding-left: 5px !important;
-  }
-}
-```
-
-<a id="size-features-mixin-define-by-direction"></a>
-
-### @mixin define-by-direction
-
-> **DEPRECATED!**
-
-define sizes by directions
-
-- **Group:** Size features
-- **Access:** public
-
-#### Parameters
-
-| Name           | Type                                                             | Description                                                                  | Default    |
-| :------------- | :--------------------------------------------------------------- | :--------------------------------------------------------------------------- | :--------- |
-| `$type`        | **[String](https://sass-lang.com/documentation/values/strings)** | type of options (one of `"margin"`, `"padding"`, `"position"` or `"border"`) | `"margin"` |
-| `$values`      | **[List](https://sass-lang.com/documentation/values/lists)**     | list of value                                                                | `()`       |
-| `$breakpoints` | **[Map](https://sass-lang.com/documentation/values/maps)**       | mappings of breakpoints                                                      | `null`     |
-
-#### Examples
-
-scss inputs
-
-```scss
-.selector {
-  @include define-by-direction(
-    $type: 'padding',
-    $values: (
-      5px
-    ),
-    $breakpoints: (
-      'if-mobile': (
-        'until': 'mobile'
-      )
-    )
-  );
-}
-```
-
-css outputs
-
-```css
-.selector-top-5 {
-  padding-top: 5px !important;
-}
-@media only screen and (max-width: 666px) {
-  .selector-top-5-if-mobile {
-    padding-top: 5px !important;
-  }
-}
-.selector-right-5 {
-  padding-right: 5px !important;
-}
-@media only screen and (max-width: 666px) {
-  .selector-right-5-if-mobile {
-    padding-right: 5px !important;
-  }
-}
-.selector-bottom-5 {
-  padding-bottom: 5px !important;
-}
-@media only screen and (max-width: 666px) {
-  .selector-bottom-5-if-mobile {
-    padding-bottom: 5px !important;
-  }
-}
-.selector-left-5 {
-  padding-left: 5px !important;
-}
-@media only screen and (max-width: 666px) {
-  .selector-left-5-if-mobile {
-    padding-left: 5px !important;
-  }
-}
-```
-
-<a id="size-features-mixin-define"></a>
-
-### @mixin define
-
-> **DEPRECATED!**
-
-define sizes
-
-- **Group:** Size features
-- **Access:** public
-
-#### Parameters
-
-| Name           | Type                                                             | Description                                                   | Default   |
-| :------------- | :--------------------------------------------------------------- | :------------------------------------------------------------ | :-------- |
-| `$type`        | **[String](https://sass-lang.com/documentation/values/strings)** | type of options (one of `"width"`, `"height"` or `"z-index"`) | `"width"` |
-| `$values`      | **[List](https://sass-lang.com/documentation/values/lists)**     | list of value                                                 | `()`      |
-| `$breakpoints` | **[Map](https://sass-lang.com/documentation/values/maps)**       | mappings of breakpoints                                       | `null`    |
-
-#### Examples
-
-scss inputs
-
-```scss
-.selector {
-  @include define(
-    $type: 'width',
-    $values: (
-      10px
-    ),
-    $breakpoints: (
-      'if-mobile': (
-        'until': 'mobile'
-      )
-    )
-  );
-}
-```
-
-css outputs
-
-```css
-.selector-10 {
-  width: 10px !important;
-}
-@media only screen and (max-width: 666px) {
-  .selector-10-if-mobile {
-    width: 10px !important;
-  }
-}
-.selector-min-10 {
-  min-width: 10px !important;
-}
-@media only screen and (max-width: 666px) {
-  .selector-min-10-if-mobile {
-    min-width: 10px !important;
-  }
-}
-.selector-max-10 {
-  max-width: 10px !important;
-}
-@media only screen and (max-width: 666px) {
-  .selector-max-10-if-mobile {
-    max-width: 10px !important;
-  }
-}
-```
-
-<a id="string-feature-variable-_mappings"></a>
-
-### $\_mappings
-
-percent-encoding mappings
-
-- **Group:** String feature
-- **Access:** private
-
-#### Type
-
-**[Map](https://sass-lang.com/documentation/values/maps)**
-
-<a id="string-feature-variable-_default-options"></a>
-
-### $\_default-options
-
-default options
-
-- **Group:** String feature
-- **Access:** private
-
-#### Type
-
-**[Map](https://sass-lang.com/documentation/values/maps)**
-
-<a id="string-feature-function-encode-url"></a>
-
 ### @function encode-url
 
 return url encoded string
-
-- **Group:** String feature
-- **Access:** public
 
 #### Parameters
 
@@ -3045,7 +1642,9 @@ scss inputs
 
 ```scss
 .selector {
-  content: encode-url('<svg xmlns="http://www.w3.org/2000/svg"></svg>');
+  content: function.string-encode-url(
+    '<svg xmlns="http://www.w3.org/2000/svg"></svg>'
+  );
 }
 ```
 
@@ -3057,14 +1656,9 @@ css outputs
 }
 ```
 
-<a id="string-feature-function-replace"></a>
-
 ### @function replace
 
 replace string
-
-- **Group:** String feature
-- **Access:** public
 
 #### Parameters
 
@@ -3085,7 +1679,7 @@ scss inputs
 
 ```scss
 .selector {
-  content: replace('hogefugapiyohogefugapiyo', 'fuga', 'FUGA');
+  content: function.string-replace('hogefugapiyohogefugapiyo', 'fuga', 'FUGA');
 }
 ```
 
@@ -3097,14 +1691,9 @@ css outputs
 }
 ```
 
-<a id="string-feature-function-sprintf"></a>
-
 ### @function sprintf
 
 sprintf
-
-- **Group:** String feature
-- **Access:** public
 
 #### Parameters
 
@@ -3123,7 +1712,11 @@ scss inputs
 
 ```scss
 .selector {
-  content: sprintf('%s is small capital of %s.', 'fuga', 'FUGA');
+  content: function.string-sprintf(
+    '%s is small capital of %s.',
+    'fuga',
+    'FUGA'
+  );
 }
 ```
 
@@ -3135,59 +1728,9 @@ css outputs
 }
 ```
 
-<a id="table-features-mixin-initialize"></a>
-
-### @mixin initialize
-
-> **DEPRECATED!**
-
-initialized table settings
-
-- **Group:** Table features
-- **Access:** public
-
-#### Parameters
-
-| Name            | Type                                                                                                                               | Description                | Default   |
-| :-------------- | :--------------------------------------------------------------------------------------------------------------------------------- | :------------------------- | :-------- |
-| `$width`        | **[Number](https://sass-lang.com/documentation/values/numbers)**, **[String](https://sass-lang.com/documentation/values/strings)** | setting for `width`        | `"auto"`  |
-| `$margin`       | **[Number](https://sass-lang.com/documentation/values/numbers)**, **[List](https://sass-lang.com/documentation/values/lists)**     | setting for `margin`       | `0`       |
-| `$padding`      | **[Number](https://sass-lang.com/documentation/values/numbers)**, **[List](https://sass-lang.com/documentation/values/lists)**     | setting for `padding`      | `0`       |
-| `$border-style` | **[String](https://sass-lang.com/documentation/values/strings)**                                                                   | setting for `border-style` | `"solid"` |
-| `$border-width` | **[Number](https://sass-lang.com/documentation/values/numbers)**                                                                   | setting for `border-width` | `1px`     |
-
-#### Examples
-
-scss inputs
-
-```scss
-.selector {
-  @include initialize();
-}
-```
-
-css outputs
-
-```css
-.selector {
-  display: table;
-  width: auto;
-  margin: 0;
-  padding: 0;
-  border-collapse: collapse;
-  border-style: solid;
-  border-width: 1px;
-}
-```
-
-<a id="text-feature-mixin-apply-line-truncate"></a>
-
 ### @mixin apply-line-truncate
 
 apply multi line truncate
-
-- **Group:** Text feature
-- **Access:** public
 
 #### Parameters
 
@@ -3201,7 +1744,7 @@ scss inputs
 
 ```scss
 .selector {
-  @include apply-line-truncate($line: 3);
+  @include mixin.text-apply-line-truncate($line: 3);
 }
 ```
 
@@ -3215,479 +1758,9 @@ css outputs
 }
 ```
 
-<a id="text-features-mixin-initialize"></a>
-
-### @mixin initialize
-
-> **DEPRECATED!**
-
-initialized text settings
-
-- **Group:** Text features
-- **Access:** public
-
-#### Parameters
-
-| Name               | Type                                                                                                                               | Description                   | Default                    |
-| :----------------- | :--------------------------------------------------------------------------------------------------------------------------------- | :---------------------------- | :------------------------- |
-| `$letter-spacing`  | **[Number](https://sass-lang.com/documentation/values/numbers)**                                                                   | setting for `letter-spacing`  | `settings.$letter-spacing` |
-| `$line-height`     | **[Number](https://sass-lang.com/documentation/values/numbers)**, **[String](https://sass-lang.com/documentation/values/strings)** | setting for `line-height`     | `settings.$line-height`    |
-| `$text-align`      | **[String](https://sass-lang.com/documentation/values/strings)**                                                                   | setting for `text-align`      | `"left"`                   |
-| `$text-decoration` | **[String](https://sass-lang.com/documentation/values/strings)**                                                                   | setting for `text-decoration` | `"none"`                   |
-| `$text-indent`     | **[Number](https://sass-lang.com/documentation/values/numbers)**                                                                   | setting for `text-indent`     | `0`                        |
-| `$white-space`     | **[String](https://sass-lang.com/documentation/values/strings)**                                                                   | setting for `white-space`     | `"normal"`                 |
-| `$word-break`      | **[String](https://sass-lang.com/documentation/values/strings)**                                                                   | setting for `word-break`      | `"break-all"`              |
-| `$word-wrap`       | **[String](https://sass-lang.com/documentation/values/strings)**                                                                   | setting for `word-wrap`       | `"break-word"`             |
-
-#### Examples
-
-scss inputs
-
-```scss
-.selector {
-  @include initialize();
-}
-```
-
-css outputs
-
-```css
-.selector {
-  letter-spacing: 0.04em;
-  line-height: 1.5;
-  text-align: left;
-  text-decoration: none;
-  text-indent: 0;
-  white-space: normal;
-  word-break: break-all;
-  word-wrap: break-word;
-}
-```
-
-<a id="general-variable-_pkg"></a>
-
-### $\_pkg
-
-Package name
-
-- **Group:** General
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="general-variable-_name"></a>
-
-### $\_name
-
-Unit name
-
-- **Group:** General
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="general-variable-_pkg"></a>
-
-### $\_pkg
-
-Package name
-
-- **Group:** General
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="general-variable-_pkg"></a>
-
-### $\_pkg
-
-Package name
-
-- **Group:** General
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="general-variable-_pkg"></a>
-
-### $\_pkg
-
-Package name
-
-- **Group:** General
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="general-variable-_pkg"></a>
-
-### $\_pkg
-
-Package name
-
-- **Group:** General
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="general-variable-_pkg"></a>
-
-### $\_pkg
-
-Package name
-
-- **Group:** General
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="general-variable-_pkg"></a>
-
-### $\_pkg
-
-Package name
-
-- **Group:** General
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="general-variable-_pkg"></a>
-
-### $\_pkg
-
-Package name
-
-- **Group:** General
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="general-variable-_pkg"></a>
-
-### $\_pkg
-
-Package name
-
-- **Group:** General
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="general-variable-_pkg"></a>
-
-### $\_pkg
-
-Package name
-
-- **Group:** General
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="general-variable-_pkg"></a>
-
-### $\_pkg
-
-Package name
-
-- **Group:** General
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="general-variable-_pkg"></a>
-
-### $\_pkg
-
-Package name
-
-- **Group:** General
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="general-variable-_pkg"></a>
-
-### $\_pkg
-
-Package name
-
-- **Group:** General
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="general-variable-_pkg"></a>
-
-### $\_pkg
-
-Package name
-
-- **Group:** General
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="general-variable-_pkg"></a>
-
-### $\_pkg
-
-Package name
-
-- **Group:** General
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="general-variable-_pkg"></a>
-
-### $\_pkg
-
-Package name
-
-- **Group:** General
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="general-variable-_pkg"></a>
-
-### $\_pkg
-
-Package name
-
-- **Group:** General
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="general-variable-_pkg"></a>
-
-### $\_pkg
-
-Package name
-
-- **Group:** General
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="general-variable-_pkg"></a>
-
-### $\_pkg
-
-Package name
-
-- **Group:** General
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="general-variable-_pkg"></a>
-
-### $\_pkg
-
-Package name
-
-- **Group:** General
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="general-variable-_pkg"></a>
-
-### $\_pkg
-
-Package name
-
-- **Group:** General
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="general-variable-_pkg"></a>
-
-### $\_pkg
-
-Package name
-
-- **Group:** General
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="general-variable-_pkg"></a>
-
-### $\_pkg
-
-Package name
-
-- **Group:** General
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="general-variable-_pkg"></a>
-
-### $\_pkg
-
-Package name
-
-- **Group:** General
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="general-variable-_pkg"></a>
-
-### $\_pkg
-
-Package name
-
-- **Group:** General
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="general-variable-_pkg"></a>
-
-### $\_pkg
-
-Package name
-
-- **Group:** General
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="general-variable-_pkg"></a>
-
-### $\_pkg
-
-Package name
-
-- **Group:** General
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="general-variable-_pkg"></a>
-
-### $\_pkg
-
-Package name
-
-- **Group:** General
-- **Access:** private
-
-#### Type
-
-**[String](https://sass-lang.com/documentation/values/strings)**
-
-<a id="z-index-feature-variable-_default-range"></a>
-
-### $\_default-range
-
-default z-index range
-
-- **Group:** Z-index feature
-- **Access:** private
-
-#### Type
-
-**[List](https://sass-lang.com/documentation/values/lists)**
-
-<a id="z-index-feature-variable-_types"></a>
-
-### $\_types
-
-content types
-
-- **Group:** Z-index feature
-- **Access:** private
-
-#### Type
-
-**[Map](https://sass-lang.com/documentation/values/maps)**
-
-<a id="z-index-feature-variable-_default-options"></a>
-
-### $\_default-options
-
-default options
-
-- **Group:** Z-index feature
-- **Access:** private
-
-#### Type
-
-**[Map](https://sass-lang.com/documentation/values/maps)**
-
-<a id="z-index-feature-function-reserve"></a>
-
 ### @function reserve
 
 reserve z-index value each by types
-
-- **Group:** Z-index feature
-- **Access:** public
 
 #### Parameters
 
@@ -3708,7 +1781,7 @@ scss inputs
 
 ```scss
 .selector {
-  content: reserve('floating', 100);
+  content: function.z-index-reserve('floating', 100);
 }
 ```
 
@@ -3723,7 +1796,7 @@ css outputs
 ## Test
 
 ```sh
-$ yarn test
+$ pnpm test
 ```
 
 ## License

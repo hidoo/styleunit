@@ -24,7 +24,7 @@ $_default-options: (
 ///
 /// @example scss - scss inputs
 ///   .selector {
-///     content: map(
+///     content: function.list-map(
 ///       ("hoge", "fuga", "pi", "yo"),
 ///       meta.get-function("length", $module: "string")
 ///     );
@@ -37,7 +37,7 @@ $_default-options: (
 ///
 @function map($list: (), $callback: null, $options: ()) {
   @if meta.type-of($list) != "list" {
-    @error "@function map: Argument $list must be list.";
+    @error "@function function.list-map: Argument $list must be list.";
   }
 
   @if _meta.is-empty($list) {
@@ -45,7 +45,7 @@ $_default-options: (
   }
 
   @if meta.type-of($callback) != "function" {
-    @error "@function map: Argument $callback must be function.";
+    @error "@function function.list-map: Argument $callback must be function.";
   }
 
   $mapped: ();

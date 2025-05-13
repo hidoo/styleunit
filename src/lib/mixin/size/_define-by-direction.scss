@@ -50,7 +50,7 @@ $_default-border-color: #000 !default;
 ///
 /// @example scss - scss inputs
 ///   .selector {
-///     @include define-by-direction($type: "padding", $values: (5px,), $breakpoints: ("if-mobile": ("until": "mobile")))
+///     @include mixin.size-define-by-direction($type: "padding", $values: (5px,), $breakpoints: ("if-mobile": ("until": "mobile")))
 ///   }
 ///
 /// @example css - css outputs
@@ -94,11 +94,11 @@ $_default-border-color: #000 !default;
     "string" or not
     list.index($_supported-types, $type)
   {
-    @error "@mixin size-define-by-direction: Argument $type must be one of #{meta.inspect($_supported-types)}.";
+    @error "@mixin mixin.size-define-by-direction: Argument $type must be one of #{meta.inspect($_supported-types)}.";
   }
 
   @if meta.type-of($values) != "list" {
-    @error "@mixin size-define-by-direction: Argument $values must be list.";
+    @error "@mixin mixin.size-define-by-direction: Argument $values must be list.";
   }
 
   $property: if($type == "position", "", "#{$type}-");
@@ -107,7 +107,7 @@ $_default-border-color: #000 !default;
     @each $value in $values {
       @if $type == "border" {
         @if meta.type-of($value) != "map" or not map.has-key($value, "name") {
-          @error "@mixin size-define-by-direction: Argument $values is not valid list of map.";
+          @error "@mixin mixin.size-define-by-direction: Argument $values is not valid list of map.";
         }
 
         $selector: selector.append(
@@ -125,7 +125,7 @@ $_default-border-color: #000 !default;
 
           @if settings.$verbose {
             // stylelint-disable-next-line max-line-length
-            @warn "@mixin size-define-by-direction: 'size' of #{$selector} is not specified. Using '#{$_default-border-size}' by default.";
+            @warn "@mixin mixin.size-define-by-direction: 'size' of #{$selector} is not specified. Using '#{$_default-border-size}' by default.";
           }
         }
 
@@ -139,7 +139,7 @@ $_default-border-color: #000 !default;
 
           @if settings.$verbose {
             // stylelint-disable-next-line max-line-length
-            @warn "@mixin size-define-by-direction: 'style' of #{$selector} is not specified. Using '#{$_default-border-style}' by default.";
+            @warn "@mixin mixin.size-define-by-direction: 'style' of #{$selector} is not specified. Using '#{$_default-border-style}' by default.";
           }
         }
 
@@ -152,7 +152,7 @@ $_default-border-color: #000 !default;
           );
 
           @if settings.$verbose {
-            @warn "@mixin size-define-by-direction: 'color' of #{$selector} is not specified. Using '#{$_default-border-color}' by default."; // stylelint-disable-line max-line-length
+            @warn "@mixin mixin.size-define-by-direction: 'color' of #{$selector} is not specified. Using '#{$_default-border-color}' by default."; // stylelint-disable-line max-line-length
           }
         }
 

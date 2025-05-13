@@ -12,7 +12,7 @@
 /// @return {Boolean} value is empty or not
 ///
 /// @example scss - scss inputs
-///   $result: is-empty(""); // -> true
+///   $result: function.meta-is-empty(""); // -> true
 ///
 @function is-empty($value: null) {
   @if not $value {

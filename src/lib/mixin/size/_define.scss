@@ -24,7 +24,7 @@ $_supported-types: ("width", "height", "z-index") !default;
 ///
 /// @example scss - scss inputs
 ///   .selector {
-///     @include define($type: "width", $values: (10px), $breakpoints: ("if-mobile": ("until": "mobile")))
+///     @include mixin.size-define($type: "width", $values: (10px), $breakpoints: ("if-mobile": ("until": "mobile")))
 ///   }
 ///
 /// @example css - css outputs
@@ -60,16 +60,16 @@ $_supported-types: ("width", "height", "z-index") !default;
     "string" or not
     list.index($_supported-types, $type)
   {
-    @error "@mixin size-define: Argument $type must be one of #{meta.inspect($_supported-types)}.";
+    @error "@mixin mixin.size-define: Argument $type must be one of #{meta.inspect($_supported-types)}.";
   }
 
   @if meta.type-of($values) != "list" {
-    @error "@mixin size-define: Argument $values must be list.";
+    @error "@mixin mixin.size-define: Argument $values must be list.";
   }
 
   @each $value in $values {
     @if $value < 0 {
-      @error "@mixin size-define: Argument $values includes negative numbers.";
+      @error "@mixin mixin.size-define: Argument $values includes negative numbers.";
     }
 
     $pure-value: function.math-remove-unit($value);

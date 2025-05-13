@@ -31,7 +31,7 @@ $_default-options: (
 ///
 /// @example scss - scss inputs
 ///   .selector {
-///     content: foreground(#000);
+///     content: function.color-foreground(#000);
 ///   }
 ///
 /// @example css - css outputs
@@ -41,7 +41,7 @@ $_default-options: (
 ///
 @function foreground($background-color, $options: ()) {
   @if meta.type-of($background-color) != "color" {
-    @error "@function foreground: Argument $background-color must be color.";
+    @error "@function function.color-foreground: Argument $background-color must be color.";
   }
 
   $opts: map.merge($_default-options, $options);

@@ -24,7 +24,7 @@ $_default-options: (
 ///
 /// @example scss - scss inputs
 ///   .selector {
-///     @include on((":hover", ":focus")) {
+///     @include mixin.on((":hover", ":focus")) {
 ///       font-size: 16px;
 ///     }
 ///   }
@@ -61,7 +61,7 @@ $_default-options: (
     }
   } @else {
     @if settings.$verbose {
-      @warn "@mixin on: @content is not yield, because argument $selectors is empty.";
+      @warn "@mixin mixin.on: @content is not yield, because argument $selectors is empty.";
     }
   }
 }

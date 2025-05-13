@@ -20,7 +20,7 @@ $_default-selectors: () !default;
 ///
 /// @example scss - scss inputs
 ///   .selector {
-///     @include on-active() {
+///     @include mixin.on-active() {
 ///       font-size: 16px;
 ///     }
 ///   }

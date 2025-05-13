@@ -66,7 +66,7 @@ describe('[DEPRECATED] @mixin breakpoint-define($from, $until, $options)', () =>
       assert(error instanceof Error);
       assert(
         error.message.match(
-          /Argument \$from is not registerd in settings\.\$breakpoints\./
+          /Argument \$from is not registered in settings\.\$breakpoints\./
         )
       );
       return resolve();
@@ -105,7 +105,7 @@ describe('[DEPRECATED] @mixin breakpoint-define($from, $until, $options)', () =>
       assert(error instanceof Error);
       assert(
         error.message.match(
-          /Argument \$until is not registerd in settings\.\$breakpoints\./
+          /Argument \$until is not registered in settings\.\$breakpoints\./
         )
       );
       return resolve();

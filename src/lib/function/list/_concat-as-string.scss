@@ -14,7 +14,7 @@
 ///
 /// @example scss - scss inputs
 ///   .selector {
-///     content: concat-as-string(("hoge", "fuga", "piyo"), ":");
+///     content: function.list-concat-as-string(("hoge", "fuga", "piyo"), ":");
 ///   }
 ///
 /// @example css - css outputs
@@ -24,7 +24,7 @@
 ///
 @function concat-as-string($list: (), $separator: ",") {
   @if meta.type-of($list) != "list" {
-    @error "@function concat-as-string: Argument $list must be list.";
+    @error "@function function.list-concat-as-string: Argument $list must be list.";
   }
 
   @if _meta.is-empty($list) {

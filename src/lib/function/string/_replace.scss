@@ -24,7 +24,7 @@ $_default-options: (
 ///
 /// @example scss - scss inputs
 ///   .selector {
-///     content: replace("hogefugapiyohogefugapiyo", "fuga", "FUGA");
+///     content: function.string-replace("hogefugapiyohogefugapiyo", "fuga", "FUGA");
 ///   }
 ///
 /// @example css - css outputs
@@ -34,11 +34,11 @@ $_default-options: (
 ///
 @function replace($string, $search, $replace: "", $options: ()) {
   @if meta.type-of($string) != "string" {
-    @error "@function replace: Argument $string must be string.";
+    @error "@function function.string-replace: Argument $string must be string.";
   }
 
   @if meta.type-of($search) != "string" {
-    @error "@function replace: Argument $search must be string.";
+    @error "@function function.string-replace: Argument $search must be string.";
   }
 
   @if meta.type-of($replace) != "string" {

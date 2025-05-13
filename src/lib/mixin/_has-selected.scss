@@ -21,7 +21,7 @@ $_default-selectors: (":checked",) !default;
 ///
 /// @example scss - scss inputs
 ///   .selector {
-///     @include has-selected() {
+///     @include mixin.has-selected() {
 ///       font-size: 16px;
 ///     }
 ///   }

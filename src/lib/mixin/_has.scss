@@ -23,7 +23,7 @@ $_default-options: (
 ///
 /// @example scss - scss inputs
 ///   .selector {
-///     @include has((":hover", ":focus")) {
+///     @include mixin.has((":hover", ":focus")) {
 ///       font-size: 16px;
 ///     }
 ///   }

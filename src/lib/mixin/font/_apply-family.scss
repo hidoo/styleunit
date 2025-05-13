@@ -22,7 +22,7 @@ $_pkg: settings.$pkg !default;
 ///
 /// @example scss - scss inputs
 ///   .selector {
-///     @include apply-family($value: "default", $important: true);
+///     @include mixin.font-apply-family($value: "default", $important: true);
 ///   }
 ///
 /// @example css - css outputs
@@ -34,24 +34,24 @@ $_pkg: settings.$pkg !default;
   @warn "[DEPRECATED] mixin.font-apply-family is deprecated. Use --#{$_pkg}-font-family-* custom properties.";
 
   @if function.meta-is-empty($value) {
-    @error "@mixin apply-family: Argument $value must not be empty.";
+    @error "@mixin mixin.font-apply-family: Argument $value must not be empty.";
   }
 
   $type: meta.type-of($value);
 
   @if $type != "list" and $type != "string" {
-    @error "@mixin apply-family: Argument $value must be list or string.";
+    @error "@mixin mixin.font-apply-family: Argument $value must be list or string.";
   }
 
   @if $value == "default" {
     @if function.meta-is-empty(settings.$font-family) {
-      @error "@mixin apply-family: settings.$font-family is not valid.";
+      @error "@mixin mixin.font-apply-family: settings.$font-family is not valid.";
     }
 
     font-family: settings.$font-family if($important, !important, null);
   } @else if $value == "monospace" {
     @if function.meta-is-empty(settings.$font-family-monospace) {
-      @error "@mixin apply-family: settings.$font-family-monospace is not valid.";
+      @error "@mixin mixin.font-apply-family: settings.$font-family-monospace is not valid.";
     }
 
     font-family: settings.$font-family-monospace

@@ -12,7 +12,7 @@
 ///
 /// @example scss - scss inputs
 ///   .selector {
-///     content: _inverse(".hoge")
+///     content: function.selector-inverse(".hoge")
 ///   }
 ///
 /// @example css - css outputs

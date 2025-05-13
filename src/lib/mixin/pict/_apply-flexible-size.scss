@@ -23,7 +23,7 @@ $_default-options: (
 ///
 /// @example scss - scss inputs
 ///   .selector {
-///     @include apply-flexible-size($width: 16, $height: 9);
+///     @include mixin.pict-apply-flexible-size($width: 16, $height: 9);
 ///   }
 ///
 /// @example css - css outputs

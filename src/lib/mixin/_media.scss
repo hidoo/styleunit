@@ -27,7 +27,7 @@ $_default-options: (
 ///    );
 ///
 ///   .selector {
-///     @include media($query: "sm") {
+///     @include mixin.media($query: "sm") {
 ///       font-size: 16px;
 ///     }
 ///   }

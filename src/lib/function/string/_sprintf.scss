@@ -13,7 +13,7 @@
 ///
 /// @example scss - scss inputs
 ///   .selector {
-///     content: sprintf("%s is small capital of %s.", "fuga", "FUGA");
+///     content: function.string-sprintf("%s is small capital of %s.", "fuga", "FUGA");
 ///   }
 ///
 /// @example css - css outputs
@@ -23,7 +23,7 @@
 ///
 @function sprintf($format, $args...) {
   @if meta.type-of($format) != "string" {
-    @error "@function sprintf: Argument $string must be string.";
+    @error "@function function.string-sprintf: Argument $string must be string.";
   }
 
   $formatted: $format;

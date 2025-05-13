@@ -27,7 +27,7 @@ $_default-options: (
 ///
 /// @example scss - scss inputs
 ///   .selector {
-///     font-size: font-size($value: "medium");
+///     font-size: function.font-size($value: "medium");
 ///   }
 ///
 /// @example css - css outputs
@@ -38,11 +38,11 @@ $_default-options: (
 @function size($value, $options: ()) {
   @if meta.type-of($value) == "string" {
     @if meta.type-of(settings.$font-size) != "number" {
-      @error "@function font-size: settings.$font-size must be number.";
+      @error "@function function.font-size: settings.$font-size must be number.";
     }
 
     @if meta.type-of(settings.$font-size-presets) != "map" {
-      @error "@function font-size: settings.$font-size-presets must be map.";
+      @error "@function function.font-size: settings.$font-size-presets must be map.";
     }
 
     $value: math.floor(
@@ -53,7 +53,7 @@ $_default-options: (
   @if meta.type-of($value) != "number" {
     $presets: meta.inspect(map.keys(settings.$font-size-presets));
 
-    @error "@function font-size: Argument $value must be number or one of #{$presets}.";
+    @error "@function function.font-size: Argument $value must be number or one of #{$presets}.";
   }
 
   $opts: map.merge($_default-options, $options);

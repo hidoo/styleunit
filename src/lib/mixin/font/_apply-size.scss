@@ -24,7 +24,7 @@ $_pkg: settings.$pkg !default;
 ///
 /// @example scss - scss inputs
 ///   .selector {
-///     @include apply-size($value: "medium", $important: true);
+///     @include mixin.font-apply-size($value: "medium", $important: true);
 ///   }
 ///
 /// @example css - css outputs

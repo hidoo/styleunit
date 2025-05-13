@@ -11,11 +11,11 @@
 /// @return {Number} number without unit
 ///
 /// @example scss - scss inputs
-///   $pure-number: remove-unit(14px); // -> 14
+///   $pure-number: function.math-remove-unit(14px); // -> 14
 ///
 @function remove-unit($number) {
   @if meta.type-of($number) != "number" {
-    @error "@function remove-unit: Argument $number must be number.";
+    @error "@function function.math-remove-unit: Argument $number must be number.";
   }
 
   @if math.is-unitless($number) {

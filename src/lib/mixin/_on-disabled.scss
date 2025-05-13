@@ -21,7 +21,7 @@ $_default-selectors: (":disabled",) !default;
 ///
 /// @example scss - scss inputs
 ///   .selector {
-///     @include on-disabled() {
+///     @include mixin.on-disabled() {
 ///       font-size: 16px;
 ///     }
 ///   }

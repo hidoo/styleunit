@@ -33,11 +33,11 @@ $_default-font-applying-units: (
 /// @deprecated
 ///
 /// @example scss - scss inputs
-///   @include bootstrap();
+///   @include mixin.bootstrap();
 ///
 /// @example scss - scss inputs
-///   @include bootstrap() {
-///     // with appling additional settings to all units
+///   @include mixin.bootstrap() {
+///     // with applying additional settings to all units
 ///   };
 ///
 @mixin bootstrap(

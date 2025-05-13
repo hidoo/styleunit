@@ -72,7 +72,7 @@ $_default-options: (
 ///
 /// @example scss - scss inputs
 ///   .selector {
-///     content: reserve("floating", 100);
+///     content: function.z-index-reserve("floating", 100);
 ///   }
 ///
 /// @example css - css outputs
@@ -82,11 +82,11 @@ $_default-options: (
 ///
 @function reserve($type, $index, $options: ()) {
   @if meta.type-of($type) != "string" or $type == "" {
-    @error "@function reserve: Argument $type must be string.";
+    @error "@function function.z-index-reserve: Argument $type must be string.";
   }
 
   @if meta.type-of($index) != "number" or $index < 0 {
-    @error "@function reserve: Argument $index must be number and 0 or more.";
+    @error "@function function.z-index-reserve: Argument $index must be number and 0 or more.";
   }
 
   $opts: map.merge($_default-options, $options);
@@ -107,7 +107,7 @@ $_default-options: (
   @if map.has-key($stack, $index) {
     $reserved-by: map.get($stack, $index);
 
-    @error "@function reserve: $index \"#{$index}\" is already reserved by \"#{$reserved-by}\" in \"#{$type}\".";
+    @error "@function function.z-index-reserve: $index \"#{$index}\" is already reserved by \"#{$reserved-by}\" in \"#{$type}\".";
   }
 
   $range: map.get($_types, $type, "range");
@@ -116,7 +116,7 @@ $_default-options: (
   $value: $min + $index;
 
   @if meta.type-of($max) == "number" and $max < $value {
-    @error "@function reserve: Argument $index must be less than or equal to #{$max - $min}.";
+    @error "@function function.z-index-reserve: Argument $index must be less than or equal to #{$max - $min}.";
   }
 
   $stack: map.set($stack, $index, &);

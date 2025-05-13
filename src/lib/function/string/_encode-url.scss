@@ -41,7 +41,7 @@ $_mappings: (
 ///
 /// @example scss - scss inputs
 ///   .selector {
-///     content: encode-url('<svg xmlns="http://www.w3.org/2000/svg"></svg>');
+///     content: function.string-encode-url('<svg xmlns="http://www.w3.org/2000/svg"></svg>');
 ///   }
 ///
 /// @example css - css outputs
@@ -51,7 +51,7 @@ $_mappings: (
 ///
 @function encode-url($string) {
   @if meta.type-of($string) != "string" {
-    @error "@function encode-url: Argument $string must be string.";
+    @error "@function function.string-encode-url: Argument $string must be string.";
   }
 
   $encoded: $string;

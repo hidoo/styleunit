@@ -7,7 +7,7 @@
 ///
 /// @example scss - scss inputs
 ///   .selector {
-///     @include on-print() {
+///     @include mixin.on-print() {
 ///       font-size: 16px;
 ///     }
 ///   }

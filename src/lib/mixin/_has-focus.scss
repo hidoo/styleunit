@@ -21,7 +21,7 @@ $_default-selectors: (":hover", ":focus") !default;
 ///
 /// @example scss - scss inputs
 ///   .selector {
-///     @include has-focus() {
+///     @include mixin.has-focus() {
 ///       font-size: 16px;
 ///     }
 ///   }

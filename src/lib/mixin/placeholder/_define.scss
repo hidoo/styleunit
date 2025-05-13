@@ -20,7 +20,7 @@ $_already-defined: () !default;
 ///   .selector {
 ///     $name: unique-id();
 ///
-///     @include define($name: $name) {
+///     @include mixin.placeholder-define($name: $name) {
 ///       font-size: 16px;
 ///     }
 ///
@@ -40,13 +40,13 @@ $_already-defined: () !default;
 ///
 @mixin define($name) {
   @if meta.type-of($name) != "string" or $name == "" {
-    @error "@mixin placeholder-define: Argument $name is not valid string.";
+    @error "@mixin mixin.placeholder-define: Argument $name is not valid string.";
   }
 
   // define placeholder if not already defined
   @if list.index($_already-defined, $name) {
     @if settings.$verbose {
-      @warn "@mixin placeholder-define: '%#{$name}' placeholder is already defined and cannot be redefined.";
+      @warn "@mixin mixin.placeholder-define: '%#{$name}' placeholder is already defined and cannot be redefined.";
     }
   } @else {
     @at-root {

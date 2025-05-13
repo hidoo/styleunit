@@ -20,7 +20,7 @@ $_default-selectors: (":link", ":visited") !default;
 ///
 /// @example scss - scss inputs
 ///   .selector {
-///     @include on-link() {
+///     @include mixin.on-link() {
 ///       font-size: 16px;
 ///     }
 ///   }

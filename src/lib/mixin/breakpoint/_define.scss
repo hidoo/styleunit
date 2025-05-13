@@ -8,7 +8,7 @@
 @use "sass:meta";
 @use "../../../settings";
 
-/// define breakepoint
+/// define break point
 /// @param {Number|String|Null} $from [null] - starting point of breakpoint
 /// @param {Number|String|Null} $until [null] - ending point of breakpoint
 /// @param {Map} $options [()] - options
@@ -18,7 +18,7 @@
 ///
 /// @example scss - scss inputs
 ///   .selector {
-///     @include define($from: "mobile", $until: "desktop") {
+///     @include mixin.breakpoint-define($from: "mobile", $until: "desktop") {
 ///       font-size: 16px;
 ///     }
 ///   }
@@ -35,7 +35,7 @@
 
   // check settings.$breakpoints is map or not
   @if meta.type-of(settings.$breakpoints) != "map" {
-    @error "@mixin breakpoint-define: settings.$breakpoints must be map.";
+    @error "@mixin mixin.breakpoint-define: settings.$breakpoints must be map.";
   }
 
   $normalized: (
@@ -59,9 +59,9 @@
       );
     } @else {
       @if meta.type-of($value) == "string" {
-        @error "@mixin breakpoint-define: Argument $#{$key} is not registerd in settings.$breakpoints.";
+        @error "@mixin mixin.breakpoint-define: Argument $#{$key} is not registered in settings.$breakpoints.";
       } @else {
-        @error "@mixin breakpoint-define: Argument $#{$key} must be one of type number, string or null.";
+        @error "@mixin mixin.breakpoint-define: Argument $#{$key} must be one of type number, string or null.";
       }
     }
   }
@@ -108,7 +108,7 @@
     }
   } @else {
     @if settings.$verbose {
-      @warn "@mixin breakpoint-define: @content is not yield, because argument $from and $until are null.";
+      @warn "@mixin mixin.breakpoint-define: @content is not yield, because argument $from and $until are null.";
     }
   }
 }

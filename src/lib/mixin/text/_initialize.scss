@@ -20,7 +20,7 @@
 ///
 /// @example scss - scss inputs
 ///   .selector {
-///     @include initialize();
+///     @include mixin.text-initialize();
 ///   }
 ///
 /// @example css - css outputs
@@ -56,7 +56,7 @@
 
       @if settings.$verbose {
         // stylelint-disable-next-line max-line-length
-        @warn "@mixin text-initialize: $letter-spacing set #{$letter-spacing}, bacause settings.$letter-spacing is not number.";
+        @warn "@mixin mixin.text-initialize: $letter-spacing set #{$letter-spacing}, because settings.$letter-spacing is not number.";
       }
     }
   }
@@ -70,7 +70,7 @@
 
       @if settings.$verbose {
         // stylelint-disable-next-line max-line-length
-        @warn "@mixin text-initialize: $line-height set #{$line-height}, bacause settings.$line-height is not number.";
+        @warn "@mixin mixin.text-initialize: $line-height set #{$line-height}, because settings.$line-height is not number.";
       }
     }
   }

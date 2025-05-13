@@ -20,7 +20,7 @@ $_default-selectors: (":hover", ":focus") !default;
 ///
 /// @example scss - scss inputs
 ///   .selector {
-///     @include on-focus() {
+///     @include mixin.on-focus() {
 ///       font-size: 16px;
 ///     }
 ///   }
