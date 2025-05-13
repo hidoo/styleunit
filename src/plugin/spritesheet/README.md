@@ -1,6 +1,6 @@
 # spritesheet plugin
 
-> Mixin for using spritesheet in @hidoo/unit framework.
+> Mixin for using spritesheet in @hidoo/styleunit.
 
 ## Usage
 

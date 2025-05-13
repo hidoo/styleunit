@@ -2,19 +2,19 @@ import assert from 'node:assert';
 import path from 'node:path';
 import * as sass from 'sass';
 
-describe('@hidoo/unit', () => {
+describe('@hidoo/styleunit', () => {
   const packages = [
-    '@hidoo/unit',
-    '@hidoo/unit/lib',
-    '@hidoo/unit/function',
-    '@hidoo/unit/mixin',
-    '@hidoo/unit/plugin/foo',
-    '@hidoo/unit/settings',
-    '@hidoo/unit/unit',
-    '@hidoo/unit/unit/buz',
-    '@hidoo/unit/unit/buz/modifier',
-    '@hidoo/unit/util',
-    '@hidoo/unit/util/modifier'
+    '@hidoo/styleunit',
+    '@hidoo/styleunit/lib',
+    '@hidoo/styleunit/function',
+    '@hidoo/styleunit/mixin',
+    '@hidoo/styleunit/plugin/foo',
+    '@hidoo/styleunit/settings',
+    '@hidoo/styleunit/unit',
+    '@hidoo/styleunit/unit/buz',
+    '@hidoo/styleunit/unit/buz/modifier',
+    '@hidoo/styleunit/util',
+    '@hidoo/styleunit/util/modifier'
   ];
 
   // eslint-disable-next-line mocha/no-setup-in-describe

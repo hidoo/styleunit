@@ -1,7 +1,7 @@
 {
-  "name": "@hidoo/unit",
+  "name": "@hidoo/styleunit",
   "version": "0.9.0",
-  "description": "Sass based css framework.",
+  "description": "The unit oriented CSS framework implemented in Sass.",
   "packageManager": "pnpm@10.8.1",
   "engines": {
     "node": ">=18.12.0",
