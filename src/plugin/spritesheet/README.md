@@ -1,14 +1,14 @@
-# spritesheet plugin
+# @hidoo/styleunit/plugin/spritesheet
 
-> Mixin for using spritesheet in @hidoo/styleunit.
+> Provides mixin to defined styles using spritesheet.
 
 ## Usage
 
 SCSS
 
 ```scss
-// use spritesheet plugin with configuration
-@use 'node_modules/unit/src/plugin/spritesheet' with (
+// Use spritesheet plugin with configuration
+@use 'node_modules/@hidoo/styleunit/src/plugin/spritesheet' with (
   $spritesheets: (
     'icon-image': (
       'image': 'path/to/sprite/icon-image.png',
@@ -26,7 +26,7 @@ SCSS
   )
 );
 
-// use this mixin inside block
+// Use this mixin inside block
 .selector {
   @include spritesheet.define($type: 'icon-image', $name: 'logo');
 }

@@ -63,7 +63,7 @@ npm install @hidoo/styleunit
 
 ## Plugins
 
-- [spritesheet](./src/plugin/spritesheet)
+- [spritesheet](./plugin/spritesheet)
 
 ## API
 

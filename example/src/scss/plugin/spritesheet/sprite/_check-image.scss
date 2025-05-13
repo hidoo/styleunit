@@ -1,7 +1,7 @@
 // stylelint-disable number-no-trailing-zeros
 $sprites: (
-  "radio-image": (
-    "image": "../../images/sprites/radio-image.png?version=0.9.0",
+  "check-image": (
+    "image": "../../../images/sprites/check-image.png",
     "items": (
       "example-c--disabled": (
         "width": 40px,
@@ -10,7 +10,7 @@ $sprites: (
         "total-height": 146px,
         "offset-x": 0px,
         "offset-y": 0px,
-        "image": "../../images/sprites/radio-image.png?version=0.9.0"
+        "image": "../../../images/sprites/check-image.png"
       ),
       "example-c--focus": (
         "width": 40px,
@@ -19,7 +19,7 @@ $sprites: (
         "total-height": 146px,
         "offset-x": -42px,
         "offset-y": 0px,
-        "image": "../../images/sprites/radio-image.png?version=0.9.0"
+        "image": "../../../images/sprites/check-image.png"
       ),
       "example-c--selected--disabled": (
         "width": 40px,
@@ -28,7 +28,7 @@ $sprites: (
         "total-height": 146px,
         "offset-x": 0px,
         "offset-y": -42px,
-        "image": "../../images/sprites/radio-image.png?version=0.9.0"
+        "image": "../../../images/sprites/check-image.png"
       ),
       "example-c--selected--focus": (
         "width": 40px,
@@ -37,7 +37,7 @@ $sprites: (
         "total-height": 146px,
         "offset-x": -42px,
         "offset-y": -42px,
-        "image": "../../images/sprites/radio-image.png?version=0.9.0"
+        "image": "../../../images/sprites/check-image.png"
       ),
       "example-c--selected": (
         "width": 40px,
@@ -46,7 +46,7 @@ $sprites: (
         "total-height": 146px,
         "offset-x": -84px,
         "offset-y": 0px,
-        "image": "../../images/sprites/radio-image.png?version=0.9.0"
+        "image": "../../../images/sprites/check-image.png"
       ),
       "example-c": (
         "width": 40px,
@@ -55,7 +55,7 @@ $sprites: (
         "total-height": 146px,
         "offset-x": -84px,
         "offset-y": -42px,
-        "image": "../../images/sprites/radio-image.png?version=0.9.0"
+        "image": "../../../images/sprites/check-image.png"
       ),
       "example-d--disabled": (
         "width": 20px,
@@ -64,7 +64,7 @@ $sprites: (
         "total-height": 146px,
         "offset-x": 0px,
         "offset-y": -126px,
-        "image": "../../images/sprites/radio-image.png?version=0.9.0"
+        "image": "../../../images/sprites/check-image.png"
       ),
       "example-d--focus": (
         "width": 20px,
@@ -73,7 +73,7 @@ $sprites: (
         "total-height": 146px,
         "offset-x": -22px,
         "offset-y": -126px,
-        "image": "../../images/sprites/radio-image.png?version=0.9.0"
+        "image": "../../../images/sprites/check-image.png"
       ),
       "example-d--selected--disabled": (
         "width": 20px,
@@ -82,7 +82,7 @@ $sprites: (
         "total-height": 146px,
         "offset-x": -44px,
         "offset-y": -126px,
-        "image": "../../images/sprites/radio-image.png?version=0.9.0"
+        "image": "../../../images/sprites/check-image.png"
       ),
       "example-d--selected--focus": (
         "width": 20px,
@@ -91,7 +91,7 @@ $sprites: (
         "total-height": 146px,
         "offset-x": -66px,
         "offset-y": -126px,
-        "image": "../../images/sprites/radio-image.png?version=0.9.0"
+        "image": "../../../images/sprites/check-image.png"
       ),
       "example-d--selected": (
         "width": 20px,
@@ -100,7 +100,7 @@ $sprites: (
         "total-height": 146px,
         "offset-x": -88px,
         "offset-y": -126px,
-        "image": "../../images/sprites/radio-image.png?version=0.9.0"
+        "image": "../../../images/sprites/check-image.png"
       ),
       "example-d": (
         "width": 20px,
@@ -109,7 +109,7 @@ $sprites: (
         "total-height": 146px,
         "offset-x": -110px,
         "offset-y": -126px,
-        "image": "../../images/sprites/radio-image.png?version=0.9.0"
+        "image": "../../../images/sprites/check-image.png"
       ),
       "sm_example-d--disabled": (
         "width": 40px,
@@ -118,7 +118,7 @@ $sprites: (
         "total-height": 146px,
         "offset-x": 0px,
         "offset-y": -84px,
-        "image": "../../images/sprites/radio-image.png?version=0.9.0"
+        "image": "../../../images/sprites/check-image.png"
       ),
       "sm_example-d--focus": (
         "width": 40px,
@@ -127,7 +127,7 @@ $sprites: (
         "total-height": 146px,
         "offset-x": -42px,
         "offset-y": -84px,
-        "image": "../../images/sprites/radio-image.png?version=0.9.0"
+        "image": "../../../images/sprites/check-image.png"
       ),
       "sm_example-d--selected--disabled": (
         "width": 40px,
@@ -136,7 +136,7 @@ $sprites: (
         "total-height": 146px,
         "offset-x": -84px,
         "offset-y": -84px,
-        "image": "../../images/sprites/radio-image.png?version=0.9.0"
+        "image": "../../../images/sprites/check-image.png"
       ),
       "sm_example-d--selected--focus": (
         "width": 40px,
@@ -145,7 +145,7 @@ $sprites: (
         "total-height": 146px,
         "offset-x": -126px,
         "offset-y": 0px,
-        "image": "../../images/sprites/radio-image.png?version=0.9.0"
+        "image": "../../../images/sprites/check-image.png"
       ),
       "sm_example-d--selected": (
         "width": 40px,
@@ -154,7 +154,7 @@ $sprites: (
         "total-height": 146px,
         "offset-x": -126px,
         "offset-y": -42px,
-        "image": "../../images/sprites/radio-image.png?version=0.9.0"
+        "image": "../../../images/sprites/check-image.png"
       ),
       "sm_example-d": (
         "width": 40px,
@@ -163,7 +163,7 @@ $sprites: (
         "total-height": 146px,
         "offset-x": -126px,
         "offset-y": -84px,
-        "image": "../../images/sprites/radio-image.png?version=0.9.0"
+        "image": "../../../images/sprites/check-image.png"
       )
     )
   )

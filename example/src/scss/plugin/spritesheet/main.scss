@@ -11,7 +11,7 @@
 @use "./sprite/radio-image";
 
 // use spritesheet plugin with configuration
-@use "../../../../src/plugin/spritesheet" with (
+@use "../../../../../src/plugin/spritesheet" with (
   $spritesheets: (
     icon-svg.$sprites,
     icon-image.$sprites,
@@ -20,7 +20,7 @@
     check-svg.$sprites,
     check-image.$sprites,
     radio-svg.$sprites,
-    radio-image.$sprites,
+    radio-image.$sprites
   )
 );
 
@@ -30,4 +30,4 @@
 @use "./unit/toggle";
 
 // initialize
-@use "../../../../src/bootstrap";
+@use "../../../../../src/bootstrap";

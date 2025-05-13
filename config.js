@@ -92,6 +92,6 @@ export const path = {
     return `${this.dest}/images/sprites`;
   },
   get destStyleguide() {
-    return `${this.dest}/styleguide`;
+    return this.dest;
   }
 };

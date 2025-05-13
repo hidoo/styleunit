@@ -20,7 +20,7 @@ const cacheParameter =
  * @type {String}
  */
 const pathToSprite = path.relative(
-  `${config.path.destCss}/unit-plugin-spritesheet`,
+  `${config.path.destCss}/plugin/spritesheet`,
   config.path.destSprite
 );
 
@@ -34,7 +34,7 @@ function buildOptions(options = {}) {
   return {
     ...options,
     destImg: config.path.destSprite,
-    destCss: `${config.path.srcCss}/unit-plugin-spritesheet/sprite`,
+    destCss: `${config.path.srcCss}/plugin/spritesheet/sprite`,
     imgPath: `${pathToSprite}/${options.imgName}${cacheParameter}`,
     cssPreprocessor: 'sass:module',
     compress: config.compress
@@ -118,7 +118,7 @@ const checkSvg = buildSvgSprite(
 );
 
 // define main task
-export const main = gulp.parallel(
+export const main = gulp.series(
   iconImage,
   iconSvg,
   textImage,
