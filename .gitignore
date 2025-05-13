@@ -1,5 +1,6 @@
 .git/
 node_modules/
 example/build/
+example/src/**/sprite/
 test/fixture/dest/
 !test/fixture/node_modules/
