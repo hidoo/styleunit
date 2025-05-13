@@ -5,6 +5,7 @@ import * as sass from 'sass';
 describe('@hidoo/styleunit', () => {
   const packages = [
     '@hidoo/styleunit',
+    '@hidoo/styleunit/bootstrap',
     '@hidoo/styleunit/lib',
     '@hidoo/styleunit/function',
     '@hidoo/styleunit/mixin',
