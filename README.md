@@ -1,5 +1,7 @@
 # @hidoo/styleunit
 
+[![Test](https://github.com/hidoo/styleunit/actions/workflows/test.yml/badge.svg)](https://github.com/hidoo/styleunit/actions/workflows/test.yml)
+
 > The unit oriented CSS framework implemented in Sass.
 
 ## Demo
