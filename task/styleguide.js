@@ -9,20 +9,20 @@ const dirname = path.dirname(fileURLToPath(import.meta.url));
 // define example tasks
 export const unit = buildStyleguide({
   name: 'styleguide:main',
-  src: config.path.srcStyleguide,
+  src: `${config.path.srcStyleguide}/main.css`,
   dest: config.path.destStyleguide,
   get css() {
-    return `${path.relative(this.dest, this.src)}/main.css`;
+    return `${path.relative(this.dest, path.dirname(this.src))}/main.css`;
   },
   homepage: path.resolve(dirname, '../README.md'),
   builder: path.resolve(dirname, '../node_modules/@hidoo/kss-builder')
 });
 export const pluginSpritesheet = buildStyleguide({
   name: 'styleguide:plugin:spritesheet',
-  src: `${config.path.srcStyleguide}/plugin/spritesheet`,
+  src: `${config.path.srcStyleguide}/plugin/spritesheet/main.css`,
   dest: `${config.path.destStyleguide}/plugin/spritesheet`,
   get css() {
-    return `${path.relative(this.dest, this.src)}/main.css`;
+    return `${path.relative(this.dest, path.dirname(this.src))}/main.css`;
   },
   homepage: path.resolve(dirname, '../src/plugin/spritesheet/README.md'),
   builder: path.resolve(dirname, '../node_modules/@hidoo/kss-builder')

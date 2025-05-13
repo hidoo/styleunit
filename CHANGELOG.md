@@ -1,4 +1,13 @@
-# 1.0.0-alpha.0 (2025-05-13)
+# [1.0.0-alpha.1](https://github.com/hidoo/styleunit/compare/v1.0.0-alpha.0...v1.0.0-alpha.1) (2025-05-13)
+
+
+### Bug Fixes
+
+* **package:** add boostrap.scss to exports field ([470b7f1](https://github.com/hidoo/styleunit/commit/470b7f19bf45937e7dd83afe7b0793f41b530ddd))
+
+
+
+# [1.0.0-alpha.0](https://github.com/hidoo/styleunit/compare/8fb38588f1e50db23d3bd967b54e69939bd83374...v1.0.0-alpha.0) (2025-05-13)
 
 
 * feat(unit)!: support module system ([9a85972](https://github.com/hidoo/styleunit/commit/9a85972b6be2cc7c52accc3bf94b8244c6546d8c))
