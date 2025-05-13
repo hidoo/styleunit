@@ -20,6 +20,8 @@
 ///   }
 ///
 @mixin on-print() {
+  @warn "[DEPRECATED] mixin.on-print is deprecated. Use instead mixin.media.";
+
   @media print {
     @content;
   }
