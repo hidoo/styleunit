@@ -1,3 +1,12 @@
+# [1.0.0-alpha.2](https://github.com/hidoo/styleunit/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2025-05-15)
+
+
+### Bug Fixes
+
+* **util:** fix font-size class name on breakpoints ([2dd553d](https://github.com/hidoo/styleunit/commit/2dd553dac198c27b5d9db116429da3a9f78112b7))
+
+
+
 # [1.0.0-alpha.1](https://github.com/hidoo/styleunit/compare/v1.0.0-alpha.0...v1.0.0-alpha.1) (2025-05-13)
 
 
