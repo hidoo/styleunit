@@ -58,7 +58,7 @@ Style guide: #{settings.$util-prefix}.font-size.builtin
         $selector: selector.replace(
           #{&},
           #{&},
-          ".#{$bp}\\:#{settings.$util-prefix}--width"
+          ".#{$bp}\\:#{settings.$util-prefix}--font-size"
         );
 
         @at-root {
