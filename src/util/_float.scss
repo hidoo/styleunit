@@ -17,6 +17,7 @@ Style guide: #{settings.$util-prefix}.float
 Modifiers
 
 The float modifiers .
++ The breakpoint prefixes can be specified like as `sm:#{settings.$util-prefix}--float-left`.
 
 Weight: -100
 
@@ -36,8 +37,6 @@ Markup: <div class="float-example {{modifier_class}}"></div>
 #{settings.$util-prefix}--float-left - Float to left side
 #{settings.$util-prefix}--float-right - Float to right side
 #{settings.$util-prefix}--float-none - Disable floating
-sm:#{settings.$util-prefix}--float-left - Float to left side if viewport is `"sm"`.
-not-sm:#{settings.$util-prefix}--float-left - Float to left side if viewport is not `"sm"`.
 
 Style guide: #{settings.$util-prefix}.float.builtin
 */

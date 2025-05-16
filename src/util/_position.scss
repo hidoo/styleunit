@@ -20,8 +20,8 @@ Style guide: #{settings.$util-prefix}.position
 Modifiers
 
 The position modifiers.
-Sizes: #{meta.inspect(settings.$util-position)}.
-Direction: #{meta.inspect(settings.$util-directions)}.
++ The direction can be specified like as `#{settings.$util-prefix}--position-top-50`. (Direction: `#{meta.inspect(settings.$util-directions)}`)
++ The breakpoint prefixes can be specified like as `sm:#{settings.$util-prefix}--position-50`.
 
 Weight: -100
 
@@ -35,36 +35,10 @@ Markup: <div class="padding-example {{modifier_class}}"></div>
   }
 </style>
 
-#{settings.$util-prefix}--position-0 - All 0px position
-#{settings.$util-prefix}--position-_50 - All -50px position
-#{settings.$util-prefix}--position-50 - All 50px position
-#{settings.$util-prefix}--position-normal - All normal position
-#{settings.$util-prefix}--position-top-0 - Top 0px position
-#{settings.$util-prefix}--position-top-_50 - Top -50px position
-#{settings.$util-prefix}--position-top-50 - Top 50px position
-#{settings.$util-prefix}--position-top-normal - Top normal position
-#{settings.$util-prefix}--position-right-0 - Right 0px position
-#{settings.$util-prefix}--position-right-_50 - Right -50px position
-#{settings.$util-prefix}--position-right-50 - Right 50px position
-#{settings.$util-prefix}--position-right-normal - Right normal position
-#{settings.$util-prefix}--position-bottom-0 - Bottom 0px position
-#{settings.$util-prefix}--position-bottom-_50 - Bottom -50px position
-#{settings.$util-prefix}--position-bottom-50 - Bottom 50px position
-#{settings.$util-prefix}--position-bottom-normal - Bottom normal position
-#{settings.$util-prefix}--position-left-0 - Left 0px position
-#{settings.$util-prefix}--position-left-_50 - Left -50px position
-#{settings.$util-prefix}--position-left-50 - Left 50px position
-#{settings.$util-prefix}--position-left-normal - Left normal position
-#{settings.$util-prefix}--position-block-0 - Block 0 position
-#{settings.$util-prefix}--position-block-_50 - Block -50px position
-#{settings.$util-prefix}--position-block-50 - Block 50px position
-#{settings.$util-prefix}--position-block-normal - Block normal position
-#{settings.$util-prefix}--position-inline-0 - Inline 0 position
-#{settings.$util-prefix}--position-inline-_50 - Inline -50px position
-#{settings.$util-prefix}--position-inline-50 - Inline 50px position
-#{settings.$util-prefix}--position-inline-normal - Inline normal position
-sm:#{settings.$util-prefix}--position-50 - All 50px position if viewport is `"sm"`.
-not-sm:#{settings.$util-prefix}--position-50 - All 50px position if viewport is not `"sm"`.
+#{settings.$util-prefix}--position-0 - All 0px position.
+#{settings.$util-prefix}--position-_50 - All -50px position.
+#{settings.$util-prefix}--position-50 - All 50px position.
+#{settings.$util-prefix}--position-normal - All normal position.
 
 Style guide: #{settings.$util-prefix}.position.builtin
 */

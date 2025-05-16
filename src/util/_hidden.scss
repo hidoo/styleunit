@@ -17,6 +17,7 @@ Style guide: #{settings.$util-prefix}.hidden
 Modifiers
 
 The hidden modifiers.
++ The breakpoint prefixes can be specified like as `sm:#{settings.$util-prefix}--hidden`.
 
 Weight: -100
 
@@ -31,8 +32,6 @@ Markup: <div class="hidden-example {{modifier_class}}"></div>
 </style>
 
 #{settings.$util-prefix}--hidden - Hidden element.
-sm:#{settings.$util-prefix}--hidden - Hidden  element if viewport is `"sm"`.
-not-sm:#{settings.$util-prefix}--hidden - Hidden element if viewport is not `"sm"`.
 
 Style guide: #{settings.$util-prefix}.hidden.builtin
 */

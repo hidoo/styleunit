@@ -19,8 +19,8 @@ Style guide: #{settings.$util-prefix}.border
 Modifiers
 
 The border modifiers.
-Sizes: #{meta.inspect(settings.$util-border)}.
-Direction: #{meta.inspect(settings.$util-directions)}.
++ The direction can be specified like as `#{settings.$util-prefix}--border-top-normal`. (Direction: `#{meta.inspect(settings.$util-directions)}`)
++ The breakpoint prefixes can be specified like as `sm:#{settings.$util-prefix}--border-normal`.
 
 Weight: -100
 
@@ -36,14 +36,6 @@ Markup: <div class="border-example {{modifier_class}}"></div>
 </style>
 
 #{settings.$util-prefix}--border-normal - All normal border
-#{settings.$util-prefix}--border-top-normal - Top normal border
-#{settings.$util-prefix}--border-right-normal - Right normal border
-#{settings.$util-prefix}--border-bottom-normal - Bottom normal border
-#{settings.$util-prefix}--border-left-normal - Left normal border
-#{settings.$util-prefix}--border-block-normal - Block normal border
-#{settings.$util-prefix}--border-inline-normal - Inline normal border
-sm:#{settings.$util-prefix}--border-normal - All normal border if viewport is `"sm"`.
-not-sm:#{settings.$util-prefix}--border-normal - All normal border if viewport is not `"sm"`.
 
 Style guide: #{settings.$util-prefix}.border.builtin
 */

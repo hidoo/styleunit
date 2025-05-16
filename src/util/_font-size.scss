@@ -24,6 +24,7 @@ Style guide: #{settings.$util-prefix}.font-size
 Modifiers
 
 The font-size modifiers .
++ The breakpoint prefixes can be specified like as `sm:#{settings.$util-prefix}--font-size-xsmall`.
 
 Weight: -100
 
@@ -38,8 +39,6 @@ Markup: <p class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolo
 #{settings.$util-prefix}--font-size-2xlarge - 2 extra large font size.
 #{settings.$util-prefix}--font-size-3xlarge - 3 extra large font size.
 #{settings.$util-prefix}--font-size-4xlarge - 4 extra large font size.
-sm:#{settings.$util-prefix}--font-size-2xlarge - 2 extra large font size if viewport is `"sm"`.
-not-sm:#{settings.$util-prefix}--font-size-2xlarge - 2 extra large font size if viewport is not `"sm"`.
 
 Style guide: #{settings.$util-prefix}.font-size.builtin
 */

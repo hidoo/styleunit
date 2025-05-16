@@ -19,7 +19,8 @@ Style guide: #{settings.$util-prefix}.width
 Modifiers
 
 The width modifiers.
-Sizes: #{meta.inspect(settings.$util-width)}.
++ You can specify `min` or `max` option like as `#{settings.$util-prefix}--width-max-1000`.
++ The breakpoint prefixes can be specified like as `#{settings.$util-prefix}--width-1000`.
 
 Weight: -100
 
@@ -35,22 +36,12 @@ Markup: <div class="width-example {{modifier_class}}"></div>
 </style>
 
 #{settings.$util-prefix}--width-0 - 0px width.
-#{settings.$util-prefix}--width-min-0 - 0px min width.
-#{settings.$util-prefix}--width-max-0 - 0px max width.
 #{settings.$util-prefix}--width-1000 - 1000px width.
-#{settings.$util-prefix}--width-min-1000 - 1000px min width.
-#{settings.$util-prefix}--width-max-1000 - 1000px max width.
 #{settings.$util-prefix}--width-normal - Normal width.
-#{settings.$util-prefix}--width-min-normal - Normal min width.
-#{settings.$util-prefix}--width-max-normal - Normal max width.
 #{settings.$util-prefix}--width-fit - 100% width.
-#{settings.$util-prefix}--width-min-fit - 100% min width.
-#{settings.$util-prefix}--width-max-fit - 100% max width.
 #{settings.$util-prefix}--width-auto - Auto width.
 #{settings.$util-prefix}--width-min-none - None min width.
 #{settings.$util-prefix}--width-max-none - None max width.
-sm:#{settings.$util-prefix}--width-0 - 0px width if viewport is `"sm"`.
-.not-sm:#{settings.$util-prefix}--width-0 - 0px width if viewport is not `"sm"`.
 
 Style guide: #{settings.$util-prefix}.width.builtin
 */
