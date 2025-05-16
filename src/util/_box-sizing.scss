@@ -34,9 +34,7 @@ Markup: <div class="box-sizing-example {{modifier_class}}"></div>
 </style>
 
 #{settings.$util-prefix}--box-sizing-border-box - Set border box
-sm:#{settings.$util-prefix}--box-sizing-border-box - Set border box if viewport is `"sm"`.
 #{settings.$util-prefix}--box-sizing-content-box - Set content box
-sm:#{settings.$util-prefix}--box-sizing-content-box - Set content box if viewport is `"sm"`.
 
 Style guide: #{settings.$util-prefix}.box-sizing.builtin
 */
