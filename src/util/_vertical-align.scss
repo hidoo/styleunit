@@ -17,6 +17,7 @@ Style guide: #{settings.$util-prefix}.vertical-align
 Modifiers
 
 The vertical-align modifiers.
++ The breakpoint prefixes can be specified like as `sm:#{settings.$util-prefix}--vertical-align-top`.
 
 Weight: -100
 
@@ -40,8 +41,6 @@ Markup: <div class="valign-example-wrapper  {{modifier_class}}">
 #{settings.$util-prefix}--vertical-align-middle - Set middle
 #{settings.$util-prefix}--vertical-align-baseline - Set baseline
 #{settings.$util-prefix}--vertical-align-bottom - Set bottom
-sm:#{settings.$util-prefix}--vertical-align-middle - Set middle if viewport is `"sm"`.
-not-sm:#{settings.$util-prefix}--vertical-align-middle - Set middle if viewport is not `"sm"`.
 
 Style guide: #{settings.$util-prefix}.vertical-align.builtin
 */

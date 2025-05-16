@@ -19,7 +19,8 @@ Style guide: #{settings.$util-prefix}.height
 Modifiers
 
 The height modifiers.
-Sizes: #{meta.inspect(settings.$util-height)}.
++ You can specify `min` or `max` option like as `#{settings.$util-prefix}--height-max-1000`.
++ The breakpoint prefixes can be specified like as `sm:#{settings.$util-prefix}--height-1000`.
 
 Weight: -100
 
@@ -35,22 +36,12 @@ Markup: <div class="height-example {{modifier_class}}"></div>
 </style>
 
 #{settings.$util-prefix}--height-0 - 0px height
-#{settings.$util-prefix}--height-min-0 - 0px min height
-#{settings.$util-prefix}--height-max-0 - 0px max height
 #{settings.$util-prefix}--height-1000 - 1000px height
-#{settings.$util-prefix}--height-min-1000 - 1000px min height
-#{settings.$util-prefix}--height-max-1000 - 1000px max height
 #{settings.$util-prefix}--height-normal - Normal height
-#{settings.$util-prefix}--height-min-normal - Normal min height
-#{settings.$util-prefix}--height-max-normal - Normal max height
 #{settings.$util-prefix}--height-fit - 100% height
-#{settings.$util-prefix}--height-min-fit - 100% min height
-#{settings.$util-prefix}--height-max-fit - 100% max height
 #{settings.$util-prefix}--height-auto - auto height
 #{settings.$util-prefix}--height-min-none - None min height.
 #{settings.$util-prefix}--height-max-none - None max height.
-sm:#{settings.$util-prefix}--height-0 - 0px height if viewport is `"sm"`.
-.not-sm:#{settings.$util-prefix}--height-0 - 0px height if viewport is not `"sm"`.
 
 Style guide: #{settings.$util-prefix}.height.builtin
 */

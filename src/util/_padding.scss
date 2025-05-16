@@ -19,8 +19,8 @@ Style guide: #{settings.$util-prefix}.padding
 Modifiers
 
 The padding modifiers.
-Sizes: #{meta.inspect(settings.$util-padding)}.
-Direction: #{meta.inspect(settings.$util-directions)}.
++ The direction can be specified like as `#{settings.$util-prefix}--padding-top-50`. (Direction: `#{meta.inspect(settings.$util-directions)}`)
++ The breakpoint prefixes can be specified like as `sm:#{settings.$util-prefix}--padding-50`.
 
 Weight: -100
 
@@ -34,29 +34,9 @@ Markup: <div class="padding-example {{modifier_class}}"></div>
   }
 </style>
 
-#{settings.$util-prefix}--padding-0 - All 0px padding
-#{settings.$util-prefix}--padding-50 - All 50px padding
-#{settings.$util-prefix}--padding-normal - All normal padding
-#{settings.$util-prefix}--padding-top-0 - Top 0px padding
-#{settings.$util-prefix}--padding-top-50 - Top 50px padding
-#{settings.$util-prefix}--padding-top-normal - Top normal padding
-#{settings.$util-prefix}--padding-right-0 - Right 0px padding
-#{settings.$util-prefix}--padding-right-50 - Right 50px padding
-#{settings.$util-prefix}--padding-right-normal - Right normal padding
-#{settings.$util-prefix}--padding-bottom-0 - Bottom 0px padding
-#{settings.$util-prefix}--padding-bottom-50 - Bottom 50px padding
-#{settings.$util-prefix}--padding-bottom-normal - Bottom normal padding
-#{settings.$util-prefix}--padding-left-0 - Left 0px padding
-#{settings.$util-prefix}--padding-left-50 - Left 50px padding
-#{settings.$util-prefix}--padding-left-normal - Left normal padding
-#{settings.$util-prefix}--padding-block-0 - Block 0px padding
-#{settings.$util-prefix}--padding-block-50 - Block 50px padding
-#{settings.$util-prefix}--padding-block-normal - Block normal padding
-#{settings.$util-prefix}--padding-inline-0 - Inline 0px padding
-#{settings.$util-prefix}--padding-inline-50 - Inline 50px padding
-#{settings.$util-prefix}--padding-inline-normal - Inline normal padding
-sm:#{settings.$util-prefix}--padding-50 - All 50px padding if viewport is `"sm"`.
-not-sm:#{settings.$util-prefix}--padding-50 - All 50px padding if viewport is not `"sm"`.
+#{settings.$util-prefix}--padding-0 - All 0px padding.
+#{settings.$util-prefix}--padding-50 - All 50px padding.
+#{settings.$util-prefix}--padding-normal - All normal padding.
 
 Style guide: #{settings.$util-prefix}.padding.builtin
 */

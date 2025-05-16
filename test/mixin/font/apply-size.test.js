@@ -85,13 +85,13 @@ describe('[DEPRECATED] @mixin font-apply-size(...)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       }
     );
   });
 
-  it('should out font-size without rem if defaults$font-enable-relative-size is not true.', async () => {
+  it('should out font-size without rem if defaults $font-enable-relative-size is not true.', async () => {
     const cases = [
       {
         params: [['$value: 0'], ['$font-enable-relative-size: false']],
@@ -117,7 +117,7 @@ describe('[DEPRECATED] @mixin font-apply-size(...)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       }
     );
@@ -149,7 +149,7 @@ describe('[DEPRECATED] @mixin font-apply-size(...)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       }
     );
@@ -183,7 +183,7 @@ describe('[DEPRECATED] @mixin font-apply-size(...)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       }
     );

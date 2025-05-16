@@ -37,8 +37,8 @@ $_default-options: (
 ///
 @function size($value, $options: ()) {
   @if meta.type-of($value) == "string" {
-    @if meta.type-of(settings.$font-size) != "number" {
-      @error "@function function.font-size: settings.$font-size must be number.";
+    @if meta.type-of(settings.$font-base-size) != "number" {
+      @error "@function function.font-size: settings.$font-base-size must be number.";
     }
 
     @if meta.type-of(settings.$font-size-presets) != "map" {
@@ -46,7 +46,7 @@ $_default-options: (
     }
 
     $value: math.floor(
-      settings.$font-size * map.get(settings.$font-size-presets, $value)
+      settings.$font-base-size * map.get(settings.$font-size-presets, $value)
     );
   }
 

@@ -85,7 +85,7 @@ describe('@function font-size($value, $options)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       }
     );
@@ -117,7 +117,7 @@ describe('@function font-size($value, $options)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       }
     );
@@ -149,7 +149,7 @@ describe('@function font-size($value, $options)', () => {
 
         const actual = result.css.toString().trim();
 
-        assert(actual === expected);
+        assert.equal(actual, expected);
         return resolve();
       }
     );

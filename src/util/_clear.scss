@@ -17,6 +17,7 @@ Style guide: #{settings.$util-prefix}.clear
 Modifiers
 
 The clear modifiers .
++ The breakpoint prefixes can be specified like as `sm:#{settings.$util-prefix}--clear-left`.
 
 Weight: -100
 
@@ -36,8 +37,6 @@ Markup: <div class="clear-example  #{settings.$util-prefix}--float-left"></div>
 #{settings.$util-prefix}--clear-left - Clear left side floating
 #{settings.$util-prefix}--clear-right - Clear right side floating
 #{settings.$util-prefix}--clear-both - Clear both floating
-sm:#{settings.$util-prefix}--clear-left - Clear left side floating if viewport is `"sm"`.
-not-sm:#{settings.$util-prefix}--clear-left - Clear left side floating if viewport is not `"sm"`.
 
 Style guide: #{settings.$util-prefix}.clear.builtin
 */

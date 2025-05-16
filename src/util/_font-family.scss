@@ -17,16 +17,15 @@ Style guide: #{settings.$util-prefix}.font-family
 Modifiers
 
 The font-family modifiers .
++ The breakpoint prefixes can be specified like as `sm:#{settings.$util-prefix}--font-family-default`.
 
 Weight: -100
 
 Markup: <p class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, <b class="#{settings.$prefix}-text  #{settings.$prefix}-text--inline-true  #{settings.$prefix}-text--weight-bold">consectetur adipiscing elit</b>, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 <p class="#{settings.$prefix}-text  {{modifier_class}}">あのイーハトーヴォのすきとおった風、<b class="#{settings.$prefix}-text  #{settings.$prefix}-text--inline-true  #{settings.$prefix}-text--weight-bold">夏でも底に冷たさをもつ青いそら</b>、うつくしい森で飾られたモーリオ市、郊外のぎらぎらひかる草の波。</p>
 
-#{settings.$util-prefix}--font-family-default - Default.
+#{settings.$util-prefix}--font-family-sans-serif - Sans-serif.
 #{settings.$util-prefix}--font-family-monospace - Monospace.
-sm:#{settings.$util-prefix}--font-family-monospace - Monospace font family if viewport is `"sm"`.
-not-sm:#{settings.$util-prefix}--font-family-monospace - Monospace font family if viewport is not `"sm"`.
 
 Style guide: #{settings.$util-prefix}.font-family.builtin
 */

@@ -20,7 +20,7 @@ Style guide: #{settings.$util-prefix}.z-index
 Modifiers
 
 The z-index modifiers.
-Values: #{meta.inspect(settings.$util-z-index)}.
++ The breakpoint prefixes can be specified like as `sm:#{settings.$util-prefix}--z-index-50`.
 
 Weight: -100
 
@@ -77,8 +77,6 @@ Markup: <div class="z-index-example-wrapper">
 #{settings.$util-prefix}--z-index-0 - 0 z-index
 #{settings.$util-prefix}--z-index-50 - 50 z-index
 #{settings.$util-prefix}--z-index-normal - Normal z-index
-sm:#{settings.$util-prefix}--z-index-0 - 0px z-index if viewport is `"sm"`.
-not-sm:#{settings.$util-prefix}--z-index-0 - 0px z-index if viewport is not `"sm"`.
 
 Style guide: #{settings.$util-prefix}.z-index.builtin
 */

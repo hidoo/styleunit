@@ -10,18 +10,18 @@
 @forward "./util" as util-*;
 
 /// Package name.
-/// (default: `"unit"`)
+/// (default: `"su"`)
 /// @type String
 ///
 /// @example scss - scss inputs
-///   $pkg: "un";
+///   $pkg: "s";
 ///
 /// @example css - css outputs
 ///   :root {
-///     --un-breakpoint-mobile: 667px;
+///     --s-breakpoint-mobile: 667px;
 ///   }
 ///
-$pkg: "unit" !default;
+$pkg: "su" !default;
 
 /// Default prefix of unit class name.
 /// (default: `"unit"`)

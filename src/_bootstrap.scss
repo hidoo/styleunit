@@ -1,9 +1,7 @@
-@use "sass:color";
 @use "sass:list";
 @use "sass:map";
 @use "sass:math";
 @use "sass:meta";
-@use "sass:selector";
 @use "./lib/function";
 @use "./settings";
 
@@ -19,33 +17,35 @@ $_pkg: settings.$pkg !default;
 
   // Breakpoints
   @each $name, $value in settings.$breakpoints {
-    --#{$_pkg}-breakpoint-#{$name}: #{$value};
+    @if meta.type-of($value) == "number" {
+      --#{$_pkg}-breakpoint-#{$name}: #{$value};
+    }
   }
 
   // Font family
-  @each $name in ("font-family", "font-family-monospace") {
-    --#{$_pkg}-#{$name}: #{meta.inspect(map.get($settings, $name))};
+  --#{$_pkg}-font-family: #{meta.inspect(settings.$font-family)};
+
+  // Font family presets
+  @each $name, $value in settings.$font-family-presets {
+    --#{$_pkg}-font-family-#{$name}: #{meta.inspect($value)};
   }
 
   // Font size
-  @each $name in ("font-size") {
-    --#{$_pkg}-#{$name}: #{function.math-px-to-rem(
-        map.get($settings, $name),
-        settings.$font-base-size
-      )};
-  }
+  --#{$_pkg}-font-size: #{math.div(
+      settings.$font-size,
+      settings.$font-base-size
+    ) *
+    1rem};
+
+  // Font base size
+  --#{$_pkg}-font-base-size: #{settings.$font-base-size};
 
   // Font size presets
   @each $name, $value in settings.$font-size-presets {
-    $size: math.floor(settings.$font-size * $value);
-
-    --#{$_pkg}-font-size-#{$name}: #{function.math-px-to-rem(
-        $size,
-        settings.$font-base-size
-      )};
+    --#{$_pkg}-font-size-#{$name}: #{$value * 1rem};
   }
 
-  // Font size
+  // Font weight
   --#{$_pkg}-font-weight: #{settings.$font-weight};
 
   // Font weight presets
@@ -93,13 +93,9 @@ $_pkg: settings.$pkg !default;
   @each $name in ("message-on-image-error") {
     --#{$_pkg}-#{$name}: "#{map.get($settings, $name)}";
   }
-}
 
-// Set base font size
-@if meta.type-of(settings.$font-base-size) == "number" {
-  html {
-    font-size: settings.$font-base-size;
-  }
+  // Set base font size
+  font-size: var(--#{$_pkg}-font-base-size);
 }
 
 // Configure font settings

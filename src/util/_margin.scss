@@ -20,8 +20,8 @@ Style guide: #{settings.$util-prefix}.margin
 Modifiers
 
 The margin modifiers.
-Sizes: #{meta.inspect(settings.$util-margin)}.
-Direction: #{meta.inspect(settings.$util-directions)}.
++ The direction can be specified like as `#{settings.$util-prefix}--margin-top-50`. (Direction: `#{meta.inspect(settings.$util-directions)}`)
++ The breakpoint prefixes can be specified like as `sm:#{settings.$util-prefix}--margin-50`.
 
 Weight: -100
 
@@ -35,36 +35,10 @@ Markup: <div class="margin-example {{modifier_class}}"></div>
   }
 </style>
 
-#{settings.$util-prefix}--margin-0 - All 0px margin
-#{settings.$util-prefix}--margin-_50 - All -50px margin
-#{settings.$util-prefix}--margin-50 - All 50px margin
-#{settings.$util-prefix}--margin-normal - All normal margin
-#{settings.$util-prefix}--margin-top-0 - Top 0px margin
-#{settings.$util-prefix}--margin-top-_50 - Top -50px margin
-#{settings.$util-prefix}--margin-top-50 - Top 50px margin
-#{settings.$util-prefix}--margin-top-normal - Top normal margin
-#{settings.$util-prefix}--margin-right-0 - Right 0px margin
-#{settings.$util-prefix}--margin-right-_50 - Right -50px margin
-#{settings.$util-prefix}--margin-right-50 - Right 50px margin
-#{settings.$util-prefix}--margin-right-normal - Right normal margin
-#{settings.$util-prefix}--margin-bottom-0 - Bottom 0px margin
-#{settings.$util-prefix}--margin-bottom-_50 - Bottom -50px margin
-#{settings.$util-prefix}--margin-bottom-50 - Bottom 50px margin
-#{settings.$util-prefix}--margin-bottom-normal - Bottom normal margin
-#{settings.$util-prefix}--margin-left-0 - Left 0px margin
-#{settings.$util-prefix}--margin-left-_50 - Left -50px margin
-#{settings.$util-prefix}--margin-left-50 - Left 50px margin
-#{settings.$util-prefix}--margin-left-normal - Left normal margin
-#{settings.$util-prefix}--margin-block-0 - Block 0 margin
-#{settings.$util-prefix}--margin-block-_50 - Block -50px margin
-#{settings.$util-prefix}--margin-block-50 - Block 50px margin
-#{settings.$util-prefix}--margin-block-normal - Block normal margin
-#{settings.$util-prefix}--margin-inline-0 - Inline 0 margin
-#{settings.$util-prefix}--margin-inline-_50 - Inline -50px margin
-#{settings.$util-prefix}--margin-inline-50 - Inline 50px margin
-#{settings.$util-prefix}--margin-inline-normal - Inline normal margin
-sm:#{settings.$util-prefix}--margin-50 - All 50px margin if viewport is `"sm"`.
-not-sm:#{settings.$util-prefix}--margin-50 - All 50px margin if viewport is not `"sm"`.
+#{settings.$util-prefix}--margin-0 - All 0px margin.
+#{settings.$util-prefix}--margin-_50 - All -50px margin.
+#{settings.$util-prefix}--margin-50 - All 50px margin.
+#{settings.$util-prefix}--margin-normal - All normal margin.
 
 Style guide: #{settings.$util-prefix}.margin.builtin
 */

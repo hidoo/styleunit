@@ -1,3 +1,19 @@
+# [1.0.0-alpha.3](https://github.com/hidoo/styleunit/compare/v1.0.0-alpha.2...v1.0.0-alpha.3) (2025-05-16)
+
+
+### Bug Fixes
+
+* **bootstrap:** change to not export query type breakpoints as custom properties ([9546e49](https://github.com/hidoo/styleunit/commit/9546e4944c7d6628a4946c2b3ba2caf62e3c971e))
+* **settings:** change default settings.$pkg value to "su" ([588c040](https://github.com/hidoo/styleunit/commit/588c040b96b0fe015b1abe06a1d4b6e8487df7d3))
+
+
+### Features
+
+* **settings:** update default font family and export font family presets as custom properties ([ea09bcd](https://github.com/hidoo/styleunit/commit/ea09bcd50635da4c7ffb1bdb3d508ef0abb2ed87))
+* **settings:** update font size presets ([2810645](https://github.com/hidoo/styleunit/commit/281064509dedd4d4ecc76967ffeb9006d3dd36a8))
+
+
+
 # [1.0.0-alpha.2](https://github.com/hidoo/styleunit/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2025-05-15)
 
 

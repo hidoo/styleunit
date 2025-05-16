@@ -41,7 +41,7 @@ npm install @hidoo/styleunit
 );
 
 // Initialize manually
-@use 'bootstrap';
+@use 'node_modules/@hidoo/styleunit/src/bootstrap';
 ```
 
 ### Usage only with the necessary units
@@ -60,7 +60,7 @@ npm install @hidoo/styleunit
 @use 'node_modules/@hidoo/styleunit/src/unit/button/inline';
 
 // Initialize manually
-@use 'bootstrap';
+@use 'node_modules/@hidoo/styleunit/src/bootstrap';
 ```
 
 ## Plugins
@@ -250,13 +250,13 @@ Default font family.
 | `system-ui`                 | Use system ui font as a primary font family in macOS.            |
 | `-apple-system`             | Use "San Francisco" as a secondary font family in macOS.         |
 | `BlinkMacSystemFont`        | Use "San Francisco" as a primary font family in chrome on macOS. |
-| `Helvetica`                 | Use as a fallback font family in macOS.                          |
+| `Helvetica Neue`            | Use as a fallback font family in macOS.                          |
 | `Arial`                     | Use as a primary font family in Windows.                         |
 | `Hiragino Sans`             | Use as a primary japanese font family in macOS.                  |
 | `Hiragino Kaku Gothic ProN` | Use as a fallback of Hiragino Sans in macOS.                     |
-| `Yu Gothic Medium`          | Use as a primary japanese font family in Windows.                |
-| `YuGothic`                  | Use as a secondary japanese font family in macOS.                |
-| `Meiryo`                    | Use as a secondary japanese font family in Windows.              |
+| `Noto Sans JP`              | Use as a primary japanese font family in Windows.                |
+| `BIZ UDPGothic`             | Use as a secondary japanese font family in Windows.              |
+| `Meiryo`                    | Use as a fallback japanese font family in Windows.               |
 
 #### Type
 
@@ -287,10 +287,10 @@ Default font family presets
 
 #### Properties
 
-| Name        | Type                                                             | Description           | Default             |
-| :---------- | :--------------------------------------------------------------- | :-------------------- | :------------------ |
-| `default`   | **[String](https://sass-lang.com/documentation/values/strings)** | Default font family   | `$family`           |
-| `monospace` | **[String](https://sass-lang.com/documentation/values/strings)** | Monospace font family | `$family-monospace` |
+| Name         | Type                                                             | Description            | Default             |
+| :----------- | :--------------------------------------------------------------- | :--------------------- | :------------------ |
+| `sans-serif` | **[String](https://sass-lang.com/documentation/values/strings)** | Sans-serif font family | `$family`           |
+| `monospace`  | **[String](https://sass-lang.com/documentation/values/strings)** | Monospace font family  | `$family-monospace` |
 
 ### $size
 
@@ -321,16 +321,16 @@ Default font size presets
 
 #### Properties
 
-| Name      | Type                                                             | Description  | Default |
-| :-------- | :--------------------------------------------------------------- | :----------- | :------ |
-| `xsmall`  | **[Number](https://sass-lang.com/documentation/values/numbers)** | size xsmall  | `0.75`  |
-| `small`   | **[Number](https://sass-lang.com/documentation/values/numbers)** | size small   | `0.875` |
-| `medium`  | **[Number](https://sass-lang.com/documentation/values/numbers)** | size medium  | `1`     |
-| `large`   | **[Number](https://sass-lang.com/documentation/values/numbers)** | size large   | `1.15`  |
-| `xlarge`  | **[Number](https://sass-lang.com/documentation/values/numbers)** | size xlarge  | `1.3`   |
-| `2xlarge` | **[Number](https://sass-lang.com/documentation/values/numbers)** | size 2xlarge | `1.45`  |
-| `3xlarge` | **[Number](https://sass-lang.com/documentation/values/numbers)** | size 3xlarge | `1.6`   |
-| `4xlarge` | **[Number](https://sass-lang.com/documentation/values/numbers)** | size 4xlarge | `1.75`  |
+| Name      | Type                                                             | Description                                                                       | Default |
+| :-------- | :--------------------------------------------------------------- | :-------------------------------------------------------------------------------- | :------ |
+| `xsmall`  | **[Number](https://sass-lang.com/documentation/values/numbers)** | <span style="font-size: 0.625rem;">Lorem ipsum dolor sit amet.</span> (= `10px`)  | `0.625` |
+| `small`   | **[Number](https://sass-lang.com/documentation/values/numbers)** | <span style="font-size: 0.75rem;">Lorem ipsum dolor sit amet.</span> (= `12px`)   | `0.75`  |
+| `medium`  | **[Number](https://sass-lang.com/documentation/values/numbers)** | s<span style="font-size: 0.875rem;">Lorem ipsum dolor sit amet.</span> (= `14px`) | `0.875` |
+| `large`   | **[Number](https://sass-lang.com/documentation/values/numbers)** | <span style="font-size: 1rem;">Lorem ipsum dolor sit amet.</span> (= `16px`)      | `1`     |
+| `xlarge`  | **[Number](https://sass-lang.com/documentation/values/numbers)** | <span style="font-size: 1.125rem;">Lorem ipsum dolor sit amet.</span> (= `18px`)  | `1.125` |
+| `2xlarge` | **[Number](https://sass-lang.com/documentation/values/numbers)** | <span style="font-size: 1.25rem;">Lorem ipsum dolor sit amet.</span> (= `20px`)   | `1.25`  |
+| `3xlarge` | **[Number](https://sass-lang.com/documentation/values/numbers)** | <span style="font-size: 1.375rem;">Lorem ipsum dolor sit amet.</span> (= `22px`)  | `1.375` |
+| `4xlarge` | **[Number](https://sass-lang.com/documentation/values/numbers)** | <span style="font-size: 1.5rem;">Lorem ipsum dolor sit amet.</span> (= `24px`)    | `1.5`   |
 
 ### $weight
 
@@ -409,7 +409,7 @@ Default list of units that applying font
 ### $pkg
 
 Package name.
-(default: `"unit"`)
+(default: `"su"`)
 
 #### Type
 
@@ -420,14 +420,14 @@ Package name.
 scss inputs
 
 ```scss
-$pkg: 'un';
+$pkg: 's';
 ```
 
 css outputs
 
 ```css
 :root {
-  --un-breakpoint-mobile: 667px;
+  --s-breakpoint-mobile: 667px;
 }
 ```
 
