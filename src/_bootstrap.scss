@@ -23,8 +23,11 @@ $_pkg: settings.$pkg !default;
   }
 
   // Font family
-  @each $name in ("font-family", "font-family-monospace") {
-    --#{$_pkg}-#{$name}: #{meta.inspect(map.get($settings, $name))};
+  --#{$_pkg}-font-family: #{meta.inspect(settings.$font-family)};
+
+  // Font family presets
+  @each $name, $value in settings.$font-family-presets {
+    --#{$_pkg}-font-family-#{$name}: #{meta.inspect($value)};
   }
 
   // Font size

@@ -9,25 +9,25 @@
 /// |`system-ui`|Use system ui font as a primary font family in macOS.|
 /// |`-apple-system`|Use "San Francisco" as a secondary font family in macOS.|
 /// |`BlinkMacSystemFont`|Use "San Francisco" as a primary font family in chrome on macOS.|
-/// |`Helvetica`|Use as a fallback font family in macOS.|
+/// |`Helvetica Neue`|Use as a fallback font family in macOS.|
 /// |`Arial`|Use as a primary font family in Windows.|
 /// |`Hiragino Sans`|Use as a primary japanese font family in macOS.|
 /// |`Hiragino Kaku Gothic ProN`|Use as a fallback of Hiragino Sans in macOS.|
-/// |`Yu Gothic Medium`|Use as a primary japanese font family in Windows.|
-/// |`YuGothic`|Use as a secondary japanese font family in macOS.|
-/// |`Meiryo`|Use as a secondary japanese font family in Windows.|
+/// |`Noto Sans JP`|Use as a primary japanese font family in Windows.|
+/// |`BIZ UDPGothic`|Use as a secondary japanese font family in Windows.|
+/// |`Meiryo`|Use as a fallback japanese font family in Windows.|
 /// @type List
 ///
 $family: (
   system-ui,
   -apple-system,
   BlinkMacSystemFont,
-  Helvetica,
+  "Helvetica Neue",
   Arial,
   "Hiragino Sans",
   "Hiragino Kaku Gothic ProN",
-  "Yu Gothic Medium",
-  "YuGothic",
+  "Noto Sans JP",
+  "BIZ UDPGothic",
   Meiryo,
   sans-serif
 ) !default;
@@ -52,11 +52,11 @@ $family-monospace: (
 
 /// Default font family presets
 /// @type Map
-/// @prop {String} default [$family] - Default font family
+/// @prop {String} sans-serif [$family] - Sans-serif font family
 /// @prop {String} monospace [$family-monospace] - Monospace font family
 ///
 $family-presets: (
-  "default": $family,
+  "sans-serif": $family,
   "monospace": $family-monospace
 ) !default;
 

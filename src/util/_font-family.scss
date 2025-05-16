@@ -24,7 +24,7 @@ Weight: -100
 Markup: <p class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolor sit amet, <b class="#{settings.$prefix}-text  #{settings.$prefix}-text--inline-true  #{settings.$prefix}-text--weight-bold">consectetur adipiscing elit</b>, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 <p class="#{settings.$prefix}-text  {{modifier_class}}">あのイーハトーヴォのすきとおった風、<b class="#{settings.$prefix}-text  #{settings.$prefix}-text--inline-true  #{settings.$prefix}-text--weight-bold">夏でも底に冷たさをもつ青いそら</b>、うつくしい森で飾られたモーリオ市、郊外のぎらぎらひかる草の波。</p>
 
-#{settings.$util-prefix}--font-family-default - Default.
+#{settings.$util-prefix}--font-family-sans-serif - Sans-serif.
 #{settings.$util-prefix}--font-family-monospace - Monospace.
 
 Style guide: #{settings.$util-prefix}.font-family.builtin
