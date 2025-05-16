@@ -17,7 +17,9 @@ $_pkg: settings.$pkg !default;
 
   // Breakpoints
   @each $name, $value in settings.$breakpoints {
-    --#{$_pkg}-breakpoint-#{$name}: #{$value};
+    @if meta.type-of($value) == "number" {
+      --#{$_pkg}-breakpoint-#{$name}: #{$value};
+    }
   }
 
   // Font family
