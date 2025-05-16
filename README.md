@@ -41,7 +41,7 @@ npm install @hidoo/styleunit
 );
 
 // Initialize manually
-@use 'bootstrap';
+@use 'node_modules/@hidoo/styleunit/src/bootstrap';
 ```
 
 ### Usage only with the necessary units
@@ -60,7 +60,7 @@ npm install @hidoo/styleunit
 @use 'node_modules/@hidoo/styleunit/src/unit/button/inline';
 
 // Initialize manually
-@use 'bootstrap';
+@use 'node_modules/@hidoo/styleunit/src/bootstrap';
 ```
 
 ## Plugins
