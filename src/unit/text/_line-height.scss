@@ -1,11 +1,5 @@
 @use "../../settings";
 
-/// Package name
-/// @access private
-/// @type String
-///
-$_pkg: settings.$pkg !default;
-
 /*
 Line Height
 
@@ -33,15 +27,17 @@ Markup: <h1 class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dol
 Style guide: #{settings.$prefix}-text.line-height.builtin
 */
 .#{settings.$prefix}-text--line-height {
+  $pkg: settings.$pkg;
+
   &-normal {
     --line-height: normal;
   }
 
   &-narrow {
-    --line-height: calc(var(--#{$_pkg}-line-height) * 0.8);
+    --line-height: calc(var(--#{$pkg}-line-height) * 0.8);
   }
 
   &-wide {
-    --line-height: calc(var(--#{$_pkg}-line-height) * 1.2);
+    --line-height: calc(var(--#{$pkg}-line-height) * 1.2);
   }
 }

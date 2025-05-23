@@ -1,11 +1,5 @@
 @use "../../settings";
 
-/// Package name
-/// @access private
-/// @type String
-///
-$_pkg: settings.$pkg !default;
-
 /*
 #{settings.$prefix}-button
 
@@ -45,6 +39,8 @@ Markup: <!-- with anchor element -->
 Style guide: #{settings.$prefix}-button.core.default
 */
 .#{settings.$prefix}-button {
+  $pkg: settings.$pkg;
+
   --cursor: pointer;
   --position: relative;
   --display: block;
@@ -57,8 +53,8 @@ Style guide: #{settings.$prefix}-button.core.default
   --margin: 0;
   --padding: 0;
   --border: 0;
-  --font-size: var(--#{$_pkg}-font-size);
-  --font-weight: var(--#{$_pkg}-font-weight);
+  --font-size: var(--#{$pkg}-font-size);
+  --font-weight: var(--#{$pkg}-font-weight);
   --font-style: normal;
   --line-height: 1;
   --color: inherit;

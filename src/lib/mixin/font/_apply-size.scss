@@ -9,12 +9,6 @@
 @use "../../function";
 @use "../../../settings";
 
-/// Package name
-/// @access private
-/// @type String
-///
-$_pkg: settings.$pkg !default;
-
 /// apply font-size settings
 /// @param {String|Number} $value value of font-size (one of `"xsmall"`, `"small"`, `"medium"`, `"large"`, `"xlarge"`, `"2xlarge"`, `"3xlarge"`, `"4xlarge"` or number)
 /// @param {Boolean} $monospace [false] - font-family is monospace or not
@@ -34,7 +28,7 @@ $_pkg: settings.$pkg !default;
 ///   }
 ///
 @mixin apply-size($value, $monospace: false, $important: false) {
-  @warn "[DEPRECATED] mixin.font-apply-size is deprecated. Use --#{$_pkg}-font-size-* custom properties.";
+  @warn "[DEPRECATED] mixin.font-apply-size is deprecated. Use --#{settings.$pkg}-font-size-* custom properties.";
 
   $value: function.font-size(
     $value,

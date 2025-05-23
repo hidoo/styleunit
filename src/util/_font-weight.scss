@@ -1,14 +1,7 @@
 @use "sass:map";
 @use "sass:meta";
-@use "sass:selector";
 @use "../lib/mixin";
 @use "../settings";
-
-/// Package name
-/// @access private
-/// @type String
-///
-$_pkg: settings.$pkg !default;
 
 /*
 Font weight
@@ -44,32 +37,15 @@ Markup: <p class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolo
 Style guide: #{settings.$util-prefix}.font-weight.builtin
 */
 .#{settings.$util-prefix}--font-weight {
+  $pkg: settings.$pkg;
   $presets: settings.$font-weight-presets;
 
   @each $name, $font-weight in $presets {
     &-#{$name} {
-      --font-weight: var(--#{$_pkg}-font-weight-#{$name});
+      @include mixin.by-breakpoints() {
+        --font-weight: var(--#{$pkg}-font-weight-#{$name});
 
-      font-weight: var(--font-weight);
-    }
-
-    @each $bp, $query in settings.$breakpoints {
-      @if meta.type-of($query) == "string" {
-        $selector: selector.replace(
-          #{&},
-          #{&},
-          ".#{$bp}\\:#{settings.$util-prefix}--font-weight"
-        );
-
-        @at-root {
-          #{$selector}-#{$name} {
-            @include mixin.media($query: $query) {
-              --font-weight: var(--#{$_pkg}-font-weight-#{$name});
-
-              font-weight: var(--font-weight);
-            }
-          }
-        }
+        font-weight: var(--font-weight);
       }
     }
   }

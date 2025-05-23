@@ -3,12 +3,6 @@
 @use "sass:meta";
 @use "../../settings";
 
-/// Package name
-/// @access private
-/// @type String
-///
-$_pkg: settings.$pkg !default;
-
 /*
 Theme
 
@@ -43,18 +37,18 @@ Markup: <table class="#{settings.$prefix}-table  {{modifier_class}}">
 Style guide: #{settings.$prefix}-table.theme.builtin
 */
   .#{settings.$prefix}-table--theme {
+    $pkg: settings.$pkg;
+
     &-normal {
       $default-theme: map.get(settings.$builtin-themes, "light");
 
       // Load colors
-      --color-up: rgb(
-        var(--#{$_pkg}-color-#{map.get($default-theme, "color")})
-      );
+      --color-up: rgb(var(--#{$pkg}-color-#{map.get($default-theme, "color")}));
       --column-heading-background-color-up: rgb(
-        var(--#{$_pkg}-color-#{map.get($default-theme, "background")})
+        var(--#{$pkg}-color-#{map.get($default-theme, "background")})
       );
       --border-color-up: rgb(
-        var(--#{$_pkg}-color-#{map.get($default-theme, "border")})
+        var(--#{$pkg}-color-#{map.get($default-theme, "border")})
       );
 
       // Default settings
@@ -72,11 +66,11 @@ Style guide: #{settings.$prefix}-table.theme.builtin
           $border: map.get($theme, "border");
 
           // Apply colors to settings
-          --color: rgb(var(--#{$_pkg}-color-#{$color}));
+          --color: rgb(var(--#{$pkg}-color-#{$color}));
           --column-heading-background-color: rgb(
-            var(--#{$_pkg}-color-#{$background})
+            var(--#{$pkg}-color-#{$background})
           );
-          --border-color: rgb(var(--#{$_pkg}-color-#{$border}));
+          --border-color: rgb(var(--#{$pkg}-color-#{$border}));
         }
       }
     }

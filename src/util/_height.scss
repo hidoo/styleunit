@@ -1,6 +1,5 @@
 @use "sass:meta";
 @use "sass:list";
-@use "sass:selector";
 @use "../lib/function";
 @use "../lib/mixin";
 @use "../settings";
@@ -72,28 +71,10 @@ Style guide: #{settings.$util-prefix}.height.builtin
 
     @each $pfx in $minmax {
       &-#{$pfx}#{$name} {
-        --#{$pfx}height: #{$height};
+        @include mixin.by-breakpoints() {
+          --#{$pfx}height: #{$height};
 
-        #{$pfx}height: var(--#{$pfx}height);
-      }
-
-      @each $bp, $query in settings.$breakpoints {
-        @if meta.type-of($query) == "string" {
-          $selector: selector.replace(
-            #{&},
-            #{&},
-            ".#{$bp}\\:#{settings.$util-prefix}--height"
-          );
-
-          @at-root {
-            #{$selector}-#{$pfx}#{$name} {
-              @include mixin.media($query: $query) {
-                --#{$pfx}height: #{$height};
-
-                #{$pfx}height: var(--#{$pfx}height);
-              }
-            }
-          }
+          #{$pfx}height: var(--#{$pfx}height);
         }
       }
     }

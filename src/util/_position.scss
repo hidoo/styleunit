@@ -1,7 +1,6 @@
 @use "sass:math";
 @use "sass:meta";
 @use "sass:list";
-@use "sass:selector";
 @use "../lib/function";
 @use "../lib/mixin";
 @use "../settings";
@@ -84,32 +83,11 @@ Style guide: #{settings.$util-prefix}.position.builtin
       $direction: if($direction == "", $direction, "-#{$direction}");
 
       &#{$direction}-#{$name} {
-        @each $prop in $props {
-          --#{$prop}: #{$position};
+        @include mixin.by-breakpoints() {
+          @each $prop in $props {
+            --#{$prop}: #{$position};
 
-          #{$prop}: var(--#{$prop});
-        }
-      }
-
-      @each $bp, $query in settings.$breakpoints {
-        @if meta.type-of($query) == "string" {
-          $selector: selector.replace(
-            #{&},
-            #{&},
-            ".#{$bp}\\:#{settings.$util-prefix}--position"
-          );
-
-          @at-root {
-            #{$selector}-#{$name} {
-              @each $prop in $props {
-                // stylelint-disable-next-line max-nesting-depth
-                @include mixin.media($query: $query) {
-                  --#{$prop}: #{$position};
-
-                  #{$prop}: var(--#{$prop});
-                }
-              }
-            }
+            #{$prop}: var(--#{$prop});
           }
         }
       }

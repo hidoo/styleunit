@@ -11,6 +11,8 @@ Weight: -990
 Style guide: #{settings.$prefix}-table-grid
 */
 
+@warn "[DEPRECATED] .#{settings.$prefix}-table-grid is deprecated. Use instead .#{settings.$prefix}-flex-grid.";
+
 /*
 Core
 

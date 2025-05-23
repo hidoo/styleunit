@@ -1,12 +1,6 @@
 @use "../../lib/mixin";
 @use "../../settings";
 
-/// Package name
-/// @access private
-/// @type String
-///
-$_pkg: settings.$pkg !default;
-
 /*
 #{settings.$prefix}-text
 
@@ -40,6 +34,8 @@ Markup: <h1 class="#{settings.$prefix}-text">Lorem ipsum dolor sit amet, consect
 Style guide: #{settings.$prefix}-text.core.default
 */
 .#{settings.$prefix}-text {
+  $pkg: settings.$pkg;
+
   --position: relative;
   --display: block;
   --overflow: visible;
@@ -49,15 +45,15 @@ Style guide: #{settings.$prefix}-text.core.default
   --margin: 0;
   --padding: 0;
   --border: 0;
-  --font-size: var(--#{$_pkg}-font-size);
-  --font-weight: var(--#{$_pkg}-font-weight);
+  --font-size: var(--#{$pkg}-font-size);
+  --font-weight: var(--#{$pkg}-font-weight);
   --font-style: normal;
-  --line-height: var(--#{$_pkg}-line-height);
+  --line-height: var(--#{$pkg}-line-height);
   --color: inherit;
   --text-align: left;
   --text-decoration: none;
   --text-indent: 0;
-  --letter-spacing: var(--#{$_pkg}-letter-spacing);
+  --letter-spacing: var(--#{$pkg}-letter-spacing);
   --white-space: normal;
   --vertical-align: baseline;
   --list-style: none;
@@ -104,8 +100,10 @@ Markup: <h1 class="#{settings.$prefix}-text">Lorem ipsum dolor <a class="#{setti
 Style guide: #{settings.$prefix}-text.core.link
 */
 .#{settings.$prefix}-text__link {
+  $pkg: settings.$pkg;
+
   --display: inline;
-  --color: var(--#{$_pkg}-color-link);
+  --color: var(--#{$pkg}-color-link);
   --text-decoration: none;
   --background-color: transparent;
 
@@ -115,12 +113,12 @@ Style guide: #{settings.$prefix}-text.core.link
   background-color: var(--background-color);
 
   @include mixin.on-link() {
-    --color: rgb(var(--#{$_pkg}-color-link));
+    --color: rgb(var(--#{$pkg}-color-link));
     --text-decoration: underline;
   }
 
   @include mixin.on-focus() {
-    --color: rgb(var(--#{$_pkg}-color-focus));
+    --color: rgb(var(--#{$pkg}-color-focus));
     --text-decoration: none;
   }
 }

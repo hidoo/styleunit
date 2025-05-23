@@ -1,6 +1,5 @@
 @use "sass:meta";
 @use "sass:list";
-@use "sass:selector";
 @use "../lib/function";
 @use "../lib/mixin";
 @use "../settings";
@@ -60,29 +59,10 @@ Style guide: #{settings.$util-prefix}.padding.builtin
       $direction: if($direction == "", $direction, "-#{$direction}");
 
       &#{$direction}-#{$name} {
-        --padding#{$direction}: #{$padding};
+        @include mixin.by-breakpoints() {
+          --padding#{$direction}: #{$padding};
 
-        padding#{$direction}: var(--padding#{$direction});
-      }
-
-      @each $bp, $query in settings.$breakpoints {
-        @if meta.type-of($query) == "string" {
-          $selector: selector.replace(
-            #{&},
-            #{&},
-            ".#{$bp}\\:#{settings.$util-prefix}--padding"
-          );
-
-          @at-root {
-            #{$selector}-#{$name} {
-              // stylelint-disable-next-line max-nesting-depth
-              @include mixin.media($query: $query) {
-                --padding#{$direction}: #{$padding};
-
-                padding#{$direction}: var(--padding#{$direction});
-              }
-            }
-          }
+          padding#{$direction}: var(--padding#{$direction});
         }
       }
     }

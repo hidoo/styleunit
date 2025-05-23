@@ -1,12 +1,6 @@
 @use "sass:map";
 @use "../../settings";
 
-/// Package name
-/// @access private
-/// @type String
-///
-$_pkg: settings.$pkg !default;
-
 /*
 #{settings.$prefix}-pict
 
@@ -56,6 +50,8 @@ Markup: <!-- with img element -->
 Style guide: #{settings.$prefix}-pict.core.base
 */
 .#{settings.$prefix}-pict {
+  $pkg: settings.$pkg;
+
   --position: relative;
   --display: block;
   --overflow: visible;
@@ -66,8 +62,8 @@ Style guide: #{settings.$prefix}-pict.core.base
   --margin: 0;
   --padding: 0;
   --border: 0;
-  --font-size: var(--#{$_pkg}-font-size);
-  --font-weight: var(--#{$_pkg}-font-weight);
+  --font-size: var(--#{$pkg}-font-size);
+  --font-weight: var(--#{$pkg}-font-weight);
   --font-style: normal;
   --line-height: 0;
   --color: inherit;
@@ -79,7 +75,7 @@ Style guide: #{settings.$prefix}-pict.core.base
   --vertical-align: baseline;
   --list-style: none;
   --background-color: transparent;
-  --message-on-image-error: var(--#{$_pkg}-message-on-image-error);
+  --message-on-image-error: var(--#{$pkg}-message-on-image-error);
 
   // For src
   --src-pointer-events: auto;
@@ -122,7 +118,7 @@ Style guide: #{settings.$prefix}-pict.core.base
   --src-after-text-align: center;
   --src-after-text-decoration: none;
   --src-after-text-indent: 0;
-  --src-after-letter-spacing: var(--#{$_pkg}-letter-spacing);
+  --src-after-letter-spacing: var(--#{$pkg}-letter-spacing);
   --src-after-white-space: normal;
   --src-after-vertical-align: baseline;
   --src-after-color: inherit;

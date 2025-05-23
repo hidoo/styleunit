@@ -8,12 +8,6 @@
 @use "../../function";
 @use "../../../settings";
 
-/// Package name
-/// @access private
-/// @type String
-///
-$_pkg: settings.$pkg !default;
-
 /// apply font-family settings
 /// @param {List|String} $value [null] - setting for `font-family` (one of `"default"`, `"monospace"` or `(...)`)
 /// @param {Boolean} $important [false] - set `!important` or not
@@ -31,7 +25,7 @@ $_pkg: settings.$pkg !default;
 ///   }
 ///
 @mixin apply-family($value: null, $important: false) {
-  @warn "[DEPRECATED] mixin.font-apply-family is deprecated. Use --#{$_pkg}-font-family-* custom properties.";
+  @warn "[DEPRECATED] mixin.font-apply-family is deprecated. Use --#{settings.$pkg}-font-family-* custom properties.";
 
   @if function.meta-is-empty($value) {
     @error "@mixin mixin.font-apply-family: Argument $value must not be empty.";

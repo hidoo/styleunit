@@ -3,12 +3,6 @@
 @use "../../lib/mixin";
 @use "../../settings";
 
-/// Package name
-/// @access private
-/// @type String
-///
-$_pkg: settings.$pkg !default;
-
 /*
 #{settings.$prefix}-document
 
@@ -303,6 +297,7 @@ Markup: <div class="#{settings.$prefix}-document">
 Style guide: #{settings.$prefix}-document.core.default
 */
 .#{settings.$prefix}-document {
+  $pkg: settings.$pkg;
   $headings: (
     "h1": 1.75,
     "h2": 1.6,
@@ -340,15 +335,15 @@ Style guide: #{settings.$prefix}-document.core.default
   --margin: 0;
   --padding: 0;
   --border: 0;
-  --font-size: var(--#{$_pkg}-font-size);
-  --font-weight: var(--#{$_pkg}-font-weight);
+  --font-size: var(--#{$pkg}-font-size);
+  --font-weight: var(--#{$pkg}-font-weight);
   --font-style: normal;
-  --line-height: var(--#{$_pkg}-line-height);
+  --line-height: var(--#{$pkg}-line-height);
   --color: inherit;
   --text-align: left;
   --text-decoration: none;
   --text-indent: 0;
-  --letter-spacing: var(--#{$_pkg}-letter-spacing);
+  --letter-spacing: var(--#{$pkg}-letter-spacing);
   --white-space: normal;
   --vertical-align: baseline;
   --background-color: transparent;
@@ -366,7 +361,7 @@ Style guide: #{settings.$prefix}-document.core.default
   --iframe-overflow: hidden;
   --iframe-max-width: 100%;
   --iframe-margin: 0 auto;
-  --pre-code-font-family: var(--#{$_pkg}-font-family-monospace);
+  --pre-code-font-family: var(--#{$pkg}-font-family-monospace);
   --pre-overflow: auto;
   --pre-box-sizing: border-box;
   --pre-padding: 15px;
@@ -389,17 +384,17 @@ Style guide: #{settings.$prefix}-document.core.default
   --blockquote-indent: 15px;
   --blockquote-border: 3px solid currentColor;
   --hr-border: 1px solid currentColor;
-  --link-color: rgb(var(--#{$_pkg}-color-link));
-  --focus-color: rgb(var(--#{$_pkg}-color-focus));
+  --link-color: rgb(var(--#{$pkg}-color-link));
+  --focus-color: rgb(var(--#{$pkg}-color-focus));
   --link-decoration: underline;
   --focus-decoration: none;
-  --message-on-image-error: var(--#{$_pkg}-message-on-image-error);
+  --message-on-image-error: var(--#{$pkg}-message-on-image-error);
   --scrollable-table-column-width: 10em;
 
   // For headings
   @each $element, $size in $headings {
     --#{$element}-font-size: calc(#{$size} * 1em);
-    --#{$element}-font-weight: var(--#{$_pkg}-font-weight-bold);
+    --#{$element}-font-weight: var(--#{$pkg}-font-weight-bold);
   }
 
   position: var(--position);
@@ -472,7 +467,7 @@ Style guide: #{settings.$prefix}-document.core.default
 
   // For paraghraphs and listings
   :where(p, li) {
-    font-weight: var(--#{$_pkg}-font-weight-regular);
+    font-weight: var(--#{$pkg}-font-weight-regular);
   }
 
   :where(p, ul, ol):not(ul *, ol *) {
@@ -619,7 +614,7 @@ Style guide: #{settings.$prefix}-document.core.default
 
   // For inline elements
   :where(strong, b) {
-    font-weight: var(--#{$_pkg}-font-weight-bold);
+    font-weight: var(--#{$pkg}-font-weight-bold);
   }
 
   :where(em, i) {

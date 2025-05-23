@@ -3,12 +3,6 @@
 @use "../../lib/mixin";
 @use "../../settings";
 
-/// Package name
-/// @access private
-/// @type String
-///
-$_pkg: settings.$pkg !default;
-
 /*
 Check
 
@@ -53,15 +47,15 @@ Markup: <!-- single -->
 Style guide: #{settings.$prefix}-toggle.check.builtin
 */
   .#{settings.$prefix}-toggle--check {
+    $pkg: settings.$pkg;
+
     &-normal {
       $default-theme: map.get(settings.$builtin-themes, "light");
 
       // Load colors
-      --color-up: rgb(
-        var(--#{$_pkg}-color-#{map.get($default-theme, "color")})
-      );
+      --color-up: rgb(var(--#{$pkg}-color-#{map.get($default-theme, "color")}));
       --color-focus: rgb(
-        var(--#{$_pkg}-color-#{map.get($default-theme, "color-focus")})
+        var(--#{$pkg}-color-#{map.get($default-theme, "color-focus")})
       );
 
       // Default settings
@@ -145,8 +139,8 @@ Style guide: #{settings.$prefix}-toggle.check.builtin
           $color-focus: map.get($theme, "color-focus");
 
           // Apply colors to settings
-          --color-up: rgb(var(--#{$_pkg}-color-#{$color-up}));
-          --color-focus: rgb(var(--#{$_pkg}-color-#{$color-focus}));
+          --color-up: rgb(var(--#{$pkg}-color-#{$color-up}));
+          --color-focus: rgb(var(--#{$pkg}-color-#{$color-focus}));
         }
       }
     }

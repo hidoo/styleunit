@@ -41,28 +41,10 @@ Style guide: #{settings.$util-prefix}.box-sizing.builtin
 .#{settings.$util-prefix}--box-sizing {
   @each $value in ("border-box", "content-box") {
     &-#{$value} {
-      --box-sizing: #{$value};
+      @include mixin.by-breakpoints() {
+        --box-sizing: #{$value};
 
-      box-sizing: var(--box-sizing);
-    }
-
-    @each $bp, $query in settings.$breakpoints {
-      @if meta.type-of($query) == "string" {
-        $selector: selector.replace(
-          #{&},
-          #{&},
-          ".#{$bp}\\:#{settings.$util-prefix}--box-sizing"
-        );
-
-        @at-root {
-          #{$selector}-#{$value} {
-            @include mixin.media($query: $query) {
-              --box-sizing: #{$value};
-
-              box-sizing: var(--box-sizing);
-            }
-          }
-        }
+        box-sizing: var(--box-sizing);
       }
     }
   }

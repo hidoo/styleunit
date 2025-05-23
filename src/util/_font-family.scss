@@ -1,5 +1,4 @@
 @use "sass:meta";
-@use "sass:selector";
 @use "../lib/mixin";
 @use "../settings";
 
@@ -30,32 +29,15 @@ Markup: <p class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dolo
 Style guide: #{settings.$util-prefix}.font-family.builtin
 */
 .#{settings.$util-prefix}--font-family {
+  $pkg: settings.$pkg;
   $presets: settings.$font-family-presets;
 
   @each $name, $font-family in $presets {
     &-#{$name} {
-      --font-family: #{$font-family};
+      @include mixin.by-breakpoints() {
+        --font-family: var(--#{$pkg}-font-family-#{$name});
 
-      font-family: var(--font-family);
-    }
-
-    @each $bp, $query in settings.$breakpoints {
-      @if meta.type-of($query) == "string" {
-        $selector: selector.replace(
-          #{&},
-          #{&},
-          ".#{$bp}\\:#{settings.$util-prefix}--font-family"
-        );
-
-        @at-root {
-          #{$selector}-#{$name} {
-            @include mixin.media($query: $query) {
-              --font-family: #{$font-family};
-
-              font-family: var(--font-family);
-            }
-          }
-        }
+        font-family: var(--font-family);
       }
     }
   }

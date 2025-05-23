@@ -1,12 +1,6 @@
 @use "../../lib/mixin";
 @use "../../settings";
 
-/// Package name
-/// @access private
-/// @type String
-///
-$_pkg: settings.$pkg !default;
-
 /*
 #{settings.$prefix}-select
 
@@ -53,6 +47,8 @@ Markup: <span class="#{settings.$prefix}-select">
 Style guide: #{settings.$prefix}-select.core.default
 */
 .#{settings.$prefix}-select {
+  $pkg: settings.$pkg;
+
   --position: relative;
   --display: block;
   --overflow: hidden;
@@ -80,8 +76,8 @@ Style guide: #{settings.$prefix}-select.core.default
   --field-padding: 0;
   --field-border: 0;
   --field-border-radius: 0;
-  --field-font-size: var(--#{$_pkg}-font-size);
-  --field-font-weight: var(--#{$_pkg}-font-weight);
+  --field-font-size: var(--#{$pkg}-font-size);
+  --field-font-weight: var(--#{$pkg}-font-weight);
   --field-font-style: normal;
   --field-line-height: normal;
   --field-color: inherit;
@@ -89,7 +85,7 @@ Style guide: #{settings.$prefix}-select.core.default
   --field-text-decoration: none;
   --field-text-indent: 0;
   --field-text-overflow: ellipsis;
-  --field-letter-spacing: var(--#{$_pkg}-letter-spacing);
+  --field-letter-spacing: var(--#{$pkg}-letter-spacing);
   --field-white-space: normal;
   --field-vertical-align: baseline;
   --field-list-style: none;

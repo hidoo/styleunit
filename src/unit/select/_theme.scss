@@ -4,12 +4,6 @@
 @use "../../lib/mixin";
 @use "../../settings";
 
-/// Package name
-/// @access private
-/// @type String
-///
-$_pkg: settings.$pkg !default;
-
 /*
 Theme
 
@@ -49,27 +43,27 @@ Markup: <span class="#{settings.$prefix}-select  {{modifier_class}}">
 Style guide: #{settings.$prefix}-select.theme.builtin
 */
   .#{settings.$prefix}-select--theme {
+    $pkg: settings.$pkg;
+
     &-normal {
       $default-theme: map.get(settings.$builtin-themes, "light");
 
       // Load colors
-      --color-up: rgb(
-        var(--#{$_pkg}-color-#{map.get($default-theme, "color")})
-      );
+      --color-up: rgb(var(--#{$pkg}-color-#{map.get($default-theme, "color")}));
       --color-focus: rgb(
-        var(--#{$_pkg}-color-#{map.get($default-theme, "color-focus")})
+        var(--#{$pkg}-color-#{map.get($default-theme, "color-focus")})
       );
       --background-color-up: rgb(
-        var(--#{$_pkg}-color-#{map.get($default-theme, "background")})
+        var(--#{$pkg}-color-#{map.get($default-theme, "background")})
       );
       --background-color-focus: rgb(
-        var(--#{$_pkg}-color-#{map.get($default-theme, "background-focus")})
+        var(--#{$pkg}-color-#{map.get($default-theme, "background-focus")})
       );
       --border-color-up: rgb(
-        var(--#{$_pkg}-color-#{map.get($default-theme, "border")})
+        var(--#{$pkg}-color-#{map.get($default-theme, "border")})
       );
       --border-color-focus: rgb(
-        var(--#{$_pkg}-color-#{map.get($default-theme, "border-focus")})
+        var(--#{$pkg}-color-#{map.get($default-theme, "border-focus")})
       );
 
       // Default settings
@@ -134,14 +128,14 @@ Style guide: #{settings.$prefix}-select.theme.builtin
           $border-focus: map.get($theme, "border-focus");
 
           // Apply colors to settings
-          --color-up: rgb(var(--#{$_pkg}-color-#{$color-up}));
-          --color-focus: rgb(var(--#{$_pkg}-color-#{$color-focus}));
-          --background-color-up: rgb(var(--#{$_pkg}-color-#{$background-up}));
+          --color-up: rgb(var(--#{$pkg}-color-#{$color-up}));
+          --color-focus: rgb(var(--#{$pkg}-color-#{$color-focus}));
+          --background-color-up: rgb(var(--#{$pkg}-color-#{$background-up}));
           --background-color-focus: rgb(
-            var(--#{$_pkg}-color-#{$background-focus})
+            var(--#{$pkg}-color-#{$background-focus})
           );
-          --border-color-up: rgb(var(--#{$_pkg}-color-#{$border-up}));
-          --border-color-focus: rgb(var(--#{$_pkg}-color-#{$border-focus}));
+          --border-color-up: rgb(var(--#{$pkg}-color-#{$border-up}));
+          --border-color-focus: rgb(var(--#{$pkg}-color-#{$border-focus}));
         }
       }
     }

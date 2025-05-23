@@ -1,5 +1,4 @@
 @use "sass:meta";
-@use "sass:selector";
 @use "../lib/mixin";
 @use "../settings";
 
@@ -45,28 +44,10 @@ Style guide: #{settings.$util-prefix}.float.builtin
 
   @each $float in $floats {
     &-#{$float} {
-      --float: #{$float};
+      @include mixin.by-breakpoints() {
+        --float: #{$float};
 
-      float: var(--float);
-    }
-
-    @each $bp, $query in settings.$breakpoints {
-      @if meta.type-of($query) == "string" {
-        $selector: selector.replace(
-          #{&},
-          #{&},
-          ".#{$bp}\\:#{settings.$util-prefix}--float"
-        );
-
-        @at-root {
-          #{$selector}-#{$float} {
-            @include mixin.media($query: $query) {
-              --float: #{$float};
-
-              float: var(--float);
-            }
-          }
-        }
+        float: var(--float);
       }
     }
   }

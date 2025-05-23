@@ -2,12 +2,6 @@
 @use "../../lib/mixin";
 @use "../../settings";
 
-/// Package name
-/// @access private
-/// @type String
-///
-$_pkg: settings.$pkg !default;
-
 /*
 #{settings.$prefix}-input
 
@@ -45,6 +39,8 @@ Markup: <!-- input -->
 Style guide: #{settings.$prefix}-input.core.default
 */
 .#{settings.$prefix}-input {
+  $pkg: settings.$pkg;
+
   --resize: none;
   --position: relative;
   --display: block;
@@ -56,15 +52,15 @@ Style guide: #{settings.$prefix}-input.core.default
   --padding: 0;
   --border: 0;
   --border-radius: 0px;
-  --font-size: var(--#{$_pkg}-font-size);
-  --font-weight: var(--#{$_pkg}-font-weight);
+  --font-size: var(--#{$pkg}-font-size);
+  --font-weight: var(--#{$pkg}-font-weight);
   --font-style: normal;
   --line-height: normal;
   --color: inherit;
   --text-align: left;
   --text-decoration: none;
   --text-indent: 0;
-  --letter-spacing: var(--#{$_pkg}-letter-spacing);
+  --letter-spacing: var(--#{$pkg}-letter-spacing);
   --vertical-align: baseline;
   --list-style: none;
   --appearance: none;
@@ -112,6 +108,6 @@ Style guide: #{settings.$prefix}-input.core.default
     // restrict to only vertical resizing
     // + ie, edge, ios and android are not supported
     --resize: vertical;
-    --line-height: var(--#{$_pkg}-line-height);
+    --line-height: var(--#{$pkg}-line-height);
   }
 }
