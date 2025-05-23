@@ -1,3 +1,19 @@
+# [1.0.0-alpha.4](https://github.com/hidoo/styleunit/compare/v1.0.0-alpha.3...v1.0.0-alpha.4) (2025-05-23)
+
+
+### Bug Fixes
+
+* change breakpont modifiers to build by [@mixin](https://github.com/mixin) by-breakpoints ([ff42d49](https://github.com/hidoo/styleunit/commit/ff42d492054b77f2c1defbf8adbc2e292144b8c7))
+* **unit:** set weight module of text unit to be deprecated ([fd8a723](https://github.com/hidoo/styleunit/commit/fd8a723986f9afaf46475e86d70ec9af3dedefb2))
+
+
+### Features
+
+* **mixin:** add [@mixin](https://github.com/mixin) by-breakpoints ([13c3660](https://github.com/hidoo/styleunit/commit/13c36607114c1345fa070be8255140570e366d61))
+* **mixin:** add breakpoints option to [@mixin](https://github.com/mixin) media ([4de3df3](https://github.com/hidoo/styleunit/commit/4de3df32b69ca388972407d23944ccadc1ea73c8))
+
+
+
 # [1.0.0-alpha.3](https://github.com/hidoo/styleunit/compare/v1.0.0-alpha.2...v1.0.0-alpha.3) (2025-05-16)
 
 
