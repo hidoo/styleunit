@@ -47,6 +47,23 @@ describe('@mixin media(...)', () => {
           ['$breakpoints: ("mobile": 667px, "sm": "(width < $mobile)")']
         ],
         expected: '@media(width < 667px){.selector{font-size:16px}}'
+      },
+      {
+        params: [
+          [
+            '$query: "foo"',
+            '$options: ("breakpoints": ("foo": "(width <= 300px)"))'
+          ],
+          ['$breakpoints: ("mobile": 667px, "sm": "(width < $mobile)")']
+        ],
+        expected: '@media(width <= 300px){.selector{font-size:16px}}'
+      },
+      {
+        params: [
+          ['$query: "sm"', '$options: ("eval-query": false)'],
+          ['$breakpoints: ("mobile": 667px, "sm": "(width < $mobile)")']
+        ],
+        expected: '@media(width < $mobile){.selector{font-size:16px}}'
       }
     ];
 
