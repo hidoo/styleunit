@@ -691,6 +691,54 @@ Default selectors
 | :---- | :----------------------------------------------------------------- | :---------------------------- | :------ |
 | `not` | **[Boolean](https://sass-lang.com/documentation/values/booleans)** | Deny selectors whether or not | `false` |
 
+### @mixin by-breakpoints
+
+Utility to generate selectors by breakpoints.
+
+#### Parameters
+
+| Name           | Type                                                         | Description                 | Default |
+| :------------- | :----------------------------------------------------------- | :-------------------------- | :------ |
+| `$breakpoints` | **[Map](https://sass-lang.com/documentation/values/maps)**   | Breakpoints.                | `()`    |
+| `$ignores`     | **[List](https://sass-lang.com/documentation/values/lists)** | Breakpoint names to ignore. | `()`    |
+
+#### Examples
+
+scss inputs
+
+```scss
+$breakpoint: (
+  'sm': '(width <= 640px)',
+  'md': '(width <= 768px)',
+  ...
+);
+
+.selector {
+  @include mixin.by-breakpoints() {
+    font-size: 16px;
+  }
+}
+```
+
+css outputs
+
+```css
+.selector {
+  font-size: 16px;
+}
+@media (width <= 640px) {
+  .sm\:selector {
+    font-size: 16px;
+  }
+}
+@media (width <= 768px) {
+  .md\:selector {
+    font-size: 16px;
+  }
+}
+...
+```
+
 ### @mixin has-disabled
 
 Utility for `:has` pseudo classes with `:disabled`
@@ -821,11 +869,12 @@ The media query helper.
 
 #### Parameters
 
-| Name                  | Type                                                             | Description                           | Default |
-| :-------------------- | :--------------------------------------------------------------- | :------------------------------------ | :------ |
-| `$query`              | **[String](https://sass-lang.com/documentation/values/strings)** | Breakpoint name or media query string | -       |
-| `$options`            | **[Map](https://sass-lang.com/documentation/values/maps)**       | Options                               | `()`    |
-| `$options.eval-query` | **[String](https://sass-lang.com/documentation/values/strings)** | Eval query as template whether or not | `false` |
+| Name                   | Type                                                             | Description                           | Default |
+| :--------------------- | :--------------------------------------------------------------- | :------------------------------------ | :------ |
+| `$query`               | **[String](https://sass-lang.com/documentation/values/strings)** | Breakpoint name or media query string | -       |
+| `$options`             | **[Map](https://sass-lang.com/documentation/values/maps)**       | Options                               | `()`    |
+| `$options.eval-query`  | **[String](https://sass-lang.com/documentation/values/strings)** | Eval query as template whether or not | `false` |
+| `$options.breakpoints` | **[Map](https://sass-lang.com/documentation/values/maps)**       | Breakpoints.                          | `null`  |
 
 #### Examples
 
@@ -833,7 +882,7 @@ scss inputs
 
 ```scss
 $breakpoint: (
-  'sm': '(width <= 666)',
+  'sm': '(width <= 640px)',
   ...
 );
 
@@ -847,7 +896,7 @@ $breakpoint: (
 css outputs
 
 ```css
-@media (width <= 666) {
+@media (width <= 640px) {
   .selector {
     font-size: 16px;
   }

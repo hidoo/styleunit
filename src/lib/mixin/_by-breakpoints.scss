@@ -15,6 +15,12 @@
 /// @param {List} $ignores [()] - Breakpoint names to ignore.
 ///
 /// @example scss - scss inputs
+///    $breakpoint: (
+///      "sm": "(width <= 640px)",
+///      "md": "(width <= 768px)",
+///      ...
+///    );
+///
 ///   .selector {
 ///     @include mixin.by-breakpoints() {
 ///       font-size: 16px;
@@ -25,15 +31,17 @@
 ///   .selector {
 ///     font-size: 16px;
 ///   }
-///   .sm\:selector {
-///     font-size: 16px;
+///   @media (width <= 640px) {
+///     .sm\:selector {
+///       font-size: 16px;
+///     }
 ///   }
-///   .md\:selector {
-///     font-size: 16px;
+///   @media (width <= 768px) {
+///     .md\:selector {
+///       font-size: 16px;
+///     }
 ///   }
-///   .lg\:selector {
-///     font-size: 16px;
-///   }
+///   ...
 ///
 @mixin by-breakpoints($breakpoints: null, $ignores: ()) {
   @if meta.type-of($breakpoints) != "map" {
