@@ -1,5 +1,4 @@
 @use "sass:meta";
-@use "sass:selector";
 @use "../lib/mixin";
 @use "../settings";
 
@@ -45,28 +44,10 @@ Style guide: #{settings.$util-prefix}.clear.builtin
 
   @each $clear in $clears {
     &-#{$clear} {
-      --clear: #{$clear};
+      @include mixin.by-breakpoints() {
+        --clear: #{$clear};
 
-      clear: var(--clear);
-    }
-
-    @each $bp, $query in settings.$breakpoints {
-      @if meta.type-of($query) == "string" {
-        $selector: selector.replace(
-          #{&},
-          #{&},
-          ".#{$bp}\\:#{settings.$util-prefix}--clear"
-        );
-
-        @at-root {
-          #{$selector}-#{$clear} {
-            @include mixin.media($query: $query) {
-              --clear: #{$clear};
-
-              clear: var(--clear);
-            }
-          }
-        }
+        clear: var(--clear);
       }
     }
   }

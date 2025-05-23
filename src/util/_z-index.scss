@@ -1,7 +1,6 @@
 @use "sass:math";
 @use "sass:meta";
 @use "sass:list";
-@use "sass:selector";
 @use "../lib/function";
 @use "../lib/mixin";
 @use "../settings";
@@ -102,28 +101,10 @@ Style guide: #{settings.$util-prefix}.z-index.builtin
     // stylelint-enable scss/no-duplicate-dollar-variables
 
     &-#{$name} {
-      --z-index: #{$z-index};
+      @include mixin.by-breakpoints() {
+        --z-index: #{$z-index};
 
-      z-index: var(--z-index);
-    }
-
-    @each $bp, $query in settings.$breakpoints {
-      @if meta.type-of($query) == "string" {
-        $selector: selector.replace(
-          #{&},
-          #{&},
-          ".#{$bp}\\:#{settings.$util-prefix}--z-index"
-        );
-
-        @at-root {
-          #{$selector}-#{$name} {
-            @include mixin.media($query: $query) {
-              --z-index: #{$z-index};
-
-              z-index: var(--z-index);
-            }
-          }
-        }
+        z-index: var(--z-index);
       }
     }
   }

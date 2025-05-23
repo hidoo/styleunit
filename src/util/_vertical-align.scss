@@ -1,5 +1,4 @@
 @use "sass:meta";
-@use "sass:selector";
 @use "../lib/mixin";
 @use "../settings";
 
@@ -49,28 +48,10 @@ Style guide: #{settings.$util-prefix}.vertical-align.builtin
 
   @each $v-align in $v-aligns {
     &-#{$v-align} {
-      --vertical-align: #{$v-align};
+      @include mixin.by-breakpoints() {
+        --vertical-align: #{$v-align};
 
-      vertical-align: var(--vertical-align);
-    }
-
-    @each $bp, $query in settings.$breakpoints {
-      @if meta.type-of($query) == "string" {
-        $selector: selector.replace(
-          #{&},
-          #{&},
-          ".#{$bp}\\:#{settings.$util-prefix}--vertical-align"
-        );
-
-        @at-root {
-          #{$selector}-#{$v-align} {
-            @include mixin.media($query: $query) {
-              --vertical-align: #{$v-align};
-
-              vertical-align: var(--vertical-align);
-            }
-          }
-        }
+        vertical-align: var(--vertical-align);
       }
     }
   }

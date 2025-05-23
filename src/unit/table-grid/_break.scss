@@ -1,5 +1,4 @@
 @use "sass:meta";
-@use "sass:selector";
 @use "../../lib/mixin";
 @use "../../settings";
 
@@ -17,6 +16,7 @@ Style guide: #{settings.$prefix}-table-grid.break
 Modifiers
 
 The break modifiers.
++ The breakpoint prefixes can be specified like as `sm:#{settings.$prefix}-table-grid--break`.
 
 Weight: -100
 
@@ -36,33 +36,13 @@ Markup: <div class="#{settings.$prefix}-table-grid  {{modifier_class}}">
 </div>
 
 #{settings.$prefix}-table-grid--break - Break column.
-sm:#{settings.$prefix}-table-grid--break - Break column if viewport is `"sm"`.
-not-sm:#{settings.$prefix}-table-grid--break - Break column if viewport is not `"sm"`.
 
 Style guide: #{settings.$prefix}-table-grid.break.builtin
 */
 .#{settings.$prefix}-table-grid--break {
-  --display: block;
-  --height: auto;
-  --column-display: block;
-
-  @each $bp, $query in settings.$breakpoints {
-    @if meta.type-of($query) == "string" {
-      $selector: selector.replace(
-        #{&},
-        #{&},
-        ".#{$bp}\\:#{settings.$prefix}-table-grid--break "
-      );
-
-      @at-root {
-        #{$selector} {
-          @include mixin.media($query: $query) {
-            --display: block;
-            --height: auto;
-            --column-display: block;
-          }
-        }
-      }
-    }
+  @include mixin.by-breakpoints() {
+    --display: block;
+    --height: auto;
+    --column-display: block;
   }
 }

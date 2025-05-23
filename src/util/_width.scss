@@ -1,6 +1,5 @@
 @use "sass:meta";
 @use "sass:list";
-@use "sass:selector";
 @use "../lib/function";
 @use "../lib/mixin";
 @use "../settings";
@@ -72,28 +71,10 @@ Style guide: #{settings.$util-prefix}.width.builtin
 
     @each $pfx in $minmax {
       &-#{$pfx}#{$name} {
-        --#{$pfx}width: #{$width};
+        @include mixin.by-breakpoints() {
+          --#{$pfx}width: #{$width};
 
-        #{$pfx}width: var(--#{$pfx}width);
-      }
-
-      @each $bp, $query in settings.$breakpoints {
-        @if meta.type-of($query) == "string" {
-          $selector: selector.replace(
-            #{&},
-            #{&},
-            ".#{$bp}\\:#{settings.$util-prefix}--width"
-          );
-
-          @at-root {
-            #{$selector}-#{$name} {
-              @include mixin.media($query: $query) {
-                --#{$pfx}width: #{$width};
-
-                #{$pfx}width: var(--#{$pfx}width);
-              }
-            }
-          }
+          #{$pfx}width: var(--#{$pfx}width);
         }
       }
     }

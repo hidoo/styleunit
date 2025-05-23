@@ -1,7 +1,6 @@
 @use "sass:list";
 @use "sass:map";
 @use "sass:meta";
-@use "sass:selector";
 @use "../lib/mixin";
 @use "../settings";
 
@@ -57,29 +56,10 @@ Style guide: #{settings.$util-prefix}.border.builtin
       $direction: if($direction == "", $direction, "-#{$direction}");
 
       &#{$direction}-#{$name} {
-        --border#{$direction}: #{$border};
+        @include mixin.by-breakpoints() {
+          --border#{$direction}: #{$border};
 
-        border#{$direction}: var(--border#{$direction});
-      }
-
-      @each $bp, $query in settings.$breakpoints {
-        @if meta.type-of($query) == "string" {
-          $selector: selector.replace(
-            #{&},
-            #{&},
-            ".#{$bp}\\:#{settings.$util-prefix}--border"
-          );
-
-          @at-root {
-            #{$selector}#{$direction}-#{$name} {
-              // stylelint-disable-next-line max-nesting-depth
-              @include mixin.media($query: $query) {
-                --border#{$direction}: #{$border};
-
-                border#{$direction}: var(--border#{$direction});
-              }
-            }
-          }
+          border#{$direction}: var(--border#{$direction});
         }
       }
     }
