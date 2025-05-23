@@ -1,0 +1,70 @@
+////
+/// (c) hidoo | MIT License
+/// @group features
+////
+
+@use "sass:list";
+@use "sass:meta";
+@use "sass:string";
+@use "../../settings";
+@use "../function";
+@use "./media" as mixin;
+
+/// Utility to generate selectors by breakpoints.
+/// @param {Map} $breakpoints [()] - Breakpoints.
+/// @param {List} $ignores [()] - Breakpoint names to ignore.
+///
+/// @example scss - scss inputs
+///   .selector {
+///     @include mixin.by-breakpoints() {
+///       font-size: 16px;
+///     }
+///   }
+///
+/// @example css - css outputs
+///   .selector {
+///     font-size: 16px;
+///   }
+///   .sm\:selector {
+///     font-size: 16px;
+///   }
+///   .md\:selector {
+///     font-size: 16px;
+///   }
+///   .lg\:selector {
+///     font-size: 16px;
+///   }
+///
+@mixin by-breakpoints($breakpoints: null, $ignores: ()) {
+  @if meta.type-of($breakpoints) != "map" {
+    $breakpoints: settings.$breakpoints;
+  }
+
+  @at-root {
+    #{&} {
+      @content;
+    }
+
+    @each $bp, $query in $breakpoints {
+      // Allows string queries only,
+      // and ignores breakpoint start with `_` and specified by $options.ignores.
+      @if meta.type-of($query) ==
+        "string" and not
+        (list.index($ignores, $bp) or string.index($bp, "_") == 1)
+      {
+        $selector: ".#{$bp}\\:#{function.string-replace("#{&}", '.')}";
+
+        #{$selector} {
+          @include mixin.media(
+            $query: $bp,
+            $options: (
+              "breakpoints": $breakpoints
+            )
+          ) {
+            @content;
+          }
+        }
+      }
+    }
+  }
+}
