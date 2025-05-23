@@ -1,11 +1,5 @@
 @use "../../settings";
 
-/// Package name
-/// @access private
-/// @type String
-///
-$_pkg: settings.$pkg !default;
-
 /*
 Weight
 
@@ -32,11 +26,13 @@ Markup: <h1 class="#{settings.$prefix}-text  {{modifier_class}}">Lorem ipsum dol
 Style guide: #{settings.$prefix}-text.weight.builtin
 */
 .#{settings.$prefix}-text--weight {
+  $pkg: settings.$pkg;
+
   &-normal {
-    --font-weight: var(--#{$_pkg}-font-weight-regular);
+    --font-weight: var(--#{$pkg}-font-weight-regular);
   }
 
   &-bold {
-    --font-weight: var(--#{$_pkg}-font-weight-bold);
+    --font-weight: var(--#{$pkg}-font-weight-bold);
   }
 }

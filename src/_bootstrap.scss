@@ -5,62 +5,57 @@
 @use "./lib/function";
 @use "./settings";
 
-/// Package name
-/// @access private
-/// @type String
-///
-$_pkg: settings.$pkg !default;
-
 // Export settings as custom properties
 :root {
+  $pkg: settings.$pkg;
   $settings: meta.module-variables("settings");
 
   // Breakpoints
   @each $name, $value in settings.$breakpoints {
     @if meta.type-of($value) == "number" {
-      --#{$_pkg}-breakpoint-#{$name}: #{$value};
+      --#{$pkg}-breakpoint-#{$name}: #{$value};
     }
   }
 
   // Font family
-  --#{$_pkg}-font-family: #{meta.inspect(settings.$font-family)};
+  --#{$pkg}-font-family: #{meta.inspect(settings.$font-family)};
 
   // Font family presets
   @each $name, $value in settings.$font-family-presets {
-    --#{$_pkg}-font-family-#{$name}: #{meta.inspect($value)};
+    --#{$pkg}-font-family-#{$name}: #{meta.inspect($value)};
   }
 
   // Font size
-  --#{$_pkg}-font-size: #{math.div(
+  --#{$pkg}-font-size: #{math.div(
       settings.$font-size,
       settings.$font-base-size
     ) *
     1rem};
 
   // Font base size
-  --#{$_pkg}-font-base-size: #{settings.$font-base-size};
+  --#{$pkg}-font-base-size: #{settings.$font-base-size};
 
   // Font size presets
   @each $name, $value in settings.$font-size-presets {
-    --#{$_pkg}-font-size-#{$name}: #{$value * 1rem};
+    --#{$pkg}-font-size-#{$name}: #{$value * 1rem};
   }
 
   // Font weight
-  --#{$_pkg}-font-weight: #{settings.$font-weight};
+  --#{$pkg}-font-weight: #{settings.$font-weight};
 
   // Font weight presets
   @each $name, $value in settings.$font-weight-presets {
-    --#{$_pkg}-font-weight-#{$name}: #{$value};
+    --#{$pkg}-font-weight-#{$name}: #{$value};
   }
 
   // Font smoothing
   @each $name, $value in settings.$font-smoothing {
-    --#{$_pkg}-#{$name}-font-smoothing: #{$value};
+    --#{$pkg}-#{$name}-font-smoothing: #{$value};
   }
 
   // Font misc
   @each $name in ("font-variant") {
-    --#{$_pkg}-#{$name}: #{map.get($settings, $name)};
+    --#{$pkg}-#{$name}: #{map.get($settings, $name)};
   }
 
   // Text settings
@@ -76,26 +71,26 @@ $_pkg: settings.$pkg !default;
       "hyphens"
     )
   {
-    --#{$_pkg}-#{$name}: #{map.get($settings, $name)};
+    --#{$pkg}-#{$name}: #{map.get($settings, $name)};
   }
 
   // Color palette
   @each $name, $value in settings.$color-palette {
-    --#{$_pkg}-color-#{$name}: #{meta.inspect($value)};
+    --#{$pkg}-color-#{$name}: #{meta.inspect($value)};
   }
 
   // Color mappings
   @each $name, $value in settings.$color-mappings {
-    --#{$_pkg}-color-#{$name}: var(--#{$_pkg}-color-#{$value});
+    --#{$pkg}-color-#{$name}: var(--#{$pkg}-color-#{$value});
   }
 
   // Misc
   @each $name in ("message-on-image-error") {
-    --#{$_pkg}-#{$name}: "#{map.get($settings, $name)}";
+    --#{$pkg}-#{$name}: "#{map.get($settings, $name)}";
   }
 
   // Set base font size
-  font-size: var(--#{$_pkg}-font-base-size);
+  font-size: var(--#{$pkg}-font-base-size);
 }
 
 // Configure font settings
@@ -113,16 +108,18 @@ $_pkg: settings.$pkg !default;
   }
 
   :where(#{$_selectors}) {
-    --font-family: var(--#{$_pkg}-font-family);
-    --font-variant: var(--#{$_pkg}-font-variant);
-    --webkit-font-smoothing: var(--#{$_pkg}-webkit-font-smoothing);
-    --moz-osx-font-smoothing: var(--#{$_pkg}-moz-osx-font-smoothing);
-    --hyphens: var(--#{$_pkg}-hyphens);
-    --text-size-adjust: var(--#{$_pkg}-text-size-adjust);
-    --word-break: var(--#{$_pkg}-word-break);
-    --word-wrap: var(--#{$_pkg}-word-wrap);
-    --line-break: var(--#{$_pkg}-line-break);
-    --overflow-wrap: var(--#{$_pkg}-overflow-wrap);
+    $pkg: settings.$pkg;
+
+    --font-family: var(--#{$pkg}-font-family);
+    --font-variant: var(--#{$pkg}-font-variant);
+    --webkit-font-smoothing: var(--#{$pkg}-webkit-font-smoothing);
+    --moz-osx-font-smoothing: var(--#{$pkg}-moz-osx-font-smoothing);
+    --hyphens: var(--#{$pkg}-hyphens);
+    --text-size-adjust: var(--#{$pkg}-text-size-adjust);
+    --word-break: var(--#{$pkg}-word-break);
+    --word-wrap: var(--#{$pkg}-word-wrap);
+    --line-break: var(--#{$pkg}-line-break);
+    --overflow-wrap: var(--#{$pkg}-overflow-wrap);
 
     font-family: var(--font-family, sans-serif);
     font-variant: var(--font-variant);

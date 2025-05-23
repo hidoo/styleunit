@@ -1,12 +1,6 @@
 @use "sass:map";
 @use "../../settings";
 
-/// Package name
-/// @access private
-/// @type String
-///
-$_pkg: settings.$pkg !default;
-
 /*
 Copy protect
 

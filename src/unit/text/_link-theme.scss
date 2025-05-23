@@ -3,12 +3,6 @@
 @use "../../lib/mixin";
 @use "../../settings";
 
-/// Package name
-/// @access private
-/// @type String
-///
-$_pkg: settings.$pkg !default;
-
 /*
 Link theme
 
@@ -35,15 +29,17 @@ Markup: <h1 class="#{settings.$prefix}-text">Lorem ipsum dolor <a class="#{setti
 Style guide: #{settings.$prefix}-text.link-theme.builtin
 */
   .#{settings.$prefix}-text__link--theme {
+    $pkg: settings.$pkg;
+
     &-normal {
       $default-theme: map.get(settings.$builtin-themes, "light");
 
       // Load colors
       --color-link: rgb(
-        var(--#{$_pkg}-color-#{map.get($default-theme, "color")})
+        var(--#{$pkg}-color-#{map.get($default-theme, "color")})
       );
       --color-focus: rgb(
-        var(--#{$_pkg}-color-#{map.get($default-theme, "color-focus")})
+        var(--#{$pkg}-color-#{map.get($default-theme, "color-focus")})
       );
 
       // Default settings
@@ -64,8 +60,8 @@ Style guide: #{settings.$prefix}-text.link-theme.builtin
           $color-focus: map.get($theme, "color-focus");
 
           // Apply colors to settings
-          --color-link: rgb(var(--#{$_pkg}-color-#{$color-link}));
-          --color-focus: rgb(var(--#{$_pkg}-color-#{$color-focus}));
+          --color-link: rgb(var(--#{$pkg}-color-#{$color-link}));
+          --color-focus: rgb(var(--#{$pkg}-color-#{$color-focus}));
         }
       }
     }

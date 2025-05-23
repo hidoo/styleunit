@@ -4,12 +4,6 @@
 @use "../../lib/mixin";
 @use "../../settings";
 
-/// Package name
-/// @access private
-/// @type String
-///
-$_pkg: settings.$pkg !default;
-
 /*
 #{settings.$prefix}-table
 
@@ -51,6 +45,8 @@ Markup: <table class="#{settings.$prefix}-table">
 Style guide: #{settings.$prefix}-table.core.default
 */
 .#{settings.$prefix}-table {
+  $pkg: settings.$pkg;
+
   --display: table;
   --border-collapse: collapse;
   --width: auto;
@@ -68,15 +64,15 @@ Style guide: #{settings.$prefix}-table.core.default
   --column-border-color: var(--border-color);
   --column-border-style: var(--border-style);
   --column-border-width: var(--border-width);
-  --column-font-size: var(--#{$_pkg}-font-size);
-  --column-font-weight: var(--#{$_pkg}-font-weight);
+  --column-font-size: var(--#{$pkg}-font-size);
+  --column-font-weight: var(--#{$pkg}-font-weight);
   --column-font-style: normal;
-  --column-line-height: var(--#{$_pkg}-line-height);
+  --column-line-height: var(--#{$pkg}-line-height);
   --column-color: inherit;
   --column-text-align: left;
   --column-text-decoration: none;
   --column-text-indent: 0;
-  --column-letter-spacing: var(--#{$_pkg}-letter-spacing);
+  --column-letter-spacing: var(--#{$pkg}-letter-spacing);
   --column-white-space: normal;
   --column-vertical-align: middle;
   --column-background-color: transparent;

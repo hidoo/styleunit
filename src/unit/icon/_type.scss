@@ -3,12 +3,6 @@
 @use "../../lib/mixin";
 @use "../../settings";
 
-/// Package name
-/// @access private
-/// @type String
-///
-$_pkg: settings.$pkg !default;
-
 /*
 Type
 
@@ -34,6 +28,8 @@ Markup: <span class="#{settings.$prefix}-icon  {{modifier_class}}"></span>
 Style guide: #{settings.$prefix}-icon.type.builtin
 */
   .#{settings.$prefix}-icon--type {
+    $pkg: settings.$pkg;
+
     &-arrow {
       &-normal {
         $default-theme: map.get(settings.$builtin-themes, "light");
@@ -41,10 +37,10 @@ Style guide: #{settings.$prefix}-icon.type.builtin
 
         // Load colors
         --color-up: rgb(
-          var(--#{$_pkg}-color-#{map.get($default-theme, "color")})
+          var(--#{$pkg}-color-#{map.get($default-theme, "color")})
         );
         --color-focus: rgb(
-          var(--#{$_pkg}-color-#{map.get($default-theme, "color-focus")})
+          var(--#{$pkg}-color-#{map.get($default-theme, "color-focus")})
         );
 
         // Default settings
@@ -97,8 +93,8 @@ Style guide: #{settings.$prefix}-icon.type.builtin
             $color-focus: map.get($theme, "color-focus");
 
             // Apply colors to settings
-            --color-up: rgb(var(--#{$_pkg}-color-#{$color-up}));
-            --color-focus: rgb(var(--#{$_pkg}-color-#{$color-focus}));
+            --color-up: rgb(var(--#{$pkg}-color-#{$color-up}));
+            --color-focus: rgb(var(--#{$pkg}-color-#{$color-focus}));
           }
         }
       }
