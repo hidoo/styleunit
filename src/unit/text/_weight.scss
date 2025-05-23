@@ -5,10 +5,14 @@ Weight
 
 The weight module.
 
+DEPRECATED: This module is deprecated. Use instead .#{settings.$util-prefix}--font-weight.
+
 Weight: -94
 
 Style guide: #{settings.$prefix}-text.weight
 */
+
+@warn "[DEPRECATED] .#{settings.$prefix}-text--weight is deprecated. Use instead .#{settings.$util-prefix}--font-weight.";
 
 /*
 Modifiers
