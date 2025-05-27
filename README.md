@@ -351,17 +351,17 @@ Font weight presets
 
 #### Properties
 
-| Name          | Type                                                             | Description | Default |
-| :------------ | :--------------------------------------------------------------- | :---------- | :------ |
-| `thin`        | **[Number](https://sass-lang.com/documentation/values/numbers)** | thin        | `100`   |
-| `extra-light` | **[Number](https://sass-lang.com/documentation/values/numbers)** | extra-light | `200`   |
-| `light`       | **[Number](https://sass-lang.com/documentation/values/numbers)** | light       | `300`   |
-| `regular`     | **[Number](https://sass-lang.com/documentation/values/numbers)** | regular     | `400`   |
-| `medium`      | **[Number](https://sass-lang.com/documentation/values/numbers)** | medium      | `500`   |
-| `semi-bold`   | **[Number](https://sass-lang.com/documentation/values/numbers)** | semi-bold   | `600`   |
-| `bold`        | **[Number](https://sass-lang.com/documentation/values/numbers)** | bold        | `700`   |
-| `extra-bold`  | **[Number](https://sass-lang.com/documentation/values/numbers)** | extra-bold  | `800`   |
-| `black`       | **[Number](https://sass-lang.com/documentation/values/numbers)** | black       | `900`   |
+| Name          | Type                                                             | Description                                                                  | Default |
+| :------------ | :--------------------------------------------------------------- | :--------------------------------------------------------------------------- | :------ |
+| `thin`        | **[Number](https://sass-lang.com/documentation/values/numbers)** | <span style="font-weight: 100;">Lorem ipsum dolor sit amet.</span> (= `100`) | `100`   |
+| `extra-light` | **[Number](https://sass-lang.com/documentation/values/numbers)** | <span style="font-weight: 200;">Lorem ipsum dolor sit amet.</span> (= `200`) | `200`   |
+| `light`       | **[Number](https://sass-lang.com/documentation/values/numbers)** | <span style="font-weight: 300;">Lorem ipsum dolor sit amet.</span> (= `300`) | `300`   |
+| `regular`     | **[Number](https://sass-lang.com/documentation/values/numbers)** | <span style="font-weight: 400;">Lorem ipsum dolor sit amet.</span> (= `400`) | `400`   |
+| `medium`      | **[Number](https://sass-lang.com/documentation/values/numbers)** | <span style="font-weight: 500;">Lorem ipsum dolor sit amet.</span> (= `500`) | `500`   |
+| `semi-bold`   | **[Number](https://sass-lang.com/documentation/values/numbers)** | <span style="font-weight: 600;">Lorem ipsum dolor sit amet.</span> (= `600`) | `600`   |
+| `bold`        | **[Number](https://sass-lang.com/documentation/values/numbers)** | <span style="font-weight: 700;">Lorem ipsum dolor sit amet.</span> (= `700`) | `700`   |
+| `extra-bold`  | **[Number](https://sass-lang.com/documentation/values/numbers)** | <span style="font-weight: 800;">Lorem ipsum dolor sit amet.</span> (= `800`) | `800`   |
+| `black`       | **[Number](https://sass-lang.com/documentation/values/numbers)** | <span style="font-weight: 900;">Lorem ipsum dolor sit amet.</span> (= `900`) | `900`   |
 
 ### $variant
 
@@ -697,10 +697,12 @@ Utility to generate selectors by breakpoints.
 
 #### Parameters
 
-| Name           | Type                                                         | Description                 | Default |
-| :------------- | :----------------------------------------------------------- | :-------------------------- | :------ |
-| `$breakpoints` | **[Map](https://sass-lang.com/documentation/values/maps)**   | Breakpoints.                | `()`    |
-| `$ignores`     | **[List](https://sass-lang.com/documentation/values/lists)** | Breakpoint names to ignore. | `()`    |
+| Name               | Type                                                             | Description                            | Default |
+| :----------------- | :--------------------------------------------------------------- | :------------------------------------- | :------ |
+| `$breakpoints`     | **[Map](https://sass-lang.com/documentation/values/maps)**       | Breakpoints.                           | `()`    |
+| `$options`         | **[Map](https://sass-lang.com/documentation/values/maps)**       | options                                | `()`    |
+| `$options.ignores` | **[List](https://sass-lang.com/documentation/values/lists)**     | Breakpoint names to ignore.            | `()`    |
+| `$options.target`  | **[String](https://sass-lang.com/documentation/values/strings)** | Target selector string to replacement. | `""`    |
 
 #### Examples
 

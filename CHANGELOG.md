@@ -1,3 +1,17 @@
+# [1.0.0-alpha.5](https://github.com/hidoo/styleunit/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2025-05-27)
+
+
+### Bug Fixes
+
+* **settings:** fix light value in the font weight presets ([0ede5d3](https://github.com/hidoo/styleunit/commit/0ede5d3d17c3bd2bcbc8e1406f785267328ba280))
+
+
+### Features
+
+* **mixin:** update mixin by-breakpoints to support selectors other than class selector ([2c7a2ec](https://github.com/hidoo/styleunit/commit/2c7a2ec1c051bd807815b0f1089099533e0febf3))
+
+
+
 # [1.0.0-alpha.4](https://github.com/hidoo/styleunit/compare/v1.0.0-alpha.3...v1.0.0-alpha.4) (2025-05-23)
 
 
