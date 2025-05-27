@@ -697,10 +697,12 @@ Utility to generate selectors by breakpoints.
 
 #### Parameters
 
-| Name           | Type                                                         | Description                 | Default |
-| :------------- | :----------------------------------------------------------- | :-------------------------- | :------ |
-| `$breakpoints` | **[Map](https://sass-lang.com/documentation/values/maps)**   | Breakpoints.                | `()`    |
-| `$ignores`     | **[List](https://sass-lang.com/documentation/values/lists)** | Breakpoint names to ignore. | `()`    |
+| Name               | Type                                                             | Description                            | Default |
+| :----------------- | :--------------------------------------------------------------- | :------------------------------------- | :------ |
+| `$breakpoints`     | **[Map](https://sass-lang.com/documentation/values/maps)**       | Breakpoints.                           | `()`    |
+| `$options`         | **[Map](https://sass-lang.com/documentation/values/maps)**       | options                                | `()`    |
+| `$options.ignores` | **[List](https://sass-lang.com/documentation/values/lists)**     | Breakpoint names to ignore.            | `()`    |
+| `$options.target`  | **[String](https://sass-lang.com/documentation/values/strings)** | Target selector string to replacement. | `""`    |
 
 #### Examples
 

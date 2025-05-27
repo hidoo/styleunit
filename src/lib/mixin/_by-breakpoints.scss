@@ -4,15 +4,27 @@
 ////
 
 @use "sass:list";
+@use "sass:map";
 @use "sass:meta";
 @use "sass:string";
 @use "../../settings";
 @use "../function";
 @use "./media" as mixin;
 
+/// Default options
+/// @access private
+/// @type Map
+///
+$_default-options: (
+  "ignores": (),
+  "target": ""
+) !default;
+
 /// Utility to generate selectors by breakpoints.
 /// @param {Map} $breakpoints [()] - Breakpoints.
-/// @param {List} $ignores [()] - Breakpoint names to ignore.
+/// @param {Map} $options [()] - options
+/// @param {List} $options.ignores [()] - Breakpoint names to ignore.
+/// @param {String} $options.target [""] - Target selector string to replacement.
 ///
 /// @example scss - scss inputs
 ///    $breakpoint: (
@@ -43,25 +55,31 @@
 ///   }
 ///   ...
 ///
-@mixin by-breakpoints($breakpoints: null, $ignores: ()) {
+@mixin by-breakpoints($breakpoints: null, $options: ()) {
   @if meta.type-of($breakpoints) != "map" {
     $breakpoints: settings.$breakpoints;
   }
 
-  @at-root {
-    #{&} {
-      @content;
-    }
+  $opts: map.merge($_default-options, $options);
+  $ignores: map.get($opts, "ignores");
+  $target: map.get($opts, "target");
 
-    @each $bp, $query in $breakpoints {
-      // Allows string queries only,
-      // and ignores breakpoint start with `_` and specified by $options.ignores.
-      @if meta.type-of($query) ==
-        "string" and not
-        (list.index($ignores, $bp) or string.index($bp, "_") == 1)
-      {
-        $selector: ".#{$bp}\\:#{function.string-replace("#{&}", '.')}";
+  @content;
 
+  @each $bp, $query in $breakpoints {
+    // Allows string queries only,
+    // and ignores breakpoint start with `_` and specified by $options.ignores.
+    @if meta.type-of($query) ==
+      "string" and not
+      (list.index($ignores, $bp) or string.index($bp, "_") == 1)
+    {
+      $selector: function.string-replace(
+        "#{&}",
+        ".#{$target}",
+        ".#{$bp}\\:#{$target}"
+      );
+
+      @at-root {
         #{$selector} {
           @include mixin.media(
             $query: $bp,
