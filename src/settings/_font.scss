@@ -105,20 +105,20 @@ $weight: 400 !default;
 
 /// Font weight presets
 /// @type Map
-/// @prop {Number} thin [100] - thin
-/// @prop {Number} extra-light [200] - extra-light
-/// @prop {Number} light [300] - light
-/// @prop {Number} regular [400] - regular
-/// @prop {Number} medium [500] - medium
-/// @prop {Number} semi-bold [600] - semi-bold
-/// @prop {Number} bold [700] - bold
-/// @prop {Number} extra-bold [800] - extra-bold
-/// @prop {Number} black [900] - black
+/// @prop {Number} thin [100] - <span style="font-weight: 100;">Lorem ipsum dolor sit amet.</span> (= `100`)
+/// @prop {Number} extra-light [200] - <span style="font-weight: 200;">Lorem ipsum dolor sit amet.</span> (= `200`)
+/// @prop {Number} light [300] - <span style="font-weight: 300;">Lorem ipsum dolor sit amet.</span> (= `300`)
+/// @prop {Number} regular [400] - <span style="font-weight: 400;">Lorem ipsum dolor sit amet.</span> (= `400`)
+/// @prop {Number} medium [500] - <span style="font-weight: 500;">Lorem ipsum dolor sit amet.</span> (= `500`)
+/// @prop {Number} semi-bold [600] - <span style="font-weight: 600;">Lorem ipsum dolor sit amet.</span> (= `600`)
+/// @prop {Number} bold [700] - <span style="font-weight: 700;">Lorem ipsum dolor sit amet.</span> (= `700`)
+/// @prop {Number} extra-bold [800] - <span style="font-weight: 800;">Lorem ipsum dolor sit amet.</span> (= `800`)
+/// @prop {Number} black [900] - <span style="font-weight: 900;">Lorem ipsum dolor sit amet.</span> (= `900`)
 ///
 $weight-presets: (
   "thin": 100,
   "extra-light": 200,
-  "light": 200,
+  "light": 300,
   "regular": 400,
   "medium": 500,
   "semi-bold": 600,
