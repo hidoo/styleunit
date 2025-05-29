@@ -61,19 +61,17 @@ Style guide: #{settings.$prefix}-input.theme.builtin
       --border-radius: 3px;
       --color: var(--color-up);
       --background-color: var(--background-color-up);
-      --border: 1px solid var(--border-color-up);
+      --border-color: var(--border-color-up);
+      --border: 1px solid var(--border-color);
       --box-shadow: inset rgb(0, 0, 0, 0.1) 0 2px 2px;
       --transition: border-color 0.1s ease-out;
 
-      box-shadow: var(--box-shadow);
-      transition: var(--transition);
-
       @include mixin.on-focus() {
-        --border: 1px solid var(--border-color-focus);
+        --border-color: var(--border-color-focus);
       }
 
       @include mixin.on-disabled() {
-        --border: 1px solid var(--border-color-up);
+        --border-color: var(--border-color-up);
       }
 
       @include mixin.on-placeholder() {

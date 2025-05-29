@@ -54,18 +54,6 @@ Style guide: #{settings.$prefix}-list.core.default
 .#{settings.$prefix}-list {
   --counter-reset: none;
   --counter-increment: none;
-  --position: relative;
-  --display: block;
-  --overflow: visible;
-  --box-sizing: content-box;
-  --width: auto;
-  --height: auto;
-  --margin: 0;
-  --padding: 0;
-  --border: 0;
-  --color: inherit;
-  --list-style: none;
-  --background-color: transparent;
 
   // For item
   --item-padding: 0;
@@ -85,23 +73,6 @@ Style guide: #{settings.$prefix}-list.core.default
   --marker-font-variant: common-ligatures proportional-width text;
 
   counter-reset: var(--counter-reset);
-
-  position: var(--position);
-
-  overflow: var(--overflow);
-  display: var(--display);
-
-  box-sizing: var(--box-sizing);
-  width: var(--width);
-  height: var(--height);
-  margin: var(--margin);
-  padding: var(--padding);
-  border: var(--border);
-
-  color: var(--color);
-  list-style: var(--list-style);
-
-  background-color: var(--background-color);
 
   &__item:where(& > &__item) {
     --padding: var(--item-padding);

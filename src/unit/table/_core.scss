@@ -49,21 +49,12 @@ Style guide: #{settings.$prefix}-table.core.default
 
   --display: table;
   --border-collapse: collapse;
-  --width: auto;
-  --margin: 0;
-  --padding: 0;
-  --border-color: currentColor;
-  --border-style: solid;
-  --border-width: 1px;
-  --color: inherit;
-  --background-color: transparent;
+  --border: 1px solid currentColor;
 
   // For columns
   --column-display: table-cell;
   --column-padding: 5px 10px calc(5px * var(--column-line-height));
-  --column-border-color: var(--border-color);
-  --column-border-style: var(--border-style);
-  --column-border-width: var(--border-width);
+  --column-border: 1px solid currentColor;
   --column-font-size: var(--#{$pkg}-font-size);
   --column-font-weight: var(--#{$pkg}-font-weight);
   --column-font-style: normal;
@@ -78,27 +69,13 @@ Style guide: #{settings.$prefix}-table.core.default
   --column-background-color: transparent;
   --column-heading-background-color: transparent;
 
-  display: var(--display);
   border-collapse: var(--border-collapse);
-
-  width: var(--width);
-  margin: var(--margin);
-  padding: var(--padding);
-  border-color: var(--border-color);
-  border-style: var(--border-style);
-  border-width: var(--border-width);
-
-  color: var(--color);
-
-  background-color: var(--background-color);
 
   &__column {
     display: var(--column-display);
 
     padding: var(--column-padding);
-    border-color: var(--column-border-color);
-    border-style: var(--column-border-style);
-    border-width: var(--column-border-width);
+    border: var(--column-border);
 
     font-size: var(--column-font-size);
     font-weight: var(--column-font-weight);

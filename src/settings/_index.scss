@@ -107,6 +107,26 @@ $overflow-wrap: anywhere !default;
 ///
 $message-on-image-error: "Failed to load image." !default;
 
+/// Default list of units that applying base settings.
+/// @access private
+/// @type List
+///
+$applying-units: (
+  "icon",
+  "text",
+  "list",
+  "pict",
+  "button",
+  "table",
+  "document",
+  "input",
+  "toggle",
+  "select",
+  "box",
+  "table-grid",
+  "flex-grid"
+) !default;
+
 /// out warnings verbosely or not
 /// @type Boolean
 ///

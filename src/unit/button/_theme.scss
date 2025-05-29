@@ -61,20 +61,17 @@ Style guide: #{settings.$prefix}-button.theme.builtin
       // Default settings
       --padding: 10px;
       --border-radius: 3px;
-      --border-style: 1px solid;
+      --border-color: var(--border-color-up);
       --transition: background-color 0.1s ease-out;
       --color: var(--color-up);
       --background-color: var(--background-color-up);
-      --border: var(--border-style) var(--border-color-up);
-
-      border-radius: var(--border-radius);
-      transition: var(--transition);
+      --border: 1px solid var(--border-color);
 
       &:where(a[href], button) {
         @include mixin.on-focus() {
           --color: var(--color-focus);
           --background-color: var(--background-color-focus);
-          --border: var(--border-style) var(--border-color-focus);
+          --border-color: var(--border-color-focus);
         }
       }
 

@@ -50,8 +50,6 @@ Markup: <div class="#{settings.$prefix}-flex-grid">
 Style guide: #{settings.$prefix}-flex-grid.core.default
 */
 .#{settings.$prefix}-flex-grid {
-  --position: relative;
-  --overflow: visible;
   --display: flex;
   --flex-direction: row;
   --flex-wrap: nowrap;
@@ -61,13 +59,7 @@ Style guide: #{settings.$prefix}-flex-grid.core.default
   --box-sizing: border-box;
   --width: 100%;
   --height: 100%;
-  --margin: 0;
-  --padding: 0;
-  --border: 0;
-  --color: inherit;
   --vertical-align: baseline;
-  --list-style: none;
-  --background-color: transparent;
 
   // For column
   --column-position: relative;
@@ -87,28 +79,13 @@ Style guide: #{settings.$prefix}-flex-grid.core.default
   --column-list-style: none;
   --column-background-color: transparent;
 
-  position: var(--position);
-
-  overflow: var(--overflow);
-  display: var(--display);
   flex-direction: var(--flex-direction);
   flex-wrap: var(--flex-wrap);
   align-content: var(--align-content);
   align-items: var(--align-items);
   justify-content: var(--justify-content);
 
-  box-sizing: var(--box-sizing);
-  width: var(--width);
-  height: var(--height);
-  margin: var(--margin);
-  padding: var(--padding);
-  border: var(--border);
-
-  color: var(--color);
   vertical-align: var(--vertical-align);
-  list-style: var(--list-style);
-
-  background-color: var(--background-color);
 
   &__column {
     position: var(--column-position);

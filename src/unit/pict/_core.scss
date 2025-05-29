@@ -52,29 +52,16 @@ Style guide: #{settings.$prefix}-pict.core.base
 .#{settings.$prefix}-pict {
   $pkg: settings.$pkg;
 
-  --position: relative;
-  --display: block;
-  --overflow: visible;
-  --box-sizing: content-box;
-  --width: auto;
-  --max-width: none;
-  --height: auto;
-  --margin: 0;
-  --padding: 0;
-  --border: 0;
   --font-size: var(--#{$pkg}-font-size);
   --font-weight: var(--#{$pkg}-font-weight);
   --font-style: normal;
   --line-height: 0;
-  --color: inherit;
   --text-align: left;
   --text-decoration: none;
   --text-indent: 0;
   --letter-spacing: 0;
   --white-space: normal;
   --vertical-align: baseline;
-  --list-style: none;
-  --background-color: transparent;
   --message-on-image-error: var(--#{$pkg}-message-on-image-error);
 
   // For src
@@ -124,33 +111,16 @@ Style guide: #{settings.$prefix}-pict.core.base
   --src-after-color: inherit;
   --src-after-background-color: inherit;
 
-  position: var(--position);
-
-  overflow: var(--overflow);
-  display: var(--display);
-
-  box-sizing: var(--box-sizing);
-  width: var(--width);
-  max-width: var(--max-width);
-  height: var(--height);
-  margin: var(--margin);
-  padding: var(--padding);
-  border: var(--border);
-
   font-size: var(--font-size);
   font-weight: var(--font-weight);
   font-style: var(--font-style);
   line-height: var(--line-height);
-  color: var(--color);
   text-align: var(--text-align);
   text-decoration: var(--text-decoration);
   text-indent: var(--text-indent);
   letter-spacing: var(--letter-spacing);
   white-space: var(--white-space);
   vertical-align: var(--vertical-align);
-  list-style: var(--list-style);
-
-  background-color: var(--background-color);
 
   &__src:where(& > &__src) {
     pointer-events: var(--src-pointer-events);
