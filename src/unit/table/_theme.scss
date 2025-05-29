@@ -57,6 +57,8 @@ Style guide: #{settings.$prefix}-table.theme.builtin
         --column-heading-background-color-up
       );
       --border-color: var(--border-color-up);
+      --border: 1px solid var(--border-color);
+      --column-border: 1px solid var(--border-color);
 
       // Settings by color schemes
       @each $name, $theme in settings.$builtin-themes {

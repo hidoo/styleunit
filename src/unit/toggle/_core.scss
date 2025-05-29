@@ -52,18 +52,7 @@ Markup: <!-- single -->
 Style guide: #{settings.$prefix}-toggle.core.default
 */
 .#{settings.$prefix}-toggle {
-  --position: relative;
   --display: inline-block;
-  --overflow: visible;
-  --box-sizing: content-box;
-  --width: auto;
-  --height: auto;
-  --margin: 0;
-  --padding: 0;
-  --border: 0;
-  --color: inherit;
-  --list-style: none;
-  --background-color: transparent;
   --vertical-align: baseline;
 
   // For field
@@ -85,23 +74,7 @@ Style guide: #{settings.$prefix}-toggle.core.default
   --field-background-color: transparent;
   --field-outline: none;
 
-  position: var(--position);
-
-  overflow: var(--overflow);
-  display: var(--display);
-
-  box-sizing: var(--box-sizing);
-  width: var(--width);
-  height: var(--height);
-  margin: var(--margin);
-  padding: var(--padding);
-  border: var(--border);
-
-  color: var(--color);
   vertical-align: var(--vertical-align);
-  list-style: var(--list-style);
-
-  background-color: var(--background-color);
 
   &__field {
     cursor: var(--field-cursor);

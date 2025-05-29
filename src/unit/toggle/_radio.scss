@@ -61,10 +61,10 @@ Style guide: #{settings.$prefix}-toggle.radio.builtin
       // Default settings
       --width: 20px;
       --height: 20px;
-      --border: 1px solid var(--color-up);
+      --border-color: var(--color-up);
+      --border: 1px solid var(--border-color);
       --border-radius: 20px;
       --vertical-align: middle;
-      --opacity: 1;
       --transition: border-color 0.2s ease-out;
 
       // For field
@@ -82,10 +82,7 @@ Style guide: #{settings.$prefix}-toggle.radio.builtin
         transform 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55),
         background-color 0.2s ease-out;
 
-      border-radius: var(--border-radius);
       vertical-align: var(--vertical-align);
-      opacity: var(--opacity);
-      transition: var(--transition);
 
       &::before {
         content: "";
@@ -112,13 +109,13 @@ Style guide: #{settings.$prefix}-toggle.radio.builtin
       }
 
       @include mixin.has-focus() {
-        --border: 1px solid var(--color-focus);
+        --border-color: var(--color-focus);
         --pseudo-background-color: var(--color-focus);
       }
 
       @include mixin.has-disabled() {
         --opacity: 0.5;
-        --border: 1px solid var(--color-up);
+        --border-color: var(--color-up);
         --pseudo-background-color: var(--color-up);
         --field-opacity: 0;
       }

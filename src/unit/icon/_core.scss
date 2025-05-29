@@ -35,57 +35,31 @@ Style guide: #{settings.$prefix}-icon.core.default
 .#{settings.$prefix}-icon {
   $pkg: settings.$pkg;
 
-  --position: relative;
   --transform-origin: 0 0;
   --transform: none;
-  --display: block;
   --overflow: hidden;
-  --box-sizing: content-box;
-  --width: auto;
-  --height: auto;
-  --margin: 0;
-  --padding: 0;
-  --border: 0;
   --font-size: var(--#{$pkg}-font-size);
   --font-weight: var(--#{$pkg}-font-weight);
   --font-style: normal;
   --line-height: var(--#{$pkg}-line-height);
-  --color: inherit;
   --text-align: left;
   --text-decoration: none;
   --text-indent: -100%;
   --letter-spacing: var(--#{$pkg}-letter-spacing);
   --white-space: normal;
   --vertical-align: baseline;
-  --list-style: none;
-  --background-color: transparent;
 
-  position: var(--position);
   transform-origin: var(--transform-origin);
   transform: var(--transform);
-
-  overflow: var(--overflow);
-  display: var(--display);
-
-  box-sizing: var(--box-sizing);
-  width: var(--width);
-  height: var(--height);
-  margin: var(--margin);
-  padding: var(--padding);
-  border: var(--border);
 
   font-size: var(--font-size);
   font-weight: var(--font-weight);
   font-style: var(--font-style);
   line-height: var(--line-height);
-  color: var(--color);
   text-align: var(--text-align);
   text-decoration: var(--text-decoration);
   text-indent: var(--text-indent);
   letter-spacing: var(--letter-spacing);
   white-space: var(--white-space);
   vertical-align: var(--vertical-align);
-  list-style: var(--list-style);
-
-  background-color: var(--background-color);
 }

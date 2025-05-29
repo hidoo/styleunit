@@ -49,19 +49,8 @@ Style guide: #{settings.$prefix}-select.core.default
 .#{settings.$prefix}-select {
   $pkg: settings.$pkg;
 
-  --position: relative;
-  --display: block;
   --overflow: hidden;
   --box-sizing: border-box;
-  --width: auto;
-  --height: auto;
-  --margin: 0;
-  --padding: 0;
-  --border: 0;
-  --color: inherit;
-  --list-style: none;
-  --background-color: transparent;
-  --opacity: 1;
 
   // For field
   --field-cursor: pointer;
@@ -94,24 +83,6 @@ Style guide: #{settings.$prefix}-select.core.default
   --field-outline: 0;
   --field-transition: none;
   --field-options-padding: 0;
-
-  position: var(--position);
-
-  overflow: var(--overflow);
-  display: var(--display);
-
-  box-sizing: var(--box-sizing);
-  width: var(--width);
-  height: var(--height);
-  margin: var(--margin);
-  padding: var(--padding);
-  border: var(--border);
-
-  color: var(--color);
-  list-style: var(--list-style);
-
-  opacity: var(--opacity);
-  background-color: var(--background-color);
 
   &__field {
     cursor: var(--field-cursor);

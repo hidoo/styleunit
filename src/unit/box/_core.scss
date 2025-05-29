@@ -45,33 +45,5 @@ Markup: <div class="#{settings.$prefix}-box">
 Style guide: #{settings.$prefix}-box.core.default
 */
 .#{settings.$prefix}-box {
-  --position: relative;
-  --display: block;
-  --overflow: visible;
-  --box-sizing: content-box;
-  --width: auto;
-  --height: auto;
-  --margin: 0;
-  --padding: 0;
-  --border: 0;
-  --color: inherit;
-  --list-style: none;
-  --background-color: transparent;
-
-  position: var(--position);
-
-  overflow: var(--overflow);
-  display: var(--display);
-
-  box-sizing: var(--box-sizing);
-  width: var(--width);
-  height: var(--height);
-  margin: var(--margin);
-  padding: var(--padding);
-  border: var(--border);
-
-  color: var(--color);
-  list-style: var(--list-style);
-
-  background-color: var(--background-color);
+  /* noop */
 }

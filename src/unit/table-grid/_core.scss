@@ -48,20 +48,12 @@ Markup: <div class="#{settings.$prefix}-table-grid">
 Style guide: #{settings.$prefix}-table-grid.core.default
 */
 .#{settings.$prefix}-table-grid {
-  --position: relative;
   --display: table;
-  --overflow: visible;
   --border-collapse: collapse;
   --box-sizing: border-box;
   --width: 100%;
   --height: 100%;
-  --margin: 0;
-  --padding: 0;
-  --border: 0;
-  --color: inherit;
   --vertical-align: top;
-  --list-style: none;
-  --background-color: transparent;
 
   // For column
   --column-position: relative;
@@ -78,24 +70,8 @@ Style guide: #{settings.$prefix}-table-grid.core.default
   --column-list-style: none;
   --column-background-color: transparent;
 
-  position: var(--position);
-
-  overflow: var(--overflow);
-  display: var(--display);
   border-collapse: var(--border-collapse);
-
-  box-sizing: var(--box-sizing);
-  width: var(--width);
-  height: var(--height);
-  margin: var(--margin);
-  padding: var(--padding);
-  border: var(--border);
-
-  color: var(--color);
   vertical-align: var(--vertical-align);
-  list-style: var(--list-style);
-
-  background-color: var(--background-color);
 
   &__column {
     position: var(--column-position);

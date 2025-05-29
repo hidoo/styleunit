@@ -326,27 +326,16 @@ Style guide: #{settings.$prefix}-document.core.default
     "&__scrollable-table"
   );
 
-  --position: relative;
-  --display: block;
-  --overflow: visible;
-  --box-sizing: content-box;
-  --width: auto;
-  --height: auto;
-  --margin: 0;
-  --padding: 0;
-  --border: 0;
   --font-size: var(--#{$pkg}-font-size);
   --font-weight: var(--#{$pkg}-font-weight);
   --font-style: normal;
   --line-height: var(--#{$pkg}-line-height);
-  --color: inherit;
   --text-align: left;
   --text-decoration: none;
   --text-indent: 0;
   --letter-spacing: var(--#{$pkg}-letter-spacing);
   --white-space: normal;
   --vertical-align: baseline;
-  --background-color: transparent;
 
   // Spacings
   --top-spacing: 20px;
@@ -397,31 +386,16 @@ Style guide: #{settings.$prefix}-document.core.default
     --#{$element}-font-weight: var(--#{$pkg}-font-weight-bold);
   }
 
-  position: var(--position);
-
-  overflow: var(--overflow);
-  display: var(--display);
-
-  box-sizing: var(--box-sizing);
-  width: var(--width);
-  height: var(--height);
-  margin: var(--margin);
-  padding: var(--padding);
-  border: var(--border);
-
   font-size: var(--font-size);
   font-weight: var(--font-weight);
   font-style: var(--font-style);
   line-height: var(--line-height);
-  color: var(--color);
   text-align: var(--text-align);
   text-decoration: var(--text-decoration);
   text-indent: var(--text-indent);
   letter-spacing: var(--letter-spacing);
   white-space: var(--white-space);
   vertical-align: var(--vertical-align);
-
-  background-color: var(--background-color);
 
   // Initialize box unit like element
   :where(#{$box-unit-like-elements}, iframe) {

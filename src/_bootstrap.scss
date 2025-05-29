@@ -93,6 +93,68 @@
   font-size: var(--#{$pkg}-font-base-size);
 }
 
+// Configure base settings
+@if meta.type-of(settings.$applying-units) == "list" {
+  $_selectors: () !default;
+
+  // Build selector as follow:
+  //   :where(<unit class>, <unit class>, <unit class> ...)
+  @each $unit in settings.$applying-units {
+    $_selectors: list.append(
+      $_selectors,
+      ".#{settings.$prefix}-#{$unit}",
+      $separator: comma
+    );
+  }
+
+  :where(#{$_selectors}) {
+    $pkg: settings.$pkg;
+
+    --position: relative;
+    --display: block;
+    --overflow: visible;
+    --box-sizing: content-box;
+    --width: auto;
+    --max-width: none;
+    --height: auto;
+    --max-height: none;
+    --margin: 0;
+    --padding: 0;
+    --border: 0;
+    --border-radius: 0;
+    --color: inherit;
+    --list-style: none;
+    --opacity: 1;
+    --background-color: transparent;
+    --box-shadow: none;
+    --transition: none;
+
+    position: var(--position);
+
+    overflow: var(--overflow);
+    display: var(--display);
+
+    box-sizing: var(--box-sizing);
+    width: var(--width);
+    max-width: var(--max-width);
+    height: var(--height);
+    max-height: var(--max-height);
+    margin: var(--margin);
+    padding: var(--padding);
+    border: var(--border);
+    border-radius: var(--border-radius);
+
+    color: var(--color);
+    list-style: var(--list-style);
+
+    opacity: var(--opacity);
+    background-color: var(--background-color);
+    box-shadow: var(--box-shadow);
+
+    transition: var(--transition);
+  }
+}
+
 // Configure font settings
 @if meta.type-of(settings.$font-applying-units) == "list" {
   $_selectors: () !default;
