@@ -1,3 +1,12 @@
+# [1.0.0-alpha.6](https://github.com/hidoo/styleunit/compare/v1.0.0-alpha.5...v1.0.0-alpha.6) (2025-05-29)
+
+
+### Features
+
+* **plugin:** export some functions and mixins in plugin/spritesheet ([6c45cdd](https://github.com/hidoo/styleunit/commit/6c45cddb8dc767c35767a3adffff1fb99df187fe))
+
+
+
 # [1.0.0-alpha.5](https://github.com/hidoo/styleunit/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2025-05-27)
 
 
