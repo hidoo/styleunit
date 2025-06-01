@@ -21,8 +21,8 @@ importers:
         specifier: 1.0.0-alpha.4
         version: 1.0.0-alpha.4(gulp@5.0.0)(jiti@2.4.2)
       '@hidoo/gulp-task-build-sprite-image':
-        specifier: 1.0.0-alpha.3
-        version: 1.0.0-alpha.3(gulp@5.0.0)(handlebars@4.7.8)
+        specifier: 1.0.0-alpha.4
+        version: 1.0.0-alpha.4(gulp@5.0.0)(handlebars@4.7.8)
       '@hidoo/gulp-task-build-sprite-svg':
         specifier: 1.0.0-alpha.3
         version: 1.0.0-alpha.3(gulp@5.0.0)(handlebars@4.7.8)
@@ -352,8 +352,8 @@ packages:
     peerDependencies:
       gulp: '>=4.0.2'
 
-  '@hidoo/gulp-plugin-image-evenizer@1.0.0-alpha.3':
-    resolution: {integrity: sha512-fxDXWL7S6Ja/2ysgj8OxuCChEpG9E9iWBbtAAZmrfhmpl+JPbqrnAyXi2toqaVYN4XKnGunOGWEtMMm1WFdbCw==}
+  '@hidoo/gulp-plugin-image-evenizer@1.0.0-alpha.4':
+    resolution: {integrity: sha512-LuwO8A2BZDkjh3pH4VbYGaRq/NhKgAR4Cd2qVv+UmYlgrWg2BkvV2dLmY9ZqvaJ01/cQH5+aqGG77LtIi27NLg==}
     engines: {node: '>=18.4.0'}
     peerDependencies:
       gulp: '>=4.0.2'
@@ -370,8 +370,8 @@ packages:
     peerDependencies:
       gulp: '>=4.0.2'
 
-  '@hidoo/gulp-task-build-sprite-image@1.0.0-alpha.3':
-    resolution: {integrity: sha512-isf8mrZxjMoi3fcrkSrk4giTmGdjnYpUeS7KtXOKgI/pv5VaDDa3fzgXzzhJaiaW1JmoHyC/sAJZntmtYeFwVw==}
+  '@hidoo/gulp-task-build-sprite-image@1.0.0-alpha.4':
+    resolution: {integrity: sha512-Z2NQ+VXowvgB0SeEmxTU6ivt4arN9Tqcm01zIYeBF9kK40bL8s/eJtxqCQ3lmicanj/wXTe5DbJ5TbRTl2TgSA==}
     engines: {node: '>=18.4.0'}
     peerDependencies:
       gulp: '>=4.0.2'
@@ -6790,7 +6790,7 @@ snapshots:
       through2: 4.0.2
       vinyl: 3.0.0
 
-  '@hidoo/gulp-plugin-image-evenizer@1.0.0-alpha.3(gulp@5.0.0)':
+  '@hidoo/gulp-plugin-image-evenizer@1.0.0-alpha.4(gulp@5.0.0)':
     dependencies:
       fancy-log: 2.0.0
       file-type: 20.5.0
@@ -6839,10 +6839,10 @@ snapshots:
       - jiti
       - tsx
 
-  '@hidoo/gulp-task-build-sprite-image@1.0.0-alpha.3(gulp@5.0.0)(handlebars@4.7.8)':
+  '@hidoo/gulp-task-build-sprite-image@1.0.0-alpha.4(gulp@5.0.0)(handlebars@4.7.8)':
     dependencies:
-      '@hidoo/gulp-plugin-image-evenizer': 1.0.0-alpha.3(gulp@5.0.0)
-      '@hidoo/gulp-util-error-handler': 1.0.0-alpha.3
+      '@hidoo/gulp-plugin-image-evenizer': 1.0.0-alpha.4(gulp@5.0.0)
+      '@hidoo/gulp-util-error-handler': 1.0.0-alpha.4
       '@hidoo/handlebars-helpers': 1.2.0(handlebars@4.7.8)
       gulp: 5.0.0
       gulp-if: 3.0.0
