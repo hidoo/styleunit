@@ -24,8 +24,8 @@ importers:
         specifier: 1.0.0-alpha.4
         version: 1.0.0-alpha.4(gulp@5.0.0)(handlebars@4.7.8)
       '@hidoo/gulp-task-build-sprite-svg':
-        specifier: 1.0.0-alpha.3
-        version: 1.0.0-alpha.3(gulp@5.0.0)(handlebars@4.7.8)
+        specifier: 1.0.0-alpha.4
+        version: 1.0.0-alpha.4(gulp@5.0.0)(handlebars@4.7.8)
       '@hidoo/gulp-task-build-styleguide-kss':
         specifier: 1.0.0-alpha.3
         version: 1.0.0-alpha.3(chokidar@3.6.0)(gulp@5.0.0)
@@ -340,12 +340,6 @@ packages:
       '@babel/core': '>=7.2.0'
       eslint: '>=9.0.0'
 
-  '@hidoo/gulp-plugin-compress@1.0.0-alpha.3':
-    resolution: {integrity: sha512-/+siChO5XtCacjfgmSK++UoHWtVmb/mt9Gt5asGHaF+m3NaBT3z1F6ySvh9Jv6vt7qeaLV+4aQrmc61iSGJoeg==}
-    engines: {node: '>=18.4.0'}
-    peerDependencies:
-      gulp: '>=4.0.2'
-
   '@hidoo/gulp-plugin-compress@1.0.0-alpha.4':
     resolution: {integrity: sha512-wKKm2tuOMHIxPEeHMvZVisX5VuxYhF1wENhzxb8kmJlabu2I8mTR0NhlsaIDaL9tbQhaIVQP4kyMreSGzluRTQ==}
     engines: {node: '>=18.4.0'}
@@ -358,8 +352,8 @@ packages:
     peerDependencies:
       gulp: '>=4.0.2'
 
-  '@hidoo/gulp-plugin-svg-sprite@1.0.0-alpha.3':
-    resolution: {integrity: sha512-eR9fQcxRmhXNDKhKkscMnEaiJ9c5H/vPzqlhk2lvyX7cDkEYOcuh3oJb/JER3c26MKzbY1f3Z3GGnesT4ejh2A==}
+  '@hidoo/gulp-plugin-svg-sprite@1.0.0-alpha.4':
+    resolution: {integrity: sha512-V80jHPtmgCrkF/Ct9uLOPTJJW2PsawpRqqgrk/wjE1oLeL2GBor5vV6PNT5U2VGnr4Ton1Mn8YrtdxFPUiCprg==}
     engines: {node: '>=18.4.0'}
     peerDependencies:
       gulp: '>=4.0.2'
@@ -376,8 +370,8 @@ packages:
     peerDependencies:
       gulp: '>=4.0.2'
 
-  '@hidoo/gulp-task-build-sprite-svg@1.0.0-alpha.3':
-    resolution: {integrity: sha512-bVLC3zczG6rHKmvSsswALWXUA4KY77C2uHFjNy67GsLzGVBQCZeTKvv7k8JUZw0x5XfeejXny5zibsiOi/N09A==}
+  '@hidoo/gulp-task-build-sprite-svg@1.0.0-alpha.4':
+    resolution: {integrity: sha512-v4AF3lEPOVbXWm6Wk8sVMel7ha6cIu8dYT+5LrbHFicrSMKqbOInFKXqef1QhNV3n/VG/4ldziuVgvco8dkgcw==}
     engines: {node: '>=18.4.0'}
     peerDependencies:
       gulp: '>=4.0.2'
@@ -6772,15 +6766,6 @@ snapshots:
       - supports-color
       - typescript
 
-  '@hidoo/gulp-plugin-compress@1.0.0-alpha.3(gulp@5.0.0)':
-    dependencies:
-      chalk: 5.4.1
-      fancy-log: 2.0.0
-      gulp: 5.0.0
-      plugin-error: 2.0.1
-      through2: 4.0.2
-      vinyl: 3.0.0
-
   '@hidoo/gulp-plugin-compress@1.0.0-alpha.4(gulp@5.0.0)':
     dependencies:
       chalk: 5.4.1
@@ -6804,7 +6789,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@hidoo/gulp-plugin-svg-sprite@1.0.0-alpha.3(gulp@5.0.0)':
+  '@hidoo/gulp-plugin-svg-sprite@1.0.0-alpha.4(gulp@5.0.0)':
     dependencies:
       cheerio: 1.0.0
       cssom: 0.5.0
@@ -6854,11 +6839,11 @@ snapshots:
       - handlebars
       - supports-color
 
-  '@hidoo/gulp-task-build-sprite-svg@1.0.0-alpha.3(gulp@5.0.0)(handlebars@4.7.8)':
+  '@hidoo/gulp-task-build-sprite-svg@1.0.0-alpha.4(gulp@5.0.0)(handlebars@4.7.8)':
     dependencies:
-      '@hidoo/gulp-plugin-compress': 1.0.0-alpha.3(gulp@5.0.0)
-      '@hidoo/gulp-plugin-svg-sprite': 1.0.0-alpha.3(gulp@5.0.0)
-      '@hidoo/gulp-util-error-handler': 1.0.0-alpha.3
+      '@hidoo/gulp-plugin-compress': 1.0.0-alpha.4(gulp@5.0.0)
+      '@hidoo/gulp-plugin-svg-sprite': 1.0.0-alpha.4(gulp@5.0.0)
+      '@hidoo/gulp-util-error-handler': 1.0.0-alpha.4
       '@hidoo/handlebars-helpers': 1.2.0(handlebars@4.7.8)
       gulp: 5.0.0
       gulp-if: 3.0.0
