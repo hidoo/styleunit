@@ -73,7 +73,7 @@
     "@commitlint/config-conventional": "19.8.0",
     "@hidoo/eslint-config": "2.0.0",
     "@hidoo/gulp-task-build-css-sass": "1.0.0-alpha.4",
-    "@hidoo/gulp-task-build-sprite-image": "1.0.0-alpha.3",
+    "@hidoo/gulp-task-build-sprite-image": "1.0.0-alpha.4",
     "@hidoo/gulp-task-build-sprite-svg": "1.0.0-alpha.3",
     "@hidoo/gulp-task-build-styleguide-kss": "1.0.0-alpha.3",
     "@hidoo/kss-builder": "1.1.0",
