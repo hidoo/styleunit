@@ -86,7 +86,7 @@
     "cross-env": "7.0.3",
     "eslint": "9.29.0",
     "gulp": "5.0.1",
-    "lint-staged": "15.5.1",
+    "lint-staged": "16.1.2",
     "mocha": "11.6.0",
     "pnpm": "10.12.1",
     "prettier": "3.5.3",
