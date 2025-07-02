@@ -110,7 +110,6 @@
   :where(#{$_selectors}) {
     $pkg: settings.$pkg;
 
-    --pointer-events: auto;
     --position: relative;
     --z-index: auto;
     --transform-origin: 50% 50% 0;
@@ -138,8 +137,6 @@
     --background-color: transparent;
     --box-shadow: none;
     --transition: none;
-
-    pointer-events: var(--pointer-events);
 
     position: var(--position);
     z-index: var(--z-index);
