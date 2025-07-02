@@ -1,3 +1,12 @@
+# [1.0.0-alpha.9](https://github.com/hidoo/styleunit/compare/v1.0.0-alpha.8...v1.0.0-alpha.9) (2025-07-02)
+
+
+### Reverts
+
+* **unit:** remove pointer-events custom property from base settings ([3dd7051](https://github.com/hidoo/styleunit/commit/3dd7051df7e5c8aa70a4044160080cbbda2a46d0))
+
+
+
 # [1.0.0-alpha.8](https://github.com/hidoo/styleunit/compare/v1.0.0-alpha.7...v1.0.0-alpha.8) (2025-07-02)
 
 
