@@ -81,10 +81,6 @@ Style guide: #{settings.$prefix}-flex-grid.core.default
 
   flex-direction: var(--flex-direction);
   flex-wrap: var(--flex-wrap);
-  align-content: var(--align-content);
-  align-items: var(--align-items);
-  justify-content: var(--justify-content);
-
   vertical-align: var(--vertical-align);
 
   &__column {

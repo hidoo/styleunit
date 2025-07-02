@@ -128,10 +128,16 @@ $weight-presets: (
 ) !default;
 
 /// Default font variant
-/// (default: (common-ligatures proportional-width emoji))
+/// (default: (common-ligatures))
 /// @type List
 ///
-$variant: (common-ligatures proportional-width emoji) !default;
+$variant: (common-ligatures) !default;
+
+/// Default font feature settings
+/// (default: ("palt" 1))
+/// @type List
+///
+$feature-settings: ("palt" 1) !default;
 
 /// Default font smoothing
 /// (webkit: antialiased, moz-osx: grayscale)

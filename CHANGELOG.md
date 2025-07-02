@@ -1,3 +1,13 @@
+# [1.0.0-alpha.7](https://github.com/hidoo/styleunit/compare/v1.0.0-alpha.6...v1.0.0-alpha.7) (2025-07-02)
+
+
+### Features
+
+* **settings:** add default setting for font-feature-settings ([956f99c](https://github.com/hidoo/styleunit/commit/956f99ca4022e40d4d89905e6b4f967e6bb0ce96))
+* **unit:** update base unit settings ([d3533ad](https://github.com/hidoo/styleunit/commit/d3533ad44722c80e49472e479363a43f0684405f))
+
+
+
 # [1.0.0-alpha.6](https://github.com/hidoo/styleunit/compare/v1.0.0-alpha.5...v1.0.0-alpha.6) (2025-05-29)
 
 
