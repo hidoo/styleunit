@@ -398,7 +398,7 @@ Style guide: #{settings.$prefix}-document.core.default
   vertical-align: var(--vertical-align);
 
   // Initialize box unit like element
-  :where(#{$box-unit-like-elements}, iframe) {
+  #{&} :where(#{$box-unit-like-elements}, iframe) {
     position: relative;
 
     overflow: visible;
@@ -414,7 +414,7 @@ Style guide: #{settings.$prefix}-document.core.default
     background-color: transparent;
   }
 
-  :where(#{$box-unit-like-elements}) {
+  #{&} :where(#{$box-unit-like-elements}) {
     width: auto;
     height: auto;
   }
