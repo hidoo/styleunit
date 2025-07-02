@@ -134,10 +134,10 @@ $weight-presets: (
 $variant: (common-ligatures) !default;
 
 /// Default font feature settings
-/// (default: ("palt" 1))
+/// (default: ('"palt"' 1))
 /// @type List
 ///
-$feature-settings: ("palt" 1) !default;
+$feature-settings: ('"palt"' 1) !default;
 
 /// Default font smoothing
 /// (webkit: antialiased, moz-osx: grayscale)

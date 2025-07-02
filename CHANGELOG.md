@@ -1,3 +1,12 @@
+# [1.0.0-alpha.8](https://github.com/hidoo/styleunit/compare/v1.0.0-alpha.7...v1.0.0-alpha.8) (2025-07-02)
+
+
+### Bug Fixes
+
+* **settings:** fix default setting for font-feature-settings ([4452418](https://github.com/hidoo/styleunit/commit/445241818f0f9eb4f1ad36d10ceb7c4072c54f77))
+
+
+
 # [1.0.0-alpha.7](https://github.com/hidoo/styleunit/compare/v1.0.0-alpha.6...v1.0.0-alpha.7) (2025-07-02)
 
 
