@@ -35,8 +35,6 @@ Style guide: #{settings.$prefix}-icon.core.default
 .#{settings.$prefix}-icon {
   $pkg: settings.$pkg;
 
-  --transform-origin: 0 0;
-  --transform: none;
   --overflow: hidden;
   --font-size: var(--#{$pkg}-font-size);
   --font-weight: var(--#{$pkg}-font-weight);
@@ -48,9 +46,6 @@ Style guide: #{settings.$prefix}-icon.core.default
   --letter-spacing: var(--#{$pkg}-letter-spacing);
   --white-space: normal;
   --vertical-align: baseline;
-
-  transform-origin: var(--transform-origin);
-  transform: var(--transform);
 
   font-size: var(--font-size);
   font-weight: var(--font-weight);

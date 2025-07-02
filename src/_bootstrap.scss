@@ -110,9 +110,18 @@
   :where(#{$_selectors}) {
     $pkg: settings.$pkg;
 
+    --pointer-events: auto;
     --position: relative;
-    --display: block;
+    --z-index: auto;
+    --transform-origin: 50% 50% 0;
+    --transform: none;
     --overflow: visible;
+    --display: block;
+    --gap: normal;
+    --align-content: normal;
+    --align-items: normal;
+    --justify-content: normal;
+    --justify-items: normal;
     --box-sizing: content-box;
     --width: auto;
     --max-width: none;
@@ -124,15 +133,26 @@
     --border-radius: 0;
     --color: inherit;
     --list-style: none;
+    --visibility: visible;
     --opacity: 1;
     --background-color: transparent;
     --box-shadow: none;
     --transition: none;
 
+    pointer-events: var(--pointer-events);
+
     position: var(--position);
+    z-index: var(--z-index);
+    transform-origin: var(--transform-origin);
+    transform: var(--transform);
 
     overflow: var(--overflow);
     display: var(--display);
+    gap: var(--gap);
+    align-content: var(--align-content);
+    align-items: var(--align-items);
+    justify-content: var(--justify-content);
+    justify-items: var(--justify-items);
 
     box-sizing: var(--box-sizing);
     width: var(--width);
@@ -147,6 +167,7 @@
     color: var(--color);
     list-style: var(--list-style);
 
+    visibility: var(--visibility);
     opacity: var(--opacity);
     background-color: var(--background-color);
     box-shadow: var(--box-shadow);

@@ -28,22 +28,18 @@ Style guide: #{settings.$prefix}-icon.direction.builtin
 */
 .#{settings.$prefix}-icon--direction {
   &-top {
-    --transform-origin: 50% 50%;
     --transform: rotate(0);
   }
 
   &-right {
-    --transform-origin: 50% 50%;
     --transform: rotate(90deg);
   }
 
   &-bottom {
-    --transform-origin: 50% 50%;
     --transform: rotate(180deg);
   }
 
   &-left {
-    --transform-origin: 50% 50%;
     --transform: rotate(-90deg);
   }
 }
