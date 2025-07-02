@@ -1,6 +1,6 @@
 {
   "name": "@hidoo/styleunit",
-  "version": "1.0.0-alpha.8",
+  "version": "1.0.0-alpha.9",
   "description": "The unit oriented CSS framework implemented in Sass.",
   "packageManager": "pnpm@10.12.4",
   "engines": {
