@@ -105,6 +105,16 @@
       ".#{settings.$prefix}-#{$unit}",
       $separator: comma
     );
+
+    @if $unit == "document" {
+      @each $child in ("pict", "scrollable-table") {
+        $_selectors: list.append(
+          $_selectors,
+          ".#{settings.$prefix}-#{$unit}__#{$child}",
+          $separator: comma
+        );
+      }
+    }
   }
 
   :where(#{$_selectors}) {
