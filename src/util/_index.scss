@@ -9,6 +9,7 @@ Weight: 10000
 
 Style guide: #{settings.$util-prefix}
 */
+@forward "./display";
 @forward "./hidden";
 @forward "./box-sizing";
 @forward "./width";

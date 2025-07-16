@@ -1,0 +1,74 @@
+@use "../lib/mixin";
+@use "../settings";
+
+/*
+Display
+
+The display module.
+
+Weight: -101
+
+Style guide: #{settings.$util-prefix}.display
+*/
+
+/*
+Modifiers
+
+The display modifiers.
++ The breakpoint prefixes can be specified like as `sm:#{settings.$util-prefix}--display-inline`.
+
+Weight: -100
+
+Markup: <div class="display-example-wrapper">
+  <div class="display-example  {{modifier_class}}"></div>
+  <div class="display-example  {{modifier_class}}">
+    <div class="display-example__child"></div>
+    <div class="display-example__child"></div>
+    <div class="display-example__child"></div>
+  </div>
+  <div class="display-example  {{modifier_class}}"></div>
+</div>
+<style>
+  :where(.display-example) {
+    width: 50px;
+    height: 50px;
+    background: #999;
+  }
+  :where(.display-example__child) {
+    width: 10px;
+    height: 10px;
+    background: #666;
+  }
+</style>
+
+#{settings.$util-prefix}--display-inline - Inline.
+#{settings.$util-prefix}--display-block - Block.
+#{settings.$util-prefix}--display-inline-block - Inline block.
+#{settings.$util-prefix}--display-flex - Flex.
+#{settings.$util-prefix}--display-inline-flex - Inline flex.
+#{settings.$util-prefix}--display-grid - Grid.
+#{settings.$util-prefix}--display-inline-grid - Inline grid.
+
+Style guide: #{settings.$util-prefix}.display.builtin
+*/
+.#{settings.$util-prefix}--display {
+  $variants: (
+    "inline",
+    "block",
+    "inline-block",
+    "flex",
+    "inline-flex",
+    "grid",
+    "inline-grid"
+  );
+
+  @each $value in $variants {
+    &-#{$value} {
+      @include mixin.by-breakpoints() {
+        --display: #{$value};
+
+        display: var(--display);
+      }
+    }
+  }
+}
