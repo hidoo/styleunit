@@ -1,3 +1,20 @@
+# [1.0.0-alpha.10](https://github.com/hidoo/styleunit/compare/v1.0.0-alpha.9...v1.0.0-alpha.10) (2025-07-16)
+
+
+### Bug Fixes
+
+* **unit:** change pict object-fit default value to fill ([d18de0f](https://github.com/hidoo/styleunit/commit/d18de0f568fa131979e6051d8711f3abe68d77ab))
+* **unit:** fix document unit to adjust selector scope ([1436b36](https://github.com/hidoo/styleunit/commit/1436b36e9a3b6bae06e92ba293b4059f9ccde147))
+* **unit:** fix fit modifiers of pict unit ([81c314c](https://github.com/hidoo/styleunit/commit/81c314c800fdace635e383995d6987439ab73c88))
+* **unit:** fix selector scope for document unit ([ecaa410](https://github.com/hidoo/styleunit/commit/ecaa4100575150c4dd69ac60854fb9915e2f3aac))
+
+
+### Features
+
+* **util:** add display utilities ([bdef5ea](https://github.com/hidoo/styleunit/commit/bdef5ea8c6f24d8cc456a7b3dbf6026629164325))
+
+
+
 # [1.0.0-alpha.9](https://github.com/hidoo/styleunit/compare/v1.0.0-alpha.8...v1.0.0-alpha.9) (2025-07-02)
 
 
