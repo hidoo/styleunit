@@ -45,12 +45,9 @@ Style guide: #{settings.$prefix}-pict.fit.builtin
 .#{settings.$prefix}-pict--fit {
   &-width,
   &-max-width {
-    --src-object-fit: fill;
-
     .#{settings.$prefix}-pict__src:where(
         .#{settings.$prefix}-pict > .#{settings.$prefix}-pict__src
       ) {
-      width: var(--src-width);
       height: var(--src-height);
     }
   }
@@ -58,6 +55,12 @@ Style guide: #{settings.$prefix}-pict.fit.builtin
   &-width {
     --src-width: 100%;
     --src-height: auto;
+
+    .#{settings.$prefix}-pict__src:where(
+        .#{settings.$prefix}-pict > .#{settings.$prefix}-pict__src
+      ) {
+      width: var(--src-width);
+    }
   }
 
   &-max-width {
