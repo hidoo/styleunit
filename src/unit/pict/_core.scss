@@ -90,7 +90,7 @@ Style guide: #{settings.$prefix}-pict.core.base
   --src-white-space: normal;
   --src-vertical-align: baseline;
   --src-list-style: none;
-  --src-object-fit: none;
+  --src-object-fit: fill;
   --src-background-color: transparent;
 
   // For breaking image
