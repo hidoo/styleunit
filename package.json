@@ -91,7 +91,7 @@
     "pnpm": "10.13.1",
     "prettier": "3.6.2",
     "sass": "1.89.2",
-    "stylelint": "16.22.0"
+    "stylelint": "16.23.0"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
