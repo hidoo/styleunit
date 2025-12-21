@@ -72,8 +72,8 @@ importers:
         specifier: 3.7.4
         version: 3.7.4
       sass:
-        specifier: 1.94.2
-        version: 1.94.2
+        specifier: 1.97.1
+        version: 1.97.1
       stylelint:
         specifier: 16.26.1
         version: 16.26.1(typescript@5.9.2)
@@ -5259,8 +5259,8 @@ packages:
     engines: {node: '>=16.0.0'}
     hasBin: true
 
-  sass@1.94.2:
-    resolution: {integrity: sha512-N+7WK20/wOr7CzA2snJcUSSNTCzeCGUTFY3OgeQP3mZ1aj9NMQ0mSTXwlrnd89j33zzQJGqIN52GIOmYrfq46A==}
+  sass@1.97.1:
+    resolution: {integrity: sha512-uf6HoO8fy6ClsrShvMgaKUn14f2EHQLQRtpsZZLeU/Mv0Q1K5P0+x2uvH6Cub39TVVbWNSrraUhDAoFph6vh0A==}
     engines: {node: '>=14.0.0'}
     hasBin: true
 
@@ -12494,7 +12494,7 @@ snapshots:
       sass-embedded-win32-ia32: 1.89.0
       sass-embedded-win32-x64: 1.89.0
 
-  sass@1.94.2:
+  sass@1.97.1:
     dependencies:
       chokidar: 4.0.3
       immutable: 5.1.3
