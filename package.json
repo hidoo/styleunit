@@ -89,7 +89,7 @@
     "lint-staged": "15.5.1",
     "mocha": "11.7.5",
     "pnpm": "10.27.0",
-    "prettier": "3.7.4",
+    "prettier": "3.8.1",
     "sass": "1.97.3",
     "stylelint": "16.26.1"
   },
